@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://content/basic_fractions/tests/task_levels/pie_slicer_3.png" type="Texture" id=1]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -641.0
+margin_top = -827.0
+margin_right = 641.0
+texture = ExtResource( 1 )
+stretch_mode = 5
+
+[node name="AddSlice" type="Position2D" parent="."]
+position = Vector2( 319.54, 139.588 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="SelectRegion" type="Position2D" parent="."]
+position = Vector2( 317.858, 203.496 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Slice1" type="Position2D" parent="."]
+position = Vector2( 627.309, 190.043 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Slice2" type="Position2D" parent="."]
+position = Vector2( 711.398, 369.994 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Slice3" type="Position2D" parent="."]
+position = Vector2( 543.219, 358.222 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Region1" type="Position2D" parent="."]
+position = Vector2( 716.443, 264.041 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CheckButton" type="Position2D" parent="."]
+position = Vector2( 105.953, 200.133 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}

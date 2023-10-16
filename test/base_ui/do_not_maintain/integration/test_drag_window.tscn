@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://core/base_ui/superscreen.gd" type="Script" id=1]
+[ext_resource path="res://core/base_ui/window/window.tscn" type="PackedScene" id=2]
+
+[node name="Test" type="Node"]
+
+[node name="Superscreen" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Window" parent="Superscreen" instance=ExtResource( 2 )]
+position = Vector2( 221.997, 127.816 )
+
+[node name="DragStartPos" type="Position2D" parent="."]
+position = Vector2( 326.268, 142.952 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="DragEndPos" type="Position2D" parent="."]
+position = Vector2( 713.08, 260.678 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="NonDragEndPos" type="Position2D" parent="."]
+position = Vector2( 790.863, 454.341 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}

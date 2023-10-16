@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://general/behaviors/button_enabler.gd" type="Script" id=1]
+[ext_resource path="res://core/level/side_menu/event_menu.gd" type="Script" id=2]
+
+[node name="EventMenu" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1273.0
+margin_bottom = 793.0
+
+[node name="ButtonEnabler" type="Node" parent="."]
+script = ExtResource( 1 )

@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://general/state_machine/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_3/state_data.gd" type="Script" id=2]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_7/program.gd" type="Script" id=3]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_7/states/verify_sum.gd" type="Script" id=4]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_7/states/select_sum.gd" type="Script" id=5]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource( 3 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+SetupData = ExtResource( 2 )
+_auto_activate = false
+
+[node name="SelectSum" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="VerifySum" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )

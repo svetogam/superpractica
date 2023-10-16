@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://general/state_machine/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://content/basic_addition/verifications/addition_by_circles/addition_by_circles.gd" type="Script" id=2]
+[ext_resource path="res://content/basic_addition/verifications/addition_by_circles/states/check_ones.gd" type="Script" id=3]
+[ext_resource path="res://content/basic_addition/verifications/addition_by_circles/states/check_tens.gd" type="Script" id=4]
+[ext_resource path="res://content/basic_addition/verifications/addition_by_circles/states/setup_addend.gd" type="Script" id=5]
+
+[node name="Verification" type="Node"]
+script = ExtResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+_initial_state_path = NodePath("SetupAddend")
+
+[node name="SetupAddend" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="CheckTens" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="CheckOnes" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )

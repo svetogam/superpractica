@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://core/pimnet/memo_slot/memo_slot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/basic_addition/slot_panels/sum_slots/sum_slots.gd" type="Script" id=2]
+[ext_resource path="res://core/pimnet/slot_panel/slot_panel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://content/basic_addition/slot_panels/sum_slots/equals.png" type="Texture" id=4]
+[ext_resource path="res://content/basic_addition/slot_panels/sum_slots/plus.png" type="Texture" id=5]
+
+[node name="SumSlots" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+initial_addend_1_is_empty = false
+initial_addend_1 = 0
+initial_addend_2_is_empty = false
+initial_addend_2 = 0
+initial_sum_is_empty = false
+initial_sum = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer" index="0"]
+margin_left = 477.0
+margin_top = 365.0
+margin_right = 803.0
+margin_bottom = 435.0
+
+[node name="Addend1" parent="CenterContainer/HBox" index="0" instance=ExtResource( 1 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 70.0
+margin_bottom = 70.0
+
+[node name="Plus" type="TextureRect" parent="CenterContainer/HBox" index="1"]
+unique_name_in_owner = true
+margin_left = 74.0
+margin_right = 124.0
+margin_bottom = 70.0
+texture = ExtResource( 5 )
+stretch_mode = 4
+
+[node name="Addend2" parent="CenterContainer/HBox" index="2" instance=ExtResource( 1 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 128.0
+margin_right = 198.0
+margin_bottom = 70.0
+
+[node name="Equals" type="TextureRect" parent="CenterContainer/HBox" index="3"]
+margin_left = 202.0
+margin_right = 252.0
+margin_bottom = 70.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+
+[node name="Sum" parent="CenterContainer/HBox" index="4" instance=ExtResource( 1 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 256.0
+margin_right = 326.0
+margin_bottom = 70.0

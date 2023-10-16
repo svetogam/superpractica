@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://content/basic_addition/fields/counting_board/objects/counter/counter_input_shape.tres" type="Resource" id=1]
+[ext_resource path="res://content/basic_addition/fields/counting_board/objects/counter/graphic.gd" type="Script" id=2]
+[ext_resource path="res://core/pimnet/field/field_object/field_object.tscn" type="PackedScene" id=3]
+[ext_resource path="res://content/basic_addition/fields/counting_board/objects/counter/counter.gd" type="Script" id=4]
+[ext_resource path="res://content/basic_addition/fields/counting_board/objects/counter/modes/delete.gd" type="Script" id=5]
+[ext_resource path="res://content/basic_addition/fields/counting_board/objects/counter/modes/drag.gd" type="Script" id=6]
+
+[node name="Counter" groups=["counters"] instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_pinned_properties_": [ "_input_shape_setup_data" ]
+}
+_input_shape_setup_data = ExtResource( 1 )
+
+[node name="Graphic" type="Node2D" parent="." index="0"]
+unique_name_in_owner = true
+script = ExtResource( 2 )
+
+[node name="delete" type="Node" parent="ActiveModes" index="0"]
+script = ExtResource( 5 )
+
+[node name="drag" type="Node" parent="ActiveModes" index="1"]
+script = ExtResource( 6 )

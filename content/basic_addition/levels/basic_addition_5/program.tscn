@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://general/state_machine/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_5/program.gd" type="Script" id=2]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_5/states/circle_down.gd" type="Script" id=3]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_1/states/select_start.gd" type="Script" id=4]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_1/states/press_button.gd" type="Script" id=5]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_5/state_data.gd" type="Script" id=6]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_5/states/circle_right.gd" type="Script" id=7]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+SetupData = ExtResource( 6 )
+_auto_activate = false
+
+[node name="SelectStart" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="CircleDown" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="CircleRight" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="PressButton" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )

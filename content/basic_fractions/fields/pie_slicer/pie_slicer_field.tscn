@@ -1,0 +1,56 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://core/pimnet/field/field.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/pie_slicer_field.gd" type="Script" id=2]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/objects/pie/pie.tscn" type="PackedScene" id=3]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/interface/queries.gd" type="Script" id=4]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/object_map.gd" type="Script" id=5]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/tool_modes/slice_remover.gd" type="Script" id=6]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/interface/actions.gd" type="Script" id=7]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/interface/metanavig.gd" type="Script" id=8]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/interface/processes_map.gd" type="Script" id=9]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/tool_modes/region_selector.gd" type="Script" id=10]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/tool_modes/region_counter.gd" type="Script" id=11]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/programs/slice_by_guides.gd" type="Script" id=12]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/tool_modes/slice_adder.gd" type="Script" id=13]
+
+[node name="Field" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+pie_radius = 200
+
+[node name="FieldLimit" parent="." index="1"]
+position = Vector2( 450, 450 )
+
+[node name="Pie" parent="." index="2" groups=["pies"] instance=ExtResource( 3 )]
+unique_name_in_owner = true
+position = Vector2( 218, 218 )
+
+[node name="Queries" parent="." index="4"]
+script = ExtResource( 4 )
+
+[node name="Actions" parent="." index="5"]
+script = ExtResource( 7 )
+
+[node name="Metanavig" parent="." index="6"]
+script = ExtResource( 8 )
+
+[node name="SliceAdder" type="Node" parent="ToolModes" index="0"]
+script = ExtResource( 13 )
+
+[node name="SliceRemover" type="Node" parent="ToolModes" index="1"]
+script = ExtResource( 6 )
+
+[node name="RegionSelector" type="Node" parent="ToolModes" index="2"]
+script = ExtResource( 10 )
+
+[node name="RegionCounter" type="Node" parent="ToolModes" index="3"]
+script = ExtResource( 11 )
+
+[node name="SliceByGuides" type="Node" parent="Programs" index="0"]
+script = ExtResource( 12 )
+
+[node name="ObjectFactory" parent="." index="9"]
+_initial_data = ExtResource( 5 )
+
+[node name="ProcessFactory" parent="." index="10"]
+_initial_data = ExtResource( 9 )

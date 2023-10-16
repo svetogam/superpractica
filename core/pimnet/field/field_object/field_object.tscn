@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://core/pimnet/field/field_object/field_object.gd" type="Script" id=1]
+[ext_resource path="res://general/mode_nodes/mode_group.gd" type="Script" id=2]
+
+[node name="FieldObject" type="Node2D" groups=["field_objects", "input_objects", "subscreen_objects"]]
+script = ExtResource( 1 )
+
+[node name="ActiveModes" type="Node" parent="."]
+script = ExtResource( 2 )

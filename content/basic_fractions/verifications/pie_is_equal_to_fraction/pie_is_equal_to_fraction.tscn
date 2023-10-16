@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://general/state_machine/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://content/basic_fractions/verifications/pie_is_equal_to_fraction/pie_is_equal_to_fraction.gd" type="Script" id=2]
+[ext_resource path="res://content/basic_fractions/verifications/pie_is_equal_to_fraction/states/check_numerator.gd" type="Script" id=3]
+[ext_resource path="res://content/basic_fractions/verifications/pie_is_equal_to_fraction/states/check_denominator.gd" type="Script" id=4]
+
+[node name="Verification" type="Node"]
+script = ExtResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+_initial_state_path = NodePath("CheckNumerator")
+
+[node name="CheckNumerator" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="CheckDenominator" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )

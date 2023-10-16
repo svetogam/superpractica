@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://core/pimnet/pimnet.gd" type="Script" id=1]
+[ext_resource path="res://core/base_ui/window/window.tscn" type="PackedScene" id=2]
+[ext_resource path="res://content/basic_fractions/pims/pie_slicer/pie_slicer_pim.tscn" type="PackedScene" id=3]
+[ext_resource path="res://content/debug/levels/pie_slicer/pim_setup.tres" type="Resource" id=4]
+
+[node name="LevelScreen" type="Control"]
+script = ExtResource( 1 )
+
+[node name="Window" parent="." instance=ExtResource( 2 )]
+position = Vector2( 127.236, 65.8901 )
+
+[node name="WindowRect" parent="Window" index="0"]
+margin_right = 657.0
+margin_bottom = 518.0
+
+[node name="ContentContainer" parent="Window/WindowRect/ContentPanel" index="0"]
+margin_right = 650.0
+margin_bottom = 481.0
+
+[node name="PieSlicerPim" parent="Window/WindowRect/ContentPanel/ContentContainer" index="0" groups=["window_contents"] instance=ExtResource( 3 )]
+margin_right = 643.0
+margin_bottom = 474.0
+mouse_filter = 2
+__meta__ = {
+"_edit_pinned_properties_": [ "_setup_data" ]
+}
+_setup_data = ExtResource( 4 )
+
+[editable path="Window"]

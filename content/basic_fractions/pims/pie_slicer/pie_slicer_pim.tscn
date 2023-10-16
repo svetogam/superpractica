@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://core/pimnet/pim/pim.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/basic_fractions/pims/pie_slicer/empty_setup.tres" type="Resource" id=2]
+
+[node name="PieSlicerPim" instance=ExtResource( 1 )]
+__meta__ = {
+"_edit_pinned_properties_": [ "_setup_data" ]
+}
+_setup_data = ExtResource( 2 )

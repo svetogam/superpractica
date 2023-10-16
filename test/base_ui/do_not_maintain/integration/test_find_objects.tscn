@@ -1,0 +1,185 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://core/base_ui/window/window_content.gd" type="Script" id=1]
+[ext_resource path="res://core/base_ui/subscreen/subscreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://core/base_ui/superscreen.gd" type="Script" id=3]
+[ext_resource path="res://core/base_ui/window/subscreen_viewer/subscreen_viewer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://core/base_ui/window/window.tscn" type="PackedScene" id=5]
+
+[node name="Superscreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Window1" parent="." instance=ExtResource( 5 )]
+position = Vector2( 137.907, 110.998 )
+
+[node name="WindowRect" parent="Window1" index="0"]
+margin_right = 385.0
+margin_bottom = 296.0
+
+[node name="ContentContainer" parent="Window1/WindowRect/ContentPanel" index="0"]
+margin_right = 378.0
+margin_bottom = 259.0
+
+[node name="Content1" type="Control" parent="Window1/WindowRect/ContentPanel/ContentContainer" index="0"]
+margin_right = 183.0
+margin_bottom = 252.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="Viewer1" parent="Window1/WindowRect/ContentPanel/ContentContainer" index="1" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 187.0
+margin_right = 371.0
+margin_bottom = 252.0
+size_flags_horizontal = 3
+
+[node name="Viewport" parent="Window1/WindowRect/ContentPanel/ContentContainer/Viewer1/ViewContainer" index="0"]
+size = Vector2( 184, 252 )
+
+[node name="Subscreen1" parent="Window1/WindowRect/ContentPanel/ContentContainer/Viewer1/ViewContainer/Viewport" index="1" instance=ExtResource( 2 )]
+
+[node name="Window2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 443.992, 20.1815 )
+
+[node name="WindowRect" parent="Window2" index="0"]
+margin_right = 449.0
+margin_bottom = 340.0
+
+[node name="ContentContainer" parent="Window2/WindowRect/ContentPanel" index="0"]
+margin_right = 442.0
+margin_bottom = 303.0
+
+[node name="Viewer2" parent="Window2/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 435.0
+margin_bottom = 296.0
+size_flags_horizontal = 3
+
+[node name="Viewport" parent="Window2/WindowRect/ContentPanel/ContentContainer/Viewer2/ViewContainer" index="0"]
+size = Vector2( 435, 296 )
+
+[node name="Subscreen2" parent="Window2/WindowRect/ContentPanel/ContentContainer/Viewer2/ViewContainer/Viewport" index="1" instance=ExtResource( 2 )]
+
+[node name="Window3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 464.174, 472.584 )
+
+[node name="WindowRect" parent="Window3" index="0"]
+margin_right = 375.0
+margin_bottom = 258.0
+
+[node name="ContentContainer" parent="Window3/WindowRect/ContentPanel" index="0"]
+margin_right = 368.0
+margin_bottom = 221.0
+
+[node name="Window4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 766.897, 139.589 )
+
+[node name="WindowRect" parent="Window4" index="0"]
+margin_right = 375.0
+margin_bottom = 258.0
+
+[node name="ContentContainer" parent="Window4/WindowRect/ContentPanel" index="0"]
+margin_right = 368.0
+margin_bottom = 221.0
+
+[node name="Viewer3" parent="Window4/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 361.0
+margin_bottom = 214.0
+size_flags_horizontal = 3
+
+[node name="Window5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 882.94, 462.493 )
+
+[node name="WindowRect" parent="Window5" index="0"]
+margin_right = 375.0
+margin_bottom = 258.0
+
+[node name="ContentContainer" parent="Window5/WindowRect/ContentPanel" index="0"]
+margin_right = 368.0
+margin_bottom = 221.0
+
+[node name="Content2" type="Control" parent="Window5/WindowRect/ContentPanel/ContentContainer" index="0"]
+margin_right = 361.0
+margin_bottom = 214.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="Content3" type="Control" parent="Window5/WindowRect/ContentPanel/ContentContainer/Content2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PointWin1Cont1" type="Position2D" parent="."]
+position = Vector2( 237.811, 255.13 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointWin1Subscreen" type="Position2D" parent="."]
+position = Vector2( 408.837, 305.835 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointWin2Subscreen" type="Position2D" parent="."]
+position = Vector2( 677.068, 198.557 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointWin3" type="Position2D" parent="."]
+position = Vector2( 654.573, 596.766 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointMiss" type="Position2D" parent="."]
+position = Vector2( 313.033, 602.634 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointWin1Win2Overlap" type="Position2D" parent="."]
+position = Vector2( 480.789, 222.982 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointWin4" type="Position2D" parent="."]
+position = Vector2( 990.932, 287.316 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointWin2Win4Overlap" type="Position2D" parent="."]
+position = Vector2( 830.602, 248.209 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PointWin5" type="Position2D" parent="."]
+position = Vector2( 1056.52, 588.357 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[editable path="Window1"]
+[editable path="Window1/WindowRect/ContentPanel/ContentContainer/Viewer1"]
+[editable path="Window2"]
+[editable path="Window2/WindowRect/ContentPanel/ContentContainer/Viewer2"]
+[editable path="Window3"]
+[editable path="Window4"]
+[editable path="Window5"]

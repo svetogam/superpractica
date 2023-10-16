@@ -1,0 +1,27 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://core/effect_system/effects/animations/popup_grow_anim.tres" type="Animation" id=1]
+[ext_resource path="res://core/effect_system/effects/animations/popup_bounce_anim.tres" type="Animation" id=2]
+[ext_resource path="res://core/effect_system/effects/animations/popup_shake_anim.tres" type="Animation" id=3]
+[ext_resource path="res://core/effect_system/effects/animations/popup_fade_in_anim.tres" type="Animation" id=4]
+[ext_resource path="res://core/effect_system/screen_effect.gd" type="Script" id=5]
+[ext_resource path="res://core/effect_system/effects/animations/popup_rise_anim.tres" type="Animation" id=6]
+[ext_resource path="res://general/behaviors/animator_2d.gd" type="Script" id=7]
+[ext_resource path="res://core/effect_system/effects/animations/popup_descend_anim.tres" type="Animation" id=8]
+
+[node name="ScreenEffect" type="Node2D"]
+z_index = 100
+script = ExtResource( 5 )
+
+[node name="Graphic" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/popup_bounce_anim = ExtResource( 2 )
+anims/popup_descend_anim = ExtResource( 8 )
+anims/popup_fade_in_anim = ExtResource( 4 )
+anims/popup_grow_anim = ExtResource( 1 )
+anims/popup_rise_anim = ExtResource( 6 )
+anims/popup_shake_anim = ExtResource( 3 )
+
+[node name="Animator" type="Node" parent="."]
+script = ExtResource( 7 )

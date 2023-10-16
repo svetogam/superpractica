@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://content/basic_addition/levels/basic_addition_2/screen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_5/taskmap_data.gd" type="Script" id=2]
+[ext_resource path="res://core/level/level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://content/basic_addition/verifications/basic_addition_pack.tscn" type="PackedScene" id=4]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_6/program.tscn" type="PackedScene" id=5]
+
+[node name="Level" instance=ExtResource( 3 )]
+
+[node name="TaskControl" parent="." index="3"]
+__meta__ = {
+"_edit_pinned_properties_": [ "_taskmap_data" ]
+}
+_taskmap_data = ExtResource( 2 )
+
+[node name="BasicAdditionPack" parent="Verifier" index="1" instance=ExtResource( 4 )]
+
+[node name="MetanavigControl" parent="." index="5"]
+__meta__ = {
+"_edit_pinned_properties_": [ "active" ]
+}
+active = false
+
+[node name="EventControl" parent="." index="6"]
+__meta__ = {
+"_edit_pinned_properties_": [ "active" ]
+}
+active = true
+
+[node name="LevelProgram" parent="." index="7" instance=ExtResource( 5 )]
+
+[node name="LevelScreen" parent="." index="8" instance=ExtResource( 1 )]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://core/pimnet/field/field.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/debug/fields/bubble_sum/bubble_sum_field.gd" type="Script" id=2]
+[ext_resource path="res://content/debug/fields/bubble_sum/interface/actions.gd" type="Script" id=3]
+[ext_resource path="res://content/debug/fields/bubble_sum/interface/metanavig.gd" type="Script" id=4]
+[ext_resource path="res://content/debug/fields/bubble_sum/objects/ground/ground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/bubble_popper.gd" type="Script" id=6]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/bubble_deleter.gd" type="Script" id=7]
+[ext_resource path="res://content/debug/fields/bubble_sum/interface/queries.gd" type="Script" id=8]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/mover.gd" type="Script" id=9]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/bubble_creator.gd" type="Script" id=10]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/bubble_selector.gd" type="Script" id=11]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/bubble_editor.gd" type="Script" id=12]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/bubble_resizer.gd" type="Script" id=13]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/unit_counter.gd" type="Script" id=14]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/unit_selector.gd" type="Script" id=15]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/unit_creator.gd" type="Script" id=16]
+[ext_resource path="res://content/debug/fields/bubble_sum/tool_modes/unit_deleter.gd" type="Script" id=17]
+[ext_resource path="res://content/debug/fields/bubble_sum/object_map.gd" type="Script" id=18]
+
+[node name="Field" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="FieldLimit" parent="." index="1"]
+position = Vector2( 400, 300 )
+
+[node name="Ground" parent="." index="2" groups=["mint_grounds"] instance=ExtResource( 5 )]
+
+[node name="Queries" parent="." index="4"]
+script = ExtResource( 8 )
+
+[node name="Actions" parent="." index="5"]
+script = ExtResource( 3 )
+
+[node name="Metanavig" parent="." index="6"]
+script = ExtResource( 4 )
+
+[node name="Mover" type="Node" parent="ToolModes" index="0"]
+script = ExtResource( 9 )
+
+[node name="UnitCreator" type="Node" parent="ToolModes" index="1"]
+script = ExtResource( 16 )
+
+[node name="BubbleCreator" type="Node" parent="ToolModes" index="2"]
+script = ExtResource( 10 )
+
+[node name="UnitDeleter" type="Node" parent="ToolModes" index="3"]
+script = ExtResource( 17 )
+
+[node name="BubblePopper" type="Node" parent="ToolModes" index="4"]
+script = ExtResource( 6 )
+
+[node name="BubbleDeleter" type="Node" parent="ToolModes" index="5"]
+script = ExtResource( 7 )
+
+[node name="BubbleEditor" type="Node" parent="ToolModes" index="6"]
+script = ExtResource( 12 )
+
+[node name="BubbleResizer" type="Node" parent="ToolModes" index="7"]
+script = ExtResource( 13 )
+
+[node name="UnitSelector" type="Node" parent="ToolModes" index="8"]
+script = ExtResource( 15 )
+
+[node name="BubbleSelector" type="Node" parent="ToolModes" index="9"]
+script = ExtResource( 11 )
+
+[node name="UnitCounter" type="Node" parent="ToolModes" index="10"]
+script = ExtResource( 14 )
+
+[node name="ObjectFactory" parent="." index="9"]
+_initial_data = ExtResource( 18 )

@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://content/basic_fractions/tests/pim_levels/do_not_maintain/pie_slicer_pim.png" type="Texture" id=1]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -641.0
+margin_top = -827.0
+margin_right = 641.0
+texture = ExtResource( 1 )
+stretch_mode = 5
+
+[node name="AddSlice" type="Position2D" parent="."]
+position = Vector2( 414.088, 146.504 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="RemoveSlice" type="Position2D" parent="."]
+position = Vector2( 412.754, 183.879 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="SelectRegion" type="Position2D" parent="."]
+position = Vector2( 408.749, 215.915 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CountRegion" type="Position2D" parent="."]
+position = Vector2( 408.749, 251.956 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Undo" type="Position2D" parent="."]
+position = Vector2( 59.0208, 187.884 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Redo" type="Position2D" parent="."]
+position = Vector2( 139.111, 187.884 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Reset" type="Position2D" parent="."]
+position = Vector2( 107.075, 223.924 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PieN" type="Position2D" parent="."]
+position = Vector2( 737.12, 222.59 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PieE" type="Position2D" parent="."]
+position = Vector2( 835.898, 316.028 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PieSE" type="Position2D" parent="."]
+position = Vector2( 819.88, 406.798 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PieSW1" type="Position2D" parent="."]
+position = Vector2( 643.681, 416.142 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PieSW2" type="Position2D" parent="."]
+position = Vector2( 649.021, 424.151 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PieW" type="Position2D" parent="."]
+position = Vector2( 610.31, 325.372 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="OffPie" type="Position2D" parent="."]
+position = Vector2( 534.224, 149.173 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}

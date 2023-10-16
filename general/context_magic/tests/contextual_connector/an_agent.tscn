@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://general/context_magic/tests/contextual_connector/an_agent.gd" type="Script" id=1]
+
+[node name="Agent" type="Node" groups=["test_agent_group"]]
+script = ExtResource( 1 )

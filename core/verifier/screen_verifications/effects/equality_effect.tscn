@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://core/verifier/screen_verifications/effects/equality_effect.gd" type="Script" id=1]
+[ext_resource path="res://core/effect_system/screen_effect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://core/verifier/screen_verifications/effects/unequals_v2f1.png" type="Texture" id=3]
+[ext_resource path="res://core/verifier/screen_verifications/effects/equals_v2f1.png" type="Texture" id=4]
+
+[node name="EqualityEffect" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+
+[node name="Graphic" parent="." index="0"]
+position = Vector2( 0, 15 )
+scale = Vector2( 0.2, 0.2 )
+
+[node name="EqualitySprite" type="Sprite" parent="Graphic" index="0"]
+unique_name_in_owner = true
+texture = ExtResource( 4 )
+
+[node name="InequalitySprite" type="Sprite" parent="Graphic" index="1"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource( 3 )

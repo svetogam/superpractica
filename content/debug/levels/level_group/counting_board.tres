@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://core/level_resource.gd" type="Script" id=1]
+[ext_resource path="res://content/debug/levels/counting_board/level.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "counting_board"
+_name_text = "Counting Board Pim"
+_scene = ExtResource( 2 )

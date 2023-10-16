@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://core/pimnet/field/field_object/field_ground.gd" type="Script" id=1]
+[ext_resource path="res://core/pimnet/field/field_object/field_object.tscn" type="PackedScene" id=2]
+
+[node name="FieldGround" groups=["field_grounds"] instance=ExtResource( 2 )]
+z_index = -1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_pinned_properties_": [ "z_index" ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+unique_name_in_owner = true
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+color = Color( 0.95, 0.95, 0.95, 1 )

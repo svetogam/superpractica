@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://core/level/task_window/task_progressor/taskmap/task_structure/grid.gd" type="Script" id=1]
+
+[node name="TaskmapGrid" type="GridContainer"]
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Duplicator" type="Node" parent="."]
+
+[node name="GridBoxPrototype" type="CenterContainer" parent="Duplicator"]
+unique_name_in_owner = true
+visible = false
+margin_right = 150.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 150, 100 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

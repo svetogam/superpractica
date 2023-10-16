@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://core/pimnet/memo_slot/memo_slot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://core/pimnet/slot_panel/slot_panel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://content/basic_fractions/slot_panels/fraction/fraction.gd" type="Script" id=3]
+[ext_resource path="res://content/basic_fractions/slot_panels/fraction/fraction_divider.png" type="Texture" id=4]
+
+[node name="Fraction" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+initial_num_is_empty = false
+initial_num = 0
+initial_denom_is_empty = false
+initial_denom = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer" index="0"]
+margin_left = 600.0
+margin_top = 321.0
+margin_right = 680.0
+margin_bottom = 479.0
+
+[node name="NumeratorSlot" parent="CenterContainer/VBox" index="0" instance=ExtResource( 1 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 80.0
+margin_bottom = 70.0
+
+[node name="DividingLine" type="TextureRect" parent="CenterContainer/VBox" index="1"]
+margin_top = 74.0
+margin_right = 80.0
+margin_bottom = 84.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+
+[node name="DenominatorSlot" parent="CenterContainer/VBox" index="2" instance=ExtResource( 1 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 88.0
+margin_right = 80.0
+margin_bottom = 158.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://core/level_resource.gd" type="Script" id=1]
+[ext_resource path="res://content/basic_addition/levels/basic_addition_8/levels/level_3.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "8.3"
+_name_text = "Addition 8.3"
+_scene = ExtResource( 2 )

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://core/pimnet/pimnet.gd" type="Script" id=1]
+[ext_resource path="res://core/base_ui/window/window.tscn" type="PackedScene" id=2]
+[ext_resource path="res://content/debug/levels/bubble_sum/pim_setup.tres" type="Resource" id=3]
+[ext_resource path="res://content/debug/pims/bubble_sum/bubble_sum_pim.tscn" type="PackedScene" id=4]
+
+[node name="LevelScreen" type="Control"]
+script = ExtResource( 1 )
+
+[node name="Window" parent="." instance=ExtResource( 2 )]
+position = Vector2( 100.409, 66.4681 )
+
+[node name="WindowRect" parent="Window" index="0"]
+margin_right = 646.0
+margin_bottom = 475.0
+
+[node name="ContentContainer" parent="Window/WindowRect/ContentPanel" index="0"]
+margin_right = 639.0
+margin_bottom = 438.0
+
+[node name="BubbleSumPim" parent="Window/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource( 4 )]
+margin_right = 632.0
+margin_bottom = 431.0
+__meta__ = {
+"_edit_pinned_properties_": [ "_setup_data" ]
+}
+_setup_data = ExtResource( 3 )
+
+[editable path="Window"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://core/level/task_window/task_progressor/taskmap/taskmap.gd" type="Script" id=1]
+[ext_resource path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_structure.tscn" type="PackedScene" id=2]
+[ext_resource path="res://core/base_ui/subscreen/subscreen.tscn" type="PackedScene" id=3]
+
+[node name="Taskmap" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_pinned_properties_": [ "_background_color", "_pan_camera_on_drag" ]
+}
+_background_color = Color( 0.254902, 0.254902, 0.254902, 1 )
+_pan_camera_on_drag = true
+
+[node name="TaskStructure" parent="." index="1" instance=ExtResource( 2 )]
+unique_name_in_owner = true

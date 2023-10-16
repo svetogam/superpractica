@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://general/screen_gui/v_panel_menu.gd" type="Script" id=1]
+
+[node name="VPanelMenu" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1273.0
+margin_bottom = 793.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="MainContainer" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+margin_right = 1266.0
+size_flags_horizontal = 3

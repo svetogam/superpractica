@@ -1,0 +1,121 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://content/basic_addition/tests/task_levels/sum_problem_6.png" type="Texture" id=1]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -827.0
+texture = ExtResource( 1 )
+stretch_mode = 5
+
+[node name="Square4" type="Position2D" parent="."]
+position = Vector2( 930, 266 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square14" type="Position2D" parent="."]
+position = Vector2( 922, 307 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square19" type="Position2D" parent="."]
+position = Vector2( 1171, 314 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square24" type="Position2D" parent="."]
+position = Vector2( 926, 364 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square25" type="Position2D" parent="."]
+position = Vector2( 972, 362 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square26" type="Position2D" parent="."]
+position = Vector2( 1022, 364 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square27" type="Position2D" parent="."]
+position = Vector2( 1077, 365 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square29" type="Position2D" parent="."]
+position = Vector2( 1174, 361 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square35" type="Position2D" parent="."]
+position = Vector2( 974, 417 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square36" type="Position2D" parent="."]
+position = Vector2( 1028, 416 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square37" type="Position2D" parent="."]
+position = Vector2( 1069, 412 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square38" type="Position2D" parent="."]
+position = Vector2( 1134, 413 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square39" type="Position2D" parent="."]
+position = Vector2( 1189, 412 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square40" type="Position2D" parent="."]
+position = Vector2( 1232, 412 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square41" type="Position2D" parent="."]
+position = Vector2( 765, 461 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square42" type="Position2D" parent="."]
+position = Vector2( 816, 466 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CheckButton" type="Position2D" parent="."]
+position = Vector2( 97.8268, 362.237 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="SumSlot" type="Position2D" parent="."]
+position = Vector2( 550, 110 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}

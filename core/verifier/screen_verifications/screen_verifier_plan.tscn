@@ -1,0 +1,269 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://core/effect_system/effects/math_effects/signs/plus_effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://core/effect_system/effects/math_effects/number_effect/number2_v3f1.png" type="Texture" id=2]
+[ext_resource path="res://core/effect_system/effects/math_effects/number_effect/number1_v3f2.png" type="Texture" id=3]
+[ext_resource path="res://core/effect_system/effects/math_effects/number_effect/number3_v3f1.png" type="Texture" id=4]
+[ext_resource path="res://core/effect_system/effects/math_effects/number_effect/number_effect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://core/verifier/screen_verifications/effects/evaluation_bar_effect.tscn" type="PackedScene" id=6]
+[ext_resource path="res://core/verifier/screen_verifications/screen_verifier_plan.gd" type="Script" id=7]
+[ext_resource path="res://core/verifier/screen_verifications/effects/equality_effect.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Animation" id=9]
+resource_name = "point_left_anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 0.5, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 50, 0 ), Vector2( 30, 0 ), Vector2( 50, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "popup_bounce_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -12 ), Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "popup_rise_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.55, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 15 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "popup_shake_anim"
+length = 0.4
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.12, 0.2, 0.28, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -4, 0 ), Vector2( 4, 0 ), Vector2( -4, 0 ), Vector2( 4, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "popup_bounce_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -12 ), Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "popup_rise_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.55, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -15 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "popup_fade_in_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.378929, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "popup_grow_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.378929, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "popup_rise_anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.55, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 15 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "popup_shake_anim"
+length = 0.4
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.12, 0.2, 0.28, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -4, 0 ), Vector2( 4, 0 ), Vector2( -4, 0 ), Vector2( 4, 0 ), Vector2( 0, 0 ) ]
+}
+
+[node name="Plan" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Equality" type="Node2D" parent="."]
+
+[node name="EqualityComparator" parent="Equality" instance=ExtResource( 8 )]
+unique_name_in_owner = true
+position = Vector2( 640, 400 )
+
+[node name="Graphic" parent="Equality/EqualityComparator" index="0"]
+position = Vector2( 0, 0 )
+
+[node name="EqualityLeftNumber" parent="Equality" instance=ExtResource( 5 )]
+unique_name_in_owner = true
+position = Vector2( 512, 400 )
+scale = Vector2( 4, 4 )
+
+[node name="Ones" parent="Equality/EqualityLeftNumber/Graphic" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Tens" parent="Equality/EqualityLeftNumber/Graphic" index="1"]
+texture = ExtResource( 2 )
+
+[node name="Hundreds" parent="Equality/EqualityLeftNumber/Graphic" index="2"]
+texture = ExtResource( 4 )
+
+[node name="EqualityRightNumber" parent="Equality" instance=ExtResource( 5 )]
+unique_name_in_owner = true
+position = Vector2( 768, 400 )
+scale = Vector2( 4, 4 )
+
+[node name="Ones" parent="Equality/EqualityRightNumber/Graphic" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Evaluation" type="Node2D" parent="."]
+visible = false
+
+[node name="EvalBar" parent="Evaluation" instance=ExtResource( 6 )]
+unique_name_in_owner = true
+position = Vector2( 372, 276 )
+
+[node name="EvalOperator" parent="Evaluation" instance=ExtResource( 1 )]
+unique_name_in_owner = true
+position = Vector2( 372, 218 )
+scale = Vector2( 2, 2 )
+
+[node name="EvalLeftNumber" parent="Evaluation" instance=ExtResource( 5 )]
+unique_name_in_owner = true
+position = Vector2( 306, 216 )
+scale = Vector2( 2, 2 )
+
+[node name="Ones" parent="Evaluation/EvalLeftNumber/Graphic" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Tens" parent="Evaluation/EvalLeftNumber/Graphic" index="1"]
+texture = ExtResource( 2 )
+
+[node name="Hundreds" parent="Evaluation/EvalLeftNumber/Graphic" index="2"]
+texture = ExtResource( 4 )
+
+[node name="EvalRightNumber" parent="Evaluation" instance=ExtResource( 5 )]
+unique_name_in_owner = true
+position = Vector2( 438, 218 )
+scale = Vector2( 2, 2 )
+
+[node name="Ones" parent="Evaluation/EvalRightNumber/Graphic" index="0"]
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" parent="Evaluation/EvalRightNumber" index="1"]
+anims/point_left_anim = SubResource( 9 )
+anims/popup_bounce_anim = SubResource( 10 )
+anims/popup_rise_anim = SubResource( 11 )
+anims/popup_shake_anim = SubResource( 12 )
+
+[node name="DigitReferenceNumber" parent="." instance=ExtResource( 5 )]
+unique_name_in_owner = true
+position = Vector2( 476, 191 )
+scale = Vector2( 3, 3 )
+
+[node name="Ones" parent="DigitReferenceNumber/Graphic" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Tens" parent="DigitReferenceNumber/Graphic" index="1"]
+texture = ExtResource( 2 )
+
+[node name="Hundreds" parent="DigitReferenceNumber/Graphic" index="2"]
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" parent="DigitReferenceNumber" index="1"]
+anims/popup_bounce_anim = SubResource( 13 )
+anims/popup_descend_anim = SubResource( 14 )
+anims/popup_fade_in_anim = SubResource( 15 )
+anims/popup_grow_anim = SubResource( 16 )
+anims/popup_rise_anim = SubResource( 17 )
+anims/popup_shake_anim = SubResource( 18 )
+
+[editable path="Equality/EqualityComparator"]
+[editable path="Equality/EqualityLeftNumber"]
+[editable path="Equality/EqualityRightNumber"]
+[editable path="Evaluation/EvalOperator"]
+[editable path="Evaluation/EvalLeftNumber"]
+[editable path="Evaluation/EvalRightNumber"]
+[editable path="DigitReferenceNumber"]

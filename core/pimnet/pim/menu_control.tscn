@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://core/pimnet/pim/side_menu/side_menu.gd" type="Script" id=1]
+[ext_resource path="res://general/screen_gui/v_panel_menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://core/pimnet/pim/menu_control.gd" type="Script" id=3]
+
+[node name="MenuControl" type="Control"]
+margin_right = 150.0
+rect_min_size = Vector2( 150, 0 )
+script = ExtResource( 3 )
+
+[node name="SideMenu" parent="." instance=ExtResource( 2 )]
+unique_name_in_owner = true
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_pinned_properties_": [ "_min_panel_height" ]
+}
+_min_panel_height = 120
+
+[node name="ScrollContainer" parent="SideMenu" index="0"]
+margin_right = 143.0
+margin_bottom = 7.0
+mouse_filter = 2
+
+[node name="MainContainer" parent="SideMenu/ScrollContainer" index="0"]
+margin_right = 136.0
+
+[editable path="SideMenu"]

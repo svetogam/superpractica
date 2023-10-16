@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://core/level/victory_popup.gd" type="Script" id=1]
+
+[node name="VictoryPopup" type="WindowDialog"]
+margin_right = 320.0
+margin_bottom = 200.0
+popup_exclusive = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_left = 108.0
+margin_top = 42.0
+margin_right = 212.0
+margin_bottom = 56.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Level Complete!"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 102.0
+margin_right = 320.0
+margin_bottom = 200.0
+size_flags_vertical = 3
+
+[node name="StayButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 104.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+text = "Review"
+
+[node name="LevelSelectButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 108.0
+margin_right = 212.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+text = "Level-Select"
+
+[node name="NextLevelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 216.0
+margin_right = 320.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+text = "Next Level"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StayButton" to="." method="_on_StayButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]

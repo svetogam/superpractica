@@ -1,0 +1,112 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://content/basic_addition/tests/pim_levels/do_not_maintain/counting_board_1.png" type="Texture" id=1]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -641.0
+margin_top = -827.0
+margin_right = 641.0
+texture = ExtResource( 1 )
+stretch_mode = 5
+
+[node name="CircleNumber" type="Position2D" parent="."]
+position = Vector2( 363.146, 131.521 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="MarkSquare" type="Position2D" parent="."]
+position = Vector2( 369.139, 162.985 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CreateCounter" type="Position2D" parent="."]
+position = Vector2( 378.129, 195.948 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="DeleteCounter" type="Position2D" parent="."]
+position = Vector2( 369.139, 233.406 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="DragCounter" type="Position2D" parent="."]
+position = Vector2( 360.149, 261.874 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="GetMemo" type="Position2D" parent="."]
+position = Vector2( 369.139, 302.328 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CounterSpawner" type="Position2D" parent="."]
+position = Vector2( 372.135, 401.201 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square1" type="Position2D" parent="."]
+position = Vector2( 523.464, 145.006 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square2" type="Position2D" parent="."]
+position = Vector2( 574.407, 150.999 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square3" type="Position2D" parent="."]
+position = Vector2( 620.854, 139.012 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square20" type="Position2D" parent="."]
+position = Vector2( 959.134, 185.575 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square24" type="Position2D" parent="."]
+position = Vector2( 676.292, 237.901 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square57" type="Position2D" parent="."]
+position = Vector2( 804.985, 396.293 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square100" type="Position2D" parent="."]
+position = Vector2( 970.448, 599.939 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="MissBoard" type="Position2D" parent="."]
+position = Vector2( 1018.53, 281.741 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="MissPim" type="Position2D" parent="."]
+position = Vector2( 1137.33, 431.648 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}

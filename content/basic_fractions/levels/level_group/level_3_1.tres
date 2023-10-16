@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://core/level_resource.gd" type="Script" id=1]
+[ext_resource path="res://content/basic_fractions/levels/make_pie_from_fraction/levels/level_1.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "3.1"
+_name_text = "Fraction to Pie"
+_scene = ExtResource( 2 )

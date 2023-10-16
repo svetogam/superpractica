@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://core/pimnet/dragged_objects/interfield_object.gd" type="Script" id=1]
+
+[node name="InterfieldObject" type="Node2D" groups=["dragged_superscreen_objects", "input_objects", "interfield_objects", "superscreen_objects"]]
+script = ExtResource( 1 )

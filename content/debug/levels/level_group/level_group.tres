@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://core/level_group_resource.gd" type="Script" id=1]
+[ext_resource path="res://content/debug/levels/level_group/pie_slicer.tres" type="Resource" id=2]
+[ext_resource path="res://content/debug/levels/level_group/bubble_sum_1.tres" type="Resource" id=3]
+[ext_resource path="res://content/debug/levels/level_group/counting_board.tres" type="Resource" id=4]
+[ext_resource path="res://content/debug/levels/level_group/bubble_sum_2.tres" type="Resource" id=5]
+[ext_resource path="res://content/debug/levels/level_group/task_progressor.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+name = "debug_windows"
+_name_text = "Debug Windows"
+_levels = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ) ]

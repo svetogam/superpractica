@@ -1,0 +1,17 @@
+##############################################################################
+# This file is part of Super Practica.                                       #
+# Copyright (c) 2023 Super Practica contributors                             #
+#----------------------------------------------------------------------------#
+# See the COPYRIGHT.md file at the top-level directory of this project       #
+# for information on the license terms of Super Practica as a whole.         #
+#----------------------------------------------------------------------------#
+# SPDX-License-Identifier: MIT                                               #
+##############################################################################
+
+extends StaticDictionary
+
+static func get_data() -> Dictionary:
+	return {
+		"a_script": preload("a_script.gd"),
+		"a_scene": preload("a_scene.tscn"),
+	}

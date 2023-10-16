@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://content/basic_fractions/pims/pie_slicer/pie_slicer_setup_resource.gd" type="Script" id=1]
+[ext_resource path="res://content/basic_fractions/fields/pie_slicer/pie_slicer_field.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+field_zoom = Vector2( 1, 1 )
+have_menu = false
+have_tool_menu = false
+include_all_tools = true
+have_spawn_panel = false
+include_all_spawners = true
+have_memo_output_panel = false
+field_scene = ExtResource( 2 )
+initial_tool = -1
+included_tools = [  ]
+disabled_tools = [  ]
+included_spawners = [  ]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://core/level/side_menu/level_control_menu.gd" type="Script" id=1]
+
+[node name="LevelControlMenu" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1273.0
+margin_bottom = 793.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelectButton" type="Button" parent="VBox"]
+margin_right = 1266.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 60, 30 )
+text = "Level Select"
+
+[connection signal="pressed" from="VBox/LevelSelectButton" to="." method="_on_Level_Select_Button_pressed"]

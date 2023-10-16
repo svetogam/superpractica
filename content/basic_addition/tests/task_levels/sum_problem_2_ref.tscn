@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://content/basic_addition/tests/task_levels/sum_problem_2.png" type="Texture" id=1]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -827.0
+texture = ExtResource( 1 )
+stretch_mode = 5
+
+[node name="Square5" type="Position2D" parent="."]
+position = Vector2( 968.693, 266.046 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square6" type="Position2D" parent="."]
+position = Vector2( 1025.88, 271.091 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square7" type="Position2D" parent="."]
+position = Vector2( 1076.33, 262.682 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Square8" type="Position2D" parent="."]
+position = Vector2( 1118.38, 261 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Counter" type="Position2D" parent="."]
+position = Vector2( 652, 392.434 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CheckButton" type="Position2D" parent="."]
+position = Vector2( 97.8268, 362.237 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="SumSlot" type="Position2D" parent="."]
+position = Vector2( 551, 103 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}

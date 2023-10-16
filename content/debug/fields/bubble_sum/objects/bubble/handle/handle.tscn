@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://core/pimnet/field/field_object/field_object.tscn" type="PackedScene" id=1]
+[ext_resource path="res://content/debug/fields/bubble_sum/objects/bubble/handle/handle_graphic.gd" type="Script" id=2]
+[ext_resource path="res://content/debug/fields/bubble_sum/objects/bubble/handle/handle.gd" type="Script" id=3]
+[ext_resource path="res://content/debug/fields/bubble_sum/objects/bubble/handle/handle_input_shape.tres" type="Resource" id=4]
+
+[node name="BubbleHandle" instance=ExtResource( 1 )]
+z_index = 10
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_pinned_properties_": [ "_input_shape_setup_data" ]
+}
+_input_shape_setup_data = ExtResource( 4 )
+
+[node name="Graphic" type="Node2D" parent="." index="0"]
+unique_name_in_owner = true
+script = ExtResource( 2 )

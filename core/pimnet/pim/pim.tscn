@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://core/base_ui/window/subscreen_viewer/subscreen_viewer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://general/mode_nodes/mode_group.gd" type="Script" id=2]
+[ext_resource path="res://core/pimnet/pim/pim.gd" type="Script" id=3]
+[ext_resource path="res://general/node_factory/node_factory.gd" type="Script" id=4]
+
+[node name="Pim" type="Control" groups=["pims"]]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+
+[node name="FieldViewer" parent="." instance=ExtResource( 1 )]
+unique_name_in_owner = true
+
+[node name="Programs" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="SpawnerFactory" type="Node" parent="."]
+script = ExtResource( 4 )

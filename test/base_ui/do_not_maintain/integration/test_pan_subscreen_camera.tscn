@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://core/base_ui/superscreen.gd" type="Script" id=1]
+[ext_resource path="res://core/base_ui/window/window.tscn" type="PackedScene" id=2]
+[ext_resource path="res://core/base_ui/window/subscreen_viewer/subscreen_viewer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://core/base_ui/subscreen/subscreen.tscn" type="PackedScene" id=4]
+
+[node name="Test" type="Node"]
+
+[node name="Superscreen" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Window" parent="Superscreen" instance=ExtResource( 2 )]
+position = Vector2( 137.844, 71.9188 )
+
+[node name="WindowRect" parent="Superscreen/Window" index="0"]
+margin_right = 411.0
+margin_bottom = 306.0
+
+[node name="ContentContainer" parent="Superscreen/Window/WindowRect/ContentPanel" index="0"]
+margin_right = 404.0
+margin_bottom = 269.0
+
+[node name="SubscreenViewer" parent="Superscreen/Window/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 397.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Viewport" parent="Superscreen/Window/WindowRect/ContentPanel/ContentContainer/SubscreenViewer/ViewContainer" index="0"]
+size = Vector2( 397, 262 )
+
+[node name="Subscreen" parent="Superscreen/Window/WindowRect/ContentPanel/ContentContainer/SubscreenViewer/ViewContainer/Viewport" index="1" instance=ExtResource( 4 )]
+_pan_camera_on_drag = true
+_default_size = Vector2( 1000, 1000 )
+
+[node name="StartDragPoint" type="Position2D" parent="."]
+position = Vector2( 354.698, 231.227 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="EndDragPoint" type="Position2D" parent="."]
+position = Vector2( 47.1431, 121.226 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[editable path="Superscreen/Window"]
+[editable path="Superscreen/Window/WindowRect/ContentPanel/ContentContainer/SubscreenViewer"]

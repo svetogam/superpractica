@@ -1,0 +1,33 @@
+[gd_resource type="Resource" load_steps=26 format=2]
+
+[ext_resource path="res://content/basic_addition/levels/level_group/level_4_2.tres" type="Resource" id=1]
+[ext_resource path="res://core/level_group_resource.gd" type="Script" id=2]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_6_4.tres" type="Resource" id=3]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_7_1.tres" type="Resource" id=4]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_3_1.tres" type="Resource" id=5]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_1_1.tres" type="Resource" id=6]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_5_1.tres" type="Resource" id=7]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_5_2.tres" type="Resource" id=8]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_2_1.tres" type="Resource" id=9]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_5_4.tres" type="Resource" id=10]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_5_3.tres" type="Resource" id=11]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_2_2.tres" type="Resource" id=12]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_1_2.tres" type="Resource" id=13]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_4_1.tres" type="Resource" id=14]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_3_2.tres" type="Resource" id=15]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_8_2.tres" type="Resource" id=16]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_7_4.tres" type="Resource" id=17]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_6_1.tres" type="Resource" id=18]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_7_3.tres" type="Resource" id=19]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_8_4.tres" type="Resource" id=20]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_6_3.tres" type="Resource" id=21]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_8_1.tres" type="Resource" id=22]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_8_3.tres" type="Resource" id=23]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_7_2.tres" type="Resource" id=24]
+[ext_resource path="res://content/basic_addition/levels/level_group/level_6_2.tres" type="Resource" id=25]
+
+[resource]
+script = ExtResource( 2 )
+name = "sum_problems"
+_name_text = "Sum Problems"
+_levels = [ ExtResource( 6 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 18 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 24 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 22 ), ExtResource( 16 ), ExtResource( 23 ), ExtResource( 20 ) ]

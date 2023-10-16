@@ -1,0 +1,225 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://content/debug/tests/pim_levels/do_not_maintain/bubble_sum_1/bubble_sum_1_1.png" type="Texture" id=1]
+[ext_resource path="res://content/debug/tests/pim_levels/do_not_maintain/bubble_sum_1/bubble_sum_1_2.png" type="Texture" id=2]
+[ext_resource path="res://content/debug/tests/pim_levels/do_not_maintain/bubble_sum_1/bubble_sum_1_3.png" type="Texture" id=3]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -641.0
+margin_top = -827.0
+margin_right = 641.0
+texture = ExtResource( 1 )
+stretch_mode = 5
+
+[node name="Screen2" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -641.0
+margin_top = -827.0
+margin_right = 641.0
+texture = ExtResource( 2 )
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen3" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -641.0
+margin_top = -827.0
+margin_right = 641.0
+texture = ExtResource( 3 )
+stretch_mode = 5
+
+[node name="MoveObject" type="Position2D" parent="."]
+position = Vector2( 375.378, 143.834 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CreateUnit" type="Position2D" parent="."]
+position = Vector2( 375.378, 178.54 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CreateBubble" type="Position2D" parent="."]
+position = Vector2( 374.043, 214.581 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="DeleteUnit" type="Position2D" parent="."]
+position = Vector2( 374.043, 247.952 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PopBubble" type="Position2D" parent="."]
+position = Vector2( 375.378, 286.662 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="DeleteBubble" type="Position2D" parent="."]
+position = Vector2( 372.708, 320.368 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="ResizeBubble" type="Position2D" parent="."]
+position = Vector2( 375.705, 384.795 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="SelectUnit" type="Position2D" parent="."]
+position = Vector2( 377.203, 419.256 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="SelectBubble" type="Position2D" parent="."]
+position = Vector2( 375.378, 452.182 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="CountUnit" type="Position2D" parent="."]
+position = Vector2( 368.704, 485.553 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Unit1" type="Position2D" parent="."]
+position = Vector2( 595.463, 266.149 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Unit2" type="Position2D" parent="."]
+position = Vector2( 600.83, 384.652 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Unit3" type="Position2D" parent="."]
+position = Vector2( 712.684, 323.575 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Unit4" type="Position2D" parent="."]
+position = Vector2( 829.552, 326.571 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Bubble1" type="Position2D" parent="."]
+position = Vector2( 621.616, 281.787 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Bubble2" type="Position2D" parent="."]
+position = Vector2( 644.496, 356.566 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Bubble3" type="Position2D" parent="."]
+position = Vector2( 786.429, 256.315 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Bubble4" type="Position2D" parent="."]
+position = Vector2( 829.88, 412.139 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="MissObjects" type="Position2D" parent="."]
+position = Vector2( 856.849, 205.373 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="MissPim" type="Position2D" parent="."]
+position = Vector2( 898.636, 608.358 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="BubbleHandleUL" type="Position2D" parent="."]
+position = Vector2( 785.243, 355.114 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="BubbleHandleU" type="Position2D" parent="."]
+position = Vector2( 834.932, 355.27 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="BubbleHandleL" type="Position2D" parent="."]
+position = Vector2( 786.031, 406.374 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Undo" type="Position2D" parent="."]
+position = Vector2( 65.6954, 185.214 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Redo" type="Position2D" parent="."]
+position = Vector2( 141.781, 187.884 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Reset" type="Position2D" parent="."]
+position = Vector2( 109.745, 222.59 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="PimMenuScrollBar" type="Position2D" parent="."]
+position = Vector2( 445.366, 206.109 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="AfterScrollCounter" type="Position2D" parent="."]
+position = Vector2( 385.433, 248.061 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="AfterScrollBubble" type="Position2D" parent="."]
+position = Vector2( 383.935, 345.451 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="AfterScrollOutputSlot" type="Position2D" parent="."]
+position = Vector2( 385.433, 468.312 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}

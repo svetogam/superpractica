@@ -1,0 +1,46 @@
+{
+ "background_color": "ff262626",
+ "config_file": "res://.gutconfig.json",
+ "dirs": [
+  "res://test",
+  "res://general",
+  "res://content",
+  "res://core/memo/tests"
+ ],
+ "disable_colors": true,
+ "double_strategy": "partial",
+ "font_color": "ffcccccc",
+ "font_name": "CourierPrime",
+ "font_size": 14,
+ "hide_orphans": false,
+ "ignore_pause": true,
+ "include_subdirs": true,
+ "inner_class": null,
+ "junit_xml_file": "",
+ "junit_xml_timestamp": false,
+ "log_level": 1,
+ "opacity": 100,
+ "post_run_script": "",
+ "pre_run_script": "res://test/sp_test_setup.gd",
+ "prefix": "test_",
+ "selected": null,
+ "should_exit": true,
+ "should_exit_on_success": false,
+ "should_maximize": false,
+ "compact_mode": true,
+ "show_help": false,
+ "suffix": ".gd",
+ "tests": [
+
+ ],
+ "unit_test_name": null,
+ "gut_on_top": true,
+ "panel_options": {
+  "font_name": "CourierPrime",
+  "font_size": 14,
+  "hide_result_tree": false,
+  "hide_output_text": false,
+  "hide_settings": true,
+  "use_colors": false
+ }
+}
