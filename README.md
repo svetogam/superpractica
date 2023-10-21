@@ -6,6 +6,8 @@
 
 It's kind of hard to explain though. The [Blueprint](https://codeberg.org/superpractica/blueprint) gives an outline of its theory and design.
 
+Note that this game is incomplete and many changes are planned. At this stage it's not recommended to play except as a taste of what's to come.
+
 
 ## How to play the game
 
