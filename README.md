@@ -9,6 +9,11 @@ It's kind of hard to explain though. The [Blueprint](https://codeberg.org/superp
 Note that this game is incomplete and many changes are planned. At this stage it's not recommended to play except as a taste of what's to come.
 
 
+## Playthrough video
+
+<https://youtu.be/3lKQDs11VVg?si=gmI13rP-abBMZ4n5>
+
+
 ## How to play the game
 
 * [Through the website](https://superpractica.org/play)
