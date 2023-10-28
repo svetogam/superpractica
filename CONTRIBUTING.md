@@ -5,11 +5,11 @@
 There are many ways to contribute and many ways you can find things to do:
 
 * See the [Contribute page](https://superpractica.org/contribute) on the website.
-* Find issues through the [Roadmap](https://superpractica.org/resources/roadmap.md).
+* Find issues through the [Roadmap](https://superpractica.org/resources/roadmap).
 * Find issues on the issue trackers.
 * Open a "thread" (issue) on the [contributor forum](https://codeberg.org/superpractica/discussion) if you have skills you want to apply but aren't sure how to apply them.
 
-Super Practica is developed according to its [theory](https://codeberg.org/superpractica/blueprint) and [roadmap](https://superpractica.org/resources/roadmap.md). Contributions that stray from the roadmap are unlikely to be accepted. For example, new features can be a maintainance burden and can make playing the game more cumbersome.
+Super Practica is developed according to its [theory](https://codeberg.org/superpractica/blueprint) and [roadmap](https://superpractica.org/resources/roadmap). Contributions that stray from the roadmap are unlikely to be accepted. For example, new features can be a maintainance burden and can make playing the game more cumbersome.
 
 If you're not sure if your idea will fit the roadmap, then please open an issue in the relevant issue tracker and discuss your planned change.
 
