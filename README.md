@@ -11,7 +11,7 @@ Note that this game is incomplete and many changes are planned. At this stage it
 
 ## Playthrough video
 
-<https://youtu.be/3lKQDs11VVg?si=gmI13rP-abBMZ4n5>
+<https://www.youtube.com/watch?v=3lKQDs11VVg>
 
 
 ## How to play the game
