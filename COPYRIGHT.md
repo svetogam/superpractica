@@ -30,6 +30,6 @@ All documents published in connection with Super Practica and all work on the wi
 
 ## Website
 
-The website is licensed under the [Apache License 2.0](LICENSES/Apache-2.0).
+Website HTML is licensed under the [Apache License 2.0](LICENSES/Apache-2.0).
 
 Website text and images are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International Public License](LICENSES/CC-BY-SA-4.0), except where stated otherwise.
