@@ -1,5 +1,6 @@
 {
  "background_color": "ff262626",
+ "compact_mode": true,
  "config_file": "res://.gutconfig.json",
  "dirs": [
   "res://test",
@@ -8,10 +9,12 @@
   "res://core/memo/tests"
  ],
  "disable_colors": true,
- "double_strategy": "partial",
+ "double_strategy": 1,
+ "errors_do_not_cause_failure": false,
  "font_color": "ffcccccc",
  "font_name": "CourierPrime",
  "font_size": 14,
+ "gut_on_top": true,
  "hide_orphans": false,
  "ignore_pause": true,
  "include_subdirs": true,
@@ -20,6 +23,17 @@
  "junit_xml_timestamp": false,
  "log_level": 1,
  "opacity": 100,
+ "paint_after": 0,
+ "panel_options": {
+  "font_name": "CourierPrime",
+  "font_size": 14,
+  "hide_output_text": false,
+  "hide_result_tree": false,
+  "hide_settings": true,
+  "output_font_name": "CourierPrime",
+  "output_font_size": 30,
+  "use_colors": false
+ },
  "post_run_script": "",
  "pre_run_script": "res://test/sp_test_setup.gd",
  "prefix": "test_",
@@ -27,20 +41,8 @@
  "should_exit": true,
  "should_exit_on_success": false,
  "should_maximize": false,
- "compact_mode": true,
  "show_help": false,
  "suffix": ".gd",
- "tests": [
-
- ],
- "unit_test_name": null,
- "gut_on_top": true,
- "panel_options": {
-  "font_name": "CourierPrime",
-  "font_size": 14,
-  "hide_result_tree": false,
-  "hide_output_text": false,
-  "hide_settings": true,
-  "use_colors": false
- }
+ "tests": [],
+ "unit_test_name": null
 }

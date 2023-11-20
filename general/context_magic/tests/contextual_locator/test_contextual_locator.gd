@@ -17,7 +17,7 @@ var scene: Node
 
 
 func before_each():
-	scene = TestScene.instance()
+	scene = TestScene.instantiate()
 	add_child(scene)
 
 
@@ -233,7 +233,7 @@ func test_removing_agent_stops_signals_connected_to_other_objects():
 	var agent_3 = $Top/Context/Agent3
 	agent_1.locator = ContextualLocator.new(agent_2)
 	agent_1.locator.auto_signal("a")
-	agent_1.locator.connect("auto_found", agent_3, "auto_callback")
+	agent_1.locator.auto_found.connect(agent_3.auto_callback)
 	agent_2.free()
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_eq(agent_3.value, AgentScript.INITIAL_VALUE)
@@ -269,7 +269,7 @@ func test_auto_found_is_emitted_after_auto_callback():
 	agent.locator = ContextualLocator.new(agent)
 	watch_signals(agent.locator)
 	agent.locator.auto_callback("a", agent, "auto_callback")
-	agent.locator.connect("auto_found", agent, "auto_callback_2")
+	agent.locator.auto_found.connect(agent.auto_callback_2)
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_signal_emitted_with_parameters(agent.locator, "auto_found", ["a", 1])
 	assert_eq_deep(agent.event_order, ["auto_callback", "auto_callback_2"])
@@ -440,7 +440,7 @@ func test_auto_found_is_emitted_after_auto_set():
 	agent.locator = ContextualLocator.new(agent)
 	watch_signals(agent.locator)
 	agent.locator.auto_set("a", "value_2")
-	agent.locator.connect("auto_found", agent, "copy_value_2_to_value_3")
+	agent.locator.auto_found.connect(agent.copy_value_2_to_value_3)
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_signal_emitted_with_parameters(agent.locator, "auto_found", ["a", 1])
 	assert_eq(agent.value_2, 1)

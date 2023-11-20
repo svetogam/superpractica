@@ -11,15 +11,15 @@
 class_name SpLevelTest
 extends SpIntegrationTest
 
-const YIELD_WAIT_QUICK := 1.0
-const YIELD_WAIT_LONG := 10.0
+const AWAIT_QUICK := 1.0
+const AWAIT_LONG := 10.0
 var level: Level
 var pimnet: Pimnet
 var verifier: Node
 
 
 func after_each():
-	.after_each()
+	super.after_each()
 	if level != null:
 		_remove_level()
 
@@ -44,5 +44,5 @@ func _get_field_point_for(node: Node2D) -> Vector2:
 	return pimnet.get_field_point_at_external_point(node.position)
 
 
-func _get_yield_wait() -> float:
-	return YIELD_WAIT_QUICK * Engine.time_scale
+func _get_await_time() -> float:
+	return AWAIT_QUICK * Engine.time_scale

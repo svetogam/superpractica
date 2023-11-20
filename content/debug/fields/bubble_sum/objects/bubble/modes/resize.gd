@@ -17,7 +17,7 @@ var _direction := ""
 func _start() -> void:
 	if object.handle_control != null:
 		object.handle_control.show_handles()
-		object.handle_control.connect("handle_pressed", self, "_on_handle_pressed")
+		object.handle_control.handle_pressed.connect(_on_handle_pressed)
 
 
 func _on_handle_pressed(p_direction: String) -> void:
@@ -45,4 +45,4 @@ func _on_drop(_field_point: Vector2) -> void:
 func _end() -> void:
 	if object.handle_control != null:
 		object.handle_control.hide_handles()
-		object.handle_control.disconnect("handle_pressed", self, "_on_handle_pressed")
+		object.handle_control.handle_pressed.disconnect(_on_handle_pressed)

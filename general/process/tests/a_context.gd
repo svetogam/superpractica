@@ -14,8 +14,8 @@ var order := []
 
 
 func small_callback(number: int) -> void:
-	order.append("small_callback: " + String(number))
+	order.append("small_callback: " + str(number))
 
 
 func big_callback(number_1: int, number_2: int) -> void:
-	order.append("big_callback: " + String(number_1) + ", " + String(number_2))
+	order.append("big_callback: " + str(number_1) + ", " + str(number_2))

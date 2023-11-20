@@ -11,8 +11,8 @@
 class_name FieldProgram
 extends Mode
 
-var field: Subscreen
-var action_queue: Object
+var field: Field
+var action_queue: FieldActionQueue
 var effects: NavigEffectGroup
 
 

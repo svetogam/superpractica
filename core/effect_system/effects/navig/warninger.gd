@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name Warninger
-extends Reference
+extends RefCounted
 
 var _effects: NavigEffectGroup
 var _warnings := []

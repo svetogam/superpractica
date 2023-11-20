@@ -11,13 +11,9 @@
 class_name LevelResource
 extends Resource
 
-export(String) var name
-export(String) var _name_text
-export(PackedScene) var _scene
-
-
-func get_name() -> String:
-	return name
+@export var name: String
+@export var _name_text: String
+@export var _scene: PackedScene
 
 
 func get_name_text() -> String:

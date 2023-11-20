@@ -16,7 +16,7 @@ var context: Node
 
 
 func before_each():
-	context = ContextScene.instance()
+	context = ContextScene.instantiate()
 	add_child(context)
 
 
@@ -36,7 +36,7 @@ func test_run_process():
 	assert_eq_deep(context.order, [])
 
 	context.order.clear()
-	yield(process, "tree_exited")
+	await process.tree_exited
 	assert_eq_deep(context.order, ["process_exited"])
 
 

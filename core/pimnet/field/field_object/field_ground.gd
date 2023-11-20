@@ -11,11 +11,11 @@
 class_name FieldGround
 extends FieldObject
 
-onready var _color_rect := $"%ColorRect"
+@onready var _color_rect := %ColorRect as ColorRect
 
 
 func _on_field_ready() -> void:
 	position = field.get_center()
 	input_shape.set_rect(field.get_rect().size)
-	_color_rect.rect_position = -field.get_rect().size/2
-	_color_rect.rect_size = field.get_rect().size
+	_color_rect.position = -field.get_rect().size/2
+	_color_rect.size = field.get_rect().size

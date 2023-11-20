@@ -11,7 +11,7 @@
 class_name ObjectSpawner
 extends SuperscreenObject
 
-export(NodePath) var _graphic_path: NodePath
+@export var _graphic: ProceduralGraphic
 var _object_type: int
 
 
@@ -21,9 +21,8 @@ func _on_press(_point: Vector2) -> void:
 
 
 func create_interfield_object(grab_now: bool) -> InterfieldObject:
-	var graphic = get_node(_graphic_path)
 	var object = superscreen.create_interfield_object_by_parts(
-			graphic, input_shape, _object_type, grab_now)
+			_graphic, input_shape, _object_type, grab_now)
 	object.position = global_position
 	return object
 

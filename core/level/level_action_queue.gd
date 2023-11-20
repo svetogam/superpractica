@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name LevelActionQueue
-extends Reference
+extends RefCounted
 
 var _queue := []
 var _fields := []
@@ -20,19 +20,18 @@ func setup(pimnet: Pimnet) -> void:
 		_bind_to_field(pim.field)
 
 
-func _bind_to_field(field: Subscreen) -> void:
+func _bind_to_field(field: Field) -> void:
 	_fields.append(field)
-	field.action_queue.connect("got_actions_to_do", self, "_on_actions_queued",
-			[field.action_queue])
+	field.action_queue.got_actions_to_do.connect(_on_actions_queued.bind(field.action_queue))
 
 
-func _on_actions_queued(field_queue: Object) -> void:
+func _on_actions_queued(field_queue: FieldActionQueue) -> void:
 	_queue.append(field_queue)
 
 
 func reset() -> void:
 	for field in _fields:
-		field.action_queue.disconnect("got_actions_to_do", self, "_on_actions_queued")
+		field.action_queue.got_actions_to_do.disconnect(_on_actions_queued)
 	_fields.clear()
 	_queue.clear()
 
@@ -44,4 +43,4 @@ func flush() -> void:
 
 
 func is_empty() -> bool:
-	return _queue.empty()
+	return _queue.is_empty()

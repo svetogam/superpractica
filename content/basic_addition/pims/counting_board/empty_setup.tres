@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="CountingBoardSetupResource" load_steps=3 format=3 uid="uid://cyleaiddkqxn1"]
 
-[ext_resource path="res://content/basic_addition/pims/counting_board/counting_board_setup_resource.gd" type="Script" id=1]
-[ext_resource path="res://content/basic_addition/fields/counting_board/counting_board_field.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://content/basic_addition/pims/counting_board/counting_board_setup_resource.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://w2a71fj77wwv" path="res://content/basic_addition/fields/counting_board/counting_board_field.tscn" id="2"]
 
 [resource]
-script = ExtResource( 1 )
-field_zoom = Vector2( 1, 1 )
+script = ExtResource("1")
+field_scene = ExtResource("2")
+initial_tool = -1
+included_tools = Array[int]([])
+disabled_tools = Array[int]([])
+included_spawners = Array[int]([])
+field_zoom = Vector2(1, 1)
 have_menu = false
 have_tool_menu = false
 include_all_tools = false
 have_spawn_panel = false
 include_all_spawners = false
 have_memo_output_panel = false
-field_scene = ExtResource( 2 )
-initial_tool = -1
-included_tools = [  ]
-disabled_tools = [  ]
-included_spawners = [  ]

@@ -24,7 +24,7 @@ func get_bubble_list() -> Array:
 
 func get_selected_unit_list() -> Array:
 	var unit_list = get_unit_list()
-	var filter = funcref(self, "_is_object_selected")
+	var filter = Callable(self, "_is_object_selected")
 	var selected_unit_list = Utils.filter_list(unit_list, filter)
 	return selected_unit_list
 
@@ -39,7 +39,7 @@ func get_unselected_unit_list() -> Array:
 
 func get_selected_bubble_list() -> Array:
 	var bubble_list = get_bubble_list()
-	var filter = funcref(self, "_is_object_selected")
+	var filter = Callable(self, "_is_object_selected")
 	var selected_bubble_list = Utils.filter_list(bubble_list, filter)
 	return selected_bubble_list
 
@@ -124,12 +124,12 @@ func get_intermediate_bubbles(bubble_1: FieldObject, bubble_2: FieldObject,
 
 func is_unit_at_point(point: Vector2) -> bool:
 	var units = get_units_at_point(point)
-	return not units.empty()
+	return not units.is_empty()
 
 
 func is_bubble_at_point(point: Vector2) -> bool:
 	var bubbles = get_bubbles_at_point(point)
-	return not bubbles.empty()
+	return not bubbles.is_empty()
 
 
 func do_any_bubbles_intersect(bubble_list:=[null]) -> bool:
@@ -161,7 +161,7 @@ func sort_bubble_list_by_size(bubble_list:=[null]) -> Array:
 	if bubble_list.has(null):
 		bubble_list = get_bubble_list()
 
-	bubble_list.sort_custom(self, "is_bubble_bigger_than_bubble")
+	bubble_list.sort_custom(Callable(self, "is_bubble_bigger_than_bubble"))
 	return bubble_list
 
 

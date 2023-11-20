@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://rxodag1ut3mw"]
+
+[ext_resource type="Script" path="res://core/base_ui/sp_window/subscreen_viewer/camera_scroll_bars.gd" id="1"]
+
+[node name="CameraScrollBars" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="HScrollBar" type="HScrollBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+page = 5.0
+
+[node name="VScrollBar" type="VScrollBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0

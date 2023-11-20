@@ -14,7 +14,7 @@ extends FieldInterfaceComponent
 # Basic Actions
 #####################################################################
 
-func create_counter(number_square: FieldObject) -> FieldObject:
+func create_counter(number_square: NumberSquare) -> FieldObject:
 	if not number_square.has_counter():
 		var counter = _field.create_object(CountingBoardGlobals.Objects.COUNTER)
 		counter.put_on_square(number_square)
@@ -37,7 +37,7 @@ func delete_counter_by_number(number: int) -> void:
 	counter.queue_free()
 
 
-func move_counter(counter: FieldObject, square: FieldObject) -> void:
+func move_counter(counter: FieldObject, square: NumberSquare) -> void:
 	counter.put_on_square(square)
 
 
@@ -54,7 +54,7 @@ func move_counter_by_numbers(from: int, to: int) -> void:
 		move_counter(counter, number_square)
 
 
-func toggle_circle(square: FieldObject) -> void:
+func toggle_circle(square: NumberSquare) -> void:
 	square.toggle_circle()
 
 
@@ -64,14 +64,14 @@ func uncircle_squares() -> void:
 			square.toggle_circle()
 
 
-func toggle_highlight(square: FieldObject) -> void:
+func toggle_highlight(square: NumberSquare) -> void:
 	if not square.highlighted:
 		highlight_single_square(square)
 	else:
 		unhighlight_squares()
 
 
-func highlight_single_square(square: FieldObject) -> void:
+func highlight_single_square(square: NumberSquare) -> void:
 	var previous_square = _field.queries.get_highlighted_number_square()
 	if previous_square != null:
 		previous_square.toggle_highlight()
@@ -96,7 +96,7 @@ func make_counters_opaque() -> void:
 		counter.set_transparent(false)
 
 
-func give_number_effect_by_number_square(square: FieldObject) -> NumberEffect:
+func give_number_effect_by_number_square(square: NumberSquare) -> NumberEffect:
 	return _field.math_effects.give_number(square.number, square.global_position, "grow")
 
 

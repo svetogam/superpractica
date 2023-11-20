@@ -17,5 +17,5 @@ func get_label_text() -> String:
 
 func get_object_modes_map() -> Dictionary:
 	return {
-		CountingBoardGlobals.Objects.NUMBER_SQUARE: ["get_memo"],
+		CountingBoardGlobals.Objects.NUMBER_SQUARE: ["get_memo"] as Array[String],
 	}

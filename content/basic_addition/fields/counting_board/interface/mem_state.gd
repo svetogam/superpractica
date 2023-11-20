@@ -19,6 +19,5 @@ func _init(p_number_squares_data_list) -> void:
 
 
 func is_equal_to(other: MemState) -> bool:
-	var check_func = funcref(Utils, "are_dicts_equal")
 	return Utils.are_unsorted_lists_equal(number_squares_data_list,
-			other.number_squares_data_list, check_func)
+			other.number_squares_data_list)

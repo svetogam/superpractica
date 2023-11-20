@@ -17,5 +17,5 @@ func get_label_text() -> String:
 
 func get_object_modes_map() -> Dictionary:
 	return {
-		CountingBoardGlobals.Objects.COUNTER: ["drag"],
+		CountingBoardGlobals.Objects.COUNTER: ["drag"] as Array[String],
 	}

@@ -1,10 +1,10 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://b5q4vetbck3i5"]
 
-[ext_resource path="res://core/level_resource.gd" type="Script" id=1]
-[ext_resource path="res://content/debug/levels/counting_board/level.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://core/level_resource.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cpmt44g62nfuq" path="res://content/debug/levels/counting_board/level.tscn" id="2"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 name = "counting_board"
 _name_text = "Counting Board Pim"
-_scene = ExtResource( 2 )
+_scene = ExtResource("2")

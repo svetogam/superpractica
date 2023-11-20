@@ -9,11 +9,11 @@
 ##############################################################################
 
 class_name ContextualConnector
-extends Reference
+extends RefCounted
 
 signal agent_added(agent)
 
-const META_NAME := "ContextualConnector was here."
+const META_NAME := "ContextualConnector"
 var agent_group: String
 var _context: Node
 var _signal_connections := []
@@ -24,7 +24,7 @@ func _init(p_context: Node, p_agent_group: String, require_manual_registration:=
 	_context = p_context
 	agent_group = p_agent_group
 	_manual_mode = require_manual_registration
-	connect("agent_added", self, "_connect_signals_on_new_agent")
+	agent_added.connect(_connect_signals_on_new_agent)
 
 	if _manual_mode:
 		_add_connector_meta()
@@ -44,11 +44,11 @@ func connect_setup(object: Object, method: String, binds:=[],
 	if setup_existing:
 		for agent in get_agents():
 			object.callv(method, [agent] + binds)
-	connect("agent_added", object, method, binds)
+	agent_added.connect(Callable(object, method).bindv(binds))
 
 
 func disconnect_setup(object: Object, method: String) -> void:
-	disconnect("agent_added", object, method)
+	agent_added.disconnect(Callable(object, method))
 
 
 func connect_signal(signal_name: String, object: Object, method: String, binds:=[]) -> void:
@@ -71,24 +71,24 @@ func get_agents() -> Array:
 
 
 func is_agent(node: Node) -> bool:
-	return node != null and node.is_in_group(agent_group) and _context.is_a_parent_of(node)
+	return node != null and node.is_in_group(agent_group) and _context.is_ancestor_of(node)
 
 
 func _lazy_connect_to_scene_tree() -> void:
 	if not _is_connected_to_scene_tree():
-		_context.get_tree().connect("node_added", self, "_on_node_added")
+		_context.get_tree().node_added.connect(_on_node_added)
 
 
 func _is_connected_to_scene_tree() -> bool:
 	for connection in get_incoming_connections():
-		if connection.source is SceneTree:
+		if connection.signal.get_object() is SceneTree:
 			return true
 	return false
 
 
 func _on_node_added(node: Node) -> void:
 	if is_agent(node):
-		emit_signal("agent_added", node)
+		agent_added.emit(node)
 
 
 func _add_signal_connection(signal_name: String,
@@ -116,12 +116,12 @@ func _connect_signals_on_new_agent(agent: Node) -> void:
 
 func _connect_signal_on_agent(agent: Node, signal_name: String,
 			object: Object, method: String, binds:=[]) -> void:
-	agent.connect(signal_name, object, method, binds)
+	agent.connect(signal_name, Callable(object, method).bindv(binds))
 
 
 func _disconnect_signal_on_agent(agent: Node, signal_name: String,
 			object: Object, method: String) -> void:
-	agent.disconnect(signal_name, object, method)
+	agent.disconnect(signal_name, Callable(object, method))
 
 
 #####################################################################
@@ -135,7 +135,7 @@ static func register(agent: Node) -> void:
 	var connectors = _find_contextual_connectors(agent)
 	for connector in connectors:
 		if agent.is_in_group(connector.agent_group):
-			connector.emit_signal("agent_added", agent)
+			connector.agent_added.emit(agent)
 
 
 static func _find_contextual_connectors(agent: Node) -> Array:

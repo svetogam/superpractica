@@ -13,14 +13,16 @@ extends FieldObject
 var _direction: String
 var _bubble: FieldObject
 var _context: Node2D
-onready var _graphic: ProceduralGraphic = $"%Graphic"
+@onready var _graphic := %Graphic as ProceduralGraphic
 
 
 func _enter_tree():
+	super()
 	_context = get_parent()
 
 
 func _ready() -> void:
+	super()
 	_graphic.set_properties({"size": input_shape.get_rect().size})
 	hide()
 
@@ -32,7 +34,7 @@ func setup(p_bubble: FieldObject, p_direction: String) -> void:
 
 func _on_press(_point: Vector2) -> void:
 	if is_visible_in_tree():
-		_context.emit_signal("handle_pressed", _direction)
+		_context.handle_pressed.emit(_direction)
 		stop_active_input()
 
 

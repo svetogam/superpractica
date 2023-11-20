@@ -17,8 +17,8 @@ var was_setup := false
 
 
 func do_number(number: int) -> void:
-	emit_signal("number_done", number)
+	number_done.emit(number)
 
 
 func do_string(string: String) -> void:
-	emit_signal("string_done", string)
+	string_done.emit(string)

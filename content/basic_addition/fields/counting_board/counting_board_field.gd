@@ -23,7 +23,7 @@ func reset_state() -> void:
 	push_action("set_empty")
 
 
-func on_internal_drop(object: SubscreenObject, point: Vector2) -> void:
+func on_internal_drop(object: FieldObject, point: Vector2) -> void:
 	var square = queries.get_number_square_at_point(point)
 	if square != null and not square.has_counter():
 		push_action("move_counter", [object, square])
@@ -37,5 +37,5 @@ func on_incoming_drop(_object: InterfieldObject, point: Vector2, _source: Field)
 		push_action("create_counter", [square])
 
 
-func on_outgoing_drop(object: SubscreenObject) -> void:
+func on_outgoing_drop(object: FieldObject) -> void:
 	push_action("delete_counter", [object])

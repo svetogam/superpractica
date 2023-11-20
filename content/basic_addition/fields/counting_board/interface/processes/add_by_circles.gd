@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 func _on_tens_circled(_count: int) -> void:
-	yield(Game.wait_for(0.5), Game.DONE)
+	await Game.wait_for(0.5)
 
 	if _addend_ones_digit > 0:
 		field.run_process("circle_numbers_in_direction",

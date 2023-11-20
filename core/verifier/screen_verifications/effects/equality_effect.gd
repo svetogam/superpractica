@@ -10,8 +10,8 @@
 
 extends ScreenEffect
 
-onready var _equality_sprite := $"%EqualitySprite"
-onready var _inequality_sprite := $"%InequalitySprite"
+@onready var _equality_sprite := %EqualitySprite as Sprite2D
+@onready var _inequality_sprite := %InequalitySprite as Sprite2D
 
 
 func set_type(type: String) -> void:

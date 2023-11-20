@@ -23,7 +23,7 @@ func _ready() -> void:
 	var number_2 = slot_panel.create_number_effect("addend_2")
 	var sum_number = slot_panel.create_number_effect("sum")
 
-	yield(Game.wait_for(screen_verifier.START_DELAY), Game.DONE)
+	await Game.wait_for(screen_verifier.START_DELAY)
 
 	screen_verifier.verify("evaluates_to_number", [sum_number, plus, [number_1, number_2]],
 			self, "verify", "reject")

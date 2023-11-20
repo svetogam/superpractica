@@ -24,13 +24,11 @@ const NUMBER_TEXTURES := {
 	9: preload("number9_v3f1.png"),
 }
 
-var number: int setget set_number
-onready var _digit_sprites := [$"%Ones", $"%Tens", $"%Hundreds"]
-
-
-func set_number(p_number: int) -> void:
-	number = p_number
-	_update_sprites()
+var number: int:
+	set(value):
+		number = value
+		_update_sprites()
+@onready var _digit_sprites: Array[Sprite2D] = [%Ones, %Tens, %Hundreds]
 
 
 func _update_sprites() -> void:
@@ -46,7 +44,7 @@ func _update_sprites() -> void:
 
 
 func set_by_effect(original: ScreenEffect) -> void:
-	set_number(original.number)
+	number = original.number
 
 
 func is_equal_to(other_count: NumberEffect) -> bool:
@@ -55,7 +53,7 @@ func is_equal_to(other_count: NumberEffect) -> bool:
 
 func get_digit_displacement() -> Vector2:
 #	 return ($Graphic/Tens.position - $Graphic/Ones.position) * $Graphic.scale.x
-	 return (_digit_sprites[1].position - _digit_sprites[0].position) * $"%Graphic".scale.x
+	return (_digit_sprites[1].position - _digit_sprites[0].position) * %Graphic.scale.x
 
 
 #1 for ones place, 2 for tens place, etc.

@@ -34,16 +34,16 @@ func move_to_position(destination: Vector2, move_time:=DEFAULT_MOVE_TIME) -> voi
 	move_time = move_time * Game.get_animation_time_modifier()
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(_target, "position", destination, move_time)
-	tween.tween_callback(self, "emit_signal", ["move_completed"])
+	tween.tween_callback(emit_signal.bind("move_completed"))
 
 
 func grow_to_ratio(size_ratio: float, growth_time:=DEFAULT_GROWTH_TIME) -> void:
 	growth_time = growth_time * Game.get_animation_time_modifier()
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(_target, "scale", Vector2(size_ratio, size_ratio), growth_time)
-	tween.tween_callback(self, "emit_signal", ["growth_completed"])
+	tween.tween_callback(emit_signal.bind("growth_completed"))
 
 
 func delete_after_delay(delay:=DEFAULT_DELETE_DELAY) -> void:
 	var timer = get_tree().create_timer(delay)
-	timer.connect("timeout", _target, "queue_free")
+	timer.timeout.connect(_target.queue_free)

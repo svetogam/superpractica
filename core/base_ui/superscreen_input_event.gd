@@ -12,10 +12,9 @@ class_name SuperscreenInputEvent
 extends SpInputEvent
 
 
-func _init(event: InputEvent, p_grabbed_object: Node2D =null) -> void:
+func _init(event: InputEvent, p_grabbed_object: InputObject =null) -> void:
 	if event == null:
-#		assert(false)
-		return
+		assert(false)
 
 	if _is_godot_primary_mouse_press(event):
 		_input_type = InputType.PRESS
@@ -33,15 +32,15 @@ func _init(event: InputEvent, p_grabbed_object: Node2D =null) -> void:
 
 func _is_godot_primary_mouse_press(event: InputEvent) -> bool:
 	return (event is InputEventMouseButton and event.is_pressed()
-			and event.button_index == BUTTON_LEFT)
+			and event.button_index == MOUSE_BUTTON_LEFT)
 
 
 func _is_godot_primary_mouse_release(event: InputEvent) -> bool:
 	return (event is InputEventMouseButton and not event.is_pressed()
-			and event.button_index == BUTTON_LEFT)
+			and event.button_index == MOUSE_BUTTON_LEFT)
 
 
-func make_subscreen_input_event(subscreen_viewer: Control) -> SubscreenInputEvent:
+func make_subscreen_input_event(subscreen_viewer: SubscreenViewer) -> SubscreenInputEvent:
 	assert(subscreen_viewer != null)
 
 	var subscreen_position = subscreen_viewer.convert_external_to_internal_point(_position)
@@ -49,7 +48,7 @@ func make_subscreen_input_event(subscreen_viewer: Control) -> SubscreenInputEven
 	var subscreen_event = SubscreenInputEvent.new(_input_type, subscreen_position,
 			subscreen_relative, _grabbed_object, _input_state)
 
-	subscreen_event.connect("completed", self, "complete")
-	subscreen_event.connect("deactivated", self, "deactivate")
+	subscreen_event.completed.connect(complete)
+	subscreen_event.deactivated.connect(deactivate)
 
 	return subscreen_event

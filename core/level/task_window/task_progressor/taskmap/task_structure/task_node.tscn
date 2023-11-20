@@ -1,52 +1,48 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://c44g6sspn5kpo"]
 
-[ext_resource path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_node_pressed_styleboxflat.tres" type="StyleBox" id=1]
-[ext_resource path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_node_normal_styleboxflat.tres" type="StyleBox" id=2]
-[ext_resource path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_node.gd" type="Script" id=3]
+[ext_resource type="StyleBox" uid="uid://dk308hmege3sd" path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_node_pressed_styleboxflat.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://dm57fj13opiev" path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_node_normal_styleboxflat.tres" id="2"]
+[ext_resource type="Script" path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_node.gd" id="3"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id="1"]
 
 [node name="TaskNode" type="Button" groups=["taskmap_nodes"]]
-margin_right = 90.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 120, 60 )
-mouse_filter = 1
-custom_styles/hover = ExtResource( 2 )
-custom_styles/pressed = ExtResource( 1 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = ExtResource( 2 )
-custom_styles/normal = ExtResource( 2 )
-toggle_mode = true
-script = ExtResource( 3 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(120, 60)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("2")
+theme_override_styles/hover = ExtResource("2")
+theme_override_styles/pressed = ExtResource("1")
+theme_override_styles/disabled = ExtResource("2")
+theme_override_styles/focus = SubResource("1")
+toggle_mode = true
+script = ExtResource("3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = -4.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_top = 23.0
-margin_right = 84.0
-margin_bottom = 37.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 text = "Name"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CheckBox" type="CheckBox" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 88.0
-margin_top = 18.0
-margin_right = 112.0
-margin_bottom = 42.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+mouse_filter = 2
 disabled = true

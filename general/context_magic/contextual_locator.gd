@@ -9,9 +9,9 @@
 ##############################################################################
 
 class_name ContextualLocator
-extends Reference
+extends RefCounted
 
-const META_PREFIX := "I Can't Believe It's Not A Singleton! "
+const META_PREFIX := "ContextualLocator_"
 const SCENE_TREE_SIGNAL_PREFIX := "__signal_to_contextual_locator_that_this_was_registered:"
 
 
@@ -79,7 +79,7 @@ static func _get_context_for_meta(agent: Node, meta_key: String) -> Node:
 		var meta_dict = context.get_meta(meta_key)
 		if meta_dict["override_parents"]:
 			return context
-	if context_list.empty():
+	if context_list.is_empty():
 		return null
 	else:
 		return context_list[-1]
@@ -125,20 +125,20 @@ var _callbacker := KeyCallbacker.new()
 func _init(p_agent: Node, update_after_found:=false) -> void:
 	_agent = p_agent
 	_continuous_update_mode = update_after_found
-	_agent.connect("tree_exiting", self, "_on_agent_exiting_tree")
+	_agent.tree_exiting.connect(_on_agent_exiting_tree)
 
 
 func _on_agent_exiting_tree() -> void:
 	_callbacker.clear()
 	var connections = get_incoming_connections()
 	for connection in connections:
-		connection.source.disconnect(connection.signal_name, self, connection.method_name)
+		connection.signal.disconnect(connection.callable)
 
 
 func auto_signal(key: String) -> void:
 	var value = find(_agent, key)
 	if value != null:
-		emit_signal("auto_found", key, value)
+		auto_found.emit(key, value)
 		if not _continuous_update_mode:
 			_stop_auto_signal(key)
 
@@ -148,15 +148,15 @@ func auto_signal(key: String) -> void:
 
 func _connect_auto_signal(key: String) -> void:
 	var signal_name = _initialize_scene_tree_signal_for_key(_agent.get_tree(), key)
-	if not _agent.get_tree().is_connected(signal_name, self, "auto_signal"):
-		_agent.get_tree().connect(signal_name, self, "auto_signal", [key])
+	if not _agent.get_tree().is_connected(signal_name, auto_signal):
+		_agent.get_tree().connect(signal_name, auto_signal.bind(key))
 
 
 func _stop_auto_signal(key: String) -> void:
 	var signal_name = _get_scene_tree_signal_name(key)
 	if _agent.get_tree().has_signal(signal_name)\
-				and _agent.get_tree().is_connected(signal_name, self, "auto_signal"):
-		_agent.get_tree().disconnect(signal_name, self, "auto_signal")
+				and _agent.get_tree().is_connected(signal_name, auto_signal):
+		_agent.get_tree().disconnect(signal_name, auto_signal)
 
 
 func auto_callback(key: String, object: Object, method: String, binds:=[]) -> void:
@@ -164,7 +164,7 @@ func auto_callback(key: String, object: Object, method: String, binds:=[]) -> vo
 	if value != null:
 		var args = [value] + binds
 		_agent.callv(method, args)
-		emit_signal("auto_found", key, value)
+		auto_found.emit(key, value)
 		if not _continuous_update_mode:
 			_stop_auto_callbacks(key)
 
@@ -175,23 +175,23 @@ func auto_callback(key: String, object: Object, method: String, binds:=[]) -> vo
 func _connect_auto_callback(key: String, object: Object, method: String, binds:=[]) -> void:
 	_callbacker.add(key, object, method, binds, false, not _continuous_update_mode)
 	var signal_name = _initialize_scene_tree_signal_for_key(_agent.get_tree(), key)
-	if not _agent.get_tree().is_connected(signal_name, self, "_try_auto_callbacks"):
-		_agent.get_tree().connect(signal_name, self, "_try_auto_callbacks", [key])
+	if not _agent.get_tree().is_connected(signal_name, _try_auto_callbacks):
+		_agent.get_tree().connect(signal_name, _try_auto_callbacks.bind(key))
 
 
 func _stop_auto_callbacks(key: String) -> void:
 	if not _callbacker.has(key):
 		var signal_name = _get_scene_tree_signal_name(key)
 		if _agent.get_tree().has_signal(signal_name)\
-					and _agent.get_tree().is_connected(signal_name, self, "_try_auto_callbacks"):
-			_agent.get_tree().disconnect(signal_name, self, "_try_auto_callbacks")
+					and _agent.get_tree().is_connected(signal_name, _try_auto_callbacks):
+			_agent.get_tree().disconnect(signal_name, _try_auto_callbacks)
 
 
 func _try_auto_callbacks(key: String) -> bool:
 	var value = find(_agent, key)
 	if value != null:
 		_callbacker.call_callbacks(key, [value])
-		emit_signal("auto_found", key, value)
+		auto_found.emit(key, value)
 		return true
 	return false
 
@@ -200,7 +200,7 @@ func auto_set(key: String, property_name: String) -> void:
 	var value = find(_agent, key)
 	if value != null:
 		_agent.set(property_name, value)
-		emit_signal("auto_found", key, value)
+		auto_found.emit(key, value)
 		if not _continuous_update_mode:
 			_stop_auto_callbacks(key)
 
@@ -211,5 +211,5 @@ func auto_set(key: String, property_name: String) -> void:
 func _connect_auto_set(key: String, property_name: String) -> void:
 	_callbacker.add(key, _agent, "set", [property_name], true, not _continuous_update_mode)
 	var signal_name = _initialize_scene_tree_signal_for_key(_agent.get_tree(), key)
-	if not _agent.get_tree().is_connected(signal_name, self, "_try_auto_callbacks"):
-		_agent.get_tree().connect(signal_name, self, "_try_auto_callbacks", [key])
+	if not _agent.get_tree().is_connected(signal_name, _try_auto_callbacks):
+		_agent.get_tree().connect(signal_name, _try_auto_callbacks.bind(key))

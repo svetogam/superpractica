@@ -14,27 +14,24 @@ extends Node
 signal started
 signal stopped
 
-export(NodePath) var _target_path: NodePath
-export(bool) var _auto_run := false
-var _target: Node
+@export var _target: Node
+@export var _auto_run := false
 var _running := false
 
 
+#Priority for target is: 1-mode-group, 2-inspector, 3-parent
 func _enter_tree() -> void:
-	var parent = get_parent()
-	if parent is ModeGroup:
-		_target = parent._target
-	else:
-		if not _target_path.is_empty():
-			_target = get_node(_target_path)
-		else:
-			_target = get_parent()
+	var mode_group := get_parent() as ModeGroup
+	if mode_group != null:
+		_target = mode_group._target
+	elif _target == null:
+		_target = get_parent()
 	assert(_target != null)
 
 
 func _ready() -> void:
 	if _auto_run:
-		connect("ready", self, "run")
+		ready.connect(run)
 
 
 func run() -> void:
@@ -43,7 +40,7 @@ func run() -> void:
 	_pre_start()
 
 	_start()
-	emit_signal("started")
+	started.emit()
 
 
 #Virtual
@@ -60,7 +57,7 @@ func stop() -> void:
 	if is_running():
 		_running = false
 		_end()
-		emit_signal("stopped")
+		stopped.emit()
 
 
 #Virtual

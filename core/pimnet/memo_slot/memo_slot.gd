@@ -13,21 +13,22 @@ extends WindowContent
 
 signal memo_changed(memo)
 
-export(Array, String) var acceptable_types: Array
-export(bool) var memo_input_enabled := true
-export(bool) var memo_output_enabled := true
-var pimnet: Superscreen
+@export var acceptable_types: Array[String]
+@export var memo_input_enabled := true
+@export var memo_output_enabled := true
+var pimnet: Pimnet
 var memo: Memo
-onready var _drag_control := $"%DragControl"
-onready var _graphic := $"%Graphic"
+@onready var _drag_control := %DragControl as SuperscreenObject
+@onready var _graphic := %Graphic as Control
 
 
 func _enter_tree() -> void:
+	super()
 	ContextualConnector.register(self)
 
 	pimnet = superscreen
-	pimnet.connect("memo_drag_started", self, "_on_memo_drag_started")
-	pimnet.connect("memo_drag_stopped", self, "_on_memo_drag_stopped")
+	pimnet.memo_drag_started.connect(_on_memo_drag_started)
+	pimnet.memo_drag_stopped.connect(_on_memo_drag_stopped)
 
 
 func _ready() -> void:
@@ -68,7 +69,7 @@ func _accept_memo() -> void:
 	_graphic.set_text(memo.get_string())
 	var prev_memo = null
 	if memo != prev_memo:
-		emit_signal("memo_changed", memo)
+		memo_changed.emit(memo)
 
 
 func set_no_memo_with_text(text: String) -> void:

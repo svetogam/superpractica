@@ -10,11 +10,11 @@
 
 extends FieldObject
 
-var square: FieldObject = null
-onready var _graphic: ProceduralGraphic = $"%Graphic"
+var square: NumberSquare = null
+@onready var _graphic := %Graphic as ProceduralGraphic
 
 
-func put_on_square(p_square: FieldObject) -> void:
+func put_on_square(p_square: NumberSquare) -> void:
 	square = p_square
 	position = square.position
 	if square.is_mode_active("get_memo"):
@@ -38,5 +38,5 @@ func get_number() -> int:
 	return square.number
 
 
-func get_drag_graphic() -> Node2D:
+func get_drag_graphic() -> ProceduralGraphic:
 	return _graphic

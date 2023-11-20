@@ -10,16 +10,16 @@
 
 extends SlotPanel
 
-export(bool) var initial_addend_1_is_empty := false
-export(int) var initial_addend_1 := 0
-export(bool) var initial_addend_2_is_empty := false
-export(int) var initial_addend_2 := 0
-export(bool) var initial_sum_is_empty := false
-export(int) var initial_sum := 0
-onready var _addend_1_slot := $"%Addend1"
-onready var _addend_2_slot := $"%Addend2"
-onready var _sum_slot := $"%Sum"
-onready var _plus := $"%Plus"
+@export var initial_addend_1_is_empty := false
+@export var initial_addend_1 := 0
+@export var initial_addend_2_is_empty := false
+@export var initial_addend_2 := 0
+@export var initial_sum_is_empty := false
+@export var initial_sum := 0
+@onready var _addend_1_slot := %Addend1 as MemoSlot
+@onready var _addend_2_slot := %Addend2 as MemoSlot
+@onready var _sum_slot := %Sum as MemoSlot
+@onready var _plus := %Plus as TextureRect
 
 
 func _ready() -> void:
@@ -51,6 +51,6 @@ func create_plus_effect() -> ScreenEffect:
 	assert(_effects != null)
 
 	#Copied from WindowContent (Make such symbols subclass WindowContent?)
-	var effect_position = _plus.rect_global_position + _plus.rect_size/2
+	var effect_position = _plus.global_position + _plus.size/2
 
 	return _effects.give_operator("+", effect_position) as ScreenEffect

@@ -20,7 +20,7 @@ func _get_scene_path() -> String:
 
 
 func before_each():
-	.before_each()
+	super.before_each()
 	number_squares = field.queries.get_number_square_list()
 
 

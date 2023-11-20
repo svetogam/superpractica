@@ -10,7 +10,7 @@
 
 extends SlotPanel
 
-onready var _memo_slot := $"%MemoSlot"
+@onready var _memo_slot := %MemoSlot as MemoSlot
 
 
 func _ready() -> void:

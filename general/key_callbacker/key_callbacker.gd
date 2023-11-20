@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name KeyCallbacker
-extends Reference
+extends RefCounted
 
 var _callbacks_map := {}
 
@@ -33,7 +33,7 @@ func remove(key: String, object: Object, method: String) -> void:
 		if _are_callbacks_equal(callback, existing_callback):
 			callbacks_list.erase(existing_callback)
 			break
-	if callbacks_list.empty():
+	if callbacks_list.is_empty():
 		_callbacks_map.erase(key)
 
 

@@ -18,6 +18,7 @@ var _locator := ContextualLocator.new(self)
 
 
 func _enter_tree() -> void:
+	super()
 	_locator.auto_callback("effect_layer", self, "_setup_effect_creator")
 
 
@@ -25,7 +26,7 @@ func _setup_effect_creator(effect_layer: CanvasLayer) -> void:
 	_effects = MathEffectGroup.new(effect_layer)
 
 
-func _setup_slot(slot: WindowContent, slot_name:=DEFAULT_SLOT_NAME) -> void:
+func _setup_slot(slot: MemoSlot, slot_name:=DEFAULT_SLOT_NAME) -> void:
 	slot_map[slot_name] = slot
 
 
@@ -45,7 +46,7 @@ func set_slot_input_output_ability(input: bool, output: bool,
 	slot_map[slot_name].set_input_output_ability(input, output)
 
 
-func get_slot(slot_name:=DEFAULT_SLOT_NAME) -> WindowContent:
+func get_slot(slot_name:=DEFAULT_SLOT_NAME) -> MemoSlot:
 	assert(slot_map.has(slot_name))
 	return slot_map[slot_name]
 

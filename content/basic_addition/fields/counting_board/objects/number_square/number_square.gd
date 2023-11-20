@@ -15,16 +15,16 @@ var number: int
 var circled := false
 var highlighted := false
 var _size: Vector2
-onready var _label := $"%Label"
-onready var _circled_graphic := $"%CircledGraphic"
-onready var _highlight_graphic := $"%HighlightGraphic"
+@onready var _label := %Label as Label
+@onready var _circled_graphic := %CircledGraphic as ProceduralGraphic
+@onready var _highlight_graphic := %HighlightGraphic as ProceduralGraphic
 
 
 func setup(p_size: Vector2, p_number: int) -> void:
 	_size = p_size
 	number = p_number
-	_label.rect_size = _size
-	_label.text = String(number)
+	_label.size = _size
+	_label.text = str(number)
 	input_shape.set_rect(_size)
 	_circled_graphic.set_properties({"rect": get_rect()})
 	_highlight_graphic.set_properties({"rect": get_rect()})

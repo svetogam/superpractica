@@ -33,7 +33,7 @@ func test_1():
 	simulator.drag_left_between($Ref/Counter.position, $Ref/Square8.position)
 	simulator.click_left_at($Ref/CompleteButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -44,7 +44,7 @@ func test_2():
 	simulator.click_left_at($Ref/Square5.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.drag_left_between($Ref/Counter.position, $Ref/Square6.position)
@@ -52,13 +52,13 @@ func test_2():
 	simulator.drag_left_between($Ref/Counter.position, $Ref/Square8.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.drag_left_between($Ref/Square8.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -70,7 +70,7 @@ func test_3():
 	simulator.drag_left_between($Ref/SelectorSlot.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -82,7 +82,7 @@ func test_4():
 	simulator.drag_left_between($Ref/SelectorSlot.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -96,9 +96,9 @@ func test_5_1():
 	simulator.click_left_at($Ref/Square25.position)
 	simulator.click_left_at($Ref/Square26.position)
 	simulator.click_left_at($Ref/Square27.position)
-	simulator.click_left_at($Ref/CheckButton.position)
+	simulator.click_left_at($Ref/CompleteButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -114,9 +114,9 @@ func test_5_2():
 	simulator.click_left_at($Ref/Square40.position)
 	simulator.click_left_at($Ref/Square41.position)
 	simulator.click_left_at($Ref/Square42.position)
-	simulator.click_left_at($Ref/CheckButton.position)
+	simulator.click_left_at($Ref/CompleteButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -127,9 +127,9 @@ func test_5_3():
 	simulator.click_left_at($Ref/Square19.position)
 	simulator.click_left_at($Ref/Square29.position)
 	simulator.click_left_at($Ref/Square39.position)
-	simulator.click_left_at($Ref/CheckButton.position)
+	simulator.click_left_at($Ref/CompleteButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -140,7 +140,7 @@ func test_6_1():
 	simulator.click_left_at($Ref/Square4.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.click_left_at($Ref/Square14.position)
@@ -150,13 +150,13 @@ func test_6_1():
 	simulator.click_left_at($Ref/Square27.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.drag_left_between($Ref/Square27.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -167,7 +167,7 @@ func test_6_2():
 	simulator.click_left_at($Ref/Square35.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.click_left_at($Ref/Square36.position)
@@ -179,13 +179,13 @@ func test_6_2():
 	simulator.click_left_at($Ref/Square42.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.drag_left_between($Ref/Square42.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -196,20 +196,20 @@ func test_6_3():
 	simulator.click_left_at($Ref/Square19.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.click_left_at($Ref/Square29.position)
 	simulator.click_left_at($Ref/Square39.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "task_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.task_completed, _get_await_time())
 	assert_signal_emitted(level, "task_completed")
 
 	simulator.drag_left_between($Ref/Square39.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -220,7 +220,7 @@ func test_7_1():
 	simulator.drag_left_between($Ref/Square27.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -231,7 +231,7 @@ func test_7_2():
 	simulator.drag_left_between($Ref/Square42.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -242,7 +242,7 @@ func test_7_3():
 	simulator.drag_left_between($Ref/Square39.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")
 
 
@@ -255,5 +255,5 @@ func test_8():
 	simulator.drag_left_between($Ref/SelectorSlot.position, $Ref/SumSlot.position)
 	simulator.click_left_at($Ref/CheckButton.position)
 	simulator.run()
-	yield(yield_to(level, "level_completed", _get_yield_wait()), YIELD)
+	await wait_for_signal(level.level_completed, _get_await_time())
 	assert_signal_emitted(level, "level_completed")

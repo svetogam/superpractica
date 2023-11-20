@@ -10,11 +10,11 @@
 
 extends WindowContent
 
-var _data_reader: Reference
+var _data_reader: RefCounted
 var _locator := ContextualLocator.new(self)
-onready var _taskmap := preload("taskmap/taskmap.tscn").instance()
-onready var _viewer := $"%Viewer"
-onready var _instruction_box := $"%InstructionBox"
+@onready var _taskmap := preload("taskmap/taskmap.tscn").instantiate() as Subscreen
+@onready var _viewer := %Viewer as SubscreenViewer
+@onready var _instruction_box := %InstructionBox as WindowContent
 
 
 func _ready() -> void:
@@ -26,13 +26,13 @@ func _on_found_task_control(task_control: Node) -> void:
 	_data_reader = task_control.get_data_reader()
 	_taskmap.setup(_data_reader)
 
-	_data_reader.connect("replacements_changed", self, "_update_instructions")
-	_taskmap.connect("task_selected", self, "_update_instructions")
+	_data_reader.replacements_changed.connect(_update_instructions)
+	_taskmap.task_selected.connect(_update_instructions)
 	_update_instructions()
 
 	var level = ContextUtils.get_parent_in_group(self, "levels")
-	level.connect("task_started", _taskmap, "select_task")
-	level.connect("task_completed", _taskmap, "complete_task")
+	level.task_started.connect(_taskmap.select_task)
+	level.task_completed.connect(_taskmap.complete_task)
 
 
 func _update_instructions(_dummy=null) -> void:

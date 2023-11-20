@@ -14,14 +14,14 @@ const DELAY := 0.2
 
 
 func _enter(_last_state: String) -> void:
-	yield(Game.wait_for(DELAY), Game.DONE)
+	await Game.wait_for(DELAY)
 
 	verification.field.run_process("count_circles_in_direction",
 			[verification.start_number, "down"], self, "_on_count_complete")
 
 
 func _on_count_complete(count: NumberEffect) -> void:
-	yield(Game.wait_for(DELAY), Game.DONE)
+	await Game.wait_for(DELAY)
 
 	screen_verifier.verify("number_is_equal_to_digit", [count, 2],
 			self, "_on_verify", "_on_reject")

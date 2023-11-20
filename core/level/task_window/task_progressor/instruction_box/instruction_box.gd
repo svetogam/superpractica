@@ -10,8 +10,8 @@
 
 extends WindowContent
 
-export(String, MULTILINE) var initial_text := "Instructions go here."
-onready var _label := $"%Label"
+@export_multiline var initial_text := "Instructions go here."
+@onready var _label := %Label as Label
 
 
 func _ready() -> void:

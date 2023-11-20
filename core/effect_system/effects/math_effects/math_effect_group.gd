@@ -18,18 +18,14 @@ const OPERATOR_EFFECTS := {
 }
 
 
-func _init(effect_layer: CanvasLayer).(effect_layer) -> void:
-	pass
-
-
-func give_number(number: int, pos: Vector2, animation:="rise") -> Node2D:
+func give_number(number: int, pos: Vector2, animation:="rise") -> NumberEffect:
 	var effect = create_effect(NUMBER_EFFECT, pos)
-	effect.set_number(number)
+	effect.number = number
 	effect.animate(animation)
 	return effect
 
 
-func give_operator(type: String, pos: Vector2) -> Node2D:
+func give_operator(type: String, pos: Vector2) -> ScreenEffect:
 	assert(OPERATOR_EFFECTS.has(type))
 
 	var effect = create_effect(OPERATOR_EFFECTS[type], pos)
@@ -41,6 +37,6 @@ func new_number_from_digit_of_original(original: NumberEffect, digit_place: int)
 	var digit = IntegerMath.get_digit_at_place(original.number, digit_place)
 	var pos = original.get_position_for_digit(digit_place)
 	var effect = create_effect(NUMBER_EFFECT, pos)
-	effect.set_number(digit)
+	effect.number = digit
 	effect.scale = original.scale
 	return effect

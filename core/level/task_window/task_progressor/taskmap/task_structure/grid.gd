@@ -11,17 +11,22 @@
 extends GridContainer
 
 var _rows: int
+var _grid_box_width: int
+var _grid_box_height: int
 var _grid_box_array := []
-onready var _grid_box_prototype := $"%GridBoxPrototype"
-onready var _grid_box_width: int = _grid_box_prototype.rect_size.x + 2
-onready var _grid_box_height: int = _grid_box_prototype.rect_size.y + 2
+@onready var _grid_box_prototype := %GridBoxPrototype as CenterContainer
+
+
+func _ready() -> void:
+	_grid_box_width = int(_grid_box_prototype.size.x + 2)
+	_grid_box_height = int(_grid_box_prototype.size.y + 2)
 
 
 func setup(p_columns: int, p_rows: int) -> void:
 	columns = p_columns
 	_rows = p_rows
 
-	rect_size = Vector2(columns * _grid_box_width, _rows * _grid_box_height)
+	size = Vector2(columns * _grid_box_width, _rows * _grid_box_height)
 
 	for _column in range(columns):
 		var down_column_array = []
@@ -51,8 +56,8 @@ func add_task_node(task_node: BaseButton, column: int, row: int) -> void:
 
 
 func is_task_placed(task_node: BaseButton) -> bool:
-	return task_node.rect_position != Vector2.ZERO
+	return task_node.position != Vector2.ZERO
 
 
 func get_grid_box_position(column: int, row: int) -> Vector2:
-	return _grid_box_array[column][row].rect_position
+	return _grid_box_array[column][row].position

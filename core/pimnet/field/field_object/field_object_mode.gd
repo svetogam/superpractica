@@ -11,11 +11,12 @@
 class_name FieldObjectMode
 extends Mode
 
-var object: SubscreenObject
-var field: Subscreen
+var object: FieldObject
+var field: Field
 
 
 func _ready() -> void:
+	super()
 	object = _target
 
 
@@ -24,7 +25,7 @@ func _pre_start() -> void:
 
 
 #Virtual
-func _on_hover(_point: Vector2, _initial: bool, _grabbed_object: Node2D) -> void:
+func _on_hover(_point: Vector2, _initial: bool, _grabbed_object: InputObject) -> void:
 	pass
 
 

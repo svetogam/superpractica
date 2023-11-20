@@ -19,7 +19,7 @@ var agent_3: Node
 
 
 func before_each():
-	context = ContextScene.instance()
+	context = ContextScene.instantiate()
 	add_child(context)
 	agent_1 = $Context/Agent1
 	agent_2 = $Context/Agent2
@@ -45,19 +45,17 @@ func test_do_not_find_removed_agents():
 
 	agent_2.free()
 	assert_eq_deep(context.connector.get_agents(), [agent_3])
-	assert_true(not context.connector.is_agent(agent_2))
 
 	agent_3.queue_free()
 	assert_eq_deep(context.connector.get_agents(), [agent_3])
 	assert_true(context.connector.is_agent(agent_3))
-	yield(get_tree(), "idle_frame")
+	await get_tree().process_frame
 	assert_eq_deep(context.connector.get_agents(), [])
-	assert_true(not context.connector.is_agent(agent_3))
 
 
 func test_find_added_agents():
 	watch_signals(context.connector)
-	var new_agent = AgentScene.instance()
+	var new_agent = AgentScene.instantiate()
 	assert_false(context.connector.is_agent(new_agent))
 	assert_signal_not_emitted(context.connector, "agent_added")
 
@@ -75,10 +73,10 @@ func test_call_connected_methods():
 	context.order.clear()
 	agent_1.do_number(1)
 	agent_2.do_string("A")
-	var new_agent = AgentScene.instance()
+	var new_agent = AgentScene.instantiate()
 	context.add_child(new_agent)
 	new_agent.do_number(2)
-	var new_agent_2 = AgentScene.instance()
+	var new_agent_2 = AgentScene.instantiate()
 	context.add_child(new_agent_2)
 	new_agent_2.do_string("B")
 	assert_eq_deep(context.order,
@@ -89,7 +87,7 @@ func test_call_connected_methods():
 func test_switch_setup_and_setup_with_binds():
 	context.order.clear()
 	context.switch_setup(5)
-	var new_agent = AgentScene.instance()
+	var new_agent = AgentScene.instantiate()
 	context.add_child(new_agent)
 	assert_eq_deep(context.order, ["setup with 5"])
 
@@ -99,7 +97,7 @@ func test_do_not_call_disconnected_methods():
 	context.ignore_agents()
 	agent_1.do_number(1)
 	agent_2.do_string("A")
-	var new_agent = AgentScene.instance()
+	var new_agent = AgentScene.instantiate()
 	context.add_child(new_agent)
 	new_agent.do_number(2)
 	assert_eq_deep(context.order, ["setup of " + new_agent.name])

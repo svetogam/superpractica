@@ -15,8 +15,8 @@ signal completed_tens_only
 signal affirmed
 signal rejected
 
-export(int) var _start_number: int
-export(int) var _addend: int
+@export var _start_number: int
+@export var _addend: int
 var _current_number: int
 var _target_number: int
 var _completed_tens := false
@@ -37,30 +37,30 @@ func _start() -> void:
 	_target_number = _start_number + _addend
 
 
-func _decide_toggle_circle(square: FieldObject) -> bool:
+func _decide_toggle_circle(square: NumberSquare) -> bool:
 	if square.number == _find_next_number():
 		_current_number = square.number
 		effects.affirm(square.position)
-		emit_signal("affirmed")
+		affirmed.emit()
 
 		return true
 
 	else:
 		effects.reject(square.position)
-		emit_signal("rejected")
+		rejected.emit()
 		return false
 
 
-func _on_circle_toggled(square: FieldObject) -> void:
+func _on_circle_toggled(square: NumberSquare) -> void:
 	assert(square.circled)
 	square.set_circle_variant("affirmation")
 
 	if _current_number == _target_number:
-		emit_signal("completed")
+		completed.emit()
 		stop()
 	elif not _completed_tens and _target_number < _current_number + 10:
 		_completed_tens = true
-		emit_signal("completed_tens_only")
+		completed_tens_only.emit()
 
 
 func _find_next_number() -> int:

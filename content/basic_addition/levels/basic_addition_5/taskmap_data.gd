@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 ##############################################################################
 
-extends Reference
+extends RefCounted
 
 const FIRST := "Select the number {start_number} on the board."
 const SECOND := "Circle as many numbers below {start_number} as in the tens digit of {addend}. "\

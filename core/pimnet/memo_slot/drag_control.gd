@@ -11,12 +11,17 @@
 extends SuperscreenObject
 
 const SIZE := Vector2(120, 80)
-var _memo_slot: WindowContent
+var _memo_slot: MemoSlot
 
 
-func setup(p_memo_slot: WindowContent) -> void:
+func setup(p_memo_slot: MemoSlot) -> void:
 	_memo_slot = p_memo_slot
-	input_shape.set_rect(_memo_slot.rect_size, false)
+	input_shape.set_rect(_memo_slot.size, false)
+	_memo_slot.resized.connect(_on_slot_resized)
+
+
+func _on_slot_resized() -> void:
+	input_shape.set_rect(_memo_slot.size, false)
 
 
 func _on_press(_point: Vector2) -> void:

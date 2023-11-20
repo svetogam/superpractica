@@ -27,7 +27,7 @@ func _ready() -> void:
 func _on_count_complete(count: NumberEffect) -> void:
 	var slot_number = slot_panel.create_number_effect("addend_2")
 
-	yield(Game.wait_for(screen_verifier.START_DELAY), Game.DONE)
+	await Game.wait_for(screen_verifier.START_DELAY)
 
 	screen_verifier.verify("numbers_are_equal", [count, slot_number],
 			self, "verify", "reject")

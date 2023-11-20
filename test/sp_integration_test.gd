@@ -25,13 +25,15 @@ func _has_scene() -> bool:
 
 
 func _on_interference(_interfering_events: Array):
-	assert(false)
+	var message := ("Do not perform inputs while tests are running. "
+			+ InputEventSimulator.get_interference_message(_interfering_events))
+	assert(false, message)
 
 
 func before_all():
 	add_child(simulator)
 	simulator.ignore_interference(false)
-	simulator.connect("interference_detected", self, "_on_interference")
+	simulator.interference_detected.connect(_on_interference)
 
 
 func before_each():
@@ -47,14 +49,14 @@ func after_each():
 
 
 func after_all():
-	simulator.disconnect("interference_detected", self, "_on_interference")
+	simulator.interference_detected.disconnect(_on_interference)
 	remove_child(simulator)
 
 
 func _load_scene(path: String) -> Node:
-	var t_scene = load(path).instance()
-	add_child(t_scene)
-	return t_scene
+	var loaded_scene = load(path).instantiate()
+	add_child(loaded_scene)
+	return loaded_scene
 
 
 func _load_ref_scene(path: String) -> void:
@@ -74,5 +76,5 @@ func _save_failure_screenshot() -> void:
 		source = source.trim_suffix(".gd")
 		source = source.rsplit("/", false, 1)[1]
 		var line = get_stack()[1]["line"]
-		var filename = source + String(line)
+		var filename = source + "-line-" + str(line)
 		Utils.save_screenshot("res://test/failure_screens", filename)

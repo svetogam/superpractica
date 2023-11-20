@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: MIT                                               #
 ##############################################################################
 
-extends Reference
+extends RefCounted
 
 const INITIAL_VALUE := "initial"
 var value = INITIAL_VALUE

@@ -10,7 +10,7 @@
 
 extends LevelProgramState
 
-var _count_program: FieldProgram
+var _count_program: SoftLimiterProgram
 
 
 func _enter(last_state: String) -> void:
@@ -38,7 +38,7 @@ func _on_reset() -> void:
 
 
 func _check_condition() -> bool:
-	return not program.field.queries.get_counter_list().empty() and _count_program.is_valid()
+	return not program.field.queries.get_counter_list().is_empty() and _count_program.is_valid()
 
 
 func _exit(_next_state: String) -> void:

@@ -17,4 +17,5 @@ mono_crash.*.json
 
 # Addons
 addons/gut
+.gut_editor_shortcuts.cfg
 

@@ -33,11 +33,11 @@ static func get_children_in_group(parent: Node, group: String, recursive:=true) 
 	var children_in_group = []
 	if recursive:
 		for node in parent.get_tree().get_nodes_in_group(group):
-			if parent.is_a_parent_of(node):
+			if parent.is_ancestor_of(node):
 				children_in_group.append(node)
 	else:
 		for child in parent.get_children():
-			if child.is_in_group():
+			if child.is_in_group(group):
 				children_in_group.append(child)
 	return children_in_group
 
@@ -46,15 +46,6 @@ static func get_parent_in_group(child: Node, group: String) -> Node:
 	var parent = child.get_parent()
 	while parent != null:
 		if parent.is_in_group(group):
-			return parent
-		parent = parent.get_parent()
-	return null
-
-
-static func get_parent_of_type(child: Node, type) -> Node:
-	var parent = child.get_parent()
-	while parent != null:
-		if parent is type:
 			return parent
 		parent = parent.get_parent()
 	return null

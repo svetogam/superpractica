@@ -12,9 +12,11 @@ extends Node2D
 
 signal handle_pressed(direction)
 
-onready var _handles_map := {
-	"DL": $"%HandleDL", "L": $"%HandleL", "UL": $"%HandleUL", "U": $"%HandleU",
-	"UR": $"%HandleUR", "R": $"%HandleR", "DR": $"%HandleDR", "D": $"%HandleD"
+@onready var _handles_map := {
+	"DL": %HandleDL as FieldObject, "L": %HandleL as FieldObject,
+	"UL": %HandleUL as FieldObject, "U": %HandleU as FieldObject,
+	"UR": %HandleUR as FieldObject, "R": %HandleR as FieldObject,
+	"DR": %HandleDR as FieldObject, "D": %HandleD as FieldObject
 }
 
 

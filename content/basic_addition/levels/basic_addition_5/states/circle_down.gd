@@ -21,8 +21,8 @@ func _enter(_last_state: String) -> void:
 	_field_program = program.pim.field.get_program("AddByCircles")
 	_field_program.setup(program.start_number, program.addend)
 	_field_program.run()
-	_field_program.connect("completed_tens_only", self, "complete")
-	_field_program.connect("completed", self, "_on_complete_complete")
+	_field_program.completed_tens_only.connect(complete)
+	_field_program.completed.connect(_on_complete_complete)
 
 	if program.addend < 10:
 		complete()
@@ -35,5 +35,5 @@ func _on_complete_complete() -> void:
 
 
 func _exit(_next_state: String) -> void:
-	_field_program.disconnect("completed_tens_only", self, "complete")
-	_field_program.disconnect("completed", self, "_on_complete_complete")
+	_field_program.completed_tens_only.disconnect(complete)
+	_field_program.completed.disconnect(_on_complete_complete)

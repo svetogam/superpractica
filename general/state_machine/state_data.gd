@@ -11,7 +11,7 @@
 ##############################################################################
 
 class_name StateData
-extends Reference
+extends RefCounted
 
 #Virtual
 func _get_data() -> Dictionary:

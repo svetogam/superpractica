@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name MemStateControl
-extends Reference
+extends RefCounted
 
 signal state_saved
 signal state_loaded
@@ -45,7 +45,7 @@ func save_combined_state(save_if_no_change:=true) -> void:
 
 	_stack_tracker.push_item(combined_state)
 
-	emit_signal("state_saved")
+	state_saved.emit()
 
 
 func _get_combined_state() -> Dictionary:
@@ -95,7 +95,7 @@ func load_state(position_to_load:=-1) -> void:
 		var id =  pim.get_instance_id()
 		pim.field.load_mem_state(combined_load[id])
 
-	emit_signal("state_loaded")
+	state_loaded.emit()
 
 
 func _get_stored_state() -> Dictionary:

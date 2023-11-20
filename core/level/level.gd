@@ -23,14 +23,14 @@ var _program: LevelProgram
 var _action_queue := LevelActionQueue.new()
 var _field_connector := ContextualConnector.new(self, "fields", true)
 var _memo_slot_connector := ContextualConnector.new(self, "memo_slots", true)
-onready var side_menu := $"%SideMenu"
-onready var verifier := $Verifier
-onready var metanavig_control := $MetanavigControl
-onready var task_control := $TaskControl
-onready var effect_layer := $"%RootEffectLayer"
-onready var dragged_object_layer := $"%DraggedObjectLayer"
-onready var event_control := $EventControl
-onready var _victory_popup := $"%VictoryPopup"
+@onready var side_menu := %SideMenu as VPanelMenu
+@onready var verifier := $Verifier as Node
+@onready var metanavig_control := $MetanavigControl as MetanavigControl
+@onready var task_control := $TaskControl as Node
+@onready var effect_layer := %RootEffectLayer as CanvasLayer
+@onready var dragged_object_layer := %DraggedObjectLayer as CanvasLayer
+@onready var event_control := $EventControl as Node
+@onready var _victory_popup := %VictoryPopup as Popup
 
 #####################################################################
 # Setup
@@ -48,13 +48,13 @@ func _ready() -> void:
 	_setup_metanavig()
 	_setup_event_menu()
 
-	verifier.connect("verifications_started", self, "_on_verifications_started")
-	verifier.connect("verifications_completed", self, "_on_verifications_completed")
-	verifier.connect("verifications_started", self, "_signal_update")
-	verifier.connect("verifications_completed", self, "_signal_update")
-	connect("actions_completed", self, "_signal_update")
-	connect("level_completed", self, "_signal_update")
-	connect("task_completed", self, "_signal_update")
+	verifier.verifications_started.connect(_on_verifications_started)
+	verifier.verifications_completed.connect(_on_verifications_completed)
+	verifier.verifications_started.connect(_signal_update)
+	verifier.verifications_completed.connect(_signal_update)
+	actions_completed.connect(_signal_update)
+	level_completed.connect(_signal_update)
+	task_completed.connect(_signal_update)
 	_field_connector.connect_signal("updated", self, "_signal_update")
 	_memo_slot_connector.connect_signal("memo_changed", self, "_signal_update")
 
@@ -69,9 +69,9 @@ func _setup_pimnet() -> void:
 		pimnet = Pimnet.new()
 		add_child(pimnet)
 
-	var offset = Vector2(side_menu.rect_size.x, 0)
-	pimnet.set_offset(offset)
-	pimnet.input_sequencer.connect("input_processed", self, "_on_input_processed")
+	var offset = Vector2(side_menu.size.x, 0)
+	pimnet.set_combined_offset(offset)
+	pimnet.input_sequencer.input_processed.connect(_on_input_processed)
 
 
 func _find_screen() -> Pimnet:
@@ -81,7 +81,7 @@ func _find_screen() -> Pimnet:
 func _setup_metanavig() -> void:
 	if metanavig_control.active:
 		metanavig_control.setup()
-		metanavig_control.connect("reset_completed", self, "_on_reset_completed")
+		metanavig_control.reset_completed.connect(_on_reset_completed)
 
 
 func _setup_event_menu() -> void:
@@ -95,7 +95,7 @@ func _run_program() -> void:
 		_program.run()
 
 
-func _find_program() -> Node:
+func _find_program() -> LevelProgram:
 	return ContextUtils.get_child_in_group(self, "level_programs")
 
 
@@ -104,19 +104,19 @@ func _find_program() -> Node:
 #####################################################################
 
 func _signal_update(_arg1=null) -> void:
-	emit_signal("updated")
+	updated.emit()
 
 
 func _on_input_processed() -> void:
 	if not _action_queue.is_empty():
 		_action_queue.flush()
-		emit_signal("actions_completed")
+		actions_completed.emit()
 
 
 func _on_reset_completed() -> void:
 	if not _action_queue.is_empty():
 		_action_queue.flush()
-		emit_signal("actions_completed")
+		actions_completed.emit()
 
 
 func _on_verifications_started() -> void:
@@ -136,4 +136,4 @@ func complete() -> void:
 	if not _completed:
 		_completed = true
 		_victory_popup.appear()
-		emit_signal("level_completed")
+		level_completed.emit()

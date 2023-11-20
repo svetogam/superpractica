@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq1jfhvc81q5t"]
+
+[ext_resource type="Texture2D" uid="uid://poh8fkhctsmb" path="res://content/debug/tests/pim_levels/bubble_sum_2/bubble_sum_2.png" id="1_ri07u"]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("1_ri07u")
+stretch_mode = 5
+
+[node name="MoveObject1" type="Marker2D" parent="."]
+position = Vector2(343, 112)
+
+[node name="MoveObject2" type="Marker2D" parent="."]
+position = Vector2(683, 190)
+
+[node name="CreateUnit1" type="Marker2D" parent="."]
+position = Vector2(347, 150)
+
+[node name="CreateUnit2" type="Marker2D" parent="."]
+position = Vector2(682, 225)
+
+[node name="UnitPlace1_1" type="Marker2D" parent="."]
+position = Vector2(568.66, 271.19)
+
+[node name="UnitPlace1_2" type="Marker2D" parent="."]
+position = Vector2(574.653, 340.112)
+
+[node name="UnitPlace2_1" type="Marker2D" parent="."]
+position = Vector2(1094.57, 349.102)
+
+[node name="UnitPlace2_2" type="Marker2D" parent="."]
+position = Vector2(1102.06, 406.038)
+
+[node name="Undo" type="Marker2D" parent="."]
+position = Vector2(65.6954, 185.214)
+
+[node name="Redo" type="Marker2D" parent="."]
+position = Vector2(141.781, 187.884)
+
+[node name="Reset" type="Marker2D" parent="."]
+position = Vector2(109.745, 222.59)
+
+[node name="MissPims" type="Marker2D" parent="."]
+position = Vector2(809.454, 670.584)

@@ -10,8 +10,8 @@
 
 extends PanelContainer
 
-onready var _menu := $"%TwoTierMenu"
-onready var _quit_button := $"%Quit"
+@onready var _menu := %TwoTierMenu as TwoTierMenu
+@onready var _quit_button := %Quit as Button
 
 
 func _ready() -> void:
@@ -20,11 +20,11 @@ func _ready() -> void:
 
 	_set_section_to_most_recent()
 
-	_menu.connect("leaf_button_pressed", self, "_on_leaf_button_pressed")
-	_quit_button.connect("pressed", self, "_on_quit_button_pressed")
+	_menu.leaf_button_pressed.connect(_on_leaf_button_pressed)
+	_quit_button.pressed.connect(_on_quit_button_pressed)
 
 
-func _add_level_group(level_group: Resource) -> void:
+func _add_level_group(level_group: LevelGroupResource) -> void:
 	var level_group_text = level_group.get_name_text()
 	var section_index = _menu.add_section(level_group_text)
 
@@ -35,7 +35,7 @@ func _add_level_group(level_group: Resource) -> void:
 
 func _set_section_to_most_recent() -> void:
 	var most_recent_group = Game.level_loader.get_most_recent_level_group()
-	if not most_recent_group.empty():
+	if not most_recent_group.is_empty():
 		var index = _get_section_index_of_level_group(most_recent_group)
 		_menu.set_section(index)
 

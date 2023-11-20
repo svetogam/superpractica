@@ -10,4 +10,4 @@
 
 extends WindowContent
 
-onready var memo_slot := $"%MemoSlot"
+@onready var memo_slot := %MemoSlot as MemoSlot

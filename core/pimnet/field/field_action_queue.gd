@@ -9,17 +9,17 @@
 ##############################################################################
 
 class_name FieldActionQueue
-extends Reference
+extends RefCounted
 
 signal got_actions_to_do
 signal flushed
 
-var _field: Subscreen
+var _field: Field
 var _queue := []
 var _action_condition_callbacker := KeyCallbacker.new()
 
 
-func _init(p_field: Subscreen) -> void:
+func _init(p_field: Field) -> void:
 	_field = p_field
 
 
@@ -35,13 +35,13 @@ func connect_post_action(action_name: String, object: Object, method: String) ->
 	var signal_name = "post_" + action_name
 	if not has_user_signal(signal_name):
 		add_user_signal(signal_name)
-	connect(signal_name, object, method)
+	connect(signal_name, Callable(object, method))
 
 
 func disconnect_post_action(action_name: String, object: Object, method: String) -> void:
 	var signal_name = "post_" + action_name
 	assert(has_user_signal(signal_name))
-	disconnect(signal_name, object, method)
+	disconnect(signal_name, Callable(object, method))
 
 
 func push(method_name: String, args:=[]) -> void:
@@ -65,7 +65,7 @@ func push_action_or_empty(action_name: String, args:=[]) -> void:
 func _add_action(action: FieldAction) -> void:
 	_queue.append(action)
 	if _queue.size() == 1:
-		emit_signal("got_actions_to_do")
+		got_actions_to_do.emit()
 
 
 func flush() -> void:
@@ -75,7 +75,7 @@ func flush() -> void:
 			if not action is EmptyAction:
 				_emit_post_action_signal(action)
 		_queue.clear()
-		emit_signal("flushed")
+		flushed.emit()
 
 
 func _emit_post_action_signal(action) -> void:
@@ -101,8 +101,8 @@ class FieldAction:
 class EmptyAction:
 	extends FieldAction
 
-	func _init().(null, "", []) -> void:
-		pass
+	func _init() -> void:
+		super(null, "", [])
 
 	func execute() -> void:
 		pass

@@ -1,70 +1,40 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://oln2jf7kmrxl"]
 
-[ext_resource path="res://content/debug/tests/fields/bubble_sum/bubble_sum_field_ref.png" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://kapcrb7p33dk" path="res://content/debug/tests/fields/bubble_sum/bubble_sum_field_ref.png" id="1"]
 
 [node name="Ref" type="Node"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 1 )
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1")
 
-[node name="Unit1" type="Position2D" parent="."]
-position = Vector2( 98.9026, 100.629 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Unit1" type="Marker2D" parent="."]
+position = Vector2(98.9026, 100.629)
 
-[node name="Unit2" type="Position2D" parent="."]
-position = Vector2( 104.27, 219.132 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Unit2" type="Marker2D" parent="."]
+position = Vector2(104.27, 219.132)
 
-[node name="Unit3" type="Position2D" parent="."]
-position = Vector2( 216.124, 158.055 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Unit3" type="Marker2D" parent="."]
+position = Vector2(216.124, 158.055)
 
-[node name="Unit4" type="Position2D" parent="."]
-position = Vector2( 332.992, 161.051 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Unit4" type="Marker2D" parent="."]
+position = Vector2(332.992, 161.051)
 
-[node name="Bubble1" type="Position2D" parent="."]
-position = Vector2( 125.056, 116.267 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Bubble1" type="Marker2D" parent="."]
+position = Vector2(125.056, 116.267)
 
-[node name="Bubble2" type="Position2D" parent="."]
-position = Vector2( 147.936, 191.046 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Bubble2" type="Marker2D" parent="."]
+position = Vector2(147.936, 191.046)
 
-[node name="Bubble3" type="Position2D" parent="."]
-position = Vector2( 289.869, 90.7949 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Bubble3" type="Marker2D" parent="."]
+position = Vector2(289.869, 90.7949)
 
-[node name="Bubble4" type="Position2D" parent="."]
-position = Vector2( 333.32, 246.619 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Bubble4" type="Marker2D" parent="."]
+position = Vector2(333.32, 246.619)
 
-[node name="MissObjects" type="Position2D" parent="."]
-position = Vector2( 360.289, 39.8529 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="MissObjects" type="Marker2D" parent="."]
+position = Vector2(360.289, 39.8529)
 
-[node name="MissField" type="Position2D" parent="."]
-position = Vector2( 549.811, 253.655 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="MissField" type="Marker2D" parent="."]
+position = Vector2(549.811, 253.655)

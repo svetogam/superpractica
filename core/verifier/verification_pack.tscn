@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://d3st63oown61x"]
 
-[ext_resource path="res://core/verifier/verification_pack.gd" type="Script" id=1]
-[ext_resource path="res://general/node_factory/node_factory.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://core/verifier/verification_pack.gd" id="1"]
+[ext_resource type="Script" path="res://general/node_factory/node_factory.gd" id="2"]
 
 [node name="VerificationPack" type="Node" groups=["verification_packs"]]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="VerificationFactory" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="ProcessFactory" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")

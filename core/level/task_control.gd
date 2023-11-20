@@ -10,8 +10,8 @@
 
 extends Node
 
-export(GDScript) var _taskmap_data: GDScript
-var _level: Node
+@export var _taskmap_data: GDScript
+var _level: Level
 var _current_task: String
 var _data_reader := preload("taskmap_data_reader.gd").new()
 
@@ -31,7 +31,7 @@ func set_instruction_replacements(replacements: Dictionary) -> void:
 
 func complete_current_task() -> void:
 	if _taskmap_data != null:
-		_level.emit_signal("task_completed", _current_task)
+		_level.task_completed.emit(_current_task)
 		var is_final = _data_reader.is_task_final(_current_task)
 		if is_final:
 			_level.complete()
@@ -44,10 +44,10 @@ func complete_current_task() -> void:
 
 func _set_current_task(task_name: String) -> void:
 	_current_task = task_name
-	_level.emit_signal("task_started", _current_task)
+	_level.task_started.emit(_current_task)
 
 
-func get_data_reader() -> Reference:
+func get_data_reader() -> RefCounted:
 	return _data_reader
 
 

@@ -11,9 +11,9 @@
 class_name SubscreenObject
 extends InputObject
 
-var superscreen: Control
-var _subscreen: Node2D
-var _subscreen_viewer: Control
+var superscreen: Superscreen
+var _subscreen: Subscreen
+var _subscreen_viewer: SubscreenViewer
 
 
 func _init() -> void:

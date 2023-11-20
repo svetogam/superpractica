@@ -11,10 +11,10 @@
 class_name PimProgramState
 extends State
 
-var program: Node
-var pim: WindowContent
-var field: Subscreen
-var action_queue: Object
+var program: PimProgram
+var pim: Pim
+var field: Field
+var action_queue: FieldActionQueue
 var effects: NavigEffectGroup
 
 

@@ -13,7 +13,7 @@ extends PimProgram
 
 func _start() -> void:
 	_update_output_slot()
-	field.connect("updated", self, "_update_output_slot")
+	field.updated.connect(_update_output_slot)
 
 
 func _update_output_slot() -> void:
@@ -37,4 +37,4 @@ func _get_output_memo() -> Memo:
 
 
 func _end() -> void:
-	field.disconnect("updated", self, "_update_output_slot")
+	field.updated.disconnect(_update_output_slot)

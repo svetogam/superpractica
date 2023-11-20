@@ -18,12 +18,12 @@ func _enter(_last_state: String) -> void:
 
 	number_effect = verification.slot_panel.create_number_effect("addend_1")
 
-	yield(Game.wait_for(0.5), Game.DONE)
+	await Game.wait_for(0.5)
 
 	pack.run_process("select_start", [verification.pim, number_effect], self, "_on_highlight")
 
 
 func _on_highlight() -> void:
-	yield(Game.wait_for(0.5), Game.DONE)
+	await Game.wait_for(0.5)
 
 	_change_state("CircleNumbers")

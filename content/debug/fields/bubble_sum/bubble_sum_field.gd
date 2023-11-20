@@ -27,14 +27,14 @@ func _on_update(update_type: int) -> void:
 func _set_depth_of_bubbles_by_size() -> void:
 	var bubble_list = queries.sort_bubble_list_by_size()
 	for bubble in bubble_list:
-		bubble.raise()
+		bubble.move_to_front()
 
 
 func reset_state() -> void:
 	push_action("set_empty")
 
 
-func on_internal_drop(object: SubscreenObject, point: Vector2) -> void:
+func on_internal_drop(object: FieldObject, point: Vector2) -> void:
 	if object.get_object_type() == BubbleSumGlobals.Objects.UNIT:
 		push_action("move_unit", [object, point])
 
@@ -46,6 +46,6 @@ func on_incoming_drop(object: InterfieldObject, point: Vector2, _source: Field) 
 		push_action("create_bubble", [point, object.input_shape.get_radius()])
 
 
-func on_outgoing_drop(object: SubscreenObject) -> void:
+func on_outgoing_drop(object: FieldObject) -> void:
 	if object.get_object_type() == BubbleSumGlobals.Objects.UNIT:
 		push_action("delete_unit", [object])

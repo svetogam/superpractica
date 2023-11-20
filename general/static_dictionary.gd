@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name StaticDictionary
-extends Reference
+extends RefCounted
 
 #Virtual
 static func get_data() -> Dictionary:

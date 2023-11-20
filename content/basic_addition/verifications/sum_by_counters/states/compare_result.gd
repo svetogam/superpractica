@@ -14,7 +14,7 @@ extends VerificationState
 func _enter(_last_state: String) -> void:
 	verification.pim.field.actions.make_counters_transparent()
 
-	yield(Game.wait_for(0.5), Game.DONE)
+	await Game.wait_for(0.5)
 
 	pack.verify("counting_board_sum", [verification.pim.field, verification.slot_panel],
 			self, "verify", "reject")

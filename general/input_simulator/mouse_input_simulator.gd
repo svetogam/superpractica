@@ -33,75 +33,75 @@ func move_by(change: Vector2) -> void:
 
 
 func press_left() -> void:
-	_press_button(BUTTON_LEFT)
+	_press_button(MOUSE_BUTTON_LEFT)
 
 
 func press_right() -> void:
-	_press_button(BUTTON_RIGHT)
+	_press_button(MOUSE_BUTTON_RIGHT)
 
 
 func press_middle() -> void:
-	_press_button(BUTTON_MIDDLE)
+	_press_button(MOUSE_BUTTON_MIDDLE)
 
 
 func release_left() -> void:
-	_release_button(BUTTON_LEFT)
+	_release_button(MOUSE_BUTTON_LEFT)
 
 
 func release_right() -> void:
-	_release_button(BUTTON_RIGHT)
+	_release_button(MOUSE_BUTTON_RIGHT)
 
 
 func release_middle() -> void:
-	_release_button(BUTTON_MIDDLE)
+	_release_button(MOUSE_BUTTON_MIDDLE)
 
 
 func click_left(times:=1) -> void:
-	_click_button(BUTTON_LEFT, times)
+	_click_button(MOUSE_BUTTON_LEFT, times)
 
 
 func click_right(times:=1) -> void:
-	_click_button(BUTTON_RIGHT, times)
+	_click_button(MOUSE_BUTTON_RIGHT, times)
 
 
 func click_middle(times:=1) -> void:
-	_click_button(BUTTON_MIDDLE, times)
+	_click_button(MOUSE_BUTTON_MIDDLE, times)
 
 
 func click_left_at(position: Vector2, times:=1) -> void:
-	_click_button_at(BUTTON_LEFT, position, times)
+	_click_button_at(MOUSE_BUTTON_LEFT, position, times)
 
 
 func click_right_at(position: Vector2, times:=1) -> void:
-	_click_button_at(BUTTON_RIGHT, position, times)
+	_click_button_at(MOUSE_BUTTON_RIGHT, position, times)
 
 
 func click_middle_at(position: Vector2, times:=1) -> void:
-	_click_button_at(BUTTON_MIDDLE, position, times)
+	_click_button_at(MOUSE_BUTTON_MIDDLE, position, times)
 
 
 func drag_left_between(start_position: Vector2, end_position: Vector2) -> void:
-	_drag_button_between(BUTTON_LEFT, start_position, end_position)
+	_drag_button_between(MOUSE_BUTTON_LEFT, start_position, end_position)
 
 
 func drag_right_between(start_position: Vector2, end_position: Vector2) -> void:
-	_drag_button_between(BUTTON_RIGHT, start_position, end_position)
+	_drag_button_between(MOUSE_BUTTON_RIGHT, start_position, end_position)
 
 
 func drag_middle_between(start_position: Vector2, end_position: Vector2) -> void:
-	_drag_button_between(BUTTON_MIDDLE, start_position, end_position)
+	_drag_button_between(MOUSE_BUTTON_MIDDLE, start_position, end_position)
 
 
 func drag_left_by(start_position: Vector2, change: Vector2) -> void:
-	_drag_button_by(BUTTON_LEFT, start_position, change)
+	_drag_button_by(MOUSE_BUTTON_LEFT, start_position, change)
 
 
 func drag_right_by(start_position: Vector2, change: Vector2) -> void:
-	_drag_button_by(BUTTON_RIGHT, start_position, change)
+	_drag_button_by(MOUSE_BUTTON_RIGHT, start_position, change)
 
 
 func drag_middle_by(start_position: Vector2, change: Vector2) -> void:
-	_drag_button_by(BUTTON_MIDDLE, start_position, change)
+	_drag_button_by(MOUSE_BUTTON_MIDDLE, start_position, change)
 
 
 func _press_button(button: int) -> void:

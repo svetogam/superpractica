@@ -13,7 +13,7 @@ class_name GameGlobals
 const NO_OBJECT := -1
 const NO_TOOL := -1
 
-const RELEASE_TAG := "v0.6.0"
+const RELEASE_TAG := "NOT FOR RELEASE"
 const SOURCE_URL := "https://codeberg.org/superpractica/superpractica"
 
 const COLOR_HIGHLIGHT := Color(1.0, 1.0, 0.5)

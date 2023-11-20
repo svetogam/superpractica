@@ -14,16 +14,10 @@ extends Node
 signal created #(key, node, ...)
 #signals created_my_key(node, ...)
 
-export(GDScript) var _initial_data: GDScript
-export(NodePath) var _target_path: NodePath
-var _target: Node
+@export var _initial_data: GDScript
+@export var _target: Node
 var _data := {}
 var _setups_map := {}
-
-
-func _enter_tree() -> void:
-	if not _target_path.is_empty():
-		_target = get_node(_target_path)
 
 
 func _ready() -> void:
@@ -67,7 +61,7 @@ func _make_node(key) -> Node:
 	if resource is GDScript:
 		return resource.new()
 	elif resource is PackedScene:
-		return resource.instance()
+		return resource.instantiate()
 	else:
 		assert(false)
 		return null
@@ -75,9 +69,9 @@ func _make_node(key) -> Node:
 
 func _call_setups(key, node: Node, args: Array) -> void:
 	if _setups_map.has(key):
-		var setups = _setups_map[key]
-		for setup in setups:
-			node.callv(setup.method, args + setup.binds)
+		var setup_funcs = _setups_map[key]
+		for setup_func in setup_funcs:
+			node.callv(setup_func.method, args + setup_func.binds)
 
 
 func _emit_dynamic_signal(key, node: Node, p_args:=[]) -> void:
@@ -92,15 +86,15 @@ func _emit_static_signal(key, node: Node, p_args:=[]) -> void:
 
 
 func connect_setup(key, setup_method: String, binds:=[]) -> void:
-	var setup = {"method": setup_method, "binds": binds}
-	_setups_map[key].append(setup)
+	var setup_func = {"method": setup_method, "binds": binds}
+	_setups_map[key].append(setup_func)
 
 
 func disconnect_setup(key, setup_method: String) -> void:
-	var setups_list = _setups_map[key]
-	for setup in setups_list:
-		if setup.method == setup_method:
-			_setups_map[key].erase(setup)
+	var setup_funcs = _setups_map[key]
+	for setup_func in setup_funcs:
+		if setup_func.method == setup_method:
+			_setups_map[key].erase(setup_func)
 			return
 
 
@@ -123,4 +117,4 @@ func _get_dynamic_signal_name(key) -> String:
 	if key is String:
 		return "created_" + key
 	else:
-		return "created_" + String(key)
+		return "created_" + str(key)

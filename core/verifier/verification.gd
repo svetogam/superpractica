@@ -15,8 +15,8 @@ signal verified
 signal rejected
 
 var verifier: Node
-var pack: Node
-var screen_verifier: Node
+var pack: VerificationPack
+var screen_verifier: ScreenVerifier
 
 
 func _init() -> void:
@@ -36,12 +36,12 @@ func _enter_tree() -> void:
 
 func connect_result_callbacks(callback_object: Object, verified_callback_method: String,
 			rejected_callback_method: String) -> void:
-	connect("verified", callback_object, verified_callback_method)
-	connect("rejected", callback_object, rejected_callback_method)
+	verified.connect(Callable(callback_object, verified_callback_method))
+	rejected.connect(Callable(callback_object, rejected_callback_method))
 
 
-func verify_or_else_reject(verify: bool) -> void:
-	if verify:
+func verify_or_else_reject(do_verify: bool) -> void:
+	if do_verify:
 		verify()
 	else:
 		reject()
@@ -49,9 +49,9 @@ func verify_or_else_reject(verify: bool) -> void:
 
 func verify() -> void:
 	complete()
-	emit_signal("verified")
+	verified.emit()
 
 
 func reject() -> void:
 	complete()
-	emit_signal("rejected")
+	rejected.emit()

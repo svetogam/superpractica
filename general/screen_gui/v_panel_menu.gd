@@ -11,9 +11,9 @@
 class_name VPanelMenu
 extends PanelContainer
 
-export(int) var _min_panel_height := 100
+@export var _min_panel_height := 100
 var _panels := {}
-onready var _container := $"%MainContainer"
+@onready var _container := %MainContainer as VBoxContainer
 
 
 #Virtual
@@ -23,8 +23,8 @@ func _get_panel_map() -> Dictionary:
 
 func add_panel(panel_type) -> Control:
 	var panel_class = _get_panel_map()[panel_type]
-	var panel = panel_class.instance()
-	panel.rect_min_size.y = _min_panel_height
+	var panel = panel_class.instantiate()
+	panel.custom_minimum_size.y = _min_panel_height
 	_container.add_child(panel)
 	_panels[panel_type] = panel
 	return panel

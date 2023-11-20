@@ -21,7 +21,7 @@ func _get_scene_path() -> String:
 
 
 func before_each():
-	.before_each()
+	super.before_each()
 	_load_ref_scene(
 		"res://content/debug/tests/fields/bubble_sum/bubble_sum_field_ref.tscn"
 	)

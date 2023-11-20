@@ -38,7 +38,7 @@ func _agent_setup(agent: Node) -> void:
 
 func _agent_setup_with_number(agent: Node, number: int) -> void:
 	agent.was_setup = true
-	order.append("setup with " + String(number))
+	order.append("setup with " + str(number))
 
 
 func _on_agent_number_done(number: int) -> void:

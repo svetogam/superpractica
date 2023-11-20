@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 ##############################################################################
 
-extends Reference
+extends RefCounted
 
 signal replacements_changed
 
@@ -17,14 +17,14 @@ var _instruction_replacements: Dictionary
 
 
 func setup(p_data: Dictionary, p_instruction_replacements:={}) -> void:
-	assert(_data.keys().empty())
+	assert(_data.keys().is_empty())
 	_data = p_data
 	_instruction_replacements = p_instruction_replacements
 
 
 func set_instruction_replacements(p_instruction_replacements:={}) -> void:
 	_instruction_replacements = p_instruction_replacements
-	emit_signal("replacements_changed")
+	replacements_changed.emit()
 
 
 func get_ids() -> Array:

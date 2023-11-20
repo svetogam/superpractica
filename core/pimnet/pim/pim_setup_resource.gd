@@ -11,13 +11,13 @@
 class_name PimSetupResource
 extends Resource
 
-export(Vector2) var field_zoom := Vector2(1, 1)
-export(bool) var have_menu := true
-export(bool) var have_tool_menu := false
-export(bool) var include_all_tools := true
-export(bool) var have_spawn_panel := false
-export(bool) var include_all_spawners := true
-export(bool) var have_memo_output_panel := false
+@export var field_zoom := Vector2(1, 1)
+@export var have_menu := true
+@export var have_tool_menu := false
+@export var include_all_tools := true
+@export var have_spawn_panel := false
+@export var include_all_spawners := true
+@export var have_memo_output_panel := false
 
 
 #Virtual

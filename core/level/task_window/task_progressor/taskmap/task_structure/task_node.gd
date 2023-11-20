@@ -10,12 +10,12 @@
 
 extends Control
 
-export(String) var id: String
+@export var id: String
 var completed := false
 var structure: Control = null
 var grid_position: Vector2
-onready var _label := $"%Label"
-onready var _check_box := $"%CheckBox"
+@onready var _label := %Label as Label
+@onready var _check_box := %CheckBox as CheckBox
 
 
 func set_label(text: String) -> void:
@@ -24,7 +24,7 @@ func set_label(text: String) -> void:
 
 func set_completed() -> void:
 	completed = true
-	_check_box.pressed = true
+	_check_box.button_pressed = true
 
 
 func set_grid_position(column: int, row: int) -> void:
@@ -32,23 +32,23 @@ func set_grid_position(column: int, row: int) -> void:
 
 
 func get_left_point() -> Vector2:
-	var position = _get_position_in_structure()
-	return Vector2(position.x, position.y + (rect_size.y / 2))
+	var struct_position = _get_position_in_structure()
+	return Vector2(struct_position.x, struct_position.y + (size.y / 2))
 
 
 func get_right_point() -> Vector2:
-	var position = _get_position_in_structure()
-	return Vector2(position.x + rect_size.x, position.y + (rect_size.y / 2))
+	var struct_position = _get_position_in_structure()
+	return Vector2(struct_position.x + size.x, struct_position.y + (size.y / 2))
 
 
 func get_top_point() -> Vector2:
-	var position = _get_position_in_structure()
-	return Vector2(position.x + (rect_size.x / 2), position.y)
+	var struct_position = _get_position_in_structure()
+	return Vector2(struct_position.x + (size.x / 2), struct_position.y)
 
 
 func get_bottom_point() -> Vector2:
-	var position = _get_position_in_structure()
-	return Vector2(position.x + (rect_size.x / 2), position.y + rect_size.y)
+	var struct_position = _get_position_in_structure()
+	return Vector2(struct_position.x + (size.x / 2), struct_position.y + size.y)
 
 
 func _get_position_in_structure() -> Vector2:

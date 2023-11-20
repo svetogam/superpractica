@@ -13,11 +13,11 @@ extends HBoxContainer
 
 signal leaf_button_pressed(section_index, leaf_index)
 
-export(int) var second_tier_columns := -1
+@export var second_tier_columns := -1
 var _sections := []
 var _button_group := ButtonGroup.new()
-onready var _first_container := $"%FirstTierContainer"
-onready var _second_container := $"%SecondTierContainer"
+@onready var _first_container := %FirstTierContainer as GridContainer
+@onready var _second_container := %SecondTierContainer as GridContainer
 
 
 func _ready() -> void:
@@ -46,10 +46,10 @@ func _add_section_button(section_index: int, text: String) -> Button:
 	var button = Button.new()
 	button.text = text
 	button.toggle_mode = true
-	button.rect_min_size.x = 240
-	button.rect_min_size.y = 60
-	button.group = _button_group
-	button.connect("pressed", self, "_on_section_button_pressed", [section_index])
+	button.custom_minimum_size.x = 240
+	button.custom_minimum_size.y = 60
+	button.button_group = _button_group
+	button.pressed.connect(_on_section_button_pressed.bind(section_index))
 	_first_container.add_child(button)
 	return button
 
@@ -62,12 +62,12 @@ func set_section(section_index: int) -> void:
 	_clear_leaf_buttons()
 
 	var section = _sections[section_index]
-	section.button.pressed = true
+	section.button.button_pressed = true
 	for leaf_index in section.leaf_texts.size():
 		var button = _add_leaf_button()
 		button.text = section.leaf_texts[leaf_index]
-		button.connect("pressed", self, "emit_signal",
-				["leaf_button_pressed", section_index, leaf_index])
+		button.pressed.connect(emit_signal.bind(
+				"leaf_button_pressed", section_index, leaf_index))
 
 
 func _clear_leaf_buttons() -> void:
@@ -78,7 +78,7 @@ func _clear_leaf_buttons() -> void:
 
 func _add_leaf_button() -> Button:
 	var button = Button.new()
-	button.rect_min_size.x = 160
-	button.rect_min_size.y = 80
+	button.custom_minimum_size.x = 160
+	button.custom_minimum_size.y = 80
 	_second_container.add_child(button)
 	return button

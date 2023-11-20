@@ -16,7 +16,7 @@ func _enter(_last_state: String) -> void:
 
 	verification.digit_reference = verification.slot_panel.create_number_effect("addend_2")
 
-	yield(Game.wait_for(0.8), Game.DONE)
+	await Game.wait_for(0.8)
 
 	screen_verifier.set_digit_reference(verification.digit_reference, self, "_on_move_completed")
 

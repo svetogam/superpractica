@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://c42cuesvvqpr3"]
 
-[ext_resource path="res://content/basic_addition/pims/counting_board/spawner_map.gd" type="Script" id=1]
-[ext_resource path="res://content/basic_addition/pims/counting_board/empty_setup.tres" type="Resource" id=2]
-[ext_resource path="res://core/pimnet/pim/pim.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://content/basic_addition/pims/counting_board/spawner_map.gd" id="1"]
+[ext_resource type="Resource" uid="uid://cyleaiddkqxn1" path="res://content/basic_addition/pims/counting_board/empty_setup.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://dv4g3p0ianoda" path="res://core/pimnet/pim/pim.tscn" id="3"]
 
-[node name="CountingBoardPim" instance=ExtResource( 3 )]
-__meta__ = {
-"_edit_pinned_properties_": [ "_setup_data" ]
-}
-_setup_data = ExtResource( 2 )
+[node name="CountingBoardPim" instance=ExtResource("3")]
+_setup_data = ExtResource("2")
 
 [node name="SpawnerFactory" parent="." index="2"]
-_initial_data = ExtResource( 1 )
+_initial_data = ExtResource("1")

@@ -1,10 +1,10 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://r6oa4wfrught"]
 
-[ext_resource path="res://core/level_resource.gd" type="Script" id=1]
-[ext_resource path="res://content/debug/levels/bubble_sum_2/level.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://core/level_resource.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://beds37r5quccb" path="res://content/debug/levels/bubble_sum_2/level.tscn" id="2"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 name = "bubble_sum_2"
 _name_text = "2 Bubble Sum Pims"
-_scene = ExtResource( 2 )
+_scene = ExtResource("2")

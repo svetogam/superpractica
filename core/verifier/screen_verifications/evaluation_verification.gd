@@ -26,25 +26,25 @@ func setup(p_checked: NumberEffect, p_operator: ScreenEffect, p_inputs: Array) -
 func _ready() -> void:
 	assert(_checked != null)
 	assert(_operator != null)
-	assert(not _inputs.empty())
+	assert(not _inputs.is_empty())
 
 	_checked = effect_group.duplicate_effect(_checked)
 	_operator = effect_group.duplicate_effect(_operator)
 	_inputs[0] = effect_group.duplicate_effect(_inputs[0])
 	_inputs[1] = effect_group.duplicate_effect(_inputs[1])
-	_inputs.sort_custom(Utils, "sort_node2d_by_x_position")
+	_inputs.sort_custom(Callable(Utils, "sort_node2d_by_x_position"))
 
 	animator.animate_evaluation_setup(_inputs[0], _inputs[1], _operator)
 	animator.animate_number_to_equality(_checked, "right", self, "_on_first_move_completed")
 
 
 func _on_first_move_completed() -> void:
-	yield(Game.wait_for(EVALUATION_DELAY), Game.DONE)
+	await Game.wait_for(EVALUATION_DELAY)
 
 	var result = _compute_result()
 	animator.popup_evaluation_result(result)
 
-	yield(Game.wait_for(PRE_CHECK_DELAY), Game.DONE)
+	await Game.wait_for(PRE_CHECK_DELAY)
 
 	var equal = _is_equal()
 	animator.animate_equality_check(equal, self, "_after_check")

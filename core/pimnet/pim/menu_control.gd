@@ -14,24 +14,24 @@ const TOOL_MENU := PimSideMenu.PimMenuPanels.TOOL_MENU
 const SPAWN_PANEL := PimSideMenu.PimMenuPanels.OBJECT_GENERATOR
 const MEMO_OUTPUT := PimSideMenu.PimMenuPanels.MEMO_OUTPUT
 
-var tool_menu: WindowContent setget _do_not_set
-var spawn_panel: WindowContent setget _do_not_set
-var memo_output_slot: WindowContent setget _do_not_set
-var _pim: WindowContent
-onready var _side_menu := $"%SideMenu"
+var tool_menu: WindowContent
+var spawn_panel: WindowContent
+var memo_output_slot: MemoSlot
+var _pim: Pim
+@onready var _side_menu := %SideMenu as VPanelMenu
 
 
 func _ready() -> void:
 	hide_menu()
 
 
-func setup(p_pim: WindowContent) -> void:
+func setup(p_pim: Pim) -> void:
 	_pim = p_pim
 
 
 func build(setup_data: Dictionary) -> void:
 	var panels = setup_data.panels
-	if not panels.empty():
+	if not panels.is_empty():
 		show()
 
 	if panels.has(TOOL_MENU):
@@ -65,7 +65,7 @@ func add_tool_menu(included:=[]) -> WindowContent:
 		return null
 
 	tool_menu = _side_menu.add_panel(TOOL_MENU)
-	tool_menu.connect("tree_exited", self, "_on_tool_menu_removed")
+	tool_menu.tree_exited.connect(_on_tool_menu_removed)
 
 	var tool_map = _pim.field.get_tool_mode_to_text_map()
 	tool_menu.setup(tool_map, included)
@@ -78,8 +78,8 @@ func add_tool_menu(included:=[]) -> WindowContent:
 func _connect_tool_menu_to_field() -> void:
 	_set_initial_tool_in_menu()
 
-	tool_menu.connect("tool_selected", _pim.field, "set_tool")
-	_pim.field.connect("tool_changed", self, "_update_tool_menu")
+	tool_menu.tool_selected.connect(_pim.field.set_tool)
+	_pim.field.tool_changed.connect(_update_tool_menu)
 
 
 func _set_initial_tool_in_menu() -> void:
@@ -95,7 +95,7 @@ func _update_tool_menu(new_tool: String) -> void:
 
 func _on_tool_menu_removed() -> void:
 	tool_menu = null
-	_pim.field.disconnect("tool_changed", self, "_update_tool_menu")
+	_pim.field.tool_changed.disconnect(_update_tool_menu)
 
 
 func add_spawn_panel(included:=[]) -> WindowContent:
@@ -114,7 +114,7 @@ func add_memo_output_panel() -> WindowContent:
 		return null
 
 	var memo_output_panel = _side_menu.add_panel(MEMO_OUTPUT)
-	memo_output_panel.connect("tree_exited", self, "_on_memo_output_panel_removed")
+	memo_output_panel.tree_exited.connect(_on_memo_output_panel_removed)
 
 	memo_output_slot = memo_output_panel.memo_slot
 	_pim.get_program("GiveOutputMemo").run()
@@ -125,7 +125,3 @@ func add_memo_output_panel() -> WindowContent:
 func _on_memo_output_panel_removed() -> void:
 	_pim.get_program("GiveOutputMemo").stop()
 	memo_output_slot = null
-
-
-func _do_not_set(_p) -> void:
-	assert(false)

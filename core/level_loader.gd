@@ -16,7 +16,7 @@ var _most_recent_level_group := ""
 var _most_recent_level := ""
 
 
-func add_level_group(level_group: Resource, index:=-1) -> void:
+func add_level_group(level_group: LevelGroupResource, index:=-1) -> void:
 	if index == -1:
 		_level_groups.append(level_group)
 	else:
@@ -29,7 +29,7 @@ func enter_level(level_group_name: String, level_name: String) -> void:
 	var scene = level_group.get_level_scene(level_name)
 	_most_recent_level_group = level_group_name
 	_most_recent_level = level_name
-	get_tree().change_scene_to(scene)
+	get_tree().change_scene_to_packed(scene)
 
 
 func get_level_groups() -> Array:
@@ -43,7 +43,7 @@ func get_level_scene(level_group_name: String, level_name: String) -> PackedScen
 	return null
 
 
-func _get_level_group(level_group_name: String) -> Resource:
+func _get_level_group(level_group_name: String) -> LevelGroupResource:
 	for level_group in _level_groups:
 		if level_group.name == level_group_name:
 			return level_group

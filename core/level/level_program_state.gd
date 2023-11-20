@@ -11,12 +11,12 @@
 class_name LevelProgramState
 extends State
 
-var program: Node
-var level: Node
+var program: LevelProgram
+var level: Level
 var effect_layer: CanvasLayer
 var verifier: Node
 var screen_verifier: ScreenVerifier
-var pimnet: Superscreen
+var pimnet: Pimnet
 var event_menu: Control
 var event_control: Node
 

@@ -17,7 +17,7 @@ extends FieldMetanavigComponent
 const MemStateClass := preload("mem_state.gd")
 
 
-func build() -> Object:
+func build() -> MemState:
 	var unit_data = _get_unit_data_list()
 	var bubble_data = _get_bubble_data_list()
 	return MemStateClass.new(unit_data, bubble_data)

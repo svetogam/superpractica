@@ -11,13 +11,9 @@
 class_name LevelGroupResource
 extends Resource
 
-export(String) var name
-export(String) var _name_text
-export(Array, Resource) var _levels
-
-
-func get_name() -> String:
-	return name
+@export var name: String
+@export var _name_text: String
+@export var _levels: Array[LevelResource]
 
 
 func get_name_text() -> String:
@@ -45,7 +41,7 @@ func has(level_name: String) -> bool:
 	return _get_level(level_name) != null
 
 
-func _get_level(level_name: String) -> Resource:
+func _get_level(level_name: String) -> LevelResource:
 	for level in _levels:
 		if level.name == level_name:
 			return level

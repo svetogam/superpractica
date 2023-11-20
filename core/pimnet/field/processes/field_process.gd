@@ -11,7 +11,7 @@
 class_name FieldProcess
 extends Process
 
-var field: Subscreen
+var field: Field
 
 
 func _enter_tree() -> void:

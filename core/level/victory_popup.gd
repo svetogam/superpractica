@@ -8,25 +8,22 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 ##############################################################################
 
-extends WindowDialog
+extends Popup
 
-export(Vector2) var default_size := Vector2(320, 200)
-onready var _stay_button := $"%StayButton"
-onready var _level_select_button := $"%LevelSelectButton"
-onready var _next_level_button := $"%NextLevelButton"
+@export var default_size := Vector2(320, 200)
 
 
 func appear() -> void:
 	popup_centered(default_size)
 
 
-func _on_StayButton_pressed() -> void:
+func _on_stay_button_pressed() -> void:
 	hide()
 
 
-func _on_LevelSelectButton_pressed() -> void:
+func _on_level_select_button_pressed() -> void:
 	Game.enter_level_select()
 
 
-func _on_NextLevelButton_pressed() -> void:
+func _on_next_level_button_pressed() -> void:
 	pass

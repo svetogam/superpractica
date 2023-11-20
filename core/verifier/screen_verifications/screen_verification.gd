@@ -16,6 +16,7 @@ var effect_group: MathEffectGroup
 
 
 func _enter_tree() -> void:
+	super()
 	animator = pack.animator
 	assert(animator != null)
 	effect_group = pack.effect_group

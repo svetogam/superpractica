@@ -13,19 +13,19 @@ extends FieldProgram
 
 signal warned
 
-var _warninger: Reference
+var _warninger: Warninger
 
 
 func _start() -> void:
 	_warninger = Warninger.new(field.effect_layer)
-	field.connect("updated", self, "_update")
+	field.updated.connect(_update)
 
 
 func _update() -> void:
 	var warning_positions = _give_warnings()
 	_warninger.set_at(warning_positions)
-	if not warning_positions.empty():
-		emit_signal("warned")
+	if not warning_positions.is_empty():
+		warned.emit()
 
 
 #Virtual
@@ -41,4 +41,4 @@ func is_valid() -> bool:
 
 func _end() -> void:
 	_warninger.clear()
-	field.disconnect("updated", self, "_update")
+	field.updated.disconnect(_update)

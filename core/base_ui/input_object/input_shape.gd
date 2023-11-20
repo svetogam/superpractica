@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name InputShape
-extends Reference
+extends RefCounted
 
 enum ShapeTypes {RECT, CIRCLE}
 
@@ -19,11 +19,11 @@ var _rect_size: Vector2
 var _position: Vector2
 
 
-func set_by_data(data: Resource) -> void:
+func set_by_data(data: InputShapeSetupResource) -> void:
 	assert(data != null)
 	match data.shape_type:
 		ShapeTypes.RECT:
-			set_rect(data.rect_size, data.rect_center, data.offset)
+			set_rect(data.size, data.rect_center, data.offset)
 		ShapeTypes.CIRCLE:
 			set_circle(data.circle_radius, data.offset)
 		_:

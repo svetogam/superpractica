@@ -11,7 +11,7 @@
 class_name LevelProgram
 extends Mode
 
-var level: Node
+var level: Level
 var pimnet: Pimnet
 var task_control: Node
 var event_control: Node

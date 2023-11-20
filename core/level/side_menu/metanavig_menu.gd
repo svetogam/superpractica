@@ -14,29 +14,29 @@ signal undo_pressed
 signal redo_pressed
 signal reset_pressed
 
-onready var enabler := $ButtonEnabler
-onready var _button_map := {
-	"undo": $"%UndoButton",
-	"redo": $"%RedoButton",
-	"reset": $"%ResetButton",
+@onready var enabler := $ButtonEnabler as Node
+@onready var _button_map := {
+	"undo": %UndoButton as Button,
+	"redo": %RedoButton as Button,
+	"reset": %ResetButton as Button,
 }
 
 
 func _ready() -> void:
-	_button_map["undo"].connect("pressed", self, "_on_undo_button_pressed")
-	_button_map["redo"].connect("pressed", self, "_on_redo_button_pressed")
-	_button_map["reset"].connect("pressed", self, "_on_reset_button_pressed")
+	_button_map["undo"].pressed.connect(_on_undo_button_pressed)
+	_button_map["redo"].pressed.connect(_on_redo_button_pressed)
+	_button_map["reset"].pressed.connect(_on_reset_button_pressed)
 
 	enabler.set_button_map(_button_map)
 
 
 func _on_undo_button_pressed() -> void:
-	emit_signal("undo_pressed")
+	undo_pressed.emit()
 
 
 func _on_redo_button_pressed() -> void:
-	emit_signal("redo_pressed")
+	redo_pressed.emit()
 
 
 func _on_reset_button_pressed() -> void:
-	emit_signal("reset_pressed")
+	reset_pressed.emit()

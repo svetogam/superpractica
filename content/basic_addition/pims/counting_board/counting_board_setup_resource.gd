@@ -36,12 +36,12 @@ const SPAWNERS_TO_OBJECTS := {
 	Spawners.COUNTER: CountingBoardGlobals.Objects.COUNTER,
 }
 
-export(PackedScene) var field_scene :=\
+@export var field_scene :=\
 		preload("res://content/basic_addition/fields/counting_board/counting_board_field.tscn")
-export(Tools) var initial_tool: int
-export(Array, Tools) var included_tools: Array
-export(Array, Tools) var disabled_tools: Array
-export(Array, Spawners) var included_spawners: Array
+@export var initial_tool: Tools
+@export var included_tools: Array[Tools]
+@export var disabled_tools: Array[Tools]
+@export var included_spawners: Array[Spawners]
 
 
 #Virtual

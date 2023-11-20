@@ -11,20 +11,21 @@
 class_name FieldObject
 extends SubscreenObject
 
-var field: Subscreen
-onready var _modes := $ActiveModes
+var field: Field
+@onready var _modes := $ActiveModes as ModeGroup
 
 
 func _ready() -> void:
+	super()
 	field = _subscreen
 
 	update_active_modes()
-	field.connect("tool_changed", self, "update_active_modes")
+	field.tool_changed.connect(update_active_modes)
 
 	if field.is_ready():
 		_on_field_ready()
 	else:
-		field.connect("ready", self, "_on_field_ready")
+		field.ready.connect(_on_field_ready)
 
 
 #Virtual
@@ -39,17 +40,17 @@ func on_interfield_drag_started() -> void:
 
 #Virtual Default
 func on_interfield_drag_stopped() -> void:
-	raise()
+	move_to_front()
 	show()
 
 
 #Virtual
-func get_drag_graphic() -> Node2D:
+func get_drag_graphic() -> ProceduralGraphic:
 	return null
 
 
 #Virtual default
-func _on_hover(point: Vector2, initial: bool, grabbed_object: Node2D) -> void:
+func _on_hover(point: Vector2, initial: bool, grabbed_object: InputObject) -> void:
 	for mode in _modes.get_active_modes():
 		mode._on_hover(point, initial, grabbed_object)
 
@@ -91,7 +92,7 @@ func get_object_type() -> int:
 
 func update_active_modes(_new_tool:="") -> void:
 	var object_type = get_object_type()
-	var active_modes = field.get_active_modes_for_object(object_type)
+	var active_modes: Array[String] = field.get_active_modes_for_object(object_type)
 	_modes.set_by_list(active_modes)
 
 

@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 ##############################################################################
 
-extends Reference
+extends RefCounted
 
 const FIRST :=\
 		"Select the number {start_number} on the board. Then click the \"Check\" button."

@@ -21,7 +21,7 @@ func _get_scene_path() -> String:
 
 
 func before_each():
-	.before_each()
+	super.before_each()
 	viewer = $Test/Superscreen/Window/WindowRect/ContentPanel/ContentContainer/SubscreenViewer
 	subscreen = viewer.get_subscreen()
 
@@ -46,13 +46,13 @@ func test_viewer_convert_vectors_at_regular_zoom():
 
 
 func test_subscreen_rect():
-	var rect_size = Vector2(100, 100)
-	subscreen.set_rect(Vector2.ZERO, rect_size)
+	var size = Vector2(100, 100)
+	subscreen.set_rect(Vector2.ZERO, size)
 
 	got = subscreen.get_center()
-	assert_eq(got, rect_size/2)
+	assert_eq(got, size/2)
 
-	var hit = subscreen.has_point(rect_size/2)
-	var miss = subscreen.has_point(rect_size*2)
+	var hit = subscreen.has_point(size/2)
+	var miss = subscreen.has_point(size*2)
 	assert_eq(hit, true)
 	assert_eq(miss, false)

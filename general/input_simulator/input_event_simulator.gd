@@ -27,7 +27,7 @@ func add_event(event: InputEvent) -> void:
 
 
 func run(p_reset_on_finish:=true) -> void:
-	assert(not _events.empty())
+	assert(not _events.is_empty())
 	_running = true
 	_reset_on_finish = p_reset_on_finish
 
@@ -47,6 +47,19 @@ func ignore_interference(ignore:=true) -> void:
 	_ignoring_interference = ignore
 
 
+static func get_interference_message(events: Array, max_events: int =3) -> String:
+	var message_start := ("The first few interfering input events are:")
+	var message_list := ""
+	var i := 0
+	for event in events:
+		message_list += " "
+		message_list += event.as_text()
+		i += 1
+		if i >= max_events:
+			break
+	return message_start + message_list
+
+
 func _physics_process(_delta: float) -> void:
 	if _running:
 		assert(_frame < _events.size())
@@ -59,7 +72,7 @@ func _physics_process(_delta: float) -> void:
 				reset()
 			else:
 				_stop()
-			emit_signal("done")
+			done.emit()
 
 
 func _simulate_next_input() -> void:
@@ -70,7 +83,7 @@ func _simulate_next_input() -> void:
 func _check_interference() -> void:
 	if _events.size() < _got_events.size():
 		var interfering_events = get_interfering_events()
-		emit_signal("interference_detected", interfering_events)
+		interference_detected.emit(interfering_events)
 
 
 func get_interfering_events() -> Array:

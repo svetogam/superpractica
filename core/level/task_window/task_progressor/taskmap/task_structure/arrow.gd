@@ -10,7 +10,7 @@
 
 extends Line2D
 
-onready var _arrowhead := $"%Arrowhead"
+@onready var _arrowhead := %Arrowhead as ProceduralGraphic
 
 
 func set_arrow(source_node: Control, dest_node: Control) -> void:

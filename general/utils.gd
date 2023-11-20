@@ -14,16 +14,16 @@ static func make_node_from_resource(resource: Resource) -> Node:
 	if resource is GDScript:
 		return resource.new()
 	elif resource is PackedScene:
-		return resource.instance()
+		return resource.instantiate()
 	else:
 		assert(false)
 		return null
 
 
-static func filter_list(list: Array, filter_function: FuncRef) -> Array:
+static func filter_list(list: Array, filter_function: Callable) -> Array:
 	var filtered_list = []
 	for item in list:
-		var result = filter_function.call_func(item)
+		var result = filter_function.call(item)
 		if result:
 			filtered_list.append(item)
 	return filtered_list
@@ -51,37 +51,29 @@ func get_position_in_screen(position: Vector2) -> Vector2:
 	return Vector2(root_viewport.size.x * position.x, root_viewport.size.y * position.y)
 
 
-static func randi_range(min_inclusive: int, max_exclusive: int) -> int:
-	if min_inclusive >= max_exclusive - 1:
-		return min_inclusive
-	else:
-		var diff = max_exclusive - min_inclusive
-		return (randi() % diff) + min_inclusive
-
-
 static func eval_given_or_random_int(given: int, random: bool,
 			min_value: int, max_value: int) -> int:
 	if not random:
 		return given
 	else:
-		return randi_range(min_value, max_value + 1)
+		return randi_range(min_value, max_value)
 
 
-func are_unsorted_lists_equal(list_1: Array, list_2: Array, check_funcref: FuncRef =null) -> bool:
-	if check_funcref == null:
-		check_funcref = funcref(self, "_is_equal")
+func are_unsorted_lists_equal(list_1: Array, list_2: Array, check_func:=Callable()) -> bool:
+	if check_func.is_null():
+		check_func = Callable(self, "_is_equal")
 
 	var first_count = 0
 	for item_1 in list_1:
 		for item_2 in list_2:
-			if check_funcref.call_func(item_1, item_2):
+			if check_func.call(item_1, item_2):
 				first_count += 1
 				break
 
 	var second_count = 0
 	for item_2 in list_2:
 		for item_1 in list_1:
-			if check_funcref.call_func(item_1, item_2):
+			if check_func.call(item_1, item_2):
 				second_count += 1
 				break
 
@@ -95,10 +87,6 @@ static func _is_equal(a, b) -> bool:
 
 static func are_vectors_equal(vector_1: Vector2, vector_2: Vector2) -> bool:
 	return vector_1.is_equal_approx(vector_2)
-
-
-static func are_dicts_equal(dict1: Dictionary, dict2: Dictionary) -> bool:
-	return deep_equal(dict1, dict2)
 
 
 static func is_vector_represented(vector: Vector2, vector_list: Array) -> bool:
@@ -155,69 +143,6 @@ static func convert_from_layer_to_layer(vector: Vector2,
 	return (vector + offset_diff) * scale_diff
 
 
-func convert_from_viewport_to_viewport(vector: Vector2,
-			source: Viewport =null, dest: Viewport = null) -> Vector2:
-	if source == null:
-		source = get_viewport()
-	if dest == null:
-		dest = get_viewport()
-	var source_container = ContextUtils.get_parent_of_type(source, ViewportContainer)
-	var dest_container = ContextUtils.get_parent_of_type(dest, ViewportContainer)
-
-	var source_position = Vector2.ZERO
-	var source_scale = 1.0
-	var dest_position = Vector2.ZERO
-	var dest_scale = 1.0
-	if source_container != null:
-		source_position = source_container.rect_position
-		source_scale = source_container.stretch_shrink
-	if dest_container != null:
-		dest_position = dest_container.rect_position
-		dest_scale = dest_container.stretch_shrink
-
-	var viewport_offset = source_position - dest_position
-	var scale_diff = source_scale / dest_scale
-	return (vector + viewport_offset) * scale_diff
-
-
 func save_screenshot(folder_name: String, filename: String) -> void:
-	var image = get_viewport().get_texture().get_data()
-	image.flip_y()
+	var image = get_viewport().get_texture().get_image()
 	image.save_png(folder_name+"/"+filename+".png")
-
-
-func create_wait_timer(type:="timeout", time:=-1.0) -> WaitTimer:
-	assert(WaitTimer.TYPES.has(type))
-	var timer
-	if type == "timeout":
-		timer = WaitTimer.new(type, time)
-	elif type == "next_idle":
-		timer = WaitTimer.new(type)
-	add_child(timer)
-	return timer
-
-
-class WaitTimer:
-	extends Timer
-	signal completed
-
-	const TYPES = ["timeout", "next_idle"]
-	var type
-	var time
-
-	func _init(p_type: String, p_time:=1.0) -> void:
-		assert(TYPES.has(p_type))
-		assert(p_time > 0)
-		type = p_type
-		time = p_time
-
-	func _enter_tree() -> void:
-		if type == "timeout":
-			var timer = get_tree().create_timer(time)
-			timer.connect("timeout", self, "_trigger_complete")
-		elif type == "next_idle":
-			get_tree().connect("idle_frame", self, "_trigger_complete")
-
-	func _trigger_complete() -> void:
-		emit_signal("completed")
-		queue_free()

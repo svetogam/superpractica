@@ -11,14 +11,14 @@
 class_name Subscreen
 extends Node2D
 
-export(Color) var _background_color: Color
-export(bool) var _pan_camera_on_drag := false
-export(Vector2) var _default_size := Vector2.ZERO
+@export var _background_color: Color
+@export var _pan_camera_on_drag := false
+@export var _default_size := Vector2.ZERO
 var _camera: Camera2D
 var _rect: Rect2
 var _locator := ContextualLocator.new(self)
-onready var _panner := $"%CameraPanner"
-onready var _background := $"%Background"
+@onready var _panner := %CameraPanner as CameraPanner
+@onready var _background := %Background as ColorRect
 
 
 func _enter_tree() -> void:
@@ -50,7 +50,7 @@ func get_object_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "subscreen_objects")
 
 
-func get_object(object_name: String) -> Node2D:
+func get_object(object_name: String) -> SubscreenObject:
 	for object in get_object_list():
 		if object.name == object_name:
 			return object
@@ -84,5 +84,5 @@ func _set_panner_to_camera(camera_rect: Rect2) -> void:
 
 
 func _set_background_to_camera(camera_rect: Rect2) -> void:
-	_background.rect_position = camera_rect.position
-	_background.rect_size = camera_rect.size
+	_background.position = camera_rect.position
+	_background.size = camera_rect.size

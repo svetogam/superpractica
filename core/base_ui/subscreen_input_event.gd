@@ -13,7 +13,7 @@ extends SpInputEvent
 
 
 func _init(p_input_type: int, p_position: Vector2, p_relative: Vector2,
-			p_grabbed_object: Node2D, p_input_state: int) -> void:
+			p_grabbed_object: InputObject, p_input_state: int) -> void:
 	_input_type = p_input_type
 	_position = p_position
 	_relative = p_relative

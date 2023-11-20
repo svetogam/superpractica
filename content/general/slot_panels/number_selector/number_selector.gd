@@ -10,34 +10,34 @@
 
 extends SlotPanel
 
-onready var _memo_slot := $"%MemoSlot"
-onready var _clear_button := $"%ClearButton"
-onready var _button_0 := $"%Button0"
-onready var _button_1 := $"%Button1"
-onready var _button_2 := $"%Button2"
-onready var _button_3 := $"%Button3"
-onready var _button_4 := $"%Button4"
-onready var _button_5 := $"%Button5"
-onready var _button_6 := $"%Button6"
-onready var _button_7 := $"%Button7"
-onready var _button_8 := $"%Button8"
-onready var _button_9 := $"%Button9"
+@onready var _memo_slot := %MemoSlot as MemoSlot
+@onready var _clear_button := %ClearButton as Button
+@onready var _button_0 := %Button0 as Button
+@onready var _button_1 := %Button1 as Button
+@onready var _button_2 := %Button2 as Button
+@onready var _button_3 := %Button3 as Button
+@onready var _button_4 := %Button4 as Button
+@onready var _button_5 := %Button5 as Button
+@onready var _button_6 := %Button6 as Button
+@onready var _button_7 := %Button7 as Button
+@onready var _button_8 := %Button8 as Button
+@onready var _button_9 := %Button9 as Button
 
 
 func _ready() -> void:
 	_setup_slot_map()
 
-	_button_0.connect("pressed", self, "_add_digit", [0])
-	_button_1.connect("pressed", self, "_add_digit", [1])
-	_button_2.connect("pressed", self, "_add_digit", [2])
-	_button_3.connect("pressed", self, "_add_digit", [3])
-	_button_4.connect("pressed", self, "_add_digit", [4])
-	_button_5.connect("pressed", self, "_add_digit", [5])
-	_button_6.connect("pressed", self, "_add_digit", [6])
-	_button_7.connect("pressed", self, "_add_digit", [7])
-	_button_8.connect("pressed", self, "_add_digit", [8])
-	_button_9.connect("pressed", self, "_add_digit", [9])
-	_clear_button.connect("pressed", self, "_clear")
+	_button_0.pressed.connect(_add_digit.bind(0))
+	_button_1.pressed.connect(_add_digit.bind(1))
+	_button_2.pressed.connect(_add_digit.bind(2))
+	_button_3.pressed.connect(_add_digit.bind(3))
+	_button_4.pressed.connect(_add_digit.bind(4))
+	_button_5.pressed.connect(_add_digit.bind(5))
+	_button_6.pressed.connect(_add_digit.bind(6))
+	_button_7.pressed.connect(_add_digit.bind(7))
+	_button_8.pressed.connect(_add_digit.bind(8))
+	_button_9.pressed.connect(_add_digit.bind(9))
+	_clear_button.pressed.connect(_clear)
 
 
 func _setup_slot_map() -> void:

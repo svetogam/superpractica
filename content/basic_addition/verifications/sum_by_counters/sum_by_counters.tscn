@@ -1,23 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://31qkf0qwbhqv"]
 
-[ext_resource path="res://content/basic_addition/verifications/sum_by_counters/states/put_counters.gd" type="Script" id=1]
-[ext_resource path="res://content/basic_addition/verifications/sum_by_counters/sum_by_counters.gd" type="Script" id=2]
-[ext_resource path="res://content/basic_addition/verifications/sum_by_counters/states/select_start.gd" type="Script" id=3]
-[ext_resource path="res://general/state_machine/state_machine.gd" type="Script" id=4]
-[ext_resource path="res://content/basic_addition/verifications/sum_by_counters/states/compare_result.gd" type="Script" id=5]
+[ext_resource type="Script" path="res://content/basic_addition/verifications/sum_by_counters/states/put_counters.gd" id="1"]
+[ext_resource type="Script" path="res://content/basic_addition/verifications/sum_by_counters/sum_by_counters.gd" id="2"]
+[ext_resource type="Script" path="res://content/basic_addition/verifications/sum_by_counters/states/select_start.gd" id="3"]
+[ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="4"]
+[ext_resource type="Script" path="res://content/basic_addition/verifications/sum_by_counters/states/compare_result.gd" id="5"]
 
 [node name="Verification" type="Node"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 4 )
-_initial_state_path = NodePath("SelectStart")
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+script = ExtResource("4")
+_initial_state = NodePath("SelectStart")
 
 [node name="SelectStart" type="Node" parent="StateMachine"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="PutCounters" type="Node" parent="StateMachine"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="CompareResult" type="Node" parent="StateMachine"]
-script = ExtResource( 5 )
+script = ExtResource("5")

@@ -14,11 +14,12 @@ const MIN_RADIUS := 40.0
 const MAX_RADIUS := 160.0
 var radius: float
 var selected := false
-onready var handle_control := $"%HandleControl"
-onready var _graphic: ProceduralGraphic = $"%Graphic"
+@onready var handle_control := %HandleControl as Node2D
+@onready var _graphic := %Graphic as ProceduralGraphic
 
 
 func _ready() -> void:
+	super()
 	_set_radius(input_shape.get_radius())
 	handle_control.setup(self)
 

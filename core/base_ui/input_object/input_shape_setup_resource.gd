@@ -11,8 +11,8 @@
 class_name InputShapeSetupResource
 extends Resource
 
-export(InputShape.ShapeTypes) var shape_type: int
-export(Vector2) var rect_size: Vector2
-export(bool) var rect_center := true
-export(float) var circle_radius: float
-export(Vector2) var offset := Vector2.ZERO
+@export var shape_type: InputShape.ShapeTypes
+@export var size: Vector2
+@export var rect_center := true
+@export var circle_radius: float
+@export var offset := Vector2.ZERO

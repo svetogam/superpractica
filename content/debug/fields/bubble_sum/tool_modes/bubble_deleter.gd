@@ -17,5 +17,5 @@ func get_label_text() -> String:
 
 func get_object_modes_map() -> Dictionary:
 	return {
-		BubbleSumGlobals.Objects.BUBBLE: ["delete"],
+		BubbleSumGlobals.Objects.BUBBLE: ["delete"] as Array[String],
 	}

@@ -12,8 +12,8 @@ extends Control
 
 var _regular_background_color: Color
 var _highlighted_background_color := GameGlobals.COLOR_HIGHLIGHT
-onready var _background := $"%Background"
-onready var _label := $"%Label"
+@onready var _background := %Background as ColorRect
+@onready var _label := %Label as Label
 
 
 func _ready() -> void:

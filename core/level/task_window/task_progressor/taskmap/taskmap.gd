@@ -13,11 +13,11 @@ extends Subscreen
 signal task_selected(task_id)
 
 var _taskmap_builder := preload("taskmap_builder.gd").new()
-onready var _task_structure := $"%TaskStructure"
+@onready var _task_structure := %TaskStructure as Control
 
 
-func setup(data_reader: Reference) -> void:
-	_task_structure.connect("task_selected", self, "_on_task_selected")
+func setup(data_reader: RefCounted) -> void:
+	_task_structure.task_selected.connect(_on_task_selected)
 	_taskmap_builder.build_by_data(_task_structure, data_reader)
 	set_rect(Vector2.ZERO, _task_structure.get_structure_size())
 
@@ -26,7 +26,7 @@ func setup(data_reader: Reference) -> void:
 
 
 func _on_task_selected(task: BaseButton) -> void:
-	emit_signal("task_selected", task.id)
+	task_selected.emit(task.id)
 
 
 func complete_task(task_id: String) -> void:

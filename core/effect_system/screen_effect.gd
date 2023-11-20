@@ -11,8 +11,8 @@
 class_name ScreenEffect
 extends Node2D
 
-onready var animator := $Animator
-onready var _animation_player := $AnimationPlayer
+@onready var animator := $Animator as Animator2D
+@onready var _animation_player := $AnimationPlayer as AnimationPlayer
 
 
 #Virtual

@@ -12,17 +12,23 @@ extends GutTest
 
 var input_order: Array
 var simulator := MouseInputSimulator.new()
-var _testing_interference := false
 
 
 func _on_interference(_interfering_events: Array):
-	if not _testing_interference:
-		assert(false)
+	var message := ("Do not perform inputs while tests are running. "
+			+ InputEventSimulator.get_interference_message(_interfering_events))
+	assert(false, message)
 
 
 func before_all():
 	add_child(simulator)
-	simulator.connect("interference_detected", self, "_on_interference")
+	simulator.ignore_interference(false)
+	simulator.interference_detected.connect(_on_interference)
+
+
+func after_all():
+	simulator.interference_detected.disconnect(_on_interference)
+	remove_child(simulator)
 
 
 func before_each():
@@ -37,21 +43,21 @@ func _input(event: InputEvent):
 func test_add_and_run_events():
 	var event_1 = InputEventMouseButton.new()
 	event_1.pressed = true
-	event_1.doubleclick = false
+	event_1.double_click = false
 	var event_2 = InputEventMouseButton.new()
 	event_2.pressed = false
-	event_2.doubleclick = true
+	event_2.double_click = true
 
 	simulator.add_event(event_1)
 	simulator.add_event(event_2)
 	simulator.run()
-	yield(simulator, "done")
+	await simulator.done
 
 	assert_eq(input_order.size(), 2)
 	assert_eq(input_order[0].pressed, event_1.pressed)
-	assert_eq(input_order[0].doubleclick, event_1.doubleclick)
+	assert_eq(input_order[0].double_click, event_1.double_click)
 	assert_eq(input_order[1].pressed, event_2.pressed)
-	assert_eq(input_order[1].doubleclick, event_2.doubleclick)
+	assert_eq(input_order[1].double_click, event_2.double_click)
 
 
 func test_mouse_interface():
@@ -67,51 +73,28 @@ func test_mouse_interface():
 	simulator.move_by(drag_vector)
 	simulator.release_left()
 	simulator.run()
-	yield(simulator, "done")
+	await simulator.done
 
 	assert_eq(input_order.size(), 6)
 	assert_is(input_order[0], InputEventMouseButton)
 	assert_eq(input_order[0].position, position_1)
 	assert_eq(input_order[0].pressed, true)
-	assert_eq(input_order[0].button_index, BUTTON_LEFT)
+	assert_eq(input_order[0].button_index, MOUSE_BUTTON_LEFT)
 	assert_is(input_order[1], InputEventMouseButton)
 	assert_eq(input_order[1].position, position_1)
 	assert_eq(input_order[1].pressed, false)
-	assert_eq(input_order[1].button_index, BUTTON_LEFT)
+	assert_eq(input_order[1].button_index, MOUSE_BUTTON_LEFT)
 	assert_is(input_order[2], InputEventMouseMotion)
 	assert_eq(input_order[2].position, position_2)
 	assert_eq(input_order[2].relative, position_2 - position_1)
 	assert_is(input_order[3], InputEventMouseButton)
 	assert_eq(input_order[3].position, position_2)
 	assert_eq(input_order[3].pressed, true)
-	assert_eq(input_order[3].button_index, BUTTON_LEFT)
+	assert_eq(input_order[3].button_index, MOUSE_BUTTON_LEFT)
 	assert_is(input_order[4], InputEventMouseMotion)
 	assert_eq(input_order[4].position, position_3)
 	assert_eq(input_order[4].relative, drag_vector)
 	assert_is(input_order[5], InputEventMouseButton)
 	assert_eq(input_order[5].position, position_3)
 	assert_eq(input_order[5].pressed, false)
-	assert_eq(input_order[5].button_index, BUTTON_LEFT)
-
-
-#Sometimes works sometimes doesn't
-#func test_interference():
-#	_testing_interference = true
-#	simulator.ignore_interference(false)
-#
-#	var simulator_2 := MouseInputSimulator.new()
-#	add_child(simulator_2)
-#
-#	simulator.press_left()
-#	simulator.press_left()
-#	simulator_2.press_left()
-#	simulator_2.press_left()
-#	watch_signals(simulator)
-#	simulator.run()
-#	simulator_2.run()
-#	yield(simulator, "done")
-#
-#	assert_signal_emitted(simulator, "interference_detected")
-#
-#	_testing_interference = false
-#	simulator.ignore_interference(true)
+	assert_eq(input_order[5].button_index, MOUSE_BUTTON_LEFT)

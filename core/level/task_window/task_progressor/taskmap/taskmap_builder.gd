@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 ##############################################################################
 
-extends Reference
+extends RefCounted
 
 var _task_structure: Control
 var _data: Object
@@ -18,7 +18,7 @@ func build_by_data(p_task_structure: Control, p_data: Object) -> void:
 	_task_structure = p_task_structure
 	_data = p_data
 
-	_task_structure.connect("task_positions_set", self, "_on_task_positions_set")
+	_task_structure.task_positions_set.connect(_on_task_positions_set)
 	var columns = _data.get_number_of_columns()
 	var rows = _data.get_number_of_rows()
 	_task_structure.setup_grid(columns, rows)

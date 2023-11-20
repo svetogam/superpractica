@@ -61,8 +61,8 @@ func test_call_callbacks_gives_returns():
 	callbacker.add("a", object, "set_to_5")
 	callbacker.add("b", object, "return_true")
 	callbacker.add("b", object, "return_false")
-	assert_eq_shallow(callbacker.call_callbacks("a"), [null])
-	assert_eq_shallow(callbacker.call_callbacks("b"), [true, false])
+	assert_eq(callbacker.call_callbacks("a"), [null])
+	assert_eq(callbacker.call_callbacks("b"), [true, false])
 
 
 func test_callbacks_on_different_keys_do_not_get_called():

@@ -13,7 +13,7 @@ extends FieldInterfaceComponent
 
 
 #Virtual
-func build() -> Object:
+func build() -> MemState:
 	assert(false)
 	return null
 

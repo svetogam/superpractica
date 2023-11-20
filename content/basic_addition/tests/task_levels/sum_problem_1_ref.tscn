@@ -1,52 +1,35 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b3u6h0psh3gh"]
 
-[ext_resource path="res://content/basic_addition/tests/task_levels/sum_problem_1.png" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://dkpnfm10k7cro" path="res://content/basic_addition/tests/task_levels/sum_problem_1.png" id="1"]
 
 [node name="Ref" type="Node"]
 
 [node name="Screen" type="TextureRect" parent="."]
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -641.0
-margin_top = -827.0
-margin_right = 641.0
-texture = ExtResource( 1 )
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("1")
 stretch_mode = 5
 
-[node name="Square5" type="Position2D" parent="."]
-position = Vector2( 926.667, 127.816 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Square5" type="Marker2D" parent="."]
+position = Vector2(927, 114)
 
-[node name="Square6" type="Position2D" parent="."]
-position = Vector2( 978.803, 129.498 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Square6" type="Marker2D" parent="."]
+position = Vector2(976, 107)
 
-[node name="Square7" type="Position2D" parent="."]
-position = Vector2( 1034.3, 127.816 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Square7" type="Marker2D" parent="."]
+position = Vector2(1034, 121)
 
-[node name="Square8" type="Position2D" parent="."]
-position = Vector2( 1084.76, 126.134 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Square8" type="Marker2D" parent="."]
+position = Vector2(1090, 120)
 
-[node name="Counter" type="Position2D" parent="."]
-position = Vector2( 595.354, 203.497 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Counter" type="Marker2D" parent="."]
+position = Vector2(591, 192)
 
-[node name="CompleteButton" type="Position2D" parent="."]
-position = Vector2( 102.589, 203.497 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="CompleteButton" type="Marker2D" parent="."]
+position = Vector2(102.589, 203.497)

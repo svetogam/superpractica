@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 ##############################################################################
 
-extends Reference
+extends RefCounted
 
 const FIRST :=\
 		"Find the sum and enter it. Then press the \"Check\" button to verify that it's correct."

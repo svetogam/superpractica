@@ -22,7 +22,7 @@ func get_counter_list() -> Array:
 	return _field.get_object_list_by_type(CountingBoardGlobals.Objects.COUNTER)
 
 
-func get_number_square_at_point(point: Vector2) -> FieldObject:
+func get_number_square_at_point(point: Vector2) -> NumberSquare:
 	var number_squares = get_number_square_list()
 	for number_square in number_squares:
 		if number_square.has_point(point):
@@ -30,7 +30,7 @@ func get_number_square_at_point(point: Vector2) -> FieldObject:
 	return null
 
 
-func get_number_square(number: int) -> FieldObject:
+func get_number_square(number: int) -> NumberSquare:
 	var number_squares = get_number_square_list()
 	for number_square in number_squares:
 		if number_square.number == number:
@@ -46,7 +46,7 @@ func get_number_squares_by_numbers(number_list: Array) -> Array:
 	return number_squares
 
 
-func get_highlighted_number_square() -> FieldObject:
+func get_highlighted_number_square() -> NumberSquare:
 	for square in get_number_square_list():
 		if square.highlighted:
 			return square
@@ -75,7 +75,7 @@ func get_number_squares_with_counters() -> Array:
 	return squares
 
 
-func get_counter_on_square(number_square: FieldObject) -> FieldObject:
+func get_counter_on_square(number_square: NumberSquare) -> FieldObject:
 	for counter in get_counter_list():
 		if counter.square.name == number_square.name:
 			return counter
@@ -132,7 +132,7 @@ func get_numbers_between(start_number: int, end_number: int, skip_count_tens: bo
 
 func get_numbers_by_skip_count(start_number: int, skip_count: int, bound_number:=100) -> Array:
 	var numbers = range(start_number, bound_number + 1, skip_count)
-	numbers.remove(0)
+	numbers.remove_at(0)
 	return numbers
 
 

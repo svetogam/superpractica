@@ -16,14 +16,14 @@ func _init(effect_layer: CanvasLayer) -> void:
 	effect_layer.add_child(self)
 
 
-func create_effect(effect_scene: PackedScene, pos: Vector2) -> Node2D:
-	var effect = effect_scene.instance()
+func create_effect(effect_scene: PackedScene, pos: Vector2) -> ScreenEffect:
+	var effect = effect_scene.instantiate()
 	_add_effect(effect)
 	effect.position = pos
 	return effect
 
 
-func _add_effect(effect: Node2D) -> void:
+func _add_effect(effect: ScreenEffect) -> void:
 	add_child(effect)
 
 
@@ -36,15 +36,15 @@ func get_effects() -> Array:
 	return get_children()
 
 
-func duplicate_effect(effect: Node2D) -> Node2D:
-	var duplicate = effect.duplicate()
-	_add_effect(duplicate)
+func duplicate_effect(effect: ScreenEffect) -> ScreenEffect:
+	var new_effect = effect.duplicate()
+	_add_effect(new_effect)
 
 	var superscreen = get_tree().get_nodes_in_group("superscreens")[0]
 	var source_viewer = ContextUtils.get_parent_in_group(effect, "subscreen_viewers")
 	var dest_viewer = ContextUtils.get_parent_in_group(self, "subscreen_viewers")
-	duplicate.position = superscreen.convert_point_between_subscreen_viewers(
+	new_effect.position = superscreen.convert_point_between_subscreen_viewers(
 			effect.position, source_viewer, dest_viewer)
-	duplicate.set_by_effect(effect)
+	new_effect.set_by_effect(effect)
 
-	return duplicate
+	return new_effect

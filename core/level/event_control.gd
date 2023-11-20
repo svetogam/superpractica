@@ -10,9 +10,9 @@
 
 extends Node
 
-export(bool) var active := false
+@export var active := false
 var menu: Control
-var _level: Node
+var _level: Level
 
 
 func _enter_tree() -> void:
@@ -27,4 +27,4 @@ func setup() -> void:
 func _setup_menu() -> void:
 	menu = _level.side_menu.add_panel(LevelSideMenu.LevelMenuPanels.EVENT_MENU)
 	menu.enabler.connect_general(_level.verifier, "is_running", false)
-	_level.connect("updated", menu.enabler, "update")
+	_level.updated.connect(menu.enabler.update)

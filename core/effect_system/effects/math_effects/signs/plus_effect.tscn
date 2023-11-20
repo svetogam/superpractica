@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cmy6el6pn31d4"]
 
-[ext_resource path="res://core/effect_system/screen_effect.tscn" type="PackedScene" id=1]
-[ext_resource path="res://core/effect_system/effects/math_effects/signs/plus_v1f1.png" type="Texture" id=2]
+[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/effect_system/screen_effect.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://cpifdvqv3tgkq" path="res://core/effect_system/effects/math_effects/signs/plus_v1f1.png" id="2"]
 
-[node name="PlusEffect" instance=ExtResource( 1 )]
+[node name="PlusEffect" instance=ExtResource("1")]
 
 [node name="Graphic" parent="." index="0"]
-scale = Vector2( 0.05, 0.05 )
+scale = Vector2(0.05, 0.05)
 
-[node name="Sprite" type="Sprite" parent="Graphic" index="0"]
-texture = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
+texture = ExtResource("2")

@@ -1,46 +1,32 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dk6rrq2ohpta0"]
 
-[ext_resource path="res://content/basic_addition/tests/task_levels/sum_problem_8.png" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://doj4xgm16kymv" path="res://content/basic_addition/tests/task_levels/sum_problem_8.png" id="1"]
 
 [node name="Ref" type="Node"]
 
 [node name="Screen" type="TextureRect" parent="."]
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -641.0
-margin_top = -827.0
-margin_right = 641.0
-texture = ExtResource( 1 )
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("1")
 stretch_mode = 5
 
-[node name="Button2" type="Position2D" parent="."]
-position = Vector2( 825.76, 573.306 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Button2" type="Marker2D" parent="."]
+position = Vector2(825.76, 573.306)
 
-[node name="Button7" type="Position2D" parent="."]
-position = Vector2( 774.818, 468.425 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="Button7" type="Marker2D" parent="."]
+position = Vector2(774.818, 468.425)
 
-[node name="SelectorSlot" type="Position2D" parent="."]
-position = Vector2( 799.402, 398.524 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="SelectorSlot" type="Marker2D" parent="."]
+position = Vector2(799.402, 398.524)
 
-[node name="SumSlot" type="Position2D" parent="."]
-position = Vector2( 813.254, 182.734 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="SumSlot" type="Marker2D" parent="."]
+position = Vector2(813.254, 182.734)
 
-[node name="CheckButton" type="Position2D" parent="."]
-position = Vector2( 122.771, 196.77 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="CheckButton" type="Marker2D" parent="."]
+position = Vector2(122.771, 196.77)

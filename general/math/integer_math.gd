@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name IntegerMath
-extends Reference
+extends RefCounted
 
 #Place is 1 for ones, 2 for tens, etc.
 #Return 0 if there is no digit at that place

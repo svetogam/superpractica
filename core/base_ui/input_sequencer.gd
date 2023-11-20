@@ -9,19 +9,19 @@
 ##############################################################################
 
 class_name InputSequencer
-extends Reference
+extends RefCounted
 
 signal input_processed
 
-var _grabbed_object: Node2D = null
-var _grabbed_subscreen_viewer: Control
-var _superscreen: Control
+var _grabbed_object: InputObject = null
+var _grabbed_subscreen_viewer: SubscreenViewer
+var _superscreen: Superscreen
 var _enabled := true
 
 
-func _init(p_superscreen: Control) -> void:
+func _init(p_superscreen: Superscreen) -> void:
 	_superscreen = p_superscreen
-	_superscreen.connect("gui_input", self, "_on_superscreen_input")
+	_superscreen.gui_input.connect(_on_superscreen_input)
 
 
 func set_enabled(p_enabled:=true) -> void:
@@ -41,7 +41,7 @@ func _process_input(event: SuperscreenInputEvent) -> void:
 		_give_input_to_top_window(event)
 	event.complete()
 
-	emit_signal("input_processed")
+	input_processed.emit()
 
 
 func _give_input_to_grabbed_object(event: SuperscreenInputEvent) -> void:
@@ -59,21 +59,22 @@ func _give_input_to_top_window(event: SuperscreenInputEvent) -> void:
 		top_window.take_input(event)
 
 
-func connect_input_object(input_object: Node2D, subscreen_viewer: Control =null) -> void:
-	input_object.connect("grab_started", self, "_on_grab_started", [input_object, subscreen_viewer])
-	input_object.connect("grab_stopped", self, "_on_grab_stopped", [input_object])
+func connect_input_object(input_object: InputObject,
+			subscreen_viewer: SubscreenViewer =null) -> void:
+	input_object.grab_started.connect(_on_grab_started.bind(input_object, subscreen_viewer))
+	input_object.grab_stopped.connect(_on_grab_stopped.bind(input_object))
 
 
-func _on_grab_started(object: Node2D, subscreen_viewer: Control) -> void:
+func _on_grab_started(object: InputObject, subscreen_viewer: SubscreenViewer) -> void:
 	_grabbed_object = object
 	_grabbed_subscreen_viewer = subscreen_viewer
 
 
-func _on_grab_stopped(object: Node2D) -> void:
+func _on_grab_stopped(object: InputObject) -> void:
 	if _grabbed_object == object:
 		_grabbed_object = null
 		_grabbed_subscreen_viewer = null
 
 
-func get_grabbed_object() -> Node2D:
+func get_grabbed_object() -> InputObject:
 	return _grabbed_object

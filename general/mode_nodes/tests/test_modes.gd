@@ -20,8 +20,8 @@ var group_mode_2_name: String
 var group_mode_3_name: String
 
 
-func before_each():
-	context = ContextScene.instance()
+func before_each() -> void:
+	context = ContextScene.instantiate()
 	add_child(context)
 	mode_group = $Context/ModeGroup
 	ungrouped_mode_1 = $Context/Mode1
@@ -31,24 +31,24 @@ func before_each():
 	group_mode_3_name = $Context/ModeGroup/GroupMode3.name
 
 
-func after_each():
+func after_each() -> void:
 	remove_child(context)
 
 
 func test_virtual_methods_called_on_run_and_stop_mode() -> void:
-	assert_true(ungrouped_mode_1.pre_started != context.pre_started_value)
-	assert_true(ungrouped_mode_1.started != context.started_value)
-	assert_true(ungrouped_mode_1.ended != context.ended_value)
+	assert_true(ungrouped_mode_1.pre_started_value != context.pre_started_value)
+	assert_true(ungrouped_mode_1.started_value != context.started_value)
+	assert_true(ungrouped_mode_1.ended_value != context.ended_value)
 
 	ungrouped_mode_1.run()
-	assert_true(ungrouped_mode_1.pre_started == context.pre_started_value)
-	assert_true(ungrouped_mode_1.started == context.started_value)
-	assert_true(ungrouped_mode_1.ended != context.ended_value)
+	assert_true(ungrouped_mode_1.pre_started_value == context.pre_started_value)
+	assert_true(ungrouped_mode_1.started_value == context.started_value)
+	assert_true(ungrouped_mode_1.ended_value != context.ended_value)
 
 	ungrouped_mode_1.stop()
-	assert_true(ungrouped_mode_1.pre_started == context.pre_started_value)
-	assert_true(ungrouped_mode_1.started == context.started_value)
-	assert_true(ungrouped_mode_1.ended == context.ended_value)
+	assert_true(ungrouped_mode_1.pre_started_value == context.pre_started_value)
+	assert_true(ungrouped_mode_1.started_value == context.started_value)
+	assert_true(ungrouped_mode_1.ended_value == context.ended_value)
 
 
 func test_signals_signals_emitted_on_run_and_stop_mode() -> void:
@@ -76,36 +76,36 @@ func test_check_mode_is_running() -> void:
 
 func test_auto_run_and_stop_mode() -> void:
 	watch_signals(ungrouped_mode_2)
-	assert_true(ungrouped_mode_2.pre_started == context.pre_started_value)
-	assert_true(ungrouped_mode_2.started == context.started_value)
-	assert_true(ungrouped_mode_2.ended != context.ended_value)
+	assert_true(ungrouped_mode_2.pre_started_value == context.pre_started_value)
+	assert_true(ungrouped_mode_2.started_value == context.started_value)
+	assert_true(ungrouped_mode_2.ended_value != context.ended_value)
 	assert_true(ungrouped_mode_2.is_running())
 
 	ungrouped_mode_2.stop()
-	assert_true(ungrouped_mode_2.pre_started == context.pre_started_value)
-	assert_true(ungrouped_mode_2.started == context.started_value)
-	assert_true(ungrouped_mode_2.ended == context.ended_value)
+	assert_true(ungrouped_mode_2.pre_started_value == context.pre_started_value)
+	assert_true(ungrouped_mode_2.started_value == context.started_value)
+	assert_true(ungrouped_mode_2.ended_value == context.ended_value)
 	assert_true(not ungrouped_mode_2.is_running())
 	assert_signal_emitted(ungrouped_mode_2, "stopped")
 
 
 func test_mode_group_runs_and_stops_modes() -> void:
-	var mode = mode_group.get_mode(group_mode_1_name)
-	assert_true(mode.pre_started != context.pre_started_value)
-	assert_true(mode.started != context.started_value)
-	assert_true(mode.ended != context.ended_value)
+	var mode := mode_group.get_mode(group_mode_1_name)
+	assert_true(mode.pre_started_value != context.pre_started_value)
+	assert_true(mode.started_value != context.started_value)
+	assert_true(mode.ended_value != context.ended_value)
 	assert_true(not mode_group.is_active(group_mode_1_name))
 
 	mode_group.activate(group_mode_1_name)
-	assert_true(mode.pre_started == context.pre_started_value)
-	assert_true(mode.started == context.started_value)
-	assert_true(mode.ended != context.ended_value)
+	assert_true(mode.pre_started_value == context.pre_started_value)
+	assert_true(mode.started_value == context.started_value)
+	assert_true(mode.ended_value != context.ended_value)
 	assert_true(mode_group.is_active(group_mode_1_name))
 
 	mode_group.deactivate(group_mode_1_name)
-	assert_true(mode.pre_started == context.pre_started_value)
-	assert_true(mode.started == context.started_value)
-	assert_true(mode.ended == context.ended_value)
+	assert_true(mode.pre_started_value == context.pre_started_value)
+	assert_true(mode.started_value == context.started_value)
+	assert_true(mode.ended_value == context.ended_value)
 	assert_true(not mode_group.is_active(group_mode_1_name))
 
 
@@ -176,7 +176,7 @@ func test_get_only_active_mode() -> void:
 
 
 func test_get_mode_names() -> void:
-	var got = mode_group.get_mode_names()
+	var got := mode_group.get_mode_names()
 	assert_true(got.has(group_mode_1_name))
 	assert_true(got.has(group_mode_2_name))
 	assert_true(got.has(group_mode_3_name))
@@ -184,8 +184,7 @@ func test_get_mode_names() -> void:
 
 
 func test_get_active_mode_names() -> void:
-	var got
-	got = mode_group.get_active_mode_names()
+	var got := mode_group.get_active_mode_names()
 	assert_true(got.has(group_mode_3_name))
 	assert_true(got.size() == 1)
 
@@ -220,10 +219,9 @@ func test_is_any_active() -> void:
 
 
 func test_set_by_list() -> void:
-	var got
-	var list = [group_mode_1_name, group_mode_2_name]
+	var list: Array[String] = [group_mode_1_name, group_mode_2_name]
 	mode_group.set_by_list(list)
-	got = mode_group.get_active_mode_names()
+	var got := mode_group.get_active_mode_names()
 	assert_true(got.has(group_mode_1_name))
 	assert_true(got.has(group_mode_2_name))
 	assert_true(got.size() == 2)
@@ -237,10 +235,9 @@ func test_set_by_list() -> void:
 
 
 func test_set_by_dict() -> void:
-	var got
-	var dict = {group_mode_1_name: true, group_mode_2_name: false}
+	var dict := {group_mode_1_name: true, group_mode_2_name: false}
 	mode_group.set_by_dict(dict)
-	got = mode_group.get_active_mode_names()
+	var got := mode_group.get_active_mode_names()
 	assert_true(got.has(group_mode_1_name))
 	assert_true(got.has(group_mode_3_name))
 	assert_true(got.size() == 2)

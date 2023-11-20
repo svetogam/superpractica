@@ -14,9 +14,9 @@ const POST_EQUALITY_CHECK_DELAY := 0.8
 const EqualityEffect = preload("effects/equality_effect.tscn")
 const EvaluationBar = preload("effects/evaluation_bar_effect.tscn")
 
-var _pack: VerificationPack
+var _pack: ScreenVerifier
 var _effect_group: MathEffectGroup
-onready var _plan := $"%Plan"
+@onready var _plan := %Plan as Node2D
 
 
 func _enter_tree() -> void:
@@ -31,7 +31,7 @@ func _animate_to_place(screen_effect: ScreenEffect, destination: Vector2, scale:
 	screen_effect.animator.move_to_position(destination)
 	screen_effect.animator.grow_to_ratio(scale)
 	if callback_method != "":
-		screen_effect.animator.connect("move_completed", callback_object, callback_method)
+		screen_effect.animator.move_completed.connect(Callable(callback_object, callback_method))
 
 
 #####################################################################
@@ -61,7 +61,7 @@ func animate_equality_check(equal: bool,
 			callback_object: Object =null, callback_method:="") -> void:
 	_popup_comparator(equal)
 
-	yield(Game.wait_for(POST_EQUALITY_CHECK_DELAY), Game.DONE)
+	await Game.wait_for(POST_EQUALITY_CHECK_DELAY)
 
 	if callback_method != "":
 		callback_object.call(callback_method)

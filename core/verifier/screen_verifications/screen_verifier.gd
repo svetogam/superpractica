@@ -14,10 +14,11 @@ extends VerificationPack
 const START_DELAY := 0.8
 var effect_group: MathEffectGroup
 var digit_reference: NumberEffect
-onready var animator := $ScreenAnimator
+@onready var animator := $ScreenAnimator as Node
 
 
 func _enter_tree() -> void:
+	super()
 	effect_group = MathEffectGroup.new(verifier.effect_layer)
 	assert(effect_group != null)
 

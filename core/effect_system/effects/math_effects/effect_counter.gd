@@ -15,11 +15,7 @@ const NEAR_OFFSET := Vector2(30, 20)
 var _count := 0
 
 
-func _init(effect_layer: CanvasLayer).(effect_layer) -> void:
-	pass
-
-
-func count_next(pos: Vector2, beside:=false) -> Node2D:
+func count_next(pos: Vector2, beside:=false) -> NumberEffect:
 	_count += 1
 	if beside:
 		return give_number(_count, pos + NEAR_OFFSET)
@@ -27,7 +23,7 @@ func count_next(pos: Vector2, beside:=false) -> Node2D:
 		return give_number(_count, pos)
 
 
-func give_current_count(pos: Vector2, beside:=false) -> Node2D:
+func give_current_count(pos: Vector2, beside:=false) -> NumberEffect:
 	if beside:
 		return give_number(_count, pos + NEAR_OFFSET)
 	else:
@@ -51,7 +47,7 @@ func get_count() -> int:
 	return _count
 
 
-func get_highest_count_object() -> Node2D:
-	assert(not get_effects().empty())
+func get_highest_count_object() -> NumberEffect:
+	assert(not get_effects().is_empty())
 
 	return get_effects().back()

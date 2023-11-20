@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://cvq5vabbaa0kh"]
 
-[ext_resource path="res://general/node_factory/node_factory.gd" type="Script" id=1]
-[ext_resource path="res://general/node_factory/tests/a_context.gd" type="Script" id=2]
-[ext_resource path="res://general/node_factory/tests/factory_data.gd" type="Script" id=3]
+[ext_resource type="Script" path="res://general/node_factory/node_factory.gd" id="1"]
+[ext_resource type="Script" path="res://general/node_factory/tests/a_context.gd" id="2"]
+[ext_resource type="Script" path="res://general/node_factory/tests/factory_data.gd" id="3"]
 
 [node name="Context" type="Node"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Factory" type="Node" parent="."]
-script = ExtResource( 1 )
-_initial_data = ExtResource( 3 )
+script = ExtResource("1")
+_initial_data = ExtResource("3")
 
-[node name="FactoryWithTarget" type="Node" parent="."]
-script = ExtResource( 1 )
-_initial_data = ExtResource( 3 )
-_target_path = NodePath("..")
+[node name="FactoryWithTarget" type="Node" parent="." node_paths=PackedStringArray("_target")]
+script = ExtResource("1")
+_initial_data = ExtResource("3")
+_target = NodePath("..")
 
 [node name="FactoryWithEmptyData" type="Node" parent="."]
-script = ExtResource( 1 )
+script = ExtResource("1")

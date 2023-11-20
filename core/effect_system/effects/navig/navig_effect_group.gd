@@ -18,32 +18,28 @@ const PointerEffect := preload("effects/pointer_effect.tscn")
 const NEAR_OFFSET := Vector2(20, 15)
 
 
-func _init(effect_layer: CanvasLayer).(effect_layer) -> void:
-	pass
-
-
-func affirm_or_else_reject(p_affirm: bool, pos: Vector2) -> Node2D:
+func affirm_or_else_reject(p_affirm: bool, pos: Vector2) -> ScreenEffect:
 	if p_affirm:
 		return affirm(pos)
 	else:
 		return reject(pos)
 
 
-func affirm(pos: Vector2) -> Node2D:
+func affirm(pos: Vector2) -> ScreenEffect:
 	var effect = create_effect(AffirmEffect, pos)
 	effect.animator.delete_after_delay()
 	return effect
 
 
-func reject(pos: Vector2) -> Node2D:
+func reject(pos: Vector2) -> ScreenEffect:
 	var effect = create_effect(RejectEffect, pos)
 	effect.animator.delete_after_delay()
 	return effect
 
 
-func warn(pos: Vector2) -> Node2D:
+func warn(pos: Vector2) -> ScreenEffect:
 	return create_effect(WarningEffect, pos + NEAR_OFFSET)
 
 
-func point_left(pos: Vector2) -> Node2D:
+func point_left(pos: Vector2) -> ScreenEffect:
 	return create_effect(PointerEffect, pos)

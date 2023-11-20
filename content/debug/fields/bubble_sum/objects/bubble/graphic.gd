@@ -10,7 +10,7 @@
 
 extends ProceduralGraphic
 
-export(float) var radius := 50.0
+@export var radius := 50.0
 var selected := false
 
 

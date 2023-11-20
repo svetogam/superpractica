@@ -10,14 +10,14 @@
 
 extends LevelProgram
 
-export(int) var start_number: int
-export(int) var addend: int
-export(bool) var _random_start_number: bool
-export(int) var _min_start_number: int
-export(int) var _max_start_number: int
-export(bool) var _random_addend: bool
-export(int) var _min_addend: int
-export(int) var _max_addend: int
+@export var start_number: int
+@export var addend: int
+@export var _random_start_number: bool
+@export var _min_start_number: int
+@export var _max_start_number: int
+@export var _random_addend: bool
+@export var _min_addend: int
+@export var _max_addend: int
 
 const BUTTON_ID := "button"
 const BUTTON_TEXT := "Check"

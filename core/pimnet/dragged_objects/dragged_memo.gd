@@ -12,8 +12,8 @@ class_name DraggedMemo
 extends SuperscreenObject
 
 var memo: Memo
-onready var _graphic_box := $"%GraphicBox"
-onready var _label := $"%Label"
+@onready var _graphic_box := %GraphicBox as ColorRect
+@onready var _label := %Label as Label
 
 
 func _init() -> void:
@@ -25,6 +25,7 @@ func setup(p_memo: Memo) -> void:
 
 
 func _ready():
+	super()
 	assert(memo != null)
 	_set_text_by_memo()
 
@@ -34,7 +35,7 @@ func _set_text_by_memo() -> void:
 
 
 func set_size(size: Vector2) -> void:
-	_graphic_box.rect_size = size
+	_graphic_box.size = size
 	input_shape.set_rect(size)
 
 

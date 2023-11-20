@@ -11,7 +11,7 @@
 extends FieldObject
 
 var selected := false
-onready var _graphic: ProceduralGraphic = $"%Graphic"
+@onready var _graphic := %Graphic as ProceduralGraphic
 
 
 func toggle_select() -> void:
@@ -27,5 +27,5 @@ func is_inside_bubble(bubble: FieldObject) -> bool:
 	return bubble.has_point(position)
 
 
-func get_drag_graphic() -> Node2D:
+func get_drag_graphic() -> ProceduralGraphic:
 	return _graphic

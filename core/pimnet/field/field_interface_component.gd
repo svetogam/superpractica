@@ -11,7 +11,7 @@
 class_name FieldInterfaceComponent
 extends Node
 
-var _field: Subscreen
+var _field: Field
 
 
 func _enter_tree() -> void:

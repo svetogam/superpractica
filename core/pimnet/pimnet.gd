@@ -33,7 +33,7 @@ func _enter_tree() -> void:
 # Mechanics
 #####################################################################
 
-func process_interfield_object_drop(object: SuperscreenObject) -> void:
+func process_interfield_object_drop(object: InterfieldObject) -> void:
 	var source = object.get_source()
 	var destination = get_top_field_at_point(object.position)
 
@@ -49,8 +49,8 @@ func process_interfield_object_drop(object: SuperscreenObject) -> void:
 			destination.on_incoming_drop(object, field_point, source)
 
 
-func process_dragged_memo_drop(object: SuperscreenObject) -> void:
-	emit_signal("memo_drag_stopped", object.memo)
+func process_dragged_memo_drop(object: DraggedMemo) -> void:
+	memo_drag_stopped.emit(object.memo)
 	var destination = get_top_memo_slot_at_point(object.position)
 	if destination != null:
 		destination.take_memo(object.memo)
@@ -60,22 +60,22 @@ func process_dragged_memo_drop(object: SuperscreenObject) -> void:
 # Creation
 #####################################################################
 
-func create_interfield_object_by_parts(graphic: Node2D, input_shape: InputShape =null,
-			object_type:=GameGlobals.NO_OBJECT, grab_now:=true) -> SuperscreenObject:
+func create_interfield_object_by_parts(graphic: ProceduralGraphic, input_shape: InputShape =null,
+			object_type:=GameGlobals.NO_OBJECT, grab_now:=true) -> InterfieldObject:
 	return _create_interfield_object(null, graphic, input_shape, object_type, grab_now)
 
 
-func create_interfield_object_by_original(original: SubscreenObject,
-			grab_now:=true) -> SuperscreenObject:
+func create_interfield_object_by_original(original: FieldObject,
+			grab_now:=true) -> InterfieldObject:
 	var graphic = original.get_drag_graphic()
 	var input_shape = original.input_shape
 	var object_type = original.get_object_type()
 	return _create_interfield_object(original, graphic, input_shape, object_type, grab_now)
 
 
-func _create_interfield_object(original: SubscreenObject, graphic: Node2D,
-			input_shape: InputShape, object_type: int, grab_now: bool) -> SuperscreenObject:
-	var interfield_object = interfield_object_scene.instance()
+func _create_interfield_object(original: FieldObject, graphic: ProceduralGraphic,
+			input_shape: InputShape, object_type: int, grab_now: bool) -> InterfieldObject:
+	var interfield_object = interfield_object_scene.instantiate()
 	interfield_object.setup(original, graphic, input_shape, object_type)
 	_add_dragged_object(interfield_object)
 
@@ -85,19 +85,19 @@ func _create_interfield_object(original: SubscreenObject, graphic: Node2D,
 	return interfield_object
 
 
-func create_dragged_memo(memo: Memo, size:=Vector2.ZERO) -> SuperscreenObject:
-	var dragged_memo = dragged_memo_scene.instance()
+func create_dragged_memo(memo: Memo, memo_size:=Vector2.ZERO) -> DraggedMemo:
+	var dragged_memo = dragged_memo_scene.instantiate()
 	dragged_memo.setup(memo)
 	_add_dragged_object(dragged_memo)
-	dragged_memo.set_size(size)
+	dragged_memo.set_size(memo_size)
 
 	dragged_memo.start_grab()
-	emit_signal("memo_drag_started", memo)
+	memo_drag_started.emit(memo)
 
 	return dragged_memo
 
 
-func _add_dragged_object(object: Node2D) -> void:
+func _add_dragged_object(object: SuperscreenObject) -> void:
 	assert(_dragged_object_layer != null)
 	_dragged_object_layer.add_child(object)
 
@@ -110,7 +110,7 @@ func get_pim_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "pims")
 
 
-func get_pim(pim_name: String) -> WindowContent:
+func get_pim(pim_name: String) -> Pim:
 	for pim in get_pim_list():
 		if pim.name == pim_name:
 			return pim
@@ -121,7 +121,7 @@ func get_field_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "fields")
 
 
-func get_pim_field(pim_name: String) -> Subscreen:
+func get_pim_field(pim_name: String) -> Field:
 	var pim = get_pim(pim_name)
 	if pim.field != null:
 		return pim.field
@@ -132,28 +132,28 @@ func get_memo_slot_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "memo_slots")
 
 
-func get_top_field_at_point(point: Vector2) -> Subscreen:
+func get_top_field_at_point(point: Vector2) -> Field:
 	var top_window = get_top_window_at_point(point)
 	if top_window != null:
 		return _get_field_at_point(top_window, point)
 	return null
 
 
-func _get_field_at_point(window: Window, point: Vector2) -> Subscreen:
+func _get_field_at_point(window: SpWindow, point: Vector2) -> Field:
 	var subscreen = window.get_subscreen_at_point(point)
 	if subscreen != null and subscreen.is_in_group("fields"):
 		return subscreen
 	return null
 
 
-func get_top_memo_slot_at_point(point: Vector2) -> WindowContent:
+func get_top_memo_slot_at_point(point: Vector2) -> MemoSlot:
 	var top_window = get_top_window_at_point(point)
 	if top_window != null:
 		return _get_memo_slot_at_point(top_window, point)
 	return null
 
 
-func _get_memo_slot_at_point(window: Window, point: Vector2) -> WindowContent:
+func _get_memo_slot_at_point(window: SpWindow, point: Vector2) -> MemoSlot:
 	for window_content in window.get_content_list_at_point(point):
 		if window_content.is_in_group("memo_slots"):
 			return window_content

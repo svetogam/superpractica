@@ -21,9 +21,8 @@ func _init(p_unit_data_list: Array, p_bubble_data_list: Array) -> void:
 
 
 func is_equal_to(other: MemState) -> bool:
-	var check_func = funcref(Utils, "are_dicts_equal")
 	var units_check = Utils.are_unsorted_lists_equal(unit_data_list,
-			other.unit_data_list, check_func)
+			other.unit_data_list)
 	var bubbles_check = Utils.are_unsorted_lists_equal(bubble_data_list,
-			other.bubble_data_list, check_func)
+			other.bubble_data_list)
 	return units_check and bubbles_check

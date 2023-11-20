@@ -12,8 +12,8 @@ class_name VerificationPack
 extends Node
 
 var verifier: Node
-onready var _verification_factory := $VerificationFactory
-onready var _process_factory := $ProcessFactory
+@onready var _verification_factory := $VerificationFactory as NodeFactory
+@onready var _process_factory := $ProcessFactory as NodeFactory
 
 
 func _enter_tree() -> void:

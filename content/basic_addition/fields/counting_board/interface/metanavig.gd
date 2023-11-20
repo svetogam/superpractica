@@ -17,7 +17,7 @@ extends FieldMetanavigComponent
 const MemStateClass := preload("mem_state.gd")
 
 
-func build() -> Object:
+func build() -> MemState:
 	var data_list = _get_number_squares_data_list()
 	return MemStateClass.new(data_list)
 
@@ -30,7 +30,7 @@ func _get_number_squares_data_list() -> Array:
 	return data_list
 
 
-func _get_square_data(square: FieldObject) -> Dictionary:
+func _get_square_data(square: NumberSquare) -> Dictionary:
 	return {"number": square.number, "circled": square.circled,
 			"highlighted": square.highlighted, "has_counter": square.has_counter()}
 

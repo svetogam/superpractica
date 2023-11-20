@@ -32,7 +32,7 @@ func get_value() -> int:
 
 
 func get_string(_kwargs:={}) -> String:
-	return String(number)
+	return str(number)
 
 
 func is_memo_equal(other_memo: Memo) -> bool:

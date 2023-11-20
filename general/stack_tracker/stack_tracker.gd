@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name StackTracker
-extends Reference
+extends RefCounted
 
 var _stack: Array
 var _stack_position: int
@@ -39,12 +39,12 @@ func push_item(item) -> void:
 
 func _limit_stack_to_position() -> void:
 	while not is_position_at_front():
-		_stack.remove(len(_stack)-1)
+		_stack.remove_at(len(_stack)-1)
 
 
 func _limit_stack_to_max_items() -> void:
 	while len(_stack) > _max_items:
-		_stack.remove(0)
+		_stack.remove_at(0)
 
 
 func move_position_back() -> void:

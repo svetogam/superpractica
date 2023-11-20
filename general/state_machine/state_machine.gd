@@ -13,11 +13,10 @@
 class_name StateMachine
 extends Node
 
-export(GDScript) var SetupData: GDScript
-export(NodePath) var _target_path: NodePath
-export(NodePath) var _initial_state_path: NodePath
-export(bool) var _auto_activate := true
-var _target: Node
+@export var SetupData: GDScript
+@export var _target: Node
+@export var _initial_state: State
+@export var _auto_activate := true
 var _current_state: State
 var _setup_data: StateData
 
@@ -42,27 +41,23 @@ func _setup() -> void:
 	_setup_states()
 
 
-#Priority for target is: 1-inspector field, 2-parent
+#Priority for target is: 1-inspector, 2-parent
 func _set_target() -> void:
-	if not _target_path.is_empty():
-		_target = get_node(_target_path)
-	else:
+	if _target == null:
 		_target = get_parent()
 	assert(_target != null)
 
 
 #Priority for initial state is:
-#1-activation parameter, 2-setup_data field, 3-inspector field
+#1-activation parameter, 2-setup_data, 3-inspector
 func _get_initial_state(initial_state_name: String) -> State:
 	if initial_state_name != "":
 		return get_node(initial_state_name) as State
 	elif _setup_data != null:
 		return get_node(_setup_data.get_initial_state()) as State
-	elif not _initial_state_path.is_empty():
-		return get_node(_initial_state_path) as State
 	else:
-		assert(false)
-		return null
+		assert(_initial_state != null)
+		return _initial_state
 
 
 func _setup_states() -> void:

@@ -14,8 +14,8 @@ signal completed
 signal affirmed
 signal rejected
 
-export(int) var _start_number: int
-export(int) var _count: int
+@export var _start_number: int
+@export var _count: int
 var _next_number: int
 var _last_number: int
 
@@ -40,27 +40,27 @@ func _start() -> void:
 		_last_number = -1
 
 
-func _decide_create(square: FieldObject) -> bool:
+func _decide_create(square: NumberSquare) -> bool:
 	if square.number == _next_number:
 		effects.affirm(square.position)
-		emit_signal("affirmed")
+		affirmed.emit()
 		_next_number += 1
 
 		return true
 
 	else:
 		effects.reject(square.position)
-		emit_signal("rejected")
+		rejected.emit()
 		return false
 
 
-func _on_counter_created(square: FieldObject) -> void:
+func _on_counter_created(square: NumberSquare) -> void:
 	assert(square.get_counter() != null)
 
 	square.get_counter().set_affirmation()
 
 	if _is_completing_number(square.number):
-		emit_signal("completed")
+		completed.emit()
 		stop()
 
 

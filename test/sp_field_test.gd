@@ -15,5 +15,5 @@ var field: Field
 
 
 func before_each():
-	.before_each()
+	super.before_each()
 	field = scene

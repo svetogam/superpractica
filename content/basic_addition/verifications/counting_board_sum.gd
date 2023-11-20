@@ -24,7 +24,7 @@ func _ready() -> void:
 	var board_number = field.actions.give_number_effect_by_number(number)
 	var slot_number = slot_panel.create_number_effect("sum")
 
-	yield(Game.wait_for(screen_verifier.START_DELAY), Game.DONE)
+	await Game.wait_for(screen_verifier.START_DELAY)
 
 	screen_verifier.verify("numbers_are_equal", [board_number, slot_number],
 			self, "verify", "reject")

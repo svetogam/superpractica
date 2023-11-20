@@ -15,8 +15,8 @@ var _field_program: FieldProgram
 
 func _enter(_last_state: String) -> void:
 	_field_program = program.pim.field.get_program("AddByCircles")
-	_field_program.connect("completed", self, "complete")
+	_field_program.completed.connect(complete)
 
 
 func _exit(_next_state: String) -> void:
-	_field_program.disconnect("completed", self, "complete")
+	_field_program.completed.disconnect(complete)

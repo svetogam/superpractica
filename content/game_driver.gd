@@ -11,13 +11,9 @@
 extends Node
 
 var level_group_1 := preload("res://content/basic_addition/levels/level_group/level_group.tres")
-var level_group_2 := preload("res://content/basic_fractions/levels/level_group/level_group.tres")
-var level_group_3 := preload("res://content/debug/levels/level_group/level_group.tres")
+var level_group_2 := preload("res://content/debug/levels/level_group/level_group.tres")
 
 
 func _ready() -> void:
-	randomize()
-
 	Game.level_loader.add_level_group(level_group_1)
 	Game.level_loader.add_level_group(level_group_2)
-	Game.level_loader.add_level_group(level_group_3)

@@ -1,43 +1,29 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cadayibg7snxi"]
 
-[ext_resource path="res://content/basic_addition/tests/task_levels/sum_problem_3.png" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://bo8rh1fb7lipg" path="res://content/basic_addition/tests/task_levels/sum_problem_3.png" id="1"]
 
 [node name="Ref" type="Node"]
 
 [node name="Screen" type="TextureRect" parent="."]
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -641.0
-margin_top = -827.0
-margin_right = 641.0
-texture = ExtResource( 1 )
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("1")
 stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="IncrementButton" type="Position2D" parent="."]
-position = Vector2( 394.727, 357.226 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="IncrementButton" type="Marker2D" parent="."]
+position = Vector2(394.727, 357.226)
 
-[node name="SelectorSlot" type="Position2D" parent="."]
-position = Vector2( 388, 295 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="SelectorSlot" type="Marker2D" parent="."]
+position = Vector2(388, 295)
 
-[node name="SumSlot" type="Position2D" parent="."]
-position = Vector2( 565, 113 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="SumSlot" type="Marker2D" parent="."]
+position = Vector2(565, 113)
 
-[node name="CheckButton" type="Position2D" parent="."]
-position = Vector2( 122.771, 196.77 )
-__meta__ = {
-"_gizmo_extents_": 50.0
-}
+[node name="CheckButton" type="Marker2D" parent="."]
+position = Vector2(122.771, 196.77)

@@ -24,7 +24,7 @@ Note that this game is incomplete and many changes are planned. At this stage it
 
 1. Download the source code to get the Godot project folder.
 
-2. Download [Godot Engine 3.5.3](https://godotengine.org/download/archive/3.5.3-stable/). (Some versions will be compatible and some won't be.)
+2. Download [Godot Engine v4.1.2](https://godotengine.org/download/archive/4.1.2-stable/). (Some versions will be compatible and some won't be.)
 
 3. Open the project folder in Godot.
 
@@ -35,11 +35,11 @@ The game should be playable and editable in Godot. Please tell me if you followe
 
 For an overview of different ways to contribute, see the [Contribute page](https://superpractica.org/contribute) on the website.
 
-To contribute modifications through Godot, see [CONTRIBUTING.md](CONTRIBUTING.md).
+To contribute modifications, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 To contribute funds, go to [Liberapay](https://liberapay.com/SuperPractica/) or [Patreon](https://www.patreon.com/superpractica).
 
-For discussing Super Practica outside of particular issues, visit the [contributor "forum"](https://codeberg.org/superpractica/discussion).
+For discussing Super Practica outside of particular issues, visit the [contributor forum](https://codeberg.org/superpractica/discussion).
 
 
 ## Copyright

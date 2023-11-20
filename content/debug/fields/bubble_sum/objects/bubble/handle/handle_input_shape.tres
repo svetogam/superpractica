@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" script_class="InputShapeSetupResource" load_steps=2 format=3 uid="uid://c2nqye5mnyabj"]
 
-[ext_resource path="res://core/base_ui/input_object/input_shape_setup_resource.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://core/base_ui/input_object/input_shape_setup_resource.gd" id="1"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 shape_type = 0
-rect_size = Vector2( 8, 8 )
+size = Vector2(10, 10)
 rect_center = true
 circle_radius = 0.0
-offset = Vector2( 0, 0 )
+offset = Vector2(0, 0)

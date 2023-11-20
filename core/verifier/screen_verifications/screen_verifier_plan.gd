@@ -15,11 +15,11 @@ extends Node2D
 #####################################################################
 
 func get_equality_comparator_position() -> Vector2:
-	return $"%EqualityComparator".global_position
+	return %EqualityComparator.global_position
 
 
 func get_equality_left_number_position() -> Vector2:
-	return $"%EqualityLeftNumber".global_position
+	return %EqualityLeftNumber.global_position
 
 
 func get_equality_right_number_position(number: int) -> Vector2:
@@ -28,15 +28,15 @@ func get_equality_right_number_position(number: int) -> Vector2:
 	if digits > 1:
 		digit_offset = (digits - 1) * _get_equality_digit_difference()
 
-	return $"%EqualityRightNumber".global_position + digit_offset
+	return %EqualityRightNumber.global_position + digit_offset
 
 
 func _get_equality_digit_difference() -> Vector2:
-	return (-$"%EqualityLeftNumber".get_digit_displacement() * get_equality_number_scale_ratio())
+	return (-%EqualityLeftNumber.get_digit_displacement() * get_equality_number_scale_ratio())
 
 
 func get_equality_number_scale_ratio() -> float:
-	return $"%EqualityLeftNumber".scale.x
+	return %EqualityLeftNumber.scale.x
 
 
 #####################################################################
@@ -44,15 +44,15 @@ func get_equality_number_scale_ratio() -> float:
 #####################################################################
 
 func get_evaluation_bar_position() -> Vector2:
-	return $"%EvalBar".global_position
+	return %EvalBar.global_position
 
 
 func get_evaluation_operator_position() -> Vector2:
-	return $"%EvalOperator".global_position
+	return %EvalOperator.global_position
 
 
 func get_evaluation_left_number_position() -> Vector2:
-	return $"%EvalLeftNumber".global_position
+	return %EvalLeftNumber.global_position
 
 
 func get_evaluation_right_number_position(number: int) -> Vector2:
@@ -61,19 +61,19 @@ func get_evaluation_right_number_position(number: int) -> Vector2:
 	if digits > 1:
 		digit_offset = (digits - 1) * _get_evaluation_digit_difference()
 
-	return $"%EvalRightNumber".global_position + digit_offset
+	return %EvalRightNumber.global_position + digit_offset
 
 
 func _get_evaluation_digit_difference() -> Vector2:
-	return (-$"%EvalLeftNumber".get_digit_displacement() * get_evaluation_number_scale_ratio())
+	return (-%EvalLeftNumber.get_digit_displacement() * get_evaluation_number_scale_ratio())
 
 
 func get_evaluation_number_scale_ratio() -> float:
-	return $"%EvalLeftNumber".scale.x
+	return %EvalLeftNumber.scale.x
 
 
 func get_evaluation_operator_scale_ratio() -> float:
-	return $"%EvalOperator".scale.x
+	return %EvalOperator.scale.x
 
 
 #####################################################################
@@ -81,8 +81,8 @@ func get_evaluation_operator_scale_ratio() -> float:
 #####################################################################
 
 func get_digit_reference_number_position() -> Vector2:
-	return $"%DigitReferenceNumber".global_position
+	return %DigitReferenceNumber.global_position
 
 
-func get_digit_reference_number_scale_ratio() -> Vector2:
-	return $"%DigitReferenceNumber".scale.x
+func get_digit_reference_number_scale_ratio() -> float:
+	return %DigitReferenceNumber.scale.x

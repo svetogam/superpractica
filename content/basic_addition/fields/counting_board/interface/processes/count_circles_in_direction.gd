@@ -22,7 +22,7 @@ func setup(p_start_number: int, p_direction: String) -> void:
 func _ready() -> void:
 	var numbers_to_count = field.queries.get_circled_numbers_in_direction(
 			_start_number, _direction)
-	if numbers_to_count.empty():
+	if numbers_to_count.is_empty():
 		var first_number = _start_number + {"right": 1, "down": 10} [_direction]
 		field.run_process("empty_count_square", [first_number], self, "_on_completed")
 	else:

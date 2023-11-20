@@ -28,7 +28,7 @@ func _enter(_last_state: String) -> void:
 		var next_square = field.queries.get_number_square(start_square.number + 1 + i)
 		squares_to_count.append(next_square)
 
-	yield(Game.wait_for(0.5), Game.DONE)
+	await Game.wait_for(0.5)
 
 	_put_next_counter()
 
@@ -39,23 +39,23 @@ func _put_next_counter() -> void:
 	var counter = spawner.create_interfield_object(false)
 	var next_square = squares_to_count[count]
 
-	counter.animator.connect("move_completed", self,
-			"_on_counter_move_completed", [counter, next_square])
+	counter.animator.move_completed.connect(
+			_on_counter_move_completed.bind(counter, next_square))
 	var dest = verification.pim.field_viewer.convert_internal_to_external_point(
 			next_square.position)
 	counter.animator.move_to_position(dest)
 
 
-func _on_counter_move_completed(counter: InterfieldObject, square: FieldObject) -> void:
+func _on_counter_move_completed(counter: InterfieldObject, square: NumberSquare) -> void:
 	counter.queue_free()
 	var field_counter = field.actions.create_counter(square)
 	field.actions.count_counter(field_counter)
 	count += 1
 
-	yield(Game.wait_for(0.5), Game.DONE)
+	await Game.wait_for(0.5)
 
 	if count == squares_to_count.size():
-		yield(Game.wait_for(0.5), Game.DONE)
+		await Game.wait_for(0.5)
 		number_effect.queue_free()
 		field.clear_effects()
 		_change_state("CompareResult")

@@ -11,8 +11,8 @@
 extends WindowContent
 
 var _spawner_factory: NodeFactory
-onready var _container := $"%MainContainer"
-onready var _sub_container_prototype := $"%SubContainerPrototype"
+@onready var _container := %MainContainer as VBoxContainer
+@onready var _sub_container_prototype := %SubContainerPrototype as CenterContainer
 
 
 func _ready() -> void:
@@ -38,7 +38,7 @@ func _add_sub_container() -> Control:
 	return spawner_container
 
 
-func get_spawner(spawner_type: int) -> SuperscreenObject:
+func get_spawner(spawner_type: int) -> ObjectSpawner:
 	for spawner in _get_spawners():
 		if spawner.get_object_type() == spawner_type:
 			return spawner
@@ -61,4 +61,4 @@ func set_disabled(status:=true) -> void:
 #Hack for the crooked container cartel
 func _on_PanelContainer_resized() -> void:
 	if _container != null:
-		rect_min_size.y = _container.get_rect().size.y + 14
+		custom_minimum_size.y = _container.get_rect().size.y + 24

@@ -16,4 +16,4 @@ func set_properties(properties: Dictionary) -> void:
 	for property in properties.keys():
 		set(property, properties[property])
 
-	update()
+	queue_redraw()

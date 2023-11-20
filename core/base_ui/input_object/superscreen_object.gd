@@ -12,7 +12,7 @@ class_name SuperscreenObject
 extends InputObject
 
 var animator = Animator2D.new()
-var superscreen: Control
+var superscreen: Superscreen
 var _drag_only := false
 
 
@@ -37,7 +37,7 @@ func _find_superscreen() -> void:
 func start_grab() -> void:
 	if _drag_only:
 		position = get_global_mouse_position()
-	.start_grab()
+	super.start_grab()
 
 
 #Virtual default
@@ -47,6 +47,6 @@ func _on_drag(point: Vector2, _change: Vector2) -> void:
 
 
 func _end_drag() -> void:
-	._end_drag()
+	super._end_drag()
 	if _drag_only:
 		queue_free()

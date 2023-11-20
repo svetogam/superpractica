@@ -30,7 +30,7 @@ Some useful links:
 
 After you have the project running in Godot, you should setup GUT to run tests.
 
-1. Download GUT. The currently used version is 7.4.1. You can find it at <https://github.com/bitwes/Gut>.
+1. Download GUT. The currently used version is 9.1.0. You can find it at <https://github.com/bitwes/Gut>.
 
 2. Put GUT in superpractica/addons/gut.
 
@@ -192,9 +192,4 @@ When writing in GDScript, follow [Godot's GDScript style guide](https://docs.god
 The features and content of Super Practica are based on [theory](https://codeberg.org/superpractica/blueprint), so it's important that they're added according to design specifications rather than whatever seems nice in the moment (for the most part).
 
 (Link the place to find design specifications here, when it exists.)
-
-
-## Writing tests{#tests}
-
-(More on this later.)
 

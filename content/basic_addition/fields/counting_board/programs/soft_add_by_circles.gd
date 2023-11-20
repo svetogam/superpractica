@@ -10,8 +10,8 @@
 
 extends SoftLimiterProgram
 
-export(int) var _start_number: int
-export(int) var _addend: int
+@export var _start_number: int
+@export var _addend: int
 
 
 func setup(p_start_number: int, p_addend: int) -> void:

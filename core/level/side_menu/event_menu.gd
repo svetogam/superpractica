@@ -12,8 +12,8 @@ extends PanelContainer
 
 var _effects: NavigEffectGroup
 var _locator := ContextualLocator.new(self)
-onready var enabler := $ButtonEnabler
-onready var _container := $"%ButtonContainer"
+@onready var enabler := $ButtonEnabler as Node
+@onready var _container := %ButtonContainer as VBoxContainer
 
 
 func _enter_tree() -> void:
@@ -28,8 +28,8 @@ func add_button(button_id: String, text: String) -> Button:
 	var button = Button.new()
 	button.name = button_id
 	button.text = text
-	button.rect_min_size.x = 50
-	button.rect_min_size.y = 50
+	button.custom_minimum_size.x = 50
+	button.custom_minimum_size.y = 50
 
 	_container.add_child(button)
 	enabler.add_button(button_id, button)
@@ -50,19 +50,19 @@ func _get_button(button_id: String) -> Button:
 
 func connect_event(button_id: String, object: Object, method: String) -> void:
 	var button = _get_button(button_id)
-	button.connect("pressed", object, method)
+	button.pressed.connect(Callable(object, method))
 
 
 func disconnect_event(button_id: String, object: Object, method: String) -> void:
 	var button = _get_button(button_id)
-	button.disconnect("pressed", object, method)
+	button.pressed.disconnect(Callable(object, method))
 
 
 func point_at_button(button_id: String) -> void:
 	assert(_effects != null)
 	var button = _get_button(button_id)
-	var point_offset = Vector2(button.rect_size.x * 0.9, button.rect_size.y * 0.5)
-	var pointer_point = button.rect_global_position + point_offset
+	var point_offset = Vector2(button.size.x * 0.9, button.size.y * 0.5)
+	var pointer_point = button.global_position + point_offset
 	_effects.point_left(pointer_point)
 
 

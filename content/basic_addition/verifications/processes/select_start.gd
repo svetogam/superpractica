@@ -12,7 +12,7 @@ extends Process
 
 var _pim: Pim
 var _number_effect: NumberEffect
-var _start_square: FieldObject
+var _start_square: NumberSquare
 
 
 func setup(p_pim: Pim, p_number_effect: NumberEffect) -> void:
@@ -22,13 +22,13 @@ func setup(p_pim: Pim, p_number_effect: NumberEffect) -> void:
 
 func _ready() -> void:
 	_start_square = _pim.field.queries.get_number_square(_number_effect.number)
-	_number_effect.animator.connect("move_completed", self, "_on_move_completed")
+	_number_effect.animator.move_completed.connect(_on_move_completed)
 	var dest = _pim.field_viewer.convert_internal_to_external_point(_start_square.position)
 	_number_effect.animator.move_to_position(dest)
 
 
 func _on_move_completed() -> void:
-	yield(Game.wait_for(0.2), Game.DONE)
+	await Game.wait_for(0.2)
 
 	_pim.field.actions.toggle_highlight(_start_square)
 	_number_effect.queue_free()

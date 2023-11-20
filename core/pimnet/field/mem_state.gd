@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name MemState
-extends Reference
+extends RefCounted
 
 
 #Virtual

@@ -10,6 +10,6 @@
 
 extends Node
 
-var pre_started_value = 2
-var started_value = 3
-var ended_value = 4
+var pre_started_value := 2
+var started_value := 3
+var ended_value := 4

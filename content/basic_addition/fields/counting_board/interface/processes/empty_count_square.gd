@@ -22,6 +22,6 @@ func _ready() -> void:
 	var square = field.queries.get_number_square(_square_number)
 	var zero = field.counter.give_current_count(square.position)
 
-	yield(Game.wait_for(DELAY), Game.DONE)
+	await Game.wait_for(DELAY)
 
 	complete([zero])

@@ -14,7 +14,7 @@ signal tool_selected(tool_mode)
 
 var _tool_to_text_map: Dictionary
 var _button_group := ButtonGroup.new()
-onready var _container := $"%ToolButtonContainer"
+@onready var _container := %ToolButtonContainer as VBoxContainer
 
 
 func setup(p_tool_to_text_map: Dictionary, tools:=[]) -> void:
@@ -30,7 +30,7 @@ func add_tools(tools: Array) -> void:
 func add_tool(tool_mode: String) -> void:
 	var text = _tool_to_text_map[tool_mode]
 	var button = ToolMenuButton.new(tool_mode, text, _button_group)
-	button.connect("toggled", self, "_on_button_toggled")
+	button.toggled.connect(_on_button_toggled)
 
 	_container.add_child(button)
 
@@ -38,7 +38,7 @@ func add_tool(tool_mode: String) -> void:
 func _on_button_toggled(button_pressed: bool) -> void:
 	if button_pressed:
 		var tool_mode = _button_group.get_pressed_button().tool_mode
-		emit_signal("tool_selected", tool_mode)
+		tool_selected.emit(tool_mode)
 
 
 func get_current_tool() -> String:
@@ -48,10 +48,10 @@ func get_current_tool() -> String:
 func set_tool(tool_mode: String) -> void:
 	if tool_mode != "":
 		var button = _get_button(tool_mode)
-		button.pressed = true
+		button.button_pressed = true
 	else:
 		for button in _button_group.get_buttons():
-			button.pressed = false
+			button.button_pressed = false
 
 
 func enable_tool(tool_mode: String) -> void:
@@ -95,7 +95,7 @@ func _get_button(tool_mode: String) -> Button:
 #Hack for the crooked container cartel
 func _on_PanelContainer_resized() -> void:
 	if _container != null:
-		rect_min_size.y = _container.get_rect().size.y + 14
+		custom_minimum_size.y = _container.get_rect().size.y + 24
 
 
 class ToolMenuButton:
@@ -104,10 +104,10 @@ class ToolMenuButton:
 	const MIN_BUTTON_SIZE := Vector2(30, 30)
 	var tool_mode: String
 
-	func _init(p_tool_mode: String, p_text: String, p_group: ButtonGroup) -> void:
+	func _init(p_tool_mode: String, p_text: String, p_button_group: ButtonGroup) -> void:
 		tool_mode = p_tool_mode
 		text = p_text
-		group = p_group
+		button_group = p_button_group
 		mouse_filter = MOUSE_FILTER_PASS
 		toggle_mode = true
-		rect_min_size = MIN_BUTTON_SIZE
+		custom_minimum_size = MIN_BUTTON_SIZE

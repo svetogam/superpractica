@@ -11,7 +11,7 @@
 extends FieldObject
 
 var _dimensions := Vector2(500, 500)
-onready var _graphic: ProceduralGraphic = $"%Graphic"
+@onready var _graphic := %Graphic as ProceduralGraphic
 
 
 func _on_field_ready() -> void:
@@ -34,7 +34,7 @@ func _set_number_squares() -> void:
 			add_number_square(number, square_position)
 
 
-func add_number_square(number: int, square_position: Vector2) -> FieldObject:
+func add_number_square(number: int, square_position: Vector2) -> NumberSquare:
 	var number_square = field.create_object(CountingBoardGlobals.Objects.NUMBER_SQUARE)
 	var square_size = get_square_size()
 	number_square.setup(square_size, number)

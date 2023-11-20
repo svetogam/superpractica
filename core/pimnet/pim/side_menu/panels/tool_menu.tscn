@@ -1,39 +1,32 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cc24tswn3u1ht"]
 
-[ext_resource path="res://core/pimnet/pim/side_menu/panels/tool_menu.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://core/pimnet/pim/side_menu/panels/tool_menu.gd" id="1"]
 
 [node name="PimToolMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -772.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="ToolButtonContainer" type="VBoxContainer" parent="PanelContainer"]
 unique_name_in_owner = true
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1273.0
-margin_bottom = 21.0
+layout_mode = 2
 mouse_filter = 2
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="Label" type="Label" parent="PanelContainer/ToolButtonContainer"]
-margin_right = 1266.0
-margin_bottom = 14.0
+layout_mode = 2
 text = "Tools"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [connection signal="resized" from="PanelContainer" to="." method="_on_PanelContainer_resized"]

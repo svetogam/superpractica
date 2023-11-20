@@ -16,7 +16,7 @@ const TEST_POSITION_CHANGE = Vector2(10, 10)
 
 func _simulate_mouse_press():
 	var event = InputEventMouseButton.new()
-	event.button_index = BUTTON_LEFT
+	event.button_index = MOUSE_BUTTON_LEFT
 	event.pressed = true
 	event.position = TEST_POSITION
 	return event
@@ -31,7 +31,7 @@ func _simulate_mouse_motion():
 
 func _simulate_mouse_release():
 	var event = InputEventMouseButton.new()
-	event.button_index = BUTTON_LEFT
+	event.button_index = MOUSE_BUTTON_LEFT
 	event.pressed = false
 	event.position = TEST_POSITION
 	return event

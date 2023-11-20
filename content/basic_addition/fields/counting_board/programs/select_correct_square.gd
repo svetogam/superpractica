@@ -13,7 +13,7 @@ extends FieldProgram
 signal completed
 signal rejected
 
-export(int) var _start_number: int
+@export var _start_number: int
 
 
 func setup(p_start_number: int) -> void:
@@ -26,15 +26,15 @@ func _start() -> void:
 	action_queue.connect_condition("toggle_highlight", self, "_decide_toggle_highlight")
 
 
-func _decide_toggle_highlight(square: FieldObject) -> bool:
+func _decide_toggle_highlight(square: NumberSquare) -> bool:
 	var correct = square.number == _start_number
 	if correct:
 		effects.affirm(square.position)
 		stop()
-		emit_signal("completed")
+		completed.emit()
 	else:
 		effects.reject(square.position)
-		emit_signal("rejected")
+		rejected.emit()
 	return correct
 
 

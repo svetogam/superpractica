@@ -1,10 +1,10 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://bx7u54cnp6u81"]
 
-[ext_resource path="res://core/level_resource.gd" type="Script" id=1]
-[ext_resource path="res://content/basic_addition/levels/basic_addition_5/levels/level_3.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://core/level_resource.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://f8q3nwyjaabn" path="res://content/basic_addition/levels/basic_addition_5/levels/level_3.tscn" id="2"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 name = "5.3"
 _name_text = "Addition 5.3"
-_scene = ExtResource( 2 )
+_scene = ExtResource("2")

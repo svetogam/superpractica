@@ -1,14 +1,12 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="LevelGroupResource" load_steps=5 format=3 uid="uid://di1wh74ydkd1u"]
 
-[ext_resource path="res://core/level_group_resource.gd" type="Script" id=1]
-[ext_resource path="res://content/debug/levels/level_group/pie_slicer.tres" type="Resource" id=2]
-[ext_resource path="res://content/debug/levels/level_group/bubble_sum_1.tres" type="Resource" id=3]
-[ext_resource path="res://content/debug/levels/level_group/counting_board.tres" type="Resource" id=4]
-[ext_resource path="res://content/debug/levels/level_group/bubble_sum_2.tres" type="Resource" id=5]
-[ext_resource path="res://content/debug/levels/level_group/task_progressor.tres" type="Resource" id=6]
+[ext_resource type="Script" path="res://core/level_group_resource.gd" id="1"]
+[ext_resource type="Resource" uid="uid://belrobj4po6xk" path="res://content/debug/levels/level_group/bubble_sum_1.tres" id="3"]
+[ext_resource type="Resource" uid="uid://b5q4vetbck3i5" path="res://content/debug/levels/level_group/counting_board.tres" id="4"]
+[ext_resource type="Resource" uid="uid://r6oa4wfrught" path="res://content/debug/levels/level_group/bubble_sum_2.tres" id="5"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 name = "debug_windows"
 _name_text = "Debug Windows"
-_levels = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ) ]
+_levels = Array[Resource("res://core/level_resource.gd")]([ExtResource("3"), ExtResource("5"), ExtResource("4")])

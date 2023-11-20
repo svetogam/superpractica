@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name Memo
-extends Reference
+extends RefCounted
 
 
 func is_same_type(other_memo: Memo) -> bool:

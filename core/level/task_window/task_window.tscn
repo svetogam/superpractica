@@ -1,20 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://duy43ad7xsbxn"]
 
-[ext_resource path="res://core/base_ui/window/window.tscn" type="PackedScene" id=1]
-[ext_resource path="res://core/level/task_window/task_progressor/task_progressor.tscn" type="PackedScene" id=2]
+[ext_resource type="PackedScene" uid="uid://c1ij4lra167t7" path="res://core/base_ui/sp_window/sp_window.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dllyuh0dwcw38" path="res://core/level/task_window/task_progressor/task_progressor.tscn" id="2"]
 
-[node name="TaskWindow" instance=ExtResource( 1 )]
+[node name="TaskWindow" instance=ExtResource("1")]
 
 [node name="WindowRect" parent="." index="0"]
-margin_right = 568.0
-margin_bottom = 500.0
+offset_right = 568.0
+offset_bottom = 500.0
 
-[node name="ContentContainer" parent="WindowRect/ContentPanel" index="0"]
-margin_right = 561.0
-margin_bottom = 463.0
-
-[node name="TaskProgressor" parent="WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 554.0
-margin_bottom = 456.0
+[node name="TaskProgressor" parent="WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("2")]
+layout_mode = 2

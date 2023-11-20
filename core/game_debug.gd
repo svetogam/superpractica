@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name GameDebug
-extends Reference
+extends RefCounted
 
 enum TimeScales {
 	SLOW,
@@ -31,7 +31,6 @@ enum DelayTimes {
 var _on := false
 var _animation_time_modifier: float
 var _skip_delays: bool
-var _delay_timer_type: String
 var _delay_time_modifier: float
 
 
@@ -63,7 +62,7 @@ func enable_precise_input(enable:=true) -> void:
 
 func disable_graphics(disable:=true) -> void:
 	if _on:
-		VisualServer.render_loop_enabled = not disable
+		RenderingServer.render_loop_enabled = not disable
 
 
 func set_animation_speed(animation_speed: int) -> void:
@@ -83,19 +82,15 @@ func set_delay_speed(delay_speed: int) -> void:
 		DelayTimes.NORMAL:
 			_skip_delays = false
 			_delay_time_modifier = 1.0
-			_delay_timer_type = "timeout"
 		DelayTimes.SHORTER:
 			_skip_delays = false
 			_delay_time_modifier = 0.5
-			_delay_timer_type = "timeout"
 		DelayTimes.FRAME:
 			_skip_delays = false
 			_delay_time_modifier = 0.01
-			_delay_timer_type = "next_idle"
 		DelayTimes.SKIP:
 			_skip_delays = true
 			_delay_time_modifier = 0.01
-			_delay_timer_type = "next_idle"
 		_:
 			assert(false)
 
@@ -108,8 +103,12 @@ func get_animation_time_modifier() -> float:
 	return _animation_time_modifier
 
 
-func create_wait_timer(time: float) -> Timer:
-	return Utils.create_wait_timer(_delay_timer_type, time * _delay_time_modifier)
+func debug_wait_for(time: float):
+	if _skip_delays or time <= 0:
+		return null
+	else:
+		var wait_timer = Game.get_tree().create_timer(time * _delay_time_modifier)
+		return wait_timer.timeout
 
 
 func should_skip_delays() -> bool:

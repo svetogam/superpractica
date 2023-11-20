@@ -11,10 +11,10 @@
 class_name VerificationState
 extends State
 
-var verification: Process
+var verification: Verification
 var verifier: Node
-var pack: Node
-var screen_verifier: Node
+var pack: VerificationPack
+var screen_verifier: ScreenVerifier
 
 
 func _on_setup() -> void:

@@ -11,9 +11,9 @@
 class_name PimProgram
 extends Mode
 
-var pim: WindowContent
-var field: Subscreen
-var action_queue: Object
+var pim: Pim
+var field: Field
+var action_queue: FieldActionQueue
 var effects: NavigEffectGroup
 
 

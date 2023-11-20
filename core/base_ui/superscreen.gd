@@ -15,7 +15,7 @@ var input_sequencer := InputSequencer.new(self)
 
 
 func _init() -> void:
-	rect_clip_content = true
+	clip_contents = true
 	size_flags_horizontal = SIZE_EXPAND_FILL
 	size_flags_vertical = SIZE_EXPAND_FILL
 	anchor_right = ANCHOR_END
@@ -23,19 +23,16 @@ func _init() -> void:
 	add_to_group("superscreens")
 
 
-func set_offset(offset: Vector2) -> void:
+func set_combined_offset(offset: Vector2) -> void:
 	for child in get_children():
-		if child is Node2D:
-			child.position += offset
-		elif child is Control:
-			child.rect_position += offset
+		child.position += offset
 
 
 func get_object_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "superscreen_objects")
 
 
-func get_object(object_name: String) -> Node2D:
+func get_object(object_name: String) -> InputObject:
 	for object in get_object_list():
 		if object.name == object_name:
 			return object
@@ -46,7 +43,7 @@ func get_window_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "windows")
 
 
-func get_window(window_name: String) -> Node2D:
+func get_sp_window(window_name: String) -> SpWindow:
 	return get_object(window_name)
 
 
@@ -58,31 +55,31 @@ func get_windows_at_point(point: Vector2) -> Array:
 	return window_list
 
 
-func get_window_content(window_name: String, content_name: String) -> Control:
-	var window = get_window(window_name)
+func get_window_content(window_name: String, content_name: String) -> WindowContent:
+	var window = get_sp_window(window_name)
 	if window == null:
 		return null
 	return window.get_content(content_name)
 
 
-func get_top_window_at_point(point: Vector2) -> Node2D:
+func get_top_window_at_point(point: Vector2) -> SpWindow:
 	var window_list = _get_sorted_window_list_at_point(point)
-	if not window_list.empty():
+	if not window_list.is_empty():
 		return window_list.front()
 	return null
 
 
 func _get_sorted_window_list_at_point(point: Vector2) -> Array:
 	var window_list = get_windows_at_point(point)
-	window_list.sort_custom(self, "_sort_by_input_priority")
+	window_list.sort_custom(Callable(self, "_sort_by_input_priority"))
 	return window_list
 
 
-func _sort_by_input_priority(window_1: Node2D, window_2: Node2D) -> bool:
+func _sort_by_input_priority(window_1: SpWindow, window_2: SpWindow) -> bool:
 	return window_1.has_input_priority_over_other(window_2)
 
 
-func get_top_subscreen_viewer_at_point(point: Vector2) -> Control:
+func get_top_subscreen_viewer_at_point(point: Vector2) -> SubscreenViewer:
 	var top_window = get_top_window_at_point(point)
 	if top_window != null:
 		return top_window.get_subscreen_viewer_at_point(point)
@@ -93,7 +90,7 @@ func get_subscreen_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "subscreens")
 
 
-func get_top_subscreen_at_point(point: Vector2) -> Node2D:
+func get_top_subscreen_at_point(point: Vector2) -> Subscreen:
 	var top_window = get_top_window_at_point(point)
 	if top_window != null:
 		return top_window.get_subscreen_at_point(point)

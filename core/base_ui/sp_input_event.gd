@@ -9,7 +9,7 @@
 ##############################################################################
 
 class_name SpInputEvent
-extends Reference
+extends RefCounted
 
 signal completed
 signal deactivated
@@ -29,7 +29,7 @@ enum InputState {
 var _input_type: int = InputType.EMPTY
 var _position: Vector2
 var _relative: Vector2
-var _grabbed_object: Node2D
+var _grabbed_object: InputObject
 var _input_state: int = InputState.ACTIVE
 
 
@@ -56,7 +56,7 @@ func get_change() -> Vector2:
 		return Vector2.ZERO
 
 
-func get_grabbed_object() -> Node2D:
+func get_grabbed_object() -> InputObject:
 	return _grabbed_object
 
 
@@ -67,14 +67,14 @@ func is_object_grabbed() -> bool:
 func deactivate() -> void:
 	if is_active():
 		_input_state = InputState.INACTIVE
-		emit_signal("deactivated")
+		deactivated.emit()
 	elif is_completed():
 		assert(false)
 
 
 func complete() -> void:
 	_input_state = InputState.COMPLETED
-	emit_signal("completed")
+	completed.emit()
 
 
 func is_active() -> bool:

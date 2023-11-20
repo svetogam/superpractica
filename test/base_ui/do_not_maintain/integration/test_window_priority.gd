@@ -10,8 +10,8 @@
 
 extends SpIntegrationTest
 
-var window_1: Window
-var window_2: Window
+var window_1: SpWindow
+var window_2: SpWindow
 
 
 func _get_scene_path() -> String:
@@ -19,7 +19,7 @@ func _get_scene_path() -> String:
 
 
 func before_each():
-	.before_each()
+	super.before_each()
 	window_1 = $Test/Superscreen/Window1
 	window_2 = $Test/Superscreen/Window2
 
@@ -31,7 +31,7 @@ func test_last_pressed_window_has_priority():
 	simulator.click_left_at($Test/PosWindow1.position)
 	simulator.click_left_at($Test/PosOverlap.position)
 	simulator.run()
-	yield(simulator, "done")
+	await simulator.done
 
 	assert_signal_emit_count(window_1, "pressed", 2)
 	assert_signal_emit_count(window_2, "pressed", 0)
@@ -39,7 +39,7 @@ func test_last_pressed_window_has_priority():
 	simulator.click_left_at($Test/PosWindow2.position)
 	simulator.click_left_at($Test/PosOverlap.position)
 	simulator.run()
-	yield(simulator, "done")
+	await simulator.done
 
 	assert_signal_emit_count(window_1, "pressed", 2)
 	assert_signal_emit_count(window_2, "pressed", 2)

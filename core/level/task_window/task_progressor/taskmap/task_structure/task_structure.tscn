@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cql1sugs8k1bn"]
 
-[ext_resource path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_structure.gd" type="Script" id=1]
-[ext_resource path="res://core/level/task_window/task_progressor/taskmap/task_structure/grid.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://core/level/task_window/task_progressor/taskmap/task_structure/task_structure.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://baorry2fk5532" path="res://core/level/task_window/task_progressor/taskmap/task_structure/grid.tscn" id="2"]
 
 [node name="TaskStructure" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 mouse_filter = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Grid" parent="." instance=ExtResource( 2 )]
+[node name="Grid" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
+layout_mode = 0

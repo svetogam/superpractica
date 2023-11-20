@@ -1,77 +1,79 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://w2a71fj77wwv"]
 
-[ext_resource path="res://content/basic_addition/fields/counting_board/counting_board_field.gd" type="Script" id=1]
-[ext_resource path="res://core/pimnet/field/field.tscn" type="PackedScene" id=2]
-[ext_resource path="res://content/basic_addition/fields/counting_board/objects/board/board.tscn" type="PackedScene" id=3]
-[ext_resource path="res://content/basic_addition/fields/counting_board/interface/queries.gd" type="Script" id=4]
-[ext_resource path="res://content/basic_addition/fields/counting_board/interface/actions.gd" type="Script" id=5]
-[ext_resource path="res://content/basic_addition/fields/counting_board/tool_modes/square_marker.gd" type="Script" id=6]
-[ext_resource path="res://content/basic_addition/fields/counting_board/tool_modes/number_circler.gd" type="Script" id=7]
-[ext_resource path="res://content/basic_addition/fields/counting_board/tool_modes/memo_grabber.gd" type="Script" id=8]
-[ext_resource path="res://content/basic_addition/fields/counting_board/programs/count_by_counters.gd" type="Script" id=9]
-[ext_resource path="res://content/basic_addition/fields/counting_board/tool_modes/counter_creator.gd" type="Script" id=10]
-[ext_resource path="res://content/basic_addition/fields/counting_board/tool_modes/counter_dragger.gd" type="Script" id=11]
-[ext_resource path="res://content/basic_addition/fields/counting_board/interface/metanavig.gd" type="Script" id=12]
-[ext_resource path="res://content/basic_addition/fields/counting_board/programs/add_by_circles.gd" type="Script" id=13]
-[ext_resource path="res://content/basic_addition/fields/counting_board/tool_modes/counter_deleter.gd" type="Script" id=14]
-[ext_resource path="res://content/basic_addition/fields/counting_board/programs/select_correct_square.gd" type="Script" id=15]
-[ext_resource path="res://content/basic_addition/fields/counting_board/programs/soft_count_by_counters.gd" type="Script" id=16]
-[ext_resource path="res://content/basic_addition/fields/counting_board/interface/processes_map.gd" type="Script" id=17]
-[ext_resource path="res://content/basic_addition/fields/counting_board/programs/soft_add_by_circles.gd" type="Script" id=18]
-[ext_resource path="res://content/basic_addition/fields/counting_board/object_map.gd" type="Script" id=19]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/counting_board_field.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b7l33bavxxcc2" path="res://core/pimnet/field/field.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b45gxyo4xmp14" path="res://content/basic_addition/fields/counting_board/objects/board/board.tscn" id="3"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/interface/queries.gd" id="4"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/interface/actions.gd" id="5"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/tool_modes/square_marker.gd" id="6"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/tool_modes/number_circler.gd" id="7"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/tool_modes/memo_grabber.gd" id="8"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/programs/count_by_counters.gd" id="9"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/tool_modes/counter_creator.gd" id="10"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/tool_modes/counter_dragger.gd" id="11"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/interface/metanavig.gd" id="12"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/programs/add_by_circles.gd" id="13"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/tool_modes/counter_deleter.gd" id="14"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/programs/select_correct_square.gd" id="15"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/programs/soft_count_by_counters.gd" id="16"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/interface/processes_map.gd" id="17"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/programs/soft_add_by_circles.gd" id="18"]
+[ext_resource type="Script" path="res://content/basic_addition/fields/counting_board/object_map.gd" id="19"]
 
-[node name="Field" groups=["counting_board_fields"] instance=ExtResource( 2 )]
-script = ExtResource( 1 )
+[node name="Field" groups=["counting_board_fields"] instance=ExtResource("2")]
+script = ExtResource("1")
+_pan_camera_on_drag = null
+_default_size = null
 
 [node name="FieldLimit" parent="." index="1"]
-position = Vector2( 500, 500 )
+position = Vector2(500, 500)
 
-[node name="Board" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Board" parent="." index="2" instance=ExtResource("3")]
 
 [node name="Queries" parent="." index="4"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="Actions" parent="." index="5"]
-script = ExtResource( 5 )
+script = ExtResource("5")
 
 [node name="Metanavig" parent="." index="6"]
-script = ExtResource( 12 )
+script = ExtResource("12")
 
 [node name="NumberCircler" type="Node" parent="ToolModes" index="0"]
-script = ExtResource( 7 )
+script = ExtResource("7")
 
 [node name="SquareMarker" type="Node" parent="ToolModes" index="1"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
 [node name="CounterCreator" type="Node" parent="ToolModes" index="2"]
-script = ExtResource( 10 )
+script = ExtResource("10")
 
 [node name="CounterDeleter" type="Node" parent="ToolModes" index="3"]
-script = ExtResource( 14 )
+script = ExtResource("14")
 
 [node name="CounterDragger" type="Node" parent="ToolModes" index="4"]
-script = ExtResource( 11 )
+script = ExtResource("11")
 
 [node name="MemoGrabber" type="Node" parent="ToolModes" index="5"]
-script = ExtResource( 8 )
+script = ExtResource("8")
 
 [node name="SelectCorrectSquare" type="Node" parent="Programs" index="0"]
-script = ExtResource( 15 )
+script = ExtResource("15")
 
 [node name="CountByCounters" type="Node" parent="Programs" index="1"]
-script = ExtResource( 9 )
+script = ExtResource("9")
 
 [node name="SoftCountByCounters" type="Node" parent="Programs" index="2"]
-script = ExtResource( 16 )
+script = ExtResource("16")
 
 [node name="AddByCircles" type="Node" parent="Programs" index="3"]
-script = ExtResource( 13 )
+script = ExtResource("13")
 
 [node name="SoftAddByCircles" type="Node" parent="Programs" index="4"]
-script = ExtResource( 18 )
+script = ExtResource("18")
 
 [node name="ObjectFactory" parent="." index="9"]
-_initial_data = ExtResource( 19 )
+_initial_data = ExtResource("19")
 
 [node name="ProcessFactory" parent="." index="10"]
-_initial_data = ExtResource( 17 )
+_initial_data = ExtResource("17")

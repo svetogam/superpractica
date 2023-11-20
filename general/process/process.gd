@@ -41,11 +41,11 @@ func run_on(target: Node, callback_object: Object =null, callback_method:="", bi
 
 
 func connect_callback(callback_object: Object, callback_method: String, binds:=[]) -> void:
-	connect("completed", callback_object, callback_method, binds)
+	completed.connect(Callable(callback_object, callback_method).bindv(binds))
 
 
 func disconnect_callback(callback_object: Object, callback_method: String) -> void:
-	disconnect("completed", callback_object, callback_method)
+	completed.disconnect(Callable(callback_object, callback_method))
 
 
 func complete(args:=[]) -> void:

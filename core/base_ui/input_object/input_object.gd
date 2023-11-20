@@ -19,8 +19,8 @@ signal dropped(point)
 signal grab_started
 signal grab_stopped
 
-export(int) var input_priority := 0
-export(Resource) var _input_shape_setup_data: Resource
+@export var input_priority := 0
+@export var _input_shape_setup_data: InputShapeSetupResource
 var input_shape := InputShape.new()
 var _previously_hovered := false
 var _current_event: SpInputEvent
@@ -46,32 +46,32 @@ func _superscreen_input(event: SpInputEvent) -> void:
 
 	_current_event = event
 	var point = event.get_position()
-	var hovered = has_point(point)
-	var changed_hover = hovered != _previously_hovered
+	var now_hovered = has_point(point)
+	var changed_hover = now_hovered != _previously_hovered
 	var grabbed_object = event.get_grabbed_object()
 	var grabbed = grabbed_object == self
 
-	if hovered and not grabbed:
+	if now_hovered and not grabbed:
 		_on_hover(point, changed_hover, grabbed_object)
-		emit_signal("hovered", point, changed_hover, grabbed_object)
-	elif not hovered and changed_hover:
+		hovered.emit(point, changed_hover, grabbed_object)
+	elif not now_hovered and changed_hover:
 		_on_unhover()
-		emit_signal("unhovered")
+		unhovered.emit()
 
 	if event.is_active():
-		if hovered and event.is_press():
+		if now_hovered and event.is_press():
 			_on_press(point)
-			emit_signal("pressed", point)
+			pressed.emit(point)
 		elif grabbed and event.is_motion():
 			var drag_change = event.get_change()
 			_on_drag(point, drag_change)
-			emit_signal("dragged", point, drag_change)
+			dragged.emit(point, drag_change)
 		elif grabbed and event.is_release():
 			_on_drop(point)
-			emit_signal("dropped", point)
+			dropped.emit(point)
 			_end_drag()
 
-	_previously_hovered = hovered
+	_previously_hovered = now_hovered
 
 
 #Virtual default
@@ -81,7 +81,7 @@ func has_point(point: Vector2) -> bool:
 
 
 #Virtual
-func _on_hover(_point: Vector2, _initial: bool, _grabbed_object: Node2D) -> void:
+func _on_hover(_point: Vector2, _initial: bool, _grabbed_object: InputObject) -> void:
 	pass
 
 
@@ -113,11 +113,11 @@ func _end_drag() -> void:
 
 func start_grab() -> void:
 	_position_before_grab = position
-	emit_signal("grab_started")
+	grab_started.emit()
 
 
 func stop_grab() -> void:
-	emit_signal("grab_stopped")
+	grab_stopped.emit()
 
 
 func revert_drag() -> void:
@@ -141,7 +141,7 @@ func _stop_all_input() -> void:
 	_current_event.complete()
 
 
-func has_input_priority_over_other(other: Node2D) -> bool:
+func has_input_priority_over_other(other: InputObject) -> bool:
 	if input_priority > other.input_priority:
 		return true
 	elif input_priority == other.input_priority:

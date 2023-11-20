@@ -51,5 +51,5 @@ func _drag_by(delta_vector: Vector2) -> void:
 
 func _revert_dragged_objects() -> void:
 	var drag_vector = object.get_total_drag_vector()
-	for object in _drag_list:
-		object.translate(-drag_vector)
+	for dragged_object in _drag_list:
+		dragged_object.translate(-drag_vector)

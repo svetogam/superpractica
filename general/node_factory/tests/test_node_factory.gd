@@ -20,7 +20,7 @@ var factory_with_empty_data: NodeFactory
 
 
 func before_each():
-	context = ContextScene.instance()
+	context = ContextScene.instantiate()
 	add_child(context)
 	factory = $Context/Factory
 	factory_with_target = $Context/FactoryWithTarget
@@ -112,8 +112,8 @@ func test_create_node_with_args_and_setup_binds() -> void:
 
 func test_creation_call_orders_between_manual_and_automatic_targets() -> void:
 	factory.connect_setup("a_script", "setup")
-	factory.connect("created", context, "a_function")
-	factory.connect("created_a_script", context, "another_function")
+	factory.created.connect(context.a_function)
+	factory.connect("created_a_script", context.another_function)
 	var node_1 = factory.create("a_script")
 	context.add_child(node_1)
 	assert_eq_deep(context.order,
@@ -121,8 +121,8 @@ func test_creation_call_orders_between_manual_and_automatic_targets() -> void:
 
 	context.order.clear()
 	factory_with_target.connect_setup("a_script", "setup")
-	factory_with_target.connect("created", context, "a_function")
-	factory_with_target.connect("created_a_script", context, "another_function")
+	factory_with_target.created.connect(context.a_function)
+	factory_with_target.connect("created_a_script", context.another_function)
 	factory_with_target.create("a_script")
 	assert_eq_deep(context.order,
 			["script_ready", "setup", "another_function_called", "function_called"])

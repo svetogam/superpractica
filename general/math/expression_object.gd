@@ -11,7 +11,7 @@
 #Incomplete. See test_expression_object.gd for what functionality is incomplete.
 
 class_name ExpressionObject
-extends Reference
+extends RefCounted
 
 #####################################################################
 # Static
@@ -49,7 +49,7 @@ func set_by_string(string: String) -> String:
 	var i = 0
 	while i < string.length():
 		#Add a number as one item
-		if string[i].is_valid_integer():
+		if string[i].is_valid_int():
 			var number = _get_first_number(string.substr(i))
 			var number_length = _get_first_number_length(string.substr(i))
 			_element_list.append(number)
@@ -83,7 +83,7 @@ func _get_first_number(string: String) -> int:
 
 func _get_first_number_length(string: String) -> int:
 	var i = 1
-	while i < string.length() and string[i].is_valid_integer():
+	while i < string.length() and string[i].is_valid_int():
 		i += 1
 	return i
 
@@ -129,12 +129,12 @@ func evaluate() -> int:
 func get_string(use_spaces:=false) -> String:
 	var output_string = ""
 	for element in _element_list:
-		if use_spaces and (String(element) == "+" or String(element) == "-"
-						or String(element) == "*" or String(element) == "/"):
+		if use_spaces and (str(element) == "+" or str(element) == "-"
+						or str(element) == "*" or str(element) == "/"):
 			output_string += " "
-			output_string += String(element)
+			output_string += str(element)
 			output_string += " "
 		else:
-			output_string += String(element)
+			output_string += str(element)
 
 	return output_string

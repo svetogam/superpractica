@@ -49,12 +49,12 @@ const SPAWNERS_TO_OBJECTS := {
 }
 
 
-export(PackedScene) var field_scene :=\
+@export var field_scene :=\
 		preload("res://content/debug/fields/bubble_sum/bubble_sum_field.tscn")
-export(Tools) var initial_tool: int
-export(Array, Tools) var included_tools: Array
-export(Array, Tools) var disabled_tools: Array
-export(Array, Spawners) var included_spawners: Array
+@export var initial_tool: Tools
+@export var included_tools: Array[Tools]
+@export var disabled_tools: Array[Tools]
+@export var included_spawners: Array[Spawners]
 
 
 #Virtual

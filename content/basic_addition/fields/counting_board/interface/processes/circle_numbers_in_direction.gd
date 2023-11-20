@@ -38,11 +38,11 @@ func _circle_next_number() -> void:
 	var next_square = _squares_to_count[_count]
 	field.actions.toggle_circle(next_square)
 
-	yield(Game.wait_for(0.5), Game.DONE)
+	await Game.wait_for(0.5)
 
 	if _show_count:
 		field.actions.count_square(next_square.number)
-		yield(Game.wait_for(0.5), Game.DONE)
+		await Game.wait_for(0.5)
 
 	_count += 1
 	if _count == _squares_to_count.size():

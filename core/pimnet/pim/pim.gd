@@ -11,23 +11,23 @@
 class_name Pim
 extends WindowContent
 
-export(Resource) var _setup_data: Resource
-var field: Subscreen
-var menu_control: Object = preload("menu_control.tscn").instance()
-onready var field_viewer := $"%FieldViewer"
-onready var programs := $Programs
-onready var spawner_factory := $SpawnerFactory
+@export var _setup_data: PimSetupResource
+var field: Field
+var menu_control := preload("menu_control.tscn").instantiate() as WindowContent
+@onready var field_viewer := %FieldViewer as SubscreenViewer
+@onready var programs := $Programs as ModeGroup
+@onready var spawner_factory := $SpawnerFactory as NodeFactory
 
 
 func _ready() -> void:
 	_setup_field()
-	window.connect("ready", self, "_setup_side_menu")
+	window.ready.connect(_setup_side_menu)
 
 
 func _setup_field() -> void:
-	field = _setup_data.get_field_scene().instance()
+	field = _setup_data.get_field_scene().instantiate()
 	field_viewer.set_subscreen(field, _setup_data.field_zoom)
-	field.action_queue.connect("flushed", self, "_on_field_action")
+	field.action_queue.flushed.connect(_on_field_action)
 	field.set_tool(_setup_data.get_initial_tool())
 
 
@@ -45,7 +45,7 @@ func reset() -> void:
 	field.reset_state()
 
 
-func get_program(program_name: String) -> Mode:
+func get_program(program_name: String) -> PimProgram:
 	return programs.get_mode(program_name)
 
 
