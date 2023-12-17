@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 # Copyright (c) 2007-2022 Juan Linietsky, Ariel Manzur.                      #
@@ -8,7 +8,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 class_name State
 extends Node
@@ -19,24 +19,25 @@ var _target: Node
 var _transition_triggers: Dictionary
 
 
-func setup(p_state_machine: Node, p_target: Object, p_transition_triggers: Dictionary) -> void:
+func setup(p_state_machine: Node, p_target: Object, p_transition_triggers: Dictionary
+) -> void:
 	_state_machine = p_state_machine
 	_target = p_target
 	_transition_triggers = p_transition_triggers
 	_on_setup()
 
 
-#Virtual
+# Virtual
 func _on_setup() -> void:
 	pass
 
 
-#Virtual
+# Virtual
 func _enter(_last_state: String) -> void:
 	pass
 
 
-#Virtual
+# Virtual
 func _exit(_next_state: String) -> void:
 	pass
 

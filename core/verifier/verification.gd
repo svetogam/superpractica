@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,17 +6,24 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name Verification
-extends Process
+extends Node
+## Base class for running verifications to complete a task in a Level.
+##
+## This class is like [Process], but for verifications.
 
+
+signal completed
 signal verified
 signal rejected
 
-var verifier: Node
-var pack: VerificationPack
-var screen_verifier: ScreenVerifier
+var verifier: Node:
+	get = _get_verifier
+var screen_verifier: ScreenVerifier:
+	set = _do_not_set,
+	get = _get_screen_verifier
 
 
 func _init() -> void:
@@ -26,32 +33,47 @@ func _init() -> void:
 func _enter_tree() -> void:
 	ContextualConnector.register(self)
 
-	pack = get_parent()
-	assert(pack != null)
-	verifier = pack.get_parent()
-	assert(verifier != null)
-	screen_verifier = verifier.screen_verifications
-	assert(screen_verifier != null)
 
+func run(target: Node, verified_callback: Callable, rejected_callback: Callable
+) -> Verification:
+	assert(not is_inside_tree())
 
-func connect_result_callbacks(callback_object: Object, verified_callback_method: String,
-			rejected_callback_method: String) -> void:
-	verified.connect(Callable(callback_object, verified_callback_method))
-	rejected.connect(Callable(callback_object, rejected_callback_method))
-
-
-func verify_or_else_reject(do_verify: bool) -> void:
-	if do_verify:
-		verify()
-	else:
-		reject()
+	verified.connect(verified_callback)
+	rejected.connect(rejected_callback)
+	target.add_child(self)
+	return self
 
 
 func verify() -> void:
-	complete()
+	assert(is_inside_tree())
+
 	verified.emit()
+	_complete()
 
 
 func reject() -> void:
-	complete()
+	assert(is_inside_tree())
+
 	rejected.emit()
+	_complete()
+
+
+func _complete() -> void:
+	completed.emit()
+	queue_free()
+
+
+func _get_verifier() -> Node:
+	if verifier == null:
+		verifier = ContextUtils.get_parent_in_group(self, "verifiers")
+		assert(verifier != null)
+	return verifier
+
+
+func _get_screen_verifier() -> ScreenVerifier:
+	assert(verifier.screen_verifier != null)
+	return verifier.screen_verifier
+
+
+static func _do_not_set(_value: Variant) -> void:
+	assert(false)

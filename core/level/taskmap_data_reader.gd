@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends RefCounted
 
@@ -16,13 +16,13 @@ var _data: Dictionary
 var _instruction_replacements: Dictionary
 
 
-func setup(p_data: Dictionary, p_instruction_replacements:={}) -> void:
+func setup(p_data: Dictionary, p_instruction_replacements := {}) -> void:
 	assert(_data.keys().is_empty())
 	_data = p_data
 	_instruction_replacements = p_instruction_replacements
 
 
-func set_instruction_replacements(p_instruction_replacements:={}) -> void:
+func set_instruction_replacements(p_instruction_replacements := {}) -> void:
 	_instruction_replacements = p_instruction_replacements
 	replacements_changed.emit()
 
@@ -32,18 +32,18 @@ func get_ids() -> Array:
 
 
 func get_number_of_columns() -> int:
-	var max_column_position = 0
+	var max_column_position: int = 0
 	for id in get_ids():
-		var column_position = _data[id].grid_position.x
+		var column_position: int = _data[id].grid_position.x
 		if column_position > max_column_position:
 			max_column_position = column_position
 	return max_column_position + 1
 
 
 func get_number_of_rows() -> int:
-	var max_row_position = 0
+	var max_row_position: int = 0
 	for id in get_ids():
-		var row_position = _data[id].grid_position.y
+		var row_position: int = _data[id].grid_position.y
 		if row_position > max_row_position:
 			max_row_position = row_position
 	return max_row_position + 1
@@ -58,7 +58,7 @@ func get_grid_position_for_id(id: String) -> Vector2:
 
 
 func get_instructions_for_id(id: String) -> String:
-	var instructions = _data[id].instructions
+	var instructions: String = _data[id].instructions
 	return instructions.format(_instruction_replacements)
 
 
@@ -79,16 +79,16 @@ func is_task_final(id: String) -> bool:
 
 
 func get_next_for_id(id: String) -> Array:
-	var next_list = []
+	var next_list: Array = []
 	for id2 in get_ids():
-		var previous = get_previous_for_id(id2)
+		var previous := get_previous_for_id(id2)
 		if previous.has(id):
 			next_list.append(id2)
 	return next_list
 
 
 func get_single_next_for_id(id: String) -> String:
-	var next_list = get_next_for_id(id)
+	var next_list := get_next_for_id(id)
 	assert(next_list.size() == 1)
 	return next_list[0]
 
@@ -102,7 +102,7 @@ func get_final_task() -> String:
 
 
 func _get_task_by_unique_flag(unique_flag: String) -> String:
-	var flagged_tasks = []
+	var flagged_tasks: Array = []
 	for id in _data.keys():
 		if _data[id].flags.has(unique_flag):
 			flagged_tasks.append(id)

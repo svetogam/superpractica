@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,22 +6,22 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name FieldToolMode
 extends Mode
 
 
-#Virtual
+# Virtual
 func get_label_text() -> String:
 	return ""
 
 
-#Virtual
+# Virtual
 func get_icon() -> Object:
 	return null
 
 
-#Virtual
+# Virtual
 func get_object_modes_map() -> Dictionary:
 	return {}

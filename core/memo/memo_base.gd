@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name Memo
 extends RefCounted
@@ -16,29 +16,29 @@ func is_same_type(other_memo: Memo) -> bool:
 	return get_class() == other_memo.get_class()
 
 
-#Virtual
+# Virtual
 func set_by_value(_value) -> void:
 	assert(false)
 
 
-#Virtual
+# Virtual
 func set_by_memo(_source: Memo) -> void:
 	assert(false)
 
 
-#Virtual
+# Virtual
 func get_value():
 	assert(false)
 
 
-#Virtual
-func get_string(_kwargs:={}) -> String:
+# Virtual
+func get_string(_kwargs := {}) -> String:
 	assert(false)
 	return ""
 
 
 #Returns true if the memos have the same data, not for mathematical equality
-#Virtual
+# Virtual
 func is_memo_equal(_other_memo: Memo) -> bool:
 	assert(false)
 	return false

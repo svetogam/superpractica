@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,11 +6,12 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends LevelProgramState
 
 
 func _enter(_last_state: String) -> void:
-	level.verifier.get_pack("BasicAdditionPack").verify("addition_by_circles",
-			[program.field, program.slot_panel, program.start_number], self, "verify", "reject")
+	(BasicAdditionGlobals.VerifAdditionByCircles.instantiate()
+			.setup(program.field, program.slot_panel, program.start_number)
+			.run(verifier, verify, reject))

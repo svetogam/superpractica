@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name Superscreen
 extends Control
@@ -48,7 +48,7 @@ func get_sp_window(window_name: String) -> SpWindow:
 
 
 func get_windows_at_point(point: Vector2) -> Array:
-	var window_list = []
+	var window_list: Array = []
 	for window in get_window_list():
 		if window.has_point(point):
 			window_list.append(window)
@@ -56,22 +56,22 @@ func get_windows_at_point(point: Vector2) -> Array:
 
 
 func get_window_content(window_name: String, content_name: String) -> WindowContent:
-	var window = get_sp_window(window_name)
+	var window := get_sp_window(window_name)
 	if window == null:
 		return null
 	return window.get_content(content_name)
 
 
 func get_top_window_at_point(point: Vector2) -> SpWindow:
-	var window_list = _get_sorted_window_list_at_point(point)
+	var window_list := _get_sorted_window_list_at_point(point)
 	if not window_list.is_empty():
 		return window_list.front()
 	return null
 
 
 func _get_sorted_window_list_at_point(point: Vector2) -> Array:
-	var window_list = get_windows_at_point(point)
-	window_list.sort_custom(Callable(self, "_sort_by_input_priority"))
+	var window_list := get_windows_at_point(point)
+	window_list.sort_custom(_sort_by_input_priority)
 	return window_list
 
 
@@ -80,7 +80,7 @@ func _sort_by_input_priority(window_1: SpWindow, window_2: SpWindow) -> bool:
 
 
 func get_top_subscreen_viewer_at_point(point: Vector2) -> SubscreenViewer:
-	var top_window = get_top_window_at_point(point)
+	var top_window := get_top_window_at_point(point)
 	if top_window != null:
 		return top_window.get_subscreen_viewer_at_point(point)
 	return null
@@ -91,7 +91,7 @@ func get_subscreen_list() -> Array:
 
 
 func get_top_subscreen_at_point(point: Vector2) -> Subscreen:
-	var top_window = get_top_window_at_point(point)
+	var top_window := get_top_window_at_point(point)
 	if top_window != null:
 		return top_window.get_subscreen_at_point(point)
 	return null

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 class_name StackTracker
 extends RefCounted
@@ -17,8 +17,8 @@ var _have_base_item: bool
 var _max_items: int
 
 
-#Push the initial item after this if have_base_item is true
-func _init(p_max_items: int, p_have_base_item:=false) -> void:
+# Push the initial item after this if have_base_item is true
+func _init(p_max_items: int, p_have_base_item := false) -> void:
 	_stack = []
 	_stack_position = 0
 	_max_items = p_max_items
@@ -66,7 +66,7 @@ func set_position(new_position: int) -> void:
 
 
 func is_position_at_back() -> bool:
-	var min_position
+	var min_position: int
 	if _have_base_item:
 		min_position = 1
 	else:

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends ScreenVerification
 
@@ -17,7 +17,8 @@ var _operator: ScreenEffect
 var _inputs: Array
 
 
-func setup(p_checked: NumberEffect, p_operator: ScreenEffect, p_inputs: Array) -> void:
+func _init(p_checked: NumberEffect, p_operator: ScreenEffect, p_inputs: Array) -> void:
+	super()
 	_checked = p_checked
 	_operator = p_operator
 	_inputs = p_inputs
@@ -32,29 +33,31 @@ func _ready() -> void:
 	_operator = effect_group.duplicate_effect(_operator)
 	_inputs[0] = effect_group.duplicate_effect(_inputs[0])
 	_inputs[1] = effect_group.duplicate_effect(_inputs[1])
-	_inputs.sort_custom(Callable(Utils, "sort_node2d_by_x_position"))
+	_inputs.sort_custom(Utils.sort_node2d_by_x_position)
 
 	animator.animate_evaluation_setup(_inputs[0], _inputs[1], _operator)
-	animator.animate_number_to_equality(_checked, "right", self, "_on_first_move_completed")
+	animator.animate_number_to_equality(_checked, "right", _on_first_move_completed)
 
 
 func _on_first_move_completed() -> void:
 	await Game.wait_for(EVALUATION_DELAY)
 
-	var result = _compute_result()
+	var result := _compute_result()
 	animator.popup_evaluation_result(result)
 
 	await Game.wait_for(PRE_CHECK_DELAY)
 
-	var equal = _is_equal()
-	animator.animate_equality_check(equal, self, "_after_check")
+	var equal := _is_equal()
+	animator.animate_equality_check(equal, _after_check)
 
 
 func _after_check() -> void:
 	effect_group.clear()
 
-	var equal = _is_equal()
-	verify_or_else_reject(equal)
+	if _is_equal():
+		verify()
+	else:
+		reject()
 
 
 func _compute_result() -> int:

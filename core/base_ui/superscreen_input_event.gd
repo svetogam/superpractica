@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,13 +6,13 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name SuperscreenInputEvent
 extends SpInputEvent
 
 
-func _init(event: InputEvent, p_grabbed_object: InputObject =null) -> void:
+func _init(event: InputEvent, p_grabbed_object: InputObject = null) -> void:
 	if event == null:
 		assert(false)
 
@@ -43,9 +43,11 @@ func _is_godot_primary_mouse_release(event: InputEvent) -> bool:
 func make_subscreen_input_event(subscreen_viewer: SubscreenViewer) -> SubscreenInputEvent:
 	assert(subscreen_viewer != null)
 
-	var subscreen_position = subscreen_viewer.convert_external_to_internal_point(_position)
-	var subscreen_relative = subscreen_viewer.convert_external_to_internal_vector(_relative)
-	var subscreen_event = SubscreenInputEvent.new(_input_type, subscreen_position,
+	var subscreen_position := (
+			subscreen_viewer.convert_external_to_internal_point(_position))
+	var subscreen_relative := (
+			subscreen_viewer.convert_external_to_internal_vector(_relative))
+	var subscreen_event := SubscreenInputEvent.new(_input_type, subscreen_position,
 			subscreen_relative, _grabbed_object, _input_state)
 
 	subscreen_event.completed.connect(complete)

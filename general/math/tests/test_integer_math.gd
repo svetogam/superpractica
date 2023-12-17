@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends GutTest
 
@@ -30,6 +30,7 @@ func test_get_number_of_digits():
 	assert_eq(IntegerMath.get_number_of_digits(5), 1)
 	assert_eq(IntegerMath.get_number_of_digits(10), 2)
 	assert_eq(IntegerMath.get_number_of_digits(236), 3)
+	assert_eq(IntegerMath.get_number_of_digits(9999999), 7)
 
 
 func test_get_number_as_digit_list():

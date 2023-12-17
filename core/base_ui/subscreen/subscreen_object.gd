@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,13 +6,14 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name SubscreenObject
 extends InputObject
 
 var superscreen: Superscreen
-var _subscreen: Subscreen
+var _subscreen: Subscreen:
+	get = _get_subscreen
 var _subscreen_viewer: SubscreenViewer
 
 
@@ -21,21 +22,15 @@ func _init() -> void:
 
 
 func _enter_tree() -> void:
-	if _subscreen == null:
-		_find_subscreen()
-
-
-func _find_subscreen() -> void:
-	_subscreen = ContextUtils.get_parent_in_group(self, "subscreens")
-	assert(_subscreen != null)
-
 	_subscreen_viewer = ContextUtils.get_parent_in_group(self, "subscreen_viewers")
 	if _subscreen_viewer != null:
-		_find_superscreen()
+		superscreen = ContextUtils.get_parent_in_group(self, "superscreens")
+		assert(superscreen != null)
+		superscreen.input_sequencer.connect_input_object(self, _subscreen_viewer)
 
 
-func _find_superscreen() -> void:
-	superscreen = ContextUtils.get_parent_in_group(self, "superscreens")
-	assert(superscreen != null)
-
-	superscreen.input_sequencer.connect_input_object(self, _subscreen_viewer)
+func _get_subscreen() -> Subscreen:
+	if _subscreen == null:
+		_subscreen = ContextUtils.get_parent_in_group(self, "subscreens")
+		assert(_subscreen != null)
+	return _subscreen

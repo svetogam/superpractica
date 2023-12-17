@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv4g3p0ianoda"]
+[gd_scene load_steps=4 format=3 uid="uid://dv4g3p0ianoda"]
 
 [ext_resource type="PackedScene" uid="uid://bbx8at21ellk3" path="res://core/base_ui/sp_window/subscreen_viewer/subscreen_viewer.tscn" id="1"]
 [ext_resource type="Script" path="res://general/mode_nodes/mode_group.gd" id="2"]
 [ext_resource type="Script" path="res://core/pimnet/pim/pim.gd" id="3"]
-[ext_resource type="Script" path="res://general/node_factory/node_factory.gd" id="4"]
 
 [node name="Pim" type="Control" groups=["pims"]]
 layout_mode = 3
@@ -18,6 +17,3 @@ layout_mode = 1
 
 [node name="Programs" type="Node" parent="."]
 script = ExtResource("2")
-
-[node name="SpawnerFactory" type="Node" parent="."]
-script = ExtResource("4")

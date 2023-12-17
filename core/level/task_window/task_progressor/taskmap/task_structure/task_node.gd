@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Control
 
@@ -32,22 +32,22 @@ func set_grid_position(column: int, row: int) -> void:
 
 
 func get_left_point() -> Vector2:
-	var struct_position = _get_position_in_structure()
+	var struct_position := _get_position_in_structure()
 	return Vector2(struct_position.x, struct_position.y + (size.y / 2))
 
 
 func get_right_point() -> Vector2:
-	var struct_position = _get_position_in_structure()
+	var struct_position := _get_position_in_structure()
 	return Vector2(struct_position.x + size.x, struct_position.y + (size.y / 2))
 
 
 func get_top_point() -> Vector2:
-	var struct_position = _get_position_in_structure()
+	var struct_position := _get_position_in_structure()
 	return Vector2(struct_position.x + (size.x / 2), struct_position.y)
 
 
 func get_bottom_point() -> Vector2:
-	var struct_position = _get_position_in_structure()
+	var struct_position := _get_position_in_structure()
 	return Vector2(struct_position.x + (size.x / 2), struct_position.y + size.y)
 
 

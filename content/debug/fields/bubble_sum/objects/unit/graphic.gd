@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends ProceduralGraphic
 
@@ -14,11 +14,11 @@ var selected := false
 
 
 func _draw() -> void:
-	var center = Vector2(0, 0)
-	var radius = 15
-	var outline_width = 2
-	var outline_color = Color(0.0, 0.0, 0.0)
-	var fill_color
+	var center := Vector2(0, 0)
+	var radius := 15.0
+	var outline_width := 2.0
+	var outline_color := Color(0.0, 0.0, 0.0)
+	var fill_color: Color
 	if selected:
 		fill_color = GameGlobals.COLOR_HIGHLIGHT
 	else:

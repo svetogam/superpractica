@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,18 +6,19 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends RefCounted
 
-const FIRST :=\
-		"Select the number {start_number} on the board. Then click the \"Check\" button."
-const SECOND := "Circle as many numbers below {start_number} as in the tens digit of {addend}. "\
-		+ "That is, {addend_tens} numbers. "\
-		+ "Then circle as many numbers to the right as in the ones digit of {addend}."\
-		+ "That is, {addend_ones} numbers. Then click the \"Check\" button."
-const THIRD := "Drag the sum into the slot to complete the equation. "\
-		+ " Then click the \"Check\" button."
+const FIRST := ("Select the number {start_number} on the board. "
+		+ "Then click the \"Check\" button.")
+const SECOND := ("Circle as many numbers below {start_number} as "
+		+ "in the tens digit of {addend}. That is, {addend_tens} numbers. "
+		+ "Then circle as many numbers to the right as "
+		+ "in the ones digit of {addend}. That is, {addend_ones} numbers. "
+		+ "Then click the \"Check\" button.")
+const THIRD := ("Drag the sum into the slot to complete the equation. "
+		+ " Then click the \"Check\" button.")
 
 
 const DATA := {

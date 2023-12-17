@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,17 +6,17 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name LevelLoader
 extends Node
 
-var _level_groups := []
+var _level_groups: Array = []
 var _most_recent_level_group := ""
 var _most_recent_level := ""
 
 
-func add_level_group(level_group: LevelGroupResource, index:=-1) -> void:
+func add_level_group(level_group: LevelGroupResource, index: int = -1) -> void:
 	if index == -1:
 		_level_groups.append(level_group)
 	else:
@@ -25,8 +25,8 @@ func add_level_group(level_group: LevelGroupResource, index:=-1) -> void:
 
 
 func enter_level(level_group_name: String, level_name: String) -> void:
-	var level_group = _get_level_group(level_group_name)
-	var scene = level_group.get_level_scene(level_name)
+	var level_group := _get_level_group(level_group_name)
+	var scene := level_group.get_level_scene(level_name)
 	_most_recent_level_group = level_group_name
 	_most_recent_level = level_name
 	get_tree().change_scene_to_packed(scene)

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,30 +6,44 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name PimProgramState
 extends State
 
-var program: PimProgram
-var pim: Pim
-var field: Field
-var action_queue: FieldActionQueue
-var effects: NavigEffectGroup
+var program: PimProgram:
+	set = _do_not_set,
+	get = _get_program
+var pim: Pim:
+	set = _do_not_set,
+	get = _get_pim
+var field: Field:
+	set = _do_not_set,
+	get = _get_field
+var effects: NavigEffectGroup:
+	set = _do_not_set,
+	get = _get_effects
 
 
-func _on_setup() -> void:
-	_setup_shortcuts()
+func _get_program() -> PimProgram:
+	assert(_target != null)
+	return _target
 
 
-func _setup_shortcuts() -> void:
-	program = _target
-	assert(program != null)
-	pim = program.pim
-	assert(pim != null)
-	field = pim.field
-	assert(field != null)
-	action_queue = field.action_queue
-	assert(action_queue != null)
-	effects = program.effects
-	assert(effects != null)
+func _get_pim() -> Pim:
+	assert(program.pim != null)
+	return program.pim
+
+
+func _get_field() -> Field:
+	assert(pim.field != null)
+	return pim.field
+
+
+func _get_effects() -> NavigEffectGroup:
+	assert(program.effects != null)
+	return program.effects
+
+
+static func _do_not_set(_value: Variant) -> void:
+	assert(false)

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Camera2D
 
@@ -28,9 +28,9 @@ func set_limits(top_left: Vector2, bottom_right: Vector2) -> void:
 
 
 func move_by(position_delta: Vector2) -> void:
-	var size = get_rect().size
-	var pan_limit_width = _pan_limit_right - _pan_limit_left
-	var pan_limit_height = _pan_limit_bottom - _pan_limit_top
+	var size := get_rect().size
+	var pan_limit_width := _pan_limit_right - _pan_limit_left
+	var pan_limit_height := _pan_limit_bottom - _pan_limit_top
 
 	if size.x < pan_limit_width:
 		offset.x += position_delta.x
@@ -43,9 +43,9 @@ func move_by(position_delta: Vector2) -> void:
 
 
 func _set_within_limits() -> void:
-	var size = get_rect().size
-	var pan_limit_width = _pan_limit_right - _pan_limit_left
-	var pan_limit_height = _pan_limit_bottom - _pan_limit_top
+	var size := get_rect().size
+	var pan_limit_width := _pan_limit_right - _pan_limit_left
+	var pan_limit_height := _pan_limit_bottom - _pan_limit_top
 
 	if size.x < pan_limit_width:
 		if offset.x < _pan_limit_left:

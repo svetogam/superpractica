@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends LevelProgram
 
@@ -34,6 +34,8 @@ func _setup_vars() -> void:
 
 
 func _start() -> void:
+	super()
+
 	event_control.menu.add_button(BUTTON_ID, BUTTON_TEXT)
 	pim = pimnet.get_pim("CountingBoardPim")
 	field = pim.field

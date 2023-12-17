@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends SoftLimiterProgram
 
@@ -20,9 +20,9 @@ func setup(p_start_number: int) -> void:
 
 
 func _give_warnings() -> Array:
-	var warning_positions = []
+	var warning_positions: Array = []
 
-	for counter in field.queries.get_counter_list():
+	for counter in field.get_counter_list():
 		if _is_counter_valid(counter):
 			counter.set_warning(false)
 		else:
@@ -33,12 +33,13 @@ func _give_warnings() -> Array:
 
 
 func _is_counter_valid(counter: FieldObject) -> bool:
-	var correct_numbers = field.queries.get_contiguous_numbers_with_counters_from(_start_number + 1)
+	var correct_numbers = field.get_contiguous_numbers_with_counters_from(
+			_start_number + 1)
 	return correct_numbers.has(counter.get_number())
 
 
 func is_valid() -> bool:
-	for counter in field.queries.get_counter_list():
+	for counter in field.get_counter_list():
 		if not _is_counter_valid(counter):
 			return false
 	return true

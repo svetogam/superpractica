@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Control
 
@@ -45,8 +45,8 @@ func _on_scroll_bar_value_changed(_value: float) -> void:
 
 
 func get_scroll_position() -> Vector2:
-	var h_scroll = _h_scroll_bar.value
-	var v_scroll = _v_scroll_bar.value
+	var h_scroll := _h_scroll_bar.value
+	var v_scroll := _v_scroll_bar.value
 	return Vector2(h_scroll, v_scroll)
 
 

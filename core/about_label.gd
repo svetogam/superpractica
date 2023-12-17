@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,14 +6,12 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Label
 
 
 func _ready() -> void:
-	text = (
-		ProjectSettings.get_setting("application/config/name")
-		+ " " + GameGlobals.RELEASE_TAG
-		+ "\n" + GameGlobals.SOURCE_URL
-	)
+	text = (ProjectSettings.get_setting("application/config/name")
+			+ " " + GameGlobals.RELEASE_TAG
+			+ "\n" + GameGlobals.SOURCE_URL)

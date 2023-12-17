@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bagg8asqubqwf"]
+[gd_scene load_steps=5 format=3 uid="uid://bagg8asqubqwf"]
 
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/level/level.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://4iwsyufpgan1" path="res://content/basic_addition/verifications/basic_addition_pack.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dl4pcfubfja5h" path="res://content/basic_addition/levels/basic_addition_4/program.tscn" id="3"]
 [ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_3/taskmap_data.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://ks3l2ib526jx" path="res://content/basic_addition/levels/basic_addition_4/screen.tscn" id="5"]
@@ -10,8 +9,6 @@
 
 [node name="TaskControl" parent="." index="3"]
 _taskmap_data = ExtResource("4")
-
-[node name="BasicAdditionPack" parent="Verifier" index="1" instance=ExtResource("2")]
 
 [node name="LevelScreen" parent="." index="5" instance=ExtResource("5")]
 

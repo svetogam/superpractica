@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,22 +6,22 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 class_name VPanelMenu
 extends PanelContainer
 
-@export var _min_panel_height := 100
+@export var _min_panel_height := 100.0
 var _panels := {}
 @onready var _container := %MainContainer as VBoxContainer
 
 
-#Virtual
+# Virtual
 func _get_panel_map() -> Dictionary:
 	return {}
 
 
-func add_panel(panel_type) -> Control:
+func add_panel(panel_type: Variant) -> Control:
 	var panel_class = _get_panel_map()[panel_type]
 	var panel = panel_class.instantiate()
 	panel.custom_minimum_size.y = _min_panel_height
@@ -30,7 +30,7 @@ func add_panel(panel_type) -> Control:
 	return panel
 
 
-func remove_panel(panel_type) -> void:
+func remove_panel(panel_type: Variant) -> void:
 	assert(has_panel(panel_type))
 
 	var panel = _panels[panel_type]
@@ -38,11 +38,11 @@ func remove_panel(panel_type) -> void:
 	_panels.erase(panel_type)
 
 
-func get_panel(panel_type) -> Control:
+func get_panel(panel_type: Variant) -> Control:
 	if _panels.has(panel_type):
 		return _panels[panel_type]
 	return null
 
 
-func has_panel(panel_type) -> bool:
+func has_panel(panel_type: Variant) -> bool:
 	return get_panel(panel_type) != null

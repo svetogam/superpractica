@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,12 +6,12 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name SubscreenViewer
 extends WindowContent
 
-const DEFAULT_ZOOM = Vector2(1, 1)
+const DEFAULT_ZOOM := Vector2(1, 1)
 var _subscreen: Subscreen
 @onready var camera := %Camera as Camera2D
 @onready var _viewport := %SubViewport as SubViewport
@@ -26,7 +26,7 @@ func _ready() -> void:
 			set_subscreen(child)
 
 
-func set_subscreen(p_subscreen: Subscreen, p_camera_zoom:=DEFAULT_ZOOM) -> void:
+func set_subscreen(p_subscreen: Subscreen, p_camera_zoom := DEFAULT_ZOOM) -> void:
 	_subscreen = p_subscreen
 	camera.zoom = p_camera_zoom
 	if not _viewport.is_ancestor_of(_subscreen):
@@ -55,7 +55,7 @@ func get_subscreen() -> Subscreen:
 
 
 func _fit_to_subscreen() -> void:
-	var subscreen_rect = _subscreen.get_rect()
+	var subscreen_rect := _subscreen.get_rect()
 	if subscreen_rect.size != Vector2.ZERO:
 		camera.set_limits(subscreen_rect.position, subscreen_rect.end)
 		_fit_scroll_bars_to_subscreen()
@@ -63,14 +63,14 @@ func _fit_to_subscreen() -> void:
 
 
 func _fit_scroll_bars_to_subscreen() -> void:
-	var subscreen_size = _subscreen.get_rect().size
+	var subscreen_size := _subscreen.get_rect().size
 	var camera_size = camera.get_rect().size
 	_scroll_bars.set_scroll_bars(subscreen_size, camera_size)
 
 
 func _center_camera_on_subscreen() -> void:
 	var camera_rect = camera.get_rect()
-	var scene_size = _subscreen.get_rect().size
+	var scene_size := _subscreen.get_rect().size
 
 	var camera_offset = camera_rect.position
 	if scene_size.x < camera_rect.size.x:

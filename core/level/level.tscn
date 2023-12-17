@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://core/level/event_control.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://bus2gwr6st2xf" path="res://core/level/victory_popup.tscn" id="6"]
 [ext_resource type="Script" path="res://core/level/task_control.gd" id="7"]
-[ext_resource type="Script" path="res://core/level/metanavig_control.gd" id="8"]
+[ext_resource type="Script" path="res://core/level/reversion_control.gd" id="7_3e4h7"]
 
 [node name="Level" type="Node" groups=["levels"]]
 script = ExtResource("1")
@@ -29,7 +29,7 @@ anchors_preset = 9
 anchor_right = 0.0
 grow_vertical = 2
 script = ExtResource("2")
-_min_panel_height = 160
+_min_panel_height = 160.0
 
 [node name="VictoryPopup" parent="ScreenMenuLayer" instance=ExtResource("6")]
 unique_name_in_owner = true
@@ -40,8 +40,8 @@ script = ExtResource("7")
 [node name="Verifier" parent="." node_paths=PackedStringArray("effect_layer") instance=ExtResource("4")]
 effect_layer = NodePath("../RootEffectLayer")
 
-[node name="MetanavigControl" type="Node" parent="."]
-script = ExtResource("8")
+[node name="ReversionControl" type="Node" parent="."]
+script = ExtResource("7_3e4h7")
 
 [node name="EventControl" type="Node" parent="."]
 script = ExtResource("5")

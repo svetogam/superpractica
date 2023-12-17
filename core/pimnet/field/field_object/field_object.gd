@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,18 +6,27 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name FieldObject
 extends SubscreenObject
 
-var field: Field
+var field: Field:
+	set = _do_not_set,
+	get = _get_field
+var object_type: int:
+	set = _do_not_set,
+	get = _get_object_type
 @onready var _modes := $ActiveModes as ModeGroup
+
+
+# Virtual
+func _get_object_type() -> int:
+	return GameGlobals.NO_OBJECT
 
 
 func _ready() -> void:
 	super()
-	field = _subscreen
 
 	update_active_modes()
 	field.tool_changed.connect(update_active_modes)
@@ -28,73 +37,73 @@ func _ready() -> void:
 		field.ready.connect(_on_field_ready)
 
 
-#Virtual
+# Virtual
 func _on_field_ready() -> void:
 	pass
 
 
-#Virtual Default
+# Virtual
 func on_interfield_drag_started() -> void:
 	hide()
 
 
-#Virtual Default
+# Virtual
 func on_interfield_drag_stopped() -> void:
 	move_to_front()
 	show()
 
 
-#Virtual
+# Virtual
 func get_drag_graphic() -> ProceduralGraphic:
 	return null
 
 
-#Virtual default
+# Virtual
 func _on_hover(point: Vector2, initial: bool, grabbed_object: InputObject) -> void:
 	for mode in _modes.get_active_modes():
 		mode._on_hover(point, initial, grabbed_object)
 
 
-#Virtual default
+# Virtual
 func _on_unhover() -> void:
 	for mode in _modes.get_active_modes():
 		mode._on_unhover()
 
 
-#Virtual default
+# Virtual
 func _on_press(point: Vector2) -> void:
 	for mode in _modes.get_active_modes():
 		if _current_event.is_active():
 			mode._on_press(point)
 
 
-#Virtual default
+# Virtual
 func _on_drag(point: Vector2, change: Vector2) -> void:
 	for mode in _modes.get_active_modes():
 		if _current_event.is_active():
 			mode._on_drag(point, change)
 
 
-#Virtual default
+# Virtual
 func _on_drop(point: Vector2) -> void:
 	for mode in _modes.get_active_modes():
 		if _current_event.is_active():
 			mode._on_drop(point)
 
 
-func get_object_type() -> int:
-	var object_to_group_map = field.get_globals().OBJECT_TO_GROUP_MAP
-	for object_type in object_to_group_map:
-		if is_in_group(object_to_group_map[object_type]):
-			return object_type
-	return GameGlobals.NO_OBJECT
-
-
-func update_active_modes(_new_tool:="") -> void:
-	var object_type = get_object_type()
-	var active_modes: Array[String] = field.get_active_modes_for_object(object_type)
+func update_active_modes(_new_tool := "") -> void:
+	var active_modes := field.get_active_modes_for_object(object_type)
 	_modes.set_by_list(active_modes)
 
 
 func is_mode_active(mode: String) -> bool:
 	return _modes.is_active(mode)
+
+
+func _get_field() -> Field:
+	assert(_subscreen != null)
+	return _subscreen
+
+
+static func _do_not_set(_value: Variant) -> void:
+	assert(false)

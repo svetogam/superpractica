@@ -18,7 +18,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1")
-_min_panel_height = 120
 
 [node name="ScrollContainer" parent="SideMenu" index="0"]
 mouse_filter = 2

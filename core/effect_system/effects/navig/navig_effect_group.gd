@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name NavigEffectGroup
 extends ScreenEffectGroup
@@ -26,13 +26,13 @@ func affirm_or_else_reject(p_affirm: bool, pos: Vector2) -> ScreenEffect:
 
 
 func affirm(pos: Vector2) -> ScreenEffect:
-	var effect = create_effect(AffirmEffect, pos)
+	var effect := create_effect(AffirmEffect, pos)
 	effect.animator.delete_after_delay()
 	return effect
 
 
 func reject(pos: Vector2) -> ScreenEffect:
-	var effect = create_effect(RejectEffect, pos)
+	var effect := create_effect(RejectEffect, pos)
 	effect.animator.delete_after_delay()
 	return effect
 

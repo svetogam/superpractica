@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends VerificationState
 
@@ -18,14 +18,14 @@ func _enter(_last_state: String) -> void:
 
 	await Game.wait_for(0.8)
 
-	screen_verifier.set_digit_reference(_digit_reference, self, "_on_move_completed")
+	screen_verifier.set_digit_reference(_digit_reference, _on_move_completed)
 
 
 func _on_move_completed() -> void:
-	var start_square = verification.pim.field.queries.get_highlighted_number_square()
-	verification.pim.field.run_process("add_by_circles",
-			[start_square.number, _digit_reference.number, true],
-			self, "_on_circling_completed")
+	var start_square = verification.pim.field.get_highlighted_number_square()
+	(CountingBoard.ProcessAddByCircles
+			.new(start_square.number, _digit_reference.number, true)
+			.run(verification.pim.field, _on_circling_completed))
 
 
 func _on_circling_completed() -> void:

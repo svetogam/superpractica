@@ -7,5 +7,5 @@
 
 [node name="LevelScreen" parent="." index="3" instance=ExtResource("2")]
 
-[node name="MetanavigControl" parent="." index="6"]
+[node name="ReversionControl" parent="." index="6"]
 active = true

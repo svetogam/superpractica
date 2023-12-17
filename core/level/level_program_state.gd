@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,40 +6,32 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name LevelProgramState
 extends State
 
-var program: LevelProgram
-var level: Level
-var effect_layer: CanvasLayer
-var verifier: Node
-var screen_verifier: ScreenVerifier
-var pimnet: Pimnet
-var event_menu: Control
-var event_control: Node
-
-
-func _on_setup() -> void:
-	_setup_shortcuts()
-
-
-func _setup_shortcuts() -> void:
-	program = _target
-	assert(program != null)
-	level = program.level
-	assert(level != null)
-	verifier = level.verifier
-	assert(verifier != null)
-	screen_verifier = verifier.screen_verifications
-	assert(screen_verifier != null)
-	effect_layer = level.effect_layer
-	assert(effect_layer != null)
-	pimnet = program.pimnet
-	assert(pimnet != null)
-	event_control = level.event_control
-	assert(event_control != null)
+var program: LevelProgram:
+	set = _do_not_set,
+	get = _get_program
+var level: Level:
+	set = _do_not_set,
+	get = _get_level
+var effect_layer: CanvasLayer:
+	set = _do_not_set,
+	get = _get_effect_layer
+var verifier: Node:
+	set = _do_not_set,
+	get = _get_verifier
+var screen_verifier: ScreenVerifier:
+	set = _do_not_set,
+	get = _get_screen_verifier
+var pimnet: Pimnet:
+	set = _do_not_set,
+	get = _get_pimnet
+var event_control: Node:
+	set = _do_not_set,
+	get = _get_event_control
 
 
 func complete_task() -> void:
@@ -56,10 +48,49 @@ func complete() -> void:
 
 
 func verify() -> void:
-	level.metanavig_control.clear_history()
+	level.reversion_control.clear_history()
 	complete_task()
 	_transition("verified")
 
 
 func reject() -> void:
 	_transition("rejected")
+
+
+func _get_program() -> LevelProgram:
+	assert(_target != null)
+	return _target
+
+
+func _get_level() -> Level:
+	assert(program.level != null)
+	return program.level
+
+
+func _get_verifier() -> Node:
+	assert(level.verifier != null)
+	return level.verifier
+
+
+func _get_screen_verifier() -> ScreenVerifier:
+	assert(verifier.screen_verifier != null)
+	return verifier.screen_verifier
+
+
+func _get_effect_layer() -> CanvasLayer:
+	assert(level.effect_layer != null)
+	return level.effect_layer
+
+
+func _get_pimnet() -> Pimnet:
+	assert(program.pimnet != null)
+	return program.pimnet
+
+
+func _get_event_control() -> Node:
+	assert(level.event_control != null)
+	return level.event_control
+
+
+static func _do_not_set(_value: Variant) -> void:
+	assert(false)

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Control
 
@@ -25,7 +25,7 @@ func setup_grid(columns: int, rows: int) -> void:
 
 
 func create_task(id: String, label: String, column: int, row: int) -> BaseButton:
-	var task = TaskmapNode.instantiate()
+	var task := TaskmapNode.instantiate()
 	_grid.add_task_node(task, column, row)
 	task.id = id
 	task.structure = self
@@ -48,21 +48,22 @@ func _are_all_tasks_placed_in_grid() -> bool:
 	return true
 
 
-func create_arrow_from_task_to_task(source_task: BaseButton, dest_task: BaseButton) -> void:
-	var arrow = TaskmapArrow.instantiate()
+func create_arrow_from_task_to_task(source_task: BaseButton, dest_task: BaseButton
+) -> void:
+	var arrow := TaskmapArrow.instantiate()
 	add_child(arrow)
 	arrow.set_arrow(source_task, dest_task)
 
 
 func select_task(task_id: String) -> void:
-	var task = get_task_by_id(task_id)
+	var task := get_task_by_id(task_id)
 	if not task.button_pressed:
 		task.button_pressed = true
 
 
 func _on_task_toggled(task_pressed: bool) -> void:
 	if task_pressed:
-		var task = get_selected_task()
+		var task := get_selected_task()
 		task_selected.emit(task)
 
 
@@ -87,8 +88,9 @@ func get_structure_size() -> Vector2:
 
 
 func get_task_position(task: BaseButton) -> Vector2:
-	var grid_box_position = _grid.get_grid_box_position(task.grid_position.x, task.grid_position.y)
-	var task_offset = task.position
+	var grid_box_position = _grid.get_grid_box_position(
+			task.grid_position.x, task.grid_position.y)
+	var task_offset := task.position
 	var task_x = grid_box_position.x + task_offset.x
 	var task_y = grid_box_position.y + task_offset.y
 	return Vector2(task_x, task_y)

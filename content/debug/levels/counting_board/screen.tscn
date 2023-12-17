@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://54c2o1ynbjwp"]
+[gd_scene load_steps=4 format=3 uid="uid://54c2o1ynbjwp"]
 
 [ext_resource type="Script" path="res://core/pimnet/pimnet.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1ij4lra167t7" path="res://core/base_ui/sp_window/sp_window.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/counting_board/counting_board_pim.tscn" id="3"]
-[ext_resource type="Resource" uid="uid://dxjcrurtqyhkq" path="res://content/debug/levels/counting_board/pim_setup.tres" id="4"]
 
 [node name="LevelScreen" type="Control"]
 layout_mode = 3
@@ -19,6 +18,7 @@ offset_bottom = 617.0
 
 [node name="CountingBoardPim" parent="CountingBoardWindow/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("3")]
 layout_mode = 2
-_setup_data = ExtResource("4")
+have_tool_menu = true
+have_spawn_panel = true
 
 [editable path="CountingBoardWindow"]

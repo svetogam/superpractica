@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends WindowContent
 
@@ -17,7 +17,7 @@ var _button_group := ButtonGroup.new()
 @onready var _container := %ToolButtonContainer as VBoxContainer
 
 
-func setup(p_tool_to_text_map: Dictionary, tools:=[]) -> void:
+func setup(p_tool_to_text_map: Dictionary, tools: Array = []) -> void:
 	_tool_to_text_map = p_tool_to_text_map
 	add_tools(tools)
 
@@ -29,7 +29,7 @@ func add_tools(tools: Array) -> void:
 
 func add_tool(tool_mode: String) -> void:
 	var text = _tool_to_text_map[tool_mode]
-	var button = ToolMenuButton.new(tool_mode, text, _button_group)
+	var button := ToolMenuButton.new(tool_mode, text, _button_group)
 	button.toggled.connect(_on_button_toggled)
 
 	_container.add_child(button)
@@ -47,7 +47,7 @@ func get_current_tool() -> String:
 
 func set_tool(tool_mode: String) -> void:
 	if tool_mode != "":
-		var button = _get_button(tool_mode)
+		var button := _get_button(tool_mode)
 		button.button_pressed = true
 	else:
 		for button in _button_group.get_buttons():
@@ -55,12 +55,12 @@ func set_tool(tool_mode: String) -> void:
 
 
 func enable_tool(tool_mode: String) -> void:
-	var button = _get_button(tool_mode)
+	var button := _get_button(tool_mode)
 	button.disabled = false
 
 
 func disable_tool(tool_mode: String) -> void:
-	var button = _get_button(tool_mode)
+	var button := _get_button(tool_mode)
 	button.disabled = true
 
 
@@ -92,8 +92,8 @@ func _get_button(tool_mode: String) -> Button:
 	return null
 
 
-#Hack for the crooked container cartel
-func _on_PanelContainer_resized() -> void:
+# Hack for the crooked container cartel
+func _on_panel_container_resized() -> void:
 	if _container != null:
 		custom_minimum_size.y = _container.get_rect().size.y + 24
 

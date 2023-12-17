@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,14 +6,15 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends RefCounted
 
 const FIRST := "Select the number {start_number} on the board."
-const SECOND := "Put a counter on the next {count} numbers after {start_number}."
-const THIRD :=\
-		"This shows {start_number} + {count}. Click the \"Complete\" button to say you're done."
+const SECOND := (
+		"Put a counter on the next {count} numbers after {start_number}.")
+const THIRD := ("This shows {start_number} + {count}. "
+		+ "Click the \"Complete\" button to say you're done.")
 
 
 const DATA := {

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name InputObject
 extends Node2D
@@ -19,7 +19,7 @@ signal dropped(point)
 signal grab_started
 signal grab_stopped
 
-@export var input_priority := 0
+@export var input_priority: int = 0
 @export var _input_shape_setup_data: InputShapeSetupResource
 var input_shape := InputShape.new()
 var _previously_hovered := false
@@ -40,16 +40,16 @@ func take_input(event: SpInputEvent) -> void:
 	_superscreen_input(event)
 
 
-#Virtual default
+# Virtual
 func _superscreen_input(event: SpInputEvent) -> void:
 	assert(not event.is_completed())
 
 	_current_event = event
-	var point = event.get_position()
-	var now_hovered = has_point(point)
-	var changed_hover = now_hovered != _previously_hovered
-	var grabbed_object = event.get_grabbed_object()
-	var grabbed = grabbed_object == self
+	var point := event.get_position()
+	var now_hovered := has_point(point)
+	var changed_hover := now_hovered != _previously_hovered
+	var grabbed_object := event.get_grabbed_object()
+	var grabbed := grabbed_object == self
 
 	if now_hovered and not grabbed:
 		_on_hover(point, changed_hover, grabbed_object)
@@ -63,7 +63,7 @@ func _superscreen_input(event: SpInputEvent) -> void:
 			_on_press(point)
 			pressed.emit(point)
 		elif grabbed and event.is_motion():
-			var drag_change = event.get_change()
+			var drag_change := event.get_change()
 			_on_drag(point, drag_change)
 			dragged.emit(point, drag_change)
 		elif grabbed and event.is_release():
@@ -74,33 +74,33 @@ func _superscreen_input(event: SpInputEvent) -> void:
 	_previously_hovered = now_hovered
 
 
-#Virtual default
+# Virtual
 func has_point(point: Vector2) -> bool:
-	var relative_point = point - global_position
+	var relative_point := point - global_position
 	return input_shape.has_point(relative_point)
 
 
-#Virtual
+# Virtual
 func _on_hover(_point: Vector2, _initial: bool, _grabbed_object: InputObject) -> void:
 	pass
 
 
-#Virtual
+# Virtual
 func _on_unhover() -> void:
 	pass
 
 
-#Virtual
+# Virtual
 func _on_press(_point: Vector2) -> void:
 	pass
 
 
-#Virtual
+# Virtual
 func _on_drag(_point: Vector2, _change: Vector2) -> void:
 	pass
 
 
-#Virtual
+# Virtual
 func _on_drop(_point: Vector2) -> void:
 	pass
 

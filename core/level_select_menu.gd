@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends PanelContainer
 
@@ -25,8 +25,8 @@ func _ready() -> void:
 
 
 func _add_level_group(level_group: LevelGroupResource) -> void:
-	var level_group_text = level_group.get_name_text()
-	var section_index = _menu.add_section(level_group_text)
+	var level_group_text := level_group.get_name_text()
+	var section_index := _menu.add_section(level_group_text)
 
 	for level_name in level_group.get_level_names():
 		var text = level_group.get_level_name_text(level_name)
@@ -34,14 +34,14 @@ func _add_level_group(level_group: LevelGroupResource) -> void:
 
 
 func _set_section_to_most_recent() -> void:
-	var most_recent_group = Game.level_loader.get_most_recent_level_group()
+	var most_recent_group := Game.level_loader.get_most_recent_level_group()
 	if not most_recent_group.is_empty():
-		var index = _get_section_index_of_level_group(most_recent_group)
+		var index := _get_section_index_of_level_group(most_recent_group)
 		_menu.set_section(index)
 
 
 func _get_section_index_of_level_group(level_group_name: String) -> int:
-	var level_groups = Game.level_loader.get_level_groups()
+	var level_groups := Game.level_loader.get_level_groups()
 	for i in level_groups.size():
 		if level_groups[i].name == level_group_name:
 			return i

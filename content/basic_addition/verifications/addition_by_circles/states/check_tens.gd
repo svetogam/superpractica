@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends VerificationState
 
@@ -16,15 +16,16 @@ const DELAY := 0.2
 func _enter(_last_state: String) -> void:
 	await Game.wait_for(DELAY)
 
-	verification.field.run_process("count_circles_in_direction",
-			[verification.start_number, "down"], self, "_on_count_complete")
+	(CountingBoard.ProcessCountCirclesInDirection
+			.new(verification.start_number, "down")
+			.run(verification.field, _on_count_complete))
 
 
 func _on_count_complete(count: NumberEffect) -> void:
 	await Game.wait_for(DELAY)
 
-	screen_verifier.verify("number_is_equal_to_digit", [count, 2],
-			self, "_on_verify", "_on_reject")
+	(ScreenVerifier.VerifNumberIsEqualToDigit.new(count, 2)
+			.run(screen_verifier, _on_verify, _on_reject))
 
 
 func _on_verify() -> void:
@@ -37,4 +38,4 @@ func _on_reject() -> void:
 
 
 func _exit(_next_state: String) -> void:
-	verification.field.counter.reset_count()
+	verification.field.effect_counter.reset_count()

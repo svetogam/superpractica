@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,12 +6,16 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends FieldObject
 
 var square: NumberSquare = null
 @onready var _graphic := %Graphic as ProceduralGraphic
+
+
+func _get_object_type() -> int:
+	return CountingBoard.Objects.COUNTER
 
 
 func put_on_square(p_square: NumberSquare) -> void:
@@ -21,15 +25,15 @@ func put_on_square(p_square: NumberSquare) -> void:
 		set_transparent()
 
 
-func set_transparent(transparent:=true) -> void:
+func set_transparent(transparent := true) -> void:
 	_graphic.set_properties({"transparent": transparent})
 
 
-func set_warning(warning:=true) -> void:
+func set_warning(warning := true) -> void:
 	_graphic.set_properties({"warning": warning})
 
 
-func set_affirmation(affirm:=true) -> void:
+func set_affirmation(affirm := true) -> void:
 	_graphic.set_properties({"affirmation": affirm})
 
 

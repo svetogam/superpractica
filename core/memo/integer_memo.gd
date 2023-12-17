@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name IntegerMemo
 extends Memo
@@ -14,7 +14,7 @@ extends Memo
 var number: int
 
 
-func _init(p_number:=0) -> void:
+func _init(p_number: int = 0) -> void:
 	set_by_value(p_number)
 
 
@@ -31,7 +31,7 @@ func get_value() -> int:
 	return number
 
 
-func get_string(_kwargs:={}) -> String:
+func get_string(_kwargs := {}) -> String:
 	return str(number)
 
 

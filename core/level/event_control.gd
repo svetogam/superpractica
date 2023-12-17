@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Node
 
@@ -26,5 +26,5 @@ func setup() -> void:
 
 func _setup_menu() -> void:
 	menu = _level.side_menu.add_panel(LevelSideMenu.LevelMenuPanels.EVENT_MENU)
-	menu.enabler.connect_general(_level.verifier, "is_running", false)
+	menu.enabler.connect_general(_level.verifier.is_running, false)
 	_level.updated.connect(menu.enabler.update)

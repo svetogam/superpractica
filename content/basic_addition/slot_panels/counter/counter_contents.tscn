@@ -50,6 +50,6 @@ size_flags_vertical = 3
 mouse_filter = 1
 text = "0"
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/DecrButton" to="." method="_on_DecrButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/IncrButton" to="." method="_on_IncrButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/DecrButton" to="." method="_on_decr_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/IncrButton" to="." method="_on_incr_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

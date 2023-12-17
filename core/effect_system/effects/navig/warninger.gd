@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,13 +6,13 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name Warninger
 extends RefCounted
 
 var _effects: NavigEffectGroup
-var _warnings := []
+var _warnings: Array = []
 
 
 func _init(effect_layer: CanvasLayer) -> void:
@@ -21,12 +21,12 @@ func _init(effect_layer: CanvasLayer) -> void:
 
 func add_at(position: Vector2) -> void:
 	if not _is_warning_at_position(position):
-		var warning_effect = _effects.warn(position)
+		var warning_effect := _effects.warn(position)
 		_warnings.append(warning_effect)
 
 
 func remove_at(position: Vector2) -> void:
-	var warning = _get_warning_at_position(position)
+	var warning := _get_warning_at_position(position)
 	if warning != null:
 		_remove(warning)
 
@@ -48,9 +48,9 @@ func _add_new_warnings(positions: Array) -> void:
 
 
 func _remove_old_warnings(positions: Array) -> void:
-	var to_remove = []
+	var to_remove: Array = []
 	for warning in _warnings:
-		var warning_position = _get_warning_position(warning)
+		var warning_position := _get_warning_position(warning)
 		if not Utils.is_vector_represented(warning_position, positions):
 			to_remove.append(warning)
 	for warning in to_remove:
@@ -65,7 +65,7 @@ func clear() -> void:
 
 func _get_warning_at_position(position: Vector2) -> ScreenEffect:
 	for warning in _warnings:
-		var warning_position = _get_warning_position(warning)
+		var warning_position := _get_warning_position(warning)
 		if position.is_equal_approx(warning_position):
 			return warning
 	return null

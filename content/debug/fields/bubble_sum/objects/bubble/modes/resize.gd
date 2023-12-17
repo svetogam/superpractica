@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends FieldObjectMode
 
@@ -38,7 +38,7 @@ func _on_drop(_field_point: Vector2) -> void:
 		object.stop_grab()
 		_direction = ""
 
-		field.push_action("resize_bubble", [object, object.radius])
+		field.push_action(field.resize_bubble.bind(object, object.radius))
 		object.stop_active_input()
 
 

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,30 +6,20 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name VerificationState
 extends State
 
-var verification: Verification
-var verifier: Node
-var pack: VerificationPack
-var screen_verifier: ScreenVerifier
-
-
-func _on_setup() -> void:
-	_setup_shortcuts()
-
-
-func _setup_shortcuts() -> void:
-	verification = _target
-	assert(verification != null)
-	verifier = verification.verifier
-	assert(verifier != null)
-	pack = verification.pack
-	assert(pack != null)
-	screen_verifier = verification.screen_verifier
-	assert(screen_verifier != null)
+var verification: Verification:
+	set = _do_not_set,
+	get = _get_verification
+var verifier: Node:
+	set = _do_not_set,
+	get = _get_verifier
+var screen_verifier: ScreenVerifier:
+	set = _do_not_set,
+	get = _get_screen_verifier
 
 
 func verify() -> void:
@@ -38,3 +28,22 @@ func verify() -> void:
 
 func reject() -> void:
 	verification.reject()
+
+
+func _get_verification() -> Verification:
+	assert(_target != null)
+	return _target
+
+
+func _get_verifier() -> Node:
+	assert(_target.verifier != null)
+	return _target.verifier
+
+
+func _get_screen_verifier() -> ScreenVerifier:
+	assert(_target.screen_verifier != null)
+	return _target.screen_verifier
+
+
+static func _do_not_set(_value: Variant) -> void:
+	assert(false)

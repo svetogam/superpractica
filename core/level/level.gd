@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name Level
 extends Node
@@ -25,16 +25,16 @@ var _field_connector := ContextualConnector.new(self, "fields", true)
 var _memo_slot_connector := ContextualConnector.new(self, "memo_slots", true)
 @onready var side_menu := %SideMenu as VPanelMenu
 @onready var verifier := $Verifier as Node
-@onready var metanavig_control := $MetanavigControl as MetanavigControl
+@onready var reversion_control := $ReversionControl as ReversionControl
 @onready var task_control := $TaskControl as Node
 @onready var effect_layer := %RootEffectLayer as CanvasLayer
 @onready var dragged_object_layer := %DraggedObjectLayer as CanvasLayer
 @onready var event_control := $EventControl as Node
 @onready var _victory_popup := %VictoryPopup as Popup
 
-#####################################################################
+#====================================================================
 # Setup
-#####################################################################
+#====================================================================
 
 func _ready() -> void:
 	ContextualLocator.register_property(self, "effect_layer")
@@ -45,7 +45,7 @@ func _ready() -> void:
 	_action_queue.setup(pimnet)
 
 	side_menu.add_panel(LevelSideMenu.LevelMenuPanels.LEVEL_CONTROL_MENU)
-	_setup_metanavig()
+	_setup_reversion()
 	_setup_event_menu()
 
 	verifier.verifications_started.connect(_on_verifications_started)
@@ -55,21 +55,21 @@ func _ready() -> void:
 	actions_completed.connect(_signal_update)
 	level_completed.connect(_signal_update)
 	task_completed.connect(_signal_update)
-	_field_connector.connect_signal("updated", self, "_signal_update")
-	_memo_slot_connector.connect_signal("memo_changed", self, "_signal_update")
+	_field_connector.connect_signal("updated", _signal_update)
+	_memo_slot_connector.connect_signal("memo_changed", _signal_update)
 
 	_run_program()
 
 
 func _setup_pimnet() -> void:
-	var screen = _find_screen()
+	var screen := _find_screen()
 	if screen != null:
 		pimnet = screen
 	else:
 		pimnet = Pimnet.new()
 		add_child(pimnet)
 
-	var offset = Vector2(side_menu.size.x, 0)
+	var offset := Vector2(side_menu.size.x, 0)
 	pimnet.set_combined_offset(offset)
 	pimnet.input_sequencer.input_processed.connect(_on_input_processed)
 
@@ -78,10 +78,10 @@ func _find_screen() -> Pimnet:
 	return ContextUtils.get_child_in_group(self, "superscreens") as Pimnet
 
 
-func _setup_metanavig() -> void:
-	if metanavig_control.active:
-		metanavig_control.setup()
-		metanavig_control.reset_completed.connect(_on_reset_completed)
+func _setup_reversion() -> void:
+	if reversion_control.active:
+		reversion_control.setup()
+		reversion_control.reset_completed.connect(_on_reset_completed)
 
 
 func _setup_event_menu() -> void:
@@ -99,11 +99,11 @@ func _find_program() -> LevelProgram:
 	return ContextUtils.get_child_in_group(self, "level_programs")
 
 
-#####################################################################
+#====================================================================
 # Mechanics
-#####################################################################
+#====================================================================
 
-func _signal_update(_arg1=null) -> void:
+func _signal_update(_arg1 = null) -> void:
 	updated.emit()
 
 

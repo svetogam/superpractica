@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name MemStateControl
 extends RefCounted
@@ -14,8 +14,8 @@ extends RefCounted
 signal state_saved
 signal state_loaded
 
-const MAX_HISTORY := 20
-var _pim_list := []
+const MAX_HISTORY: int = 20
+var _pim_list: Array = []
 var _stack_tracker := StackTracker.new(MAX_HISTORY, true)
 
 
@@ -34,8 +34,8 @@ func _save_initial_state() -> void:
 	save_combined_state(true)
 
 
-func save_combined_state(save_if_no_change:=true) -> void:
-	var combined_state = _get_combined_state()
+func save_combined_state(save_if_no_change := true) -> void:
+	var combined_state := _get_combined_state()
 
 	#Abort if no change
 	if not save_if_no_change:
@@ -49,16 +49,17 @@ func save_combined_state(save_if_no_change:=true) -> void:
 
 
 func _get_combined_state() -> Dictionary:
-	var combined_state = {}
+	var combined_state := {}
 	for pim in _pim_list:
-		var id =  pim.get_instance_id()
+		var id = pim.get_instance_id()
 		combined_state[id] = pim.field.build_mem_state()
 		assert(combined_state[id] != null)
 	return combined_state
 
 
-func _are_combined_states_equal(comb_state_1: Dictionary, comb_state_2: Dictionary) -> bool:
-	var num_equal = 0
+func _are_combined_states_equal(comb_state_1: Dictionary, comb_state_2: Dictionary
+) -> bool:
+	var num_equal: int = 0
 	for pim in _pim_list:
 		var id = pim.get_instance_id()
 		if comb_state_1[id].is_equal_to(comb_state_2[id]):
@@ -86,11 +87,11 @@ func redo() -> void:
 		load_state()
 
 
-func load_state(position_to_load:=-1) -> void:
+func load_state(position_to_load: int = -1) -> void:
 	if position_to_load != -1:
 		_stack_tracker.set_position(position_to_load)
 
-	var combined_load = _get_stored_state()
+	var combined_load := _get_stored_state()
 	for pim in _pim_list:
 		var id =  pim.get_instance_id()
 		pim.field.load_mem_state(combined_load[id])

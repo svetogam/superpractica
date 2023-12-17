@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends FieldProgram
 
@@ -23,11 +23,11 @@ func setup(p_start_number: int) -> void:
 
 
 func _start() -> void:
-	action_queue.connect_condition("toggle_highlight", self, "_decide_toggle_highlight")
+	field.connect_condition("toggle_highlight", _decide_toggle_highlight)
 
 
 func _decide_toggle_highlight(square: NumberSquare) -> bool:
-	var correct = square.number == _start_number
+	var correct := square.number == _start_number
 	if correct:
 		effects.affirm(square.position)
 		stop()
@@ -39,4 +39,4 @@ func _decide_toggle_highlight(square: NumberSquare) -> bool:
 
 
 func _end() -> void:
-	action_queue.disconnect_condition("toggle_highlight", self, "_decide_toggle_highlight")
+	field.disconnect_condition("toggle_highlight", _decide_toggle_highlight)

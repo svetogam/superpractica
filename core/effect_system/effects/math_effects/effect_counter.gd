@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,16 +6,16 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name EffectCounter
 extends MathEffectGroup
 
 const NEAR_OFFSET := Vector2(30, 20)
-var _count := 0
+var _count: int = 0
 
 
-func count_next(pos: Vector2, beside:=false) -> NumberEffect:
+func count_next(pos: Vector2, beside := false) -> NumberEffect:
 	_count += 1
 	if beside:
 		return give_number(_count, pos + NEAR_OFFSET)
@@ -23,7 +23,7 @@ func count_next(pos: Vector2, beside:=false) -> NumberEffect:
 		return give_number(_count, pos)
 
 
-func give_current_count(pos: Vector2, beside:=false) -> NumberEffect:
+func give_current_count(pos: Vector2, beside := false) -> NumberEffect:
 	if beside:
 		return give_number(_count, pos + NEAR_OFFSET)
 	else:
@@ -33,7 +33,7 @@ func give_current_count(pos: Vector2, beside:=false) -> NumberEffect:
 func remove_last_count() -> void:
 	assert(_count != 0)
 
-	var last_count = get_highest_count_object()
+	var last_count := get_highest_count_object()
 	remove_child(last_count)
 	_count -= 1
 

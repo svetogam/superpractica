@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,13 +6,13 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name LevelActionQueue
 extends RefCounted
 
-var _queue := []
-var _fields := []
+var _queue: Array = []
+var _fields: Array = []
 
 
 func setup(pimnet: Pimnet) -> void:
@@ -22,7 +22,8 @@ func setup(pimnet: Pimnet) -> void:
 
 func _bind_to_field(field: Field) -> void:
 	_fields.append(field)
-	field.action_queue.got_actions_to_do.connect(_on_actions_queued.bind(field.action_queue))
+	field.action_queue.got_actions_to_do.connect(
+			_on_actions_queued.bind(field.action_queue))
 
 
 func _on_actions_queued(field_queue: FieldActionQueue) -> void:

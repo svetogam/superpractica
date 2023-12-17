@@ -2,14 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://dv4g3p0ianoda" path="res://core/pimnet/pim/pim.tscn" id="1"]
 [ext_resource type="Script" path="res://content/debug/pims/bubble_sum/programs/give_output_memo.gd" id="2"]
-[ext_resource type="Resource" uid="uid://d2ayhncxbxk7n" path="res://content/debug/pims/bubble_sum/empty_setup.tres" id="3"]
-[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/spawner_map.gd" id="4"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/bubble_sum_pim.gd" id="2_cyt8h"]
+[ext_resource type="PackedScene" uid="uid://c54s0u7vs8eii" path="res://content/debug/fields/bubble_sum/bubble_sum_field.tscn" id="3_g57a2"]
 
 [node name="BubbleSumPim" instance=ExtResource("1")]
-_setup_data = ExtResource("3")
+script = ExtResource("2_cyt8h")
+field_scene = ExtResource("3_g57a2")
+initial_tool = 0
+included_tools = Array[int]([])
+disabled_tools = Array[int]([])
+included_spawners = Array[int]([])
 
 [node name="GiveOutputMemo" type="Node" parent="Programs" index="0"]
 script = ExtResource("2")
-
-[node name="SpawnerFactory" parent="." index="2"]
-_initial_data = ExtResource("4")

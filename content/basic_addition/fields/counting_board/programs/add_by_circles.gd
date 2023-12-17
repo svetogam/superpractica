@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends FieldProgram
 
@@ -30,8 +30,8 @@ func setup(p_start_number: int, p_addend: int) -> void:
 
 
 func _start() -> void:
-	action_queue.connect_condition("toggle_circle", self, "_decide_toggle_circle")
-	action_queue.connect_post_action("toggle_circle", self, "_on_circle_toggled")
+	field.connect_condition("toggle_circle", _decide_toggle_circle)
+	field.connect_post_action("toggle_circle", _on_circle_toggled)
 
 	_current_number = _start_number
 	_target_number = _start_number + _addend
@@ -78,5 +78,5 @@ func _counting_by() -> String:
 
 
 func _end() -> void:
-	action_queue.disconnect_condition("toggle_circle", self, "_decide_toggle_circle")
-	action_queue.disconnect_post_action("toggle_circle", self, "_on_circle_toggled")
+	field.disconnect_condition("toggle_circle", _decide_toggle_circle)
+	field.disconnect_post_action("toggle_circle", _on_circle_toggled)

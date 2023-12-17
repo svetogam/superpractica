@@ -8,9 +8,6 @@
 [node name="TaskControl" parent="." index="3"]
 _taskmap_data = ExtResource("1")
 
-[node name="MetanavigControl" parent="." index="5"]
-active = true
-
 [node name="LevelProgram" parent="." index="7"]
 start_number = 4
 addend = 23

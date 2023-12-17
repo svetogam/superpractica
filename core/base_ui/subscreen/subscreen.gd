@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name Subscreen
 extends Node2D
@@ -14,7 +14,7 @@ extends Node2D
 @export var _background_color: Color
 @export var _pan_camera_on_drag := false
 @export var _default_size := Vector2.ZERO
-var _camera: Camera2D
+var camera: Camera2D
 var _rect: Rect2
 var _locator := ContextualLocator.new(self)
 @onready var _panner := %CameraPanner as CameraPanner
@@ -22,11 +22,7 @@ var _locator := ContextualLocator.new(self)
 
 
 func _enter_tree() -> void:
-	_locator.auto_set("subscreen_camera", "_camera")
-
-
-func get_camera() -> Camera2D:
-	return _camera
+	_locator.auto_set("subscreen_camera", "camera")
 
 
 func _ready() -> void:
@@ -41,7 +37,7 @@ func take_input(event: SubscreenInputEvent) -> void:
 		_panner.take_input(event)
 
 
-#Virtual
+# Virtual
 func _superscreen_input(_event: SubscreenInputEvent) -> void:
 	pass
 

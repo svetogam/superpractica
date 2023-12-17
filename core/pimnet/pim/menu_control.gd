@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends WindowContent
 
@@ -59,7 +59,7 @@ func remove_panel(panel: int) -> void:
 	_side_menu.remove_panel(panel)
 
 
-func add_tool_menu(included:=[]) -> WindowContent:
+func add_tool_menu(included: Array = []) -> WindowContent:
 	if _side_menu.has_panel(TOOL_MENU):
 		Game.debug.warn("Tool menu already exists.")
 		return null
@@ -67,7 +67,7 @@ func add_tool_menu(included:=[]) -> WindowContent:
 	tool_menu = _side_menu.add_panel(TOOL_MENU)
 	tool_menu.tree_exited.connect(_on_tool_menu_removed)
 
-	var tool_map = _pim.field.get_tool_mode_to_text_map()
+	var tool_map := _pim.field.get_tool_mode_to_text_map()
 	tool_menu.setup(tool_map, included)
 
 	_connect_tool_menu_to_field()
@@ -83,7 +83,7 @@ func _connect_tool_menu_to_field() -> void:
 
 
 func _set_initial_tool_in_menu() -> void:
-	var current_tool = _pim.field.get_tool()
+	var current_tool := _pim.field.get_tool()
 	if current_tool != "":
 		tool_menu.set_tool(current_tool)
 
@@ -98,13 +98,13 @@ func _on_tool_menu_removed() -> void:
 	_pim.field.tool_changed.disconnect(_update_tool_menu)
 
 
-func add_spawn_panel(included:=[]) -> WindowContent:
+func add_spawn_panel(included: Array = []) -> WindowContent:
 	if _side_menu.has_panel(SPAWN_PANEL):
 		Game.debug.warn("Spawn panel already exists.")
 		return null
 
 	spawn_panel = _side_menu.add_panel(SPAWN_PANEL)
-	spawn_panel.setup(_pim.spawner_factory, included)
+	spawn_panel.setup(_pim, included)
 	return spawn_panel
 
 
@@ -113,7 +113,7 @@ func add_memo_output_panel() -> WindowContent:
 		Game.debug.warn("Memo output panel already exists.")
 		return null
 
-	var memo_output_panel = _side_menu.add_panel(MEMO_OUTPUT)
+	var memo_output_panel := _side_menu.add_panel(MEMO_OUTPUT)
 	memo_output_panel.tree_exited.connect(_on_memo_output_panel_removed)
 
 	memo_output_slot = memo_output_panel.memo_slot

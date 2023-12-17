@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 #Incomplete. See test_expression_object.gd for what functionality is incomplete.
 
@@ -16,7 +16,7 @@ extends Memo
 var expression: ExpressionObject
 
 
-func _init(string:="") -> void:
+func _init(string := "") -> void:
 	expression = ExpressionObject.new(string)
 
 
@@ -29,11 +29,11 @@ func set_by_value(string: String) -> void:
 	expression = ExpressionObject.new(string)
 
 
-func get_value():
+func get_value() -> int:
 	return expression.evaluate()
 
 
-func get_string(kwargs:={"use_spaces": false}) -> String:
+func get_string(kwargs := {"use_spaces": false}) -> String:
 	return expression.get_string(kwargs.use_spaces)
 
 

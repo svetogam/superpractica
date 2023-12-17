@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends GutTest
 
@@ -30,7 +30,7 @@ func test_initializes_to_expected_state():
 
 
 func test_position_locked_in_initial_state():
-	var position = stack_tracker.get_current_position()
+	var position := stack_tracker.get_current_position()
 	stack_tracker.move_position_back()
 	assert_eq(stack_tracker.get_current_position(), position)
 	stack_tracker.move_position_forward()
@@ -62,7 +62,7 @@ func test_navigate_by_set_position():
 	stack_tracker.set_position(4)
 	assert_eq(stack_tracker.get_current_position(), 4)
 
-	#Should crash
+	# Should crash
 #	stack_tracker.set_position(100)
 #	stack_tracker.set_position(0)
 #	stack_tracker.set_position(5)
@@ -127,12 +127,12 @@ func test_add_numbers_beyond_max_capacity():
 	for i in range(30):
 		stack_tracker.push_item(i)
 
-	var expected_final_item = 29
-	var expected_first_item = 10
+	var expected_final_item: int = 29
+	var expected_first_item: int = 10
 	assert_eq(stack_tracker.get_current_item(), expected_final_item)
 	assert_eq(stack_tracker.get_current_position(), 20)
 
-	var expected_item = expected_final_item - 1
+	var expected_item: int = expected_final_item - 1
 	while(not stack_tracker.is_position_at_back()):
 		stack_tracker.move_position_back()
 		assert_eq(stack_tracker.get_current_item(), expected_item)

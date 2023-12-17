@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,15 +6,16 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends VerificationState
 
 
 func _enter(_last_state: String) -> void:
-	verification.pim.field.actions.make_counters_transparent()
+	verification.pim.field.make_counters_transparent()
 
 	await Game.wait_for(0.5)
 
-	pack.verify("counting_board_sum", [verification.pim.field, verification.slot_panel],
-			self, "verify", "reject")
+	(BasicAdditionGlobals.VerifCountingBoardSum
+			.new(verification.pim.field, verification.slot_panel)
+			.run(verifier, verify, reject))

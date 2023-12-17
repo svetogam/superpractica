@@ -30,7 +30,7 @@ Some useful links:
 
 After you have the project running in Godot, you should setup GUT to run tests.
 
-1. Download GUT. The currently used version is 9.1.0. You can find it at <https://github.com/bitwes/Gut>.
+1. Download GUT. The currently used version is 9.1.1. You can find it at <https://github.com/bitwes/Gut>.
 
 2. Put GUT in superpractica/addons/gut.
 

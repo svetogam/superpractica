@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends FieldProgram
 
@@ -20,7 +20,7 @@ var _next_number: int
 var _last_number: int
 
 
-func setup(p_start_number: int, p_count:=-1) -> void:
+func setup(p_start_number: int, p_count: int = -1) -> void:
 	assert(not is_running())
 
 	_start_number = p_start_number
@@ -29,8 +29,8 @@ func setup(p_start_number: int, p_count:=-1) -> void:
 
 
 func _start() -> void:
-	action_queue.connect_condition("create_counter", self, "_decide_create")
-	action_queue.connect_post_action("create_counter", self, "_on_counter_created")
+	field.connect_condition("create_counter", _decide_create)
+	field.connect_post_action("create_counter", _on_counter_created)
 
 	_next_number = _start_number + 1
 
@@ -69,5 +69,5 @@ func _is_completing_number(number: int) -> bool:
 
 
 func _end() -> void:
-	action_queue.disconnect_condition("create_counter", self, "_decide_create")
-	action_queue.disconnect_post_action("create_counter", self, "_on_counter_created")
+	field.disconnect_condition("create_counter", _decide_create)
+	field.disconnect_post_action("create_counter", _on_counter_created)

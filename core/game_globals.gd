@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,12 +6,12 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name GameGlobals
 
-const NO_OBJECT := -1
-const NO_TOOL := -1
+const NO_OBJECT: int = -1
+const NO_TOOL: int = -1
 
 const RELEASE_TAG := "NOT FOR RELEASE"
 const SOURCE_URL := "https://codeberg.org/superpractica/superpractica"

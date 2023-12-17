@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,15 +6,15 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name InputShape
 extends RefCounted
 
 enum ShapeTypes {RECT, CIRCLE}
 
-var _shape: int = ShapeTypes.RECT
-var _radius: float = 0
+var _shape := ShapeTypes.RECT
+var _radius := 0.0
 var _rect_size: Vector2
 var _position: Vector2
 
@@ -38,7 +38,7 @@ func set_by_input_shape(other: InputShape) -> void:
 	_position = other._position
 
 
-func set_rect(size: Vector2, centered:=true, offset:=Vector2.ZERO) -> void:
+func set_rect(size: Vector2, centered := true, offset := Vector2.ZERO) -> void:
 	_shape = ShapeTypes.RECT
 	if centered:
 		_position = offset - size/2
@@ -47,7 +47,7 @@ func set_rect(size: Vector2, centered:=true, offset:=Vector2.ZERO) -> void:
 	_rect_size = size
 
 
-func set_circle(p_radius: float, offset:=Vector2.ZERO) -> void:
+func set_circle(p_radius: float, offset := Vector2.ZERO) -> void:
 	_shape = ShapeTypes.CIRCLE
 	_position = offset
 	_radius = p_radius

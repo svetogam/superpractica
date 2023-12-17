@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 class_name InputEventSimulator
 extends Node
@@ -14,10 +14,10 @@ extends Node
 signal done
 signal interference_detected(interfering_events)
 
-var _events := []
-var _got_events := []
+var _events: Array = []
+var _got_events: Array = []
 var _running := false
-var _frame := 0
+var _frame: int = 0
 var _reset_on_finish: bool
 var _ignoring_interference := true
 
@@ -26,7 +26,7 @@ func add_event(event: InputEvent) -> void:
 	_events.append(event)
 
 
-func run(p_reset_on_finish:=true) -> void:
+func run(p_reset_on_finish := true) -> void:
 	assert(not _events.is_empty())
 	_running = true
 	_reset_on_finish = p_reset_on_finish
@@ -43,14 +43,14 @@ func _stop() -> void:
 	_frame = 0
 
 
-func ignore_interference(ignore:=true) -> void:
+func ignore_interference(ignore := true) -> void:
 	_ignoring_interference = ignore
 
 
-static func get_interference_message(events: Array, max_events: int =3) -> String:
+static func get_interference_message(events: Array, max_events: int = 3) -> String:
 	var message_start := ("The first few interfering input events are:")
 	var message_list := ""
-	var i := 0
+	var i: int = 0
 	for event in events:
 		message_list += " "
 		message_list += event.as_text()
@@ -82,14 +82,14 @@ func _simulate_next_input() -> void:
 
 func _check_interference() -> void:
 	if _events.size() < _got_events.size():
-		var interfering_events = get_interfering_events()
+		var interfering_events := get_interfering_events()
 		interference_detected.emit(interfering_events)
 
 
 func get_interfering_events() -> Array:
-	var interfering_events = []
+	var interfering_events: Array = []
 	for got_event in _got_events:
-		var was_expected = false
+		var was_expected := false
 		for expected_event in _events:
 			if expected_event.as_text() == got_event.as_text():
 				was_expected = true

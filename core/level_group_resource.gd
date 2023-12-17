@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name LevelGroupResource
 extends Resource
@@ -21,19 +21,19 @@ func get_name_text() -> String:
 
 
 func get_level_names() -> Array:
-	var level_names = []
+	var level_names: Array = []
 	for level in _levels:
 		level_names.append(level.name)
 	return level_names
 
 
-func get_level_name_text(level_name: String):
-	var level = _get_level(level_name)
+func get_level_name_text(level_name: String) -> String:
+	var level := _get_level(level_name)
 	return level.get_name_text()
 
 
-func get_level_scene(level_name: String):
-	var level = _get_level(level_name)
+func get_level_scene(level_name: String) -> PackedScene:
+	var level := _get_level(level_name)
 	return level.get_scene()
 
 

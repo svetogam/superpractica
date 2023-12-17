@@ -12,19 +12,17 @@ config_version=5
 
 config/name="Super Practica"
 run/main_scene="res://core/level_select_menu.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
-Utils="*res://general/utils.gd"
 Game="*res://core/game.tscn"
 GameDriver="res://content/game_driver.gd"
 
 [debug]
 
 gdscript/warnings/unsafe_cast=1
-gdscript/warnings/unsafe_call_argument=1
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/redundant_await=0
 gdscript/warnings/integer_division=0
@@ -37,6 +35,14 @@ window/size/viewport_height=800
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://content/": "yellow",
+"res://core/": "red",
+"res://general/": "purple"
+}
 
 [input]
 

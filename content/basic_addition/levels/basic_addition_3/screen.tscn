@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://g67qh1ylmeaw"]
+[gd_scene load_steps=7 format=3 uid="uid://g67qh1ylmeaw"]
 
 [ext_resource type="Script" path="res://core/pimnet/pimnet.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://duy43ad7xsbxn" path="res://core/level/task_window/task_window.tscn" id="2"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://x50sj14xqhlh" path="res://content/basic_addition/slot_panels/sum_slots/sum_slots.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/counting_board/counting_board_pim.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://xs8yy0fa2755" path="res://content/basic_addition/slot_panels/counter/counter_contents.tscn" id="6"]
-[ext_resource type="Resource" uid="uid://dgqi0yavukxl7" path="res://content/basic_addition/levels/basic_addition_3/pim_setup.tres" id="7"]
 
 [node name="LevelScreen" type="Control"]
 layout_mode = 3
@@ -22,7 +21,9 @@ offset_bottom = 605.0
 
 [node name="CountingBoardPim" parent="CountingBoardWindow/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("5")]
 layout_mode = 2
-_setup_data = ExtResource("7")
+initial_tool = -1
+include_all_tools = false
+have_spawn_panel = true
 
 [node name="TaskWindow" parent="." instance=ExtResource("2")]
 position = Vector2(45.1688, 483.066)

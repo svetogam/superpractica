@@ -16,4 +16,4 @@ custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 text = "Level Select"
 
-[connection signal="pressed" from="VBox/LevelSelectButton" to="." method="_on_Level_Select_Button_pressed"]
+[connection signal="pressed" from="VBox/LevelSelectButton" to="." method="_on_level_select_button_pressed"]

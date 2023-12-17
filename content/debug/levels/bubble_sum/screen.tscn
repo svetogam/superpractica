@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://core/pimnet/pimnet.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1ij4lra167t7" path="res://core/base_ui/sp_window/sp_window.tscn" id="2"]
-[ext_resource type="Resource" uid="uid://b6csi4va3eok" path="res://content/debug/levels/bubble_sum/pim_setup.tres" id="3"]
 [ext_resource type="PackedScene" uid="uid://bfmkc5e3nqf30" path="res://content/debug/pims/bubble_sum/bubble_sum_pim.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://c54s0u7vs8eii" path="res://content/debug/fields/bubble_sum/bubble_sum_field.tscn" id="4_uablk"]
 
 [node name="LevelScreen" type="Control"]
 layout_mode = 3
@@ -19,6 +19,13 @@ offset_bottom = 475.0
 
 [node name="BubbleSumPim" parent="Window/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("4")]
 layout_mode = 2
-_setup_data = ExtResource("3")
+field_scene = ExtResource("4_uablk")
+initial_tool = 0
+included_tools = Array[int]([])
+disabled_tools = Array[int]([])
+included_spawners = Array[int]([])
+have_tool_menu = true
+have_spawn_panel = true
+have_memo_output_panel = true
 
 [editable path="Window"]

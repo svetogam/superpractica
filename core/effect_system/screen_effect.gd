@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name ScreenEffect
 extends Node2D
@@ -15,7 +15,7 @@ extends Node2D
 @onready var _animation_player := $AnimationPlayer as AnimationPlayer
 
 
-#Virtual
+# Virtual
 func set_by_effect(_original: ScreenEffect) -> void:
 	pass
 

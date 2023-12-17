@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends GutTest
 
@@ -25,9 +25,9 @@ func after_each():
 	remove_child(scene)
 
 
-#####################################################################
+#====================================================================
 # Static
-#####################################################################
+#====================================================================
 
 func test_agents_find_registered_values():
 	ContextualLocator.register($Top/Context, "a", 1)
@@ -35,7 +35,7 @@ func test_agents_find_registered_values():
 	assert_eq(ContextualLocator.find($Top/Context/Agent1, "a"), 1)
 	assert_eq(ContextualLocator.find($Top/Context/Agent1, "b"), "wow")
 
-	var new_node = Node.new()
+	var new_node := Node.new()
 	$Top/Context.add_child(new_node)
 	ContextualLocator.register($Top/Context, "c", new_node)
 	var found_node = ContextualLocator.find($Top/Context/Agent1, "c")
@@ -44,9 +44,9 @@ func test_agents_find_registered_values():
 
 func test_only_subnodes_and_self_find_the_context():
 	ContextualLocator.register($Top/Context, "a", 1)
-	var new_agent_1 = AgentScript.new()
+	var new_agent_1 := AgentScript.new()
 	$Top/Context.add_child(new_agent_1)
-	var new_agent_2 = AgentScript.new()
+	var new_agent_2 := AgentScript.new()
 	$Top.add_child(new_agent_2)
 
 	assert_eq(ContextualLocator.find($Top/Context/Agent1, "a"), 1)
@@ -55,7 +55,8 @@ func test_only_subnodes_and_self_find_the_context():
 	assert_eq(ContextualLocator.find($Top/Context, "a"), 1)
 
 	assert_eq(ContextualLocator.find($Top/ContextWithServices/Agent1, "a"), null)
-	assert_eq(ContextualLocator.find($Top/ContextWithServices/Subcontext/SubAgent1, "a"), null)
+	assert_eq(ContextualLocator.find(
+			$Top/ContextWithServices/Subcontext/SubAgent1, "a"), null)
 	assert_eq(ContextualLocator.find($Top/AgentWithoutContext, "a"), null)
 	assert_eq(ContextualLocator.find(new_agent_2, "a"), null)
 	assert_eq(ContextualLocator.find($Top, "a"), null)
@@ -84,8 +85,8 @@ func test_reregistering_overwrites():
 
 
 func test_agents_find_registered_properties():
-	var context = $Top/Context
-	var agent = $Top/Context/Agent1
+	var context := $Top/Context
+	var agent := $Top/Context/Agent1
 	ContextualLocator.register_property(context, "property_1")
 	ContextualLocator.register_property_as(context, "property_2", "my_property")
 	assert_eq(ContextualLocator.find(agent, "property_1"), context.INITIAL_PROPERTY_1)
@@ -100,10 +101,10 @@ func test_agents_find_registered_properties():
 
 
 func test_agents_find_registered_getters():
-	var context = $Top/Context
-	var agent = $Top/Context/Agent1
-	ContextualLocator.register_getter(context, "a", "property_1_getter")
-	ContextualLocator.register_getter(context, "b", "property_2_getter")
+	var context := $Top/Context
+	var agent := $Top/Context/Agent1
+	ContextualLocator.register_getter(context.property_1_getter, "a")
+	ContextualLocator.register_getter(context.property_2_getter, "b")
 	assert_eq(ContextualLocator.find(agent, "a"), context.INITIAL_PROPERTY_1)
 	assert_eq(ContextualLocator.find(agent, "b"), context.INITIAL_PROPERTY_2)
 
@@ -114,10 +115,10 @@ func test_agents_find_registered_getters():
 
 
 func test_agents_find_registered_nodes_by_group():
-	var context = $Top/ContextWithServices
-	var agent = $Top/ContextWithServices/Agent1
-	var service_1 = $Top/ContextWithServices/Service1
-	var service_2 = $Top/ContextWithServices/Service2
+	var context := $Top/ContextWithServices
+	var agent := $Top/ContextWithServices/Agent1
+	var service_1 := $Top/ContextWithServices/Service1
+	var service_2 := $Top/ContextWithServices/Service2
 	ContextualLocator.register_child_by_group(context, "a_group_1")
 	ContextualLocator.register_child_by_group(context, "a_group_2")
 	var found_1 = ContextualLocator.find(agent, "a_group_1")
@@ -129,7 +130,7 @@ func test_agents_find_registered_nodes_by_group():
 	if found_2 != null:
 		assert_eq(found_2.get_instance_id(), service_2.get_instance_id())
 
-	var new_service = ServiceScript.new()
+	var new_service := ServiceScript.new()
 	context.remove_child(service_1)
 	context.add_child(new_service)
 	var found_3 = ContextualLocator.find(agent, "a_group_1")
@@ -139,8 +140,8 @@ func test_agents_find_registered_nodes_by_group():
 
 
 func test_agents_do_not_find_by_group_if_not_exactly_one_is_in_group():
-	var context = $Top/ContextWithServices
-	var agent = $Top/ContextWithServices/Agent1
+	var context := $Top/ContextWithServices
+	var agent := $Top/ContextWithServices/Agent1
 	ContextualLocator.register_child_by_group(context, "not_an_actual_group")
 	assert_eq(ContextualLocator.find(agent, "not_an_actual_group"), null)
 
@@ -148,12 +149,12 @@ func test_agents_do_not_find_by_group_if_not_exactly_one_is_in_group():
 	assert_eq(ContextualLocator.find(agent, "duplicate_group"), null)
 
 
-#####################################################################
+#====================================================================
 # Auto Signal
-#####################################################################
+#====================================================================
 
 func test_auto_signal_signals_immediately_if_already_registered():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	watch_signals(agent.locator)
 	ContextualLocator.register($Top/Context, "a", 1)
@@ -162,7 +163,7 @@ func test_auto_signal_signals_immediately_if_already_registered():
 
 
 func test_auto_signal_signals_upon_registration_if_not_registered():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	watch_signals(agent.locator)
 	agent.locator.auto_signal("a")
@@ -173,9 +174,9 @@ func test_auto_signal_signals_upon_registration_if_not_registered():
 
 
 func test_auto_signal_signals_once_on_registration_unless_flagged():
-	var agent_1 = $Top/Context/Agent1
-	var agent_2 = $Top/Context/Agent2
-	var agent_3 = $Top/Context/Agent3
+	var agent_1 := $Top/Context/Agent1
+	var agent_2 := $Top/Context/Agent2
+	var agent_3 := $Top/Context/Agent3
 	agent_1.locator = ContextualLocator.new(agent_1)
 	agent_2.locator = ContextualLocator.new(agent_2, true)
 	agent_3.locator = ContextualLocator.new(agent_3, true)
@@ -198,7 +199,7 @@ func test_auto_signal_signals_once_on_registration_unless_flagged():
 
 
 func test_auto_signal_does_not_react_to_unregistration():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent, true)
 	watch_signals(agent.locator)
 	agent.locator.auto_signal("a")
@@ -208,7 +209,7 @@ func test_auto_signal_does_not_react_to_unregistration():
 
 
 func test_can_have_multiple_auto_signals():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	watch_signals(agent.locator)
 	agent.locator.auto_signal("a")
@@ -228,9 +229,9 @@ func test_can_have_multiple_auto_signals():
 
 
 func test_removing_agent_stops_signals_connected_to_other_objects():
-	var agent_1 = $Top/Context/Agent1
-	var agent_2 = $Top/Context/Agent2
-	var agent_3 = $Top/Context/Agent3
+	var agent_1 := $Top/Context/Agent1
+	var agent_2 := $Top/Context/Agent2
+	var agent_3 := $Top/Context/Agent3
 	agent_1.locator = ContextualLocator.new(agent_2)
 	agent_1.locator.auto_signal("a")
 	agent_1.locator.auto_found.connect(agent_3.auto_callback)
@@ -239,23 +240,23 @@ func test_removing_agent_stops_signals_connected_to_other_objects():
 	assert_eq(agent_3.value, AgentScript.INITIAL_VALUE)
 
 
-#####################################################################
+#====================================================================
 # Auto Callback
-#####################################################################
+#====================================================================
 
 func test_auto_callback_is_called_immediately_if_already_registered():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	ContextualLocator.register($Top/Context, "a", 1)
-	agent.locator.auto_callback("a", agent, "auto_callback")
+	agent.locator.auto_callback("a", agent.auto_callback)
 	assert_eq_deep(agent.event_order, ["auto_callback"])
 	assert_eq(agent.value, 1)
 
 
 func test_auto_callback_is_called_upon_registration_if_not_registered():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
-	agent.locator.auto_callback("a", agent, "auto_callback")
+	agent.locator.auto_callback("a", agent.auto_callback)
 	assert_eq_deep(agent.event_order, [])
 	assert_eq(agent.value, agent.INITIAL_VALUE)
 
@@ -265,10 +266,10 @@ func test_auto_callback_is_called_upon_registration_if_not_registered():
 
 
 func test_auto_found_is_emitted_after_auto_callback():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	watch_signals(agent.locator)
-	agent.locator.auto_callback("a", agent, "auto_callback")
+	agent.locator.auto_callback("a", agent.auto_callback)
 	agent.locator.auto_found.connect(agent.auto_callback_2)
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_signal_emitted_with_parameters(agent.locator, "auto_found", ["a", 1])
@@ -276,16 +277,16 @@ func test_auto_found_is_emitted_after_auto_callback():
 
 
 func test_auto_callback_is_called_once_on_registration_unless_flagged():
-	var agent_1 = $Top/Context/Agent1
-	var agent_2 = $Top/Context/Agent2
-	var agent_3 = $Top/Context/Agent3
+	var agent_1 := $Top/Context/Agent1
+	var agent_2 := $Top/Context/Agent2
+	var agent_3 := $Top/Context/Agent3
 	agent_1.locator = ContextualLocator.new(agent_1)
 	agent_2.locator = ContextualLocator.new(agent_2, true)
 	agent_3.locator = ContextualLocator.new(agent_3, true)
-	agent_1.locator.auto_callback("a", agent_1, "auto_callback")
-	agent_2.locator.auto_callback("a", agent_2, "auto_callback")
+	agent_1.locator.auto_callback("a", agent_1.auto_callback)
+	agent_2.locator.auto_callback("a", agent_2.auto_callback)
 	ContextualLocator.register($Top/Context, "a", 1)
-	agent_3.locator.auto_callback("a", agent_3, "auto_callback")
+	agent_3.locator.auto_callback("a", agent_3.auto_callback)
 	assert_eq_deep(agent_1.event_order, ["auto_callback"])
 	assert_eq_deep(agent_2.event_order, ["auto_callback"])
 	assert_eq_deep(agent_3.event_order, ["auto_callback"])
@@ -303,20 +304,20 @@ func test_auto_callback_is_called_once_on_registration_unless_flagged():
 
 
 func test_auto_callbacks_are_only_called_on_registration():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent, true)
-	agent.locator.auto_callback("a", agent, "auto_callback")
+	agent.locator.auto_callback("a", agent.auto_callback)
 	ContextualLocator.register($Top/Context, "a", 1)
-	agent.locator.auto_callback("a", agent, "auto_callback_2")
+	agent.locator.auto_callback("a", agent.auto_callback_2)
 	ContextualLocator.register($Top/Context, "a", 2)
 	assert_eq_deep(agent.event_order,
 			["auto_callback", "auto_callback_2", "auto_callback", "auto_callback_2"])
 
 
 func test_auto_callback_does_not_react_to_unregistration():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent, true)
-	agent.locator.auto_callback("a", agent, "auto_callback")
+	agent.locator.auto_callback("a", agent.auto_callback)
 	ContextualLocator.register($Top/Context, "a", 1)
 	ContextualLocator.unregister($Top/Context, "a")
 	assert_eq_deep(agent.event_order, ["auto_callback"])
@@ -324,36 +325,37 @@ func test_auto_callback_does_not_react_to_unregistration():
 
 
 func test_auto_callback_accepts_extra_parameters():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	ContextualLocator.register($Top/Context, "a", 1)
-	agent.locator.auto_callback("a", agent, "auto_callback", [5])
+	agent.locator.auto_callback("a", agent.auto_callback.bind(5))
 	assert_eq_deep(agent.event_order, ["auto_callback"])
 	assert_eq(agent.value, 1)
 	assert_eq(agent.last_given_arg, 5)
 
 
 func test_can_have_multiple_auto_callbacks():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
-	agent.locator.auto_callback("a", agent, "auto_callback")
-	agent.locator.auto_callback("c", agent, "auto_callback_3")
-	agent.locator.auto_callback("b", agent, "auto_callback_2")
+	agent.locator.auto_callback("a", agent.auto_callback)
+	agent.locator.auto_callback("c", agent.auto_callback_3)
+	agent.locator.auto_callback("b", agent.auto_callback_2)
 	ContextualLocator.register($Top/Context, "a", 4)
 	ContextualLocator.register($Top/Context, "b", 5)
 	ContextualLocator.register($Top/Context, "c", 6)
-	assert_eq_deep(agent.event_order, ["auto_callback", "auto_callback_2", "auto_callback_3"])
+	assert_eq_deep(agent.event_order,
+			["auto_callback", "auto_callback_2", "auto_callback_3"])
 	assert_eq(agent.value, 4)
 	assert_eq(agent.value_2, 5)
 	assert_eq(agent.value_3, 6)
 
 
 func test_can_connect_same_auto_callback_to_multiple_keys():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
-	agent.locator.auto_callback("a", agent, "auto_callback", [4])
-	agent.locator.auto_callback("b", agent, "auto_callback", [5])
-	agent.locator.auto_callback("c", agent, "auto_callback", [6])
+	agent.locator.auto_callback("a", agent.auto_callback.bind(4))
+	agent.locator.auto_callback("b", agent.auto_callback.bind(5))
+	agent.locator.auto_callback("c", agent.auto_callback.bind(6))
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_eq_deep(agent.event_order, ["auto_callback"])
 	assert_eq(agent.value, 1)
@@ -371,10 +373,10 @@ func test_can_connect_same_auto_callback_to_multiple_keys():
 
 
 func test_can_connect_multiple_auto_callbacks_to_same_key():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
-	agent.locator.auto_callback("a", agent, "auto_callback", [4])
-	agent.locator.auto_callback("a", agent, "auto_callback_2", [5])
+	agent.locator.auto_callback("a", agent.auto_callback.bind(4))
+	agent.locator.auto_callback("a", agent.auto_callback_2.bind(5))
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_eq_deep(agent.event_order, ["auto_callback", "auto_callback_2"])
 	assert_eq(agent.value, 1)
@@ -383,42 +385,42 @@ func test_can_connect_multiple_auto_callbacks_to_same_key():
 
 
 func test_auto_callback_can_be_on_another_object():
-	var agent_1 = $Top/Context/Agent1
-	var agent_2 = $Top/Context/Agent2
+	var agent_1 := $Top/Context/Agent1
+	var agent_2 := $Top/Context/Agent2
 	agent_1.locator = ContextualLocator.new(agent_1)
-	agent_1.locator.auto_callback("a", agent_2, "auto_callback")
+	agent_1.locator.auto_callback("a", agent_2.auto_callback)
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_eq(agent_1.value, agent_1.INITIAL_VALUE)
 	assert_eq(agent_2.value, 1)
 
 
 func test_auto_callback_can_be_on_multiple_objects_with_same_method_name():
-	var agent_1 = $Top/Context/Agent1
-	var agent_2 = $Top/Context/Agent2
+	var agent_1 := $Top/Context/Agent1
+	var agent_2 := $Top/Context/Agent2
 	agent_1.locator = ContextualLocator.new(agent_1)
-	agent_1.locator.auto_callback("b", agent_1, "auto_callback")
-	agent_1.locator.auto_callback("b", agent_2, "auto_callback")
+	agent_1.locator.auto_callback("b", agent_1.auto_callback)
+	agent_1.locator.auto_callback("b", agent_2.auto_callback)
 	ContextualLocator.register($Top/Context, "b", 2)
 	assert_eq(agent_1.value, 2)
 	assert_eq(agent_2.value, 2)
 
 
 func test_removing_agent_stops_callbacks_on_other_objects():
-	var agent_1 = $Top/Context/Agent1
-	var agent_2 = $Top/Context/Agent2
+	var agent_1 := $Top/Context/Agent1
+	var agent_2 := $Top/Context/Agent2
 	agent_1.locator = ContextualLocator.new(agent_1)
-	agent_1.locator.auto_callback("a", agent_2, "auto_callback")
+	agent_1.locator.auto_callback("a", agent_2.auto_callback)
 	agent_1.free()
 	ContextualLocator.register($Top/Context, "a", 1)
 	assert_eq(agent_2.value, AgentScript.INITIAL_VALUE)
 
 
-#####################################################################
+#====================================================================
 # Auto Set
-#####################################################################
+#====================================================================
 
 func test_auto_set_sets_immediately_if_already_registered():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	ContextualLocator.register($Top/Context, "a", 1)
 	agent.locator.auto_set("a", "value")
@@ -426,7 +428,7 @@ func test_auto_set_sets_immediately_if_already_registered():
 
 
 func test_auto_set_sets_upon_registration_if_not_registered():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	agent.locator.auto_set("a", "value")
 	assert_eq(agent.value, agent.INITIAL_VALUE)
@@ -436,7 +438,7 @@ func test_auto_set_sets_upon_registration_if_not_registered():
 
 
 func test_auto_found_is_emitted_after_auto_set():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	watch_signals(agent.locator)
 	agent.locator.auto_set("a", "value_2")
@@ -448,9 +450,9 @@ func test_auto_found_is_emitted_after_auto_set():
 
 
 func test_auto_set_sets_once_on_registration_unless_flagged():
-	var agent_1 = $Top/Context/Agent1
-	var agent_2 = $Top/Context/Agent2
-	var agent_3 = $Top/Context/Agent3
+	var agent_1 := $Top/Context/Agent1
+	var agent_2 := $Top/Context/Agent2
+	var agent_3 := $Top/Context/Agent3
 	agent_1.locator = ContextualLocator.new(agent_1)
 	agent_2.locator = ContextualLocator.new(agent_2, true)
 	agent_3.locator = ContextualLocator.new(agent_3, true)
@@ -469,7 +471,7 @@ func test_auto_set_sets_once_on_registration_unless_flagged():
 
 
 func test_auto_set_does_not_react_to_unregistration():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent, true)
 	agent.locator.auto_set("a", "value")
 	ContextualLocator.register($Top/Context, "a", 1)
@@ -478,7 +480,7 @@ func test_auto_set_does_not_react_to_unregistration():
 
 
 func test_can_have_multiple_auto_sets():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	agent.locator.auto_set("a", "value")
 	agent.locator.auto_set("c", "value_3")
@@ -492,7 +494,7 @@ func test_can_have_multiple_auto_sets():
 
 
 func test_can_have_multiple_auto_sets_on_same_property():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	agent.locator.auto_set("a", "value")
 	agent.locator.auto_set("b", "value")
@@ -508,7 +510,7 @@ func test_can_have_multiple_auto_sets_on_same_property():
 
 
 func test_can_auto_set_multiple_properties_by_one_key():
-	var agent = $Top/Context/Agent1
+	var agent := $Top/Context/Agent1
 	agent.locator = ContextualLocator.new(agent)
 	agent.locator.auto_set("a", "value")
 	agent.locator.auto_set("a", "value_2")

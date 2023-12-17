@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,29 +6,29 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends Node
 
 const GROUP = "test_agent_group"
 var connector := ContextualConnector.new(self, GROUP)
-var order := []
+var order: Array = []
 
 
 func _ready() -> void:
-	connector.connect_setup(self, "_agent_setup")
-	connector.connect_signal("number_done", self, "_on_agent_number_done")
-	connector.connect_signal("string_done", self, "_on_agent_string_done", ["string: "])
+	connector.connect_setup(_agent_setup)
+	connector.connect_signal("number_done", _on_agent_number_done)
+	connector.connect_signal("string_done", _on_agent_string_done.bind("string: "))
 
 
 func switch_setup(number: int) -> void:
-	connector.disconnect_setup(self, "_agent_setup")
-	connector.connect_setup(self, "_agent_setup_with_number", [number], false)
+	connector.disconnect_setup(_agent_setup)
+	connector.connect_setup(_agent_setup_with_number.bind(number), false)
 
 
 func ignore_agents() -> void:
-	connector.disconnect_signal("number_done", self, "_on_agent_number_done")
-	connector.disconnect_signal("string_done", self, "_on_agent_string_done")
+	connector.disconnect_signal("number_done", _on_agent_number_done)
+	connector.disconnect_signal("string_done", _on_agent_string_done)
 
 
 func _agent_setup(agent: Node) -> void:

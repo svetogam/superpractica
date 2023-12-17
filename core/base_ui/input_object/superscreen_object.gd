@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,13 +6,15 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name SuperscreenObject
 extends InputObject
 
-var animator = Animator2D.new()
-var superscreen: Superscreen
+var animator: Animator2D:
+	get = _get_animator
+var superscreen: Superscreen:
+	get = _get_superscreen
 var _drag_only := false
 
 
@@ -21,32 +23,37 @@ func _init() -> void:
 
 
 func _enter_tree() -> void:
-	add_child(animator)
-
-	if superscreen == null:
-		_find_superscreen()
-
-
-func _find_superscreen() -> void:
-	superscreen = get_tree().get_nodes_in_group("superscreens")[0]
-	assert(superscreen != null)
-
 	superscreen.input_sequencer.connect_input_object(self)
 
 
 func start_grab() -> void:
 	if _drag_only:
 		position = get_global_mouse_position()
-	super.start_grab()
+	super()
 
 
-#Virtual default
+# Virtual
 func _on_drag(point: Vector2, _change: Vector2) -> void:
 	if _drag_only:
 		position = point
 
 
 func _end_drag() -> void:
-	super._end_drag()
+	super()
 	if _drag_only:
 		queue_free()
+
+
+func _get_superscreen() -> Superscreen:
+	if superscreen == null:
+		superscreen = get_tree().get_nodes_in_group("superscreens")[0]
+		assert(superscreen != null)
+	return superscreen
+
+
+func _get_animator() -> Animator2D:
+	if animator == null:
+		animator = Animator2D.new()
+		assert(animator != null)
+		add_child(animator)
+	return animator

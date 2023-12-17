@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,11 +6,11 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends Node
 
-const INITIAL_PROPERTY_1 := -1
+const INITIAL_PROPERTY_1: int = -1
 const INITIAL_PROPERTY_2 := "initial_property_2"
 var property_1 := INITIAL_PROPERTY_1
 var property_2 := INITIAL_PROPERTY_2

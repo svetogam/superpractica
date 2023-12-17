@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,14 +6,14 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends GridContainer
 
 var _rows: int
 var _grid_box_width: int
 var _grid_box_height: int
-var _grid_box_array := []
+var _grid_box_array: Array = []
 @onready var _grid_box_prototype := %GridBoxPrototype as CenterContainer
 
 
@@ -29,17 +29,17 @@ func setup(p_columns: int, p_rows: int) -> void:
 	size = Vector2(columns * _grid_box_width, _rows * _grid_box_height)
 
 	for _column in range(columns):
-		var down_column_array = []
+		var down_column_array: Array = []
 		_grid_box_array.append(down_column_array)
 		for _row in range(_rows):
-			var grid_box = _create_grid_box()
+			var grid_box := _create_grid_box()
 			down_column_array.append(grid_box)
 
 	_populate_grid_with_grid_boxes()
 
 
 func _create_grid_box() -> Control:
-	var grid_box = _grid_box_prototype.duplicate()
+	var grid_box := _grid_box_prototype.duplicate() as Control
 	grid_box.show()
 	return grid_box
 

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name NumberSquare
 extends FieldObject
@@ -18,6 +18,10 @@ var _size: Vector2
 @onready var _label := %Label as Label
 @onready var _circled_graphic := %CircledGraphic as ProceduralGraphic
 @onready var _highlight_graphic := %HighlightGraphic as ProceduralGraphic
+
+
+func _get_object_type() -> int:
+	return CountingBoard.Objects.NUMBER_SQUARE
 
 
 func setup(p_size: Vector2, p_number: int) -> void:
@@ -59,8 +63,8 @@ func get_memo() -> IntegerMemo:
 
 
 func has_counter() -> bool:
-	return field.queries.get_number_squares_with_counters().has(self)
+	return field.get_number_squares_with_counters().has(self)
 
 
 func get_counter() -> FieldObject:
-	return field.queries.get_counter_on_square(self)
+	return field.get_counter_on_square(self)

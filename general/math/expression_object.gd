@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,20 +6,26 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 #Incomplete. See test_expression_object.gd for what functionality is incomplete.
 
 class_name ExpressionObject
 extends RefCounted
 
-#####################################################################
+#====================================================================
 # Static
-#####################################################################
+#====================================================================
 
-const SYMBOL_MAP := {"plus": "+", "minus": "-", "multiply": "*", "divide": "/",
-					"open_paren": "(", "close_paren": ")"}
-const WHITE_SPACE := [" "]
+const SYMBOL_MAP := {
+	"plus": "+",
+	"minus": "-",
+	"multiply": "*",
+	"divide": "/",
+	"open_paren": "(",
+	"close_paren": ")"
+}
+const WHITE_SPACE: Array = [" "]
 
 
 static func is_symbol(character: String) -> bool:
@@ -30,15 +36,15 @@ static func is_white_space(character: String) -> bool:
 	return WHITE_SPACE.has(character)
 
 
-#####################################################################
+#====================================================================
 # Object
-#####################################################################
+#====================================================================
 
-var _element_list := []
+var _element_list: Array = []
 var _invalid := true
 
 
-func _init(string:="") -> void:
+func _init(string := "") -> void:
 	if string != "":
 		set_by_string(string)
 
@@ -46,13 +52,13 @@ func _init(string:="") -> void:
 func set_by_string(string: String) -> String:
 	clear()
 
-	var i = 0
+	var i: int = 0
 	while i < string.length():
 		#Add a number as one item
 		if string[i].is_valid_int():
-			var number = _get_first_number(string.substr(i))
-			var number_length = _get_first_number_length(string.substr(i))
-			_element_list.append(number)
+			var number := _get_first_number(string.substr(i))
+			var number_length := _get_first_number_length(string.substr(i))
+			_element_list.append(str(number))
 			i += number_length
 
 		#Add a symbol
@@ -77,12 +83,12 @@ func set_by_string(string: String) -> String:
 
 
 func _get_first_number(string: String) -> int:
-	var number_length = _get_first_number_length(string)
+	var number_length := _get_first_number_length(string)
 	return int(string.left(number_length))
 
 
 func _get_first_number_length(string: String) -> int:
-	var i = 1
+	var i: int = 1
 	while i < string.length() and string[i].is_valid_int():
 		i += 1
 	return i
@@ -117,20 +123,21 @@ func get_value():
 	return evaluate()
 
 
-###INCOMPLETE
+# INCOMPLETE
 func evaluate() -> int:
 	if is_empty() or not is_valid():
 		return 0
 
-	###INCOMPLETE
+	# INCOMPLETE
 	return 1
 
 
-func get_string(use_spaces:=false) -> String:
-	var output_string = ""
+func get_string(use_spaces := false) -> String:
+	var output_string := ""
 	for element in _element_list:
 		if use_spaces and (str(element) == "+" or str(element) == "-"
-						or str(element) == "*" or str(element) == "/"):
+				or str(element) == "*" or str(element) == "/"
+		):
 			output_string += " "
 			output_string += str(element)
 			output_string += " "

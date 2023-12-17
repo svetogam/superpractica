@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends GutTest
 
@@ -41,10 +41,10 @@ func _input(event: InputEvent):
 
 
 func test_add_and_run_events():
-	var event_1 = InputEventMouseButton.new()
+	var event_1 := InputEventMouseButton.new()
 	event_1.pressed = true
 	event_1.double_click = false
-	var event_2 = InputEventMouseButton.new()
+	var event_2 := InputEventMouseButton.new()
 	event_2.pressed = false
 	event_2.double_click = true
 
@@ -61,10 +61,10 @@ func test_add_and_run_events():
 
 
 func test_mouse_interface():
-	var position_1 = Vector2(100, 100)
-	var position_2 = Vector2(120, 150)
-	var drag_vector = Vector2(100, 0)
-	var position_3 = position_2 + drag_vector
+	var position_1 := Vector2(100, 100)
+	var position_2 := Vector2(120, 150)
+	var drag_vector := Vector2(100, 0)
+	var position_3 := position_2 + drag_vector
 
 	simulator.set_initial_mouse_position(position_1)
 	simulator.click_left()

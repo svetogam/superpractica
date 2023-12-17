@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name NumberEffect
 extends ScreenEffect
@@ -25,18 +25,21 @@ const NUMBER_TEXTURES := {
 }
 
 var number: int:
-	set(value):
-		number = value
-		_update_sprites()
-@onready var _digit_sprites: Array[Sprite2D] = [%Ones, %Tens, %Hundreds]
+	set = _set_number
+@onready var _digit_sprites: Array = [%Ones, %Tens, %Hundreds]
+
+
+func _set_number(value: int) -> void:
+	number = value
+	_update_sprites()
 
 
 func _update_sprites() -> void:
-	var number_digits = IntegerMath.get_number_of_digits(number)
+	var number_digits := IntegerMath.get_number_of_digits(number)
 
 	for i in range(_digit_sprites.size()):
 		if i <= number_digits-1:
-			var digit = IntegerMath.get_digit_at_place(number, i+1)
+			var digit := IntegerMath.get_digit_at_place(number, i+1)
 			var texture = NUMBER_TEXTURES[digit]
 			_digit_sprites[i].set_texture(texture)
 		else:
@@ -52,11 +55,11 @@ func is_equal_to(other_count: NumberEffect) -> bool:
 
 
 func get_digit_displacement() -> Vector2:
-#	 return ($Graphic/Tens.position - $Graphic/Ones.position) * $Graphic.scale.x
-	return (_digit_sprites[1].position - _digit_sprites[0].position) * %Graphic.scale.x
+	return ((_digit_sprites[1].position - _digit_sprites[0].position)
+			* %Graphic.scale.x)
 
 
 #1 for ones place, 2 for tens place, etc.
 func get_position_for_digit(digit_place: int) -> Vector2:
-	var offset = get_digit_displacement() * scale.x * (digit_place - 1)
+	var offset := get_digit_displacement() * scale.x * (digit_place - 1)
 	return position + offset

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 class_name MouseInputSimulator
 extends InputEventSimulator
@@ -19,8 +19,8 @@ func set_initial_mouse_position(position: Vector2) -> void:
 
 
 func move_to(new_position: Vector2) -> void:
-	var old_position = mouse_position
-	var event = InputEventMouseMotion.new()
+	var old_position := mouse_position
+	var event := InputEventMouseMotion.new()
 	event.position = new_position
 	event.relative = new_position - old_position
 	add_event(event)
@@ -104,34 +104,35 @@ func drag_middle_by(start_position: Vector2, change: Vector2) -> void:
 	_drag_button_by(MOUSE_BUTTON_MIDDLE, start_position, change)
 
 
-func _press_button(button: int) -> void:
-	var event = InputEventMouseButton.new()
+func _press_button(button: MouseButton) -> void:
+	var event := InputEventMouseButton.new()
 	event.position = mouse_position
 	event.pressed = true
 	event.button_index = button
 	add_event(event)
 
 
-func _release_button(button: int) -> void:
-	var event = InputEventMouseButton.new()
+func _release_button(button: MouseButton) -> void:
+	var event := InputEventMouseButton.new()
 	event.position = mouse_position
 	event.pressed = false
 	event.button_index = button
 	add_event(event)
 
 
-func _click_button(button: int, times:=1) -> void:
+func _click_button(button: int, times: int = 1) -> void:
 	for _i in range(times):
 		_press_button(button)
 		_release_button(button)
 
 
-func _click_button_at(button: int, position: Vector2, times:=1) -> void:
+func _click_button_at(button: int, position: Vector2, times: int = 1) -> void:
 	move_to(position)
 	_click_button(button, times)
 
 
-func _drag_button_between(button: int, start_position: Vector2, end_position: Vector2) -> void:
+func _drag_button_between(button: int, start_position: Vector2, end_position: Vector2
+) -> void:
 	move_to(start_position)
 	_press_button(button)
 	move_to(end_position)

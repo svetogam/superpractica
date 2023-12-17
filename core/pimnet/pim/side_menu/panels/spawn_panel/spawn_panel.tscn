@@ -41,4 +41,4 @@ offset_bottom = 100.0
 layout_mode = 2
 mouse_filter = 1
 
-[connection signal="resized" from="PanelContainer" to="." method="_on_PanelContainer_resized"]
+[connection signal="resized" from="PanelContainer" to="." method="_on_panel_container_resized"]

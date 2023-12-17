@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends FieldObject
 
@@ -16,6 +16,10 @@ var radius: float
 var selected := false
 @onready var handle_control := %HandleControl as Node2D
 @onready var _graphic := %Graphic as ProceduralGraphic
+
+
+func _get_object_type() -> int:
+	return BubbleSum.Objects.BUBBLE
 
 
 func _ready() -> void:
@@ -41,7 +45,7 @@ func set_selected(value: bool) -> void:
 
 
 func resize_by(direction: String, vector: Vector2) -> void:
-	var new_radius = _get_resized_radius(direction, vector)
+	var new_radius := _get_resized_radius(direction, vector)
 	resize_to(new_radius)
 
 
@@ -69,7 +73,7 @@ func is_inside_bubble(other_bubble: FieldObject) -> bool:
 	if get_instance_id() == other_bubble.get_instance_id():
 		return false
 
-	var center_distance = position.distance_to(other_bubble.position)
+	var center_distance := position.distance_to(other_bubble.position)
 	return center_distance + radius < other_bubble.radius
 
 
@@ -77,7 +81,7 @@ func overlaps_bubble(other_bubble: FieldObject) -> bool:
 	if get_instance_id() == other_bubble.get_instance_id():
 		return false
 
-	var center_distance = position.distance_to(other_bubble.position)
+	var center_distance := position.distance_to(other_bubble.position)
 	return center_distance <= radius + other_bubble.radius
 
 
@@ -91,16 +95,16 @@ func intersects_bubble(other_bubble: FieldObject) -> bool:
 
 
 func get_internal_units() -> Array:
-	var internal_units = []
-	for unit in field.queries.get_unit_list():
+	var internal_units: Array = []
+	for unit in field.get_unit_list():
 		if unit.is_inside_bubble(self):
 			internal_units.append(unit)
 	return internal_units
 
 
 func get_internal_bubbles() -> Array:
-	var internal_bubbles = []
-	for bubble in field.queries.get_bubble_list():
+	var internal_bubbles: Array = []
+	for bubble in field.get_bubble_list():
 		if bubble.is_inside_bubble(self):
 			internal_bubbles.append(bubble)
 	return internal_bubbles

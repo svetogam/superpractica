@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends LevelProgram
 
@@ -30,10 +30,13 @@ var sum_slot: MemoSlot
 func _setup_vars() -> void:
 	start_number = Utils.eval_given_or_random_int(start_number,
 			_random_start_number, _min_start_number, _max_start_number)
-	addend = Utils.eval_given_or_random_int(addend, _random_addend, _min_addend, _max_addend)
+	addend = Utils.eval_given_or_random_int(
+			addend, _random_addend, _min_addend, _max_addend)
 
 
 func _start() -> void:
+	super()
+
 	event_control.menu.add_button(BUTTON_ID, BUTTON_TEXT)
 	pim = pimnet.get_pim("CountingBoardPim")
 	field = pim.field
@@ -50,9 +53,9 @@ func _start() -> void:
 
 
 func _get_instruction_replacements() -> Dictionary:
-	var addend_tens_digit = addend / 10
-	var addend_ones_digit = addend % 10
-	var partial_completion = start_number + addend_tens_digit * 10
+	var addend_tens_digit: int = addend / 10
+	var addend_ones_digit: int = addend % 10
+	var partial_completion: int = start_number + addend_tens_digit * 10
 	return {"start_number": start_number, "addend": addend,
 			"addend_tens": addend_tens_digit, "addend_ones": addend_ones_digit,
 			"partial_completion": partial_completion}

@@ -1,13 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7l33bavxxcc2"]
+[gd_scene load_steps=4 format=3 uid="uid://b7l33bavxxcc2"]
 
 [ext_resource type="Script" path="res://general/mode_nodes/mode_group.gd" id="1"]
-[ext_resource type="Script" path="res://general/node_factory/node_factory.gd" id="2"]
-[ext_resource type="Script" path="res://core/pimnet/field/field.gd" id="3"]
+[ext_resource type="Script" path="res://core/pimnet/field/field.gd" id="2_6q4ij"]
 [ext_resource type="PackedScene" uid="uid://bgo07alml1w5h" path="res://core/base_ui/subscreen/subscreen.tscn" id="4"]
 
 [node name="Field" groups=["fields"] instance=ExtResource("4")]
-script = ExtResource("3")
-_background_color = Color(0.196078, 0.196078, 0.196078, 1)
+script = ExtResource("2_6q4ij")
+_background_color = Color(0.2, 0.2, 0.2, 1)
 
 [node name="FieldLimit" type="Marker2D" parent="." index="1"]
 unique_name_in_owner = true
@@ -17,21 +16,8 @@ position = Vector2(100, 100)
 unique_name_in_owner = true
 follow_viewport_enabled = true
 
-[node name="Queries" type="Node" parent="." index="3"]
-
-[node name="Actions" type="Node" parent="." index="4"]
-
-[node name="Metanavig" type="Node" parent="." index="5"]
-
-[node name="ToolModes" type="Node" parent="." index="6"]
+[node name="ToolModes" type="Node" parent="." index="3"]
 script = ExtResource("1")
 
-[node name="Programs" type="Node" parent="." index="7"]
+[node name="Programs" type="Node" parent="." index="4"]
 script = ExtResource("1")
-
-[node name="ObjectFactory" type="Node" parent="." index="8" node_paths=PackedStringArray("_target")]
-script = ExtResource("2")
-_target = NodePath("..")
-
-[node name="ProcessFactory" type="Node" parent="." index="9"]
-script = ExtResource("2")

@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,21 +6,21 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends ProceduralGraphic
 
 const COLOR := Color(0, 0, 0)
-const ARROWHEAD_WIDTH := 12
-const ARROWHEAD_LENGTH := 10
+const ARROWHEAD_WIDTH := 12.0
+const ARROWHEAD_LENGTH := 10.0
 
 var tip_point: Vector2
 var direction: String
 
 
 func _draw() -> void:
-	var base_point_1
-	var base_point_2
+	var base_point_1: Vector2
+	var base_point_2: Vector2
 
 	if direction == "right":
 		base_point_1 = Vector2(tip_point.x - ARROWHEAD_LENGTH,

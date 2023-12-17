@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name MemoSlot
 extends WindowContent
@@ -16,17 +16,17 @@ signal memo_changed(memo)
 @export var acceptable_types: Array[String]
 @export var memo_input_enabled := true
 @export var memo_output_enabled := true
-var pimnet: Pimnet
+var pimnet: Pimnet:
+	set = _do_not_set,
+	get = _get_pimnet
 var memo: Memo
 @onready var _drag_control := %DragControl as SuperscreenObject
 @onready var _graphic := %Graphic as Control
 
 
 func _enter_tree() -> void:
-	super()
 	ContextualConnector.register(self)
 
-	pimnet = superscreen
 	pimnet.memo_drag_started.connect(_on_memo_drag_started)
 	pimnet.memo_drag_stopped.connect(_on_memo_drag_stopped)
 
@@ -50,11 +50,11 @@ func would_accept_memo(p_memo: Memo) -> bool:
 	if acceptable_types.size() == 0:
 		return memo_input_enabled
 	else:
-		var memo_type = p_memo.get_class()
+		var memo_type := p_memo.get_class()
 		return memo_input_enabled and acceptable_types.has(memo_type)
 
 
-func set_memo(memo_type: GDScript, value) -> void:
+func set_memo(memo_type: GDScript, value: Variant) -> void:
 	memo = memo_type.new()
 	memo.set_by_value(value)
 	_accept_memo()
@@ -67,7 +67,7 @@ func set_by_memo(p_memo: Memo) -> void:
 
 func _accept_memo() -> void:
 	_graphic.set_text(memo.get_string())
-	var prev_memo = null
+	var prev_memo: Memo = null
 	if memo != prev_memo:
 		memo_changed.emit(memo)
 
@@ -98,3 +98,11 @@ func _on_memo_drag_stopped(_p_memo: Memo) -> void:
 func set_input_output_ability(input: bool, output: bool) -> void:
 	memo_input_enabled = input
 	memo_output_enabled = output
+
+
+func _get_pimnet() -> Pimnet:
+	return superscreen
+
+
+static func _do_not_set(_value: Variant) -> void:
+	assert(false)

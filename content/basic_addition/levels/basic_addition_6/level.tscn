@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://df3enobdj8p60"]
+[gd_scene load_steps=5 format=3 uid="uid://df3enobdj8p60"]
 
 [ext_resource type="PackedScene" uid="uid://bmakjs636xba7" path="res://content/basic_addition/levels/basic_addition_2/screen.tscn" id="1"]
 [ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_5/taskmap_data.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/level/level.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://4iwsyufpgan1" path="res://content/basic_addition/verifications/basic_addition_pack.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bybf0k42g5qwn" path="res://content/basic_addition/levels/basic_addition_6/program.tscn" id="5"]
 
 [node name="Level" instance=ExtResource("3")]
@@ -11,7 +10,8 @@
 [node name="TaskControl" parent="." index="3"]
 _taskmap_data = ExtResource("2")
 
-[node name="BasicAdditionPack" parent="Verifier" index="1" instance=ExtResource("4")]
+[node name="ReversionControl" parent="." index="5"]
+active = true
 
 [node name="EventControl" parent="." index="6"]
 active = true

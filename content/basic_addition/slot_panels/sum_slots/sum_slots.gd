@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,16 +6,16 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends SlotPanel
 
 @export var initial_addend_1_is_empty := false
-@export var initial_addend_1 := 0
+@export var initial_addend_1: int = 0
 @export var initial_addend_2_is_empty := false
-@export var initial_addend_2 := 0
+@export var initial_addend_2: int = 0
 @export var initial_sum_is_empty := false
-@export var initial_sum := 0
+@export var initial_sum: int = 0
 @onready var _addend_1_slot := %Addend1 as MemoSlot
 @onready var _addend_2_slot := %Addend2 as MemoSlot
 @onready var _sum_slot := %Sum as MemoSlot
@@ -50,7 +50,5 @@ func set_slots(addend_1: int, addend_2: int, sum: int) -> void:
 func create_plus_effect() -> ScreenEffect:
 	assert(_effects != null)
 
-	#Copied from WindowContent (Make such symbols subclass WindowContent?)
-	var effect_position = _plus.global_position + _plus.size/2
-
+	var effect_position := _plus.global_position + _plus.size/2
 	return _effects.give_operator("+", effect_position) as ScreenEffect

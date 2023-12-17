@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Node
 
@@ -21,7 +21,7 @@ func _enter_tree() -> void:
 
 	if _taskmap_data != null:
 		_data_reader.setup(_taskmap_data.DATA)
-		var initial_task = _data_reader.get_initial_task()
+		var initial_task := _data_reader.get_initial_task()
 		_set_current_task(initial_task)
 
 
@@ -32,11 +32,11 @@ func set_instruction_replacements(replacements: Dictionary) -> void:
 func complete_current_task() -> void:
 	if _taskmap_data != null:
 		_level.task_completed.emit(_current_task)
-		var is_final = _data_reader.is_task_final(_current_task)
+		var is_final := _data_reader.is_task_final(_current_task)
 		if is_final:
 			_level.complete()
 		else:
-			var next_task = _data_reader.get_single_next_for_id(_current_task)
+			var next_task := _data_reader.get_single_next_for_id(_current_task)
 			_set_current_task(next_task)
 	else:
 		_level.complete()

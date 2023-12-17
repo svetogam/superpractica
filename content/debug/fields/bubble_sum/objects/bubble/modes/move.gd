@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends FieldObjectMode
 
@@ -31,7 +31,7 @@ func _on_drag(_field_point: Vector2, field_change: Vector2) -> void:
 func _on_drop(_field_point: Vector2) -> void:
 	if _moving:
 		if field.has_point(object.position):
-			field.push_action("empty")
+			field.push_action(Callable())
 		else:
 			object.revert_drag()
 			_revert_dragged_objects()
@@ -50,6 +50,6 @@ func _drag_by(delta_vector: Vector2) -> void:
 
 
 func _revert_dragged_objects() -> void:
-	var drag_vector = object.get_total_drag_vector()
+	var drag_vector := object.get_total_drag_vector()
 	for dragged_object in _drag_list:
 		dragged_object.translate(-drag_vector)

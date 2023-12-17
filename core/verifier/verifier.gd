@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends Node
 
@@ -14,33 +14,18 @@ signal verifications_started
 signal verifications_completed
 
 @export var effect_layer: CanvasLayer
-var _verifications_running := 0
+var _verifications_running: int = 0
 var _verification_connector := ContextualConnector.new(self, "verifications", true)
-var _packs: Dictionary
-@onready var screen_verifications := $ScreenVerifications as ScreenVerifier
+@onready var screen_verifier := $ScreenVerifications as ScreenVerifier
 
 
 func _enter_tree() -> void:
 	assert(effect_layer != null)
-	_verification_connector.connect_setup(self, "_register_verification")
-
-
-func _ready() -> void:
-	_find_verification_packs()
-
-
-func _find_verification_packs() -> void:
-	var pack_array = ContextUtils.get_children_in_group(self, "verification_packs")
-	for pack in pack_array:
-		_packs[pack.name] = pack
-
-
-func get_pack(pack_name: String) -> VerificationPack:
-	return _packs[pack_name]
+	_verification_connector.connect_setup(_register_verification)
 
 
 func _register_verification(verification: Verification) -> void:
-	verification.connect_callback(self, "_on_verification_completed")
+	verification.completed.connect(_on_verification_completed)
 
 	_verifications_running += 1
 	if _verifications_running == 1:

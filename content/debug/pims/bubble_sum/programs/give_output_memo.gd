@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends PimProgram
 
@@ -17,7 +17,7 @@ func _start() -> void:
 
 
 func _update_output_slot() -> void:
-	var memo = _get_output_memo()
+	var memo := _get_output_memo()
 	if memo != null:
 		pim.menu_control.memo_output_slot.set_by_memo(memo)
 	else:
@@ -27,11 +27,11 @@ func _update_output_slot() -> void:
 func _get_output_memo() -> Memo:
 	match field.get_tool():
 		"UnitSelector":
-			return field.queries.get_selected_unit_sum()
+			return field.get_selected_unit_sum()
 		"BubbleSelector":
-			return field.queries.get_selected_bubble_sum()
+			return field.get_selected_bubble_sum()
 		"UnitCounter":
-			return field.queries.get_selected_unit_sum()
+			return field.get_selected_unit_sum()
 		_:
 			return null
 

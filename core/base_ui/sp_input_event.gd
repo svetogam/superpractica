@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name SpInputEvent
 extends RefCounted
@@ -26,11 +26,11 @@ enum InputState {
 	COMPLETED,
 }
 
-var _input_type: int = InputType.EMPTY
+var _input_type := InputType.EMPTY
 var _position: Vector2
 var _relative: Vector2
 var _grabbed_object: InputObject
-var _input_state: int = InputState.ACTIVE
+var _input_state := InputState.ACTIVE
 
 
 func is_press() -> bool:

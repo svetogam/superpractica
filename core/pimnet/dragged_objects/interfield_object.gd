@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 class_name InterfieldObject
 extends SuperscreenObject
@@ -20,8 +20,9 @@ func _init() -> void:
 	_drag_only = true
 
 
-func setup(p_original: FieldObject =null, p_graphic: ProceduralGraphic =null,
-			p_input_shape: InputShape =null, p_object_type:=GameGlobals.NO_OBJECT) -> void:
+func setup(p_original: FieldObject = null, p_graphic: ProceduralGraphic = null,
+		p_input_shape: InputShape = null, p_object_type := GameGlobals.NO_OBJECT
+) -> void:
 	if p_original != null:
 		original = p_original
 		original.on_interfield_drag_started()

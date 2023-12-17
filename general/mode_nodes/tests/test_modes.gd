@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends GutTest
 
@@ -36,17 +36,14 @@ func after_each() -> void:
 
 
 func test_virtual_methods_called_on_run_and_stop_mode() -> void:
-	assert_true(ungrouped_mode_1.pre_started_value != context.pre_started_value)
 	assert_true(ungrouped_mode_1.started_value != context.started_value)
 	assert_true(ungrouped_mode_1.ended_value != context.ended_value)
 
 	ungrouped_mode_1.run()
-	assert_true(ungrouped_mode_1.pre_started_value == context.pre_started_value)
 	assert_true(ungrouped_mode_1.started_value == context.started_value)
 	assert_true(ungrouped_mode_1.ended_value != context.ended_value)
 
 	ungrouped_mode_1.stop()
-	assert_true(ungrouped_mode_1.pre_started_value == context.pre_started_value)
 	assert_true(ungrouped_mode_1.started_value == context.started_value)
 	assert_true(ungrouped_mode_1.ended_value == context.ended_value)
 
@@ -76,13 +73,11 @@ func test_check_mode_is_running() -> void:
 
 func test_auto_run_and_stop_mode() -> void:
 	watch_signals(ungrouped_mode_2)
-	assert_true(ungrouped_mode_2.pre_started_value == context.pre_started_value)
 	assert_true(ungrouped_mode_2.started_value == context.started_value)
 	assert_true(ungrouped_mode_2.ended_value != context.ended_value)
 	assert_true(ungrouped_mode_2.is_running())
 
 	ungrouped_mode_2.stop()
-	assert_true(ungrouped_mode_2.pre_started_value == context.pre_started_value)
 	assert_true(ungrouped_mode_2.started_value == context.started_value)
 	assert_true(ungrouped_mode_2.ended_value == context.ended_value)
 	assert_true(not ungrouped_mode_2.is_running())
@@ -91,19 +86,16 @@ func test_auto_run_and_stop_mode() -> void:
 
 func test_mode_group_runs_and_stops_modes() -> void:
 	var mode := mode_group.get_mode(group_mode_1_name)
-	assert_true(mode.pre_started_value != context.pre_started_value)
 	assert_true(mode.started_value != context.started_value)
 	assert_true(mode.ended_value != context.ended_value)
 	assert_true(not mode_group.is_active(group_mode_1_name))
 
 	mode_group.activate(group_mode_1_name)
-	assert_true(mode.pre_started_value == context.pre_started_value)
 	assert_true(mode.started_value == context.started_value)
 	assert_true(mode.ended_value != context.ended_value)
 	assert_true(mode_group.is_active(group_mode_1_name))
 
 	mode_group.deactivate(group_mode_1_name)
-	assert_true(mode.pre_started_value == context.pre_started_value)
 	assert_true(mode.started_value == context.started_value)
 	assert_true(mode.ended_value == context.ended_value)
 	assert_true(not mode_group.is_active(group_mode_1_name))
@@ -112,18 +104,22 @@ func test_mode_group_runs_and_stops_modes() -> void:
 func test_mode_group_emits_signals_on_start_and_stop() -> void:
 	watch_signals(mode_group)
 	mode_group.activate(group_mode_1_name)
-	assert_signal_emitted_with_parameters(mode_group, "mode_started", [group_mode_1_name])
+	assert_signal_emitted_with_parameters(
+			mode_group, "mode_started", [group_mode_1_name])
 	assert_signal_not_emitted(mode_group, "mode_stopped")
 
 	mode_group.activate(group_mode_2_name)
-	assert_signal_emitted_with_parameters(mode_group, "mode_started", [group_mode_2_name])
+	assert_signal_emitted_with_parameters(
+			mode_group, "mode_started", [group_mode_2_name])
 	assert_signal_not_emitted(mode_group, "mode_stopped")
 
 	mode_group.deactivate(group_mode_2_name)
-	assert_signal_emitted_with_parameters(mode_group, "mode_stopped", [group_mode_2_name])
+	assert_signal_emitted_with_parameters(
+			mode_group, "mode_stopped", [group_mode_2_name])
 
 	mode_group.deactivate(group_mode_1_name)
-	assert_signal_emitted_with_parameters(mode_group, "mode_stopped", [group_mode_1_name])
+	assert_signal_emitted_with_parameters(
+			mode_group, "mode_stopped", [group_mode_1_name])
 
 
 func test_activate_and_deactivate_modes_together_in_group() -> void:
@@ -219,7 +215,7 @@ func test_is_any_active() -> void:
 
 
 func test_set_by_list() -> void:
-	var list: Array[String] = [group_mode_1_name, group_mode_2_name]
+	var list: Array = [group_mode_1_name, group_mode_2_name]
 	mode_group.set_by_list(list)
 	var got := mode_group.get_active_mode_names()
 	assert_true(got.has(group_mode_1_name))

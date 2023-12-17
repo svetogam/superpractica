@@ -29,4 +29,4 @@ mouse_filter = 2
 layout_mode = 2
 text = "Tools"
 
-[connection signal="resized" from="PanelContainer" to="." method="_on_PanelContainer_resized"]
+[connection signal="resized" from="PanelContainer" to="." method="_on_panel_container_resized"]

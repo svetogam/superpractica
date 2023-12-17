@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: MIT                                               #
-##############################################################################
+#============================================================================#
 
 extends GutTest
 
@@ -135,10 +135,10 @@ func test_expression_with_negative_numbers() -> void:
 func test_check_if_expressions_are_identical() -> void:
 	#Same expressions
 	expression = ExpressionObject.new("1+2+3")
-	var expression_2 = ExpressionObject.new("1 + 2 + 3")
+	var expression_2 := ExpressionObject.new("1 + 2 + 3")
 	#Different expressions
-	var expression_3 = ExpressionObject.new("1+(2+3)")
-	var expression_4 = ExpressionObject.new("3+2+1")
+	var expression_3 := ExpressionObject.new("1+(2+3)")
+	var expression_4 := ExpressionObject.new("3+2+1")
 
 	assert_true(expression.is_identical(expression))
 	assert_true(expression.is_identical(expression_2))

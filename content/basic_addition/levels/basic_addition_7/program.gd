@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends LevelProgram
 
@@ -30,10 +30,13 @@ var sum_slot: MemoSlot
 func _setup_vars() -> void:
 	start_number = Utils.eval_given_or_random_int(start_number,
 			_random_start_number, _min_start_number, _max_start_number)
-	addend = Utils.eval_given_or_random_int(addend, _random_addend, _min_addend, _max_addend)
+	addend = Utils.eval_given_or_random_int(
+			addend, _random_addend, _min_addend, _max_addend)
 
 
 func _start() -> void:
+	super()
+
 	event_control.menu.add_button(BUTTON_ID, BUTTON_TEXT)
 	pim = pimnet.get_pim("CountingBoardPim")
 	field = pim.field

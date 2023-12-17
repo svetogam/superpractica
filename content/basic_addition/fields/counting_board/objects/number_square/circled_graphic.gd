@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends ProceduralGraphic
 
@@ -16,12 +16,12 @@ var variant := "normal"
 
 
 func _draw() -> void:
-	var center = Vector2.ZERO
-	var width = 5
-	var outline_width = 1.5
-	var outline_color = Color(0, 0, 0)
-	var radius = rect.size.x/2 - width
-	var color
+	var center := Vector2.ZERO
+	var width := 5.0
+	var outline_width := 1.5
+	var outline_color := Color(0, 0, 0)
+	var radius := rect.size.x/2 - width
+	var color: Color
 	if variant == "warning":
 		color = GameGlobals.COLOR_WARNING
 	elif variant == "affirmation":

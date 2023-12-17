@@ -1,4 +1,4 @@
-##############################################################################
+#============================================================================#
 # This file is part of Super Practica.                                       #
 # Copyright (c) 2023 Super Practica contributors                             #
 #----------------------------------------------------------------------------#
@@ -6,7 +6,7 @@
 # for information on the license terms of Super Practica as a whole.         #
 #----------------------------------------------------------------------------#
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
-##############################################################################
+#============================================================================#
 
 extends ProceduralGraphic
 
@@ -17,11 +17,11 @@ var affirmation := false
 
 
 func _draw() -> void:
-	var center = Vector2(0, 0)
-	var radius = 15
-	var outline_width = 2
-	var fill_color
-	var outline_color
+	var center := Vector2(0, 0)
+	var radius := 15.0
+	var outline_width := 2.0
+	var fill_color: Color
+	var outline_color: Color
 
 	if not selected:
 		fill_color = Color(0.4, 0.4, 0.4, 1.0)
