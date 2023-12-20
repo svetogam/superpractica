@@ -33,13 +33,11 @@ The game should be playable and editable in Godot. Please tell me if you followe
 
 ## How to contribute
 
-For an overview of different ways to contribute, see the [Contribute page](https://superpractica.org/contribute) on the website.
-
-To contribute modifications, see [CONTRIBUTING.md](CONTRIBUTING.md).
+To contribute modifications, see the [general contributing guide](https://codeberg.org/superpractica/wiki/wiki/Contributing-Guide) and the [game page](https://codeberg.org/superpractica/wiki/wiki/Godot-Game) on the wiki.
 
 To contribute funds, go to [Liberapay](https://liberapay.com/SuperPractica/) or [Patreon](https://www.patreon.com/superpractica).
 
-For discussing Super Practica outside of particular issues, visit the [contributor forum](https://codeberg.org/superpractica/discussion).
+To discuss Super Practica outside of particular issues, visit the [development forum](https://codeberg.org/superpractica/discussion).
 
 
 ## Copyright
