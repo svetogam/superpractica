@@ -14,10 +14,9 @@ var _field_program: FieldProgram
 
 
 func _enter(_last_state: String) -> void:
-	program.pim.menu_control.tool_menu.disable_tool("SquareMarker")
-	program.pim.field.set_no_tool()
-	var spawn_panel = program.pim.menu_control.add_spawn_panel()
-	spawn_panel.add_spawner(CountingBoard.Objects.COUNTER)
+	tool_panel.disable(CountingBoard.Tools.SQUARE_MARKER)
+	program.pim.field.deactivate_tools()
+	creation_panel.include(CountingBoard.Objects.COUNTER)
 
 	_field_program = program.pim.field.get_program("CountByCounters")
 	_field_program.setup(program.start_number, program.count)

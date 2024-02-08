@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c54s0u7vs8eii"]
+
+[ext_resource type="PackedScene" uid="uid://b7l33bavxxcc2" path="res://core/pimnet/field/field.tscn" id="1"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/bubble_sum_field.gd" id="2"]
+[ext_resource type="Script" path="res://general/mode_nodes/mode.gd" id="4_fhgoh"]
+[ext_resource type="PackedScene" uid="uid://cysrurd2e5yqr" path="res://content/debug/pims/bubble_sum/field/objects/ground/ground.tscn" id="5"]
+
+[node name="Field" instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="FieldLimit" parent="." index="1"]
+position = Vector2(400, 300)
+
+[node name="Ground" parent="." index="2" groups=["mint_grounds"] instance=ExtResource("5")]
+
+[node name="Mover" type="Node" parent="ToolModes" index="0"]
+script = ExtResource("4_fhgoh")
+
+[node name="UnitCreator" type="Node" parent="ToolModes" index="1"]
+script = ExtResource("4_fhgoh")
+
+[node name="BubbleCreator" type="Node" parent="ToolModes" index="2"]
+script = ExtResource("4_fhgoh")
+
+[node name="UnitDeleter" type="Node" parent="ToolModes" index="3"]
+script = ExtResource("4_fhgoh")
+
+[node name="BubblePopper" type="Node" parent="ToolModes" index="4"]
+script = ExtResource("4_fhgoh")
+
+[node name="BubbleDeleter" type="Node" parent="ToolModes" index="5"]
+script = ExtResource("4_fhgoh")
+
+[node name="BubbleEditor" type="Node" parent="ToolModes" index="6"]
+script = ExtResource("4_fhgoh")
+
+[node name="BubbleResizer" type="Node" parent="ToolModes" index="7"]
+script = ExtResource("4_fhgoh")
+
+[node name="UnitSelector" type="Node" parent="ToolModes" index="8"]
+script = ExtResource("4_fhgoh")
+
+[node name="BubbleSelector" type="Node" parent="ToolModes" index="9"]
+script = ExtResource("4_fhgoh")
+
+[node name="UnitCounter" type="Node" parent="ToolModes" index="10"]
+script = ExtResource("4_fhgoh")

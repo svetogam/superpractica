@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://mjj62s1calrm"]
-
-[ext_resource type="Script" path="res://core/pimnet/pim/side_menu/panels/spawn_panel/object_spawner.gd" id="1"]
-
-[node name="ObjectSpawner" type="Node2D" groups=["input_objects", "object_spawners"]]
-script = ExtResource("1")

@@ -19,8 +19,6 @@ extends LevelProgram
 @export var _min_count: int
 @export var _max_count: int
 
-const BUTTON_ID := "button"
-const BUTTON_TEXT := "Check"
 var slot_panel: SlotPanel
 var sum_slot: MemoSlot
 
@@ -34,7 +32,7 @@ func _setup_vars() -> void:
 func _start() -> void:
 	super()
 
-	event_control.menu.add_button(BUTTON_ID, BUTTON_TEXT)
+	goal_panel.activate_check_button()
 	slot_panel = pimnet.get_window_content("SlotPanelWindow", "SumSlots")
 	sum_slot = slot_panel.get_slot("sum")
 

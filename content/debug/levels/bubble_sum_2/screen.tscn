@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2mhmagl166uv"]
+[gd_scene load_steps=4 format=3 uid="uid://b2mhmagl166uv"]
 
 [ext_resource type="Script" path="res://core/pimnet/pimnet.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1ij4lra167t7" path="res://core/base_ui/sp_window/sp_window.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bfmkc5e3nqf30" path="res://content/debug/pims/bubble_sum/bubble_sum_pim.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://c54s0u7vs8eii" path="res://content/debug/fields/bubble_sum/bubble_sum_field.tscn" id="4_3dwrp"]
 
 [node name="LevelScreen" type="Control"]
 layout_mode = 3
@@ -19,12 +18,6 @@ offset_bottom = 546.0
 
 [node name="BubbleSumPim1" parent="Window/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("4")]
 layout_mode = 2
-field_scene = ExtResource("4_3dwrp")
-initial_tool = 0
-included_tools = Array[int]([])
-disabled_tools = Array[int]([])
-included_spawners = Array[int]([])
-have_tool_menu = true
 
 [node name="Window2" parent="." instance=ExtResource("2")]
 position = Vector2(406.188, 145.974)
@@ -35,12 +28,6 @@ offset_bottom = 449.0
 
 [node name="BubbleSumPim2" parent="Window2/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("4")]
 layout_mode = 2
-field_scene = ExtResource("4_3dwrp")
-initial_tool = 0
-included_tools = Array[int]([])
-disabled_tools = Array[int]([])
-included_spawners = Array[int]([])
-have_tool_menu = true
 
 [editable path="Window"]
 [editable path="Window2"]

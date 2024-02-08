@@ -15,16 +15,15 @@ var _count_program: SoftLimiterProgram
 
 func _enter(last_state: String) -> void:
 	if last_state == "VerifyStart":
-		program.pim.menu_control.tool_menu.disable_tool("SquareMarker")
-		program.pim.menu_control.tool_menu.add_tool("CounterDragger")
-		program.pim.field.set_tool("CounterDragger")
-		var spawn_panel = program.pim.menu_control.add_spawn_panel()
-		spawn_panel.add_spawner(CountingBoard.Objects.COUNTER)
+		tool_panel.disable(CountingBoard.Tools.SQUARE_MARKER)
+		tool_panel.include(CountingBoard.Tools.COUNTER_DRAGGER)
+		program.pim.field.set_tool(CountingBoard.Tools.COUNTER_DRAGGER)
+		creation_panel.include(CountingBoard.Objects.COUNTER)
 
 	level.reversion_control.set_custom_reset(_on_reset)
 
-	event_control.menu.enabler.connect_button(program.BUTTON_ID, _check_condition)
-	event_control.menu.connect_event(program.BUTTON_ID, next)
+	goal_panel.add_check_condition(_check_condition)
+	goal_panel.connect_goal_check(next)
 
 	_count_program = program.pim.field.get_program("SoftCountByCounters")
 	_count_program.setup(program.start_number)
@@ -44,5 +43,5 @@ func _check_condition() -> bool:
 
 func _exit(_next_state: String) -> void:
 	_count_program.stop()
-	event_control.menu.enabler.disconnect_all()
-	event_control.menu.disconnect_event(program.BUTTON_ID, next)
+	goal_panel.remove_check_condition(_check_condition)
+	goal_panel.disconnect_goal_check()

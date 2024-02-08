@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d3my3kl2nqiqi"]
 
-[ext_resource type="Texture2D" uid="uid://f3ktyv413txr" path="res://content/basic_addition/tests/task_levels/sum_problem_4.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://77ekg0tfsrip" path="res://content/basic_addition/tests/task_levels/sum_problem_4.png" id="1"]
 
 [node name="Ref" type="Node"]
 
@@ -17,13 +17,13 @@ texture = ExtResource("1")
 stretch_mode = 5
 
 [node name="IncrementButton" type="Marker2D" parent="."]
-position = Vector2(825.76, 489.401)
+position = Vector2(633.863, 486.677)
 
 [node name="SelectorSlot" type="Marker2D" parent="."]
-position = Vector2(803.897, 425.494)
+position = Vector2(612, 422.77)
 
 [node name="SumSlot" type="Marker2D" parent="."]
-position = Vector2(807.261, 191.724)
+position = Vector2(615.364, 189)
 
 [node name="CheckButton" type="Marker2D" parent="."]
-position = Vector2(122.771, 196.77)
+position = Vector2(1191, 590)

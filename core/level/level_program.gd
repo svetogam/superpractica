@@ -11,18 +11,28 @@
 class_name LevelProgram
 extends Mode
 
+signal task_completed(task_name)
+signal level_completed
+
+@export var _plan_data: PlanResource
 var level: Level:
 	set = _do_not_set,
 	get = _get_level
 var pimnet: Pimnet:
 	set = _do_not_set,
 	get = _get_pimnet
-var task_control: Node:
+var goal_panel: Control:
 	set = _do_not_set,
-	get = _get_task_control
-var event_control: Node:
+	get = _get_goal_panel
+var plan_panel: Control:
 	set = _do_not_set,
-	get = _get_event_control
+	get = _get_plan_panel
+var tool_panel: Control:
+	set = _do_not_set,
+	get = _get_tool_panel
+var creation_panel: Control:
+	set = _do_not_set,
+	get = _get_creation_panel
 
 
 func _init() -> void:
@@ -31,8 +41,10 @@ func _init() -> void:
 
 func _start() -> void:
 	_setup_vars()
-	var replacements := _get_instruction_replacements()
-	task_control.set_instruction_replacements(replacements)
+
+	if _plan_data != null:
+		var replacements := _get_instruction_replacements()
+		plan_panel.setup(_plan_data, replacements)
 
 
 # Virtual
@@ -46,7 +58,20 @@ func _get_instruction_replacements() -> Dictionary:
 
 
 func complete_task() -> void:
-	task_control.complete_current_task()
+	if plan_panel.is_active():
+		plan_panel.complete_current_task()
+		task_completed.emit(plan_panel.current_task)
+		if plan_panel.are_all_tasks_completed():
+			complete_level()
+	else:
+		complete_level()
+
+
+func complete_level() -> void:
+	level.pimnet_screen_gui.show_completion_popup()
+	level_completed.emit()
+
+	stop()
 
 
 func _get_level() -> Level:
@@ -59,14 +84,28 @@ func _get_pimnet() -> Pimnet:
 	return level.pimnet
 
 
-func _get_task_control() -> Node:
-	assert(level.task_control != null)
-	return level.task_control
+func _get_goal_panel() -> Control:
+	assert(level.pimnet_screen_gui != null)
+	assert(level.pimnet_screen_gui.goal_panel != null)
+	return level.pimnet_screen_gui.goal_panel
 
 
-func _get_event_control() -> Node:
-	assert(level.event_control != null)
-	return level.event_control
+func _get_plan_panel() -> Control:
+	assert(level.pimnet_screen_gui != null)
+	assert(level.pimnet_screen_gui.plan_panel != null)
+	return level.pimnet_screen_gui.plan_panel
+
+
+func _get_tool_panel() -> Control:
+	assert(level.pimnet_screen_gui != null)
+	assert(level.pimnet_screen_gui.tool_panel != null)
+	return level.pimnet_screen_gui.tool_panel
+
+
+func _get_creation_panel() -> Control:
+	assert(level.pimnet_screen_gui != null)
+	assert(level.pimnet_screen_gui.creation_panel != null)
+	return level.pimnet_screen_gui.creation_panel
 
 
 static func _do_not_set(_value: Variant) -> void:

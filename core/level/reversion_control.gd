@@ -13,7 +13,6 @@ extends Node
 
 signal reset_completed
 
-@export var active := false
 var _level: Level
 var _menu: Control
 var _mem_state_control := MemStateControl.new()
@@ -26,6 +25,7 @@ func _enter_tree():
 
 #Call this after adding all pims
 func setup() -> void:
+	_menu = _level.pimnet_screen_gui.reversion_menu
 	var pim_list := _level.pimnet.get_pim_list()
 	_mem_state_control.start(pim_list)
 	_setup_menu()
@@ -34,13 +34,11 @@ func setup() -> void:
 
 
 func _on_actions_completed() -> void:
-	if active:
-		_mem_state_control.save_combined_state(false)
+	_mem_state_control.save_combined_state(false)
 
 
 func clear_history() -> void:
-	if active:
-		_mem_state_control.restart()
+	_mem_state_control.restart()
 
 
 #====================================================================
@@ -48,8 +46,6 @@ func clear_history() -> void:
 #====================================================================
 
 func _setup_menu() -> void:
-	_menu = _level.side_menu.add_panel(_level.side_menu.LevelMenuPanels.REVERSION_MENU)
-
 	_menu.undo_pressed.connect(_mem_state_control.undo)
 	_menu.redo_pressed.connect(_mem_state_control.redo)
 	_menu.reset_pressed.connect(reset)

@@ -16,6 +16,7 @@ const AWAIT_LONG := 10.0
 var level: Level
 var pimnet: Pimnet
 var verifier: Node
+var program: LevelProgram
 
 
 func after_each():
@@ -29,6 +30,7 @@ func _load_level(group_name: String, level_name: String) -> void:
 	level = _load_scene(level_scene.resource_path)
 	pimnet = level.pimnet
 	verifier = level.verifier
+	program = level._program
 
 	watch_signals(level)
 
@@ -38,6 +40,7 @@ func _remove_level() -> void:
 	level = null
 	pimnet = null
 	verifier = null
+	program = null
 
 
 func _get_field_point_for(node: Node2D) -> Vector2:

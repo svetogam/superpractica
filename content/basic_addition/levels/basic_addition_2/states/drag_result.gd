@@ -13,15 +13,15 @@ extends LevelProgramState
 
 func _enter(last_state: String) -> void:
 	if last_state == "VerifyCount":
-		program.pim.menu_control.tool_menu.disable_tool("CounterDragger")
-		program.pim.menu_control.tool_menu.add_tool("MemoGrabber")
-		program.pim.field.set_tool("MemoGrabber")
-		program.pim.menu_control.remove_panel(PimSideMenu.PimMenuPanels.OBJECT_GENERATOR)
+		tool_panel.disable(CountingBoard.Tools.COUNTER_DRAGGER)
+		tool_panel.include(CountingBoard.Tools.MEMO_GRABBER)
+		program.pim.field.set_tool(CountingBoard.Tools.MEMO_GRABBER)
+		creation_panel.exclude_all()
 
 		level.reversion_control.set_no_reset()
 
-	event_control.menu.enabler.connect_button(program.BUTTON_ID, _check_condition)
-	event_control.menu.connect_event(program.BUTTON_ID, next)
+	goal_panel.add_check_condition(_check_condition)
+	goal_panel.connect_goal_check(next)
 
 
 func _check_condition() -> bool:
@@ -29,5 +29,5 @@ func _check_condition() -> bool:
 
 
 func _exit(_next_state: String) -> void:
-	event_control.menu.enabler.disconnect_all()
-	event_control.menu.disconnect_event(program.BUTTON_ID, next)
+	goal_panel.remove_check_condition(_check_condition)
+	goal_panel.disconnect_goal_check()

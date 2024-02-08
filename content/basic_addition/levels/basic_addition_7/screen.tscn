@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://byavqmirnn7p0"]
+[gd_scene load_steps=6 format=3 uid="uid://byavqmirnn7p0"]
 
 [ext_resource type="Script" path="res://core/pimnet/pimnet.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://duy43ad7xsbxn" path="res://core/level/task_window/task_window.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c1ij4lra167t7" path="res://core/base_ui/sp_window/sp_window.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://x50sj14xqhlh" path="res://content/basic_addition/slot_panels/sum_slots/sum_slots.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/counting_board/counting_board_pim.tscn" id="5"]
@@ -21,17 +20,6 @@ offset_bottom = 605.0
 
 [node name="CountingBoardPim" parent="CountingBoardWindow/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("5")]
 layout_mode = 2
-initial_tool = 5
-have_menu = false
-include_all_tools = false
-include_all_spawners = false
-
-[node name="TaskWindow" parent="." instance=ExtResource("2")]
-position = Vector2(45.1688, 483.066)
-
-[node name="WindowRect" parent="TaskWindow" index="0"]
-offset_right = 290.0
-offset_bottom = 284.0
 
 [node name="SelectorWindow" parent="." instance=ExtResource("3")]
 position = Vector2(71, 223)
@@ -50,6 +38,5 @@ layout_mode = 2
 initial_sum_is_empty = true
 
 [editable path="CountingBoardWindow"]
-[editable path="TaskWindow"]
 [editable path="SelectorWindow"]
 [editable path="SlotPanelWindow"]

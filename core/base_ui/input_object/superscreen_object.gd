@@ -26,16 +26,16 @@ func _enter_tree() -> void:
 	superscreen.input_sequencer.connect_input_object(self)
 
 
+func _input(event: InputEvent) -> void:
+	if _drag_only:
+		if event is InputEventMouseMotion:
+			position = event.position
+
+
 func start_grab() -> void:
 	if _drag_only:
 		position = get_global_mouse_position()
 	super()
-
-
-# Virtual
-func _on_drag(point: Vector2, _change: Vector2) -> void:
-	if _drag_only:
-		position = point
 
 
 func _end_drag() -> void:

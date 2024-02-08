@@ -17,11 +17,6 @@ var _conditions_map := CallableMap.new()
 var _anti_conditions_map := CallableMap.new()
 
 
-func set_button_map(p_button_map: Dictionary) -> void:
-	_button_map = p_button_map
-	update()
-
-
 func add_button(button_id: String, button: BaseButton) -> void:
 	_button_map[button_id] = button
 	update()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cq1jfhvc81q5t"]
 
-[ext_resource type="Texture2D" uid="uid://poh8fkhctsmb" path="res://content/debug/tests/pim_levels/bubble_sum_2/bubble_sum_2.png" id="1_ri07u"]
+[ext_resource type="Texture2D" uid="uid://bam1ww43msisb" path="res://content/debug/tests/pim_levels/bubble_sum_2/bubble_sum_2.png" id="1_r1v0y"]
 
 [node name="Ref" type="Node"]
 
@@ -13,41 +13,35 @@ anchor_bottom = 1.0
 offset_left = -641.0
 offset_top = -827.0
 offset_right = 641.0
-texture = ExtResource("1_ri07u")
+texture = ExtResource("1_r1v0y")
 stretch_mode = 5
 
-[node name="MoveObject1" type="Marker2D" parent="."]
-position = Vector2(343, 112)
+[node name="MoveObject" type="Marker2D" parent="."]
+position = Vector2(48, 600)
 
-[node name="MoveObject2" type="Marker2D" parent="."]
-position = Vector2(683, 190)
-
-[node name="CreateUnit1" type="Marker2D" parent="."]
-position = Vector2(347, 150)
-
-[node name="CreateUnit2" type="Marker2D" parent="."]
-position = Vector2(682, 225)
+[node name="CreateUnit" type="Marker2D" parent="."]
+position = Vector2(101, 602)
 
 [node name="UnitPlace1_1" type="Marker2D" parent="."]
-position = Vector2(568.66, 271.19)
+position = Vector2(329, 259)
 
 [node name="UnitPlace1_2" type="Marker2D" parent="."]
-position = Vector2(574.653, 340.112)
+position = Vector2(333, 351)
 
 [node name="UnitPlace2_1" type="Marker2D" parent="."]
-position = Vector2(1094.57, 349.102)
+position = Vector2(900, 312)
 
 [node name="UnitPlace2_2" type="Marker2D" parent="."]
-position = Vector2(1102.06, 406.038)
+position = Vector2(895, 414)
 
 [node name="Undo" type="Marker2D" parent="."]
-position = Vector2(65.6954, 185.214)
+position = Vector2(28, 31)
 
 [node name="Redo" type="Marker2D" parent="."]
-position = Vector2(141.781, 187.884)
+position = Vector2(82, 23)
 
 [node name="Reset" type="Marker2D" parent="."]
-position = Vector2(109.745, 222.59)
+position = Vector2(132, 25)
 
 [node name="MissPims" type="Marker2D" parent="."]
-position = Vector2(809.454, 670.584)
+position = Vector2(808, 671)

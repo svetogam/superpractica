@@ -28,6 +28,9 @@ var math_effects: MathEffectGroup:
 	get = _get_math_effects
 var effect_counter: EffectCounter:
 	get = _get_effect_counter
+var interface_data: PimInterfaceData:
+	set = _do_not_set,
+	get = _get_interface_data
 var _got_ready := false
 @onready var programs := $Programs as ModeGroup
 @onready var effect_layer := %EffectLayer as CanvasLayer
@@ -53,6 +56,18 @@ func is_ready() -> bool:
 	return _got_ready
 
 
+# Virtual
+func get_field_type() -> String:
+	assert(false)
+	return ""
+
+
+# Virtual
+static func _get_interface_data() -> PimInterfaceData:
+	assert(false)
+	return null
+
+
 func _trigger_update(update_type: int) -> void:
 	_on_update(update_type)
 	updated.emit()
@@ -68,6 +83,10 @@ func _get_effect_counter() -> EffectCounter:
 	if effect_counter == null:
 		effect_counter = EffectCounter.new(effect_layer)
 	return effect_counter
+
+
+static func _do_not_set(_value: Variant) -> void:
+	assert(false)
 
 
 #====================================================================
@@ -103,52 +122,35 @@ func on_outgoing_drop(_object: FieldObject) -> void:
 # Tools and Modes
 #====================================================================
 
-func set_tool(tool_mode: String) -> void:
+func set_tool(tool_mode: int) -> void:
 	if tool_mode != get_tool():
-		if tool_mode != "":
-			_tool_modes.activate_only(tool_mode)
+		if tool_mode != GameGlobals.NO_TOOL:
+			var tool_name := interface_data.get_tool_name(tool_mode)
+			_tool_modes.activate_only(tool_name)
 		else:
 			_tool_modes.deactivate_all()
 		tool_changed.emit(tool_mode)
 
 
-func set_no_tool() -> void:
-	set_tool("")
+func deactivate_tools() -> void:
+	set_tool(GameGlobals.NO_TOOL)
 
 
-func _on_tool_changed(_new_tool: String) -> void:
+func _on_tool_changed(_new_tool: int) -> void:
 	_trigger_update(UpdateTypes.TOOL_MODE_CHANGED)
 
 
 func get_active_modes_for_object(object_type: int) -> Array:
-	var object_modes_map := _get_object_modes_map()
-	if object_modes_map.has(object_type):
-		return object_modes_map[object_type]
-	else:
-		return []
+	var tool_mode := get_tool()
+	return interface_data.get_object_modes(tool_mode, object_type)
 
 
-func _get_object_modes_map() -> Dictionary:
-	var tool_name := get_tool()
-	if tool_name != "":
-		var tool_mode := _tool_modes.get_mode(tool_name)
-		return tool_mode.get_object_modes_map()
-	else:
-		return {}
-
-
-func get_tool() -> String:
+func get_tool() -> int:
 	if _tool_modes != null:
-		return _tool_modes.get_only_active_mode_name()
+		var tool_name := _tool_modes.get_only_active_mode_name()
+		return interface_data.get_tool_by_name(tool_name)
 	else:
-		return ""
-
-
-func get_tool_mode_to_text_map() -> Dictionary:
-	var tool_mode_to_text_map := {}
-	for tool_mode in _tool_modes.get_modes():
-		tool_mode_to_text_map[tool_mode.name] = tool_mode.get_label_text()
-	return tool_mode_to_text_map
+		return GameGlobals.NO_TOOL
 
 
 #====================================================================

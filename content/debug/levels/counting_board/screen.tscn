@@ -18,7 +18,5 @@ offset_bottom = 617.0
 
 [node name="CountingBoardPim" parent="CountingBoardWindow/WindowRect/ContentPanel/ContentContainer" index="0" instance=ExtResource("3")]
 layout_mode = 2
-have_tool_menu = true
-have_spawn_panel = true
 
 [editable path="CountingBoardWindow"]

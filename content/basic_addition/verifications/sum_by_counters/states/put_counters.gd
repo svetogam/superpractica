@@ -34,21 +34,11 @@ func _enter(_last_state: String) -> void:
 
 
 func _put_next_counter() -> void:
-	var spawner = verification.pim.menu_control.spawn_panel.get_spawner(
-			CountingBoard.Objects.COUNTER)
-	var counter = spawner.create_interfield_object(false)
 	var next_square = squares_to_count[count]
+	var field_counter = field.create_counter(next_square)
 
-	counter.animator.move_completed.connect(
-			_on_counter_move_completed.bind(counter, next_square))
-	var dest = verification.pim.field_viewer.convert_internal_to_external_point(
-			next_square.position)
-	counter.animator.move_to_position(dest)
+	await Game.wait_for(0.5)
 
-
-func _on_counter_move_completed(counter: InterfieldObject, square: NumberSquare) -> void:
-	counter.queue_free()
-	var field_counter = field.create_counter(square)
 	field.count_counter(field_counter)
 	count += 1
 

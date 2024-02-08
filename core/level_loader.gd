@@ -11,9 +11,19 @@
 class_name LevelLoader
 extends Node
 
+var loaded_level_group: LevelGroupResource:
+	set(_value):
+		assert(false)
+	get:
+		return _most_recent_level_group
+var loaded_level: LevelResource:
+	set(_value):
+		assert(false)
+	get:
+		return _most_recent_level
 var _level_groups: Array = []
-var _most_recent_level_group := ""
-var _most_recent_level := ""
+var _most_recent_level_group: LevelGroupResource
+var _most_recent_level: LevelResource
 
 
 func add_level_group(level_group: LevelGroupResource, index: int = -1) -> void:
@@ -27,8 +37,8 @@ func add_level_group(level_group: LevelGroupResource, index: int = -1) -> void:
 func enter_level(level_group_name: String, level_name: String) -> void:
 	var level_group := _get_level_group(level_group_name)
 	var scene := level_group.get_level_scene(level_name)
-	_most_recent_level_group = level_group_name
-	_most_recent_level = level_name
+	_most_recent_level_group = level_group
+	_most_recent_level = level_group.get_level(level_name)
 	get_tree().change_scene_to_packed(scene)
 
 
@@ -48,11 +58,3 @@ func _get_level_group(level_group_name: String) -> LevelGroupResource:
 		if level_group.name == level_group_name:
 			return level_group
 	return null
-
-
-func get_most_recent_level() -> String:
-	return _most_recent_level
-
-
-func get_most_recent_level_group() -> String:
-	return _most_recent_level_group

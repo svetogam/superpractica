@@ -14,7 +14,7 @@ extends ScreenEffectGroup
 const AffirmEffect := preload("effects/correct_effect.tscn")
 const RejectEffect := preload("effects/wrong_effect.tscn")
 const WarningEffect := preload("effects/warning_effect.tscn")
-const PointerEffect := preload("effects/pointer_effect.tscn")
+#const PointerEffect := preload("effects/pointer_effect.tscn")
 const NEAR_OFFSET := Vector2(20, 15)
 
 
@@ -41,5 +41,5 @@ func warn(pos: Vector2) -> ScreenEffect:
 	return create_effect(WarningEffect, pos + NEAR_OFFSET)
 
 
-func point_left(pos: Vector2) -> ScreenEffect:
-	return create_effect(PointerEffect, pos)
+#func point_left(pos: Vector2) -> ScreenEffect:
+	#return create_effect(PointerEffect, pos)

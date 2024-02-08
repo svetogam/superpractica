@@ -15,7 +15,7 @@ var bubbles: Array
 
 
 func _get_scene_path() -> String:
-	return "res://content/debug/fields/bubble_sum/bubble_sum_field.tscn"
+	return "res://content/debug/pims/bubble_sum/field/bubble_sum_field.tscn"
 
 
 func before_each():

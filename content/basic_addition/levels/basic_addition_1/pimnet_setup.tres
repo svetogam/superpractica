@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PimnetScreenSetup" load_steps=2 format=3 uid="uid://delx3xd8wkgnp"]
+
+[ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/pimnet_screen_setup.gd" id="1_0sx5o"]
+
+[resource]
+script = ExtResource("1_0sx5o")
+reversion_enable = false
+inventory_enable = false
+inventory_start_active = false
+tools_enable = true
+tools_start_active = true
+creation_enable = true
+creation_start_active = true
+translation_enable = false
+translation_start_active = false
+goal_enable = true
+goal_start_active = true
+plan_enable = true
+plan_start_active = true

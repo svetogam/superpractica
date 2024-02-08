@@ -12,10 +12,12 @@ extends LevelProgramState
 
 
 func _enter(_last_state: String) -> void:
-	program.pim.menu_control.spawn_panel.set_disabled()
+	tool_panel.include(CountingBoard.Tools.MEMO_GRABBER)
+	program.pim.field.set_tool(CountingBoard.Tools.MEMO_GRABBER)
+	tool_panel.force_selection()
 
-	event_control.menu.enabler.connect_button(program.BUTTON_ID, _check_condition)
-	event_control.menu.connect_event(program.BUTTON_ID, next)
+	goal_panel.add_check_condition(_check_condition)
+	goal_panel.connect_goal_check(next)
 
 
 func _check_condition() -> bool:
@@ -23,5 +25,5 @@ func _check_condition() -> bool:
 
 
 func _exit(_next_state: String) -> void:
-	event_control.menu.enabler.disconnect_button(program.BUTTON_ID, _check_condition)
-	event_control.menu.disconnect_event(program.BUTTON_ID, next)
+	goal_panel.remove_check_condition(_check_condition)
+	goal_panel.disconnect_goal_check()

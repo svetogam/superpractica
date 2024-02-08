@@ -1,0 +1,31 @@
+[gd_scene load_steps=9 format=3 uid="uid://dd2cyfnmsvao6"]
+
+[ext_resource type="PackedScene" uid="uid://bgm28j8oeu22s" path="res://core/pimnet/field/field_object/field_object.tscn" id="1"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/unit.gd" id="2"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/graphic.gd" id="3"]
+[ext_resource type="Resource" uid="uid://cila268bqtvql" path="res://content/debug/pims/bubble_sum/field/objects/unit/unit_input_shape.tres" id="4"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/modes/delete.gd" id="5"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/modes/select.gd" id="6"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/modes/count.gd" id="7"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/modes/move.gd" id="8"]
+
+[node name="Unit" groups=["units"] instance=ExtResource("1")]
+script = ExtResource("2")
+input_priority = 10
+_input_shape_setup_data = ExtResource("4")
+
+[node name="Graphic" type="Node2D" parent="." index="0"]
+unique_name_in_owner = true
+script = ExtResource("3")
+
+[node name="move" type="Node" parent="ActiveModes" index="0"]
+script = ExtResource("8")
+
+[node name="delete" type="Node" parent="ActiveModes" index="1"]
+script = ExtResource("5")
+
+[node name="select" type="Node" parent="ActiveModes" index="2"]
+script = ExtResource("6")
+
+[node name="count" type="Node" parent="ActiveModes" index="3"]
+script = ExtResource("7")

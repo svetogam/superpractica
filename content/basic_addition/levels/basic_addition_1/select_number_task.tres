@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TaskResource" load_steps=2 format=3 uid="uid://ru54rjfomox0"]
+
+[ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/task_resource.gd" id="1_huxua"]
+
+[resource]
+script = ExtResource("1_huxua")
+name_id = "select_number"
+name_text = "Select"
+_instructions = "Select the number {start_number} on the board."

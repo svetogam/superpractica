@@ -23,11 +23,6 @@ func _init() -> void:
 	add_to_group("superscreens")
 
 
-func set_combined_offset(offset: Vector2) -> void:
-	for child in get_children():
-		child.position += offset
-
-
 func get_object_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "superscreen_objects")
 

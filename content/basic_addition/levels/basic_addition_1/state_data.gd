@@ -17,9 +17,6 @@ const DATA := {
 			"done": "PutCounters",
 		},
 		"PutCounters": {
-			"done": "PressButton",
-		},
-		"PressButton": {
 			"done": State.NULL_STATE,
 		},
 	}

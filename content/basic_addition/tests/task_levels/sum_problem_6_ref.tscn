@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://buvuso7tn8fns"]
 
-[ext_resource type="Texture2D" uid="uid://bqtuw70h12jgq" path="res://content/basic_addition/tests/task_levels/sum_problem_6.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://i7ububodr762" path="res://content/basic_addition/tests/task_levels/sum_problem_6.png" id="1"]
 
 [node name="Ref" type="Node"]
 
@@ -14,55 +14,55 @@ texture = ExtResource("1")
 stretch_mode = 5
 
 [node name="Square4" type="Marker2D" parent="."]
-position = Vector2(927, 253)
+position = Vector2(652, 245)
 
 [node name="Square14" type="Marker2D" parent="."]
-position = Vector2(926, 301)
+position = Vector2(651, 293)
 
 [node name="Square19" type="Marker2D" parent="."]
-position = Vector2(1175, 305)
+position = Vector2(900, 297)
 
 [node name="Square24" type="Marker2D" parent="."]
-position = Vector2(926, 349)
+position = Vector2(651, 341)
 
 [node name="Square25" type="Marker2D" parent="."]
-position = Vector2(979, 355)
+position = Vector2(704, 347)
 
 [node name="Square26" type="Marker2D" parent="."]
-position = Vector2(1031, 357)
+position = Vector2(756, 349)
 
 [node name="Square27" type="Marker2D" parent="."]
-position = Vector2(1077, 358)
+position = Vector2(802, 350)
 
 [node name="Square29" type="Marker2D" parent="."]
-position = Vector2(1174, 361)
+position = Vector2(899, 353)
 
 [node name="Square35" type="Marker2D" parent="."]
-position = Vector2(978, 407)
+position = Vector2(703, 399)
 
 [node name="Square36" type="Marker2D" parent="."]
-position = Vector2(1031, 406)
+position = Vector2(756, 398)
 
 [node name="Square37" type="Marker2D" parent="."]
-position = Vector2(1082, 403)
+position = Vector2(807, 395)
 
 [node name="Square38" type="Marker2D" parent="."]
-position = Vector2(1135, 403)
+position = Vector2(860, 395)
 
 [node name="Square39" type="Marker2D" parent="."]
-position = Vector2(1185, 405)
+position = Vector2(910, 397)
 
 [node name="Square40" type="Marker2D" parent="."]
-position = Vector2(1231, 403)
+position = Vector2(956, 395)
 
 [node name="Square41" type="Marker2D" parent="."]
-position = Vector2(768, 449)
+position = Vector2(493, 441)
 
 [node name="Square42" type="Marker2D" parent="."]
-position = Vector2(815, 453)
+position = Vector2(540, 445)
 
 [node name="CheckButton" type="Marker2D" parent="."]
-position = Vector2(97.8268, 362.237)
+position = Vector2(1177, 604)
 
 [node name="SumSlot" type="Marker2D" parent="."]
-position = Vector2(550, 95)
+position = Vector2(358, 92)

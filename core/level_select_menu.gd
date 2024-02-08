@@ -34,9 +34,9 @@ func _add_level_group(level_group: LevelGroupResource) -> void:
 
 
 func _set_section_to_most_recent() -> void:
-	var most_recent_group := Game.level_loader.get_most_recent_level_group()
-	if not most_recent_group.is_empty():
-		var index := _get_section_index_of_level_group(most_recent_group)
+	var most_recent_group := Game.level_loader.loaded_level_group
+	if most_recent_group != null:
+		var index := _get_section_index_of_level_group(most_recent_group.name)
 		_menu.set_section(index)
 
 

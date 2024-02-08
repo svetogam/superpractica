@@ -28,20 +28,20 @@ func get_level_names() -> Array:
 
 
 func get_level_name_text(level_name: String) -> String:
-	var level := _get_level(level_name)
+	var level := get_level(level_name)
 	return level.get_name_text()
 
 
 func get_level_scene(level_name: String) -> PackedScene:
-	var level := _get_level(level_name)
+	var level := get_level(level_name)
 	return level.get_scene()
 
 
 func has(level_name: String) -> bool:
-	return _get_level(level_name) != null
+	return get_level(level_name) != null
 
 
-func _get_level(level_name: String) -> LevelResource:
+func get_level(level_name: String) -> LevelResource:
 	for level in _levels:
 		if level.name == level_name:
 			return level

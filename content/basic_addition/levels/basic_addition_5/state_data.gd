@@ -20,9 +20,6 @@ const DATA := {
 			"done": "CircleRight",
 		},
 		"CircleRight": {
-			"done": "PressButton",
-		},
-		"PressButton": {
 			"done": State.NULL_STATE,
 		},
 	}

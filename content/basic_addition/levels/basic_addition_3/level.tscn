@@ -1,18 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://necnsf6l4rbb"]
+[gd_scene load_steps=6 format=3 uid="uid://necnsf6l4rbb"]
 
 [ext_resource type="PackedScene" uid="uid://b3bv4s3doxgv3" path="res://content/basic_addition/levels/basic_addition_3/program.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/level/level.tscn" id="2"]
-[ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_3/taskmap_data.gd" id="4"]
+[ext_resource type="Resource" uid="uid://cwaxbifyc31h0" path="res://content/basic_addition/levels/basic_addition_3/pimnet_setup.tres" id="2_4ht5s"]
+[ext_resource type="Resource" uid="uid://cpvugoj04n83w" path="res://content/basic_addition/levels/basic_addition_3/plan_data.tres" id="2_6tnsi"]
 [ext_resource type="PackedScene" uid="uid://g67qh1ylmeaw" path="res://content/basic_addition/levels/basic_addition_3/screen.tscn" id="5"]
 
 [node name="Level" instance=ExtResource("2")]
 
+[node name="PimnetScreenGui" parent="ScreenMenuLayer" index="0"]
+setup_resource = ExtResource("2_4ht5s")
+
 [node name="LevelScreen" parent="." index="3" instance=ExtResource("5")]
 
 [node name="LevelProgram" parent="." index="4" instance=ExtResource("1")]
-
-[node name="TaskControl" parent="." index="5"]
-_taskmap_data = ExtResource("4")
-
-[node name="EventControl" parent="." index="8"]
-active = true
+_plan_data = ExtResource("2_6tnsi")

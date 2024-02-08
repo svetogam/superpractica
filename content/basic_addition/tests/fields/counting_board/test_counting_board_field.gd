@@ -14,7 +14,7 @@ var number_squares: Array
 
 
 func _get_scene_path() -> String:
-	return ("res://content/basic_addition/fields/counting_board/"
+	return ("res://content/basic_addition/pims/counting_board/field/"
 			+ "counting_board_field.tscn")
 
 

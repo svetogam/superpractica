@@ -14,9 +14,9 @@ var _field_program: FieldProgram
 
 
 func _enter(_last_state: String) -> void:
-	program.pim.menu_control.tool_menu.disable_tool("SquareMarker")
-	program.pim.menu_control.tool_menu.add_tool("NumberCircler")
-	program.pim.field.set_tool("NumberCircler")
+	tool_panel.disable(CountingBoard.Tools.SQUARE_MARKER)
+	tool_panel.include(CountingBoard.Tools.NUMBER_CIRCLER)
+	program.pim.field.set_tool(CountingBoard.Tools.NUMBER_CIRCLER)
 
 	_field_program = program.pim.field.get_program("AddByCircles")
 	_field_program.setup(program.start_number, program.addend)
@@ -31,7 +31,7 @@ func _enter(_last_state: String) -> void:
 func _on_complete_complete() -> void:
 	complete_task()
 	complete_task()
-	_change_state("PressButton")
+	complete()
 
 
 func _exit(_next_state: String) -> void:

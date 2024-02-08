@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://davgi05gqu85g"]
+[gd_scene load_steps=6 format=3 uid="uid://davgi05gqu85g"]
 
 [ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="1"]
 [ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_1/states/select_start.gd" id="2"]
-[ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_1/states/press_button.gd" id="3"]
 [ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_1/state_data.gd" id="4"]
 [ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_1/program.gd" id="5"]
 [ext_resource type="Script" path="res://content/basic_addition/levels/basic_addition_1/states/put_counters.gd" id="6"]
@@ -20,6 +19,3 @@ script = ExtResource("2")
 
 [node name="PutCounters" type="Node" parent="StateMachine"]
 script = ExtResource("6")
-
-[node name="PressButton" type="Node" parent="StateMachine"]
-script = ExtResource("3")

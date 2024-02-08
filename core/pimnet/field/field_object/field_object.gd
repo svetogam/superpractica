@@ -91,7 +91,7 @@ func _on_drop(point: Vector2) -> void:
 			mode._on_drop(point)
 
 
-func update_active_modes(_new_tool := "") -> void:
+func update_active_modes(_new_tool := GameGlobals.NO_TOOL) -> void:
 	var active_modes := field.get_active_modes_for_object(object_type)
 	_modes.set_by_list(active_modes)
 

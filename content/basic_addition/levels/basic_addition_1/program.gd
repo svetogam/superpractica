@@ -19,8 +19,6 @@ extends LevelProgram
 @export var _min_count: int
 @export var _max_count: int
 
-const BUTTON_ID := "button"
-const BUTTON_TEXT := "Complete"
 var pim: Pim
 var field: Field
 
@@ -34,8 +32,8 @@ func _setup_vars() -> void:
 func _start() -> void:
 	super()
 
-	event_control.menu.add_button(BUTTON_ID, BUTTON_TEXT)
-	event_control.menu.enabler.disable_all(true)
+	tool_panel.exclude_all()
+	creation_panel.exclude_all()
 	pim = pimnet.get_pim("CountingBoardPim")
 	field = pim.field
 

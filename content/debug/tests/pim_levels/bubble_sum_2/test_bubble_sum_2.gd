@@ -24,17 +24,16 @@ func before_each():
 
 
 func test_move_units_between_fields():
-	simulator.click_left_at($Ref/CreateUnit1.position)
+	simulator.click_left_at($Ref/CreateUnit.position)
 	simulator.click_left_at($Ref/UnitPlace1_1.position)
 	simulator.click_left_at($Ref/UnitPlace1_2.position)
-	simulator.click_left_at($Ref/MoveObject1.position)
+	simulator.click_left_at($Ref/MoveObject.position)
 	simulator.drag_left_between($Ref/UnitPlace1_1.position, $Ref/UnitPlace2_1.position)
 	simulator.run()
 	await simulator.done
 	assert_eq(field_1.get_unit_list().size(), 1)
 	assert_eq(field_2.get_unit_list().size(), 1)
 
-	simulator.click_left_at($Ref/MoveObject2.position)
 	simulator.drag_left_between($Ref/UnitPlace2_1.position, $Ref/UnitPlace1_1.position)
 	simulator.run()
 	await simulator.done
@@ -55,10 +54,10 @@ func test_move_units_between_fields():
 
 
 func test_move_units_off_field():
-	simulator.click_left_at($Ref/CreateUnit1.position)
+	simulator.click_left_at($Ref/CreateUnit.position)
 	simulator.click_left_at($Ref/UnitPlace1_1.position)
 	simulator.click_left_at($Ref/UnitPlace1_2.position)
-	simulator.click_left_at($Ref/MoveObject1.position)
+	simulator.click_left_at($Ref/MoveObject.position)
 	simulator.drag_left_between($Ref/UnitPlace1_1.position, $Ref/MissPims.position)
 	simulator.run()
 	await simulator.done

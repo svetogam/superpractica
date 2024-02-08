@@ -60,31 +60,32 @@ func process_dragged_memo_drop(object: DraggedMemo) -> void:
 # Creation
 #====================================================================
 
-func create_interfield_object_by_parts(graphic: ProceduralGraphic,
-		input_shape: InputShape = null, object_type := GameGlobals.NO_OBJECT,
-		grab_now := true
+func create_interfield_object_by_original(original: FieldObject) -> InterfieldObject:
+	return _create_interfield_object(original)
+
+
+func create_interfield_object_by_type(object_type: int, pim_data: PimInterfaceData
 ) -> InterfieldObject:
-	return _create_interfield_object(null, graphic, input_shape, object_type, grab_now)
+	var graphic := pim_data.make_creatable_object_graphic(object_type)
+	return _create_interfield_object(null, graphic, object_type)
 
 
-func create_interfield_object_by_original(original: FieldObject, grab_now := true
+func _create_interfield_object(original: FieldObject, graphic: ProceduralGraphic = null,
+		object_type := GameGlobals.NO_OBJECT
 ) -> InterfieldObject:
-	var graphic := original.get_drag_graphic()
-	var input_shape := original.input_shape
-	var object_type := original.object_type
-	return _create_interfield_object(
-			original, graphic, input_shape, object_type, grab_now)
+	var past_objects = get_tree().get_nodes_in_group("interfield_objects")
+	for past_object in past_objects:
+		past_object.queue_free()
 
-
-func _create_interfield_object(original: FieldObject, graphic: ProceduralGraphic,
-		input_shape: InputShape, object_type: int, grab_now: bool
-) -> InterfieldObject:
 	var interfield_object := InterfieldObjectScene.instantiate()
-	interfield_object.setup(original, graphic, input_shape, object_type)
+	if original != null:
+		interfield_object.setup_by_original(original)
+		original.on_interfield_drag_started()
+	else:
+		interfield_object.setup_by_parts(object_type, graphic)
 	_add_dragged_object(interfield_object)
 
-	if grab_now:
-		interfield_object.start_grab()
+	interfield_object.start_grab()
 
 	return interfield_object
 

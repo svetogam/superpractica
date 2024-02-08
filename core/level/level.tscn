@@ -1,12 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=5 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/level/level.gd" id="1"]
-[ext_resource type="Script" path="res://core/level/side_menu/side_menu.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://b3njqqdg6ewl" path="res://general/screen_gui/v_panel_menu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dctlbeewt20al" path="res://core/pimnet/pimnet_screen_gui/pimnet_screen_gui.tscn" id="2_t5gt1"]
 [ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/verifier/verifier.tscn" id="4"]
-[ext_resource type="Script" path="res://core/level/event_control.gd" id="5"]
-[ext_resource type="PackedScene" uid="uid://bus2gwr6st2xf" path="res://core/level/victory_popup.tscn" id="6"]
-[ext_resource type="Script" path="res://core/level/task_control.gd" id="7"]
 [ext_resource type="Script" path="res://core/level/reversion_control.gd" id="7_3e4h7"]
 
 [node name="Level" type="Node" groups=["levels"]]
@@ -22,26 +18,12 @@ layer = 2
 
 [node name="ScreenMenuLayer" type="CanvasLayer" parent="."]
 
-[node name="SideMenu" parent="ScreenMenuLayer" instance=ExtResource("3")]
+[node name="PimnetScreenGui" parent="ScreenMenuLayer" instance=ExtResource("2_t5gt1")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-anchors_preset = 9
-anchor_right = 0.0
-grow_vertical = 2
-script = ExtResource("2")
-_min_panel_height = 160.0
-
-[node name="VictoryPopup" parent="ScreenMenuLayer" instance=ExtResource("6")]
-unique_name_in_owner = true
-
-[node name="TaskControl" type="Node" parent="."]
-script = ExtResource("7")
+mouse_filter = 2
 
 [node name="Verifier" parent="." node_paths=PackedStringArray("effect_layer") instance=ExtResource("4")]
 effect_layer = NodePath("../RootEffectLayer")
 
 [node name="ReversionControl" type="Node" parent="."]
 script = ExtResource("7_3e4h7")
-
-[node name="EventControl" type="Node" parent="."]
-script = ExtResource("5")
