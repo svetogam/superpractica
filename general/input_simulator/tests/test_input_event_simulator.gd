@@ -28,7 +28,7 @@ func before_all():
 
 func after_all():
 	simulator.interference_detected.disconnect(_on_interference)
-	remove_child(simulator)
+	simulator.queue_free()
 
 
 func before_each():

@@ -46,7 +46,7 @@ func remove_subscreen() -> void:
 	_scroll_bars.position_changed.disconnect(_on_scroll_bars_position_changed)
 	camera.moved.disconnect(_on_camera_moved)
 
-	_viewport.remove_child(_subscreen)
+	_subscreen.free()
 	_subscreen = null
 
 

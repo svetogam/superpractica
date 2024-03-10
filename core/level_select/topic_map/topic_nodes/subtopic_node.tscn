@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf73nnjjnqie2"]
+
+[ext_resource type="Script" path="res://core/level_select/topic_map/topic_nodes/subtopic_node.gd" id="1_eapxp"]
+[ext_resource type="PackedScene" uid="uid://bl0lkke2v2tq2" path="res://core/level_select/topic_map/topic_nodes/topic_node.tscn" id="1_x75kw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_41pp8"]
+resource_local_to_scene = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_pdg7v"]
+font_size = 32
+
+[node name="SubtopicNode" instance=ExtResource("1_x75kw")]
+script = ExtResource("1_eapxp")
+
+[node name="MaskLabel" parent="MaskContainer/SubViewport/MaskButton/VBoxContainer" index="0"]
+label_settings = SubResource("LabelSettings_41pp8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MaskContainer/SubViewport/MaskButton/VBoxContainer" index="1"]
+layout_mode = 2
+alignment = 1
+
+[node name="MaskProgressBar" type="ProgressBar" parent="MaskContainer/SubViewport/MaskButton/VBoxContainer/HBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="MaskCheckBox" type="CheckBox" parent="MaskContainer/SubViewport/MaskButton/VBoxContainer/HBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+disabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OverviewPanel/OverviewButton/VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SurveyMap" type="TextureRect" parent="OverviewPanel/OverviewButton/VBoxContainer/HBoxContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverviewPanel/OverviewButton/VBoxContainer/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="OverviewProgressBar" type="ProgressBar" parent="OverviewPanel/OverviewButton/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="FractionLabel" type="Label" parent="OverviewPanel/OverviewButton/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 / 99"
+label_settings = SubResource("LabelSettings_pdg7v")
+horizontal_alignment = 1

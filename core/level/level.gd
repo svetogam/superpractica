@@ -13,6 +13,7 @@ extends Node
 
 signal updated
 signal actions_completed
+signal exited
 
 var pimnet: Pimnet
 var _program: LevelProgram
@@ -41,6 +42,7 @@ func _ready() -> void:
 	_setup_tool_panel()
 	_setup_creation_panel()
 
+	pimnet_screen_gui.exit_pressed.connect(emit_signal.bind("exited"))
 	verifier.verifications_started.connect(_on_verifications_started)
 	verifier.verifications_completed.connect(_on_verifications_completed)
 	verifier.verifications_started.connect(_signal_update)

@@ -16,7 +16,7 @@ var field_2: Field
 
 func before_each():
 	super()
-	_load_level("debug_windows", "bubble_sum_2")
+	_load_level("res://content/debug/levels/bubble_sum_2/level.tscn")
 	_load_ref_scene("res://content/debug/tests/pim_levels/bubble_sum_2/"
 			+ "bubble_sum_2_ref.tscn")
 	field_1 = pimnet.get_pim("BubbleSumPim1").field

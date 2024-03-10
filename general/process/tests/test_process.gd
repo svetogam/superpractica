@@ -35,7 +35,7 @@ func before_each():
 
 
 func after_each():
-	remove_child(context)
+	context.free()
 
 
 # Gut bugs out with this one, causing other tests to fail

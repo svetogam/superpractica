@@ -10,28 +10,10 @@
 
 extends Node
 
+var root_topic: TopicResource
+var progress_data := GameProgressResource.new()
+var current_level: LevelResource = null
 var debug := GameDebug.new()
-@onready var level_loader := $LevelLoader as LevelLoader
-
-
-#====================================================================
-# Screen Switching
-#====================================================================
-
-enum Screens {
-	LEVEL_SELECT,
-}
-const SCREEN_MAP := {
-	Screens.LEVEL_SELECT: "res://core/level_select_menu.tscn",
-}
-
-
-func enter_screen(screen_id: int) -> void:
-	get_tree().change_scene_to_file(SCREEN_MAP[screen_id])
-
-
-func enter_level_select() -> void:
-	enter_screen(Screens.LEVEL_SELECT)
 
 
 #====================================================================

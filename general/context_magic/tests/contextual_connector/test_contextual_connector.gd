@@ -27,8 +27,7 @@ func before_each():
 
 
 func after_each():
-	remove_child(context)
-	context.queue_free()
+	context.free()
 
 
 func test_find_initial_agents():

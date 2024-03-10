@@ -32,7 +32,7 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	remove_child(context)
+	context.free()
 
 
 func test_virtual_methods_called_on_run_and_stop_mode() -> void:

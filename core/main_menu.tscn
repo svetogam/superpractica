@@ -1,0 +1,153 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtsgoie3mkpl"]
+
+[ext_resource type="Script" path="res://core/main_menu.gd" id="1_evcbt"]
+[ext_resource type="Script" path="res://core/about_panel.gd" id="2_morim"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2wghg"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_rhsfj"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_ujeqp"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_6favt"]
+font_size = 48
+
+[node name="MainMenu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_evcbt")
+
+[node name="AboutPopup" type="PopupPanel" parent="."]
+unique_name_in_owner = true
+title = "About Info"
+initial_position = 1
+size = Vector2i(508, 400)
+script = ExtResource("2_morim")
+
+[node name="PanelContainer" type="PanelContainer" parent="AboutPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 504.0
+offset_bottom = 396.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutPopup/PanelContainer"]
+layout_mode = 2
+
+[node name="AboutHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "About"
+label_settings = SubResource("LabelSettings_2wghg")
+horizontal_alignment = 1
+
+[node name="AboutText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Put About text here."
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutPopup/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VersionHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Version"
+label_settings = SubResource("LabelSettings_rhsfj")
+horizontal_alignment = 1
+
+[node name="VersionText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SourceHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Source"
+label_settings = SubResource("LabelSettings_ujeqp")
+horizontal_alignment = 1
+
+[node name="SourceText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close"
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.0
+offset_top = 20.0
+offset_right = 167.0
+offset_bottom = 87.0
+grow_horizontal = 2
+text = "Super Practica"
+label_settings = SubResource("LabelSettings_6favt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -233.0
+offset_right = 125.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="TopicsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Play Topics"
+
+[node name="SandboxButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+disabled = true
+text = "Play Sandbox"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+disabled = true
+text = "Settings"
+
+[node name="AboutButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "About"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer/CloseButton" to="AboutPopup" method="_on_close_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TopicsButton" to="." method="_on_topics_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

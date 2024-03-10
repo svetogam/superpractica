@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhb5va31dic66"]
+
+[ext_resource type="Script" path="res://core/level_select/topic_layout_node_ref.gd" id="1_c4l2i"]
+
+[node name="Layout" type="Node"]
+
+[node name="Level1" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -42.0
+offset_top = -23.0
+offset_right = 58.0
+offset_bottom = 27.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "bubble_sum_1"
+
+[node name="Level2" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 184.0
+offset_top = -23.0
+offset_right = 284.0
+offset_bottom = 27.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "bubble_sum_2"
+
+[node name="Level3" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 412.0
+offset_top = -23.0
+offset_right = 512.0
+offset_bottom = 27.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "counting_board"
+
+[node name="TestTopic" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -42.0
+offset_top = 137.0
+offset_right = 58.0
+offset_bottom = 187.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "test_topic_1"

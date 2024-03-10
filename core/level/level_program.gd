@@ -68,6 +68,8 @@ func complete_task() -> void:
 
 
 func complete_level() -> void:
+	if Game.current_level != null:
+		Game.progress_data.save_level_completion(Game.current_level.id)
 	level.pimnet_screen_gui.show_completion_popup()
 	level_completed.emit()
 

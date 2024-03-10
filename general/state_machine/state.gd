@@ -55,4 +55,4 @@ func _transition(trigger: String) -> void:
 
 
 func _is_current() -> bool:
-	return _state_machine.get_current_state() == self
+	return _state_machine.get_current_state() == name

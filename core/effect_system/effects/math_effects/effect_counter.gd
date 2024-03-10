@@ -34,7 +34,7 @@ func remove_last_count() -> void:
 	assert(_count != 0)
 
 	var last_count := get_highest_count_object()
-	remove_child(last_count)
+	last_count.free()
 	_count -= 1
 
 

@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Super Practica"
-run/main_scene="res://core/level_select_menu.tscn"
+run/main_scene="res://core/main.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
 
 [autoload]
 
 Game="*res://core/game.tscn"
-GameDriver="res://content/game_driver.gd"
+ContentDriver="res://content/content_driver.gd"
 
 [debug]
 

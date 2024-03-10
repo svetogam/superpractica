@@ -11,6 +11,9 @@
 class_name PimnetScreenGui
 extends Control
 
+signal exit_pressed
+
+
 enum PimnetPanels {
 	INVENTORY,
 	TOOLS,
@@ -64,10 +67,38 @@ func _ready() -> void:
 				setup_resource.plan_start_active)
 
 	# Set level title
-	if Game.level_loader.loaded_level != null:
-		var level_text := Game.level_loader.loaded_level.get_name_text()
-		var level_group_text := Game.level_loader.loaded_level_group.get_name_text()
-		set_level_title_text(level_group_text + " > " + level_text)
+	if Game.current_level != null:
+		var topic_title := Game.current_level.topic.title
+		var level_title := Game.current_level.title
+		set_level_title_text(topic_title + " > " + level_title)
+
+
+func _on_main_menu_button_pressed() -> void:
+	%MainMenuPopup.visible = true
+
+
+func _on_continue_button_pressed() -> void:
+	%MainMenuPopup.visible = false
+
+
+func _on_settings_button_pressed() -> void:
+	pass
+
+
+func _on_quit_button_pressed() -> void:
+	exit_pressed.emit()
+
+
+func _on_stay_button_pressed() -> void:
+	%CompletionPopup.hide()
+
+
+func _on_select_level_button_pressed() -> void:
+	exit_pressed.emit()
+
+
+func _on_next_level_button_pressed() -> void:
+	pass
 
 
 func activate_reversion() -> void:
@@ -110,10 +141,6 @@ func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> voi
 					break
 
 	assert(_get_number_active_panels() <= maximum_active_panels)
-
-
-func _on_main_menu_button_pressed() -> void:
-	%MainMenuPopup.visible = true
 
 
 func show_completion_popup() -> void:

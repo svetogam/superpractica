@@ -22,7 +22,7 @@ func before_each():
 
 
 func after_each():
-	remove_child(scene)
+	scene.free()
 
 
 #====================================================================

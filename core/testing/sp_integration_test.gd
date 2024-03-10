@@ -11,6 +11,8 @@
 class_name SpIntegrationTest
 extends GutTest
 
+const AWAIT_QUICK := 1.0
+const AWAIT_LONG := 10.0
 var scene: Node
 var simulator := MouseInputSimulator.new()
 
@@ -44,13 +46,13 @@ func before_each():
 
 func after_each():
 	if _has_scene():
-		remove_child(scene)
+		scene.free()
 	_remove_ref_scene()
 
 
 func after_all():
 	simulator.interference_detected.disconnect(_on_interference)
-	remove_child(simulator)
+	simulator.queue_free()
 
 
 func _load_scene(path: String) -> Node:
@@ -62,12 +64,17 @@ func _load_scene(path: String) -> Node:
 func _load_ref_scene(path: String) -> void:
 	var ref_scene := _load_scene(path)
 	for child in ref_scene.get_children():
-		child.hide()
+		if child is CanvasItem:
+			child.hide()
 
 
 func _remove_ref_scene() -> void:
 	if get_node_or_null("Ref") != null:
-		remove_child($Ref)
+		$Ref.free()
+
+
+func _get_await_time() -> float:
+	return AWAIT_QUICK * Engine.time_scale
 
 
 func _save_failure_screenshot() -> void:

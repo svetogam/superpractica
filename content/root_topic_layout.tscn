@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://mavskao75pjc"]
+
+[ext_resource type="Script" path="res://core/level_select/topic_layout_node_ref.gd" id="1_et7bg"]
+
+[node name="Layout" type="Node"]
+
+[node name="Topic1" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -42.0
+offset_top = -23.0
+offset_right = 58.0
+offset_bottom = 27.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_et7bg")
+id = "sum_problems"
+
+[node name="Topic2" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 150.0
+offset_top = 143.0
+offset_right = 250.0
+offset_bottom = 193.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_et7bg")
+id = "debug_levels"

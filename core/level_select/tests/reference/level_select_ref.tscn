@@ -1,0 +1,192 @@
+[gd_scene load_steps=9 format=3 uid="uid://dusi0uqg0cyg3"]
+
+[ext_resource type="Texture2D" uid="uid://cd3c3sih00ts" path="res://core/level_select/tests/reference/level_focus_ref.png" id="1_63ebr"]
+[ext_resource type="Texture2D" uid="uid://bwyus8o6mlw71" path="res://core/level_select/tests/reference/topic_focus_ref.png" id="2_l8o0w"]
+[ext_resource type="Texture2D" uid="uid://cjf5sl0u17we3" path="res://core/level_select/tests/reference/topic_1_view_1_ref.png" id="3_fwnfu"]
+[ext_resource type="Texture2D" uid="uid://bqojt3w4460i3" path="res://core/level_select/tests/reference/topic_2_ref.png" id="4_v0njk"]
+[ext_resource type="Texture2D" uid="uid://c5l6hvnaq58e6" path="res://core/level_select/tests/reference/topic_1_view_2_ref.png" id="4_w3ffq"]
+[ext_resource type="Texture2D" uid="uid://lq6xm5v4lyd4" path="res://core/level_select/tests/reference/topic_3_ref.png" id="5_uuooa"]
+[ext_resource type="Texture2D" uid="uid://brnj3bj0wo7el" path="res://core/level_select/tests/reference/topic_4_ref.png" id="6_t2qha"]
+[ext_resource type="Texture2D" uid="uid://cuoywv6jgk5ag" path="res://core/level_select/tests/reference/menu_ref.png" id="7_2mrt0"]
+
+[node name="Ref" type="Node"]
+
+[node name="LevelFocus" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="LevelFocus"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("1_63ebr")
+stretch_mode = 5
+
+[node name="Inside" type="Marker2D" parent="LevelFocus"]
+position = Vector2(645, 392)
+
+[node name="Outside" type="Marker2D" parent="LevelFocus"]
+position = Vector2(819, 686)
+
+[node name="TopicFocus" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="TopicFocus"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("2_l8o0w")
+stretch_mode = 5
+
+[node name="Inside" type="Marker2D" parent="TopicFocus"]
+position = Vector2(645, 392)
+
+[node name="Outside" type="Marker2D" parent="TopicFocus"]
+position = Vector2(819, 686)
+
+[node name="Topic1View1" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="Topic1View1"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("3_fwnfu")
+stretch_mode = 5
+
+[node name="Topic2" type="Marker2D" parent="Topic1View1"]
+position = Vector2(645, 392)
+
+[node name="Topic3" type="Marker2D" parent="Topic1View1"]
+position = Vector2(841, 570)
+
+[node name="Level1_1" type="Marker2D" parent="Topic1View1"]
+position = Vector2(1018, 401)
+
+[node name="Topic1View2" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="Topic1View2"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("4_w3ffq")
+stretch_mode = 5
+
+[node name="Topic2" type="Marker2D" parent="Topic1View2"]
+position = Vector2(443, 224)
+
+[node name="Topic3" type="Marker2D" parent="Topic1View2"]
+position = Vector2(639, 402)
+
+[node name="Level1" type="Marker2D" parent="Topic1View2"]
+position = Vector2(816, 233)
+
+[node name="Topic2" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="Topic2"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("4_v0njk")
+stretch_mode = 5
+
+[node name="Level2_1" type="Marker2D" parent="Topic2"]
+position = Vector2(645, 392)
+
+[node name="Level2_2" type="Marker2D" parent="Topic2"]
+position = Vector2(847, 401)
+
+[node name="Level2_3" type="Marker2D" parent="Topic2"]
+position = Vector2(642, 545)
+
+[node name="Topic3" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="Topic3"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("5_uuooa")
+stretch_mode = 5
+
+[node name="Topic4" type="Marker2D" parent="Topic3"]
+position = Vector2(644, 395)
+
+[node name="Topic4" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="Topic4"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("6_t2qha")
+stretch_mode = 5
+
+[node name="Level4_1" type="Marker2D" parent="Topic4"]
+position = Vector2(640, 403)
+
+[node name="Menu" type="Node" parent="."]
+
+[node name="Screen" type="TextureRect" parent="Menu"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -641.0
+offset_top = -827.0
+offset_right = 641.0
+texture = ExtResource("7_2mrt0")
+stretch_mode = 5
+
+[node name="ContinueButton" type="Marker2D" parent="Menu"]
+position = Vector2(649, 308)
+
+[node name="SettingsButton" type="Marker2D" parent="Menu"]
+position = Vector2(647, 363)
+
+[node name="ExitButton" type="Marker2D" parent="Menu"]
+position = Vector2(643, 524)
+
+[node name="MenuButton" type="Marker2D" parent="."]
+position = Vector2(1255, 26)
+
+[node name="BackButton" type="Marker2D" parent="."]
+position = Vector2(118, 27)

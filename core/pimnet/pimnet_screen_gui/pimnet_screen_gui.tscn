@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dctlbeewt20al"]
+[gd_scene load_steps=12 format=3 uid="uid://dctlbeewt20al"]
 
 [ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/pimnet_screen_gui.gd" id="1_c673j"]
 [ext_resource type="Resource" uid="uid://gbog628nbm3b" path="res://core/pimnet/pimnet_screen_gui/default_pimnet_setup.tres" id="2_vdsxu"]
-[ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/main_menu_popup.gd" id="3_4du5y"]
 [ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/reversion_menu.gd" id="3_frqen"]
-[ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/completion_popup.gd" id="3_p7jwu"]
 [ext_resource type="Script" path="res://general/behaviors/button_enabler.gd" id="4_xsv50"]
 [ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/goal_panel.gd" id="5_elvn2"]
 [ext_resource type="Script" path="res://core/pimnet/pimnet_screen_gui/tool_panel.gd" id="5_phkoh"]
@@ -35,7 +33,6 @@ unique_name_in_owner = true
 title = "Main Menu"
 initial_position = 1
 size = Vector2i(300, 300)
-script = ExtResource("3_4du5y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuPopup"]
 offset_left = 4.0
@@ -70,7 +67,6 @@ unique_name_in_owner = true
 title = "Completion Menu"
 initial_position = 1
 size = Vector2i(320, 200)
-script = ExtResource("3_p7jwu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CompletionPopup"]
 anchors_preset = 15
@@ -78,8 +74,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 316.0
+offset_bottom = 196.0
 
 [node name="Label" type="Label" parent="CompletionPopup/VBoxContainer"]
 layout_mode = 2
@@ -787,12 +783,12 @@ toggle_mode = true
 text = "Goal"
 clip_text = true
 
-[connection signal="pressed" from="MainMenuPopup/VBoxContainer/ContinueButton" to="MainMenuPopup" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MainMenuPopup/VBoxContainer/SettingsButton" to="MainMenuPopup" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MainMenuPopup/VBoxContainer/QuitButton" to="MainMenuPopup" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="CompletionPopup/VBoxContainer/HBoxContainer/StayButton" to="CompletionPopup" method="_on_stay_button_pressed"]
-[connection signal="pressed" from="CompletionPopup/VBoxContainer/HBoxContainer/SelectLevelButton" to="CompletionPopup" method="_on_select_level_button_pressed"]
-[connection signal="pressed" from="CompletionPopup/VBoxContainer/HBoxContainer/NextLevelButton" to="CompletionPopup" method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="MainMenuPopup/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MainMenuPopup/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenuPopup/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CompletionPopup/VBoxContainer/HBoxContainer/StayButton" to="." method="_on_stay_button_pressed"]
+[connection signal="pressed" from="CompletionPopup/VBoxContainer/HBoxContainer/SelectLevelButton" to="." method="_on_select_level_button_pressed"]
+[connection signal="pressed" from="CompletionPopup/VBoxContainer/HBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="TopBar/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="TopBar/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
 [connection signal="pressed" from="TopBar/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="TopBar/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
 [connection signal="pressed" from="TopBar/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="TopBar/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]

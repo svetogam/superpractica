@@ -1,0 +1,162 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7261ypnucte8"]
+
+[ext_resource type="Script" path="res://core/level_select/level_select_screen.gd" id="1_nn3bt"]
+[ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/level_select/level_select_theme.tres" id="1_y5cmv"]
+[ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_e1lo5"]
+[ext_resource type="Script" path="res://core/level_select/level_select_states/map_view.gd" id="3_s8wdx"]
+[ext_resource type="Script" path="res://core/level_select/level_select_states/zoom_in_to_node.gd" id="4_771x4"]
+[ext_resource type="Script" path="res://core/level_select/level_select_states/node_view.gd" id="5_3qwui"]
+[ext_resource type="Script" path="res://core/level_select/level_select_states/zoom_out_to_map.gd" id="6_bbilf"]
+[ext_resource type="Script" path="res://core/level_select/level_select_states/zoom_in_to_topic.gd" id="8_mddll"]
+[ext_resource type="Script" path="res://core/level_select/level_select_states/zoom_out_to_topic.gd" id="9_73f7m"]
+
+[node name="LevelSelectScreen" type="Node"]
+script = ExtResource("1_nn3bt")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+script = ExtResource("2_e1lo5")
+_initial_state = NodePath("MapView")
+_auto_activate = false
+
+[node name="MapView" type="Node" parent="StateMachine"]
+script = ExtResource("3_s8wdx")
+
+[node name="ZoomInToNode" type="Node" parent="StateMachine"]
+script = ExtResource("4_771x4")
+
+[node name="NodeView" type="Node" parent="StateMachine"]
+script = ExtResource("5_3qwui")
+
+[node name="ZoomOutToMap" type="Node" parent="StateMachine"]
+script = ExtResource("6_bbilf")
+
+[node name="ZoomInToTopic" type="Node" parent="StateMachine"]
+script = ExtResource("8_mddll")
+
+[node name="ZoomOutToTopic" type="Node" parent="StateMachine"]
+script = ExtResource("9_73f7m")
+
+[node name="StagingViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+size = Vector2i(700, 400)
+
+[node name="SurveyCamera" type="Camera2D" parent="StagingViewport"]
+unique_name_in_owner = true
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="MainViewport" type="SubViewport" parent="ViewportContainer"]
+unique_name_in_owner = true
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1280, 800)
+render_target_update_mode = 4
+
+[node name="CameraPoint" type="Node2D" parent="ViewportContainer/MainViewport"]
+unique_name_in_owner = true
+
+[node name="PlayerCamera" type="Camera2D" parent="ViewportContainer/MainViewport/CameraPoint"]
+unique_name_in_owner = true
+zoom = Vector2(0.1, 0.1)
+position_smoothing_enabled = true
+position_smoothing_speed = 25.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
+[node name="OverlayLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuPopup" type="PopupPanel" parent="OverlayLayer"]
+unique_name_in_owner = true
+initial_position = 1
+size = Vector2i(300, 300)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverlayLayer/MenuPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 296.0
+offset_bottom = 296.0
+
+[node name="Header" type="Label" parent="OverlayLayer/MenuPopup/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="OverlayLayer/MenuPopup/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="OverlayLayer/MenuPopup/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="OverlayLayer/MenuPopup/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Exit to Main Menu"
+
+[node name="Overlay" type="Control" parent="OverlayLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="OverlayLayer/Overlay"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 1
+offset_right = 130.0
+offset_bottom = 50.0
+theme = ExtResource("1_y5cmv")
+text = "Topic 🡸"
+clip_text = true
+
+[node name="TitleButton" type="Button" parent="OverlayLayer/Overlay"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.0
+offset_right = 76.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme = ExtResource("1_y5cmv")
+text = "Topic"
+clip_text = true
+
+[node name="MenuButton" type="Button" parent="OverlayLayer/Overlay"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme = ExtResource("1_y5cmv")
+text = "M"
+clip_text = true
+
+[connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/Overlay/MenuButton" to="." method="_on_menu_button_pressed"]

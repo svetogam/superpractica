@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl0lkke2v2tq2"]
+
+[ext_resource type="Script" path="res://core/level_select/topic_map/topic_nodes/topic_node.gd" id="1_c56yf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbrfk"]
+resource_local_to_scene = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_bul84"]
+font_size = 55
+
+[node name="TopicNode" type="Control"]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_c56yf")
+
+[node name="MaskContainer" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MaskContainer"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1000, 500)
+render_target_update_mode = 4
+
+[node name="MaskButton" type="Button" parent="MaskContainer/SubViewport"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MaskContainer/SubViewport/MaskButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MaskLabel" type="Label" parent="MaskContainer/SubViewport/MaskButton/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_tbrfk")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Camera2D" type="Camera2D" parent="MaskContainer/SubViewport"]
+anchor_mode = 0
+zoom = Vector2(10, 10)
+
+[node name="OverviewPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OverviewButton" type="Button" parent="OverviewPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverviewPanel/OverviewButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="OverviewLabel" type="Label" parent="OverviewPanel/OverviewButton/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_bul84")
+horizontal_alignment = 1

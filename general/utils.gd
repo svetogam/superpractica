@@ -11,6 +11,14 @@
 class_name Utils
 extends Object
 
+enum Direction {
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN
+}
+
+
 static func emit_signal_v(p_signal: Signal, args: Array = []) -> void:
 	if args.size() == 0:
 		p_signal.emit()
@@ -110,3 +118,68 @@ static func convert_from_layer_to_layer(vector: Vector2,
 	var offset_diff := source_offset - dest_offset
 	var scale_diff := source_scale / dest_scale
 	return (vector + offset_diff) * scale_diff
+
+
+static func get_combined_control_rect(control_nodes: Array) -> Rect2:
+	assert(control_nodes.size() > 0)
+
+	var max_left: float = control_nodes[0].get_global_rect().position.x
+	var max_right: float = control_nodes[0].get_global_rect().end.x
+	var max_top: float = control_nodes[0].get_global_rect().position.y
+	var max_bottom: float = control_nodes[0].get_global_rect().end.y
+	for node in control_nodes:
+		if node.get_global_rect().position.x < max_left:
+			max_left = node.get_global_rect().position.x
+		if node.get_global_rect().end.x > max_right:
+			max_right = node.get_global_rect().end.x
+		if node.get_global_rect().position.y < max_top:
+			max_top = node.get_global_rect().position.y
+		if node.get_global_rect().end.y > max_bottom:
+			max_bottom = node.get_global_rect().end.y
+	return Rect2(max_left, max_top, max_right - max_left, max_bottom - max_top)
+
+
+static func get_point_at_side(node: Control, side: Side) -> Vector2:
+	match side:
+		Side.SIDE_LEFT:
+			return get_left_point(node)
+		Side.SIDE_TOP:
+			return get_top_point(node)
+		Side.SIDE_RIGHT:
+			return get_right_point(node)
+		Side.SIDE_BOTTOM:
+			return get_bottom_point(node)
+		_:
+			assert(false)
+			return Vector2.ZERO
+
+
+static func get_left_point(node: Control) -> Vector2:
+	return Vector2(node.offset_left, node.get_rect().get_center().y)
+
+
+static func get_right_point(node: Control) -> Vector2:
+	return Vector2(node.offset_right, node.get_rect().get_center().y)
+
+
+static func get_top_point(node: Control) -> Vector2:
+	return Vector2(node.get_rect().get_center().x, node.offset_top)
+
+
+static func get_bottom_point(node: Control) -> Vector2:
+	return Vector2(node.get_rect().get_center().x, node.offset_bottom)
+
+
+static func side_to_vector(side: Side) -> Vector2:
+	match side:
+		Side.SIDE_LEFT:
+			return Vector2.LEFT
+		Side.SIDE_TOP:
+			return Vector2.UP
+		Side.SIDE_RIGHT:
+			return Vector2.RIGHT
+		Side.SIDE_BOTTOM:
+			return Vector2.DOWN
+		_:
+			assert(false)
+			return Vector2.ZERO
