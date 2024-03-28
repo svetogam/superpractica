@@ -1,10 +1,8 @@
 # Project-Wide Copyright Information
 
-Copyright 2023 Super Practica contributors
+Copyright 2023-present Super Practica contributors
 
-The copyrights to contributions are held by their contributors. See the [AUTHORS.md](AUTHORS.md) file for the list of Super Practica contributors.
-
-See the top-level LICENSES folder for the licenses used in this project.
+See [AUTHORS.md](AUTHORS.md) for the list of Super Practica contributors.
 
 
 ## Game
@@ -30,6 +28,8 @@ All documents published in connection with Super Practica and all work on the wi
 
 ## Website
 
-Website HTML is licensed under the [Apache License 2.0](LICENSES/Apache-2.0).
-
 Website text and images are licensed under the [Creative Commons Attribution-ShareAlike 4.0 International Public License](LICENSES/CC-BY-SA-4.0), except where stated otherwise.
+
+Website source code is licensed under the [MIT License](LICENSES/MIT).
+
+Individual source code files might be licensed under different licenses and have different copyright holders. The copyright notice and "SPDX-License-Identifier" near the top of the file will give different copyright information in these cases.
