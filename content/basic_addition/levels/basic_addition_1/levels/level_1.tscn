@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq2wfc577y08t"]
-
-[ext_resource type="PackedScene" uid="uid://ciq28ih64sbgt" path="res://content/basic_addition/levels/basic_addition_1/level.tscn" id="1"]
-
-[node name="Level" instance=ExtResource("1")]
-
-[node name="LevelProgram" parent="." index="4"]
-start_number = 5
-count = 3

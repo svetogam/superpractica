@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://w2a71fj77wwv"]
 
 [ext_resource type="Script" path="res://content/basic_addition/pims/counting_board/field/counting_board_field.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://b7l33bavxxcc2" path="res://core/pimnet/field/field.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://idqfe3v3d4rw" path="res://core/pimnet level/pimnet/field/field.tscn" id="1_iwslv"]
 [ext_resource type="PackedScene" uid="uid://b45gxyo4xmp14" path="res://content/basic_addition/pims/counting_board/field/objects/board/board.tscn" id="3"]
 [ext_resource type="Script" path="res://general/mode_nodes/mode.gd" id="4_uq6vo"]
 [ext_resource type="Script" path="res://content/basic_addition/pims/counting_board/field/programs/count_by_counters.gd" id="9"]
@@ -10,13 +10,8 @@
 [ext_resource type="Script" path="res://content/basic_addition/pims/counting_board/field/programs/soft_count_by_counters.gd" id="16"]
 [ext_resource type="Script" path="res://content/basic_addition/pims/counting_board/field/programs/soft_add_by_circles.gd" id="18"]
 
-[node name="Field" groups=["counting_board_fields"] instance=ExtResource("2")]
+[node name="Field" instance=ExtResource("1_iwslv")]
 script = ExtResource("1")
-
-[node name="FieldLimit" parent="." index="1"]
-position = Vector2(500, 500)
-
-[node name="Board" parent="." index="2" instance=ExtResource("3")]
 
 [node name="NumberCircler" type="Node" parent="ToolModes" index="0"]
 script = ExtResource("4_uq6vo")
@@ -50,3 +45,5 @@ script = ExtResource("13")
 
 [node name="SoftAddByCircles" type="Node" parent="Programs" index="4"]
 script = ExtResource("18")
+
+[node name="Board" parent="." index="3" instance=ExtResource("3")]

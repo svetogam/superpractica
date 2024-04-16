@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dohax8g5n2u36"]
+
+[ext_resource type="PackedScene" uid="uid://bln4ogm4v0i24" path="res://core/pimnet level/pimnet/pim/slot_pim.tscn" id="1_tm43y"]
+[ext_resource type="Script" path="res://content/debug/pims/four_slots/four_slots.gd" id="2_vep7i"]
+[ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/pimnet level/pimnet/memo_slot.tscn" id="3_cvogn"]
+
+[node name="FourSlots" instance=ExtResource("1_tm43y")]
+script = ExtResource("2_vep7i")
+
+[node name="GridContainer" type="GridContainer" parent="." index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Slot1" parent="GridContainer" index="0" instance=ExtResource("3_cvogn")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot2" parent="GridContainer" index="1" instance=ExtResource("3_cvogn")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot3" parent="GridContainer" index="2" instance=ExtResource("3_cvogn")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Slot4" parent="GridContainer" index="3" instance=ExtResource("3_cvogn")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6

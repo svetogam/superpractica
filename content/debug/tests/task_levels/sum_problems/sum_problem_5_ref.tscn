@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1q0wdtalglt4"]
+
+[ext_resource type="Texture2D" uid="uid://cyewrudy06xbh" path="res://content/debug/tests/task_levels/sum_problems/sum_problems_5_1.png" id="1_unn5w"]
+
+[node name="Ref" type="Node"]
+
+[node name="Screen" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(804, 627)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_unn5w")
+stretch_mode = 5
+
+[node name="Square4" type="Marker2D" parent="."]
+position = Vector2(344, 145)
+
+[node name="Square14" type="Marker2D" parent="."]
+position = Vector2(346, 180)
+
+[node name="Square19" type="Marker2D" parent="."]
+position = Vector2(521, 179)
+
+[node name="Square24" type="Marker2D" parent="."]
+position = Vector2(348, 213)
+
+[node name="Square25" type="Marker2D" parent="."]
+position = Vector2(385, 211)
+
+[node name="Square26" type="Marker2D" parent="."]
+position = Vector2(416, 212)
+
+[node name="Square27" type="Marker2D" parent="."]
+position = Vector2(454, 213)
+
+[node name="Square29" type="Marker2D" parent="."]
+position = Vector2(522, 216)
+
+[node name="Square35" type="Marker2D" parent="."]
+position = Vector2(382, 249)
+
+[node name="Square36" type="Marker2D" parent="."]
+position = Vector2(418, 248)
+
+[node name="Square37" type="Marker2D" parent="."]
+position = Vector2(452, 246)
+
+[node name="Square38" type="Marker2D" parent="."]
+position = Vector2(489, 250)
+
+[node name="Square39" type="Marker2D" parent="."]
+position = Vector2(525, 247)
+
+[node name="Square40" type="Marker2D" parent="."]
+position = Vector2(563, 244)
+
+[node name="Square41" type="Marker2D" parent="."]
+position = Vector2(247, 285)
+
+[node name="Square42" type="Marker2D" parent="."]
+position = Vector2(281, 280)

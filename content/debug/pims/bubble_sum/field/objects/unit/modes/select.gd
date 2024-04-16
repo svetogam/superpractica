@@ -11,6 +11,6 @@
 extends FieldObjectMode
 
 
-func _on_press(_field_point: Vector2) -> void:
+func _press(_point: Vector2) -> void:
 	field.push_action(field.select_unit.bind(object))
-	object.stop_active_input()
+	get_viewport().set_input_as_handled()

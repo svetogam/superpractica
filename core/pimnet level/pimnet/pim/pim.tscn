@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://3kjp8w2njup3"]
+
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/pim/pim.gd" id="1_mx7wt"]
+[ext_resource type="Script" path="res://general/mode_nodes/mode_group.gd" id="2_a33of"]
+
+[node name="Pim" type="Panel" groups=["pims"]]
+custom_minimum_size = Vector2(300, 300)
+offset_right = 200.0
+offset_bottom = 200.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 2
+script = ExtResource("1_mx7wt")
+
+[node name="Programs" type="Node" parent="."]
+script = ExtResource("2_a33of")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus"]

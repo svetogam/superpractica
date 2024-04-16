@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtthp43ghpjsi"]
+
+[ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet level/level.tscn" id="2"]
+[ext_resource type="Resource" uid="uid://douwyiludmswo" path="res://content/debug/levels/sum_problems/basic_addition_5/pimnet_setup.tres" id="2_awybg"]
+[ext_resource type="Resource" uid="uid://chseswipaw8s3" path="res://content/debug/levels/sum_problems/basic_addition_5/plan_data.tres" id="2_shlje"]
+[ext_resource type="PackedScene" uid="uid://baat46prknmqt" path="res://content/debug/levels/sum_problems/basic_addition_5/program.tscn" id="5"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_3ra5s"]
+
+[node name="Level" instance=ExtResource("2")]
+
+[node name="Pimnet" parent="." index="0"]
+setup_resource = ExtResource("2_awybg")
+
+[node name="Task1Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1" index="1"]
+button_group = SubResource("ButtonGroup_3ra5s")
+
+[node name="Task2Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2" index="1"]
+button_group = SubResource("ButtonGroup_3ra5s")
+
+[node name="Task3Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3" index="1"]
+button_group = SubResource("ButtonGroup_3ra5s")
+
+[node name="Task4Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4" index="1"]
+button_group = SubResource("ButtonGroup_3ra5s")
+
+[node name="Task5Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5" index="1"]
+button_group = SubResource("ButtonGroup_3ra5s")
+
+[node name="Task6Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6" index="1"]
+button_group = SubResource("ButtonGroup_3ra5s")
+
+[node name="Task7Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7" index="1"]
+button_group = SubResource("ButtonGroup_3ra5s")
+
+[node name="LevelProgram" parent="." index="4" instance=ExtResource("5")]
+_plan_data = ExtResource("2_shlje")

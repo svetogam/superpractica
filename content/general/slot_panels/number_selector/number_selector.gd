@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends SlotPanel
+extends SlotPim
 
 @onready var _memo_slot := %MemoSlot as MemoSlot
 @onready var _clear_button := %ClearButton as Button

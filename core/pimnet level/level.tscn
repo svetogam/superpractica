@@ -1,0 +1,866 @@
+[gd_scene load_steps=17 format=3 uid="uid://2ert4t63mict"]
+
+[ext_resource type="Script" path="res://core/pimnet level/level.gd" id="1_o01nh"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet.gd" id="2_6muex"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/reversion_menu.gd" id="4_ux8xa"]
+[ext_resource type="Script" path="res://general/behaviors/button_enabler.gd" id="5_6mqp5"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/tool_panel.gd" id="6_ij53n"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/creation_panel.gd" id="7_iq5id"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/goal_panels/arbitrary_check_panel.gd" id="9_16t1p"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
+[ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/pimnet level/pimnet/memo_slot.tscn" id="11_worie"]
+[ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/verifier/verifier.tscn" id="12_4kqqx"]
+[ext_resource type="Script" path="res://core/pimnet level/reversion_control.gd" id="13_agwnm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2q4"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mwy2r"]
+font_size = 24
+
+[node name="Level" type="Node" groups=["levels"]]
+script = ExtResource("1_o01nh")
+
+[node name="Pimnet" type="Node" parent="." groups=["pimnet"]]
+unique_name_in_owner = true
+script = ExtResource("2_6muex")
+
+[node name="CameraPoint" type="Node2D" parent="Pimnet"]
+unique_name_in_owner = true
+position = Vector2(350, 300)
+
+[node name="Camera" type="Camera2D" parent="Pimnet/CameraPoint"]
+unique_name_in_owner = true
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
+[node name="PimStrip" type="HBoxContainer" parent="Pimnet"]
+unique_name_in_owner = true
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1230.0
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="DraggedObjectLayer" type="CanvasLayer" parent="Pimnet"]
+unique_name_in_owner = true
+layer = 2
+
+[node name="OverlayLayer" type="CanvasLayer" parent="Pimnet"]
+
+[node name="Overlay" type="Control" parent="Pimnet/OverlayLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_7rkio")
+
+[node name="MainMenuPopup" type="PopupPanel" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+title = "Main Menu"
+initial_position = 1
+size = Vector2i(300, 300)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/MainMenuPopup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 296.0
+offset_bottom = 296.0
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Quit Level"
+
+[node name="CompletionPopup" type="PopupPanel" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+title = "Completion Menu"
+initial_position = 1
+size = Vector2i(320, 200)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Level Complete!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StayButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stay Here"
+
+[node name="SelectLevelButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select Level"
+
+[node name="NextLevelButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next Level"
+
+[node name="TopBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="TopLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReversionMenu" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("4_ux8xa")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu"]
+layout_mode = 2
+
+[node name="UndoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Undo"
+text = "Undo"
+clip_text = true
+
+[node name="RedoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Redo"
+text = "Redo"
+clip_text = true
+
+[node name="ResetButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Reset"
+text = "Reset"
+clip_text = true
+
+[node name="ButtonEnabler" type="Node" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu"]
+script = ExtResource("5_6mqp5")
+
+[node name="TitlePanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LevelTitle" type="Label" parent="Pimnet/OverlayLayer/Overlay/TopBar/TitlePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3j2q4")
+text = "Level Title"
+horizontal_alignment = 1
+
+[node name="TopRight" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MainMenuButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopRight"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Main Menu"
+text = "Main Menu"
+clip_text = true
+
+[node name="StripControls" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.3
+anchor_right = 1.0
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/StripControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 2
+text = "⯇"
+
+[node name="RightButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/StripControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "⯈"
+
+[node name="PanelBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -50.0
+mouse_filter = 2
+
+[node name="PanelBarLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="InventoryPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/InventoryPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/InventoryPanel/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="ToolPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("6_ij53n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer"]
+layout_mode = 2
+text = "Tools"
+horizontal_alignment = 1
+
+[node name="ToolContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 5
+
+[node name="ToolButton1" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton2" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton3" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton4" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton5" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton6" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton7" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton8" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton9" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton10" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton11" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton12" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton13" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton14" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton15" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="CreationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+script = ExtResource("7_iq5id")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer"]
+layout_mode = 2
+text = "Create Objects"
+horizontal_alignment = 1
+
+[node name="CreatablesContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+columns = 3
+
+[node name="CreateButton1" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+
+[node name="CreateButton2" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+
+[node name="CreateButton3" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+
+[node name="CreateButton4" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+
+[node name="CreateButton5" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+
+[node name="CreateButton6" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
+visible = false
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+
+[node name="TranslationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/TranslationPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/TranslationPanel/VBoxContainer"]
+layout_mode = 2
+text = "Translate"
+horizontal_alignment = 1
+
+[node name="PanelBarRight" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 2
+
+[node name="PlanPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 250)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("8_8tc01")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer"]
+layout_mode = 2
+text = "Plan"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_vertical = 4
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="TaskList" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Task1" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Task1CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+
+[node name="Task1Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1a27x")
+text = "Task 1"
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="Task2" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Task2CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+
+[node name="Task2Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1a27x")
+text = "Task 2"
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="Task3" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Task3CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+
+[node name="Task3Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1a27x")
+text = "Task 3"
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="Task4" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Task4CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+
+[node name="Task4Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1a27x")
+text = "Task 4"
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="Task5" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Task5CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+
+[node name="Task5Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1a27x")
+text = "Task 5"
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="Task6" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Task6CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+
+[node name="Task6Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1a27x")
+text = "Task 6"
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="Task7" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Task7CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+
+[node name="Task7Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1a27x")
+text = "Task 7"
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="TaskInstructions" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(292, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Instructions go here."
+autowrap_mode = 3
+
+[node name="ArbitraryCheckPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("9_16t1p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ArbitraryCheckPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ArbitraryCheckPanel/VBoxContainer"]
+layout_mode = 2
+text = "Goal"
+horizontal_alignment = 1
+
+[node name="CheckGoalButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ArbitraryCheckPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "Check"
+
+[node name="ButtonEnabler" type="Node" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ArbitraryCheckPanel"]
+script = ExtResource("5_6mqp5")
+
+[node name="HintedMemoSlotPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("10_cm7g1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/HintedMemoSlotPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/HintedMemoSlotPanel/VBoxContainer"]
+layout_mode = 2
+text = "Fill!"
+label_settings = SubResource("LabelSettings_mwy2r")
+horizontal_alignment = 1
+
+[node name="MemoSlot" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/HintedMemoSlotPanel/VBoxContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+memo_output_enabled = false
+
+[node name="BottomBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BottomLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InventoryButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Inventory"
+toggle_mode = true
+text = "Inventory"
+clip_text = true
+
+[node name="ToolsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Tools"
+toggle_mode = true
+text = "Tools"
+clip_text = true
+
+[node name="CreationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Create Objects"
+toggle_mode = true
+text = "Create Objects"
+clip_text = true
+
+[node name="TranslationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Translate"
+toggle_mode = true
+text = "Translate"
+clip_text = true
+
+[node name="BottomRight" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="PlanButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomRight"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Plan"
+toggle_mode = true
+text = "Plan"
+clip_text = true
+
+[node name="GoalButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomRight"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Goal"
+toggle_mode = true
+text = "Goal"
+clip_text = true
+
+[node name="DummySlot" parent="Pimnet" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+offset_left = 10000.0
+offset_top = 10000.0
+offset_right = 10070.0
+offset_bottom = 10070.0
+
+[node name="RootEffectLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 3
+
+[node name="Verifier" parent="." node_paths=PackedStringArray("effect_layer") instance=ExtResource("12_4kqqx")]
+effect_layer = NodePath("../RootEffectLayer")
+
+[node name="ReversionControl" type="Node" parent="."]
+script = ExtResource("13_agwnm")
+
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer/ContinueButton" to="Pimnet/OverlayLayer/Overlay" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/StayButton" to="Pimnet/OverlayLayer/Overlay" method="_on_stay_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/SelectLevelButton" to="Pimnet/OverlayLayer/Overlay" method="_on_select_level_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/NextLevelButton" to="Pimnet/OverlayLayer/Overlay" method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopRight/MainMenuButton" to="Pimnet/OverlayLayer/Overlay" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/StripControls/LeftButton" to="Pimnet" method="_on_left_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/StripControls/RightButton" to="Pimnet" method="_on_right_button_pressed"]

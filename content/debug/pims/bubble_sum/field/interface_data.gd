@@ -12,13 +12,14 @@ extends PimInterfaceData
 
 
 func _init() -> void:
+	field_type = "BubbleSum"
+
 	tool_data = {
 		BubbleSum.Tools.MOVER: {
 			"name": "Mover",
 			"text": "Move Object",
 			"object_modes": {
 				BubbleSum.Objects.UNIT: ["move"],
-				BubbleSum.Objects.BUBBLE: ["move"],
 			},
 		},
 		BubbleSum.Tools.UNIT_CREATOR: {
@@ -34,7 +35,7 @@ func _init() -> void:
 			"object_modes": {
 				BubbleSum.Objects.GROUND: ["create_bubble"],
 			},
-			},
+		},
 		BubbleSum.Tools.UNIT_DELETER: {
 			"name": "UnitDeleter",
 			"text": "Delete Unit",
@@ -54,20 +55,6 @@ func _init() -> void:
 			"text": "Delete Bubble",
 			"object_modes": {
 				BubbleSum.Objects.BUBBLE: ["delete"],
-			},
-		},
-		BubbleSum.Tools.BUBBLE_EDITOR: {
-			"name": "BubbleEditor",
-			"text": "Edit Bubble",
-			"object_modes": {
-				BubbleSum.Objects.BUBBLE: ["move", "resize"],
-			},
-		},
-		BubbleSum.Tools.BUBBLE_RESIZER: {
-			"name": "BubbleResizer",
-			"text": "Resize Bubble",
-			"object_modes": {
-				BubbleSum.Objects.BUBBLE: ["resize"],
 			},
 		},
 		BubbleSum.Tools.UNIT_SELECTOR: {

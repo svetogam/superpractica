@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://csg0ddgocch73"]
+
+[ext_resource type="PackedScene" uid="uid://bln4ogm4v0i24" path="res://core/pimnet level/pimnet/pim/slot_pim.tscn" id="1_va5gi"]
+[ext_resource type="Script" path="res://content/basic_addition/slot_panels/integer_counter/integer_counter.gd" id="2_yp464"]
+[ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/pimnet level/pimnet/memo_slot.tscn" id="3_qd2xk"]
+
+[node name="IntegerCounter" instance=ExtResource("1_va5gi")]
+custom_minimum_size = Vector2(150, 200)
+script = ExtResource("2_yp464")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MemoSlot" parent="VBoxContainer" index="0" instance=ExtResource("3_qd2xk")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+memo_input_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" index="1"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="DecrButton" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer" index="0"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 5
+mouse_filter = 1
+text = "-"
+
+[node name="IncrButton" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "+"
+
+[node name="ResetButton" type="Button" parent="VBoxContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 1
+text = "0"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/DecrButton" to="." method="_on_decr_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/IncrButton" to="." method="_on_incr_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

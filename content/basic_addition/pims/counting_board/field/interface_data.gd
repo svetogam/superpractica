@@ -12,6 +12,8 @@ extends PimInterfaceData
 
 
 func _init() -> void:
+	field_type = "CountingBoard"
+
 	tool_data = {
 		CountingBoard.Tools.NUMBER_CIRCLER: {
 			"name": "NumberCircler",
@@ -46,6 +48,7 @@ func _init() -> void:
 			"text": "Drag Counter",
 			"object_modes": {
 				CountingBoard.Objects.COUNTER: ["drag"],
+				CountingBoard.Objects.NUMBER_SQUARE: ["drag_counter"],
 			},
 		},
 		CountingBoard.Tools.MEMO_GRABBER: {

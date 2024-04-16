@@ -18,7 +18,7 @@ var affirmation := false
 
 func _draw() -> void:
 	var center := Vector2(0, 0)
-	var radius := 15.0
+	var radius := 12.0
 	var outline_width := 2.0
 	var fill_color: Color
 	var outline_color: Color

@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://c321uigk2oecb"]
+
+[ext_resource type="PackedScene" uid="uid://ciq28ih64sbgt" path="res://content/debug/levels/sum_problems/basic_addition_1/level.tscn" id="1"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_cj3f8"]
+
+[node name="Level" instance=ExtResource("1")]
+
+[node name="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup" index="1"]
+offset_right = 316.0
+offset_bottom = 196.0
+
+[node name="Task1Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1" index="1"]
+button_group = SubResource("ButtonGroup_cj3f8")
+
+[node name="Task2Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2" index="1"]
+button_group = SubResource("ButtonGroup_cj3f8")
+
+[node name="Task3Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3" index="1"]
+button_group = SubResource("ButtonGroup_cj3f8")
+
+[node name="Task4Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4" index="1"]
+button_group = SubResource("ButtonGroup_cj3f8")
+
+[node name="Task5Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5" index="1"]
+button_group = SubResource("ButtonGroup_cj3f8")
+
+[node name="Task6Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6" index="1"]
+button_group = SubResource("ButtonGroup_cj3f8")
+
+[node name="Task7Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7" index="1"]
+button_group = SubResource("ButtonGroup_cj3f8")
+
+[node name="LevelProgram" parent="." index="3"]
+_random_start_number = true
+_min_start_number = 1
+_max_start_number = 9
+_random_count = true
+_min_count = 2
+_max_count = 5

@@ -45,10 +45,47 @@ static var topic = TopicResource.new(
 			"Counting Board Pim",
 			# Thumbnail
 		),
+		LevelResource.new(
+			# ID
+			"select_number_1",
+			# Scene
+			preload("levels/select_number_1/level.tscn"),
+			# Title
+			"Selector 1",
+			# Thumbnail
+		),
+		LevelResource.new(
+			# ID
+			"select_number_2",
+			# Scene
+			preload("levels/select_number_2/level.tscn"),
+			# Title
+			"Selector 2",
+			# Thumbnail
+		),
+		LevelResource.new(
+			# ID
+			"slot_pims",
+			# Scene
+			preload("levels/slot_pims/level.tscn"),
+			# Title
+			"Slot Pims",
+			# Thumbnail
+		),
+		LevelResource.new(
+			# ID
+			"field_pims",
+			# Scene
+			preload("levels/field_pims/level.tscn"),
+			# Title
+			"Field Pims",
+			# Thumbnail
+		),
 	],
 	# Subtopics
 	[
-		preload("res://core/level_select/tests/topic_data/topic_1.gd").topic
+		preload("levels/sum_problems/topic_data.gd").topic,
+		preload("res://core/level_select/tests/topic_data/topic_1.gd").topic,
 	],
 	# Layout
 	preload("topic_layout.tscn"),
@@ -58,6 +95,9 @@ static var topic = TopicResource.new(
 	[
 		TopicGroupResource.new(
 			["bubble_sum_1", "bubble_sum_2"]
+		),
+		TopicGroupResource.new(
+			["select_number_1", "select_number_2"]
 		),
 	]
 )

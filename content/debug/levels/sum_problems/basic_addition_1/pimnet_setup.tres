@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="PimnetSetupResource" load_steps=3 format=3 uid="uid://delx3xd8wkgnp"]
+
+[ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/counting_board/counting_board_pim.tscn" id="1_dbgrl"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="2_ornib"]
+
+[resource]
+script = ExtResource("2_ornib")
+pims = Array[PackedScene]([ExtResource("1_dbgrl")])
+reversion_enable = false
+inventory_enable = false
+inventory_start_active = false
+tools_enable = false
+tools_start_active = false
+creation_enable = true
+creation_start_active = true
+translation_enable = false
+translation_start_active = false
+goal_enable = false
+goal_start_active = false
+goal_type = 0
+plan_enable = true
+plan_start_active = true

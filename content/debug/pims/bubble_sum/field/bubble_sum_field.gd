@@ -73,19 +73,15 @@ func reset_state() -> void:
 	push_action(set_empty)
 
 
-func on_internal_drop(object: FieldObject, point: Vector2) -> void:
-	if object.object_type == BubbleSum.Objects.UNIT:
-		push_action(move_unit.bind(object, point))
-
-
-func on_incoming_drop(object: InterfieldObject, point: Vector2, _source: Field) -> void:
-	if object.object_type == BubbleSum.Objects.UNIT:
+func _incoming_drop(object: InterfieldObject, point: Vector2, _source: Field) -> void:
+	if (object.object_type == BubbleSum.Objects.UNIT
+			or object.object_type == CountingBoard.Objects.COUNTER):
 		push_action(create_unit.bind(point))
 	elif object.object_type == BubbleSum.Objects.BUBBLE:
-		push_action(create_bubble.bind(point, object.input_shape.get_radius()))
+		push_action(create_bubble.bind(point))
 
 
-func on_outgoing_drop(object: FieldObject) -> void:
+func _outgoing_drop(object: FieldObject) -> void:
 	if object.object_type == BubbleSum.Objects.UNIT:
 		push_action(delete_unit.bind(object))
 
@@ -316,9 +312,6 @@ func delete_objects_internal_to_bubble(bubble: FieldObject) -> void:
 
 
 func move_unit(unit: FieldObject, p_position: Vector2) -> void:
-	if not has_point(p_position):
-		return
-
 	unit.position = p_position
 
 
@@ -327,9 +320,6 @@ func move_unit_by(unit: FieldObject, vector: Vector2) -> void:
 
 
 func move_bubble(bubble: FieldObject, p_position: Vector2) -> void:
-	if not has_point(p_position):
-		return
-
 	var delta_vector := p_position - bubble.position
 	for object in bubble.get_internal_objects():
 		object.position += delta_vector

@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldGround
+extends FieldObject
 
 
 func _get_object_type() -> int:

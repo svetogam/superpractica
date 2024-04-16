@@ -10,27 +10,24 @@
 
 extends FieldObject
 
-var _dimensions := Vector2(500, 500)
+const BOARD_RECT := Rect2(0, 0, 350, 350)
 @onready var _graphic := %Graphic as ProceduralGraphic
 
 
 func _on_field_ready() -> void:
-	#Get this from the pim later
-	input_shape.set_rect(_dimensions*2)
-	_graphic.set_properties({"rect": get_board_rect()})
+	_graphic.set_properties({"rect": BOARD_RECT})
 	_set_number_squares()
 
 
 func _set_number_squares() -> void:
-	var board_rect := get_board_rect()
 	var square_size := get_square_size()
 	var number: int = 0
 	for row in range(10):
 		for col in range(10):
 			number += 1
-			var square_x := (board_rect.position.x + col * square_size.x
+			var square_x := (BOARD_RECT.position.x + col * square_size.x
 					+ square_size.x/2)
-			var square_y := (board_rect.position.y + row * square_size.y
+			var square_y := (BOARD_RECT.position.y + row * square_size.y
 					+ square_size.y/2)
 			var square_position := Vector2(square_x, square_y)
 			add_number_square(number, square_position)
@@ -45,9 +42,5 @@ func add_number_square(number: int, square_position: Vector2) -> NumberSquare:
 	return number_square
 
 
-func get_board_rect() -> Rect2:
-	return Rect2(Vector2.ZERO, _dimensions)
-
-
 func get_square_size() -> Vector2:
-	return get_board_rect().size/10
+	return BOARD_RECT.size/10

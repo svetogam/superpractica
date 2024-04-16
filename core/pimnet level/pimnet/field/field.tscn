@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://idqfe3v3d4rw"]
+
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/field/field.gd" id="1_nko7a"]
+[ext_resource type="Script" path="res://general/mode_nodes/mode_group.gd" id="1_v27fr"]
+
+[node name="Field" type="Node" groups=["fields"]]
+script = ExtResource("1_nko7a")
+
+[node name="EffectLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+follow_viewport_enabled = true
+
+[node name="ToolModes" type="Node" parent="."]
+script = ExtResource("1_v27fr")
+
+[node name="Programs" type="Node" parent="."]
+script = ExtResource("1_v27fr")

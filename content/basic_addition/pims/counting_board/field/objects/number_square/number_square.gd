@@ -29,7 +29,7 @@ func setup(p_size: Vector2, p_number: int) -> void:
 	number = p_number
 	_label.size = _size
 	_label.text = str(number)
-	input_shape.set_rect(_size)
+	%Collider.shape.size = _size
 	_circled_graphic.set_properties({"rect": get_rect()})
 	_highlight_graphic.set_properties({"rect": get_rect()})
 
@@ -68,3 +68,9 @@ func has_counter() -> bool:
 
 func get_counter() -> FieldObject:
 	return field.get_counter_on_square(self)
+
+
+func has_point(point: Vector2) -> bool:
+	var rect = Rect2(position - %Collider.shape.get_rect().size / 2,
+			%Collider.shape.get_rect().size)
+	return rect.has_point(point)

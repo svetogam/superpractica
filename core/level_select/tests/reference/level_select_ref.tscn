@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://dusi0uqg0cyg3"]
 
-[ext_resource type="Texture2D" uid="uid://cd3c3sih00ts" path="res://core/level_select/tests/reference/level_focus_ref.png" id="1_63ebr"]
-[ext_resource type="Texture2D" uid="uid://bwyus8o6mlw71" path="res://core/level_select/tests/reference/topic_focus_ref.png" id="2_l8o0w"]
-[ext_resource type="Texture2D" uid="uid://cjf5sl0u17we3" path="res://core/level_select/tests/reference/topic_1_view_1_ref.png" id="3_fwnfu"]
-[ext_resource type="Texture2D" uid="uid://bqojt3w4460i3" path="res://core/level_select/tests/reference/topic_2_ref.png" id="4_v0njk"]
-[ext_resource type="Texture2D" uid="uid://c5l6hvnaq58e6" path="res://core/level_select/tests/reference/topic_1_view_2_ref.png" id="4_w3ffq"]
-[ext_resource type="Texture2D" uid="uid://lq6xm5v4lyd4" path="res://core/level_select/tests/reference/topic_3_ref.png" id="5_uuooa"]
-[ext_resource type="Texture2D" uid="uid://brnj3bj0wo7el" path="res://core/level_select/tests/reference/topic_4_ref.png" id="6_t2qha"]
-[ext_resource type="Texture2D" uid="uid://cuoywv6jgk5ag" path="res://core/level_select/tests/reference/menu_ref.png" id="7_2mrt0"]
+[ext_resource type="Texture2D" uid="uid://bnds1jovdq3fs" path="res://core/level_select/tests/reference/level_focus.png" id="1_l0v7r"]
+[ext_resource type="Texture2D" uid="uid://ckf7k6rh8xfum" path="res://core/level_select/tests/reference/topic_focus.png" id="2_l0qqx"]
+[ext_resource type="Texture2D" uid="uid://bvedosg1i30o4" path="res://core/level_select/tests/reference/topic_1_view_1.png" id="3_q0hhc"]
+[ext_resource type="Texture2D" uid="uid://cl0112um7cox4" path="res://core/level_select/tests/reference/topic_1_view_2.png" id="4_566wt"]
+[ext_resource type="Texture2D" uid="uid://buwg6psjurnoo" path="res://core/level_select/tests/reference/topic_2.png" id="5_j4xso"]
+[ext_resource type="Texture2D" uid="uid://cnwmy7i2snpik" path="res://core/level_select/tests/reference/topic_3.png" id="6_nl2mi"]
+[ext_resource type="Texture2D" uid="uid://dgxqhyajxe0k5" path="res://core/level_select/tests/reference/topic_4.png" id="7_tamkg"]
+[ext_resource type="Texture2D" uid="uid://c76lxy66bl1w3" path="res://core/level_select/tests/reference/menu.png" id="8_3cbf8"]
 
 [node name="Ref" type="Node"]
 
@@ -20,17 +20,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("1_63ebr")
-stretch_mode = 5
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_l0v7r")
 
 [node name="Inside" type="Marker2D" parent="LevelFocus"]
-position = Vector2(645, 392)
+position = Vector2(620, 245)
 
 [node name="Outside" type="Marker2D" parent="LevelFocus"]
-position = Vector2(819, 686)
+position = Vector2(692, 531)
 
 [node name="TopicFocus" type="Node" parent="."]
 
@@ -41,17 +42,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("2_l8o0w")
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_l0qqx")
 stretch_mode = 5
 
 [node name="Inside" type="Marker2D" parent="TopicFocus"]
 position = Vector2(645, 392)
 
 [node name="Outside" type="Marker2D" parent="TopicFocus"]
-position = Vector2(819, 686)
+position = Vector2(693, 530)
 
 [node name="Topic1View1" type="Node" parent="."]
 
@@ -62,20 +65,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("3_fwnfu")
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_q0hhc")
 stretch_mode = 5
 
 [node name="Topic2" type="Marker2D" parent="Topic1View1"]
-position = Vector2(645, 392)
+position = Vector2(396, 292)
 
 [node name="Topic3" type="Marker2D" parent="Topic1View1"]
-position = Vector2(841, 570)
+position = Vector2(603, 462)
 
 [node name="Level1_1" type="Marker2D" parent="Topic1View1"]
-position = Vector2(1018, 401)
+position = Vector2(766, 292)
 
 [node name="Topic1View2" type="Node" parent="."]
 
@@ -86,20 +91,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("4_w3ffq")
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_566wt")
 stretch_mode = 5
 
 [node name="Topic2" type="Marker2D" parent="Topic1View2"]
-position = Vector2(443, 224)
+position = Vector2(199, 121)
 
 [node name="Topic3" type="Marker2D" parent="Topic1View2"]
-position = Vector2(639, 402)
+position = Vector2(399, 296)
 
-[node name="Level1" type="Marker2D" parent="Topic1View2"]
-position = Vector2(816, 233)
+[node name="Level1_1" type="Marker2D" parent="Topic1View2"]
+position = Vector2(578, 131)
 
 [node name="Topic2" type="Node" parent="."]
 
@@ -110,20 +117,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("4_v0njk")
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_j4xso")
 stretch_mode = 5
 
 [node name="Level2_1" type="Marker2D" parent="Topic2"]
-position = Vector2(645, 392)
+position = Vector2(405, 299)
 
 [node name="Level2_2" type="Marker2D" parent="Topic2"]
-position = Vector2(847, 401)
+position = Vector2(610, 296)
 
 [node name="Level2_3" type="Marker2D" parent="Topic2"]
-position = Vector2(642, 545)
+position = Vector2(399, 439)
 
 [node name="Topic3" type="Node" parent="."]
 
@@ -134,14 +143,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("5_uuooa")
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_nl2mi")
 stretch_mode = 5
 
 [node name="Topic4" type="Marker2D" parent="Topic3"]
-position = Vector2(644, 395)
+position = Vector2(406, 298)
 
 [node name="Topic4" type="Node" parent="."]
 
@@ -152,14 +163,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("6_t2qha")
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_tamkg")
 stretch_mode = 5
 
 [node name="Level4_1" type="Marker2D" parent="Topic4"]
-position = Vector2(640, 403)
+position = Vector2(403, 298)
 
 [node name="Menu" type="Node" parent="."]
 
@@ -170,23 +183,25 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -641.0
-offset_top = -827.0
-offset_right = 641.0
-texture = ExtResource("7_2mrt0")
+offset_left = -402.0
+offset_top = -627.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_3cbf8")
 stretch_mode = 5
 
 [node name="ContinueButton" type="Marker2D" parent="Menu"]
-position = Vector2(649, 308)
+position = Vector2(409, 206)
 
 [node name="SettingsButton" type="Marker2D" parent="Menu"]
-position = Vector2(647, 363)
+position = Vector2(412, 260)
 
 [node name="ExitButton" type="Marker2D" parent="Menu"]
-position = Vector2(643, 524)
+position = Vector2(400, 424)
 
 [node name="MenuButton" type="Marker2D" parent="."]
-position = Vector2(1255, 26)
+position = Vector2(773, 25)
 
 [node name="BackButton" type="Marker2D" parent="."]
-position = Vector2(118, 27)
+position = Vector2(118, 24)

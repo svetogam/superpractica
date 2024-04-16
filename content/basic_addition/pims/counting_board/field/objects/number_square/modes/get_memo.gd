@@ -23,7 +23,6 @@ func _end() -> void:
 		counter.set_transparent(false)
 
 
-func _on_press(_field_point: Vector2) -> void:
+func _press(_point: Vector2) -> void:
 	var memo = object.get_memo()
 	field.request_drag_memo(memo)
-	object.stop_active_input()

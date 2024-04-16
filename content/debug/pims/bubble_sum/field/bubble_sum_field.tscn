@@ -1,17 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c54s0u7vs8eii"]
+[gd_scene load_steps=5 format=3 uid="uid://c60e663j3jgmc"]
 
-[ext_resource type="PackedScene" uid="uid://b7l33bavxxcc2" path="res://core/pimnet/field/field.tscn" id="1"]
-[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/bubble_sum_field.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://idqfe3v3d4rw" path="res://core/pimnet level/pimnet/field/field.tscn" id="1_dgdcl"]
+[ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/bubble_sum_field.gd" id="2_4qe5f"]
 [ext_resource type="Script" path="res://general/mode_nodes/mode.gd" id="4_fhgoh"]
-[ext_resource type="PackedScene" uid="uid://cysrurd2e5yqr" path="res://content/debug/pims/bubble_sum/field/objects/ground/ground.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cysrurd2e5yqr" path="res://content/debug/pims/bubble_sum/field/objects/ground/ground.tscn" id="4_n402n"]
 
-[node name="Field" instance=ExtResource("1")]
-script = ExtResource("2")
-
-[node name="FieldLimit" parent="." index="1"]
-position = Vector2(400, 300)
-
-[node name="Ground" parent="." index="2" groups=["mint_grounds"] instance=ExtResource("5")]
+[node name="Field" instance=ExtResource("1_dgdcl")]
+script = ExtResource("2_4qe5f")
 
 [node name="Mover" type="Node" parent="ToolModes" index="0"]
 script = ExtResource("4_fhgoh")
@@ -45,3 +40,5 @@ script = ExtResource("4_fhgoh")
 
 [node name="UnitCounter" type="Node" parent="ToolModes" index="10"]
 script = ExtResource("4_fhgoh")
+
+[node name="Ground" parent="." index="3" instance=ExtResource("4_n402n")]

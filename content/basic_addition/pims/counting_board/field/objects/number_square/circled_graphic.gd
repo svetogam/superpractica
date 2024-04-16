@@ -17,7 +17,7 @@ var variant := "normal"
 
 func _draw() -> void:
 	var center := Vector2.ZERO
-	var width := 5.0
+	var width := 3.0
 	var outline_width := 1.5
 	var outline_color := Color(0, 0, 0)
 	var radius := rect.size.x/2 - width

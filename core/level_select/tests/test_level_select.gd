@@ -43,10 +43,7 @@ func test_enter_level_directly() -> void:
 		assert_eq(parameters[0].id, "dummy_level_1_1")
 
 
-# Other tests pass when run individually but unreliably fail when run
-# together. This happens with a strange bug that I could not
-# reproduce outside of tests.
-# As of Godot v4.2.1 and GUT v9.2.1
+# Other tests are broken.
 
 #func test_enter_topic_then_topic_then_level() -> void:
 	#_load_ref_scene(REF_SCENE)

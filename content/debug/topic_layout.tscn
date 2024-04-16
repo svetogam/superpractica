@@ -37,12 +37,67 @@ border_width = 4.0
 script = ExtResource("1_c4l2i")
 id = "counting_board"
 
-[node name="TestTopic" type="ReferenceRect" parent="."]
+[node name="Level4" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = -42.0
-offset_top = 137.0
+offset_top = 125.0
 offset_right = 58.0
-offset_bottom = 187.0
+offset_bottom = 175.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "select_number_1"
+
+[node name="Level5" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 184.0
+offset_top = 125.0
+offset_right = 284.0
+offset_bottom = 175.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "select_number_2"
+
+[node name="SlotPims" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -42.0
+offset_top = 405.0
+offset_right = 58.0
+offset_bottom = 455.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "slot_pims"
+
+[node name="FieldPims" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 184.0
+offset_top = 405.0
+offset_right = 284.0
+offset_bottom = 455.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "field_pims"
+
+[node name="SumProblemsTopic" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -42.0
+offset_top = 270.0
+offset_right = 58.0
+offset_bottom = 320.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_c4l2i")
+id = "sum_problems"
+
+[node name="TestTopic" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 184.0
+offset_top = 270.0
+offset_right = 284.0
+offset_bottom = 320.0
 border_color = Color(0, 0, 0, 1)
 border_width = 4.0
 script = ExtResource("1_c4l2i")

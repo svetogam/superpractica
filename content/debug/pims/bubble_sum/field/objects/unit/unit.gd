@@ -28,7 +28,8 @@ func set_selected(value: bool) -> void:
 
 
 func is_inside_bubble(bubble: FieldObject) -> bool:
-	return bubble.has_point(position)
+	var center_distance := position.distance_to(bubble.position)
+	return center_distance + %Collider.shape.radius < bubble.radius
 
 
 func get_drag_graphic() -> ProceduralGraphic:

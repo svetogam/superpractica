@@ -70,22 +70,17 @@ func reset_state() -> void:
 	push_action(set_empty)
 
 
-func on_internal_drop(object: FieldObject, point: Vector2) -> void:
-	var square = get_number_square_at_point(point)
-	if square != null and not square.has_counter():
-		push_action(move_counter.bind(object, square))
-	elif square == null:
+func _incoming_drop(object: InterfieldObject, point: Vector2, _source: Field) -> void:
+	if (object.object_type == CountingBoard.Objects.COUNTER
+			or object.object_type == BubbleSum.Objects.UNIT):
+		var square = get_number_square_at_point(point)
+		if square != null and not square.has_counter():
+			push_action(create_counter.bind(square))
+
+
+func _outgoing_drop(object: FieldObject) -> void:
+	if object.object_type == CountingBoard.Objects.COUNTER:
 		push_action(delete_counter.bind(object))
-
-
-func on_incoming_drop(_object: InterfieldObject, point: Vector2, _source: Field) -> void:
-	var square = get_number_square_at_point(point)
-	if square != null and not square.has_counter():
-		push_action(create_counter.bind(square))
-
-
-func on_outgoing_drop(object: FieldObject) -> void:
-	push_action(delete_counter.bind(object))
 
 
 #endregion

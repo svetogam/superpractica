@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c42cuesvvqpr3"]
+[gd_scene load_steps=3 format=3 uid="uid://c42cuesvvqpr3"]
 
-[ext_resource type="Script" path="res://content/basic_addition/pims/counting_board/counting_board_pim.gd" id="2_ipke1"]
-[ext_resource type="PackedScene" uid="uid://dv4g3p0ianoda" path="res://core/pimnet/pim/pim.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://d2d0o1oyg8tfu" path="res://core/pimnet level/pimnet/pim/field_pim.tscn" id="1_mu2od"]
 [ext_resource type="PackedScene" uid="uid://w2a71fj77wwv" path="res://content/basic_addition/pims/counting_board/field/counting_board_field.tscn" id="3_508fh"]
 
-[node name="CountingBoardPim" instance=ExtResource("3")]
-script = ExtResource("2_ipke1")
-field_scene = ExtResource("3_508fh")
+[node name="Pim" instance=ExtResource("1_mu2od")]
+custom_minimum_size = Vector2(350, 350)
+
+[node name="FieldViewport" parent="SubViewportContainer" index="0"]
+size = Vector2i(350, 350)
+
+[node name="Field" parent="SubViewportContainer/FieldViewport" index="0" instance=ExtResource("3_508fh")]

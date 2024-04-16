@@ -17,4 +17,4 @@ func run():
 	Game.debug.set_time_scale(Game.debug.TimeScales.FASTEST)
 	Game.debug.set_animation_speed(Game.debug.AnimationSpeeds.INSTANT)
 	Game.debug.set_delay_speed(Game.debug.DelayTimes.SKIP)
-#	Game.debug.disable_graphics(true)
+	#Game.debug.disable_graphics(true)

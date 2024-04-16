@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy372ti5o4i75"]
+
+[ext_resource type="PackedScene" uid="uid://dtthp43ghpjsi" path="res://content/debug/levels/sum_problems/basic_addition_5/level.tscn" id="1"]
+
+[node name="Level" instance=ExtResource("1")]
+
+[node name="LevelProgram" parent="." index="5"]
+_random_start_number = true
+_min_start_number = 1
+_max_start_number = 50
+_random_addend = true
+_min_addend = 1
+_max_addend = 50

@@ -11,7 +11,7 @@
 extends FieldObjectMode
 
 
-func _on_press(_field_point: Vector2) -> void:
+func _press(_point: Vector2) -> void:
 	if not object.has_counter():
 		field.push_action(field.create_counter.bind(object))
-		object.stop_active_input()
+	get_viewport().set_input_as_handled()

@@ -55,7 +55,7 @@ stretch = true
 unique_name_in_owner = true
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(1280, 800)
+size = Vector2i(800, 600)
 render_target_update_mode = 4
 
 [node name="CameraPoint" type="Node2D" parent="ViewportContainer/MainViewport"]
