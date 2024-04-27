@@ -44,7 +44,7 @@ func setup_by_parts(p_object_type := GameGlobals.NO_OBJECT,
 		p_graphic: ProceduralGraphic = null
 ) -> void:
 	object_type = p_object_type
-	graphic = p_graphic.duplicate()
+	graphic = p_graphic
 	add_child(graphic)
 
 

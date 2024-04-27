@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvkadm3yushku"]
+
+[ext_resource type="Script" path="res://content/debug/levels/number_selectors/select_number_2/program.gd" id="1_so80c"]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource("1_so80c")

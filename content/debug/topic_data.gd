@@ -49,7 +49,7 @@ static var topic = TopicResource.new(
 			# ID
 			"select_number_1",
 			# Scene
-			preload("levels/select_number_1/level.tscn"),
+			preload("levels/number_selectors/select_number_1/level.tscn"),
 			# Title
 			"Selector 1",
 			# Thumbnail
@@ -58,7 +58,7 @@ static var topic = TopicResource.new(
 			# ID
 			"select_number_2",
 			# Scene
-			preload("levels/select_number_2/level.tscn"),
+			preload("levels/number_selectors/select_number_2/level.tscn"),
 			# Title
 			"Selector 2",
 			# Thumbnail

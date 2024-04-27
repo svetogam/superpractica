@@ -1,0 +1,74 @@
+#============================================================================#
+# This file is part of Super Practica.                                       #
+# Copyright (c) 2023 Super Practica contributors                             #
+#----------------------------------------------------------------------------#
+# See the COPYRIGHT.md file at the top-level directory of this project       #
+# for information on the license terms of Super Practica as a whole.         #
+#----------------------------------------------------------------------------#
+# SPDX-License-Identifier: AGPL-3.0-or-later                                 #
+#============================================================================#
+
+extends GdUnitTestSuite
+
+const LEVEL_NAMES := {
+	1: "select_number_1",
+	2: "select_number_2",
+}
+const LEVEL_SCENES := {
+	1: "res://content/debug/levels/number_selectors/select_number_1/level.tscn",
+	2: "res://content/debug/levels/number_selectors/select_number_2/level.tscn",
+}
+const REF_SCENE := (
+		"res://content/debug/levels/number_selectors/tests/number_selectors_ref.tscn")
+const INITIAL_POSITION := Vector2(50, 50)
+const TOPIC_DATA = preload("res://content/debug/topic_data.gd").topic
+
+
+func before():
+	Game.debug.set_fast_testing()
+	Game.debug.add_ref_scene(self, REF_SCENE)
+
+
+func before_each():
+	Game.current_level = null
+	Game.progress_data.clear()
+
+
+func after_each():
+	Game.current_level = null
+	Game.progress_data.clear()
+
+
+func test_selector_1():
+	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
+	Game.current_level = level_data
+	var runner := scene_runner(LEVEL_SCENES[1])
+	runner.set_time_factor(100)
+
+	runner.set_mouse_pos(INITIAL_POSITION)
+	await runner.simulate_mouse_move_absolute($Ref/Selector1/PlusButton.position, 0.01)
+	for _i in range(8):
+		runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Selector1/SelectorSlot.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Selector1/GoalSlot.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
+
+
+func test_selector_2():
+	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
+	Game.current_level = level_data
+	var runner := scene_runner(LEVEL_SCENES[2])
+	runner.set_time_factor(100)
+
+	runner.set_mouse_pos(INITIAL_POSITION)
+	await runner.simulate_mouse_move_absolute($Ref/Selector2/Num2Button.position, 0.01)
+	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Selector2/Num7Button.position, 0.01)
+	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Selector2/SelectorSlot.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Selector2/GoalSlot.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()

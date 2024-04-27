@@ -34,7 +34,7 @@ window/size/viewport_height=600
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 [file_customization]
 
@@ -43,6 +43,11 @@ folder_colors={
 "res://core/": "red",
 "res://general/": "purple"
 }
+
+[gdunit4]
+
+settings/test/test_lookup_folder=""
+ui/toolbar/run_overall=true
 
 [input]
 

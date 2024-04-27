@@ -11,11 +11,6 @@
 class_name GameDebug
 extends RefCounted
 
-enum TimeScales {
-	SLOW,
-	NORMAL,
-	FASTEST,
-}
 enum AnimationSpeeds {
 	NORMAL,
 	FASTER,
@@ -28,6 +23,9 @@ enum DelayTimes {
 	SKIP,
 }
 
+const TIME_SCALE_SLOW := 0.5
+const TIME_SCALE_NORMAL := 1.0
+const TIME_SCALE_FASTEST := 100.0
 var _on := false
 var _animation_time_modifier: float
 var _skip_delays: bool
@@ -39,30 +37,19 @@ func set_on(value := true) -> void:
 		_on = true
 	else:
 		_on = false
-		set_time_scale(TimeScales.NORMAL)
-		enable_precise_input(false)
-		disable_graphics(false)
+		Engine.time_scale = TIME_SCALE_NORMAL
+		Input.use_accumulated_input = true
+		RenderingServer.render_loop_enabled = true
 
 
-func set_time_scale(time_scale: int) -> void:
-	if _on:
-		match time_scale:
-			TimeScales.SLOW:
-				Engine.time_scale = 0.5
-			TimeScales.NORMAL:
-				Engine.time_scale = 1.0
-			TimeScales.FASTEST:
-				Engine.time_scale = 100.0
-
-
-func enable_precise_input(enable := true) -> void:
-	if _on:
-		Input.use_accumulated_input = not enable
-
-
-func disable_graphics(disable := true) -> void:
-	if _on:
-		RenderingServer.render_loop_enabled = not disable
+# Disabling accumulated input might improve reliability, but this hasn't been verified
+# Disabling graphics increases speed, but might decrease reliability
+func set_fast_testing() -> void:
+	set_on()
+	Input.use_accumulated_input = false
+	RenderingServer.render_loop_enabled = false
+	set_animation_speed(AnimationSpeeds.INSTANT)
+	set_delay_speed(DelayTimes.SKIP)
 
 
 func set_animation_speed(animation_speed: int) -> void:
@@ -116,10 +103,27 @@ func should_skip_delays() -> bool:
 	return _skip_delays
 
 
-#====================================================================
-# Logging
-#====================================================================
-
 func warn(message: String) -> void:
 	if _on:
 		print(message)
+
+
+static func add_ref_scene(test_suite: GdUnitTestSuite, scene_path: String) -> Node:
+	var ref_scene = test_suite.auto_free(load(scene_path).instantiate())
+	test_suite.add_child(ref_scene)
+	for child in ref_scene.get_children():
+		if child is CanvasItem:
+			child.hide()
+	return ref_scene
+
+
+# Requires rewriting
+#func save_failure_screenshot(output_path: String) -> void:
+	#if is_failing():
+		#var source = get_stack()[1]["source"]
+		#source = source.trim_suffix(".gd")
+		#source = source.rsplit("/", false, 1)[1]
+		#var line = get_stack()[1]["line"]
+		#var filename = output_path + source + "-line-" + str(line) + ".png"
+		#var image := get_viewport().get_texture().get_image()
+		#image.save_png(filename)

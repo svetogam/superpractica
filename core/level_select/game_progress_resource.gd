@@ -20,3 +20,7 @@ func save_level_completion(level_id: String) -> void:
 
 func is_level_completed(level_id: String) -> bool:
 	return _completed_levels.has(level_id)
+
+
+func clear() -> void:
+	_completed_levels.clear()
