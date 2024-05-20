@@ -22,6 +22,7 @@ var _verification_connector := ContextualConnector.new(self, "verifications", tr
 func _enter_tree() -> void:
 	assert(effect_layer != null)
 	_verification_connector.connect_setup(_register_verification)
+	CSLocator.with(self).register(GameGlobals.SERVICE_VERIFIER, self)
 
 
 func _register_verification(verification: Verification) -> void:

@@ -14,6 +14,7 @@ extends RefCounted
 signal got_actions_to_do
 signal flushed
 
+var auto_flush := true
 var _field: Field
 var _queue: Array = []
 var _action_conditions_map := CallableMap.new()
@@ -49,6 +50,9 @@ func push(action: Callable) -> void:
 			action.get_method(), action.get_bound_arguments())
 	if condition_results.all(func(a: bool): return a):
 		_add_action(action)
+
+	if auto_flush:
+		flush()
 
 
 func _add_action(action: Callable) -> void:

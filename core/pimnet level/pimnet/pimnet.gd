@@ -20,6 +20,7 @@ var _pims_left_to_right: Array = []
 var _dragging := false
 var _field_connector := ContextualConnector.new(self, "fields", true)
 @onready var overlay := %Overlay as PimnetOverlay
+@onready var effect_layer := %RootEffectLayer as CanvasLayer
 @onready var dragged_object_layer := %DraggedObjectLayer as CanvasLayer
 
 
@@ -28,9 +29,12 @@ func _enter_tree() -> void:
 			create_interfield_object_by_original)
 	_field_connector.connect_signal("dragged_memo_requested",
 			create_dragged_memo)
+	CSLocator.with(self).register(GameGlobals.SERVICE_PIMNET, self)
 
 
 func _ready() -> void:
+	CSLocator.with(self).register(GameGlobals.SERVICE_EFFECT_LAYER, effect_layer)
+
 	if setup_resource != null:
 		# Set up pims
 		for pim_scene in setup_resource.pims:

@@ -11,9 +11,7 @@
 class_name FieldObject
 extends Area2D
 
-var field: Field:
-	set = _do_not_set,
-	get = _get_field
+var field: Field
 var object_type: int:
 	set = _do_not_set,
 	get = _get_object_type
@@ -21,14 +19,19 @@ var _pressing := false
 @onready var _modes := $ActiveModes as ModeGroup
 
 
+func _ready() -> void:
+	CSLocator.with(self).connect_service_found(GameGlobals.SERVICE_FIELD, _on_field_found)
+
+
 # Virtual
 func _get_object_type() -> int:
 	return GameGlobals.NO_OBJECT
 
 
-# Virtual
-func _on_field_ready() -> void:
-	pass
+func _on_field_found(p_field: Field) -> void:
+	field = p_field
+	field.tool_changed.connect(update_active_modes)
+	update_active_modes()
 
 
 # Virtual
@@ -69,16 +72,6 @@ func _drop(_point: Vector2) -> void:
 # Virtual
 func _take_drop(_dropped_object: FieldObject, _point: Vector2) -> void:
 	pass
-
-
-func _ready() -> void:
-	update_active_modes()
-	field.tool_changed.connect(update_active_modes)
-
-	if field.is_ready():
-		_on_field_ready()
-	else:
-		field.ready.connect(_on_field_ready)
 
 
 func _mouse_enter() -> void:
@@ -140,12 +133,6 @@ func update_active_modes(_new_tool := GameGlobals.NO_TOOL) -> void:
 
 func is_mode_active(mode: String) -> bool:
 	return _modes.is_active(mode)
-
-
-func _get_field() -> Field:
-	var found = ContextUtils.get_parent_in_group(self, "fields")
-	assert(found != null)
-	return found
 
 
 static func _do_not_set(_value: Variant) -> void:

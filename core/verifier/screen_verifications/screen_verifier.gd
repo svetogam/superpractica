@@ -23,10 +23,13 @@ var digit_reference: NumberEffect
 
 
 func _enter_tree() -> void:
-	verifier = get_parent()
-	assert(verifier != null)
+	CSLocator.with(self).connect_service_found(
+			GameGlobals.SERVICE_VERIFIER, _on_verifier_found)
+
+
+func _on_verifier_found(p_verifier: Node) -> void:
+	verifier = p_verifier
 	effect_group = MathEffectGroup.new(verifier.effect_layer)
-	assert(effect_group != null)
 
 
 func set_digit_reference(number: NumberEffect, callback := Callable()) -> void:

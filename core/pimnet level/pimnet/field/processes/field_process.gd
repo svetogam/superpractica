@@ -17,6 +17,6 @@ var field: Field:
 
 func _get_field() -> Field:
 	if field == null:
-		field = ContextUtils.get_parent_in_group(self, "fields")
+		field = CSLocator.with(self).find(GameGlobals.SERVICE_FIELD)
 		assert(field != null)
 	return field

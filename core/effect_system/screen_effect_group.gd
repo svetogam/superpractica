@@ -36,15 +36,17 @@ func get_effects() -> Array:
 	return get_children()
 
 
+# Broken
 func duplicate_effect(effect: ScreenEffect) -> ScreenEffect:
 	var new_effect := effect.duplicate()
 	_add_effect(new_effect)
 
-	var superscreen := get_tree().get_nodes_in_group("superscreens")[0]
-	var source_viewer := ContextUtils.get_parent_in_group(effect, "subscreen_viewers")
-	var dest_viewer := ContextUtils.get_parent_in_group(self, "subscreen_viewers")
-	new_effect.position = superscreen.convert_point_between_subscreen_viewers(
-			effect.position, source_viewer, dest_viewer)
-	new_effect.set_by_effect(effect)
+	assert(false)
+	#var superscreen := get_tree().get_nodes_in_group("superscreens")[0]
+	#var source_viewer := ContextUtils.get_parent_in_group(effect, "subscreen_viewers")
+	#var dest_viewer := ContextUtils.get_parent_in_group(self, "subscreen_viewers")
+	#new_effect.position = superscreen.convert_point_between_subscreen_viewers(
+			#effect.position, source_viewer, dest_viewer)
+	#new_effect.set_by_effect(effect)
 
 	return new_effect

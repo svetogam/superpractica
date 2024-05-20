@@ -14,15 +14,18 @@ extends Pim
 const DEFAULT_SLOT_NAME := "slot"
 var slot_map := {}
 var _effects: MathEffectGroup
-var _locator := ContextualLocator.new(self)
 
 
 func _enter_tree() -> void:
-	_locator.auto_callback("effect_layer", _setup_effect_creator)
+	CSLocator.with(self).connect_service_changed(
+			GameGlobals.SERVICE_EFFECT_LAYER, _on_effect_layer_changed)
 
 
-func _setup_effect_creator(effect_layer: CanvasLayer) -> void:
-	_effects = MathEffectGroup.new(effect_layer)
+func _on_effect_layer_changed(effect_layer: CanvasLayer) -> void:
+	if _effects == null and effect_layer != null:
+		_effects = MathEffectGroup.new(effect_layer)
+	elif _effects != null and effect_layer == null:
+		_effects = null
 
 
 func _setup_slot(slot: MemoSlot, slot_name := DEFAULT_SLOT_NAME) -> void:
@@ -75,16 +78,19 @@ func get_slot_string(slot_name := DEFAULT_SLOT_NAME) -> String:
 
 func get_slot_position(slot_name := DEFAULT_SLOT_NAME) -> Vector2:
 	assert(slot_map.has(slot_name))
-	return slot_map[slot_name].get_global_center()
+	return slot_map[slot_name].get_global_rect().get_center()
 
 
 func create_number_effect(slot_name := DEFAULT_SLOT_NAME) -> NumberEffect:
-	assert(_effects != null)
 	assert(slot_map.has(slot_name))
-	var number = get_slot_value(slot_name)
-	var number_position := get_slot_position(slot_name)
-	return _effects.give_number(number, number_position, "grow") as NumberEffect
+	if _effects != null:
+		var number = get_slot_value(slot_name)
+		var number_position := get_slot_position(slot_name)
+		return _effects.give_number(number, number_position, "grow") as NumberEffect
+	else:
+		return null
 
 
 func clear_effects() -> void:
-	_effects.clear()
+	if _effects != null:
+		_effects.clear()

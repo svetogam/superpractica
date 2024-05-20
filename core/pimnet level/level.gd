@@ -22,15 +22,12 @@ var _memo_slot_connector := ContextualConnector.new(self, "memo_slots", true)
 @onready var pimnet := %Pimnet as Pimnet
 @onready var verifier := $Verifier as Node
 @onready var reversion_control := $ReversionControl as ReversionControl
-@onready var effect_layer := %RootEffectLayer as CanvasLayer
 
 #====================================================================
 # Setup
 #====================================================================
 
 func _ready() -> void:
-	ContextualLocator.register_property(self, "effect_layer")
-
 	_action_queue.setup(pimnet)
 
 	_setup_reversion()

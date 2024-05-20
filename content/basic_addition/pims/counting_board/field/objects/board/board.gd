@@ -14,7 +14,13 @@ const BOARD_RECT := Rect2(0, 0, 350, 350)
 @onready var _graphic := %Graphic as ProceduralGraphic
 
 
-func _on_field_ready() -> void:
+# Hack to only begin after field is ready
+func _on_field_found(p_field: Field) -> void:
+	super(p_field)
+	_setup()
+
+
+func _setup() -> void:
 	_graphic.set_properties({"rect": BOARD_RECT})
 	_set_number_squares()
 

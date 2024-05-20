@@ -56,6 +56,6 @@ func get_source() -> Field:
 
 func _get_pimnet() -> Pimnet:
 	if _pimnet == null:
-		_pimnet = ContextUtils.get_parent_in_group(self, "pimnet")
+		_pimnet = CSLocator.with(self).find(GameGlobals.SERVICE_PIMNET)
 		assert(_pimnet != null)
 	return _pimnet

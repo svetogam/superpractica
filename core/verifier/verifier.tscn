@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://core/verifier/verifier.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://p2fr7ckjqro6" path="res://core/verifier/screen_verifications/screen_verifier.tscn" id="2"]
 
-[node name="Verifier" type="Node" groups=["verifiers"]]
+[node name="Verifier" type="Node"]
 script = ExtResource("1")
 
 [node name="ScreenVerifications" parent="." instance=ExtResource("2")]

@@ -23,10 +23,10 @@ content_margin_right = 20.0
 [sub_resource type="LabelSettings" id="LabelSettings_mwy2r"]
 font_size = 24
 
-[node name="Level" type="Node" groups=["levels"]]
+[node name="Level" type="Node"]
 script = ExtResource("1_o01nh")
 
-[node name="Pimnet" type="Node" parent="." groups=["pimnet"]]
+[node name="Pimnet" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_6muex")
 
@@ -46,6 +46,11 @@ anchor_bottom = 1.0
 offset_right = 1230.0
 grow_vertical = 2
 theme_override_constants/separation = 25
+
+[node name="RootEffectLayer" type="CanvasLayer" parent="Pimnet"]
+unique_name_in_owner = true
+layer = 3
+follow_viewport_enabled = true
 
 [node name="DraggedObjectLayer" type="CanvasLayer" parent="Pimnet"]
 unique_name_in_owner = true
@@ -842,12 +847,8 @@ offset_top = 10000.0
 offset_right = 10070.0
 offset_bottom = 10070.0
 
-[node name="RootEffectLayer" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-layer = 3
-
 [node name="Verifier" parent="." node_paths=PackedStringArray("effect_layer") instance=ExtResource("12_4kqqx")]
-effect_layer = NodePath("../RootEffectLayer")
+effect_layer = NodePath("../Pimnet/RootEffectLayer")
 
 [node name="ReversionControl" type="Node" parent="."]
 script = ExtResource("13_agwnm")

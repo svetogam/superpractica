@@ -34,7 +34,6 @@ var effect_counter: EffectCounter:
 var interface_data: PimInterfaceData:
 	set = _do_not_set,
 	get = _get_interface_data
-var _got_ready := false
 @onready var programs := $Programs as ModeGroup
 @onready var effect_layer := %EffectLayer as CanvasLayer
 @onready var _tool_modes := $ToolModes as ModeGroup
@@ -45,14 +44,10 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	ready.connect(_trigger_update.bind(UpdateTypes.INITIAL))
 	tool_changed.connect(_on_tool_changed)
 	action_queue.flushed.connect(_trigger_update.bind(UpdateTypes.ACTIONS_COMPLETED))
-	_got_ready = true
-
-
-func is_ready() -> bool:
-	return _got_ready
+	CSLocator.with(self).register(GameGlobals.SERVICE_FIELD, self)
+	_trigger_update(UpdateTypes.INITIAL)
 
 
 # Virtual
@@ -73,7 +68,7 @@ func _trigger_update(update_type: int) -> void:
 
 
 func _get_dragged_object() -> FieldObject:
-	var pimnet := ContextUtils.get_parent_in_group(self, "pimnet")
+	var pimnet := CSLocator.with(self).find(GameGlobals.SERVICE_PIMNET)
 	return pimnet.dragged_object
 
 
@@ -194,9 +189,6 @@ func request_drag_memo(memo: Memo) -> void:
 
 func push_action(action: Callable) -> void:
 	action_queue.push(action)
-
-	if ContextUtils.get_parent_in_group(self, "levels") == null:
-		action_queue.flush()
 
 
 func connect_condition(action_name: String, callable: Callable) -> void:

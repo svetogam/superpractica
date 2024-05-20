@@ -25,6 +25,7 @@ func _bind_to_field(field: Field) -> void:
 	_fields.append(field)
 	field.action_queue.got_actions_to_do.connect(
 			_on_actions_queued.bind(field.action_queue))
+	field.action_queue.auto_flush = false
 
 
 func _on_actions_queued(field_queue: FieldActionQueue) -> void:

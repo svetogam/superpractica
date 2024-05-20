@@ -27,6 +27,9 @@ func _ready() -> void:
 	set_slot(IntegerMemo, 3, "3")
 	set_slot(IntegerMemo, 4, "4")
 
+	clear_effects()
 
-func _on_slot_changed(_memo: Memo, _slot_name: String) -> void:
-	pass
+
+func _on_slot_changed(_memo: Memo, slot_name: String) -> void:
+	clear_effects()
+	create_number_effect(slot_name)

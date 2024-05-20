@@ -21,9 +21,7 @@ const MemoDragPreview := preload("memo_drag_preview.tscn")
 @export var memo_input_enabled := true
 @export var memo_output_enabled := true
 var memo: Memo
-var pimnet: Pimnet:
-	set = _do_not_set,
-	get = _get_pimnet
+var pimnet: Pimnet
 var accept_condition := Callable()
 var _regular_background_color: Color
 var _highlighted_background_color := GameGlobals.COLOR_HIGHLIGHT
@@ -33,7 +31,12 @@ var _highlighted_background_color := GameGlobals.COLOR_HIGHLIGHT
 
 func _enter_tree() -> void:
 	ContextualConnector.register(self)
+	CSLocator.with(self).connect_service_found(
+			GameGlobals.SERVICE_PIMNET, _on_pimnet_found)
 
+
+func _on_pimnet_found(p_pimnet: Pimnet) -> void:
+	pimnet = p_pimnet
 	pimnet.memo_drag_started.connect(_on_memo_drag_started)
 
 
@@ -172,11 +175,3 @@ func set_faded(faded := true) -> void:
 		%Label.label_settings.font_color = FADED_FONT_COLOR
 	else:
 		%Label.label_settings.font_color = REGULAR_FONT_COLOR
-
-
-func _get_pimnet() -> Pimnet:
-	return ContextUtils.get_parent_in_group(self, "pimnet")
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)

@@ -65,7 +65,7 @@ func _complete() -> void:
 
 func _get_verifier() -> Node:
 	if verifier == null:
-		verifier = ContextUtils.get_parent_in_group(self, "verifiers")
+		verifier = CSLocator.with(self).find(GameGlobals.SERVICE_VERIFIER)
 		assert(verifier != null)
 	return verifier
 
