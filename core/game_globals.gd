@@ -14,6 +14,7 @@ const SERVICE_PIMNET := "pimnet"
 const SERVICE_FIELD := "field"
 const SERVICE_EFFECT_LAYER := "effect_layer"
 const SERVICE_VERIFIER := "verifier"
+const SERVICE_REVERTER := "reverter"
 
 const NO_OBJECT: int = -1
 const NO_TOOL: int = -1

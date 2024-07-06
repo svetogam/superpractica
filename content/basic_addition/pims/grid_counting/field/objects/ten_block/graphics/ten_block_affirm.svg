@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="77.656242mm"
+   height="6.4715409mm"
+   viewBox="0 0 77.656251 6.4715407"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   sodipodi:docname="ten_block_affirm.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4770342"
+     inkscape:cx="124.23544"
+     inkscape:cy="131.00577"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.0701765,-1.0731284)">
+    <g
+       id="g13"
+       inkscape:label="Object"
+       transform="translate(-46.460969,-146.97595)">
+      <rect
+         style="fill:#98ff98;fill-opacity:1;stroke:#060606;stroke-width:0.79375;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+         id="rect11"
+         width="76.862495"
+         height="5.6777911"
+         x="47.92802"
+         y="148.44595" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:none;stroke-width:0.264583"
+         x="83.031876"
+         y="153.30273"
+         id="text13"><tspan
+           sodipodi:role="line"
+           id="tspan13"
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:5.64444px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+           x="0"
+           y="0">10</tspan></text>
+      <path
+         d="m 85.131607,153.30273 h -0.592666 v -2.67546 q 0,-0.20884 0.0056,-0.38382 0.0056,-0.17498 0.01693,-0.33867 -0.07338,0.0734 -0.1524,0.14676 -0.07902,0.0677 -0.180622,0.1524 l -0.440266,0.3556 -0.3048,-0.38383 1.151466,-0.90311 h 0.49671 z m 4.103501,-2.02071 q 0,0.65476 -0.141111,1.1176 -0.135467,0.46285 -0.434622,0.7112 -0.299156,0.24836 -0.790222,0.24836 -0.694266,0 -1.027288,-0.54751 -0.327378,-0.55316 -0.327378,-1.52965 0,-0.64911 0.129822,-1.11195 0.135467,-0.46849 0.434622,-0.7112 0.299156,-0.24835 0.790222,-0.24835 0.688622,0 1.027288,0.54751 0.338667,0.54186 0.338667,1.52399 z m -2.12231,0 q 0,0.79023 0.169333,1.18534 0.169333,0.38946 0.587022,0.38946 0.412044,0 0.587022,-0.38946 0.174977,-0.38947 0.174977,-1.18534 0,-0.78457 -0.174977,-1.17404 -0.174978,-0.39511 -0.587022,-0.39511 -0.417689,0 -0.587022,0.39511 -0.169333,0.38947 -0.169333,1.17404 z"
+         id="text1"
+         style="font-weight:500;font-size:5.64444px;line-height:1.25;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Medium';stroke-width:0.264583"
+         aria-label="10" />
+    </g>
+  </g>
+</svg>

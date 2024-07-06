@@ -3,6 +3,7 @@ class_name LocalTime
 extends Resource
 
 enum TimeUnit {
+	DEFAULT = 0,
 	MILLIS = 1,
 	SECOND = 2,
 	MINUTE = 3,
@@ -77,7 +78,7 @@ static func elapsed(p_time_ms :int) -> String:
 
 @warning_ignore("integer_division")
 # create from epoch timestamp in ms
-func _init(time :int):
+func _init(time :int) -> void:
 	_time = time
 	_hour  =  (time / MILLIS_PER_HOUR) % 24
 	_minute =  (time / MILLIS_PER_MINUTE) % 60

@@ -57,7 +57,7 @@ func complete() -> void:
 
 
 func verify() -> void:
-	level.reversion_control.clear_history()
+	level.reverter.history.clear()
 	complete_task()
 	_transition("verified")
 

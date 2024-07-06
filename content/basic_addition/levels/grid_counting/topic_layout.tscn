@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://b778m2pllh6j2"]
+
+[ext_resource type="Script" path="res://core/level_select/topic_layout_node_ref.gd" id="1_3ye2f"]
+
+[node name="Layout" type="Node"]
+
+[node name="Level1" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -48.0
+offset_top = -24.0
+offset_right = 52.0
+offset_bottom = 26.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_1_1"
+
+[node name="Level2" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 112.0
+offset_top = -24.0
+offset_right = 212.0
+offset_bottom = 26.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_1_2"
+
+[node name="Level3" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 272.0
+offset_top = -24.0
+offset_right = 372.0
+offset_bottom = 26.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_1_3"
+
+[node name="Level4" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 432.0
+offset_top = -24.0
+offset_right = 532.0
+offset_bottom = 26.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_1_4"
+
+[node name="Level5" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 592.0
+offset_top = -24.0
+offset_right = 692.0
+offset_bottom = 26.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_1_5"
+
+[node name="Level6" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 752.0
+offset_top = -24.0
+offset_right = 852.0
+offset_bottom = 26.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_1_6"
+
+[node name="Level7" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 912.0
+offset_top = -24.0
+offset_right = 1012.0
+offset_bottom = 26.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_1_random"

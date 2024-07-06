@@ -32,8 +32,8 @@ func _setup_vars() -> void:
 func _start() -> void:
 	super()
 
-	tool_panel.exclude_all("CountingBoard")
-	creation_panel.exclude_all("CountingBoard")
+	tool_panel.exclude_all("GridCounting")
+	creation_panel.exclude_all("GridCounting")
 	pim = pimnet.get_pim()
 	field = pim.field
 

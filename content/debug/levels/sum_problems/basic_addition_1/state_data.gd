@@ -14,9 +14,9 @@ const DATA := {
 	"initial": "SelectStart",
 	"transitions": {
 		"SelectStart": {
-			"done": "PutCounters",
+			"done": "PutUnits",
 		},
-		"PutCounters": {
+		"PutUnits": {
 			"done": State.NULL_STATE,
 		},
 	}

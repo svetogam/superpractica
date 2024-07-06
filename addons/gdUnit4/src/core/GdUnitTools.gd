@@ -1,13 +1,17 @@
 extends RefCounted
 
+
+static var _richtext_normalize: RegEx
+
+
 static func normalize_text(text :String) -> String:
 	return text.replace("\r", "");
 
 
 static func richtext_normalize(input :String) -> String:
-	return GdUnitSingleton.instance("regex_richtext", func _regex_richtext() -> RegEx:
-		return to_regex("\\[/?(b|color|bgcolor|right|table|cell).*?\\]") )\
-	.sub(input, "", true).replace("\r", "")
+	if _richtext_normalize == null:
+		_richtext_normalize = to_regex("\\[/?(b|color|bgcolor|right|table|cell).*?\\]")
+	return _richtext_normalize.sub(input, "", true).replace("\r", "")
 
 
 static func to_regex(pattern :String) -> RegEx:
@@ -23,9 +27,9 @@ static func prints_verbose(message :String) -> void:
 		prints(message)
 
 
-static func free_instance(instance :Variant, is_stdout_verbose :=false) -> bool:
+static func free_instance(instance :Variant, use_call_deferred :bool = false, is_stdout_verbose := false) -> bool:
 	if instance is Array:
-		for element in instance:
+		for element :Variant in instance:
 			free_instance(element)
 		instance.clear()
 		return true
@@ -39,9 +43,7 @@ static func free_instance(instance :Variant, is_stdout_verbose :=false) -> bool:
 		print_verbose("GdUnit4:gc():free instance ", instance)
 	release_double(instance)
 	if instance is RefCounted:
-		instance.notification(Object.NOTIFICATION_PREDELETE)
-		await Engine.get_main_loop().process_frame
-		await Engine.get_main_loop().physics_frame
+		(instance as RefCounted).notification(Object.NOTIFICATION_PREDELETE)
 		return true
 	else:
 		# is instance already freed?
@@ -50,15 +52,26 @@ static func free_instance(instance :Variant, is_stdout_verbose :=false) -> bool:
 		#release_connections(instance)
 		if instance is Timer:
 			instance.stop()
-			instance.call_deferred("free")
-			await Engine.get_main_loop().process_frame
+			if use_call_deferred:
+				instance.call_deferred("free")
+			else:
+				instance.free()
+				await Engine.get_main_loop().process_frame
 			return true
 		if instance is Node and instance.get_parent() != null:
 			if is_stdout_verbose:
 				print_verbose("GdUnit4:gc():remove node from parent ",  instance.get_parent(), instance)
-			instance.get_parent().remove_child(instance)
-			instance.set_owner(null)
-		instance.free()
+			if use_call_deferred:
+				instance.get_parent().remove_child.call_deferred(instance)
+				#instance.call_deferred("set_owner", null)
+			else:
+				instance.get_parent().remove_child(instance)
+		if is_stdout_verbose:
+			print_verbose("GdUnit4:gc():freeing `free()` the instance ", instance)
+		if use_call_deferred:
+			instance.call_deferred("free")
+		else:
+			instance.free()
 		return !is_instance_valid(instance)
 
 
@@ -79,19 +92,21 @@ static func _release_connections(instance :Object) -> void:
 
 static func release_timers() -> void:
 	# we go the new way to hold all gdunit timers in group 'GdUnitTimers'
-	for node in Engine.get_main_loop().root.get_children():
+	if Engine.get_main_loop().root == null:
+		return
+	for node :Node in Engine.get_main_loop().root.get_children():
 		if is_instance_valid(node) and node.is_in_group("GdUnitTimers"):
 			if is_instance_valid(node):
-				Engine.get_main_loop().root.remove_child(node)
+				Engine.get_main_loop().root.remove_child.call_deferred(node)
 				node.stop()
-				node.free()
+				node.queue_free()
 
 
 # the finally cleaup unfreed resources and singletons
-static func dispose_all() -> void:
+static func dispose_all(use_call_deferred :bool = false) -> void:
 	release_timers()
+	GdUnitSingleton.dispose(use_call_deferred)
 	GdUnitSignals.dispose()
-	GdUnitSingleton.dispose()
 
 
 # if instance an mock or spy we need manually freeing the self reference

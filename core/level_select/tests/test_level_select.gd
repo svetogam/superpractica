@@ -18,11 +18,10 @@ const TOPIC_4_PATH := "res://core/level_select/tests/topic_data/topic_4.gd"
 const TOPIC_1_LEVEL_ID := "dummy_level_1_1"
 const TOPIC_2_LEVEL_ID := "dummy_level_2_1"
 const TOPIC_4_LEVEL_ID := "dummy_level_4_1"
-const INITIAL_POSITION := Vector2(50, 50)
 
 
 func before():
-	Game.debug.set_fast_testing()
+	Game.debug.set_testing_preset(GameDebug.TestingPresets.SPEED)
 	Game.debug.add_ref_scene(self, REF_SCENE)
 
 
@@ -31,7 +30,7 @@ func before_test():
 	Game.current_level = null
 
 
-func after_test():
+func after():
 	Game.root_topic = null
 	Game.current_level = null
 
@@ -43,7 +42,6 @@ func test_enter_level_directly() -> void:
 	runner.set_time_factor(100)
 	var level_data = load(TOPIC_1_PATH).topic.get_level([TOPIC_1_LEVEL_ID])
 
-	runner.set_mouse_pos(INITIAL_POSITION)
 	await runner.simulate_mouse_move_absolute($Ref/Topic1View1/Level1_1.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	await runner.await_signal("zoomed_in")
@@ -59,7 +57,6 @@ func test_enter_topic_then_topic_then_level() -> void:
 	runner.set_time_factor(100)
 	var level_data = load(TOPIC_4_PATH).topic.get_level([TOPIC_4_LEVEL_ID])
 
-	runner.set_mouse_pos(INITIAL_POSITION)
 	await runner.simulate_mouse_move_absolute($Ref/Topic1View1/Topic3.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	await runner.await_signal("zoomed_in")
@@ -87,7 +84,6 @@ func test_enter_topic_then_back_then_different_topic_then_level() -> void:
 	runner.set_time_factor(100)
 	var level_data = load(TOPIC_2_PATH).topic.get_level([TOPIC_2_LEVEL_ID])
 
-	runner.set_mouse_pos(INITIAL_POSITION)
 	await runner.simulate_mouse_move_absolute($Ref/Topic1View1/Topic3.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	await runner.await_signal("zoomed_in")
@@ -120,7 +116,6 @@ func test_exit_to_main_menu() -> void:
 	var runner := scene_runner(scene)
 	runner.set_time_factor(100)
 
-	runner.set_mouse_pos(INITIAL_POSITION)
 	await runner.simulate_mouse_move_absolute($Ref/MenuButton.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	# Wait here if not immediate

@@ -114,12 +114,15 @@ func setup_panel(panel_type: PimnetPanels, enable: bool, start_active: bool) -> 
 		activate_panel(panel_type)
 
 
-func activate_reversion() -> void:
-	reversion_menu.visible = true
+func enable_panel(panel_type: PimnetPanels) -> void:
+	var button := _get_button(panel_type)
+	button.visible = true
 
 
-func deactivate_reversion() -> void:
-	reversion_menu.visible = false
+func disable_panel(panel_type: PimnetPanels) -> void:
+	var button := _get_button(panel_type)
+	button.button_pressed = false
+	button.visible = false
 
 
 func activate_panel(panel_type: PimnetPanels) -> void:
@@ -138,6 +141,14 @@ func deactivate_panel(panel_type: PimnetPanels) -> void:
 
 	var panel := _get_panel(panel_type)
 	assert(not panel.visible)
+
+
+func activate_reversion() -> void:
+	reversion_menu.visible = true
+
+
+func deactivate_reversion() -> void:
+	reversion_menu.visible = false
 
 
 func enable_scroll_buttons(enable := true) -> void:
@@ -231,8 +242,12 @@ func _get_number_active_panels() -> int:
 
 
 func _get_maximum_active_panels() -> int:
-	const PANEL_WIDTH := 300.0
-	return floori(get_viewport_rect().size.x / PANEL_WIDTH)
+	#const PANEL_WIDTH := 300.0
+	#var screen_rect := Game.get_screen_rect()
+	#return floori(screen_rect.size.x / PANEL_WIDTH)
+
+	# Using this hack instead until panels conserve space better
+	return 3
 
 
 static func _do_not_set(_value: Variant) -> void:

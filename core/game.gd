@@ -16,10 +16,6 @@ var current_level: LevelResource = null
 var debug := GameDebug.new()
 
 
-#====================================================================
-# Speed and Timing
-#====================================================================
-
 func call_after(callable: Callable, time_delay: float) -> void:
 	if debug.is_on() and debug.should_skip_delays() or time_delay <= 0:
 		callable.call()
@@ -43,3 +39,11 @@ func get_animation_time_modifier() -> float:
 		return debug.get_animation_time_modifier()
 	else:
 		return 1.0
+
+
+# This doesn't actually do anything, but it's nice to have as a wrapper
+func get_screen_rect() -> Rect2:
+	if debug.is_on() and not RenderingServer.render_loop_enabled:
+		return debug.fallback_screen_rect
+	else:
+		return get_viewport().get_visible_rect()

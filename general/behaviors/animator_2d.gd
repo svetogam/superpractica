@@ -52,5 +52,5 @@ func delete_after_delay(delay := DEFAULT_DELETE_DELAY) -> void:
 func _get_position_in_screen(position: Vector2) -> Vector2:
 	assert(position.x >= 0 and position.x <= 1)
 	assert(position.y >= 0 and position.y <= 1)
-	var root_viewport := get_tree().root.get_viewport()
-	return Vector2(root_viewport.size.x * position.x, root_viewport.size.y * position.y)
+	var screen_rect := Game.get_screen_rect()
+	return Vector2(screen_rect.size.x * position.x, screen_rect.size.y * position.y)

@@ -9,20 +9,12 @@
 #============================================================================#
 
 class_name BubbleSumMemState
-extends MemState
-
-var unit_data_list: Array
-var bubble_data_list: Array
+extends CRMemento
 
 
-func _init(p_unit_data_list: Array, p_bubble_data_list: Array) -> void:
-	unit_data_list = p_unit_data_list
-	bubble_data_list = p_bubble_data_list
-
-
-func is_equal_to(other: MemState) -> bool:
-	var units_check := Utils.are_unsorted_lists_equal(unit_data_list,
-			other.unit_data_list)
-	var bubbles_check := Utils.are_unsorted_lists_equal(bubble_data_list,
-			other.bubble_data_list)
+func equals(other: CRMemento) -> bool:
+	var units_check := Utils.are_unsorted_lists_equal(
+			data.unit_data_list, other.data.unit_data_list)
+	var bubbles_check := Utils.are_unsorted_lists_equal(
+			data.bubble_data_list, other.data.bubble_data_list)
 	return units_check and bubbles_check

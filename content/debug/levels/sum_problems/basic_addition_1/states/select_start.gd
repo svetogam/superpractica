@@ -14,11 +14,11 @@ var _field_program: FieldProgram
 
 
 func _enter(_last_state: String) -> void:
-	tool_panel.include("CountingBoard", CountingBoard.Tools.SQUARE_MARKER)
-	program.pim.field.set_tool(CountingBoard.Tools.SQUARE_MARKER)
+	tool_panel.include("GridCounting", GridCounting.Tools.CELL_MARKER)
+	program.pim.field.set_tool(GridCounting.Tools.CELL_MARKER)
 	tool_panel.force_selection()
 
-	_field_program = program.pim.field.get_program("SelectCorrectSquare")
+	_field_program = program.pim.field.get_program("SelectCorrectCell")
 	_field_program.setup(program.start_number)
 	_field_program.run()
 	_field_program.completed.connect(complete)

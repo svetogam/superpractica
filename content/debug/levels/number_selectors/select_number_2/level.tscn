@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://cho85y6ex6re0"]
 
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet level/level.tscn" id="1_aw21n"]
-[ext_resource type="PackedScene" uid="uid://cq03m3d1nvmmk" path="res://content/general/slot_panels/number_selector/number_selector.tscn" id="2_mxiqp"]
+[ext_resource type="PackedScene" uid="uid://df70iymagoil7" path="res://content/general/slot_pims/number_selector/number_selector.tscn" id="2_tvw7b"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="3_7viwi"]
 [ext_resource type="PackedScene" uid="uid://cvkadm3yushku" path="res://content/debug/levels/number_selectors/select_number_2/program.tscn" id="4_55185"]
 
 [sub_resource type="Resource" id="Resource_6tual"]
 script = ExtResource("3_7viwi")
-pims = Array[PackedScene]([ExtResource("2_mxiqp")])
+pims = Array[PackedScene]([ExtResource("2_tvw7b")])
 reversion_enable = false
 inventory_enable = false
 inventory_start_active = false
@@ -55,4 +55,4 @@ button_group = SubResource("ButtonGroup_ixbdn")
 [node name="Task7Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7" index="1"]
 button_group = SubResource("ButtonGroup_ixbdn")
 
-[node name="LevelProgram" parent="." index="4" instance=ExtResource("4_55185")]
+[node name="LevelProgram" parent="." index="3" instance=ExtResource("4_55185")]

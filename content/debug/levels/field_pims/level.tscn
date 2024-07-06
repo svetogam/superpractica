@@ -1,13 +1,13 @@
 [gd_scene load_steps=8 format=3 uid="uid://dk01sfd6113ac"]
 
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet level/level.tscn" id="1_xcl42"]
-[ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/counting_board/counting_board_pim.tscn" id="2_oxiqf"]
+[ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/grid_counting/grid_counting_pim.tscn" id="2_oxiqf"]
 [ext_resource type="PackedScene" uid="uid://co2voeabpnsl0" path="res://content/debug/pims/bubble_sum/bubble_sum_pim.tscn" id="3_hdll2"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="5_cndk6"]
 
 [sub_resource type="Resource" id="Resource_kwr4n"]
 script = ExtResource("5_cndk6")
-pims = Array[PackedScene]([ExtResource("2_oxiqf"), ExtResource("3_hdll2")])
+pims = Array[PackedScene]([ExtResource("2_oxiqf"), ExtResource("2_oxiqf"), ExtResource("3_hdll2"), ExtResource("3_hdll2")])
 reversion_enable = true
 inventory_enable = false
 inventory_start_active = false

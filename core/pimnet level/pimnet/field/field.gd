@@ -27,6 +27,8 @@ var action_queue := FieldActionQueue.new(self)
 var dragged_object: FieldObject:
 	set = _do_not_set,
 	get = _get_dragged_object
+var warning_effects: WarningEffectGroup:
+	get = _get_warning_effects
 var math_effects: MathEffectGroup:
 	get = _get_math_effects
 var effect_counter: EffectCounter:
@@ -41,6 +43,12 @@ var interface_data: PimInterfaceData:
 
 func _enter_tree() -> void:
 	ContextualConnector.register(self)
+	CSLocator.with(self).connect_service_found(
+			GameGlobals.SERVICE_REVERTER, _on_reverter_found)
+
+
+func _on_reverter_found(reverter: CReverter) -> void:
+	reverter.connect_save_load(get_instance_id(), build_state, load_state)
 
 
 func _ready() -> void:
@@ -65,11 +73,18 @@ static func _get_interface_data() -> PimInterfaceData:
 func _trigger_update(update_type: int) -> void:
 	_on_update(update_type)
 	updated.emit()
+	warning_effects.flush_stage()
 
 
 func _get_dragged_object() -> FieldObject:
 	var pimnet := CSLocator.with(self).find(GameGlobals.SERVICE_PIMNET)
 	return pimnet.dragged_object
+
+
+func _get_warning_effects() -> WarningEffectGroup:
+	if warning_effects == null:
+		warning_effects = WarningEffectGroup.new(effect_layer)
+	return warning_effects
 
 
 func _get_math_effects() -> MathEffectGroup:
@@ -174,6 +189,11 @@ func get_objects_in_group(group: String) -> Array:
 	return field_objects.filter(func(object: Node): return object.is_in_group(group))
 
 
+# Virtual
+func get_objects_by_type(_object_type: int) -> Array:
+	return []
+
+
 #====================================================================
 # Mechanics
 #====================================================================
@@ -211,17 +231,12 @@ func get_program(program_name: String) -> FieldProgram:
 	return programs.get_mode(program_name)
 
 
-func clear_effects() -> void:
-	math_effects.clear()
-	effect_counter.reset_count()
-
-
 #====================================================================
 # Mem-States
 #====================================================================
 
 # Virtual
-func build_mem_state() -> MemState:
+func build_state() -> CRMemento:
 	assert(false)
 	return null
 
@@ -229,5 +244,5 @@ func build_mem_state() -> MemState:
 # Call this _trigger_update line after loading in implementations:
 	#_trigger_update(UpdateTypes.STATE_LOADED)
 # Virtual
-func load_mem_state(_mem_state: MemState) -> void:
+func load_state(_state: CRMemento) -> void:
 	assert(false)

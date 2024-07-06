@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://l24bgh2wr4n1"]
+
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/program.gd" id="1_asa1g"]
+[ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_0hos4"]
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/state_data.gd" id="3_chblo"]
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/states/put_units.gd" id="4_8mbn5"]
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/states/drag_memo.gd" id="5_mj7a2"]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource("1_asa1g")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_0hos4")
+SetupData = ExtResource("3_chblo")
+_auto_activate = false
+
+[node name="PutUnits" type="Node" parent="StateMachine"]
+script = ExtResource("4_8mbn5")
+
+[node name="DragMemo" type="Node" parent="StateMachine"]
+script = ExtResource("5_mj7a2")

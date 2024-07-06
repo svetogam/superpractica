@@ -35,7 +35,7 @@ func _on_field_found(p_field: Field) -> void:
 
 
 # Virtual
-func get_drag_graphic() -> ProceduralGraphic:
+func get_drag_graphic() -> Node2D:
 	return null
 
 
@@ -137,21 +137,3 @@ func is_mode_active(mode: String) -> bool:
 
 static func _do_not_set(_value: Variant) -> void:
 	assert(false)
-
-
-#======================================
-# Delete these with later redesign
-#======================================
-
-var _position_before_grab: Vector2
-
-func start_grab() -> void:
-	_position_before_grab = position
-
-
-func revert_drag() -> void:
-	position = _position_before_grab
-
-
-func get_total_drag_vector() -> Vector2:
-	return position - _position_before_grab

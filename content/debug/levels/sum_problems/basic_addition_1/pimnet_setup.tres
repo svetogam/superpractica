@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PimnetSetupResource" load_steps=3 format=3 uid="uid://delx3xd8wkgnp"]
 
-[ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/counting_board/counting_board_pim.tscn" id="1_dbgrl"]
+[ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/grid_counting/grid_counting_pim.tscn" id="1_dbgrl"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="2_ornib"]
 
 [resource]

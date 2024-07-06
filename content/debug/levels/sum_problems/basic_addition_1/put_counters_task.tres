@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="TaskResource" load_steps=2 format=3 uid="uid://t2vu1566ti1x"]
-
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/task_resource.gd" id="1_qcahc"]
-
-[resource]
-script = ExtResource("1_qcahc")
-name_id = "put_counters"
-name_text = "Count"
-_instructions = "Put a counter on the next {count} numbers after {start_number}."

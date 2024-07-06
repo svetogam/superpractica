@@ -29,7 +29,7 @@ func _add_effect(effect: ScreenEffect) -> void:
 
 func clear() -> void:
 	for child in get_effects():
-		child.queue_free()
+		child.free()
 
 
 func get_effects() -> Array:

@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends SlotPim
+extends Pim
 
 @onready var _slot_1 := %Slot1 as MemoSlot
 @onready var _slot_2 := %Slot2 as MemoSlot

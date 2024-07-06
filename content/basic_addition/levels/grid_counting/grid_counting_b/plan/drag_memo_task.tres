@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TaskResource" load_steps=2 format=3 uid="uid://cdacp34e4m3ld"]
+
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/task_resource.gd" id="1_dfoco"]
+
+[resource]
+script = ExtResource("1_dfoco")
+name_id = "drag_memo"
+name_text = "Drag Count"
+_instructions = "Drag the {count} into the goal slot."

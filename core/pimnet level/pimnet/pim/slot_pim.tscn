@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bln4ogm4v0i24"]
-
-[ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/pimnet level/pimnet/pim/pim.tscn" id="1_ev773"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/pim/slot_pim.gd" id="2_lebut"]
-
-[node name="SlotPim" instance=ExtResource("1_ev773")]
-script = ExtResource("2_lebut")

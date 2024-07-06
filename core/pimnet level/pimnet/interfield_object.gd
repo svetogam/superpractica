@@ -12,8 +12,9 @@ class_name InterfieldObject
 extends Node2D
 
 var original: FieldObject = null
-var graphic: ProceduralGraphic = null
+var graphic: Node2D = null
 var object_type := GameGlobals.NO_OBJECT
+var field_type := ""
 var _pimnet: Pimnet:
 	get = _get_pimnet
 
@@ -30,20 +31,22 @@ func _input(event: InputEvent) -> void:
 	# Drop
 	elif event.is_action_released("primary_mouse"):
 		_pimnet.process_interfield_object_drop(self)
-		queue_free()
+		free()
 
 
 func setup_by_original(p_original: FieldObject) -> void:
 	original = p_original
 	object_type = original.object_type
+	field_type = original.field.get_field_type()
 	graphic = original.get_drag_graphic().duplicate()
 	add_child(graphic)
 
 
-func setup_by_parts(p_object_type := GameGlobals.NO_OBJECT,
-		p_graphic: ProceduralGraphic = null
+func setup_by_parts(p_object_type := GameGlobals.NO_OBJECT, p_field_type := "",
+		p_graphic: Node2D = null
 ) -> void:
 	object_type = p_object_type
+	field_type = p_field_type
 	graphic = p_graphic
 	add_child(graphic)
 

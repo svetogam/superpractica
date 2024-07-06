@@ -1,0 +1,511 @@
+[gd_resource type="Resource" script_class="CRMemento" load_steps=2 format=3 uid="uid://q4aajk1dssxg"]
+
+[ext_resource type="Script" path="res://addons/creverter/memento.gd" id="1_iomsm"]
+
+[resource]
+script = ExtResource("1_iomsm")
+data = {
+"rows": {},
+"cells": {
+1: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+2: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+3: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+4: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+5: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+6: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+7: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+8: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+9: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+10: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+11: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+12: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+13: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+14: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+15: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+16: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+17: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+18: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+19: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+20: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+21: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+22: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+23: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+24: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+25: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+26: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+27: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+28: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+29: {
+"circled": false,
+"has_unit": true,
+"highlighted": false
+},
+30: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+31: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+32: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+33: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+34: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+35: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+36: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+37: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+38: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+39: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+40: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+41: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+42: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+43: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+44: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+45: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+46: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+47: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+48: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+49: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+50: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+51: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+52: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+53: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+54: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+55: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+56: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+57: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+58: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+59: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+60: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+61: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+62: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+63: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+64: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+65: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+66: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+67: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+68: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+69: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+70: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+71: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+72: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+73: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+74: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+75: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+76: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+77: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+78: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+79: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+80: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+81: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+82: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+83: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+84: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+85: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+86: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+87: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+88: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+89: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+90: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+91: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+92: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+93: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+94: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+95: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+96: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+97: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+98: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+99: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+},
+100: {
+"circled": false,
+"has_unit": false,
+"highlighted": false
+}
+}
+}

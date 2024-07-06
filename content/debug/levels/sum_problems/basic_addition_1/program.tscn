@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://content/debug/levels/sum_problems/basic_addition_1/states/select_start.gd" id="2"]
 [ext_resource type="Script" path="res://content/debug/levels/sum_problems/basic_addition_1/state_data.gd" id="4"]
 [ext_resource type="Script" path="res://content/debug/levels/sum_problems/basic_addition_1/program.gd" id="5"]
-[ext_resource type="Script" path="res://content/debug/levels/sum_problems/basic_addition_1/states/put_counters.gd" id="6"]
+[ext_resource type="Script" path="res://content/debug/levels/sum_problems/basic_addition_1/states/put_units.gd" id="5_e4xtv"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("5")
@@ -17,5 +17,5 @@ _auto_activate = false
 [node name="SelectStart" type="Node" parent="StateMachine"]
 script = ExtResource("2")
 
-[node name="PutCounters" type="Node" parent="StateMachine"]
-script = ExtResource("6")
+[node name="PutUnits" type="Node" parent="StateMachine"]
+script = ExtResource("5_e4xtv")

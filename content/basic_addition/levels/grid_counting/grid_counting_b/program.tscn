@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7xftbet1ljmq"]
+
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_b/program.gd" id="1_nclvy"]
+[ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_lvj5a"]
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_b/state_data.gd" id="3_muwlj"]
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_b/states/put_blocks.gd" id="4_8psdj"]
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_b/states/put_units.gd" id="5_ei8js"]
+[ext_resource type="Script" path="res://content/basic_addition/levels/grid_counting/grid_counting_b/states/drag_memo.gd" id="6_6ws5p"]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource("1_nclvy")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_lvj5a")
+SetupData = ExtResource("3_muwlj")
+_auto_activate = false
+
+[node name="PutBlocks" type="Node" parent="StateMachine"]
+script = ExtResource("4_8psdj")
+
+[node name="PutUnits" type="Node" parent="StateMachine"]
+script = ExtResource("5_ei8js")
+
+[node name="DragMemo" type="Node" parent="StateMachine"]
+script = ExtResource("6_6ws5p")

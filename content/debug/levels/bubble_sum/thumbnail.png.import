@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da7th86lirmm3"
-path="res://.godot/imported/thumbnail.png-b5ddaab9860d15f0490defec8503ca84.ctex"
+uid="uid://dxqxencjvvcxg"
+path.s3tc="res://.godot/imported/thumbnail.png-b5ddaab9860d15f0490defec8503ca84.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/debug/levels/bubble_sum/thumbnail.png"
-dest_files=["res://.godot/imported/thumbnail.png-b5ddaab9860d15f0490defec8503ca84.ctex"]
+dest_files=["res://.godot/imported/thumbnail.png-b5ddaab9860d15f0490defec8503ca84.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -30,5 +31,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=500
+process/size_limit=0
 detect_3d/compress_to=1

@@ -33,6 +33,9 @@ var tool_panel: Control:
 var creation_panel: Control:
 	set = _do_not_set,
 	get = _get_creation_panel
+var reverter: CReverter:
+	set = _do_not_set,
+	get = _get_reverter
 
 
 func _init() -> void:
@@ -108,6 +111,10 @@ func _get_creation_panel() -> Control:
 	assert(level.pimnet.overlay != null)
 	assert(level.pimnet.overlay.creation_panel != null)
 	return level.pimnet.overlay.creation_panel
+
+
+func _get_reverter() -> CReverter:
+	return level.reverter
 
 
 static func _do_not_set(_value: Variant) -> void:

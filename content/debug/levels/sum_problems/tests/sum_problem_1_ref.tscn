@@ -31,5 +31,5 @@ position = Vector2(447, 142)
 [node name="Square8" type="Marker2D" parent="."]
 position = Vector2(487, 144)
 
-[node name="Counter" type="Marker2D" parent="."]
+[node name="Unit" type="Marker2D" parent="."]
 position = Vector2(150, 421)

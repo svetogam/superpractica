@@ -22,6 +22,7 @@ func _get_object_type() -> int:
 
 
 func _ready() -> void:
+	super()
 	_set_radius(%Collider.shape.radius)
 
 

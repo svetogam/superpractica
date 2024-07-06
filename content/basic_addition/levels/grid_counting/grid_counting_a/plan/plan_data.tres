@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlanResource" load_steps=4 format=3 uid="uid://dpo2uxba17n85"]
+
+[ext_resource type="Resource" uid="uid://c854epgdfd7yc" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/plan/put_units_task.tres" id="1_o8mla"]
+[ext_resource type="Resource" uid="uid://bffg2nwps4p1y" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/plan/drag_memo_task.tres" id="2_ehdae"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/plan_resource.gd" id="3_vwipo"]
+
+[resource]
+script = ExtResource("3_vwipo")
+_tasks = Array[Resource("res://core/pimnet level/pimnet/overlay/task_resource.gd")]([ExtResource("1_o8mla"), ExtResource("2_ehdae")])

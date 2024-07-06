@@ -56,6 +56,15 @@ static func pack_args(arg1: Variant = "__",
 	return args.filter(func(a): return str(a) != "__")
 
 
+static func call_callables(callable_list: Array, args: Array = []) -> Array:
+	var result_list: Array = []
+	for callable in callable_list:
+		assert(callable is Callable)
+		var result = callable.callv(args)
+		result_list.append(result)
+	return result_list
+
+
 static func eval_given_or_random_int(given: int, random: bool,
 		min_value: int, max_value: int
 ) -> int:
@@ -88,13 +97,6 @@ static func are_unsorted_lists_equal(list_1: Array, list_2: Array,
 
 static func are_vectors_equal(vector_1: Vector2, vector_2: Vector2) -> bool:
 	return vector_1.is_equal_approx(vector_2)
-
-
-static func is_vector_represented(vector: Vector2, vector_list: Array) -> bool:
-	for vector_2 in vector_list:
-		if vector_2.is_equal_approx(vector):
-			return true
-	return false
 
 
 static func sort_node2d_by_x_position(a: Node2D, b: Node2D) -> bool:

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TaskResource" load_steps=2 format=3 uid="uid://c854epgdfd7yc"]
+
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/task_resource.gd" id="1_regam"]
+
+[resource]
+script = ExtResource("1_regam")
+name_id = "put_units"
+name_text = "Count"
+_instructions = "Place units on the first {count} numbers."

@@ -74,16 +74,27 @@ func reset_state() -> void:
 
 
 func _incoming_drop(object: InterfieldObject, point: Vector2, _source: Field) -> void:
-	if (object.object_type == BubbleSum.Objects.UNIT
-			or object.object_type == CountingBoard.Objects.COUNTER):
-		push_action(create_unit.bind(point))
-	elif object.object_type == BubbleSum.Objects.BUBBLE:
-		push_action(create_bubble.bind(point))
+	match object.field_type:
+		"BubbleSum":
+			match object.object_type:
+				BubbleSum.Objects.UNIT:
+					_accept_incoming_unit(point)
+				BubbleSum.Objects.BUBBLE:
+					push_action(create_bubble.bind(point))
+		"GridCounting":
+			match object.object_type:
+				GridCounting.Objects.UNIT:
+					_accept_incoming_unit(point)
+
+
+func _accept_incoming_unit(point: Vector2) -> void:
+	push_action(create_unit.bind(point))
 
 
 func _outgoing_drop(object: FieldObject) -> void:
-	if object.object_type == BubbleSum.Objects.UNIT:
-		push_action(delete_unit.bind(object))
+	match object.object_type:
+		BubbleSum.Objects.UNIT:
+			push_action(delete_unit.bind(object))
 
 
 #endregion
@@ -403,10 +414,11 @@ func set_empty() -> void:
 const MemStateClass := preload("mem_state.gd")
 
 
-func build_mem_state() -> MemState:
-	var unit_data := _get_unit_data_list()
-	var bubble_data := _get_bubble_data_list()
-	return MemStateClass.new(unit_data, bubble_data)
+func build_state() -> CRMemento:
+	return MemStateClass.new({
+		"unit_data_list": _get_unit_data_list(),
+		"bubble_data_list": _get_bubble_data_list()
+	})
 
 
 func _get_unit_data_list() -> Array:
@@ -437,10 +449,11 @@ func _get_bubble_data(bubble: FieldObject) -> Dictionary:
 # State Loading
 #--------------------------------------
 
-func load_mem_state(state: MemState) -> void:
+func load_state(state: CRMemento) -> void:
 	set_empty()
-	_create_units_by_data_list(state.unit_data_list)
-	_create_bubbles_by_data_list(state.bubble_data_list)
+
+	_create_units_by_data_list(state.data.unit_data_list)
+	_create_bubbles_by_data_list(state.data.bubble_data_list)
 
 	_trigger_update(UpdateTypes.STATE_LOADED)
 

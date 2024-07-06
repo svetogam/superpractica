@@ -14,8 +14,17 @@ extends Control
 signal memo_accepted(memo)
 signal memo_changed(memo)
 
+enum HighlightTypes {
+	REGULAR,
+	ACCEPTING,
+	WARNING,
+}
+
 const REGULAR_FONT_COLOR := Color.BLACK
 const FADED_FONT_COLOR := Color.SLATE_GRAY
+const REGULAR_BACKGROUND_COLOR := Color.WHITE
+const ACCEPTING_BACKGROUND_COLOR := GameGlobals.COLOR_HIGHLIGHT
+const WARNING_BACKGROUND_COLOR := Color.GRAY
 const MemoDragPreview := preload("memo_drag_preview.tscn")
 @export var acceptable_types: Array[String]
 @export var memo_input_enabled := true
@@ -23,8 +32,6 @@ const MemoDragPreview := preload("memo_drag_preview.tscn")
 var memo: Memo
 var pimnet: Pimnet
 var accept_condition := Callable()
-var _regular_background_color: Color
-var _highlighted_background_color := GameGlobals.COLOR_HIGHLIGHT
 @onready var _background := %Background as ColorRect
 @onready var _label := %Label as Label
 
@@ -38,25 +45,17 @@ func _enter_tree() -> void:
 func _on_pimnet_found(p_pimnet: Pimnet) -> void:
 	pimnet = p_pimnet
 	pimnet.memo_drag_started.connect(_on_memo_drag_started)
-
-
-func _ready() -> void:
-	_regular_background_color = _background.color
-
-
-func _process(_delta: float) -> void:
-	if not get_viewport().gui_is_dragging():
-		set_highlight(false)
+	pimnet.memo_drag_ended.connect(_on_memo_drag_ended)
 
 
 func _get_drag_data(_position: Vector2) -> Memo:
 	if memo_output_enabled and memo != null:
-		pimnet.memo_drag_started.emit(memo)
+		# Use workaround because Godot's drag previews are bugged
+		#var preview = make_memo_preview(memo)
+		#set_drag_preview(preview)
+		var preview = make_memo_preview_2(memo)
 
-		# Workaround because Godot's drag previews are bugged
-		#set_drag_preview(make_memo_preview(memo))
-		make_memo_preview_2(memo)
-
+		pimnet.start_memo_drag(preview, memo)
 		return memo
 	return null
 
@@ -87,10 +86,11 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	#return preview
 
 
-func make_memo_preview_2(p_memo: Memo) -> void:
+func make_memo_preview_2(p_memo: Memo) -> Control:
 	var preview := MemoDragPreview.instantiate()
 	pimnet.dragged_object_layer.add_child(preview)
 	preview.label.text = p_memo.get_string()
+	return preview
 
 
 func take_memo(p_memo: Memo) -> void:
@@ -135,11 +135,14 @@ func is_empty() -> bool:
 	return memo == null
 
 
-func set_highlight(set_on: bool) -> void:
-	if set_on:
-		_background.color = _highlighted_background_color
-	else:
-		_background.color = _regular_background_color
+func set_highlight(highlight_type: int) -> void:
+	match highlight_type:
+		HighlightTypes.REGULAR:
+			_background.color = REGULAR_BACKGROUND_COLOR
+		HighlightTypes.ACCEPTING:
+			_background.color = ACCEPTING_BACKGROUND_COLOR
+		HighlightTypes.WARNING:
+			_background.color = WARNING_BACKGROUND_COLOR
 
 
 func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
@@ -161,7 +164,12 @@ func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
 func _on_memo_drag_started(p_memo: Memo) -> void:
 	assert(p_memo != null)
 	if memo_input_enabled and would_accept_memo(p_memo):
-		set_highlight(true)
+		set_highlight(HighlightTypes.ACCEPTING)
+
+
+func _on_memo_drag_ended(_p_memo: Memo) -> void:
+	if _background.color == ACCEPTING_BACKGROUND_COLOR:
+		set_highlight(HighlightTypes.REGULAR)
 
 
 func set_input_output_ability(input: bool, output: bool) -> void:

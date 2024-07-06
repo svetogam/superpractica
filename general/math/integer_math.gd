@@ -20,6 +20,24 @@ static func get_digit_at_place(number: int, place: int) -> int:
 	return int( (number % int(pow(10, place))) / pow(10, (place-1)) )
 
 
+static func get_ones_digit(number: int) -> int:
+	assert(number >= 0)
+
+	return get_digit_at_place(number, 1)
+
+
+static func get_tens_digit(number: int) -> int:
+	assert(number >= 0)
+
+	return get_digit_at_place(number, 2)
+
+
+static func get_hundreds_digit(number: int) -> int:
+	assert(number >= 0)
+
+	return get_digit_at_place(number, 3)
+
+
 static func get_number_of_digits(number: int) -> int:
 	assert(number >= 0)
 

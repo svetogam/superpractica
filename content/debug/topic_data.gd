@@ -19,31 +19,23 @@ static var topic = TopicResource.new(
 	[
 		LevelResource.new(
 			# ID
-			"bubble_sum_1",
+			"bubble_sum",
 			# Scene
 			preload("levels/bubble_sum/level.tscn"),
 			# Title
-			"Bubble Sum 1",
+			"Bubble Sum Pim",
 			# Thumbnail
 			preload("levels/bubble_sum/thumbnail.png")
 		),
 		LevelResource.new(
 			# ID
-			"bubble_sum_2",
+			"grid_counting",
 			# Scene
-			preload("levels/bubble_sum_2/level.tscn"),
+			preload("levels/grid_counting/level.tscn"),
 			# Title
-			"2 Bubble Sum Pims",
+			"Grid Counting Pim",
 			# Thumbnail
-		),
-		LevelResource.new(
-			# ID
-			"counting_board",
-			# Scene
-			preload("levels/counting_board/level.tscn"),
-			# Title
-			"Counting Board Pim",
-			# Thumbnail
+			preload("levels/grid_counting/thumbnail.png")
 		),
 		LevelResource.new(
 			# ID
@@ -53,6 +45,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Selector 1",
 			# Thumbnail
+			preload("levels/number_selectors/select_number_1/thumbnail.png")
 		),
 		LevelResource.new(
 			# ID
@@ -62,6 +55,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Selector 2",
 			# Thumbnail
+			preload("levels/number_selectors/select_number_2/thumbnail.png")
 		),
 		LevelResource.new(
 			# ID
@@ -71,6 +65,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Slot Pims",
 			# Thumbnail
+			preload("levels/slot_pims/thumbnail.png")
 		),
 		LevelResource.new(
 			# ID
@@ -80,6 +75,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Field Pims",
 			# Thumbnail
+			preload("levels/field_pims/thumbnail.png")
 		),
 	],
 	# Subtopics
@@ -93,9 +89,6 @@ static var topic = TopicResource.new(
 	[],
 	# Groups
 	[
-		TopicGroupResource.new(
-			["bubble_sum_1", "bubble_sum_2"]
-		),
 		TopicGroupResource.new(
 			["select_number_1", "select_number_2"]
 		),

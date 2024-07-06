@@ -22,10 +22,17 @@ enum DelayTimes {
 	FRAME,
 	SKIP,
 }
+enum TestingPresets {
+	SPEED,
+	RELIABILITY,
+	VISIBILITY,
+}
 
 const TIME_SCALE_SLOW := 0.5
 const TIME_SCALE_NORMAL := 1.0
 const TIME_SCALE_FASTEST := 100.0
+var fallback_screen_rect: Rect2:
+	get = get_fallback_screen_rect
 var _on := false
 var _animation_time_modifier: float
 var _skip_delays: bool
@@ -42,14 +49,33 @@ func set_on(value := true) -> void:
 		RenderingServer.render_loop_enabled = true
 
 
-# Disabling accumulated input might improve reliability, but this hasn't been verified
-# Disabling graphics increases speed, but might decrease reliability
-func set_fast_testing() -> void:
-	set_on()
-	Input.use_accumulated_input = false
-	RenderingServer.render_loop_enabled = false
-	set_animation_speed(AnimationSpeeds.INSTANT)
-	set_delay_speed(DelayTimes.SKIP)
+# Disabling accumulated input should improve reliability, but this hasn't been verified
+# Disabling graphics increases speed, but decreases visibility and reliability
+func set_testing_preset(preset: int) -> void:
+	match preset:
+		TestingPresets.SPEED:
+			set_on()
+			Engine.time_scale = TIME_SCALE_FASTEST
+			Input.use_accumulated_input = false
+			RenderingServer.render_loop_enabled = false
+			set_animation_speed(AnimationSpeeds.INSTANT)
+			set_delay_speed(DelayTimes.SKIP)
+		TestingPresets.RELIABILITY:
+			set_on()
+			Engine.time_scale = TIME_SCALE_NORMAL
+			Input.use_accumulated_input = false
+			RenderingServer.render_loop_enabled = true
+			set_animation_speed(AnimationSpeeds.INSTANT)
+			set_delay_speed(DelayTimes.SKIP)
+		TestingPresets.VISIBILITY:
+			set_on()
+			Engine.time_scale = TIME_SCALE_SLOW
+			Input.use_accumulated_input = true
+			RenderingServer.render_loop_enabled = true
+			set_animation_speed(AnimationSpeeds.NORMAL)
+			set_delay_speed(DelayTimes.NORMAL)
+		_:
+			assert(false)
 
 
 func set_animation_speed(animation_speed: int) -> void:
@@ -102,6 +128,10 @@ func debug_wait_for(time: float):
 func should_skip_delays() -> bool:
 	return _skip_delays
 
+
+func get_fallback_screen_rect() -> Rect2:
+	return Rect2(0, 0, ProjectSettings.get_setting("display/window/size/viewport_width"),
+			ProjectSettings.get_setting("display/window/size/viewport_height"))
 
 func warn(message: String) -> void:
 	if _on:

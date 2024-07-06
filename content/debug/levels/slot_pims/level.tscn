@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cuyjnouknxdnc"]
 
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet level/level.tscn" id="1_c5kki"]
-[ext_resource type="PackedScene" uid="uid://csg0ddgocch73" path="res://content/basic_addition/slot_panels/integer_counter/integer_counter.tscn" id="2_os5rw"]
-[ext_resource type="PackedScene" uid="uid://cq03m3d1nvmmk" path="res://content/general/slot_panels/number_selector/number_selector.tscn" id="3_65qoc"]
-[ext_resource type="PackedScene" uid="uid://dohax8g5n2u36" path="res://content/debug/pims/four_slots/four_slots.tscn" id="4_quktd"]
+[ext_resource type="PackedScene" uid="uid://dovmnfrl4xrfs" path="res://content/basic_addition/pims/integer_counter/integer_counter.tscn" id="2_l6fvo"]
+[ext_resource type="PackedScene" uid="uid://df70iymagoil7" path="res://content/general/slot_pims/number_selector/number_selector.tscn" id="3_41xvv"]
+[ext_resource type="PackedScene" uid="uid://d00uqiv02mlin" path="res://content/debug/pims/four_slots/four_slots.tscn" id="4_quktd"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="5_kygpj"]
 
 [sub_resource type="Resource" id="Resource_kwr4n"]
 script = ExtResource("5_kygpj")
-pims = Array[PackedScene]([ExtResource("2_os5rw"), ExtResource("3_65qoc"), ExtResource("4_quktd")])
+pims = Array[PackedScene]([ExtResource("2_l6fvo"), ExtResource("3_41xvv"), ExtResource("4_quktd")])
 reversion_enable = false
 inventory_enable = false
 inventory_start_active = false
@@ -30,10 +30,6 @@ plan_start_active = false
 
 [node name="Pimnet" parent="." index="0"]
 setup_resource = SubResource("Resource_kwr4n")
-
-[node name="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup" index="1"]
-offset_right = 316.0
-offset_bottom = 196.0
 
 [node name="Task1Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1" index="1"]
 button_group = SubResource("ButtonGroup_a4qf0")

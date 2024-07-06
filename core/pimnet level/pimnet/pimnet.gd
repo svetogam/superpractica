@@ -12,6 +12,7 @@ class_name Pimnet
 extends Node
 
 signal memo_drag_started(memo)
+signal memo_drag_ended(memo)
 
 const InterfieldObjectScene := preload("interfield_object.tscn")
 @export var setup_resource: PimnetSetupResource
@@ -134,7 +135,7 @@ func _setup_tool_panel() -> void:
 	for pim in _pims_left_to_right:
 		if pim is FieldPim:
 			var field_type = pim.field.get_field_type()
-			overlay.tool_panel.setup(pim.field.interface_data)
+			overlay.tool_panel.add_toolset(pim.field.interface_data)
 			overlay.tool_panel.tool_selected.connect(
 					pim.field.on_tool_panel_tool_selected)
 			pim.field.tool_changed.connect(
@@ -143,11 +144,11 @@ func _setup_tool_panel() -> void:
 
 
 func _setup_creation_panel() -> void:
-	overlay.creation_panel.object_grabbed.connect(create_interfield_object_by_type)
+	overlay.creation_panel.tool_dragged.connect(create_interfield_object_by_type)
 	for pim in _pims_left_to_right:
 		if pim is FieldPim:
 			var field_type = pim.field.get_field_type()
-			overlay.creation_panel.setup(pim.field.interface_data)
+			overlay.creation_panel.add_toolset(pim.field.interface_data)
 			pim.focus_entered.connect(
 					overlay.creation_panel.show_toolset.bind(field_type))
 
@@ -179,14 +180,12 @@ func _clamp_camera_in_bounds(smoothly := true) -> void:
 
 func _get_camera_limit_rect() -> Rect2:
 	const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.15
-	var viewport_rect = get_viewport().get_visible_rect()
-	var limit_margin = viewport_rect.size.x * CAMERA_OVERSHOOT_MARGIN_RATIO
+	var screen_rect = Game.get_screen_rect()
+	var limit_margin = screen_rect.size.x * CAMERA_OVERSHOOT_MARGIN_RATIO
 	var pim_strip_width := _get_pim_strip_width()
-	var rect_width = pim_strip_width - viewport_rect.size.x + (2 * limit_margin)
-	return Rect2(viewport_rect.get_center().x - limit_margin,
-			viewport_rect.get_center().y,
-			maxf(rect_width, 0.0),
-			0.0)
+	var rect_width = pim_strip_width - screen_rect.size.x + (2 * limit_margin)
+	return Rect2(screen_rect.get_center().x - limit_margin, screen_rect.get_center().y,
+			maxf(rect_width, 0.0), 0.0)
 
 
 func _get_pim_strip_width() -> float:
@@ -221,18 +220,18 @@ func create_interfield_object_by_original(original: FieldObject) -> InterfieldOb
 	return _create_interfield_object(original)
 
 
-func create_interfield_object_by_type(object_type: int, pim_data: PimInterfaceData
+func create_interfield_object_by_type(field_type: String, object_type: int,
+		drag_graphic: Node2D
 ) -> InterfieldObject:
-	var graphic := pim_data.make_creatable_object_graphic(object_type)
-	return _create_interfield_object(null, graphic, object_type)
+	return _create_interfield_object(null, drag_graphic, object_type, field_type)
 
 
-func _create_interfield_object(original: FieldObject, graphic: ProceduralGraphic = null,
-		object_type := GameGlobals.NO_OBJECT
+func _create_interfield_object(original: FieldObject, graphic: Node2D = null,
+		object_type := GameGlobals.NO_OBJECT, field_type := ""
 ) -> InterfieldObject:
 	var past_objects = get_tree().get_nodes_in_group("interfield_objects")
 	for past_object in past_objects:
-		past_object.queue_free()
+		past_object.free()
 
 	var interfield_object := InterfieldObjectScene.instantiate()
 	if original != null:
@@ -240,18 +239,24 @@ func _create_interfield_object(original: FieldObject, graphic: ProceduralGraphic
 		original.start_interfield_drag()
 		dragged_object = original
 	else:
-		interfield_object.setup_by_parts(object_type, graphic)
+		interfield_object.setup_by_parts(object_type, field_type, graphic)
 	%DraggedObjectLayer.add_child(interfield_object)
 
 	return interfield_object
 
 
 func create_dragged_memo(memo: Memo) -> void:
-	# Workaround because Godot's drag previews are bugged
-	#%DummySlot.force_drag(memo, %DummySlot.make_memo_preview(memo))
-	%DummySlot.force_drag(memo, %DummySlot.make_memo_preview_2(memo))
+	# Use workaround because Godot's drag previews are bugged
+	#var preview = %DummySlot.make_memo_preview(memo)
+	var preview = %DummySlot.make_memo_preview_2(memo)
 
+	%DummySlot.force_drag(memo, preview)
+	start_memo_drag(preview, memo)
+
+
+func start_memo_drag(preview: Control, memo: Memo) -> void:
 	memo_drag_started.emit(memo)
+	preview.tree_exited.connect(emit_signal.bind("memo_drag_ended", memo))
 
 
 func process_interfield_object_drop(object: InterfieldObject) -> void:

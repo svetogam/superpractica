@@ -1,18 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=18 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/pimnet level/level.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet.gd" id="2_6muex"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/reversion_menu.gd" id="4_ux8xa"]
 [ext_resource type="Script" path="res://general/behaviors/button_enabler.gd" id="5_6mqp5"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/tool_panel.gd" id="6_ij53n"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/creation_panel.gd" id="7_iq5id"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/tool_panels/tool_panel.gd" id="6_lh3eo"]
+[ext_resource type="PackedScene" uid="uid://bpihviyvti7aa" path="res://core/pimnet level/pimnet/overlay/tool_panels/tool_container.tscn" id="7_ysl18"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
+[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/tool_panels/creation_panel.gd" id="8_60rcw"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/goal_panels/arbitrary_check_panel.gd" id="9_16t1p"]
+[ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/pimnet level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
 [ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/pimnet level/pimnet/memo_slot.tscn" id="11_worie"]
 [ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/verifier/verifier.tscn" id="12_4kqqx"]
-[ext_resource type="Script" path="res://core/pimnet level/reversion_control.gd" id="13_agwnm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2q4"]
 content_margin_left = 20.0
@@ -115,8 +116,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_right = 316.0
+offset_bottom = 196.0
 
 [node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer"]
 layout_mode = 2
@@ -275,7 +276,7 @@ custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-script = ExtResource("6_ij53n")
+script = ExtResource("6_lh3eo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel"]
 layout_mode = 2
@@ -285,131 +286,11 @@ layout_mode = 2
 text = "Tools"
 horizontal_alignment = 1
 
-[node name="ToolContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer"]
+[node name="ToolContainer1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer" instance=ExtResource("7_ysl18")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-columns = 5
-
-[node name="ToolButton1" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton2" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton3" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton4" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton5" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton6" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton7" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton8" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton9" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton10" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton11" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton12" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton13" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton14" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
-
-[node name="ToolButton15" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer/ToolContainer"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-toggle_mode = true
-text = "Tool"
-text_overrun_behavior = 1
 
 [node name="CreationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
 unique_name_in_owner = true
@@ -419,7 +300,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 2
-script = ExtResource("7_iq5id")
+script = ExtResource("8_60rcw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel"]
 layout_mode = 2
@@ -430,72 +311,11 @@ layout_mode = 2
 text = "Create Objects"
 horizontal_alignment = 1
 
-[node name="CreatablesContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer"]
+[node name="CreatablesContainer1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer" instance=ExtResource("9_jk2o1")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-mouse_filter = 2
-columns = 3
-
-[node name="CreateButton1" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
-visible = false
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-action_mode = 0
-keep_pressed_outside = true
-text = "Object"
-flat = true
-text_overrun_behavior = 1
-
-[node name="CreateButton2" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
-visible = false
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-action_mode = 0
-keep_pressed_outside = true
-text = "Object"
-flat = true
-text_overrun_behavior = 1
-
-[node name="CreateButton3" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
-visible = false
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-action_mode = 0
-keep_pressed_outside = true
-text = "Object"
-flat = true
-text_overrun_behavior = 1
-
-[node name="CreateButton4" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
-visible = false
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-action_mode = 0
-keep_pressed_outside = true
-text = "Object"
-flat = true
-text_overrun_behavior = 1
-
-[node name="CreateButton5" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
-visible = false
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-action_mode = 0
-keep_pressed_outside = true
-text = "Object"
-flat = true
-text_overrun_behavior = 1
-
-[node name="CreateButton6" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer/CreatablesContainer"]
-visible = false
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-action_mode = 0
-keep_pressed_outside = true
-text = "Object"
-flat = true
-text_overrun_behavior = 1
 
 [node name="TranslationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
 unique_name_in_owner = true
@@ -849,9 +669,6 @@ offset_bottom = 10070.0
 
 [node name="Verifier" parent="." node_paths=PackedStringArray("effect_layer") instance=ExtResource("12_4kqqx")]
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
-
-[node name="ReversionControl" type="Node" parent="."]
-script = ExtResource("13_agwnm")
 
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer/ContinueButton" to="Pimnet/OverlayLayer/Overlay" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/MainMenuPopup/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]

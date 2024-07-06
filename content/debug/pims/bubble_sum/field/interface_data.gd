@@ -80,13 +80,13 @@ func _init() -> void:
 		},
 	}
 
-	creation_data = {
+	draggable_object_data = {
 		BubbleSum.Objects.UNIT: {
 			"text": "Unit",
-			"graphic": preload("objects/unit/graphic.gd"),
+			"sprite": preload("objects/unit/graphic.gd"),
 		},
 		BubbleSum.Objects.BUBBLE: {
 			"text": "Bubble",
-			"graphic": preload("objects/bubble/graphic.gd"),
+			"sprite": preload("objects/bubble/graphic.gd"),
 		},
 	}

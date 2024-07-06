@@ -6,7 +6,7 @@ var _is_failed := false
 var _failure_message :String
 
 
-static func _set_do_expect_fail(enabled :bool = true):
+func _set_do_expect_fail(enabled :bool = true) -> void:
 	Engine.set_meta(GdUnitConstants.EXPECT_ASSERT_REPORT_FAILURES, enabled)
 
 
@@ -83,6 +83,16 @@ func has_message(expected :String) -> GdUnitFailureAssert:
 	var expected_error := GdUnitTools.normalize_text(GdUnitTools.richtext_normalize(expected))
 	var current_error := GdUnitTools.normalize_text(GdUnitTools.richtext_normalize(_failure_message))
 	if current_error != expected_error:
+		var diffs := GdDiffTool.string_diff(current_error, expected_error)
+		var current := GdAssertMessages.colored_array_div(diffs[1])
+		_report_error(GdAssertMessages.error_not_same_error(current, expected_error))
+	return self
+
+
+func contains_message(expected :String) -> GdUnitFailureAssert:
+	var expected_error := GdUnitTools.normalize_text(expected)
+	var current_error := GdUnitTools.normalize_text(GdUnitTools.richtext_normalize(_failure_message))
+	if not current_error.contains(expected_error):
 		var diffs := GdDiffTool.string_diff(current_error, expected_error)
 		var current := GdAssertMessages.colored_array_div(diffs[1])
 		_report_error(GdAssertMessages.error_not_same_error(current, expected_error))

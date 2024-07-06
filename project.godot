@@ -48,6 +48,7 @@ folder_colors={
 
 settings/test/test_lookup_folder=""
 ui/toolbar/run_overall=true
+ui/inspector/tree_view_mode=1
 
 [input]
 

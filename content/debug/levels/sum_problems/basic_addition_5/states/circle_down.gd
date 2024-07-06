@@ -14,9 +14,9 @@ var _field_program: FieldProgram
 
 
 func _enter(_last_state: String) -> void:
-	tool_panel.disable("CountingBoard", CountingBoard.Tools.SQUARE_MARKER)
-	tool_panel.include("CountingBoard", CountingBoard.Tools.NUMBER_CIRCLER)
-	program.pim.field.set_tool(CountingBoard.Tools.NUMBER_CIRCLER)
+	tool_panel.disable("GridCounting", GridCounting.Tools.CELL_MARKER)
+	tool_panel.include("GridCounting", GridCounting.Tools.NUMBER_CIRCLER)
+	program.pim.field.set_tool(GridCounting.Tools.NUMBER_CIRCLER)
 
 	_field_program = program.pim.field.get_program("AddByCircles")
 	_field_program.setup(program.start_number, program.addend)

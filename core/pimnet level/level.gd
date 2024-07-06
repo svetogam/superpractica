@@ -13,15 +13,18 @@ extends Node
 
 signal updated
 signal actions_completed
+signal reset_changed
 signal exited
 
+const REVERTER_MAX_SIZE: int = 1000
+var reverter := CReverter.new()
 var _program: LevelProgram
 var _action_queue := LevelActionQueue.new()
+var _reset_function := _default_reset
 var _field_connector := ContextualConnector.new(self, "fields", true)
 var _memo_slot_connector := ContextualConnector.new(self, "memo_slots", true)
 @onready var pimnet := %Pimnet as Pimnet
 @onready var verifier := $Verifier as Node
-@onready var reversion_control := $ReversionControl as ReversionControl
 
 #====================================================================
 # Setup
@@ -53,8 +56,28 @@ func _physics_process(_delta: float) -> void:
 
 
 func _setup_reversion() -> void:
-	reversion_control.setup()
-	reversion_control.reset_completed.connect(_on_reset_completed)
+	reverter.history.max_size = REVERTER_MAX_SIZE
+	CSLocator.with(self).register(GameGlobals.SERVICE_REVERTER, reverter)
+
+	# Initial commit
+	if reverter.has_connections():
+		reverter.commit()
+
+	# Setup reversion menu
+	var menu = pimnet.overlay.reversion_menu
+	menu.undo_pressed.connect(reverter.undo)
+	menu.redo_pressed.connect(reverter.redo)
+	menu.reset_pressed.connect(reset)
+	actions_completed.connect(reverter.commit)
+	menu.enabler.connect_button("undo", reverter.is_undo_possible)
+	menu.enabler.connect_button("redo", reverter.is_redo_possible)
+	menu.enabler.connect_button("reset", _is_reset_possible)
+	menu.enabler.connect_general(verifier.is_running, false)
+	updated.connect(menu.enabler.update)
+	reverter.saved.connect(menu.enabler.update)
+	reverter.loaded.connect(menu.enabler.update)
+	reset_changed.connect(menu.enabler.update)
+	menu.enabler.update()
 
 
 func _setup_goal_panel() -> void:
@@ -83,12 +106,6 @@ func _signal_update(_arg1 = null) -> void:
 	updated.emit()
 
 
-func _on_reset_completed() -> void:
-	if not _action_queue.is_empty():
-		_action_queue.flush()
-		actions_completed.emit()
-
-
 func _on_verifications_started() -> void:
 	_update_input_ability()
 
@@ -100,3 +117,37 @@ func _on_verifications_completed() -> void:
 func _update_input_ability() -> void:
 	var enable = not verifier.is_running()
 	pimnet.input_sequencer.set_enabled(enable)
+
+
+func reset() -> void:
+	if not _reset_function.is_null():
+		_reset_function.call()
+
+	# Flush actions queued by the reset function immediately
+	if not _action_queue.is_empty():
+		_action_queue.flush()
+		actions_completed.emit()
+
+
+func set_no_reset() -> void:
+	_reset_function = Callable()
+	reset_changed.emit()
+
+
+func set_default_reset() -> void:
+	_reset_function = _default_reset
+	reset_changed.emit()
+
+
+func set_custom_reset(callable: Callable) -> void:
+	_reset_function = callable
+	reset_changed.emit()
+
+
+func _default_reset() -> void:
+	for pim in pimnet.get_pim_list():
+		pim.reset()
+
+
+func _is_reset_possible() -> bool:
+	return not _reset_function.is_null()

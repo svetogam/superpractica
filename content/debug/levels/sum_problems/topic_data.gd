@@ -12,14 +12,14 @@ extends Resource
 
 static var topic = TopicResource.new(
 	# ID
-	"sum_problems",
+	"debug_1",
 	# Title
 	"Sum Problems",
 	# Levels
 	[
 		LevelResource.new(
 			# ID
-			"1.1",
+			"debug_1_1_1",
 			# Scene
 			preload("basic_addition_1/levels/level_1.tscn"),
 			# Title
@@ -28,7 +28,7 @@ static var topic = TopicResource.new(
 		),
 		LevelResource.new(
 			# ID
-			"1.2",
+			"debug_1_1_2",
 			# Scene
 			preload("basic_addition_1/levels/level_2.tscn"),
 			# Title
@@ -37,7 +37,7 @@ static var topic = TopicResource.new(
 		),
 		LevelResource.new(
 			# ID
-			"5.1",
+			"debug_1_5_1",
 			# Scene
 			preload("basic_addition_5/levels/level_1.tscn"),
 			# Title
@@ -46,7 +46,7 @@ static var topic = TopicResource.new(
 		),
 		LevelResource.new(
 			# ID
-			"5.2",
+			"debug_1_5_2",
 			# Scene
 			preload("basic_addition_5/levels/level_2.tscn"),
 			# Title
@@ -55,7 +55,7 @@ static var topic = TopicResource.new(
 		),
 		LevelResource.new(
 			# ID
-			"5.3",
+			"debug_1_5_3",
 			# Scene
 			preload("basic_addition_5/levels/level_3.tscn"),
 			# Title
@@ -64,7 +64,7 @@ static var topic = TopicResource.new(
 		),
 		LevelResource.new(
 			# ID
-			"5.4",
+			"debug_1_5_4",
 			# Scene
 			preload("basic_addition_5/levels/level_4.tscn"),
 			# Title
@@ -80,31 +80,31 @@ static var topic = TopicResource.new(
 	[
 		TopicConnectorResource.new(
 			# IDs
-			"1.1", "1.2",
+			"debug_1_1_1", "debug_1_1_2",
 			# Directions
 			Utils.Direction.RIGHT, Utils.Direction.RIGHT
 		),
 		TopicConnectorResource.new(
 			# IDs
-			"5.1", "5.2",
+			"debug_1_5_1", "debug_1_5_2",
 			# Directions
 			Utils.Direction.RIGHT, Utils.Direction.RIGHT
 		),
 		TopicConnectorResource.new(
 			# IDs
-			"5.2", "5.3",
+			"debug_1_5_2", "debug_1_5_3",
 			# Directions
 			Utils.Direction.RIGHT, Utils.Direction.RIGHT
 		),
 		TopicConnectorResource.new(
 			# IDs
-			"5.3", "5.4",
+			"debug_1_5_3", "debug_1_5_4",
 			# Directions
 			Utils.Direction.RIGHT, Utils.Direction.RIGHT
 		),
 		TopicConnectorResource.new(
 			# IDs
-			"1.1", "5.1",
+			"debug_1_1_1", "debug_1_5_1",
 			# Directions
 			Utils.Direction.DOWN, Utils.Direction.DOWN
 		),
@@ -112,10 +112,10 @@ static var topic = TopicResource.new(
 	# Groups
 	[
 		TopicGroupResource.new(
-			["1.1", "1.2"]
+			["debug_1_1_1", "debug_1_1_2"]
 		),
 		TopicGroupResource.new(
-			["5.1", "5.2", "5.3", "5.4"]
+			["debug_1_5_1", "debug_1_5_2", "debug_1_5_3", "debug_1_5_4"]
 		),
 	]
 )
