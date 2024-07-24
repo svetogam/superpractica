@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Super Practica"
+config/name="Super Practica Demo"
+config/description="Super Practica is a game designed to optimize building expertise in mathematics."
+config/version="0.7.0"
 run/main_scene="res://core/main.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
