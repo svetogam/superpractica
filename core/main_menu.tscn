@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://core/about_panel.gd" id="2_morim"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2wghg"]
-font_size = 20
+font_size = 28
 
 [sub_resource type="LabelSettings" id="LabelSettings_rhsfj"]
 font_size = 20
@@ -39,50 +39,65 @@ offset_bottom = 396.0
 [node name="VBoxContainer" type="VBoxContainer" parent="AboutPopup/PanelContainer"]
 layout_mode = 2
 
-[node name="AboutHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
+[node name="TitleHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "About"
+text = "Super Practica Demo"
 label_settings = SubResource("LabelSettings_2wghg")
 horizontal_alignment = 1
 
-[node name="AboutText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_vertical = 3
-text = "Put About text here."
-autowrap_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutPopup/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="VersionHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="VersionHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Version"
 label_settings = SubResource("LabelSettings_rhsfj")
 horizontal_alignment = 1
 
-[node name="VersionText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="VersionText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+text = "(version here)"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="SourceHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="WebsiteHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Website"
+label_settings = SubResource("LabelSettings_rhsfj")
+horizontal_alignment = 1
+
+[node name="WebsiteLink" type="LinkButton" parent="AboutPopup/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(website here)"
+
+[node name="SourceHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Source"
 label_settings = SubResource("LabelSettings_ujeqp")
 horizontal_alignment = 1
 
-[node name="SourceText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="SourceLink" type="LinkButton" parent="AboutPopup/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(source here)"
+
+[node name="DisclaimerHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Disclaimer"
+label_settings = SubResource("LabelSettings_ujeqp")
+horizontal_alignment = 1
+
+[node name="DisclaimerText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_vertical = 3
+text = "This is an early demo release of Super Practica. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="CloseButton" type="Button" parent="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="AboutPopup/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 8
@@ -147,7 +162,7 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="AboutPopup/PanelContainer/VBoxContainer/VBoxContainer/CloseButton" to="AboutPopup" method="_on_close_button_pressed"]
+[connection signal="pressed" from="AboutPopup/PanelContainer/VBoxContainer/CloseButton" to="AboutPopup" method="_on_close_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/TopicsButton" to="." method="_on_topics_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
