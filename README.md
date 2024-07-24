@@ -6,7 +6,7 @@
 
 It's kind of hard to explain though. The [Blueprint](https://codeberg.org/superpractica/blueprint) gives an outline of its theory and design.
 
-Note that this game is incomplete and many changes are planned. At this stage it's not recommended to play except as a taste of what's to come.
+Note that this game is incomplete and that major changes and additions are planned.
 
 
 ## Playthrough video
@@ -33,14 +33,14 @@ The game should be playable and editable in Godot. Please tell me if you followe
 
 ## How to contribute
 
-To contribute modifications, see the [general contributing guide](https://codeberg.org/superpractica/wiki/wiki/Contributing-Guide) and the [game page](https://codeberg.org/superpractica/wiki/wiki/Godot-Game) on the wiki.
+To contribute modifications, see the [general contributing guide](https://codeberg.org/superpractica/wiki/wiki/Contributing-Guide) and the [game development page](https://codeberg.org/superpractica/wiki/wiki/Game-Development) on the wiki.
 
 To contribute funds, go to [Liberapay](https://liberapay.com/SuperPractica/) or [Patreon](https://www.patreon.com/superpractica).
 
-To discuss Super Practica outside of particular issues, visit the [development forum](https://codeberg.org/superpractica/discussion).
+To discuss Super Practica outside of particular issues, you can visit the [chat](https://superpractica.zulipchat.com/) or the [development forum](https://codeberg.org/superpractica/discussion).
 
 
 ## Copyright
 
-See [COPYRIGHT.md](COPYRIGHT.md) for copyright information.
+See [COPYRIGHT.md](COPYRIGHT.md) for copyright and license information.
 
