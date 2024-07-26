@@ -125,7 +125,7 @@ func set_overlay(top_title: String, back_title := "") -> void:
 
 	if back_title != "":
 		back_button.show()
-		back_button.text = back_title + " 🡸"
+		back_button.text = back_title
 	else:
 		back_button.hide()
 

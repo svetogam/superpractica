@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=11 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" path="res://core/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/level_select/level_select_theme.tres" id="1_y5cmv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://core/level_select/level_select_states/zoom_out_to_map.gd" id="6_bbilf"]
 [ext_resource type="Script" path="res://core/level_select/level_select_states/zoom_in_to_topic.gd" id="8_mddll"]
 [ext_resource type="Script" path="res://core/level_select/level_select_states/zoom_out_to_topic.gd" id="9_73f7m"]
+[ext_resource type="Texture2D" uid="uid://cff5xh5bu5aki" path="res://core/level_select/aiga_left_arrow.svg" id="10_37avv"]
 
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
@@ -124,7 +125,8 @@ layout_mode = 1
 offset_right = 130.0
 offset_bottom = 50.0
 theme = ExtResource("1_y5cmv")
-text = "Topic 🡸"
+text = "Topic"
+icon = ExtResource("10_37avv")
 clip_text = true
 
 [node name="TitleButton" type="Button" parent="OverlayLayer/Overlay"]
