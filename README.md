@@ -24,7 +24,7 @@ Note that this game is incomplete and that major changes and additions are plann
 
 1. Download the source code to get the Godot project folder.
 
-2. Download [Godot Engine v4.2.2](https://godotengine.org/download/archive/4.2.1-stable/). (Some versions will be compatible and some won't be.)
+2. Download [Godot Engine v4.2.2](https://godotengine.org/download/archive/4.2.2-stable/). (Some versions will be compatible and some won't be.)
 
 3. Open the project folder in Godot.
 
