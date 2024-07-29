@@ -4,10 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This changelog is written for players rather than for developers. Greater version increases indicate completion of major new content, features, and aesthetic theming. Smaller version increases indicate other improvements and partial completion.
 
-Content may stick around or be prepared in "debug levels" but will be considered as removed here.
+Content may stick around or be prepared in "debug levels", but will be considered as removed or as not yet added here.
+
+For plans for upcoming releases, see the [Roadmap](https://superpractica.org/resources/roadmap).
 
 
-## [Unreleased] - Pre-Player-Facing Demo 1
+## [v0.7.0] - Pre-Player-Facing Demo 1 - 2024-07-29
+
+### Summary
+
+The primary interface and level-selection screen are redesigned, but content is cut to only a few levels.
+
 
 ### Content
 
@@ -57,8 +64,8 @@ Content may stick around or be prepared in "debug levels" but will be considered
 
 ## [v0.6.0] - Proof-of-Concept Demo - 2023-10-16
 
-Initial release.
+This demo is only a proof of concept. Its purpose is to test some ideas, clarify some parts of the design, and build functional code architecture before continuing on to making a real demo.
 
 
-[unreleased]: https://codeberg.org/superpractica/superpractica/compare/v0.6.0...HEAD
+[v0.7.0]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.0
 [v0.6.0]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.6.0
