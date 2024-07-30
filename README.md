@@ -9,15 +9,10 @@ It's kind of hard to explain though. The [Blueprint](https://codeberg.org/superp
 Note that this game is incomplete and that major changes and additions are planned.
 
 
-## Playthrough video
-
-<https://www.youtube.com/watch?v=3lKQDs11VVg>
-
-
 ## How to play the game
 
-* [Through the website](https://superpractica.org/play)
-* [Through Codeberg](https://codeberg.org/superpractica/superpractica/releases)
+* [On the website](https://superpractica.org/play)
+* [On Codeberg](https://codeberg.org/superpractica/superpractica/releases)
 
 
 ## How to edit the game
