@@ -64,6 +64,8 @@ The primary interface and level-selection screen are redesigned, but content is 
 
 ## [v0.6.0] - Proof-of-Concept Demo - 2023-10-16
 
+### Summary
+
 This demo is only a proof of concept. Its purpose is to test some ideas, clarify some parts of the design, and build functional code architecture before continuing on to making a real demo.
 
 
