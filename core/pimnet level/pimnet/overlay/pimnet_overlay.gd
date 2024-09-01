@@ -12,8 +12,10 @@ class_name PimnetOverlay
 extends Control
 
 signal exit_pressed
+signal next_level_requested(level_resource)
 
 enum PimnetPanels {
+	NONE = 0,
 	INVENTORY,
 	TOOLS,
 	CREATION,
@@ -22,8 +24,9 @@ enum PimnetPanels {
 	PLAN,
 }
 enum GoalPanels {
-	ARBITRARY_CHECK = 0,
+	NONE = 0,
 	HINTED_MEMO_SLOT,
+	SOLUTION_MEMO_SLOTS,
 }
 
 const PANEL_TYPE_LIST := [
@@ -38,8 +41,9 @@ const PANEL_TYPE_LIST := [
 var maximum_active_panels: int:
 	set = _do_not_set,
 	get = _get_maximum_active_panels
-var goal_type: GoalPanels:
-	set = _set_goal_type
+var goal_type: GoalPanels = GoalPanels.NONE:
+	set = _set_goal_type,
+	get = _get_goal_type
 var goal_panel: Control:
 	set = _do_not_set,
 	get = _get_goal_panel
@@ -47,6 +51,7 @@ var goal_panel: Control:
 @onready var plan_panel := %PlanPanel as Control
 @onready var tool_panel := %ToolPanel as Control
 @onready var creation_panel := %CreationPanel as Control
+@onready var verification_panel := %SolutionVerificationPanel as Control
 
 
 func _ready() -> void:
@@ -62,12 +67,13 @@ func _ready() -> void:
 		set_level_title_text(topic_title + " > " + level_title)
 
 
-func _on_main_menu_button_pressed() -> void:
-	%MainMenuPopup.visible = true
+func _on_pause_menu_button_pressed() -> void:
+	%PauseMenuPopup.visible = true
+	get_tree().paused = true
 
 
 func _on_continue_button_pressed() -> void:
-	%MainMenuPopup.visible = false
+	%PauseMenuPopup.visible = false
 
 
 func _on_settings_button_pressed() -> void:
@@ -75,7 +81,18 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	get_tree().paused = false
 	exit_pressed.emit()
+
+
+func _on_pause_menu_popup_hide() -> void:
+	get_tree().paused = false
+
+
+func _on_completion_popup_visibility_changed() -> void:
+	var next_level := Game.current_level.topic.get_suggested_level_after(
+			Game.current_level.id)
+	%NextLevelButton.disabled = (next_level == null)
 
 
 func _on_stay_button_pressed() -> void:
@@ -87,20 +104,26 @@ func _on_select_level_button_pressed() -> void:
 
 
 func _on_next_level_button_pressed() -> void:
-	pass
+	var next_level := Game.current_level.topic.get_suggested_level_after(
+			Game.current_level.id)
+	if next_level != null:
+		next_level_requested.emit(next_level)
 
 
 func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> void:
 	var panel := _get_panel(panel_type)
 	panel.visible = toggled_on
+	deactivate_overflowing_panels(panel_type)
 
-	#Deactivate overflowing panels
+
+func deactivate_overflowing_panels(priority_panel_type: PimnetPanels = PimnetPanels.NONE
+) -> void:
 	if _get_number_active_panels() > maximum_active_panels:
-		for other_panel_type in PANEL_TYPE_LIST:
-			if other_panel_type != panel_type:
-				var other_panel := _get_panel(other_panel_type)
+		for panel_type in PANEL_TYPE_LIST:
+			if panel_type != priority_panel_type:
+				var other_panel := _get_panel(panel_type)
 				if other_panel.visible:
-					deactivate_panel(other_panel_type)
+					deactivate_panel(panel_type)
 					break
 
 	assert(_get_number_active_panels() <= maximum_active_panels)
@@ -207,26 +230,40 @@ func _get_button(panel_type: PimnetPanels) -> Button:
 
 
 func _set_goal_type(p_goal_type: GoalPanels) -> void:
-	var should_activate = goal_panel.visible
-	if should_activate:
+	if p_goal_type == goal_type:
+		return
+	elif goal_type != GoalPanels.NONE:
 		deactivate_panel(PimnetPanels.GOAL)
 
 	goal_type = p_goal_type
+	match goal_type:
+		GoalPanels.NONE:
+			%HintedMemoSlotPanel.hide()
+			%SolutionMemoSlotsPanel.hide()
+			%SolutionColumn.hide()
+		GoalPanels.HINTED_MEMO_SLOT:
+			%HintedMemoSlotPanel.show()
+			%SolutionColumn.hide()
+		GoalPanels.SOLUTION_MEMO_SLOTS:
+			%SolutionMemoSlotsPanel.show()
+			%SolutionColumn.show()
 
-	if should_activate:
-		match goal_type:
-			GoalPanels.ARBITRARY_CHECK:
-				%ArbitraryCheckPanel.show()
-			GoalPanels.HINTED_MEMO_SLOT:
-				%HintedMemoSlotPanel.show()
+
+func _get_goal_type() -> GoalPanels:
+	if %GoalButton != null and not %GoalButton.visible:
+		return GoalPanels.NONE
+	else:
+		return goal_type
 
 
 func _get_goal_panel() -> Control:
 	match goal_type:
-		GoalPanels.ARBITRARY_CHECK:
-			return %ArbitraryCheckPanel
+		GoalPanels.NONE:
+			return null
 		GoalPanels.HINTED_MEMO_SLOT:
 			return %HintedMemoSlotPanel
+		GoalPanels.SOLUTION_MEMO_SLOTS:
+			return %SolutionMemoSlotsPanel
 		_:
 			assert(false)
 			return null
@@ -236,7 +273,7 @@ func _get_number_active_panels() -> int:
 	var count := 0
 	for panel_type in PANEL_TYPE_LIST:
 		var panel := _get_panel(panel_type)
-		if panel.visible:
+		if panel != null and panel.visible:
 			count += 1
 	return count
 

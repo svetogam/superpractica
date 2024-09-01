@@ -12,7 +12,7 @@ extends PanelContainer
 
 signal slot_filled
 
-@onready var slot := %MemoSlot as MemoSlot
+@onready var slot := %HintedMemoSlot as MemoSlot
 
 
 func _ready() -> void:
@@ -26,6 +26,4 @@ func _accept_condition(memo: Memo) -> bool:
 
 
 func _on_memo_accepted(_memo: Memo) -> void:
-	slot.set_faded(false)
-	slot.set_input_output_ability(false, false)
 	slot_filled.emit()

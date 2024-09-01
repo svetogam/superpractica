@@ -23,7 +23,7 @@ func _draw() -> void:
 	var radius := rect.size.x/2 - width
 	var color: Color
 	if variant == "warning":
-		color = GameGlobals.COLOR_WARNING
+		color = GameGlobals.COLOR_REJECTION
 	elif variant == "affirmation":
 		color = GameGlobals.COLOR_AFFIRMATION
 	elif variant == "normal":
@@ -33,4 +33,3 @@ func _draw() -> void:
 
 	draw_arc(center, radius, -1, 2*PI, 30, outline_color, width + outline_width*2)
 	draw_arc(center, radius, -1, 2*PI, 30, color, width)
-

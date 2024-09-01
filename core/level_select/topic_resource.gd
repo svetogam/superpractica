@@ -18,16 +18,20 @@ extends Resource
 @export var _layout: PackedScene
 @export var connections: Array[TopicConnectorResource]
 @export var groups: Array[TopicGroupResource]
+@export var suggested_order: Array[String]
 var supertopic: TopicResource
 var _layout_data: Dictionary
 
 
-func _init(p_id := "", p_title := "",
+func _init(
+		p_id := "",
+		p_title := "",
 		p_levels: Array[LevelResource] = [],
 		p_subtopics: Array[TopicResource] = [],
 		p_layout: PackedScene = null,
 		p_connections: Array[TopicConnectorResource] = [],
-		p_groups: Array[TopicGroupResource] = []
+		p_groups: Array[TopicGroupResource] = [],
+		p_suggested_order: Array[String] = []
 ) -> void:
 	id = p_id
 	title = p_title
@@ -36,6 +40,7 @@ func _init(p_id := "", p_title := "",
 	_layout = p_layout
 	connections = p_connections
 	groups = p_groups
+	suggested_order = p_suggested_order
 
 	for level in _levels:
 		level.topic = self
@@ -77,6 +82,23 @@ func get_subtopics() -> Array:
 func get_node_position(node_id: String) -> Vector2:
 	_lazy_build_data_from_scene()
 	return _layout_data[node_id]
+
+
+func get_suggested_level() -> LevelResource:
+	for level_id in suggested_order:
+		if not Game.progress_data.is_level_completed(level_id):
+			return Game.current_level.topic.get_level([level_id])
+	return null
+
+
+func get_suggested_level_after(from_level_id: String) -> LevelResource:
+	var started_search := false
+	for level_id in suggested_order:
+		if started_search and not Game.progress_data.is_level_completed(level_id):
+			return Game.current_level.topic.get_level([level_id])
+		if level_id == from_level_id:
+			started_search = true
+	return null
 
 
 func get_num_internals() -> int:

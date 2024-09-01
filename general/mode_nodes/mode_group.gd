@@ -20,8 +20,8 @@ signal mode_stopped(mode_name)
 
 func _ready() -> void:
 	for mode in get_modes():
-		mode.started.connect(emit_signal.bind("mode_started", mode.name))
-		mode.stopped.connect(emit_signal.bind("mode_stopped", mode.name))
+		mode.started.connect(mode_started.emit.bind(mode.name))
+		mode.stopped.connect(mode_stopped.emit.bind(mode.name))
 
 	for mode in get_active_modes():
 		mode_started.emit(mode.name)

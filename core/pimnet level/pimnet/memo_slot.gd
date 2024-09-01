@@ -17,14 +17,18 @@ signal memo_changed(memo)
 enum HighlightTypes {
 	REGULAR,
 	ACCEPTING,
+	AFFIRMATION,
 	WARNING,
+	REJECTION,
 }
 
 const REGULAR_FONT_COLOR := Color.BLACK
 const FADED_FONT_COLOR := Color.SLATE_GRAY
-const REGULAR_BACKGROUND_COLOR := Color.WHITE
-const ACCEPTING_BACKGROUND_COLOR := GameGlobals.COLOR_HIGHLIGHT
-const WARNING_BACKGROUND_COLOR := Color.GRAY
+const REGULAR_SLOT_COLOR := Color.WHITE
+const ACCEPTING_SLOT_COLOR := GameGlobals.COLOR_HIGHLIGHT
+const AFFIRMATION_SLOT_COLOR := GameGlobals.COLOR_AFFIRMATION
+const WARNING_SLOT_COLOR := Color.GRAY
+const REJECTION_SLOT_COLOR := GameGlobals.COLOR_REJECTION
 const MemoDragPreview := preload("memo_drag_preview.tscn")
 @export var acceptable_types: Array[String]
 @export var memo_input_enabled := true
@@ -32,6 +36,7 @@ const MemoDragPreview := preload("memo_drag_preview.tscn")
 var memo: Memo
 var pimnet: Pimnet
 var accept_condition := Callable()
+var _previous_slot_color: Color
 @onready var _background := %Background as ColorRect
 @onready var _label := %Label as Label
 
@@ -136,19 +141,27 @@ func is_empty() -> bool:
 
 
 func set_highlight(highlight_type: int) -> void:
+	_previous_slot_color = _background.color
 	match highlight_type:
 		HighlightTypes.REGULAR:
-			_background.color = REGULAR_BACKGROUND_COLOR
+			_background.color = REGULAR_SLOT_COLOR
 		HighlightTypes.ACCEPTING:
-			_background.color = ACCEPTING_BACKGROUND_COLOR
+			_background.color = ACCEPTING_SLOT_COLOR
+		HighlightTypes.AFFIRMATION:
+			_background.color = AFFIRMATION_SLOT_COLOR
 		HighlightTypes.WARNING:
-			_background.color = WARNING_BACKGROUND_COLOR
+			_background.color = WARNING_SLOT_COLOR
+		HighlightTypes.REJECTION:
+			_background.color = REJECTION_SLOT_COLOR
+		_:
+			assert(false)
+
+
+func _revert_highlight() -> void:
+	_background.color = _previous_slot_color
 
 
 func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
-	if not bypass_hooks:
-		memo_accepted.emit(memo)
-
 	var same: bool = (
 		(memo == null and new_memo == null)
 		or (memo != null and new_memo != null
@@ -160,6 +173,9 @@ func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
 		if not bypass_hooks:
 			memo_changed.emit(memo)
 
+	if not bypass_hooks:
+		memo_accepted.emit(memo)
+
 
 func _on_memo_drag_started(p_memo: Memo) -> void:
 	assert(p_memo != null)
@@ -168,8 +184,8 @@ func _on_memo_drag_started(p_memo: Memo) -> void:
 
 
 func _on_memo_drag_ended(_p_memo: Memo) -> void:
-	if _background.color == ACCEPTING_BACKGROUND_COLOR:
-		set_highlight(HighlightTypes.REGULAR)
+	if _background.color == ACCEPTING_SLOT_COLOR:
+		_revert_highlight()
 
 
 func set_input_output_ability(input: bool, output: bool) -> void:

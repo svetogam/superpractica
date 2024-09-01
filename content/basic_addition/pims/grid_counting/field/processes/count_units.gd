@@ -10,6 +10,17 @@
 
 extends CountInField
 
+var _zero_position: Vector2
+
+
+func _init(p_objects_to_count: Array, p_zero_position: Vector2) -> void:
+	super(p_objects_to_count)
+	_zero_position = p_zero_position
+
 
 func _count(object: FieldObject) -> NumberEffect:
 	return field.count_unit(object)
+
+
+func _count_zero() -> NumberEffect:
+	return field.math_effects.give_number(0, _zero_position)

@@ -9,6 +9,25 @@ Content may stick around or be prepared in "debug levels", but will be considere
 For plans for upcoming releases, see the [Roadmap](https://superpractica.org/resources/roadmap).
 
 
+## [Unreleased] - Pre-Player-Facing Demo 2
+
+### Content
+
+#### Added
+
+* Grid-counting level set 3
+
+
+### Features
+
+#### Added
+
+* Verification system
+    * It's back in a new form after being cut.
+* "Contextual goal slot" goal mechanic
+* "Next Level" button finally works
+
+
 ## [v0.7.0] - Pre-Player-Facing Demo 1 - 2024-07-29
 
 ### Summary

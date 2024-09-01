@@ -19,7 +19,6 @@ func _enter(_last_state: String) -> void:
 	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
 
 	_field_program = program.field.get_program("SoftCount")
-	_field_program.setup(0) # Count should proceed starting at 1
 	_field_program.run()
 
 	program.output_program.output_decided.connect(_on_output_decided)

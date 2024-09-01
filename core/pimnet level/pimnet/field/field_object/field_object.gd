@@ -23,6 +23,11 @@ func _ready() -> void:
 	CSLocator.with(self).connect_service_found(GameGlobals.SERVICE_FIELD, _on_field_found)
 
 
+func disable_input(disable := true) -> void:
+	set_process_input(not disable)
+	input_pickable = not disable
+
+
 # Virtual
 func _get_object_type() -> int:
 	return GameGlobals.NO_OBJECT

@@ -15,7 +15,6 @@ func _enter(_last_state: String) -> void:
 	level.reverter.history.clear()
 	level.set_custom_reset(_reset)
 
-	program.field_program.setup(0)
 	program.field_program.run()
 
 	program.output_program.output_decided.connect(_on_output_decided)

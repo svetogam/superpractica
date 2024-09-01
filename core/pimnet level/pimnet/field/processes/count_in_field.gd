@@ -26,15 +26,25 @@ func _ready() -> void:
 
 
 func _count_next() -> void:
-	var next_object = _to_count[_current_count]
-	_last_count_object = _count(next_object)
+	if not _to_count.is_empty():
+		var next_object = _to_count[_current_count]
+		_last_count_object = _count(next_object)
+		_current_count += 1
+	else:
+		_last_count_object = _count_zero()
 
-	_current_count += 1
 	Game.call_after(_on_delay_completed, COUNT_DELAY)
 
 
 # Virtual
 func _count(_object: FieldObject) -> NumberEffect:
+	assert(false)
+	return null
+
+
+# Virtual
+func _count_zero() -> NumberEffect:
+	assert(false)
 	return null
 
 

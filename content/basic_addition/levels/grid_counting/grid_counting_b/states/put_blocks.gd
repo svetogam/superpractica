@@ -17,7 +17,6 @@ func _enter(_last_state: String) -> void:
 	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
 	creation_panel.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
 
-	program.field_program.setup(0)
 	program.field_program.disallow_object(GridCounting.Objects.UNIT)
 	program.field_program.run()
 

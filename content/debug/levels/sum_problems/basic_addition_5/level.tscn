@@ -7,10 +7,15 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_3ra5s"]
 
-[node name="Level" instance=ExtResource("2")]
+[node name="Level" node_paths=PackedStringArray("program") instance=ExtResource("2")]
+program = NodePath("LevelProgram")
 
-[node name="Pimnet" parent="." index="0"]
+[node name="Pimnet" parent="." index="1"]
 setup_resource = ExtResource("2_awybg")
+
+[node name="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup" index="1"]
+offset_right = -4.0
+offset_bottom = -4.0
 
 [node name="Task1Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1" index="1"]
 button_group = SubResource("ButtonGroup_3ra5s")
@@ -33,5 +38,5 @@ button_group = SubResource("ButtonGroup_3ra5s")
 [node name="Task7Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7" index="1"]
 button_group = SubResource("ButtonGroup_3ra5s")
 
-[node name="LevelProgram" parent="." index="4" instance=ExtResource("5")]
+[node name="LevelProgram" parent="." index="3" instance=ExtResource("5")]
 _plan_data = ExtResource("2_shlje")

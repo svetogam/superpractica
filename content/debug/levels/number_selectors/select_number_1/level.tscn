@@ -1,38 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://n2sqy1sts1hh"]
+[gd_scene load_steps=5 format=3 uid="uid://n2sqy1sts1hh"]
 
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet level/level.tscn" id="1_wghrq"]
-[ext_resource type="PackedScene" uid="uid://dovmnfrl4xrfs" path="res://content/basic_addition/pims/integer_counter/integer_counter.tscn" id="2_s6lfo"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="3_4win8"]
+[ext_resource type="Resource" uid="uid://d2fysd4kr2rhw" path="res://content/debug/levels/number_selectors/select_number_1/pimnet_setup.tres" id="2_wh58t"]
 [ext_resource type="PackedScene" uid="uid://c24kuad0ccxju" path="res://content/debug/levels/number_selectors/select_number_1/program.tscn" id="4_f87qy"]
-
-[sub_resource type="Resource" id="Resource_6tual"]
-script = ExtResource("3_4win8")
-pims = Array[PackedScene]([ExtResource("2_s6lfo")])
-reversion_enable = false
-inventory_enable = false
-inventory_start_active = false
-tools_enable = false
-tools_start_active = false
-creation_enable = false
-creation_start_active = false
-translation_enable = false
-translation_start_active = false
-goal_enable = true
-goal_start_active = true
-goal_type = 1
-plan_enable = false
-plan_start_active = false
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ixbdn"]
 
-[node name="Level" instance=ExtResource("1_wghrq")]
+[node name="Level" node_paths=PackedStringArray("program") instance=ExtResource("1_wghrq")]
+program = NodePath("LevelProgram")
 
-[node name="Pimnet" parent="." index="0"]
-setup_resource = SubResource("Resource_6tual")
-
-[node name="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup" index="1"]
-offset_right = 316.0
-offset_bottom = 196.0
+[node name="Pimnet" parent="." index="1"]
+setup_resource = ExtResource("2_wh58t")
 
 [node name="Task1Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1" index="1"]
 button_group = SubResource("ButtonGroup_ixbdn")

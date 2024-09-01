@@ -1,0 +1,42 @@
+[gd_scene load_steps=12 format=3 uid="uid://r2lr30ufuth5"]
+
+[ext_resource type="Script" path="res://core/verifier/goal_verifications/effects/equality_effect.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/effect_system/screen_effect.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://b2mvwfkws1vfi" path="res://core/verifier/goal_verifications/effects/unequals_v2f1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://n5v8vxr1udct" path="res://core/verifier/goal_verifications/effects/equals_v2f1.png" id="4"]
+[ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/effect_system/effects/animations/popup_bounce_anim.tres" id="5_gv1tk"]
+[ext_resource type="Animation" uid="uid://ceuv52itq7bet" path="res://core/effect_system/effects/animations/popup_descend_anim.tres" id="6_8u1ja"]
+[ext_resource type="Animation" uid="uid://c5ghu0ff2xo4r" path="res://core/effect_system/effects/animations/popup_fade_in_anim.tres" id="7_b17qw"]
+[ext_resource type="Animation" uid="uid://clf4y3uumddjt" path="res://core/effect_system/effects/animations/popup_grow_anim.tres" id="8_13qsx"]
+[ext_resource type="Animation" uid="uid://depuallq4wr1e" path="res://core/effect_system/effects/animations/popup_rise_anim.tres" id="9_qpbyn"]
+[ext_resource type="Animation" uid="uid://dndrepda7juld" path="res://core/effect_system/effects/animations/popup_shake_anim.tres" id="10_78o1w"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8sld"]
+_data = {
+"popup_bounce_anim": ExtResource("5_gv1tk"),
+"popup_descend_anim": ExtResource("6_8u1ja"),
+"popup_fade_in_anim": ExtResource("7_b17qw"),
+"popup_grow_anim": ExtResource("8_13qsx"),
+"popup_rise_anim": ExtResource("9_qpbyn"),
+"popup_shake_anim": ExtResource("10_78o1w")
+}
+
+[node name="EqualityEffect" instance=ExtResource("2")]
+script = ExtResource("1")
+
+[node name="Graphic" parent="." index="0"]
+scale = Vector2(0.08, 0.08)
+
+[node name="EqualitySprite" type="Sprite2D" parent="Graphic" index="0"]
+unique_name_in_owner = true
+texture = ExtResource("4")
+
+[node name="InequalitySprite" type="Sprite2D" parent="Graphic" index="1"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("3")
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_a8sld")
+}

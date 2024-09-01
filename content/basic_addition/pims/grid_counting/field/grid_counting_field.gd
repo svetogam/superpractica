@@ -169,8 +169,15 @@ func get_grid_cell_list() -> Array:
 	return _grid_cells_dict.values()
 
 
-func get_unit_list() -> Array:
-	return _units_dict.values()
+func get_unit_list(sort_ascending := false) -> Array:
+	if not sort_ascending:
+		return _units_dict.values()
+	else:
+		var units: Array = []
+		var numbers := get_numbers_with_units()
+		for number in numbers:
+			units.append(_units_dict[number])
+		return units
 
 
 func get_ten_block_list() -> Array:

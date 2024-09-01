@@ -14,7 +14,7 @@ config/name="Super Practica"
 config/description="Super Practica is a game designed to optimize building expertise in mathematics."
 config/version="0.7.0"
 run/main_scene="res://core/main.tscn"
-config/features=PackedStringArray("4.2")
+config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
 [autoload]
@@ -24,6 +24,7 @@ ContentDriver="res://content/content_driver.gd"
 
 [debug]
 
+gdscript/warnings/unused_signal=0
 gdscript/warnings/unsafe_cast=1
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/redundant_await=0
@@ -51,6 +52,10 @@ folder_colors={
 settings/test/test_lookup_folder=""
 ui/toolbar/run_overall=true
 ui/inspector/tree_view_mode=1
+
+[global_group]
+
+disable_during_verification=""
 
 [input]
 

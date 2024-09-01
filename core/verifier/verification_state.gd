@@ -12,14 +12,25 @@ class_name VerificationState
 extends State
 
 var verification: Verification:
-	set = _do_not_set,
-	get = _get_verification
-var verifier: Node:
-	set = _do_not_set,
-	get = _get_verifier
-var screen_verifier: ScreenVerifier:
-	set = _do_not_set,
-	get = _get_screen_verifier
+	get:
+		assert(_target != null)
+		return _target
+var verifier: Verifier:
+	get:
+		assert(_target.verifier != null)
+		return _target.verifier
+var goal_verifier: GoalVerifier:
+	get:
+		assert(verifier.goal_verifier != null)
+		return verifier.goal_verifier
+var verification_panel: PanelContainer:
+	get:
+		assert(goal_verifier.verification_panel != null)
+		return goal_verifier.verification_panel
+var pimnet: Pimnet:
+	get:
+		assert(_target.pimnet != null)
+		return _target.pimnet
 
 
 func verify() -> void:
@@ -28,22 +39,3 @@ func verify() -> void:
 
 func reject() -> void:
 	verification.reject()
-
-
-func _get_verification() -> Verification:
-	assert(_target != null)
-	return _target
-
-
-func _get_verifier() -> Node:
-	assert(_target.verifier != null)
-	return _target.verifier
-
-
-func _get_screen_verifier() -> ScreenVerifier:
-	assert(_target.screen_verifier != null)
-	return _target.screen_verifier
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)

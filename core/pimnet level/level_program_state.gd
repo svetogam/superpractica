@@ -23,9 +23,6 @@ var effect_layer: CanvasLayer:
 var verifier: Node:
 	set = _do_not_set,
 	get = _get_verifier
-var screen_verifier: ScreenVerifier:
-	set = _do_not_set,
-	get = _get_screen_verifier
 var pimnet: Pimnet:
 	set = _do_not_set,
 	get = _get_pimnet
@@ -79,11 +76,6 @@ func _get_level() -> Level:
 func _get_verifier() -> Node:
 	assert(level.verifier != null)
 	return level.verifier
-
-
-func _get_screen_verifier() -> ScreenVerifier:
-	assert(verifier.screen_verifier != null)
-	return verifier.screen_verifier
 
 
 func _get_effect_layer() -> CanvasLayer:

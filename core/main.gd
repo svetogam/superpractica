@@ -10,7 +10,7 @@
 
 extends Node
 
-const MainMenu := preload("res://core/main_menu.tscn")
+const MainMenu := preload("res://core/main_menu/main_menu.tscn")
 const LevelSelect := preload("res://core/level_select/level_select_screen.tscn")
 var _current_scene: Node = null
 
@@ -55,6 +55,7 @@ func enter_level(level_data: LevelResource) -> void:
 	add_child(_current_scene)
 
 	_current_scene.exited.connect(enter_level_select)
+	_current_scene.level_switched.connect(enter_level)
 
 
 func exit_game() -> void:

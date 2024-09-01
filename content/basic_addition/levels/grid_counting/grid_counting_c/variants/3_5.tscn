@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqiduia40yfbc"]
+
+[ext_resource type="PackedScene" uid="uid://bye74apst3lin" path="res://content/basic_addition/levels/grid_counting/grid_counting_c/level.tscn" id="1_xbemp"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fcitl"]
+
+[node name="Level" instance=ExtResource("1_xbemp")]
+
+[node name="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup" index="1"]
+offset_right = 316.0
+offset_bottom = 196.0
+
+[node name="Task1Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1" index="1"]
+button_group = SubResource("ButtonGroup_fcitl")
+
+[node name="Task2Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2" index="1"]
+button_group = SubResource("ButtonGroup_fcitl")
+
+[node name="Task3Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3" index="1"]
+button_group = SubResource("ButtonGroup_fcitl")
+
+[node name="Task4Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4" index="1"]
+button_group = SubResource("ButtonGroup_fcitl")
+
+[node name="Task5Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5" index="1"]
+button_group = SubResource("ButtonGroup_fcitl")
+
+[node name="Task6Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6" index="1"]
+button_group = SubResource("ButtonGroup_fcitl")
+
+[node name="Task7Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7" index="1"]
+button_group = SubResource("ButtonGroup_fcitl")
+
+[node name="LevelProgram" parent="." index="2"]
+addend_1 = 2
+addend_2 = 39

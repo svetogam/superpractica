@@ -34,3 +34,10 @@ func animate(animation: String) -> void:
 	elif animation == "grow":
 		_animation_player.play("popup_grow_anim")
 	_animation_player.advance(0)
+
+
+func reparent_from_sub_to_root_group(root_group: ScreenEffectGroup) -> void:
+	var local_effect_layer = get_canvas_layer_node()
+	var root_effect_layer = root_group.get_canvas_layer_node()
+	Utils.reparent_out_of_sub_viewport(self, root_group)
+	global_position += root_effect_layer.offset - local_effect_layer.offset

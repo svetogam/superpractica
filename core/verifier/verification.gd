@@ -19,11 +19,27 @@ signal completed
 signal verified
 signal rejected
 
-var verifier: Node:
+var verifier: Verifier:
 	get = _get_verifier
-var screen_verifier: ScreenVerifier:
-	set = _do_not_set,
-	get = _get_screen_verifier
+var goal_verifier: GoalVerifier:
+	get:
+		assert(verifier.goal_verifier != null)
+		return verifier.goal_verifier
+var verification_panel: PanelContainer:
+	get:
+		assert(goal_verifier.verification_panel != null)
+		return goal_verifier.verification_panel
+var pimnet: Pimnet:
+	get:
+		assert(verifier.pimnet != null)
+		return verifier.pimnet
+
+
+func _get_verifier() -> Verifier:
+	if verifier == null:
+		verifier = CSLocator.with(self).find(GameGlobals.SERVICE_VERIFIER)
+		assert(verifier != null)
+	return verifier
 
 
 func _init() -> void:
@@ -34,12 +50,13 @@ func _enter_tree() -> void:
 	ContextualConnector.register(self)
 
 
-func run(target: Node, verified_callback: Callable, rejected_callback: Callable
+func run(target: Node, verified_callback: Callable, rejected_callback := Callable()
 ) -> Verification:
 	assert(not is_inside_tree())
 
 	verified.connect(verified_callback)
-	rejected.connect(rejected_callback)
+	if not rejected_callback.is_null():
+		rejected.connect(rejected_callback)
 	target.add_child(self)
 	return self
 
@@ -61,19 +78,3 @@ func reject() -> void:
 func _complete() -> void:
 	completed.emit()
 	queue_free()
-
-
-func _get_verifier() -> Node:
-	if verifier == null:
-		verifier = CSLocator.with(self).find(GameGlobals.SERVICE_VERIFIER)
-		assert(verifier != null)
-	return verifier
-
-
-func _get_screen_verifier() -> ScreenVerifier:
-	assert(verifier.screen_verifier != null)
-	return verifier.screen_verifier
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)

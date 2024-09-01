@@ -24,8 +24,7 @@ extends Resource
 @export var creation_start_active := false
 @export var translation_enable := false
 @export var translation_start_active := false
-@export var goal_enable := false
+@export var goal_type := PimnetOverlay.GoalPanels.NONE
 @export var goal_start_active := false
-@export var goal_type := PimnetOverlay.GoalPanels.ARBITRARY_CHECK
 @export var plan_enable := false
 @export var plan_start_active := false

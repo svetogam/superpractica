@@ -51,7 +51,7 @@ func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
 
 	# Connect node signals
 	for node in _node_ids_to_nodes.values():
-		node.mask_button.pressed.connect(emit_signal.bind("node_pressed", node))
+		node.mask_button.pressed.connect(node_pressed.emit.bind(node))
 
 	# Add connectors
 	for connection in topic_data.connections:

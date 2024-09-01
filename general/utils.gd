@@ -122,6 +122,23 @@ static func convert_from_layer_to_layer(vector: Vector2,
 	return (vector + offset_diff) * scale_diff
 
 
+static func reparent_out_of_sub_viewport(child: Node, new_parent: Node) -> void:
+	# Out of viewport
+	var viewport = child.get_viewport()
+	assert(viewport is SubViewport)
+	var viewport_container = viewport.get_parent()
+	assert(viewport_container is SubViewportContainer)
+	child.global_position += viewport_container.global_position
+
+	# To new parent
+	var old_parent = child.get_parent()
+	child.reparent(new_parent, false)
+	if old_parent is Node2D or old_parent is Control:
+		child.global_position -= old_parent.global_position
+	if new_parent is Node2D or new_parent is Control:
+		child.global_position += new_parent.global_position
+
+
 static func get_combined_control_rect(control_nodes: Array) -> Rect2:
 	assert(control_nodes.size() > 0)
 

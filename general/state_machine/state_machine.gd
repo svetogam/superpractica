@@ -14,19 +14,36 @@ class_name StateMachine
 extends Node
 
 @export var SetupData: GDScript
+## Priority for target is:
+## [br]
+## 1. Inspector
+## [br]
+## 2. Parent
 @export var _target: Node
+## Priority for initial state is:
+## [br]
+## 1. Method parameter
+## [br]
+## 2. Setup Data
+## [br]
+## 3. Inspector
 @export var _initial_state: State
-## Warning: If turned on, it may call State._enter() before
-## the target's _ready() function is called.
-## Set to off and call activate() manually to ensure correct
+## [b]Warning[/b]: If turned on, it may call [code]State._enter()[/code] before
+## the target's [code]_ready()[/code] function is called.
+## Set to off and call [code]activate()[/code] manually to ensure correct
 ## order in all cases.
 @export var _auto_activate := true
+## This calls [code]deactivate()[/code] when exiting the tree.
+## [br][br]
+## [b]Warning[/b]: If turned on, it may set up a race condition when the state machine
+## is exiting the tree together with other nodes. To solve this, call
+## [code]deactivate()[/code] manually before removing the whole scene that the
+## state machine is a part of.
+@export var _auto_deactivate := false
 var _current_state: State
 var _setup_data: StateData
 
 
-## Priority for target is:
-## 1. Inspector, 2. Parent
 func _ready() -> void:
 	# Set target
 	if _target == null:
@@ -50,12 +67,10 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
-	if is_active():
+	if is_active() and _auto_deactivate:
 		deactivate()
 
 
-## Priority for initial state is:
-## 1. Method parameter, 2. Setup Data, 3. Inspector
 func activate(initial_state_name := "") -> void:
 	assert(not is_active())
 

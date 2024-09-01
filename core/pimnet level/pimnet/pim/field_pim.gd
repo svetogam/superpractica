@@ -21,7 +21,7 @@ func _ready() -> void:
 			break
 	assert(field != null)
 
-	field.updated.connect(emit_signal.bind("focus_entered"))
+	field.updated.connect(focus_entered.emit)
 
 
 func _on_focus() -> void:

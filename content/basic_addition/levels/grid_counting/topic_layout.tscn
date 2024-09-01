@@ -4,7 +4,7 @@
 
 [node name="Layout" type="Node"]
 
-[node name="Level1" type="ReferenceRect" parent="."]
+[node name="Level1_1" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = -48.0
 offset_top = -24.0
@@ -15,7 +15,7 @@ border_width = 4.0
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_1"
 
-[node name="Level2" type="ReferenceRect" parent="."]
+[node name="Level1_2" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 112.0
 offset_top = -24.0
@@ -26,7 +26,7 @@ border_width = 4.0
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_2"
 
-[node name="Level3" type="ReferenceRect" parent="."]
+[node name="Level1_3" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 272.0
 offset_top = -24.0
@@ -37,7 +37,7 @@ border_width = 4.0
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_3"
 
-[node name="Level4" type="ReferenceRect" parent="."]
+[node name="Level1_4" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 432.0
 offset_top = -24.0
@@ -48,7 +48,7 @@ border_width = 4.0
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_4"
 
-[node name="Level5" type="ReferenceRect" parent="."]
+[node name="Level1_5" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 592.0
 offset_top = -24.0
@@ -59,7 +59,7 @@ border_width = 4.0
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_5"
 
-[node name="Level6" type="ReferenceRect" parent="."]
+[node name="Level1_6" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 752.0
 offset_top = -24.0
@@ -70,7 +70,7 @@ border_width = 4.0
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_6"
 
-[node name="Level7" type="ReferenceRect" parent="."]
+[node name="Level1_7" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 912.0
 offset_top = -24.0
@@ -80,3 +80,223 @@ border_color = Color(0, 0, 0, 1)
 border_width = 4.0
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_random"
+
+[node name="Level2_1" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1117.0
+offset_top = 172.0
+offset_right = 1217.0
+offset_bottom = 222.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_2_1"
+
+[node name="Level2_2" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1277.0
+offset_top = 172.0
+offset_right = 1377.0
+offset_bottom = 222.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_2_2"
+
+[node name="Level2_3" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1437.0
+offset_top = 172.0
+offset_right = 1537.0
+offset_bottom = 222.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_2_3"
+
+[node name="Level2_4" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1597.0
+offset_top = 172.0
+offset_right = 1697.0
+offset_bottom = 222.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_2_4"
+
+[node name="Level2_5" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1757.0
+offset_top = 172.0
+offset_right = 1857.0
+offset_bottom = 222.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_2_5"
+
+[node name="Level2_6" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1917.0
+offset_top = 172.0
+offset_right = 2017.0
+offset_bottom = 222.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_2_6"
+
+[node name="Level2_7" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 2077.0
+offset_top = 172.0
+offset_right = 2177.0
+offset_bottom = 222.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_2_7"
+
+[node name="Level3_1" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -48.0
+offset_top = 368.0
+offset_right = 52.0
+offset_bottom = 418.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_3_1"
+
+[node name="Level3_2" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 112.0
+offset_top = 368.0
+offset_right = 212.0
+offset_bottom = 418.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_3_2"
+
+[node name="Level3_3" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 272.0
+offset_top = 368.0
+offset_right = 372.0
+offset_bottom = 418.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_3_3"
+
+[node name="Level3_4" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 432.0
+offset_top = 368.0
+offset_right = 532.0
+offset_bottom = 418.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_3_4"
+
+[node name="Level3_5" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 592.0
+offset_top = 368.0
+offset_right = 692.0
+offset_bottom = 418.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_3_5"
+
+[node name="Level3_6" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 752.0
+offset_top = 368.0
+offset_right = 852.0
+offset_bottom = 418.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_3_6"
+
+[node name="Level4_1" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1117.0
+offset_top = 564.0
+offset_right = 1217.0
+offset_bottom = 614.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_4_1"
+
+[node name="Level4_2" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1277.0
+offset_top = 564.0
+offset_right = 1377.0
+offset_bottom = 614.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_4_2"
+
+[node name="Level4_3" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1437.0
+offset_top = 564.0
+offset_right = 1537.0
+offset_bottom = 614.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_4_3"
+
+[node name="Level4_4" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1597.0
+offset_top = 564.0
+offset_right = 1697.0
+offset_bottom = 614.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_4_4"
+
+[node name="Level4_5" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1757.0
+offset_top = 564.0
+offset_right = 1857.0
+offset_bottom = 614.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_4_5"
+
+[node name="Level4_6" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 1917.0
+offset_top = 564.0
+offset_right = 2017.0
+offset_bottom = 614.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_4_6"
+
+[node name="Level4_7" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 2077.0
+offset_top = 564.0
+offset_right = 2177.0
+offset_bottom = 614.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_4_random"

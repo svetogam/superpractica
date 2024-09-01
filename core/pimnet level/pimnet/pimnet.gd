@@ -34,7 +34,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	CSLocator.with(self).register(GameGlobals.SERVICE_EFFECT_LAYER, effect_layer)
+	CSLocator.with(self).register(GameGlobals.SERVICE_ROOT_EFFECT_LAYER, effect_layer)
 
 	if setup_resource != null:
 		# Set up pims
@@ -60,7 +60,7 @@ func _ready() -> void:
 				setup_resource.translation_start_active)
 		overlay.goal_type = setup_resource.goal_type
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.GOAL,
-				setup_resource.goal_enable,
+				overlay.goal_type != PimnetOverlay.GoalPanels.NONE,
 				setup_resource.goal_start_active)
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.PLAN,
 				setup_resource.plan_enable,
@@ -131,6 +131,28 @@ func _on_right_button_pressed() -> void:
 	pim_to_focus.focus_entered.emit()
 
 
+func disable_verification_input(disable := true) -> void:
+	set_process_input(not disable)
+	overlay.set_process_input(not disable)
+
+	if disable:
+		overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+		overlay.mouse_default_cursor_shape = Control.CURSOR_BUSY
+	else:
+		overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		overlay.mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+	for node in get_tree().get_nodes_in_group("field_objects"):
+		node.disable_input(disable)
+
+	for button in get_tree().get_nodes_in_group("disable_during_verification"):
+		button.disabled = disable
+		if disable:
+			button.mouse_default_cursor_shape = Control.CURSOR_BUSY
+		else:
+			button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+
 func _setup_tool_panel() -> void:
 	for pim in _pims_left_to_right:
 		if pim is FieldPim:
@@ -196,6 +218,11 @@ func _get_pim_strip_width() -> float:
 	return combined_width + PIM_SEPARATION_WIDTH * (_pims_left_to_right.size() - 1)
 
 
+func overlay_position_to_effect_layer(p_position: Vector2) -> Vector2:
+	var overlay_offset = %CameraPoint.global_position - Game.get_screen_rect().size/2
+	return p_position + overlay_offset
+
+
 func get_pim_list() -> Array:
 	return ContextUtils.get_children_in_group(self, "pims")
 
@@ -256,7 +283,7 @@ func create_dragged_memo(memo: Memo) -> void:
 
 func start_memo_drag(preview: Control, memo: Memo) -> void:
 	memo_drag_started.emit(memo)
-	preview.tree_exited.connect(emit_signal.bind("memo_drag_ended", memo))
+	preview.tree_exited.connect(memo_drag_ended.emit.bind(memo))
 
 
 func process_interfield_object_drop(object: InterfieldObject) -> void:

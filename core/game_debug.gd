@@ -66,7 +66,7 @@ func set_testing_preset(preset: int) -> void:
 			Input.use_accumulated_input = false
 			RenderingServer.render_loop_enabled = true
 			set_animation_speed(AnimationSpeeds.INSTANT)
-			set_delay_speed(DelayTimes.SKIP)
+			set_delay_speed(DelayTimes.FRAME)
 		TestingPresets.VISIBILITY:
 			set_on()
 			Engine.time_scale = TIME_SCALE_SLOW
