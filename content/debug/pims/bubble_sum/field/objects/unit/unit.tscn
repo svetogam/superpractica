@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dd2cyfnmsvao6"]
 
-[ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/pimnet level/pimnet/field/field_object/field_object.tscn" id="1_wsn22"]
+[ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/pimnet_level/pimnet/field/field_object/field_object.tscn" id="1_wsn22"]
 [ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/unit.gd" id="2"]
 [ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/graphic.gd" id="3"]
 [ext_resource type="Script" path="res://content/debug/pims/bubble_sum/field/objects/unit/modes/delete.gd" id="5"]

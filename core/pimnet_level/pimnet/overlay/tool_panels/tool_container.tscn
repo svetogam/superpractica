@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bpihviyvti7aa"]
 
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/tool_panels/tool_container.gd" id="1_axo65"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/overlay/tool_panels/tool_container.gd" id="1_axo65"]
 
 [node name="ToolContainer" type="GridContainer"]
 offset_right = 266.0

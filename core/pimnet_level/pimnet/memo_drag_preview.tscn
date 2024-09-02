@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cnw4xergg8qcn"]
 
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/memo_drag_preview.gd" id="1_mi0b0"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/memo_drag_preview.gd" id="1_mi0b0"]
 
 [node name="MemoDragPreview" type="ColorRect"]
 custom_minimum_size = Vector2(120, 80)

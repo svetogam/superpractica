@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cpmt44g62nfuq"]
 
-[ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet level/level.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet_level/level.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/basic_addition/pims/grid_counting/grid_counting_pim.tscn" id="2_0ecw4"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="3_jr0jt"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/pimnet_setup_resource.gd" id="3_jr0jt"]
 
 [sub_resource type="Resource" id="Resource_uoopy"]
 script = ExtResource("3_jr0jt")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnpap4ckoph3y"]
 
 [ext_resource type="Script" path="res://general/mode_nodes/mode_group.gd" id="1_0wvuc"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/field/field_object/field_object.gd" id="1_mn5vc"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/field/field_object/field_object.gd" id="1_mn5vc"]
 
 [node name="FieldObject" type="Area2D" groups=["field_objects"]]
 script = ExtResource("1_mn5vc")

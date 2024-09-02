@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2a86jgs6wneu"]
 
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/memo_slot.gd" id="1_gvg2n"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/memo_slot.gd" id="1_gvg2n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hirx1"]
 font_size = 30

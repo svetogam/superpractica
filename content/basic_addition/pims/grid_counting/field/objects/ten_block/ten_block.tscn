@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://covw7y884i8ja"]
 
-[ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/pimnet level/pimnet/field/field_object/field_object.tscn" id="1_66ddm"]
+[ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/pimnet_level/pimnet/field/field_object/field_object.tscn" id="1_66ddm"]
 [ext_resource type="Script" path="res://content/basic_addition/pims/grid_counting/field/objects/ten_block/ten_block.gd" id="2_5td6w"]
 [ext_resource type="Script" path="res://content/basic_addition/pims/grid_counting/field/objects/ten_block/modes/delete.gd" id="2_bnps3"]
 [ext_resource type="PackedScene" uid="uid://stfc1n46xohf" path="res://content/basic_addition/pims/grid_counting/field/objects/ten_block/graphics/sprite.tscn" id="2_xivrk"]

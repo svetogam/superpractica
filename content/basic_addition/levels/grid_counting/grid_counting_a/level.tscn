@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bewvx2d8p0pi8"]
 
-[ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet level/level.tscn" id="1_ei2ne"]
+[ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet_level/level.tscn" id="1_ei2ne"]
 [ext_resource type="Resource" uid="uid://c4drawgva3jlg" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/pimnet_setup.tres" id="2_k4foq"]
 [ext_resource type="PackedScene" uid="uid://l24bgh2wr4n1" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/program.tscn" id="3_yda6r"]
 [ext_resource type="Resource" uid="uid://dpo2uxba17n85" path="res://content/basic_addition/levels/grid_counting/grid_counting_a/plan/plan_data.tres" id="4_rody8"]

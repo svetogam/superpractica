@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cq2d3d3lpcdwp"]
 
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/interfield_object.gd" id="1_6q4t7"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/interfield_object.gd" id="1_6q4t7"]
 
 [node name="InterfieldObject" type="Node2D" groups=["interfield_objects"]]
 script = ExtResource("1_6q4t7")

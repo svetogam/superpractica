@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="PlanResource" load_steps=4 format=3 uid="uid://bc1lmcf2fqkeg"]
+[gd_resource type="Resource" script_class="PlanResource" load_steps=5 format=3 uid="uid://bc1lmcf2fqkeg"]
 
 [ext_resource type="Resource" uid="uid://ru54rjfomox0" path="res://content/debug/levels/sum_problems/basic_addition_1/select_number_task.tres" id="1_630ki"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/overlay/task_resource.gd" id="1_gye80"]
 [ext_resource type="Resource" uid="uid://t2vu1566ti1x" path="res://content/debug/levels/sum_problems/basic_addition_1/put_units_task.tres" id="2_f2k3n"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/overlay/plan_resource.gd" id="3_oan21"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/overlay/plan_resource.gd" id="4_v8d3p"]
 
 [resource]
-script = ExtResource("3_oan21")
-_tasks = Array[Resource("res://core/pimnet level/pimnet/overlay/task_resource.gd")]([ExtResource("1_630ki"), ExtResource("2_f2k3n")])
+script = ExtResource("4_v8d3p")
+_tasks = Array[ExtResource("1_gye80")]([ExtResource("1_630ki"), ExtResource("2_f2k3n")])

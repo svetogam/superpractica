@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c42cuesvvqpr3"]
 
-[ext_resource type="PackedScene" uid="uid://d2d0o1oyg8tfu" path="res://core/pimnet level/pimnet/pim/field_pim.tscn" id="1_kut85"]
+[ext_resource type="PackedScene" uid="uid://d2d0o1oyg8tfu" path="res://core/pimnet_level/pimnet/pim/field_pim.tscn" id="1_kut85"]
 [ext_resource type="Script" path="res://content/basic_addition/pims/grid_counting/grid_counting_pim.gd" id="2_vmq6c"]
 [ext_resource type="Script" path="res://content/basic_addition/pims/grid_counting/programs/give_output_memo.gd" id="3_ysy7c"]
-[ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/pimnet level/pimnet/memo_slot.tscn" id="4_flmjy"]
+[ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/pimnet_level/pimnet/memo_slot.tscn" id="4_flmjy"]
 [ext_resource type="PackedScene" uid="uid://w2a71fj77wwv" path="res://content/basic_addition/pims/grid_counting/field/grid_counting_field.tscn" id="5_hpty7"]
 
 [node name="GridCountingPim" instance=ExtResource("1_kut85")]

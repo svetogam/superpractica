@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2d0o1oyg8tfu"]
 
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/pim/field_pim.gd" id="1_6b8gw"]
-[ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/pimnet level/pimnet/pim/pim.tscn" id="1_m2orh"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/pim/field_pim.gd" id="1_6b8gw"]
+[ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/pimnet_level/pimnet/pim/pim.tscn" id="1_m2orh"]
 
 [node name="FieldPim" instance=ExtResource("1_m2orh")]
 script = ExtResource("1_6b8gw")

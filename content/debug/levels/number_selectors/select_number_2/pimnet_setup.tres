@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PimnetSetupResource" load_steps=3 format=3 uid="uid://qmgt0jjgvf27"]
 
 [ext_resource type="PackedScene" uid="uid://df70iymagoil7" path="res://content/general/slot_pims/number_selector/number_selector.tscn" id="1_smt31"]
-[ext_resource type="Script" path="res://core/pimnet level/pimnet/pimnet_setup_resource.gd" id="2_6bknj"]
+[ext_resource type="Script" path="res://core/pimnet_level/pimnet/pimnet_setup_resource.gd" id="2_6bknj"]
 
 [resource]
 script = ExtResource("2_6bknj")
