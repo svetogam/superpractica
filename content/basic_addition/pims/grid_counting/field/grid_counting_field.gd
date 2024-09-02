@@ -240,7 +240,7 @@ func is_any_cell_highlighted() -> bool:
 	return get_highlighted_grid_cell() != null
 
 
-# Redacted
+# Deprecated
 func get_circled_grid_cells() -> Array:
 	var circled_cells: Array = []
 	var cells := get_grid_cell_list()
@@ -315,7 +315,7 @@ func is_cell_highlighted(cell: GridCell) -> bool:
 	return cell.highlighted
 
 
-# Redacted
+# Deprecated
 func get_circled_numbers() -> Array:
 	var numbers: Array = []
 	var cells := get_circled_grid_cells()
@@ -325,7 +325,7 @@ func get_circled_numbers() -> Array:
 	return numbers
 
 
-# Redacted
+# Deprecated
 func is_number_circled(number: int) -> bool:
 	return get_circled_numbers().has(number)
 
@@ -383,7 +383,7 @@ static func get_numbers_in_direction(start_number: int, number_of_numbers: int,
 	return get_numbers_by_skip_count(start_number, skip_count, bound_number)
 
 
-# Redacted
+# Deprecated
 func get_circled_numbers_by_skip_count(start_number: int, skip_count: int,
 		bound_number: int = 100
 ) -> Array:
@@ -399,7 +399,7 @@ func get_circled_numbers_by_skip_count(start_number: int, skip_count: int,
 	return circled_numbers
 
 
-# Redacted
+# Deprecated
 func get_circled_numbers_in_direction(start_number: int, direction: String) -> Array:
 	var skip_count: int = {"right": 1, "down": 10} [direction]
 	return get_circled_numbers_by_skip_count(start_number, skip_count)
@@ -591,12 +591,12 @@ func move_unit_by_numbers(from: int, to: int) -> void:
 		move_unit(unit, grid_cell)
 
 
-# Redacted
+# Deprecated
 func toggle_circle(cell: GridCell) -> void:
 	cell.toggle_circle()
 
 
-# Redacted
+# Deprecated
 func uncircle_cells() -> void:
 	for cell in get_grid_cell_list():
 		if cell.circled:
