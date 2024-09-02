@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://core/verifier/goal_verifications/effects/equality_effect.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/effect_system/screen_effect.tscn" id="2"]
-[ext_resource type="Texture2D" uid="uid://b2mvwfkws1vfi" path="res://core/verifier/goal_verifications/effects/unequals_v2f1.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://n5v8vxr1udct" path="res://core/verifier/goal_verifications/effects/equals_v2f1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://fl0pobinj6br" path="res://core/verifier/goal_verifications/effects/equals_affirm.svg" id="3_6d4f0"]
+[ext_resource type="Texture2D" uid="uid://dpmwk2q3qmsql" path="res://core/verifier/goal_verifications/effects/unequals_reject.svg" id="4_7us05"]
 [ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/effect_system/effects/animations/popup_bounce_anim.tres" id="5_gv1tk"]
 [ext_resource type="Animation" uid="uid://ceuv52itq7bet" path="res://core/effect_system/effects/animations/popup_descend_anim.tres" id="6_8u1ja"]
 [ext_resource type="Animation" uid="uid://c5ghu0ff2xo4r" path="res://core/effect_system/effects/animations/popup_fade_in_anim.tres" id="7_b17qw"]
@@ -29,12 +29,12 @@ scale = Vector2(0.08, 0.08)
 
 [node name="EqualitySprite" type="Sprite2D" parent="Graphic" index="0"]
 unique_name_in_owner = true
-texture = ExtResource("4")
+texture = ExtResource("3_6d4f0")
 
 [node name="InequalitySprite" type="Sprite2D" parent="Graphic" index="1"]
 unique_name_in_owner = true
 visible = false
-texture = ExtResource("3")
+texture = ExtResource("4_7us05")
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n5v8vxr1udct"
-path="res://.godot/imported/equals_v2f1.png-ddeee5b776bfab469f7351cd3977e080.ctex"
+uid="uid://dpmwk2q3qmsql"
+path.s3tc="res://.godot/imported/unequals_reject.svg-7311d708c149fb9fe762d31733b52de3.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://core/verifier/goal_verifications/effects/equals_v2f1.png"
-dest_files=["res://.godot/imported/equals_v2f1.png-ddeee5b776bfab469f7351cd3977e080.ctex"]
+source_file="res://core/verifier/goal_verifications/effects/unequals_reject.svg"
+dest_files=["res://.godot/imported/unequals_reject.svg-7311d708c149fb9fe762d31733b52de3.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -32,3 +33,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
