@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q350n7ca8r0e"
-path="res://.godot/imported/number1_v3f2.png-84c2b93cf9252463bb13a0a7d00f3d6b.ctex"
+uid="uid://bit22x3d081r0"
+path="res://.godot/imported/number6_v3f1.png-189a1bdeed75d216c2345411537f8b67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/effect_system/effects/math_effects/number_effect/number1_v3f2.png"
-dest_files=["res://.godot/imported/number1_v3f2.png-84c2b93cf9252463bb13a0a7d00f3d6b.ctex"]
+source_file="res://core/systems/effect_system/effects/math_effects/number_effect/number6_v3f1.png"
+dest_files=["res://.godot/imported/number6_v3f1.png-189a1bdeed75d216c2345411537f8b67.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

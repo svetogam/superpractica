@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cikslbcodqdb7"
-path="res://.godot/imported/number3_v3f1.png-5357d4ae8c940441f8c433b1cce424e3.ctex"
+uid="uid://ch48avda0hx1g"
+path="res://.godot/imported/tick_correct.png-ac8fa430bf5c3a8bb5b94d1495808112.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/effect_system/effects/math_effects/number_effect/number3_v3f1.png"
-dest_files=["res://.godot/imported/number3_v3f1.png-5357d4ae8c940441f8c433b1cce424e3.ctex"]
+source_file="res://core/systems/effect_system/effects/navig/effects/tick_correct.png"
+dest_files=["res://.godot/imported/tick_correct.png-ac8fa430bf5c3a8bb5b94d1495808112.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmg7uc5b3wqhc"]
 
-[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/effect_system/screen_effect.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://ck5bbf7rg7k5h" path="res://core/effect_system/effects/navig/effects/cross_wrong.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/effect_system/screen_effect.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://ck5bbf7rg7k5h" path="res://core/systems/effect_system/effects/navig/effects/cross_wrong.png" id="2"]
 
 [node name="WrongEffect" instance=ExtResource("1")]
 

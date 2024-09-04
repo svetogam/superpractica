@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://83urreyo57yr"
-path="res://.godot/imported/number8_v3f1.png-aaecd4a8691486343054864ed4a352b7.ctex"
+uid="uid://comitbexjjj26"
+path="res://.godot/imported/number0_v3f1.png-49ad6c565abc4a27b428509167180028.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/effect_system/effects/math_effects/number_effect/number8_v3f1.png"
-dest_files=["res://.godot/imported/number8_v3f1.png-aaecd4a8691486343054864ed4a352b7.ctex"]
+source_file="res://core/systems/effect_system/effects/math_effects/number_effect/number0_v3f1.png"
+dest_files=["res://.godot/imported/number0_v3f1.png-49ad6c565abc4a27b428509167180028.ctex"]
 
 [params]
 
