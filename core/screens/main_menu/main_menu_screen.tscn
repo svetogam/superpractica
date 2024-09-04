@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dtsgoie3mkpl"]
 
-[ext_resource type="Script" path="res://core/screens/main_menu/main_menu.gd" id="1_evcbt"]
+[ext_resource type="Script" path="res://core/screens/main_menu/main_menu_screen.gd" id="1_evcbt"]
 [ext_resource type="Script" path="res://core/screens/main_menu/about_panel.gd" id="2_morim"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2wghg"]

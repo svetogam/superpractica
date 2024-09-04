@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://2ert4t63mict"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/level.gd" id="1_o01nh"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
 [ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_26ecp"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]

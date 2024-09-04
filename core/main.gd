@@ -10,7 +10,7 @@
 
 extends Node
 
-const MainMenu := preload("res://core/screens/main_menu/main_menu.tscn")
+const MainMenu := preload("res://core/screens/main_menu/main_menu_screen.tscn")
 const LevelSelect := preload("res://core/screens/level_select/level_select_screen.tscn")
 var _current_scene: Node = null
 
