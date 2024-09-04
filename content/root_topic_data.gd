@@ -20,7 +20,7 @@ static var topic = TopicResource.new(
 	[],
 	# Subtopics
 	[
-		preload("basic_addition/topic_data.gd").topic,
+		preload("packs/basic_addition/topic_data.gd").topic,
 		preload("debug/topic_data.gd").topic,
 	],
 	# Layout

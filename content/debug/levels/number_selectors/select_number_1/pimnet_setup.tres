@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PimnetSetupResource" load_steps=3 format=3 uid="uid://d2fysd4kr2rhw"]
 
-[ext_resource type="PackedScene" uid="uid://dovmnfrl4xrfs" path="res://content/basic_addition/pims/integer_counter/integer_counter.tscn" id="1_3owjv"]
+[ext_resource type="PackedScene" uid="uid://dovmnfrl4xrfs" path="res://content/packs/basic_addition/pims/integer_counter/integer_counter.tscn" id="1_3owjv"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet_setup_resource.gd" id="2_2ub28"]
 
 [resource]

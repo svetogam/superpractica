@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbm2mkvarb4t4"]
+
+[ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/screens/pimnet_level/pimnet/field/field_object/field_object.tscn" id="1_wwowv"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/unit.gd" id="2_r6yf3"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/modes/delete.gd" id="3_dsk71"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/modes/drag.gd" id="4_smua2"]
+[ext_resource type="PackedScene" uid="uid://b6lad36e31clx" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/graphics/sprite.tscn" id="5_of0k1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wocpa"]
+radius = 14.0
+
+[node name="Unit" groups=["units"] instance=ExtResource("1_wwowv")]
+script = ExtResource("2_r6yf3")
+
+[node name="delete" type="Node" parent="ActiveModes" index="0"]
+script = ExtResource("3_dsk71")
+
+[node name="drag" type="Node" parent="ActiveModes" index="1"]
+script = ExtResource("4_smua2")
+
+[node name="Graphic" parent="." index="1" instance=ExtResource("5_of0k1")]
+unique_name_in_owner = true
+
+[node name="Collider" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_wocpa")

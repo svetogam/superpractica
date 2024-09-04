@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cblk7w0t3lpm7"]
+
+[ext_resource type="PackedScene" uid="uid://b00luvvepfekw" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_b/level.tscn" id="1_r1pk4"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_7r3wo"]
+
+[node name="Level" instance=ExtResource("1_r1pk4")]
+
+[node name="Task1Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1" index="1"]
+button_group = SubResource("ButtonGroup_7r3wo")
+
+[node name="Task2Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2" index="1"]
+button_group = SubResource("ButtonGroup_7r3wo")
+
+[node name="Task3Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3" index="1"]
+button_group = SubResource("ButtonGroup_7r3wo")
+
+[node name="Task4Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4" index="1"]
+button_group = SubResource("ButtonGroup_7r3wo")
+
+[node name="Task5Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5" index="1"]
+button_group = SubResource("ButtonGroup_7r3wo")
+
+[node name="Task6Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6" index="1"]
+button_group = SubResource("ButtonGroup_7r3wo")
+
+[node name="Task7Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7" index="1"]
+button_group = SubResource("ButtonGroup_7r3wo")
+
+[node name="LevelProgram" parent="." index="3"]
+_random_count = true
+_min_count = 1
+_max_count = 50
