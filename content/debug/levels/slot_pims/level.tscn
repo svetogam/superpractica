@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/screens/pimnet_level/pimnet_level_screen.tscn" id="1_c5kki"]
 [ext_resource type="PackedScene" uid="uid://dovmnfrl4xrfs" path="res://content/packs/basic_addition/pims/integer_counter/integer_counter.tscn" id="2_l6fvo"]
-[ext_resource type="PackedScene" uid="uid://df70iymagoil7" path="res://content/general/slot_pims/number_selector/number_selector.tscn" id="3_41xvv"]
+[ext_resource type="PackedScene" uid="uid://df70iymagoil7" path="res://content/general/pims/number_selector/number_selector.tscn" id="3_41xvv"]
 [ext_resource type="PackedScene" uid="uid://d00uqiv02mlin" path="res://content/debug/pims/four_slots/four_slots.tscn" id="4_quktd"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet_setup_resource.gd" id="5_kygpj"]
 
