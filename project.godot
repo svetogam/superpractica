@@ -19,7 +19,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Game="*res://core/game.tscn"
+Game="*res://core/globals/game.tscn"
 ContentDriver="res://content/content_driver.gd"
 
 [debug]
