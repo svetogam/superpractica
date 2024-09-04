@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cho85y6ex6re0"]
 
-[ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/pimnet_level/level.tscn" id="1_aw21n"]
+[ext_resource type="PackedScene" uid="uid://2ert4t63mict" path="res://core/screens/pimnet_level/level.tscn" id="1_aw21n"]
 [ext_resource type="Resource" uid="uid://qmgt0jjgvf27" path="res://content/debug/levels/number_selectors/select_number_2/pimnet_setup.tres" id="2_nx731"]
 [ext_resource type="PackedScene" uid="uid://cvkadm3yushku" path="res://content/debug/levels/number_selectors/select_number_2/program.tscn" id="4_55185"]
 

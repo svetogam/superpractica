@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://co2voeabpnsl0"]
 
-[ext_resource type="PackedScene" uid="uid://d2d0o1oyg8tfu" path="res://core/pimnet_level/pimnet/pim/field_pim.tscn" id="1_5pq1e"]
+[ext_resource type="PackedScene" uid="uid://d2d0o1oyg8tfu" path="res://core/screens/pimnet_level/pimnet/pim/field_pim.tscn" id="1_5pq1e"]
 [ext_resource type="PackedScene" uid="uid://c60e663j3jgmc" path="res://content/debug/pims/bubble_sum/field/bubble_sum_field.tscn" id="2_08r5a"]
 
 [node name="Pim" instance=ExtResource("1_5pq1e")]

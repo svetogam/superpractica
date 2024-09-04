@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dovmnfrl4xrfs"]
 
-[ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/pimnet_level/pimnet/pim/pim.tscn" id="1_x55mk"]
+[ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/screens/pimnet_level/pimnet/pim/pim.tscn" id="1_x55mk"]
 [ext_resource type="Script" path="res://content/basic_addition/pims/integer_counter/integer_counter.gd" id="2_axqjc"]
-[ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/pimnet_level/pimnet/memo_slot.tscn" id="2_ye7b2"]
+[ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="2_ye7b2"]
 
 [node name="IntegerCounter" instance=ExtResource("1_x55mk")]
 custom_minimum_size = Vector2(150, 200)

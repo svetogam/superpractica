@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnw4xergg8qcn"]
+
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/memo_drag_preview.gd" id="1_mi0b0"]
+
+[node name="MemoDragPreview" type="ColorRect"]
+custom_minimum_size = Vector2(120, 80)
+offset_right = 120.0
+offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0.6, 0.6, 0.9, 0.5)
+script = ExtResource("1_mi0b0")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Memo"
+horizontal_alignment = 1
+vertical_alignment = 1

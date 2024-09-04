@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TaskResource" load_steps=2 format=3 uid="uid://8bua3rkm7hen"]
 
-[ext_resource type="Script" path="res://core/pimnet_level/pimnet/overlay/task_resource.gd" id="1_j28qn"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_j28qn"]
 
 [resource]
 script = ExtResource("1_j28qn")

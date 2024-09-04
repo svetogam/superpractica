@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2d0o1oyg8tfu"]
+
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pim/field_pim.gd" id="1_6b8gw"]
+[ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/screens/pimnet_level/pimnet/pim/pim.tscn" id="1_m2orh"]
+
+[node name="FieldPim" instance=ExtResource("1_m2orh")]
+script = ExtResource("1_6b8gw")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." index="1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FieldViewport" type="SubViewport" parent="SubViewportContainer" index="0"]
+unique_name_in_owner = true
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(300, 300)
+render_target_update_mode = 4

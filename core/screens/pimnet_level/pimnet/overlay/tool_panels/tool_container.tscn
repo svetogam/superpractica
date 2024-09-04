@@ -1,0 +1,114 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpihviyvti7aa"]
+
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_container.gd" id="1_axo65"]
+
+[node name="ToolContainer" type="GridContainer"]
+offset_right = 266.0
+offset_bottom = 158.0
+columns = 5
+script = ExtResource("1_axo65")
+
+[node name="ToolButton1" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton2" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton3" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton4" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton5" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton6" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton7" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton8" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton9" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton10" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton11" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton12" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton13" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton14" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
+
+[node name="ToolButton15" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+text = "Tool"
+text_overrun_behavior = 1
