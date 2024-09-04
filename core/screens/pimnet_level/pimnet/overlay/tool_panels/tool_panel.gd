@@ -16,7 +16,7 @@ const ToolContainer := preload("tool_container.tscn")
 @onready var _first_container: GridContainer = %ToolContainer1 as GridContainer
 
 
-func add_toolset(data: PimInterfaceData) -> void:
+func add_toolset(data: FieldInterfaceData) -> void:
 	var toolset_name := data.field_type
 
 	# Ignore repeats

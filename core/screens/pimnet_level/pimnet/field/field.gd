@@ -33,7 +33,7 @@ var math_effects: MathEffectGroup:
 	get = _get_math_effects
 var effect_counter: EffectCounter:
 	get = _get_effect_counter
-var interface_data: PimInterfaceData:
+var interface_data: FieldInterfaceData:
 	set = _do_not_set,
 	get = _get_interface_data
 @onready var programs := $Programs as ModeGroup
@@ -64,7 +64,7 @@ func get_field_type() -> String:
 
 
 # Virtual
-static func _get_interface_data() -> PimInterfaceData:
+static func _get_interface_data() -> FieldInterfaceData:
 	assert(false)
 	return null
 

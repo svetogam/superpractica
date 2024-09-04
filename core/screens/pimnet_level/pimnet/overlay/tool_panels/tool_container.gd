@@ -11,7 +11,7 @@
 extends GridContainer
 
 const NULL_SELECTION: int = Game.NO_TOOL
-var interface_data: PimInterfaceData
+var interface_data: FieldInterfaceData
 var current_tool: int:
 	set = set_current_tool,
 	get = get_current_tool

@@ -15,7 +15,7 @@ var _containers: Dictionary # {toolset_name_1: container_object_1, ...}
 
 
 # Virtual
-func add_toolset(_data: PimInterfaceData) -> void:
+func add_toolset(_data: FieldInterfaceData) -> void:
 	pass
 
 

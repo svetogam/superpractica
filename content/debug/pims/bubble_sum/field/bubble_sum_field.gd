@@ -44,7 +44,7 @@ func get_field_type() -> String:
 	return "BubbleSum"
 
 
-static func _get_interface_data() -> PimInterfaceData:
+static func _get_interface_data() -> FieldInterfaceData:
 	return preload("interface_data.gd").new()
 
 

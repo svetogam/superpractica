@@ -59,7 +59,7 @@ func get_field_type() -> String:
 	return "GridCounting"
 
 
-static func _get_interface_data() -> PimInterfaceData:
+static func _get_interface_data() -> FieldInterfaceData:
 	return preload("interface_data.gd").new()
 
 

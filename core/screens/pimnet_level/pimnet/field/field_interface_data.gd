@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-class_name PimInterfaceData
+class_name FieldInterfaceData
 extends Resource
 
 var field_type := ""
