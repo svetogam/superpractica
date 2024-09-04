@@ -133,6 +133,7 @@ func get_fallback_screen_rect() -> Rect2:
 	return Rect2(0, 0, ProjectSettings.get_setting("display/window/size/viewport_width"),
 			ProjectSettings.get_setting("display/window/size/viewport_height"))
 
+
 func warn(message: String) -> void:
 	if _on:
 		print(message)

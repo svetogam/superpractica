@@ -25,10 +25,10 @@ enum HighlightTypes {
 const REGULAR_FONT_COLOR := Color.BLACK
 const FADED_FONT_COLOR := Color.SLATE_GRAY
 const REGULAR_SLOT_COLOR := Color.WHITE
-const ACCEPTING_SLOT_COLOR := GameGlobals.COLOR_HIGHLIGHT
-const AFFIRMATION_SLOT_COLOR := GameGlobals.COLOR_AFFIRMATION
+const ACCEPTING_SLOT_COLOR := Game.COLOR_HIGHLIGHT
+const AFFIRMATION_SLOT_COLOR := Game.COLOR_AFFIRMATION
 const WARNING_SLOT_COLOR := Color.GRAY
-const REJECTION_SLOT_COLOR := GameGlobals.COLOR_REJECTION
+const REJECTION_SLOT_COLOR := Game.COLOR_REJECTION
 const MemoDragPreview := preload("memo_drag_preview.tscn")
 @export var acceptable_types: Array[String]
 @export var memo_input_enabled := true
@@ -43,8 +43,7 @@ var _previous_slot_color: Color
 
 func _enter_tree() -> void:
 	ContextualConnector.register(self)
-	CSLocator.with(self).connect_service_found(
-			GameGlobals.SERVICE_PIMNET, _on_pimnet_found)
+	CSLocator.with(self).connect_service_found(Game.SERVICE_PIMNET, _on_pimnet_found)
 
 
 func _on_pimnet_found(p_pimnet: Pimnet) -> void:

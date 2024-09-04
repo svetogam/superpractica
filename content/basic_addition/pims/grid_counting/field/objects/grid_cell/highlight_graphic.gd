@@ -14,6 +14,6 @@ var rect: Rect2
 
 
 func _draw() -> void:
-	var color := GameGlobals.COLOR_HIGHLIGHT
+	var color := Game.COLOR_HIGHLIGHT
 	color.a = 0.8
 	draw_rect(rect, color, true)

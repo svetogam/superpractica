@@ -28,7 +28,7 @@ func get_tool_by_name(tool_name: String) -> int:
 	for tool in tool_data:
 		if tool_data[tool].name == tool_name:
 			return tool
-	return GameGlobals.NO_TOOL
+	return Game.NO_TOOL
 
 
 func get_object_modes(tool: int, object: int) -> Array:

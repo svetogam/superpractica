@@ -17,6 +17,6 @@ var field: Field:
 
 func _get_field() -> Field:
 	if field == null:
-		field = CSLocator.with(self).find(GameGlobals.SERVICE_FIELD)
+		field = CSLocator.with(self).find(Game.SERVICE_FIELD)
 		assert(field != null)
 	return field

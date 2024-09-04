@@ -54,7 +54,7 @@ func on_field_tool_changed(tool_mode: int, toolset_name: String) -> void:
 
 func deactivate(toolset_name: String) -> void:
 	assert(_containers.has(toolset_name))
-	_containers[toolset_name].current_tool = GameGlobals.NO_TOOL
+	_containers[toolset_name].current_tool = Game.NO_TOOL
 
 
 func force_selection(value := true) -> void:

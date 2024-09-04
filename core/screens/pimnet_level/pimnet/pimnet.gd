@@ -30,11 +30,11 @@ func _enter_tree() -> void:
 			create_interfield_object_by_original)
 	_field_connector.connect_signal("dragged_memo_requested",
 			create_dragged_memo)
-	CSLocator.with(self).register(GameGlobals.SERVICE_PIMNET, self)
+	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
 
 
 func _ready() -> void:
-	CSLocator.with(self).register(GameGlobals.SERVICE_ROOT_EFFECT_LAYER, effect_layer)
+	CSLocator.with(self).register(Game.SERVICE_ROOT_EFFECT_LAYER, effect_layer)
 
 	if setup_resource != null:
 		# Set up pims
@@ -254,7 +254,7 @@ func create_interfield_object_by_type(field_type: String, object_type: int,
 
 
 func _create_interfield_object(original: FieldObject, graphic: Node2D = null,
-		object_type := GameGlobals.NO_OBJECT, field_type := ""
+		object_type := Game.NO_OBJECT, field_type := ""
 ) -> InterfieldObject:
 	var past_objects = get_tree().get_nodes_in_group("interfield_objects")
 	for past_object in past_objects:

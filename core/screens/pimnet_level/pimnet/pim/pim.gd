@@ -19,7 +19,7 @@ var _effects: MathEffectGroup
 
 func _enter_tree() -> void:
 	CSLocator.with(self).connect_service_changed(
-			GameGlobals.SERVICE_ROOT_EFFECT_LAYER, _on_effect_layer_changed)
+			Game.SERVICE_ROOT_EFFECT_LAYER, _on_effect_layer_changed)
 
 
 # Virtual

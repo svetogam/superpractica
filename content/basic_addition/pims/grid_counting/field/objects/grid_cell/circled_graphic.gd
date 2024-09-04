@@ -23,9 +23,9 @@ func _draw() -> void:
 	var radius := rect.size.x/2 - width
 	var color: Color
 	if variant == "warning":
-		color = GameGlobals.COLOR_REJECTION
+		color = Game.COLOR_REJECTION
 	elif variant == "affirmation":
-		color = GameGlobals.COLOR_AFFIRMATION
+		color = Game.COLOR_AFFIRMATION
 	elif variant == "normal":
 		color = NORMAL_COLOR
 	else:

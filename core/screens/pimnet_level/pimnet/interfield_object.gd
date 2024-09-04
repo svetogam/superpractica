@@ -13,7 +13,7 @@ extends Node2D
 
 var original: FieldObject = null
 var graphic: Node2D = null
-var object_type := GameGlobals.NO_OBJECT
+var object_type := Game.NO_OBJECT
 var field_type := ""
 var _pimnet: Pimnet:
 	get = _get_pimnet
@@ -42,7 +42,7 @@ func setup_by_original(p_original: FieldObject) -> void:
 	add_child(graphic)
 
 
-func setup_by_parts(p_object_type := GameGlobals.NO_OBJECT, p_field_type := "",
+func setup_by_parts(p_object_type := Game.NO_OBJECT, p_field_type := "",
 		p_graphic: Node2D = null
 ) -> void:
 	object_type = p_object_type
@@ -59,6 +59,6 @@ func get_source() -> Field:
 
 func _get_pimnet() -> Pimnet:
 	if _pimnet == null:
-		_pimnet = CSLocator.with(self).find(GameGlobals.SERVICE_PIMNET)
+		_pimnet = CSLocator.with(self).find(Game.SERVICE_PIMNET)
 		assert(_pimnet != null)
 	return _pimnet

@@ -22,7 +22,7 @@ enum Objects {
 	TEN_BLOCK,
 }
 enum Tools {
-	NONE = GameGlobals.NO_TOOL,
+	NONE = Game.NO_TOOL,
 	NUMBER_CIRCLER,
 	CELL_MARKER,
 	UNIT_CREATOR,

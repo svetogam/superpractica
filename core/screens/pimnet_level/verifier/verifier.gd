@@ -26,7 +26,7 @@ func _enter_tree() -> void:
 	assert(pimnet != null)
 
 	_verification_connector.connect_setup(_register_verification)
-	CSLocator.with(self).register(GameGlobals.SERVICE_VERIFIER, self)
+	CSLocator.with(self).register(Game.SERVICE_VERIFIER, self)
 
 
 func _register_verification(verification: Verification) -> void:

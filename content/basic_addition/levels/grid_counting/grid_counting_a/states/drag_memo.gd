@@ -12,7 +12,7 @@ extends LevelProgramState
 
 
 func _enter(_last_state: String) -> void:
-	program.field.set_tool(GameGlobals.NO_TOOL)
+	program.field.set_tool(Game.NO_TOOL)
 	pimnet.overlay.disable_panel(PimnetOverlay.PimnetPanels.CREATION)
 	level.reverter.history.clear()
 	level.set_no_reset()

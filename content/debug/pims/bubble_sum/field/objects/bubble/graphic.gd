@@ -20,7 +20,7 @@ func _draw():
 	var fill_color := Color(0.6, 0.6, 1, 0.2)
 	var outline_color: Color
 	if selected:
-		outline_color = GameGlobals.COLOR_HIGHLIGHT
+		outline_color = Game.COLOR_HIGHLIGHT
 	else:
 		outline_color = Color(0.0, 0.0, 0.0)
 

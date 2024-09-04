@@ -12,11 +12,11 @@ extends PopupPanel
 
 
 func _ready() -> void:
-	%VersionText.text = GameGlobals.RELEASE_TAG
-	%WebsiteLink.text = GameGlobals.WEBSITE_URL
-	%WebsiteLink.uri = GameGlobals.WEBSITE_URL
-	%SourceLink.text = GameGlobals.SOURCE_URL
-	%SourceLink.uri = GameGlobals.SOURCE_URL
+	%VersionText.text = Game.RELEASE_TAG
+	%WebsiteLink.text = Game.WEBSITE_URL
+	%WebsiteLink.uri = Game.WEBSITE_URL
+	%SourceLink.text = Game.SOURCE_URL
+	%SourceLink.uri = Game.SOURCE_URL
 
 
 func _on_close_button_pressed() -> void:

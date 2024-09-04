@@ -10,7 +10,7 @@
 
 extends GridContainer
 
-const NULL_SELECTION: int = GameGlobals.NO_TOOL
+const NULL_SELECTION: int = Game.NO_TOOL
 var interface_data: PimInterfaceData
 var current_tool: int:
 	set = set_current_tool,

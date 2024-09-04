@@ -10,6 +10,24 @@
 
 extends Node
 
+const SERVICE_PIMNET := "pimnet"
+const SERVICE_FIELD := "field"
+const SERVICE_ROOT_EFFECT_LAYER := "effect_layer"
+const SERVICE_VERIFIER := "verifier"
+const SERVICE_REVERTER := "reverter"
+
+const NO_OBJECT: int = -1
+const NO_TOOL: int = -1
+
+const RELEASE_TAG := "v0.7.0"
+const WEBSITE_URL := "https://superpractica.org"
+const SOURCE_URL := "https://codeberg.org/superpractica/superpractica"
+
+const COLOR_HIGHLIGHT := Color(1.0, 1.0, 0.5)
+const COLOR_REJECTION := Color(1.0, 0.0, 0.0)
+const COLOR_AFFIRMATION := Color(0.6, 1.0, 0.6)
+const COLOR_GUIDE := Color(0.5, 0.5, 1.0)
+
 var root_topic: TopicResource
 var progress_data := GameProgressResource.new()
 var current_level: LevelResource = null

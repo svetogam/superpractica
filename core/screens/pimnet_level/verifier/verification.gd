@@ -37,7 +37,7 @@ var pimnet: Pimnet:
 
 func _get_verifier() -> Verifier:
 	if verifier == null:
-		verifier = CSLocator.with(self).find(GameGlobals.SERVICE_VERIFIER)
+		verifier = CSLocator.with(self).find(Game.SERVICE_VERIFIER)
 		assert(verifier != null)
 	return verifier
 

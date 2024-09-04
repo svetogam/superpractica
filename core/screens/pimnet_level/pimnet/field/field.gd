@@ -43,8 +43,7 @@ var interface_data: PimInterfaceData:
 
 func _enter_tree() -> void:
 	ContextualConnector.register(self)
-	CSLocator.with(self).connect_service_found(
-			GameGlobals.SERVICE_REVERTER, _on_reverter_found)
+	CSLocator.with(self).connect_service_found(Game.SERVICE_REVERTER, _on_reverter_found)
 
 
 func _on_reverter_found(reverter: CReverter) -> void:
@@ -54,7 +53,7 @@ func _on_reverter_found(reverter: CReverter) -> void:
 func _ready() -> void:
 	tool_changed.connect(_on_tool_changed)
 	action_queue.flushed.connect(_trigger_update.bind(UpdateTypes.ACTIONS_COMPLETED))
-	CSLocator.with(self).register(GameGlobals.SERVICE_FIELD, self)
+	CSLocator.with(self).register(Game.SERVICE_FIELD, self)
 	_trigger_update(UpdateTypes.INITIAL)
 
 
@@ -77,7 +76,7 @@ func _trigger_update(update_type: int) -> void:
 
 
 func _get_dragged_object() -> FieldObject:
-	var pimnet := CSLocator.with(self).find(GameGlobals.SERVICE_PIMNET)
+	var pimnet := CSLocator.with(self).find(Game.SERVICE_PIMNET)
 	return pimnet.dragged_object
 
 
@@ -143,7 +142,7 @@ func on_tool_panel_tool_selected(field_type: String, tool_mode: int) -> void:
 
 func set_tool(tool_mode: int) -> void:
 	if tool_mode != get_tool():
-		if tool_mode != GameGlobals.NO_TOOL:
+		if tool_mode != Game.NO_TOOL:
 			var tool_name := interface_data.get_tool_name(tool_mode)
 			_tool_modes.activate_only(tool_name)
 		else:
@@ -152,7 +151,7 @@ func set_tool(tool_mode: int) -> void:
 
 
 func deactivate_tools() -> void:
-	set_tool(GameGlobals.NO_TOOL)
+	set_tool(Game.NO_TOOL)
 
 
 func _on_tool_changed(_new_tool: int) -> void:
@@ -169,7 +168,7 @@ func get_tool() -> int:
 		var tool_name := _tool_modes.get_only_active_mode_name()
 		return interface_data.get_tool_by_name(tool_name)
 	else:
-		return GameGlobals.NO_TOOL
+		return Game.NO_TOOL
 
 
 #====================================================================

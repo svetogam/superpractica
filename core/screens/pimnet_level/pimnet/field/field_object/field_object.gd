@@ -20,7 +20,7 @@ var _pressing := false
 
 
 func _ready() -> void:
-	CSLocator.with(self).connect_service_found(GameGlobals.SERVICE_FIELD, _on_field_found)
+	CSLocator.with(self).connect_service_found(Game.SERVICE_FIELD, _on_field_found)
 
 
 func disable_input(disable := true) -> void:
@@ -30,7 +30,7 @@ func disable_input(disable := true) -> void:
 
 # Virtual
 func _get_object_type() -> int:
-	return GameGlobals.NO_OBJECT
+	return Game.NO_OBJECT
 
 
 func _on_field_found(p_field: Field) -> void:
@@ -131,7 +131,7 @@ func end_interfield_drag(point: Vector2) -> void:
 		mode._drop(point)
 
 
-func update_active_modes(_new_tool := GameGlobals.NO_TOOL) -> void:
+func update_active_modes(_new_tool := Game.NO_TOOL) -> void:
 	var active_modes := field.get_active_modes_for_object(object_type)
 	_modes.set_by_list(active_modes)
 

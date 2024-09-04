@@ -22,7 +22,7 @@ enum Objects {
 	BUBBLE,
 }
 enum Tools {
-	NONE = GameGlobals.NO_TOOL,
+	NONE = Game.NO_TOOL,
 	MOVER,
 	UNIT_CREATOR,
 	BUBBLE_CREATOR,

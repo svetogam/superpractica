@@ -57,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 
 func _setup_reversion() -> void:
 	reverter.history.max_size = REVERTER_MAX_SIZE
-	CSLocator.with(self).register(GameGlobals.SERVICE_REVERTER, reverter)
+	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
 
 	# Initial commit
 	if reverter.has_connections():
