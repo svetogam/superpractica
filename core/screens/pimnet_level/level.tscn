@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="11_worie"]
-[ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/verifier/verifier.tscn" id="12_4kqqx"]
+[ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/screens/pimnet_level/verifier/verifier.tscn" id="12_4kqqx"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_verification_panel.gd" id="14_l20jg"]
 
