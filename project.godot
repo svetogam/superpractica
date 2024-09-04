@@ -43,7 +43,9 @@ enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 folder_colors={
 "res://content/": "yellow",
+"res://content/debug/": "gray",
 "res://core/": "red",
+"res://core/screens/": "orange",
 "res://general/": "purple"
 }
 
