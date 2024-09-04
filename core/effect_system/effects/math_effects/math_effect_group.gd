@@ -13,23 +13,11 @@ extends ScreenEffectGroup
 
 const NUMBER_EFFECT := preload("number_effect/number_effect.tscn")
 
-const OPERATOR_EFFECTS := {
-	"+": preload("signs/plus_effect.tscn"),
-}
-
 
 func give_number(number: int, pos: Vector2, animation := "rise") -> NumberEffect:
 	var effect := create_effect(NUMBER_EFFECT, pos)
 	effect.number = number
 	effect.animate(animation)
-	return effect
-
-
-func give_operator(type: String, pos: Vector2) -> ScreenEffect:
-	assert(OPERATOR_EFFECTS.has(type))
-
-	var effect := create_effect(OPERATOR_EFFECTS[type], pos)
-	effect.animate("fade_in")
 	return effect
 
 
