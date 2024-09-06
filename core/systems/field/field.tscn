@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://idqfe3v3d4rw"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/field/field.gd" id="1_nko7a"]
+[ext_resource type="Script" path="res://core/systems/field/field.gd" id="1_nko7a"]
 [ext_resource type="Script" path="res://general/mode_nodes/mode_group.gd" id="1_v27fr"]
 
 [node name="Field" type="Node" groups=["fields"]]
