@@ -26,10 +26,8 @@ var _field_connector := ContextualConnector.new(self, "fields", true)
 
 
 func _enter_tree() -> void:
-	_field_connector.connect_signal("interfield_object_requested",
-			create_interfield_object_by_original)
-	_field_connector.connect_signal("dragged_memo_requested",
-			create_dragged_memo)
+	_field_connector.connect_signal("dragged_object_requested", start_interfield_drag)
+	_field_connector.connect_signal("dragged_memo_requested", create_dragged_memo)
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
 
 
@@ -243,10 +241,6 @@ func get_field_list() -> Array:
 # Drag and Drop
 #====================================================================
 
-func create_interfield_object_by_original(original: FieldObject) -> InterfieldObject:
-	return _create_interfield_object(original)
-
-
 func create_interfield_object_by_type(object_data: FieldObjectData) -> InterfieldObject:
 	return _create_interfield_object(null, object_data)
 
@@ -260,8 +254,6 @@ func _create_interfield_object(original: FieldObject, object_data: FieldObjectDa
 	var interfield_object := InterfieldObjectScene.instantiate()
 	if original != null:
 		interfield_object.setup_by_original(original)
-		original.start_interfield_drag()
-		dragged_object = original
 	else:
 		interfield_object.setup_by_parts(object_data)
 	%DraggedObjectLayer.add_child(interfield_object)
@@ -281,6 +273,18 @@ func create_dragged_memo(memo: Memo) -> void:
 func start_memo_drag(preview: Control, memo: Memo) -> void:
 	memo_drag_started.emit(memo)
 	preview.tree_exited.connect(memo_drag_ended.emit.bind(memo))
+
+
+func start_interfield_drag(object: FieldObject) -> void:
+	assert(object != null)
+	assert(dragged_object == null)
+
+	dragged_object = object
+	dragged_object.start_interfield_drag()
+	for field in get_field_list():
+		field.dragged_object = dragged_object
+
+	_create_interfield_object(object)
 
 
 func process_interfield_object_drop(object: InterfieldObject) -> void:
@@ -305,5 +309,12 @@ func process_interfield_object_drop(object: InterfieldObject) -> void:
 		else:
 			destination._incoming_drop(object.object_data, field_point, source)
 
-	# Defer set so that input-processing order does not matter
-	set_deferred("dragged_object", null)
+	# Defer call so that input-processing order does not matter
+	if dragged_object != null:
+		_end_interfield_drag.call_deferred()
+
+
+func _end_interfield_drag() -> void:
+	dragged_object = null
+	for field in get_field_list():
+		field.dragged_object = null

@@ -13,7 +13,7 @@ extends Node
 
 signal updated
 signal tool_changed(tool_mode)
-signal interfield_object_requested(original)
+signal dragged_object_requested(original)
 signal dragged_memo_requested(memo)
 
 enum UpdateTypes {
@@ -24,9 +24,7 @@ enum UpdateTypes {
 }
 
 var action_queue := FieldActionQueue.new(self)
-var dragged_object: FieldObject:
-	set = _do_not_set,
-	get = _get_dragged_object
+var dragged_object: FieldObject
 var warning_effects: WarningEffectGroup:
 	get = _get_warning_effects
 var math_effects: MathEffectGroup:
@@ -73,11 +71,6 @@ func _trigger_update(update_type: int) -> void:
 	_on_update(update_type)
 	updated.emit()
 	warning_effects.flush_stage()
-
-
-func _get_dragged_object() -> FieldObject:
-	var pimnet := CSLocator.with(self).find(Game.SERVICE_PIMNET)
-	return pimnet.dragged_object
 
 
 func _get_warning_effects() -> WarningEffectGroup:
@@ -198,8 +191,8 @@ func get_objects_by_type(_object_type: int) -> Array:
 # Mechanics
 #====================================================================
 
-func request_interfield_drag(original: FieldObject) -> void:
-	interfield_object_requested.emit(original)
+func request_drag_object(original: FieldObject) -> void:
+	dragged_object_requested.emit(original)
 	get_viewport().set_input_as_handled()
 
 

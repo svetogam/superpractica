@@ -12,7 +12,7 @@ extends FieldObjectMode
 
 
 func _press(_point: Vector2) -> void:
-	field.request_interfield_drag(object)
+	field.request_drag_object(object)
 
 
 func _drop(point: Vector2) -> void:
