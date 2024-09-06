@@ -10,7 +10,7 @@
 
 extends BasePimnetToolPanel
 
-signal tool_dragged(toolset_name, tool_mode, drag_graphic)
+signal tool_dragged(tool_data)
 
 const ToolContainer := preload("creatables_container.tscn")
 @onready var _first_container: GridContainer = %CreatablesContainer1 as GridContainer
@@ -44,14 +44,14 @@ func add_toolset(data: FieldInterfaceData) -> void:
 	for object_type in data.get_draggable_objects():
 		var tool_button = container.activate_tool_button(object_type)
 		tool_button.text = ""
-		tool_button.tooltip_text = data.get_draggable_object_text(object_type)
+		tool_button.tooltip_text = data.get_object_text(object_type)
 
 		# Set icon or use sprite as fallback if no icon is found
-		var icon = data.get_draggable_object_icon(object_type)
+		var icon = data.get_object_icon(object_type)
 		if icon != null:
 			tool_button.icon = icon
 		else:
-			var sprite = data.new_draggable_object_sprite(object_type)
+			var sprite = data.object_data[object_type].new_sprite()
 			tool_button.add_child(sprite)
 			sprite.position = tool_button.get_rect().get_center()
 
@@ -60,5 +60,4 @@ func _on_tool_button_down(toolset_name: String) -> void:
 	assert(_containers.has(toolset_name))
 	var container = _containers[toolset_name]
 	var tool_mode = container.current_tool
-	tool_dragged.emit(toolset_name, tool_mode,
-			container.interface_data.new_draggable_object_sprite(tool_mode))
+	tool_dragged.emit(container.interface_data.object_data[tool_mode])

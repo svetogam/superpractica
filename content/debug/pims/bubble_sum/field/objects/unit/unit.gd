@@ -11,7 +11,6 @@
 extends FieldObject
 
 var selected := false
-@onready var _graphic := %Graphic as ProceduralGraphic
 
 
 func _get_object_type() -> int:
@@ -24,13 +23,9 @@ func toggle_select() -> void:
 
 func set_selected(value: bool) -> void:
 	selected = value
-	_graphic.set_properties({"selected": value})
+	%Graphic.set_properties({"selected": value})
 
 
 func is_inside_bubble(bubble: FieldObject) -> bool:
 	var center_distance := position.distance_to(bubble.position)
 	return center_distance + %Collider.shape.radius < bubble.radius
-
-
-func get_drag_graphic() -> ProceduralGraphic:
-	return _graphic

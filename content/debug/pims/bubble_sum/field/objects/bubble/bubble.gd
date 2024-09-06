@@ -14,7 +14,6 @@ const MIN_RADIUS := 40.0
 const MAX_RADIUS := 160.0
 var radius: float
 var selected := false
-@onready var _graphic := %Graphic as ProceduralGraphic
 
 
 func _get_object_type() -> int:
@@ -29,7 +28,7 @@ func _ready() -> void:
 func _set_radius(new_radius: float) -> void:
 	radius = new_radius
 	%Collider.shape.radius = new_radius
-	_graphic.set_properties({"radius": radius})
+	%Graphic.set_properties({"radius": radius})
 
 
 func toggle_select() -> void:
@@ -38,7 +37,7 @@ func toggle_select() -> void:
 
 func set_selected(value: bool) -> void:
 	selected = value
-	_graphic.set_properties({"selected": value})
+	%Graphic.set_properties({"selected": value})
 
 
 func resize_by(direction: String, vector: Vector2) -> void:

@@ -13,7 +13,6 @@ extends FieldObject
 signal number_changed(old_number, new_number) # -1 for no number
 
 var cell: GridCell = null
-@onready var _graphic := %Graphic as AnimatedSprite2D
 
 
 func _exit_tree() -> void:
@@ -38,14 +37,10 @@ func put_on_cell(p_cell: GridCell) -> void:
 
 
 func set_variant(variant: StringName) -> void:
-	assert(_graphic.sprite_frames.has_animation(variant))
-	_graphic.animation = variant
+	assert(%Graphic.sprite_frames.has_animation(variant))
+	%Graphic.animation = variant
 
 
 func get_number() -> int:
 	assert(cell != null)
 	return cell.number
-
-
-func get_drag_graphic() -> Node2D:
-	return _graphic

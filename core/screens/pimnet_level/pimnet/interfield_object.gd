@@ -11,10 +11,9 @@
 class_name InterfieldObject
 extends Node2D
 
-var original: FieldObject = null
-var graphic: Node2D = null
-var object_type := Game.NO_OBJECT
-var field_type := ""
+var original: FieldObject
+var object_data: FieldObjectData
+var graphic: Node2D
 var _pimnet: Pimnet:
 	get = _get_pimnet
 
@@ -36,18 +35,14 @@ func _input(event: InputEvent) -> void:
 
 func setup_by_original(p_original: FieldObject) -> void:
 	original = p_original
-	object_type = original.object_type
-	field_type = original.field.get_field_type()
-	graphic = original.get_drag_graphic().duplicate()
+	object_data = original.object_data
+	graphic = object_data.new_sprite()
 	add_child(graphic)
 
 
-func setup_by_parts(p_object_type := Game.NO_OBJECT, p_field_type := "",
-		p_graphic: Node2D = null
-) -> void:
-	object_type = p_object_type
-	field_type = p_field_type
-	graphic = p_graphic
+func setup_by_parts(p_object_data: FieldObjectData) -> void:
+	object_data = p_object_data
+	graphic = object_data.new_sprite()
 	add_child(graphic)
 
 

@@ -14,6 +14,12 @@ extends FieldInterfaceData
 func _init() -> void:
 	field_type = "GridCounting"
 
+	object_data = {
+		GridCounting.Objects.UNIT: preload("objects/unit/object_data.gd").new(),
+		GridCounting.Objects.TEN_BLOCK: preload("objects/ten_block/object_data.gd").new(),
+		GridCounting.Objects.GRID_CELL: preload("objects/grid_cell/object_data.gd").new(),
+	}
+
 	tool_data = {
 		GridCounting.Tools.NUMBER_CIRCLER: {
 			"name": "NumberCircler",
@@ -52,17 +58,5 @@ func _init() -> void:
 				GridCounting.Objects.UNIT: ["drag"],
 				GridCounting.Objects.TEN_BLOCK: ["drag"],
 			},
-		},
-	}
-
-	draggable_object_data = {
-		GridCounting.Objects.UNIT: {
-			"text": "Unit",
-			"sprite": preload("objects/unit/graphics/sprite.tscn"),
-		},
-		GridCounting.Objects.TEN_BLOCK: {
-			"text": "Ten Block",
-			"sprite": preload("objects/ten_block/graphics/sprite.tscn"),
-			"icon": preload("objects/ten_block/graphics/ten_block_icon.svg"),
 		},
 	}

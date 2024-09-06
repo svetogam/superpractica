@@ -247,14 +247,11 @@ func create_interfield_object_by_original(original: FieldObject) -> InterfieldOb
 	return _create_interfield_object(original)
 
 
-func create_interfield_object_by_type(field_type: String, object_type: int,
-		drag_graphic: Node2D
-) -> InterfieldObject:
-	return _create_interfield_object(null, drag_graphic, object_type, field_type)
+func create_interfield_object_by_type(object_data: FieldObjectData) -> InterfieldObject:
+	return _create_interfield_object(null, object_data)
 
 
-func _create_interfield_object(original: FieldObject, graphic: Node2D = null,
-		object_type := Game.NO_OBJECT, field_type := ""
+func _create_interfield_object(original: FieldObject, object_data: FieldObjectData = null
 ) -> InterfieldObject:
 	var past_objects = get_tree().get_nodes_in_group("interfield_objects")
 	for past_object in past_objects:
@@ -266,7 +263,7 @@ func _create_interfield_object(original: FieldObject, graphic: Node2D = null,
 		original.start_interfield_drag()
 		dragged_object = original
 	else:
-		interfield_object.setup_by_parts(object_type, field_type, graphic)
+		interfield_object.setup_by_parts(object_data)
 	%DraggedObjectLayer.add_child(interfield_object)
 
 	return interfield_object
@@ -306,7 +303,7 @@ func process_interfield_object_drop(object: InterfieldObject) -> void:
 			object.original._drop(field_point)
 
 		else:
-			destination._incoming_drop(object, field_point, source)
+			destination._incoming_drop(object.object_data, field_point, source)
 
 	# Defer set so that input-processing order does not matter
 	set_deferred("dragged_object", null)

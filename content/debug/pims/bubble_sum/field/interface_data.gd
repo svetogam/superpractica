@@ -14,6 +14,11 @@ extends FieldInterfaceData
 func _init() -> void:
 	field_type = "BubbleSum"
 
+	object_data = {
+		BubbleSum.Objects.UNIT: preload("objects/unit/object_data.gd").new(),
+		BubbleSum.Objects.BUBBLE: preload("objects/bubble/object_data.gd").new(),
+	}
+
 	tool_data = {
 		BubbleSum.Tools.MOVER: {
 			"name": "Mover",
@@ -77,16 +82,5 @@ func _init() -> void:
 			"object_modes": {
 				BubbleSum.Objects.UNIT: ["count"],
 			},
-		},
-	}
-
-	draggable_object_data = {
-		BubbleSum.Objects.UNIT: {
-			"text": "Unit",
-			"sprite": preload("objects/unit/graphic.gd"),
-		},
-		BubbleSum.Objects.BUBBLE: {
-			"text": "Bubble",
-			"sprite": preload("objects/bubble/graphic.gd"),
 		},
 	}

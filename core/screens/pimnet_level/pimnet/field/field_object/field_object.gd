@@ -15,6 +15,9 @@ var field: Field
 var object_type: int:
 	set = _do_not_set,
 	get = _get_object_type
+var object_data: FieldObjectData:
+	set = _do_not_set,
+	get = _get_object_data
 var _pressing := false
 @onready var _modes := $ActiveModes as ModeGroup
 
@@ -33,15 +36,14 @@ func _get_object_type() -> int:
 	return Game.NO_OBJECT
 
 
+func _get_object_data() -> FieldObjectData:
+	return field.interface_data.object_data[object_type]
+
+
 func _on_field_found(p_field: Field) -> void:
 	field = p_field
 	field.tool_changed.connect(update_active_modes)
 	update_active_modes()
-
-
-# Virtual
-func get_drag_graphic() -> Node2D:
-	return null
 
 
 # Virtual

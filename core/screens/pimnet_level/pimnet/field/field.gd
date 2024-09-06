@@ -117,7 +117,8 @@ func reset_state() -> void:
 
 
 # Virtual
-func _incoming_drop(_object: InterfieldObject, _point: Vector2, _source: Field) -> void:
+func _incoming_drop(_object_data: FieldObjectData, _point: Vector2, _source: Field
+) -> void:
 	assert(false)
 
 

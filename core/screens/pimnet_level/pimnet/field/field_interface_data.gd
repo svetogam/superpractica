@@ -12,8 +12,24 @@ class_name FieldInterfaceData
 extends Resource
 
 var field_type := ""
+var object_data: Dictionary = {}
 var tool_data: Dictionary = {}
-var draggable_object_data: Dictionary = {}
+
+
+func get_draggable_objects() -> Array:
+	var draggable_object_keys: Array = []
+	for key in object_data.keys():
+		if object_data[key].is_draggable():
+			draggable_object_keys.append(key)
+	return draggable_object_keys
+
+
+func get_object_text(object: int) -> String:
+	return object_data[object].name_text
+
+
+func get_object_icon(object: int) -> Texture2D:
+	return object_data[object].icon
 
 
 func get_tools() -> Array:
@@ -40,27 +56,3 @@ func get_object_modes(tool: int, object: int) -> Array:
 
 func get_tool_text(tool: int) -> String:
 	return tool_data[tool].text
-
-
-func get_draggable_objects() -> Array:
-	return draggable_object_data.keys()
-
-
-func get_draggable_object_text(object: int) -> String:
-	return draggable_object_data[object].text
-
-
-func new_draggable_object_sprite(object: int) -> Node2D:
-	var sprite = draggable_object_data[object].sprite
-	if sprite is GDScript:
-		return sprite.new()
-	elif sprite is PackedScene:
-		return sprite.instantiate()
-	assert(false)
-	return null
-
-
-func get_draggable_object_icon(object: int) -> Texture2D:
-	if draggable_object_data[object].has("icon"):
-		return draggable_object_data[object].icon
-	return null

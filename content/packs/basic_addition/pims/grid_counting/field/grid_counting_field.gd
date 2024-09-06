@@ -104,10 +104,10 @@ func reset_state() -> void:
 	push_action(set_empty)
 
 
-func _incoming_drop(object: InterfieldObject, point: Vector2, _source: Field) -> void:
-	match object.field_type:
+func _incoming_drop(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
+	match object_data.field_type:
 		"GridCounting":
-			match object.object_type:
+			match object_data.object_type:
 				GridCounting.Objects.UNIT:
 					_accept_incoming_unit(point)
 				GridCounting.Objects.TEN_BLOCK:
@@ -116,7 +116,7 @@ func _incoming_drop(object: InterfieldObject, point: Vector2, _source: Field) ->
 							dest_cell.number)
 					push_action(create_ten_block.bind(row_number))
 		"BubbleSum":
-			match object.object_type:
+			match object_data.object_type:
 				BubbleSum.Objects.UNIT:
 					_accept_incoming_unit(point)
 
