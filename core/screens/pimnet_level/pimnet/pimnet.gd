@@ -164,7 +164,7 @@ func _setup_tool_panel() -> void:
 
 
 func _setup_creation_panel() -> void:
-	overlay.creation_panel.tool_dragged.connect(create_interfield_object_by_type)
+	overlay.creation_panel.tool_dragged.connect(create_interfield_object)
 	for pim in _pims_left_to_right:
 		if pim is FieldPim:
 			var field_type = pim.field.get_field_type()
@@ -241,26 +241,6 @@ func get_field_list() -> Array:
 # Drag and Drop
 #====================================================================
 
-func create_interfield_object_by_type(object_data: FieldObjectData) -> InterfieldObject:
-	return _create_interfield_object(null, object_data)
-
-
-func _create_interfield_object(original: FieldObject, object_data: FieldObjectData = null
-) -> InterfieldObject:
-	var past_objects = get_tree().get_nodes_in_group("interfield_objects")
-	for past_object in past_objects:
-		past_object.free()
-
-	var interfield_object := InterfieldObjectScene.instantiate()
-	if original != null:
-		interfield_object.setup_by_original(original)
-	else:
-		interfield_object.setup_by_parts(object_data)
-	%DraggedObjectLayer.add_child(interfield_object)
-
-	return interfield_object
-
-
 func create_dragged_memo(memo: Memo) -> void:
 	# Use workaround because Godot's drag previews are bugged
 	#var preview = %DummySlot.make_memo_preview(memo)
@@ -284,32 +264,48 @@ func start_interfield_drag(object: FieldObject) -> void:
 	for field in get_field_list():
 		field.dragged_object = dragged_object
 
-	_create_interfield_object(object)
+	create_interfield_object(object.object_data)
 
 
-func process_interfield_object_drop(object: InterfieldObject) -> void:
-	var source := object.get_source()
+func create_interfield_object(object_data: FieldObjectData) -> InterfieldObject:
+	var past_objects = get_tree().get_nodes_in_group("interfield_objects")
+	for past_object in past_objects:
+		past_object.free()
+
+	var interfield_object := InterfieldObjectScene.instantiate()
+	interfield_object.setup(object_data)
+	%DraggedObjectLayer.add_child(interfield_object)
+	return interfield_object
+
+
+func process_interfield_drop(object_data: FieldObjectData) -> void:
+	# Obtain relevant variables
+	var source: Field = null
+	if dragged_object != null:
+		source = dragged_object.field
 	var destination: Field
 	var external_point: Vector2 = %PimStrip.get_global_mouse_position()
 	var field_point: Vector2
-
 	for pim in _pims_left_to_right:
 		if pim is FieldPim and pim.field_has_point(external_point):
 			destination = pim.field
 			field_point = pim.convert_external_to_internal_point(external_point)
 
+	# React in source pim to drop in other pim
 	if source != null and destination != source:
-		source._outgoing_drop(object.original)
+		source._outgoing_drop(dragged_object)
 
 	if destination != null:
+		# React in pim to drop within itself
 		if destination == source:
-			object.original.end_interfield_drag(field_point)
-			object.original._drop(field_point)
+			dragged_object.end_interfield_drag(field_point)
+			dragged_object._drop(field_point)
 
+		# React in destination pim to drop from anywhere
 		else:
-			destination._incoming_drop(object.object_data, field_point, source)
+			destination._incoming_drop(object_data, field_point, source)
 
-	# Defer call so that input-processing order does not matter
+	# Defer ending drag so that input-processing order does not matter
 	if dragged_object != null:
 		_end_interfield_drag.call_deferred()
 
