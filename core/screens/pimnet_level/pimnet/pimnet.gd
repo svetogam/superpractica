@@ -268,10 +268,6 @@ func start_interfield_drag(object: FieldObject) -> void:
 
 
 func create_interfield_object(object_data: FieldObjectData) -> InterfieldObject:
-	var past_objects = get_tree().get_nodes_in_group("interfield_objects")
-	for past_object in past_objects:
-		past_object.free()
-
 	var interfield_object := InterfieldObjectScene.instantiate()
 	interfield_object.setup(object_data)
 	%DraggedObjectLayer.add_child(interfield_object)
