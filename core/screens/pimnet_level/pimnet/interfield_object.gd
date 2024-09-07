@@ -35,7 +35,10 @@ func _input(event: InputEvent) -> void:
 	# Drop
 	elif event.is_action_released("primary_mouse"):
 		_pimnet.process_interfield_drop(object_data)
-		free()
+		# Calling free() here breaks the whole script and stops initialization only in
+		# release builds for some reason (!?)
+		#free()
+		queue_free()
 
 
 func _get_pimnet() -> Pimnet:
