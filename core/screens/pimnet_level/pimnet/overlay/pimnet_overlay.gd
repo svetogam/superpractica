@@ -60,7 +60,7 @@ func _ready() -> void:
 		var button := _get_button(panel_type)
 		button.toggled.connect(_on_panel_button_toggled.bind(panel_type))
 
-	%LevelTitle.text = Game.progress_data.get_current_level_title()
+	%LevelTitle.text = Game.get_current_level_title()
 
 
 func _on_pause_menu_button_pressed() -> void:
@@ -86,7 +86,7 @@ func _on_pause_menu_popup_hide() -> void:
 
 
 func _on_completion_popup_visibility_changed() -> void:
-	%NextLevelButton.disabled = not Game.progress_data.is_level_suggested_after_current()
+	%NextLevelButton.disabled = not Game.is_level_suggested_after_current()
 
 
 func _on_stay_button_pressed() -> void:

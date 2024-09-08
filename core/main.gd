@@ -63,6 +63,6 @@ func exit_game() -> void:
 
 
 func _try_to_enter_next_level() -> void:
-	var next_level = Game.progress_data.get_suggested_level_after_current()
+	var next_level = Game.get_suggested_level_after_current()
 	if next_level != null:
 		enter_level(next_level)
