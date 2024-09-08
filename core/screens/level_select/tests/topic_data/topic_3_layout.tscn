@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1lettqqjemnm"]
 
-[ext_resource type="Script" path="res://core/screens/level_select/topic_layout_node_ref.gd" id="1_de57a"]
+[ext_resource type="Script" path="res://core/screens/level_select/topic_resources/topic_layout_node_ref.gd" id="1_de57a"]
 
 [node name="Layout" type="Node"]
 
