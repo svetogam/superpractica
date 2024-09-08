@@ -14,8 +14,8 @@ extends Node
 signal updated
 signal actions_completed
 signal reset_changed
-signal exited
-signal level_switched(level_resource)
+signal exited_to_level_select
+signal exited_to_next_level
 
 const REVERTER_MAX_SIZE: int = 1000
 
@@ -36,8 +36,8 @@ func _ready() -> void:
 	_action_queue.setup(pimnet)
 	_setup_reversion()
 
-	pimnet.overlay.exit_pressed.connect(exited.emit)
-	pimnet.overlay.next_level_requested.connect(level_switched.emit)
+	pimnet.overlay.exit_pressed.connect(exited_to_level_select.emit)
+	pimnet.overlay.next_level_requested.connect(exited_to_next_level.emit)
 	verifier.verifications_started.connect(_signal_update)
 	verifier.verifications_completed.connect(_signal_update)
 	actions_completed.connect(_signal_update)

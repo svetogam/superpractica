@@ -30,6 +30,5 @@ func _enter(_last_state: String) -> void:
 			overlay.goal_panel.solution_slot.set_highlight(
 					MemoSlot.HighlightTypes.AFFIRMATION)
 
-	if Game.current_level != null:
-		Game.progress_data.save_level_completion(Game.current_level.id)
+	Game.progress_data.set_current_level_completed()
 	overlay.show_completion_popup()

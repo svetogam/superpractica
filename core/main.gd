@@ -54,9 +54,15 @@ func enter_level(level_data: LevelResource) -> void:
 	_current_scene = level_data.scene.instantiate()
 	add_child(_current_scene)
 
-	_current_scene.exited.connect(enter_level_select)
-	_current_scene.level_switched.connect(enter_level)
+	_current_scene.exited_to_level_select.connect(enter_level_select)
+	_current_scene.exited_to_next_level.connect(_try_to_enter_next_level)
 
 
 func exit_game() -> void:
 	get_tree().quit()
+
+
+func _try_to_enter_next_level() -> void:
+	var next_level = Game.progress_data.get_suggested_level_after_current()
+	if next_level != null:
+		enter_level(next_level)

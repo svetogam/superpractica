@@ -12,7 +12,7 @@ class_name PimnetOverlay
 extends Control
 
 signal exit_pressed
-signal next_level_requested(level_resource)
+signal next_level_requested()
 
 enum PimnetPanels {
 	NONE = 0,
@@ -60,11 +60,7 @@ func _ready() -> void:
 		var button := _get_button(panel_type)
 		button.toggled.connect(_on_panel_button_toggled.bind(panel_type))
 
-	# Set level title
-	if Game.current_level != null:
-		var topic_title := Game.current_level.topic.title
-		var level_title := Game.current_level.title
-		set_level_title_text(topic_title + " > " + level_title)
+	%LevelTitle.text = Game.progress_data.get_current_level_title()
 
 
 func _on_pause_menu_button_pressed() -> void:
@@ -90,9 +86,7 @@ func _on_pause_menu_popup_hide() -> void:
 
 
 func _on_completion_popup_visibility_changed() -> void:
-	var next_level := Game.current_level.topic.get_suggested_level_after(
-			Game.current_level.id)
-	%NextLevelButton.disabled = (next_level == null)
+	%NextLevelButton.disabled = not Game.progress_data.is_level_suggested_after_current()
 
 
 func _on_stay_button_pressed() -> void:
@@ -104,10 +98,7 @@ func _on_select_level_button_pressed() -> void:
 
 
 func _on_next_level_button_pressed() -> void:
-	var next_level := Game.current_level.topic.get_suggested_level_after(
-			Game.current_level.id)
-	if next_level != null:
-		next_level_requested.emit(next_level)
+	next_level_requested.emit()
 
 
 func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> void:
@@ -185,10 +176,6 @@ func enable_scroll_buttons(enable := true) -> void:
 
 func show_completion_popup() -> void:
 	%CompletionPopup.visible = true
-
-
-func set_level_title_text(text: String) -> void:
-	%LevelTitle.text = text
 
 
 func _get_panel(panel_type: PimnetPanels) -> PanelContainer:
