@@ -16,26 +16,36 @@ signal level_completed
 
 @export var _plan_data: PlanResource
 var level: Level:
-	set = _do_not_set,
-	get = _get_level
+	get:
+		assert(_target != null)
+		return _target
 var pimnet: Pimnet:
-	set = _do_not_set,
-	get = _get_pimnet
+	get:
+		assert(level.pimnet != null)
+		return level.pimnet
+var overlay: PimnetOverlay:
+	get:
+		assert(level.pimnet.overlay != null)
+		return level.pimnet.overlay
 var goal_panel: Control:
-	set = _do_not_set,
-	get = _get_goal_panel
+	get:
+		assert(level.pimnet.overlay.goal_panel != null)
+		return level.pimnet.overlay.goal_panel
 var plan_panel: Control:
-	set = _do_not_set,
-	get = _get_plan_panel
+	get:
+		assert(level.pimnet.overlay.plan_panel != null)
+		return level.pimnet.overlay.plan_panel
 var tool_panel: Control:
-	set = _do_not_set,
-	get = _get_tool_panel
+	get:
+		assert(level.pimnet.overlay.tool_panel != null)
+		return level.pimnet.overlay.tool_panel
 var creation_panel: Control:
-	set = _do_not_set,
-	get = _get_creation_panel
+	get:
+		assert(level.pimnet.overlay.creation_panel != null)
+		return level.pimnet.overlay.creation_panel
 var reverter: CReverter:
-	set = _do_not_set,
-	get = _get_reverter
+	get:
+		return level.reverter
 
 
 func _init() -> void:
@@ -73,45 +83,3 @@ func complete_task() -> void:
 func complete_level() -> void:
 	level_completed.emit()
 	stop()
-
-
-func _get_level() -> Level:
-	assert(_target != null)
-	return _target
-
-
-func _get_pimnet() -> Pimnet:
-	assert(level.pimnet != null)
-	return level.pimnet
-
-
-func _get_goal_panel() -> Control:
-	assert(level.pimnet.overlay != null)
-	assert(level.pimnet.overlay.goal_panel != null)
-	return level.pimnet.overlay.goal_panel
-
-
-func _get_plan_panel() -> Control:
-	assert(level.pimnet.overlay != null)
-	assert(level.pimnet.overlay.plan_panel != null)
-	return level.pimnet.overlay.plan_panel
-
-
-func _get_tool_panel() -> Control:
-	assert(level.pimnet.overlay != null)
-	assert(level.pimnet.overlay.tool_panel != null)
-	return level.pimnet.overlay.tool_panel
-
-
-func _get_creation_panel() -> Control:
-	assert(level.pimnet.overlay != null)
-	assert(level.pimnet.overlay.creation_panel != null)
-	return level.pimnet.overlay.creation_panel
-
-
-func _get_reverter() -> CReverter:
-	return level.reverter
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)

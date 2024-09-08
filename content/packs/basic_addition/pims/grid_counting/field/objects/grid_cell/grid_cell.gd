@@ -20,7 +20,7 @@ var _size: Vector2
 @onready var _highlight_graphic := %HighlightGraphic as ProceduralGraphic
 
 
-func _get_object_type() -> int:
+static func _get_object_type() -> int:
 	return GridCounting.Objects.GRID_CELL
 
 

@@ -11,5 +11,5 @@
 extends FieldObject
 
 
-func _get_object_type() -> int:
+static func _get_object_type() -> int:
 	return BubbleSum.Objects.GROUND

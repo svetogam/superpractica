@@ -40,7 +40,7 @@ const ObjectUnit := preload("objects/unit/unit.tscn")
 const ObjectBubble := preload("objects/bubble/bubble.tscn")
 
 
-func get_field_type() -> String:
+static func _get_field_type() -> String:
 	return "BubbleSum"
 
 

@@ -11,11 +11,13 @@
 extends PanelContainer
 
 var row_numbers: Array:
-	get = get_row_numbers
+	get:
+		return range(left_slots.size())
 var verified_row_numbers: Array = []
 var rejected_row_numbers: Array = []
 var filled_row_numbers: Array:
-	get = get_filled_row_numbers
+	get:
+		return verified_row_numbers + rejected_row_numbers
 var empty_row_numbers: Array:
 	get = get_empty_row_numbers
 @onready var left_slots: Array = [%LeftSlot1, %LeftSlot2]
@@ -53,14 +55,6 @@ func clear_slots() -> void:
 		slot.set_highlight(MemoSlot.HighlightTypes.REGULAR)
 	verified_row_numbers.clear()
 	rejected_row_numbers.clear()
-
-
-func get_row_numbers() -> Array:
-	return range(left_slots.size())
-
-
-func get_filled_row_numbers() -> Array:
-	return verified_row_numbers + rejected_row_numbers
 
 
 func get_empty_row_numbers() -> Array:

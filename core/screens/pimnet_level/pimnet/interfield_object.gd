@@ -14,7 +14,11 @@ extends Node2D
 var object_data: FieldObjectData
 var graphic: Node2D
 var _pimnet: Pimnet:
-	get = _get_pimnet
+	get:
+		if _pimnet == null:
+			_pimnet = CSLocator.with(self).find(Game.SERVICE_PIMNET)
+			assert(_pimnet != null)
+		return _pimnet
 
 
 func _ready() -> void:
@@ -39,10 +43,3 @@ func _input(event: InputEvent) -> void:
 		# release builds for some reason (!?)
 		#free()
 		queue_free()
-
-
-func _get_pimnet() -> Pimnet:
-	if _pimnet == null:
-		_pimnet = CSLocator.with(self).find(Game.SERVICE_PIMNET)
-		assert(_pimnet != null)
-	return _pimnet

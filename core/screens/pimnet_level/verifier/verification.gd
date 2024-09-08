@@ -20,7 +20,11 @@ signal verified
 signal rejected
 
 var verifier: Verifier:
-	get = _get_verifier
+	get:
+		if verifier == null:
+			verifier = CSLocator.with(self).find(Game.SERVICE_VERIFIER)
+			assert(verifier != null)
+		return verifier
 var goal_verifier: GoalVerifier:
 	get:
 		assert(verifier.goal_verifier != null)
@@ -33,13 +37,6 @@ var pimnet: Pimnet:
 	get:
 		assert(verifier.pimnet != null)
 		return verifier.pimnet
-
-
-func _get_verifier() -> Verifier:
-	if verifier == null:
-		verifier = CSLocator.with(self).find(Game.SERVICE_VERIFIER)
-		assert(verifier != null)
-	return verifier
 
 
 func _init() -> void:

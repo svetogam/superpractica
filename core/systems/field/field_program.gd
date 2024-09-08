@@ -12,23 +12,12 @@ class_name FieldProgram
 extends Mode
 
 var field: Field:
-	set = _do_not_set,
-	get = _get_field
+	get:
+		assert(_target != null)
+		return _target
 var effects: NavigEffectGroup:
-	get = _get_effects
-
-
-func _get_field() -> Field:
-	assert(_target != null)
-	return _target
-
-
-func _get_effects() -> NavigEffectGroup:
-	if effects == null:
-		effects = NavigEffectGroup.new(field.effect_layer)
-		assert(effects != null)
-	return effects
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)
+	get:
+		if effects == null:
+			effects = NavigEffectGroup.new(field.effect_layer)
+			assert(effects != null)
+		return effects

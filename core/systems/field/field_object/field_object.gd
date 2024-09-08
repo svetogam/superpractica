@@ -13,13 +13,17 @@ extends Area2D
 
 var field: Field
 var object_type: int:
-	set = _do_not_set,
 	get = _get_object_type
 var object_data: FieldObjectData:
-	set = _do_not_set,
-	get = _get_object_data
+	get:
+		return field.interface_data.object_data[object_type]
 var _pressing := false
 @onready var _modes := $ActiveModes as ModeGroup
+
+
+# Virtual
+static func _get_object_type() -> int:
+	return Game.NO_OBJECT
 
 
 func _ready() -> void:
@@ -29,15 +33,6 @@ func _ready() -> void:
 func disable_input(disable := true) -> void:
 	set_process_input(not disable)
 	input_pickable = not disable
-
-
-# Virtual
-func _get_object_type() -> int:
-	return Game.NO_OBJECT
-
-
-func _get_object_data() -> FieldObjectData:
-	return field.interface_data.object_data[object_type]
 
 
 func _on_field_found(p_field: Field) -> void:
@@ -140,7 +135,3 @@ func update_active_modes(_new_tool := Game.NO_TOOL) -> void:
 
 func is_mode_active(mode: String) -> bool:
 	return _modes.is_active(mode)
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)

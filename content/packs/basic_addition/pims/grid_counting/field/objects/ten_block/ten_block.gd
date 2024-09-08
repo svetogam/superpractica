@@ -13,7 +13,7 @@ extends FieldObject
 var row_number: int # Row numbers start at 1
 
 
-func _get_object_type() -> int:
+static func _get_object_type() -> int:
 	return GridCounting.Objects.TEN_BLOCK
 
 

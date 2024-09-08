@@ -12,11 +12,13 @@ class_name FieldObjectMode
 extends Mode
 
 var object: FieldObject:
-	set = _do_not_set,
-	get = _get_object
+	get:
+		assert(_target != null)
+		return _target
 var field: Field:
-	set = _do_not_set,
-	get = _get_field
+	get:
+		assert(object.field != null)
+		return object.field
 
 
 # Virtual
@@ -52,17 +54,3 @@ func _drop(_point: Vector2) -> void:
 # Virtual
 func _take_drop(_dropped_object: FieldObject, _point: Vector2) -> void:
 	pass
-
-
-func _get_object() -> FieldObject:
-	assert(_target != null)
-	return _target
-
-
-func _get_field() -> Field:
-	assert(object.field != null)
-	return object.field
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)

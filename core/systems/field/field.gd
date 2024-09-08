@@ -26,17 +26,39 @@ enum UpdateTypes {
 var action_queue := FieldActionQueue.new(self)
 var dragged_object: FieldObject
 var warning_effects: WarningEffectGroup:
-	get = _get_warning_effects
+	get:
+		if warning_effects == null:
+			warning_effects = WarningEffectGroup.new(effect_layer)
+		return warning_effects
 var math_effects: MathEffectGroup:
-	get = _get_math_effects
+	get:
+		if math_effects == null:
+			math_effects = MathEffectGroup.new(effect_layer)
+		return math_effects
 var effect_counter: EffectCounter:
-	get = _get_effect_counter
+	get:
+		if effect_counter == null:
+			effect_counter = EffectCounter.new(effect_layer)
+		return effect_counter
+var field_type: String:
+	get = _get_field_type
 var interface_data: FieldInterfaceData:
-	set = _do_not_set,
 	get = _get_interface_data
 @onready var programs := $Programs as ModeGroup
 @onready var effect_layer := %EffectLayer as CanvasLayer
 @onready var _tool_modes := $ToolModes as ModeGroup
+
+
+# Virtual
+static func _get_field_type() -> String:
+	assert(false)
+	return ""
+
+
+# Virtual
+static func _get_interface_data() -> FieldInterfaceData:
+	assert(false)
+	return null
 
 
 func _enter_tree() -> void:
@@ -55,44 +77,10 @@ func _ready() -> void:
 	_trigger_update(UpdateTypes.INITIAL)
 
 
-# Virtual
-func get_field_type() -> String:
-	assert(false)
-	return ""
-
-
-# Virtual
-static func _get_interface_data() -> FieldInterfaceData:
-	assert(false)
-	return null
-
-
 func _trigger_update(update_type: int) -> void:
 	_on_update(update_type)
 	updated.emit()
 	warning_effects.flush_stage()
-
-
-func _get_warning_effects() -> WarningEffectGroup:
-	if warning_effects == null:
-		warning_effects = WarningEffectGroup.new(effect_layer)
-	return warning_effects
-
-
-func _get_math_effects() -> MathEffectGroup:
-	if math_effects == null:
-		math_effects = MathEffectGroup.new(effect_layer)
-	return math_effects
-
-
-func _get_effect_counter() -> EffectCounter:
-	if effect_counter == null:
-		effect_counter = EffectCounter.new(effect_layer)
-	return effect_counter
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)
 
 
 #====================================================================
@@ -129,8 +117,8 @@ func _on_selected() -> void:
 # Tools and Modes
 #====================================================================
 
-func on_tool_panel_tool_selected(field_type: String, tool_mode: int) -> void:
-	if field_type == get_field_type():
+func on_tool_panel_tool_selected(toolset_name: String, tool_mode: int) -> void:
+	if toolset_name == field_type:
 		set_tool(tool_mode)
 
 

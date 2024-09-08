@@ -15,15 +15,15 @@ signal number_changed(old_number, new_number) # -1 for no number
 var cell: GridCell = null
 
 
+static func _get_object_type() -> int:
+	return GridCounting.Objects.UNIT
+
+
 func _exit_tree() -> void:
 	var old_number: int = -1
 	if cell != null:
 		old_number = get_number()
 	number_changed.emit(old_number, -1)
-
-
-func _get_object_type() -> int:
-	return GridCounting.Objects.UNIT
 
 
 func put_on_cell(p_cell: GridCell) -> void:

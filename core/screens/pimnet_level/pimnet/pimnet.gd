@@ -154,23 +154,22 @@ func disable_verification_input(disable := true) -> void:
 func _setup_tool_panel() -> void:
 	for pim in _pims_left_to_right:
 		if pim is FieldPim:
-			var field_type = pim.field.get_field_type()
 			overlay.tool_panel.add_toolset(pim.field.interface_data)
 			overlay.tool_panel.tool_selected.connect(
 					pim.field.on_tool_panel_tool_selected)
 			pim.field.tool_changed.connect(
-					overlay.tool_panel.on_field_tool_changed.bind(field_type))
-			pim.focus_entered.connect(overlay.tool_panel.show_toolset.bind(field_type))
+					overlay.tool_panel.on_field_tool_changed.bind(pim.field.field_type))
+			pim.focus_entered.connect(
+					overlay.tool_panel.show_toolset.bind(pim.field.field_type))
 
 
 func _setup_creation_panel() -> void:
 	overlay.creation_panel.tool_dragged.connect(create_interfield_object)
 	for pim in _pims_left_to_right:
 		if pim is FieldPim:
-			var field_type = pim.field.get_field_type()
 			overlay.creation_panel.add_toolset(pim.field.interface_data)
 			pim.focus_entered.connect(
-					overlay.creation_panel.show_toolset.bind(field_type))
+					overlay.creation_panel.show_toolset.bind(pim.field.field_type))
 
 
 func _center_camera_on_pim(pim: Pim) -> void:

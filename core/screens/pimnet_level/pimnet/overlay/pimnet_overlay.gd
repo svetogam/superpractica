@@ -39,13 +39,11 @@ const PANEL_TYPE_LIST := [
 ]
 
 var maximum_active_panels: int:
-	set = _do_not_set,
 	get = _get_maximum_active_panels
 var goal_type: GoalPanels = GoalPanels.NONE:
 	set = _set_goal_type,
 	get = _get_goal_type
 var goal_panel: Control:
-	set = _do_not_set,
 	get = _get_goal_panel
 @onready var reversion_menu := %ReversionMenu as Control
 @onready var plan_panel := %PlanPanel as Control
@@ -272,7 +270,3 @@ func _get_maximum_active_panels() -> int:
 
 	# Using this hack instead until panels conserve space better
 	return 3
-
-
-static func _do_not_set(_value: Variant) -> void:
-	assert(false)

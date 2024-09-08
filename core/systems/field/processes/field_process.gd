@@ -12,11 +12,8 @@ class_name FieldProcess
 extends Process
 
 var field: Field:
-	get = _get_field
-
-
-func _get_field() -> Field:
-	if field == null:
-		field = CSLocator.with(self).find(Game.SERVICE_FIELD)
-		assert(field != null)
-	return field
+	get:
+		if field == null:
+			field = CSLocator.with(self).find(Game.SERVICE_FIELD)
+			assert(field != null)
+		return field

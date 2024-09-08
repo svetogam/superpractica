@@ -55,7 +55,7 @@ var _grid_cells_dict: Dictionary = {} # {GridCell.number: GridCell, ...}
 var _units_dict: Dictionary = {} # {Unit.cell.number: Unit, ...}
 
 
-func get_field_type() -> String:
+static func _get_field_type() -> String:
 	return "GridCounting"
 
 
