@@ -15,6 +15,6 @@ func _enter(_last_state: String) -> void:
 	program.field.set_tool(Game.NO_TOOL)
 	pimnet.overlay.disable_panel(PimnetOverlay.PimnetPanels.CREATION)
 	level.reverter.history.clear()
-	level.set_no_reset()
+	program.set_no_reset()
 
 	goal_panel.slot_filled.connect(complete)

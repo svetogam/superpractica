@@ -13,6 +13,8 @@ extends Mode
 
 signal task_completed(task_name)
 signal level_completed
+signal reset_called
+signal reset_changed
 
 @export var _plan_data: PlanResource
 var level: Level:
@@ -46,6 +48,7 @@ var creation_panel: Control:
 var reverter: CReverter:
 	get:
 		return level.reverter
+var _reset_function := Callable()
 
 
 func _init() -> void:
@@ -83,3 +86,23 @@ func complete_task() -> void:
 func complete_level() -> void:
 	level_completed.emit()
 	stop()
+
+
+func reset() -> void:
+	if not _reset_function.is_null():
+		_reset_function.call()
+		reset_called.emit()
+
+
+func set_no_reset() -> void:
+	_reset_function = Callable()
+	reset_changed.emit()
+
+
+func set_custom_reset(callable: Callable) -> void:
+	_reset_function = callable
+	reset_changed.emit()
+
+
+func is_reset_possible() -> bool:
+	return not _reset_function.is_null()

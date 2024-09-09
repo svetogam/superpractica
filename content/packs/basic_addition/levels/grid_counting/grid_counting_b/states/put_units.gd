@@ -13,7 +13,7 @@ extends LevelProgramState
 
 func _enter(_last_state: String) -> void:
 	level.reverter.history.clear()
-	level.set_custom_reset(_reset)
+	program.set_custom_reset(_reset)
 
 	program.field_program.run()
 
