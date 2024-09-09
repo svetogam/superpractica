@@ -39,7 +39,6 @@ func _input(event: InputEvent) -> void:
 	# Drop
 	elif event.is_action_released("primary_mouse"):
 		_pimnet.process_interfield_drop(object_data)
-		# Calling free() here breaks the whole script and stops initialization only in
-		# release builds for some reason (!?)
-		#free()
-		queue_free()
+		# Workaround to avoid a bug that breaks the script in release builds.
+		# See https://github.com/godotengine/godot/issues/73036
+		call("free")
