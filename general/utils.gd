@@ -19,30 +19,6 @@ enum Direction {
 }
 
 
-static func emit_signal_v(p_signal: Signal, args: Array = []) -> void:
-	if args.size() == 0:
-		p_signal.emit()
-	elif args.size() == 1:
-		p_signal.emit(args[0])
-	elif args.size() == 2:
-		p_signal.emit(args[0], args[1])
-	elif args.size() == 3:
-		p_signal.emit(args[0], args[1], args[2])
-	elif args.size() == 4:
-		p_signal.emit(args[0], args[1], args[2], args[3])
-	elif args.size() == 5:
-		p_signal.emit(args[0], args[1], args[2], args[3], args[4])
-	elif args.size() == 6:
-		p_signal.emit(args[0], args[1], args[2], args[3],args[4], args[5])
-	elif args.size() == 7:
-		p_signal.emit(args[0], args[1], args[2], args[3],args[4], args[5], args[6])
-	elif args.size() == 8:
-		p_signal.emit(args[0], args[1], args[2], args[3],args[4], args[5], args[6],
-				args[7])
-	else:
-		assert(false)
-
-
 static func pack_args(arg1: Variant = "__",
 		arg2: Variant = "__",
 		arg3: Variant = "__",

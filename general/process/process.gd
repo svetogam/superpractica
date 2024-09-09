@@ -58,5 +58,5 @@ func complete(arg1: Variant = "__",
 	assert(is_inside_tree())
 
 	var args := Utils.pack_args(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
-	Utils.emit_signal_v(completed, args)
+	completed.emit.callv(args)
 	queue_free()

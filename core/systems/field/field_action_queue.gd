@@ -74,5 +74,4 @@ func flush() -> void:
 func _emit_post_action_signal(action: Callable) -> void:
 	var signal_name := "post_" + action.get_method()
 	if has_user_signal(signal_name):
-		Utils.emit_signal_v(Signal(self, signal_name),
-				action.get_bound_arguments())
+		Signal(self, signal_name).emit.callv(action.get_bound_arguments())
