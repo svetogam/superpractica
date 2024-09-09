@@ -33,11 +33,11 @@ func _ready() -> void:
 
 	pimnet.overlay.exit_pressed.connect(exited_to_level_select.emit)
 	pimnet.overlay.next_level_requested.connect(exited_to_next_level.emit)
-	verifier.verifications_started.connect(_signal_update)
-	verifier.verifications_completed.connect(_signal_update)
-	actions_completed.connect(_signal_update)
-	_field_connector.connect_signal("updated", _signal_update)
-	_memo_slot_connector.connect_signal("memo_changed", _signal_update)
+	verifier.verifications_started.connect(updated.emit)
+	verifier.verifications_completed.connect(updated.emit)
+	actions_completed.connect(updated.emit)
+	_field_connector.connect_signal("updated", updated.emit)
+	_memo_slot_connector.connect_signal("memo_changed", updated.emit)
 
 	$StateMachine.activate()
 	_run_program()
@@ -81,13 +81,9 @@ func _setup_reversion() -> void:
 
 func _run_program() -> void:
 	if program != null:
-		program.task_completed.connect(_signal_update)
-		program.level_completed.connect(_signal_update)
+		program.task_completed.connect(updated.emit.unbind(1))
+		program.level_completed.connect(updated.emit)
 		program.run()
-
-
-func _signal_update(_arg1 = null) -> void:
-	updated.emit()
 
 
 func _default_reset() -> void:
