@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=26 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creation_panel.gd" id="8_60rcw"]
 [ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
 [ext_resource type="Texture2D" uid="uid://dide6qwcw3llo" path="res://core/screens/pimnet_level/pimnet/overlay/caret-left.svg" id="10_52ncp"]
+[ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://core/menu.svg" id="10_c051s"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
 [ext_resource type="Texture2D" uid="uid://n0t70qwjgtwh" path="res://core/screens/pimnet_level/pimnet/overlay/caret-right.svg" id="11_6rg46"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="11_worie"]
@@ -234,9 +235,9 @@ alignment = 2
 [node name="PauseMenuButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopRight"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-tooltip_text = "Main Menu"
-text = "Pause Menu"
-clip_text = true
+tooltip_text = "Pause Menu"
+icon = ExtResource("10_c051s")
+icon_alignment = 1
 
 [node name="StripControls" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 layout_mode = 1

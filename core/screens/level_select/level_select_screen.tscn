@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=12 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/level_select_theme.tres" id="1_y5cmv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_in_to_topic.gd" id="8_mddll"]
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_out_to_topic.gd" id="9_73f7m"]
 [ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://core/screens/level_select/arrow-left.svg" id="10_r18v7"]
+[ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://core/menu.svg" id="11_fia35"]
 
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
@@ -155,8 +156,8 @@ offset_left = -8.0
 offset_bottom = 8.0
 grow_horizontal = 0
 theme = ExtResource("1_y5cmv")
-text = "M"
-clip_text = true
+icon = ExtResource("11_fia35")
+icon_alignment = 1
 
 [connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
