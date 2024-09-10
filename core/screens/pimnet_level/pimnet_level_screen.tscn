@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=25 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creation_panel.gd" id="8_60rcw"]
 [ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
+[ext_resource type="Texture2D" uid="uid://dide6qwcw3llo" path="res://core/screens/pimnet_level/pimnet/overlay/caret-left.svg" id="10_52ncp"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
+[ext_resource type="Texture2D" uid="uid://n0t70qwjgtwh" path="res://core/screens/pimnet_level/pimnet/overlay/caret-right.svg" id="11_6rg46"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="11_worie"]
 [ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/screens/pimnet_level/verifier/verifier.tscn" id="12_4kqqx"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
@@ -251,14 +253,16 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_horizontal = 2
-text = "⯇"
+icon = ExtResource("10_52ncp")
+icon_alignment = 1
 
 [node name="RightButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/StripControls" groups=["disable_during_verification"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "⯈"
+icon = ExtResource("11_6rg46")
+icon_alignment = 1
 
 [node name="PanelBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(50, 50)

@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_out_to_map.gd" id="6_bbilf"]
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_in_to_topic.gd" id="8_mddll"]
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_out_to_topic.gd" id="9_73f7m"]
-[ext_resource type="Texture2D" uid="uid://cff5xh5bu5aki" path="res://core/screens/level_select/aiga_left_arrow.svg" id="10_37avv"]
+[ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://core/screens/level_select/arrow-left.svg" id="10_r18v7"]
 
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
@@ -126,7 +126,7 @@ offset_right = 130.0
 offset_bottom = 50.0
 theme = ExtResource("1_y5cmv")
 text = "Topic"
-icon = ExtResource("10_37avv")
+icon = ExtResource("10_r18v7")
 clip_text = true
 
 [node name="TitleButton" type="Button" parent="OverlayLayer/Overlay"]
