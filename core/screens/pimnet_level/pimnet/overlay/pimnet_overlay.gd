@@ -155,14 +155,6 @@ func deactivate_panel(panel_type: PimnetPanels) -> void:
 	assert(not panel.visible)
 
 
-func activate_reversion() -> void:
-	reversion_menu.visible = true
-
-
-func deactivate_reversion() -> void:
-	reversion_menu.visible = false
-
-
 func enable_scroll_buttons(enable := true) -> void:
 	if enable:
 		%LeftButton.show()
