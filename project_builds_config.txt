@@ -1,0 +1,157 @@
+{
+"epic_artifact_id": "",
+"epic_cloud_dir": "",
+"epic_product_id": "",
+"godot_path": "",
+"itch_default_channel": "",
+"itch_game_name": "",
+"routines": Array[Dictionary]([{
+"name": "Big Red Button",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"routine": "Build All"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
+"routine": "Package Desktop Builds"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
+"routine": "Package Itch Web Build"
+},
+"scene": "SubRoutine"
+}])
+}, {
+"name": "Build All",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"custom_path": "export/linux64/Super Practica.x86_64",
+"debug": false,
+"preset": "Linux 64"
+},
+"scene": "ExportProject"
+}, {
+"data": {
+"custom_path": "export/linux32/Super Practica.x86_32",
+"debug": false,
+"preset": "Linux 32"
+},
+"scene": "ExportProject"
+}, {
+"data": {
+"custom_path": "export/win64/Super Practica.exe",
+"debug": false,
+"preset": "Windows Desktop 64"
+},
+"scene": "ExportProject"
+}, {
+"data": {
+"custom_path": "export/win32/Super Practica.exe",
+"debug": false,
+"preset": "Windows Desktop 32"
+},
+"scene": "ExportProject"
+}, {
+"data": {
+"custom_path": "export/web/Super Practica.html",
+"debug": false,
+"preset": "Web"
+},
+"scene": "ExportProject"
+}])
+}, {
+"name": "Package Desktop Builds",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"destination": "export/packages/SuperPractica-linux64.zip",
+"exclude_files": "",
+"include_files": "",
+"source": "export/linux64"
+},
+"scene": "PackZIP"
+}, {
+"data": {
+"destination": "export/packages/SuperPractica-linux32.zip",
+"exclude_files": "",
+"include_files": "",
+"source": "export/linux32"
+},
+"scene": "PackZIP"
+}, {
+"data": {
+"destination": "export/packages/SuperPractica-win64.zip",
+"exclude_files": "",
+"include_files": "",
+"source": "export/win64"
+},
+"scene": "PackZIP"
+}, {
+"data": {
+"destination": "export/packages/SuperPractica-win32.zip",
+"exclude_files": "",
+"include_files": "",
+"source": "export/win32"
+},
+"scene": "PackZIP"
+}])
+}, {
+"name": "Package Itch Web Build",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"recursive": false,
+"source_path": "export/web/Super Practica.html",
+"target_path": "export/web/index.html"
+},
+"scene": "CopyFiles"
+}, {
+"data": {
+"destination": "export/packages/web-playable.zip",
+"exclude_files": "*Practica.html",
+"include_files": "",
+"source": "export/web"
+},
+"scene": "PackZIP"
+}])
+}, {
+"name": "Clear Export Folder (Broken)",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"target_directory": "export/linux64"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/linux32"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/win64"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/win32"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/web"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/packages"
+},
+"scene": "ClearDirectory"
+}])
+}]),
+"templates": Array[Dictionary]([])
+}
