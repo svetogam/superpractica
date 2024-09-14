@@ -254,6 +254,51 @@ func test_golden_path_3_6_with_unit():
 # Borderline Success
 #====================================================================
 
+func test_complete_if_corrected_after_failure():
+	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
+	Game.current_level = level_data
+	Game.debug.add_ref_scene(self, REF_SCENE)
+	var runner := scene_runner(LEVEL_SCENES["3.2"])
+	runner.set_time_factor(100)
+
+	# Stop one short of correct number of units
+	await runner.simulate_mouse_move_absolute($Ref/Square4.position, 0.01)
+	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Square5.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Square6.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Square7.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/OutputSlot.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await await_millis(VERIFICATION_TIMEOUT)
+
+	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_false()
+
+	# Place remaining unit
+	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Square8.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/OutputSlot.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await runner.await_signal_on(
+			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+
+	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
+
+
 func test_complete_if_addends_to_mark_and_count_are_inefficiently_chosen():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data

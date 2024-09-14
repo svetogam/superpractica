@@ -11,6 +11,7 @@ script = ExtResource("1_7skim")
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("2_lncla")
 _initial_state = NodePath("CheckStart")
+_auto_deactivate = true
 
 [node name="CheckStart" type="Node" parent="StateMachine"]
 script = ExtResource("4_s3qew")
