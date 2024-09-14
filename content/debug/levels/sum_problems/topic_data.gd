@@ -117,5 +117,12 @@ static var topic = TopicResource.new(
 		TopicGroupResource.new(
 			["debug_1_5_1", "debug_1_5_2", "debug_1_5_3", "debug_1_5_4"]
 		),
+	],
+	# Suggested Order
+	[
+		"debug_1_1_1",
+		"debug_1_5_1",
+		"debug_1_5_2",
+		"debug_1_5_3",
 	]
 )
