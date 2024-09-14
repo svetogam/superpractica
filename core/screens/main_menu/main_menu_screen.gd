@@ -15,8 +15,7 @@ signal exit_pressed
 
 
 func _ready() -> void:
-	# Hide quit button depending on build
-	if false:
+	if OS.get_name() == "Web":
 		%QuitButton.hide()
 
 
