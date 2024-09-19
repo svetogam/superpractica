@@ -10,6 +10,11 @@
 "on_fail": 0,
 "tasks": Array[Dictionary]([{
 "data": {
+"routine": "Clear Export Folder"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
 "routine": "Build All"
 },
 "scene": "SubRoutine"
@@ -23,6 +28,40 @@
 "routine": "Package Itch Web Build"
 },
 "scene": "SubRoutine"
+}])
+}, {
+"name": "Clear Export Folder",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"target_directory": "export/linux64"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/linux32"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/win64"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/win32"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/web"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/packages"
+},
+"scene": "ClearDirectory"
 }])
 }, {
 "name": "Build All",
@@ -117,40 +156,6 @@
 "source": "export/web"
 },
 "scene": "PackZIP"
-}])
-}, {
-"name": "Clear Export Folder (Broken)",
-"on_fail": 0,
-"tasks": Array[Dictionary]([{
-"data": {
-"target_directory": "export/linux64"
-},
-"scene": "ClearDirectory"
-}, {
-"data": {
-"target_directory": "export/linux32"
-},
-"scene": "ClearDirectory"
-}, {
-"data": {
-"target_directory": "export/win64"
-},
-"scene": "ClearDirectory"
-}, {
-"data": {
-"target_directory": "export/win32"
-},
-"scene": "ClearDirectory"
-}, {
-"data": {
-"target_directory": "export/web"
-},
-"scene": "ClearDirectory"
-}, {
-"data": {
-"target_directory": "export/packages"
-},
-"scene": "ClearDirectory"
 }])
 }]),
 "templates": Array[Dictionary]([])
