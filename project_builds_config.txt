@@ -4,9 +4,28 @@
 "epic_product_id": "",
 "godot_path": "",
 "itch_default_channel": "",
-"itch_game_name": "",
+"itch_game_name": "super-practica",
 "routines": Array[Dictionary]([{
-"name": "Big Red Button",
+"name": "Upgrade Locally",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"routine": "Clear Export Folder"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
+"routine": "Build All"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
+"routine": "Package Desktop Builds"
+},
+"scene": "SubRoutine"
+}])
+}, {
+"name": "Upgrade Everywhere",
 "on_fail": 0,
 "tasks": Array[Dictionary]([{
 "data": {
@@ -25,7 +44,12 @@
 "scene": "SubRoutine"
 }, {
 "data": {
-"routine": "Package Itch Web Build"
+"routine": "Upload Desktop Builds to Itch"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
+"routine": "Upload Web Build to Itch"
 },
 "scene": "SubRoutine"
 }])
@@ -139,7 +163,35 @@
 "scene": "PackZIP"
 }])
 }, {
-"name": "Package Itch Web Build",
+"name": "Upload Desktop Builds to Itch",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"channel": "linux64",
+"source_folder": "export/linux64"
+},
+"scene": "UploadItch"
+}, {
+"data": {
+"channel": "linux32",
+"source_folder": "export/linux32"
+},
+"scene": "UploadItch"
+}, {
+"data": {
+"channel": "win64",
+"source_folder": "export/win64"
+},
+"scene": "UploadItch"
+}, {
+"data": {
+"channel": "win32",
+"source_folder": "export/win32"
+},
+"scene": "UploadItch"
+}])
+}, {
+"name": "Upload Web Build to Itch",
 "on_fail": 0,
 "tasks": Array[Dictionary]([{
 "data": {
@@ -150,12 +202,10 @@
 "scene": "CopyFiles"
 }, {
 "data": {
-"destination": "export/packages/web-playable.zip",
-"exclude_files": "*Practica.html",
-"include_files": "",
-"source": "export/web"
+"channel": "web",
+"source_folder": "export/web"
 },
-"scene": "PackZIP"
+"scene": "UploadItch"
 }])
 }]),
 "templates": Array[Dictionary]([])
