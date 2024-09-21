@@ -1,12 +1,12 @@
-# Changelog
+# [Super Practica](https://superpractica.org) Changelog
 
-All notable changes to this project will be documented in this file.
+## About
 
-This changelog is written for players rather than for developers. Greater version increases indicate completion of major new content, features, and aesthetic theming. Smaller version increases indicate other improvements and partial completion.
-
-Content may stick around or be prepared in "debug levels", but will be considered as removed or as not yet added here.
-
-For plans for upcoming releases, see the [Roadmap](https://superpractica.org/resources/roadmap).
+* All changes to the game that are notable to players will be documented in this file.
+* Greater version increases indicate completion of major new content, features, and aesthetic theming.
+* Smaller version increases indicate partial completion and other improvements.
+* There may be more features and content in "debug levels", but they will be ignored and counted as removed here.
+* For plans for upcoming releases, see the [Roadmap](https://superpractica.org/resources/roadmap). (The changelog of the future!)
 
 
 ## [Unreleased] - Pre-Player-Facing Demo 2
@@ -26,6 +26,13 @@ For plans for upcoming releases, see the [Roadmap](https://superpractica.org/res
     * It's back in a new form after being cut.
 * "Contextual goal slot" goal mechanic
 * "Next Level" button finally works
+
+
+### Aesthetic
+
+#### Changed
+
+* A few buttons have added or improved icons
 
 
 ## [v0.7.0] - Pre-Player-Facing Demo 1 - 2024-07-29
@@ -49,10 +56,8 @@ The primary interface and level-selection screen are redesigned, but content is 
 #### Removed
 
 * The main line of levels from v0.6.0
-    * You can still find sets 1 and 5 out of 8 in debug levels.
 * Pie-slicer pim and levels
 * Bubble-sum pim
-    * You can still find it in a broken state in debug levels.
 
 
 ### Features
@@ -88,5 +93,6 @@ The primary interface and level-selection screen are redesigned, but content is 
 This demo is only a proof of concept. Its purpose is to test some ideas, clarify some parts of the design, and build functional code architecture before continuing on to making a real demo.
 
 
+[Unreleased]: https://codeberg.org/superpractica/superpractica
 [v0.7.0]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.0
 [v0.6.0]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.6.0
