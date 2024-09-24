@@ -20,6 +20,16 @@
 "scene": "SubRoutine"
 }, {
 "data": {
+"routine": "Convert Changelog"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
+"routine": "Add Other Files to Packages"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
 "routine": "Package Desktop Builds"
 },
 "scene": "SubRoutine"
@@ -29,17 +39,7 @@
 "on_fail": 0,
 "tasks": Array[Dictionary]([{
 "data": {
-"routine": "Clear Export Folder"
-},
-"scene": "SubRoutine"
-}, {
-"data": {
-"routine": "Build All"
-},
-"scene": "SubRoutine"
-}, {
-"data": {
-"routine": "Package Desktop Builds"
+"routine": "Upgrade Locally"
 },
 "scene": "SubRoutine"
 }, {
@@ -84,6 +84,11 @@
 }, {
 "data": {
 "target_directory": "export/packages"
+},
+"scene": "ClearDirectory"
+}, {
+"data": {
+"target_directory": "export/converted"
 },
 "scene": "ClearDirectory"
 }])
@@ -161,6 +166,44 @@
 "source": "export/win32"
 },
 "scene": "PackZIP"
+}])
+}, {
+"name": "Convert Changelog",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"arguments": PackedStringArray("-o", "$project/export/converted/Changelog.html", "$project/CHANGELOG.md"),
+"command": "pandoc"
+},
+"scene": "CustomTask"
+}])
+}, {
+"name": "Add Other Files to Packages",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"arguments": PackedStringArray("$project/export/converted/Changelog.html", "$project/export/linux64/Changelog.html"),
+"command": "cp"
+},
+"scene": "CustomTask"
+}, {
+"data": {
+"arguments": PackedStringArray("$project/export/converted/Changelog.html", "$project/export/linux32/Changelog.html"),
+"command": "cp"
+},
+"scene": "CustomTask"
+}, {
+"data": {
+"arguments": PackedStringArray("$project/export/converted/Changelog.html", "$project/export/win64/Changelog.html"),
+"command": "cp"
+},
+"scene": "CustomTask"
+}, {
+"data": {
+"arguments": PackedStringArray("$project/export/converted/Changelog.html", "$project/export/win32/Changelog.html"),
+"command": "cp"
+},
+"scene": "CustomTask"
 }])
 }, {
 "name": "Upload Desktop Builds to Itch",
