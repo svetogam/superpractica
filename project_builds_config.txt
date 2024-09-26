@@ -5,6 +5,7 @@
 "godot_path": "",
 "itch_default_channel": "",
 "itch_game_name": "super-practica",
+"itch_version_file": "",
 "routines": Array[Dictionary]([{
 "name": "Upgrade Locally",
 "on_fail": 0,
@@ -44,12 +45,7 @@
 "scene": "SubRoutine"
 }, {
 "data": {
-"routine": "Upload Desktop Builds to Itch"
-},
-"scene": "SubRoutine"
-}, {
-"data": {
-"routine": "Upload Web Build to Itch"
+"routine": "Upload to Itch"
 },
 "scene": "SubRoutine"
 }])
@@ -206,30 +202,48 @@
 "scene": "CustomTask"
 }])
 }, {
+"name": "Upload to Itch",
+"on_fail": 0,
+"tasks": Array[Dictionary]([{
+"data": {
+"routine": "Upload Desktop Builds to Itch"
+},
+"scene": "SubRoutine"
+}, {
+"data": {
+"routine": "Upload Web Build to Itch"
+},
+"scene": "SubRoutine"
+}])
+}, {
 "name": "Upload Desktop Builds to Itch",
 "on_fail": 0,
 "tasks": Array[Dictionary]([{
 "data": {
 "channel": "linux64",
-"source_folder": "export/linux64"
+"source_folder": "export/linux64",
+"use_project_version": true
 },
 "scene": "UploadItch"
 }, {
 "data": {
 "channel": "linux32",
-"source_folder": "export/linux32"
+"source_folder": "export/linux32",
+"use_project_version": true
 },
 "scene": "UploadItch"
 }, {
 "data": {
 "channel": "win64",
-"source_folder": "export/win64"
+"source_folder": "export/win64",
+"use_project_version": true
 },
 "scene": "UploadItch"
 }, {
 "data": {
 "channel": "win32",
-"source_folder": "export/win32"
+"source_folder": "export/win32",
+"use_project_version": true
 },
 "scene": "UploadItch"
 }])
@@ -246,7 +260,8 @@
 }, {
 "data": {
 "channel": "web",
-"source_folder": "export/web"
+"source_folder": "export/web",
+"use_project_version": true
 },
 "scene": "UploadItch"
 }])
