@@ -27,14 +27,14 @@ script = ExtResource("1_evcbt")
 unique_name_in_owner = true
 title = "About Info"
 initial_position = 1
-size = Vector2i(508, 400)
+size = Vector2i(508, 416)
 script = ExtResource("2_morim")
 
 [node name="PanelContainer" type="PanelContainer" parent="AboutPopup"]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 504.0
-offset_bottom = 396.0
+offset_bottom = 412.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AboutPopup/PanelContainer"]
 layout_mode = 2
@@ -78,6 +78,12 @@ label_settings = SubResource("LabelSettings_ujeqp")
 horizontal_alignment = 1
 
 [node name="SourceLink" type="LinkButton" parent="AboutPopup/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(source here)"
+
+[node name="SourceCommitLink" type="LinkButton" parent="AboutPopup/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

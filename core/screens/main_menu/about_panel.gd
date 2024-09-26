@@ -12,11 +12,13 @@ extends PopupPanel
 
 
 func _ready() -> void:
-	%VersionText.text = Game.RELEASE_TAG
+	%VersionText.text = Game.version_tag
 	%WebsiteLink.text = Game.WEBSITE_URL
 	%WebsiteLink.uri = Game.WEBSITE_URL
-	%SourceLink.text = Game.SOURCE_URL
-	%SourceLink.uri = Game.SOURCE_URL
+	%SourceLink.text = Game.REPO_URL
+	%SourceLink.uri = Game.REPO_URL
+	%SourceCommitLink.text = "This Build: [" + Game.last_commit_hash.substr(0, 8) + "]"
+	%SourceCommitLink.uri = Game.REPO_URL + "/src/commit/" + Game.last_commit_hash
 
 
 func _on_close_button_pressed() -> void:

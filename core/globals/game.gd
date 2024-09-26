@@ -19,9 +19,8 @@ const SERVICE_REVERTER := "reverter"
 const NO_OBJECT: int = -1
 const NO_TOOL: int = -1
 
-const RELEASE_TAG := "v0.7.0"
 const WEBSITE_URL := "https://superpractica.org"
-const SOURCE_URL := "https://codeberg.org/superpractica/superpractica"
+const REPO_URL := "https://codeberg.org/superpractica/superpractica"
 
 const COLOR_HIGHLIGHT := Color(1.0, 1.0, 0.5)
 const COLOR_REJECTION := Color(1.0, 0.0, 0.0)
@@ -29,12 +28,20 @@ const COLOR_AFFIRMATION := Color(0.6, 1.0, 0.6)
 const COLOR_GUIDE := Color(0.5, 0.5, 1.0)
 
 var debug := GameDebug.new()
+var version: String:
+	get:
+		return ProjectSettings.get("application/config/version")
+var version_tag: String:
+	get:
+		return "v" + version
+var last_commit_hash: String:
+	get:
+		return preload("auto_version/commit.gd").VERSION
 
 
 #====================================================================
 # Content State
 #====================================================================
-#region
 
 var root_topic: TopicResource
 var progress_data := GameProgressResource.new()
@@ -66,11 +73,9 @@ func is_level_suggested_after_current() -> bool:
 	return get_suggested_level_after_current() != null
 
 
-#endregion
 #====================================================================
 # Timing
 #====================================================================
-#region
 
 func call_after(callable: Callable, time_delay: float) -> void:
 	if debug.is_on() and debug.should_skip_delays() or time_delay <= 0:
@@ -97,11 +102,9 @@ func get_animation_time_modifier() -> float:
 		return 1.0
 
 
-#endregion
 #====================================================================
 # Other
 #====================================================================
-#region
 
 # This doesn't actually do anything, but it's nice to have as a wrapper
 func get_screen_rect() -> Rect2:
@@ -109,6 +112,3 @@ func get_screen_rect() -> Rect2:
 		return debug.fallback_screen_rect
 	else:
 		return get_viewport().get_visible_rect()
-
-
-#endregion

@@ -20,3 +20,6 @@ export/*
 
 # Addons
 addons/ProjectBuilder
+
+# Auto-generated commit hash
+core/globals/auto_version/commit.gd
