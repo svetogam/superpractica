@@ -18,8 +18,6 @@ mono_crash.*.json
 export/*
 !export/.gdignore
 
-# Addons
+# Addon-related
 addons/ProjectBuilder
-
-# Auto-generated commit hash
-core/globals/auto_version/commit.gd
+core/globals/build_data.json

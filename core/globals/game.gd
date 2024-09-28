@@ -34,9 +34,6 @@ var version: String:
 var version_tag: String:
 	get:
 		return "v" + version
-var last_commit_hash: String:
-	get:
-		return preload("auto_version/commit.gd").VERSION
 
 
 #====================================================================

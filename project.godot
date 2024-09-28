@@ -12,9 +12,7 @@ _project_builder_config_path="project_builds_config.txt"
 
 [addons]
 
-AutoExportVersion/version_store_location=0
-AutoExportVersion/version_file_path="res://core/globals/auto_version/commit.gd"
-AutoExportVersion/version_config_file="res://core/globals/auto_version/auto_export_version_config_file.gd"
+BuildDataGenerator/build_data_path="res://core/globals"
 
 [application]
 
@@ -45,7 +43,7 @@ window/size/viewport_height=600
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoExportVersion/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
+enabled=PackedStringArray("res://addons/build_data_generator/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
 [file_customization]
 
