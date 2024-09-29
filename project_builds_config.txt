@@ -93,39 +93,44 @@
 "on_fail": 0,
 "tasks": Array[Dictionary]([{
 "data": {
-"custom_path": "export/linux64/Super Practica.x86_64",
 "debug": false,
-"preset": "Linux 64"
+"path_suffix": "linux64/Super Practica.x86_64",
+"preset": "Linux 64",
+"template": "Regular Export"
 },
-"scene": "ExportProject"
+"scene": "ExportProjectFromTemplate"
 }, {
 "data": {
-"custom_path": "export/linux32/Super Practica.x86_32",
 "debug": false,
-"preset": "Linux 32"
+"path_suffix": "linux32/Super Practica.x86_32",
+"preset": "Linux 32",
+"template": "Regular Export"
 },
-"scene": "ExportProject"
+"scene": "ExportProjectFromTemplate"
 }, {
 "data": {
-"custom_path": "export/win64/Super Practica.exe",
 "debug": false,
-"preset": "Windows Desktop 64"
+"path_suffix": "win64/Super Practica.exe",
+"preset": "Windows Desktop 64",
+"template": "Regular Export"
 },
-"scene": "ExportProject"
+"scene": "ExportProjectFromTemplate"
 }, {
 "data": {
-"custom_path": "export/win32/Super Practica.exe",
 "debug": false,
-"preset": "Windows Desktop 32"
+"path_suffix": "win32/Super Practica.exe",
+"preset": "Windows Desktop 32",
+"template": "Regular Export"
 },
-"scene": "ExportProject"
+"scene": "ExportProjectFromTemplate"
 }, {
 "data": {
-"custom_path": "export/web/Super Practica.html",
 "debug": false,
-"preset": "Web"
+"path_suffix": "web/Super Practica.html",
+"preset": "Web",
+"template": "Regular Export"
 },
-"scene": "ExportProject"
+"scene": "ExportProjectFromTemplate"
 }])
 }, {
 "name": "Package Desktop Builds",
@@ -266,5 +271,12 @@
 "scene": "UploadItch"
 }])
 }]),
-"templates": Array[Dictionary]([])
+"templates": Array[Dictionary]([{
+"custom_features": PackedStringArray(),
+"exclude_filters": PackedStringArray("addons/gdUnit4/*"),
+"export_path": "export",
+"include_filters": PackedStringArray(),
+"inherit": "",
+"name": "Regular Export"
+}])
 }
