@@ -11,6 +11,11 @@
 
 ## [v0.7.1] - Pre-Player-Facing Demo 2 - 2024-09-30
 
+### Summary
+
+New levels using an improved verification system.
+
+
 ### Content
 
 #### Added
