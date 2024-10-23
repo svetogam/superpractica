@@ -20,4 +20,3 @@ export/*
 
 # Addon-related
 addons/ProjectBuilder
-core/globals/build_data.json
