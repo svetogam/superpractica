@@ -10,10 +10,6 @@ config_version=5
 
 _project_builder_config_path="project_builds_config.txt"
 
-[addons]
-
-BuildDataGenerator/build_data_path="res://core/globals"
-
 [application]
 
 config/name="Super Practica"
@@ -43,7 +39,7 @@ window/size/viewport_height=600
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/build_data_generator/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/your_buil/plugin.cfg")
 
 [file_customization]
 
