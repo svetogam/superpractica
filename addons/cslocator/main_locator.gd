@@ -1,11 +1,24 @@
 class_name CSLocator
+extends Object
 ## The main class for the Contextual Service Locator.
 ##
-## All uses of the CSLocator should go through [method CSLocator.with] and
+## [CSLocator] is a static class that lets you find [Object]s through the
+## [SceneTree] like localized singletons.
+## [br][br]
+## Basic usage is to call, in any order:
+## [br]
+## * [method CSLocator_Sublocator.register] with an ancestor "context"
+## [Node] and a "service" [Object] to be findable.
+## [br]
+## * A method such as [method CSLocator_Sublocator.connect_service_found]
+## with a descendant "agent" [Node].
+## [br][br]
+## All uses of [CSLocator] should go through [method CSLocator.with] and
 ## select a method with the dot operator.
 ## For example:
-## [code]CSLocator.with(self).register("my_service", my_service)[/code]
-## [br][br]
+## [codeblock]
+## CSLocator.with(self).register("key", service)
+## [/codeblock]
 ## See [CSLocator_Sublocator] for the set of methods.
 
 const _SERVICE_SIGNAL_PREFIX := "service_signal:"
@@ -13,10 +26,9 @@ static var _sublocators_dict: Dictionary # {int: Array[CSLocator_Sublocator], ..
 static var _signaler := Object.new() # Hack to add signals in a static class
 
 
-## Generates a [CSLocator_Sublocator] pointing to the [param source] [Node]
-## passed into it.
+## Returns a [CSLocator_Sublocator] pointing to the [param source] [Node].
 ## [br][br]
-## The [param source] [Node] [b]must[/b] be in the scene tree, otherwise it
+## The [param source] [Node] [b]must[/b] be in the [SceneTree], otherwise it
 ## pushes an error and returns [code]null[/code].
 ## [br][br]
 ## It is [b]not[/b] a supported use to keep references to sublocators, such as by
@@ -60,8 +72,8 @@ static func _get_sublocators(source: Node) -> Array[CSLocator_Sublocator]:
 
 
 # First connection initializes the signal
-static func _connect_service_signal(service_name: String, callback: Callable) -> void:
-	var signal_name := _get_service_signal_name(service_name)
+static func _connect_service_signal(service_key: String, callback: Callable) -> void:
+	var signal_name := _get_service_signal_name(service_key)
 
 	# Initialize service signal if necessary
 	if not _signaler.has_user_signal(signal_name):
@@ -71,19 +83,19 @@ static func _connect_service_signal(service_name: String, callback: Callable) ->
 		_signaler.connect(signal_name, callback)
 
 
-static func _disconnect_service_signal(service_name: String, callback: Callable) -> void:
-	var signal_name := _get_service_signal_name(service_name)
+static func _disconnect_service_signal(service_key: String, callback: Callable) -> void:
+	var signal_name := _get_service_signal_name(service_key)
 	if (_signaler.has_user_signal(signal_name)
 			and _signaler.is_connected(signal_name, callback)):
 		_signaler.disconnect(signal_name, callback)
 
 
 # Does not emit the signal if it was never initialized before
-static func _emit_service_signal(service_name: String) -> void:
-	var signal_name := _get_service_signal_name(service_name)
+static func _emit_service_signal(service_key: String) -> void:
+	var signal_name := _get_service_signal_name(service_key)
 	if _signaler.has_user_signal(signal_name):
 		_signaler.emit_signal(signal_name)
 
 
-static func _get_service_signal_name(service_name: String) -> String:
-	return _SERVICE_SIGNAL_PREFIX + service_name
+static func _get_service_signal_name(service_key: String) -> String:
+	return _SERVICE_SIGNAL_PREFIX + service_key
