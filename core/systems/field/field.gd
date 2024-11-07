@@ -159,7 +159,7 @@ func get_tool() -> int:
 
 func get_field_objects() -> Array:
 	var field_objects: Array = []
-	for object in ContextUtils.get_children_in_group(self, "field_objects"):
+	for object in Utils.get_children_in_group(self, "field_objects"):
 		if not object.is_queued_for_deletion():
 			field_objects.append(object)
 	return field_objects

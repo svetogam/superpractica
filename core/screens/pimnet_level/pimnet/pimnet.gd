@@ -221,7 +221,7 @@ func overlay_position_to_effect_layer(p_position: Vector2) -> Vector2:
 
 
 func get_pim_list() -> Array:
-	return ContextUtils.get_children_in_group(self, "pims")
+	return Utils.get_children_in_group(self, "pims")
 
 
 func get_pim(index: int = 0) -> Pim:
@@ -233,7 +233,7 @@ func get_pim(index: int = 0) -> Pim:
 
 
 func get_field_list() -> Array:
-	return ContextUtils.get_children_in_group(self, "fields")
+	return Utils.get_children_in_group(self, "fields")
 
 
 #====================================================================

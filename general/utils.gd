@@ -79,6 +79,20 @@ static func sort_node2d_by_x_position(a: Node2D, b: Node2D) -> bool:
 	return a.position.x <= b.position.x
 
 
+static func get_children_in_group(parent: Node, group: String, recursive := true
+) -> Array:
+	var children_in_group: Array = []
+	if recursive:
+		for node in parent.get_tree().get_nodes_in_group(group):
+			if parent.is_ancestor_of(node):
+				children_in_group.append(node)
+	else:
+		for child in parent.get_children():
+			if child.is_in_group(group):
+				children_in_group.append(child)
+	return children_in_group
+
+
 static func convert_from_layer_to_layer(vector: Vector2,
 		source: CanvasLayer = null, dest: CanvasLayer = null
 ) -> Vector2:
