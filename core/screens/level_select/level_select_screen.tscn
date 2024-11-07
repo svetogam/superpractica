@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_out_to_map.gd" id="6_bbilf"]
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_in_to_topic.gd" id="8_mddll"]
 [ext_resource type="Script" path="res://core/screens/level_select/states/zoom_out_to_topic.gd" id="9_73f7m"]
-[ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://core/screens/level_select/arrow-left.svg" id="10_r18v7"]
-[ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://core/menu.svg" id="11_fia35"]
+[ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://general/icons/mono_icons/arrow-left.svg" id="10_r18v7"]
+[ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="11_fia35"]
 
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
