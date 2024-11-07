@@ -21,8 +21,6 @@ const REVERTER_MAX_SIZE: int = 1000
 @export var program: LevelProgram
 var reverter := CReverter.new()
 var _action_queue := LevelActionQueue.new()
-var _field_connector := ContextualConnector.new(self, "fields", true)
-var _memo_slot_connector := ContextualConnector.new(self, "memo_slots", true)
 @onready var pimnet := %Pimnet as Pimnet
 @onready var verifier := $Verifier as Node
 
@@ -36,8 +34,9 @@ func _ready() -> void:
 	verifier.verifications_started.connect(updated.emit)
 	verifier.verifications_completed.connect(updated.emit)
 	actions_completed.connect(updated.emit)
-	_field_connector.connect_signal("updated", updated.emit)
-	_memo_slot_connector.connect_signal("memo_changed", updated.emit)
+	CSConnector.with(self).connect_signal(Game.AGENT_FIELD, "updated", updated.emit)
+	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
+			"memo_changed", updated.emit.unbind(1))
 
 	$StateMachine.activate()
 	_run_program()

@@ -19,15 +19,16 @@ const InterfieldObjectScene := preload("interfield_object.tscn")
 var dragged_object: FieldObject
 var _pims_left_to_right: Array = []
 var _dragging := false
-var _field_connector := ContextualConnector.new(self, "fields", true)
 @onready var overlay := %Overlay as PimnetOverlay
 @onready var effect_layer := %RootEffectLayer as CanvasLayer
 @onready var dragged_object_layer := %DraggedObjectLayer as CanvasLayer
 
 
 func _enter_tree() -> void:
-	_field_connector.connect_signal("dragged_object_requested", start_interfield_drag)
-	_field_connector.connect_signal("dragged_memo_requested", create_dragged_memo)
+	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
+			"dragged_object_requested", start_interfield_drag)
+	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
+			"dragged_memo_requested", create_dragged_memo)
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
 
 

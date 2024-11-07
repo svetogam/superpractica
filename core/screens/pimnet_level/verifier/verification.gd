@@ -44,7 +44,7 @@ func _init() -> void:
 
 
 func _enter_tree() -> void:
-	ContextualConnector.register(self)
+	CSConnector.with(self).register(Game.AGENT_VERIFICATION)
 
 
 func run(target: Node, verified_callback: Callable, rejected_callback := Callable()

@@ -62,7 +62,7 @@ static func _get_interface_data() -> FieldInterfaceData:
 
 
 func _enter_tree() -> void:
-	ContextualConnector.register(self)
+	CSConnector.with(self).register(Game.AGENT_FIELD)
 	CSLocator.with(self).connect_service_found(Game.SERVICE_REVERTER, _on_reverter_found)
 
 

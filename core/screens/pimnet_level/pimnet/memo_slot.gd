@@ -42,7 +42,7 @@ var _previous_slot_color: Color
 
 
 func _enter_tree() -> void:
-	ContextualConnector.register(self)
+	CSConnector.with(self).register(Game.AGENT_MEMO_SLOT)
 	CSLocator.with(self).connect_service_found(Game.SERVICE_PIMNET, _on_pimnet_found)
 
 

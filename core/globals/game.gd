@@ -16,6 +16,10 @@ const SERVICE_ROOT_EFFECT_LAYER := "effect_layer"
 const SERVICE_VERIFIER := "verifier"
 const SERVICE_REVERTER := "reverter"
 
+const AGENT_FIELD := "fields"
+const AGENT_MEMO_SLOT := "memo_slots"
+const AGENT_VERIFICATION := "verifications"
+
 const NO_OBJECT: int = -1
 const NO_TOOL: int = -1
 

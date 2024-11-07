@@ -17,7 +17,6 @@ signal verifications_completed
 @export var effect_layer: CanvasLayer
 @export var pimnet: Pimnet
 var _verifications_running: int = 0
-var _verification_connector := ContextualConnector.new(self, "verifications", true)
 @onready var goal_verifier := %GoalVerifier as GoalVerifier
 
 
@@ -25,7 +24,7 @@ func _enter_tree() -> void:
 	assert(effect_layer != null)
 	assert(pimnet != null)
 
-	_verification_connector.connect_setup(_register_verification)
+	CSConnector.with(self).connect_setup(Game.AGENT_VERIFICATION, _register_verification)
 	CSLocator.with(self).register(Game.SERVICE_VERIFIER, self)
 
 
