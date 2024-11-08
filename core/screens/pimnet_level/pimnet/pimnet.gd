@@ -15,7 +15,10 @@ signal memo_drag_started(memo)
 signal memo_drag_ended(memo)
 
 const InterfieldObjectScene := preload("interfield_object.tscn")
-@export var setup_resource: PimnetSetupResource
+var setup_resource: PimnetSetupResource:
+	get:
+		assert(Game.current_level != null)
+		return Game.current_level.pimnet_setup
 var dragged_object: FieldObject
 var _pims_left_to_right: Array = []
 var _dragging := false

@@ -20,74 +20,78 @@ static var topic = TopicResource.new(
 		LevelResource.new(
 			# ID
 			"bubble_sum",
-			# Scene
-			preload("levels/bubble_sum/level.tscn"),
 			# Title
 			"Bubble Sum Pim",
-			# Program Vars
-			null,
 			# Thumbnail
 			preload("levels/bubble_sum/thumbnail.png")
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
 			"grid_counting",
-			# Scene
-			preload("levels/grid_counting/level.tscn"),
 			# Title
 			"Grid Counting Pim",
-			# Program Vars
-			null,
 			# Thumbnail
 			preload("levels/grid_counting/thumbnail.png")
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
 			"select_number_1",
-			# Scene
-			preload("levels/number_selectors/select_number_1/level.tscn"),
 			# Title
 			"Selector 1",
-			# Program Vars
-			null,
 			# Thumbnail
-			preload("levels/number_selectors/select_number_1/thumbnail.png")
+			preload("levels/number_selectors/select_number_1/thumbnail.png"),
+			# Pimnet Setup
+			preload("levels/number_selectors/select_number_1/pimnet_setup.tres"),
+			# Program
+			preload("levels/number_selectors/select_number_1/program.tscn")
+			# Program Vars
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
 			"select_number_2",
-			# Scene
-			preload("levels/number_selectors/select_number_2/level.tscn"),
 			# Title
 			"Selector 2",
-			# Program Vars
-			null,
 			# Thumbnail
-			preload("levels/number_selectors/select_number_2/thumbnail.png")
+			preload("levels/number_selectors/select_number_2/thumbnail.png"),
+			# Pimnet Setup
+			preload("levels/number_selectors/select_number_2/pimnet_setup.tres"),
+			# Program
+			preload("levels/number_selectors/select_number_2/program.tscn")
+			# Program Vars
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
 			"slot_pims",
-			# Scene
-			preload("levels/slot_pims/level.tscn"),
 			# Title
 			"Slot Pims",
-			# Program Vars
-			null,
 			# Thumbnail
 			preload("levels/slot_pims/thumbnail.png")
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
 			"field_pims",
-			# Scene
-			preload("levels/field_pims/level.tscn"),
 			# Title
 			"Field Pims",
-			# Program Vars
-			null,
 			# Thumbnail
 			preload("levels/field_pims/thumbnail.png")
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 	],
 	# Subtopics

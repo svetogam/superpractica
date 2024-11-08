@@ -21,30 +21,35 @@ static var topic = TopicResource.new(
 		LevelResource.new(
 			# ID
 			"dummy_level_2_1",
-			# Scene
-			null,
 			# Title
 			"Level 2.1",
-			# Program Vars
 			# Thumbnail
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
 			"dummy_level_2_2",
-			# Scene
-			null,
 			# Title
 			"Level 2.2",
 			# Thumbnail
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
 			"dummy_level_2_3",
-			# Scene
-			null,
 			# Title
 			"Level 2.3",
 			# Thumbnail
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 	],
 	# Subtopics

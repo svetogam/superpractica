@@ -17,10 +17,7 @@ const LEVEL_NAMES := {
 	"5.2": "debug_1_5_2",
 	"5.3": "debug_1_5_3",
 }
-const LEVEL_SCENES := {
-	1: "res://content/debug/levels/sum_problems/basic_addition_1/level.tscn",
-	5: "res://content/debug/levels/sum_problems/basic_addition_5/level.tscn",
-}
+const LEVEL_SCENE := "res://core/screens/pimnet_level/pimnet_level_screen.tscn"
 const REF_SCENES := {
 	1: "res://content/debug/levels/sum_problems/tests/sum_problem_1_ref.tscn",
 	5: "res://content/debug/levels/sum_problems/tests/sum_problem_5_ref.tscn",
@@ -45,7 +42,7 @@ func test_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES["1.1"]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENES[1])
-	var runner := scene_runner(LEVEL_SCENES[1])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square5.position, 0.01)
@@ -71,7 +68,7 @@ func test_5_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES["5.1"]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENES[5])
-	var runner := scene_runner(LEVEL_SCENES[5])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square4.position, 0.01)
@@ -95,7 +92,7 @@ func test_5_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES["5.2"]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENES[5])
-	var runner := scene_runner(LEVEL_SCENES[5])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square35.position, 0.01)
@@ -123,7 +120,7 @@ func test_5_3():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES["5.3"]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENES[5])
-	var runner := scene_runner(LEVEL_SCENES[5])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square19.position, 0.01)

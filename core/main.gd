@@ -12,6 +12,7 @@ extends Node
 
 const MainMenu := preload("res://core/screens/main_menu/main_menu_screen.tscn")
 const LevelSelect := preload("res://core/screens/level_select/level_select_screen.tscn")
+const PimnetLevel := preload("res://core/screens/pimnet_level/pimnet_level_screen.tscn")
 var _current_scene: Node = null
 
 
@@ -44,14 +45,12 @@ func enter_level_select() -> void:
 
 func enter_level(level_data: LevelResource) -> void:
 	assert(level_data != null)
-	if level_data.scene == null:
-		return
 
 	if _current_scene != null:
 		_current_scene.queue_free()
 
 	Game.current_level = level_data
-	_current_scene = level_data.scene.instantiate()
+	_current_scene = PimnetLevel.instantiate()
 	add_child(_current_scene)
 
 	_current_scene.exited_to_level_select.connect(enter_level_select)

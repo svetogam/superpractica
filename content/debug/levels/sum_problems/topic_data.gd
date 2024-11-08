@@ -20,68 +20,98 @@ static var topic = TopicResource.new(
 		LevelResource.new(
 			# ID
 			"debug_1_1_1",
-			# Scene
-			preload("basic_addition_1/level.tscn"),
 			# Title
 			"Addition 1",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("basic_addition_1/pimnet_setup.tres"),
+			# Program
+			preload("basic_addition_1/program.tscn"),
 			# Program Vars
 			preload("basic_addition_1/levels/level_1.tres"),
-			# Thumbnail
+			# Program Plan
+			preload("basic_addition_1/plan_data.tres")
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_1_2",
-			# Scene
-			preload("basic_addition_1/level.tscn"),
 			# Title
 			"Addition 1 Random",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("basic_addition_1/pimnet_setup.tres"),
+			# Program
+			preload("basic_addition_1/program.tscn"),
 			# Program Vars
 			preload("basic_addition_1/levels/level_2.tres"),
-			# Thumbnail
+			# Program Plan
+			preload("basic_addition_1/plan_data.tres")
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_1",
-			# Scene
-			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5.1",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("basic_addition_5/pimnet_setup.tres"),
+			# Program
+			preload("basic_addition_5/program.tscn"),
 			# Program Vars
 			preload("basic_addition_5/levels/level_1.tres"),
-			# Thumbnail
+			# Program Plan
+			preload("basic_addition_5/plan_data.tres")
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_2",
-			# Scene
-			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5.2",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("basic_addition_5/pimnet_setup.tres"),
+			# Program
+			preload("basic_addition_5/program.tscn"),
 			# Program Vars
 			preload("basic_addition_5/levels/level_2.tres"),
-			# Thumbnail
+			# Program Plan
+			preload("basic_addition_5/plan_data.tres")
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_3",
-			# Scene
-			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5.3",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("basic_addition_5/pimnet_setup.tres"),
+			# Program
+			preload("basic_addition_5/program.tscn"),
 			# Program Vars
 			preload("basic_addition_5/levels/level_3.tres"),
-			# Thumbnail
+			# Program Plan
+			preload("basic_addition_5/plan_data.tres")
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_4",
-			# Scene
-			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5 Random",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("basic_addition_5/pimnet_setup.tres"),
+			# Program
+			preload("basic_addition_5/program.tscn"),
 			# Program Vars
 			preload("basic_addition_5/levels/level_4.tres"),
-			# Thumbnail
+			# Program Plan
+			preload("basic_addition_5/plan_data.tres")
 		),
 	],
 	# Subtopics

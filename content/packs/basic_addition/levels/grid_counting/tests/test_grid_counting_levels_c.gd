@@ -21,9 +21,9 @@ const LEVEL_NAMES := {
 	5: "grid_counting_3_5",
 	6: "grid_counting_3_6",
 }
-const FOLDER_STRING := "res://content/packs/basic_addition/levels/grid_counting/"
-const LEVEL_SCENE := FOLDER_STRING + "grid_counting_c/level.tscn"
-const REF_SCENE := FOLDER_STRING + "tests/screen_ref_c.tscn"
+const LEVEL_SCENE := "res://core/screens/pimnet_level/pimnet_level_screen.tscn"
+const REF_SCENE := ("res://content/packs/basic_addition/levels/grid_counting/"
+		+ "tests/screen_ref_c.tscn")
 
 
 func before():

@@ -15,10 +15,7 @@ const LEVEL_NAMES := {
 	1: "select_number_1",
 	2: "select_number_2",
 }
-const LEVEL_SCENES := {
-	1: "res://content/debug/levels/number_selectors/select_number_1/level.tscn",
-	2: "res://content/debug/levels/number_selectors/select_number_2/level.tscn",
-}
+const LEVEL_SCENE := "res://core/screens/pimnet_level/pimnet_level_screen.tscn"
 const REF_SCENE := (
 		"res://content/debug/levels/number_selectors/tests/number_selectors_ref.tscn")
 
@@ -41,7 +38,7 @@ func after():
 func test_selector_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	Game.current_level = level_data
-	var runner := scene_runner(LEVEL_SCENES[1])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Selector1/PlusButton.position, 0.01)
@@ -58,7 +55,7 @@ func test_selector_1():
 func test_selector_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	Game.current_level = level_data
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Selector2/Num2Button.position, 0.01)

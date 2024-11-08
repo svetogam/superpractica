@@ -18,15 +18,20 @@ signal exited_to_next_level
 
 const REVERTER_MAX_SIZE: int = 1000
 
-@export var program: LevelProgram
+var program: LevelProgram
 var reverter := CReverter.new()
 var _action_queue := LevelActionQueue.new()
 @onready var pimnet := %Pimnet as Pimnet
 @onready var verifier := $Verifier as Node
 
 
+func _enter_tree() -> void:
+	assert(Game.current_level != null)
+
+
 func _ready() -> void:
 	_action_queue.setup(pimnet)
+	_setup_program()
 	_setup_reversion()
 
 	pimnet.overlay.exit_pressed.connect(exited_to_level_select.emit)
@@ -45,6 +50,12 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	# Do actions queued on the same frame together
 	_do_queued_actions()
+
+
+func _setup_program() -> void:
+	if Game.current_level.program != null:
+		program = Game.current_level.program.instantiate()
+		add_child(program)
 
 
 func _setup_reversion() -> void:

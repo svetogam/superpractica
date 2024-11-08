@@ -16,7 +16,10 @@ signal level_completed
 signal reset_called
 signal reset_changed
 
-@export var _plan_data: PlanResource
+var _plan_data: PlanResource:
+	get:
+		assert(Game.current_level != null)
+		return Game.current_level.program_plan
 var level: Level:
 	get:
 		assert(_target != null)

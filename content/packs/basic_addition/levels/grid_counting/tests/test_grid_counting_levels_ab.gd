@@ -20,12 +20,9 @@ const LEVEL_NAMES := {
 	5: "grid_counting_1_5",
 	6: "grid_counting_1_6",
 }
-const FOLDER_STRING := "res://content/packs/basic_addition/levels/grid_counting/"
-const LEVEL_SCENES := {
-	1: FOLDER_STRING + "grid_counting_a/level.tscn",
-	2: FOLDER_STRING + "grid_counting_b/level.tscn",
-}
-const REF_SCENE := FOLDER_STRING + "tests/screen_ref_ab.tscn"
+const LEVEL_SCENE := "res://core/screens/pimnet_level/pimnet_level_screen.tscn"
+const REF_SCENE := ("res://content/packs/basic_addition/levels/grid_counting/"
+		+ "tests/screen_ref_ab.tscn")
 
 
 func before():
@@ -50,7 +47,7 @@ func test_golden_path_1_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[1])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/UnitA.position, 0.01)
@@ -77,7 +74,7 @@ func test_golden_path_1_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[1])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/UnitA.position, 0.01)
@@ -116,7 +113,7 @@ func test_golden_path_1_3():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -143,7 +140,7 @@ func test_golden_path_1_4():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -174,7 +171,7 @@ func test_golden_path_1_5():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[5]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -225,7 +222,7 @@ func test_golden_path_1_6():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -284,7 +281,7 @@ func test_complete_if_warnings_are_fixed():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	# Fill the first 4 rows in backwards order
@@ -328,7 +325,7 @@ func test_do_not_complete_if_junk_gives_a_warning():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	# Add a ten-block in the wrong place to get a warning
@@ -365,7 +362,7 @@ func test_do_not_complete_if_filling_rows_with_units_instead_of_ten_blocks():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES[2])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	# Complete first subtask

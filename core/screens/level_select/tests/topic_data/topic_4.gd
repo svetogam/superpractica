@@ -21,12 +21,13 @@ static var topic = TopicResource.new(
 		LevelResource.new(
 			# ID
 			"dummy_level_4_1",
-			# Scene
-			null,
 			# Title
 			"Level 4.1",
-			# Program Vars
 			# Thumbnail
+			# Pimnet Setup
+			# Program
+			# Program Vars
+			# Program Plan
 		),
 	],
 	# Subtopics
