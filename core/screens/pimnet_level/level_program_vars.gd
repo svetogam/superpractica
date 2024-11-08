@@ -8,33 +8,12 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
+class_name LevelProgramVars
 extends Resource
 
 
-static var topic = TopicResource.new(
-	# ID
-	"test_topic_4",
-	# Title
-	"Topic 4",
-	# Levels
-	[
-		LevelResource.new(
-			# ID
-			"dummy_level_4_1",
-			# Scene
-			null,
-			# Title
-			"Level 4.1",
-			# Program Vars
-			# Thumbnail
-		),
-	],
-	# Subtopics
-	[],
-	# Layout
-	preload("topic_4_layout.tscn"),
-	# Connections
-	[],
-	# Groups
-	[]
-)
+func _calc_min_max(min_value: int, max_value: int) -> int:
+	if min_value > max_value:
+		return min_value
+	else:
+		return randi_range(min_value, max_value)

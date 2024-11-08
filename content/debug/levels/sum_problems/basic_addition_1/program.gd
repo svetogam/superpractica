@@ -10,23 +10,15 @@
 
 extends LevelProgram
 
-@export var start_number: int
-@export var count: int
-@export var _random_start_number: bool
-@export var _min_start_number: int
-@export var _max_start_number: int
-@export var _random_count: bool
-@export var _min_count: int
-@export var _max_count: int
-
+var start_number: int
+var count: int
 var pim: Pim
 var field: Field
 
 
 func _setup_vars() -> void:
-	start_number = Utils.eval_given_or_random_int(start_number,
-			_random_start_number, _min_start_number, _max_start_number)
-	count = Utils.eval_given_or_random_int(count, _random_count, _min_count, _max_count)
+	start_number = Game.current_level.program_vars.new_start_number()
+	count = Game.current_level.program_vars.new_count()
 
 
 func _start() -> void:

@@ -24,6 +24,8 @@ static var topic = TopicResource.new(
 			preload("levels/bubble_sum/level.tscn"),
 			# Title
 			"Bubble Sum Pim",
+			# Program Vars
+			null,
 			# Thumbnail
 			preload("levels/bubble_sum/thumbnail.png")
 		),
@@ -34,6 +36,8 @@ static var topic = TopicResource.new(
 			preload("levels/grid_counting/level.tscn"),
 			# Title
 			"Grid Counting Pim",
+			# Program Vars
+			null,
 			# Thumbnail
 			preload("levels/grid_counting/thumbnail.png")
 		),
@@ -44,6 +48,8 @@ static var topic = TopicResource.new(
 			preload("levels/number_selectors/select_number_1/level.tscn"),
 			# Title
 			"Selector 1",
+			# Program Vars
+			null,
 			# Thumbnail
 			preload("levels/number_selectors/select_number_1/thumbnail.png")
 		),
@@ -54,6 +60,8 @@ static var topic = TopicResource.new(
 			preload("levels/number_selectors/select_number_2/level.tscn"),
 			# Title
 			"Selector 2",
+			# Program Vars
+			null,
 			# Thumbnail
 			preload("levels/number_selectors/select_number_2/thumbnail.png")
 		),
@@ -64,6 +72,8 @@ static var topic = TopicResource.new(
 			preload("levels/slot_pims/level.tscn"),
 			# Title
 			"Slot Pims",
+			# Program Vars
+			null,
 			# Thumbnail
 			preload("levels/slot_pims/thumbnail.png")
 		),
@@ -74,6 +84,8 @@ static var topic = TopicResource.new(
 			preload("levels/field_pims/level.tscn"),
 			# Title
 			"Field Pims",
+			# Program Vars
+			null,
 			# Thumbnail
 			preload("levels/field_pims/thumbnail.png")
 		),

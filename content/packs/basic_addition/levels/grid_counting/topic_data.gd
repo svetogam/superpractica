@@ -21,9 +21,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_1",
 			# Scene
-			preload("grid_counting_a/variants/1_1.tscn"),
+			preload("grid_counting_a/level.tscn"),
 			# Title
 			"1 - 1",
+			# Program Vars
+			preload("grid_counting_a/variants/1_1.tres"),
 			# Thumbnail
 			preload("grid_counting_a/variants/1_1_thumbnail.png")
 		),
@@ -31,9 +33,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_2",
 			# Scene
-			preload("grid_counting_a/variants/1_2.tscn"),
+			preload("grid_counting_a/level.tscn"),
 			# Title
 			"1 - 2",
+			# Program Vars
+			preload("grid_counting_a/variants/1_2.tres"),
 			# Thumbnail
 			preload("grid_counting_a/variants/1_2_thumbnail.png")
 		),
@@ -41,9 +45,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_3",
 			# Scene
-			preload("grid_counting_b/variants/1_3.tscn"),
+			preload("grid_counting_b/level.tscn"),
 			# Title
 			"1 - 3",
+			# Program Vars
+			preload("grid_counting_b/variants/1_3.tres"),
 			# Thumbnail
 			preload("grid_counting_b/variants/1_3_thumbnail.png")
 		),
@@ -51,9 +57,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_4",
 			# Scene
-			preload("grid_counting_b/variants/1_4.tscn"),
+			preload("grid_counting_b/level.tscn"),
 			# Title
 			"1 - 4",
+			# Program Vars
+			preload("grid_counting_b/variants/1_4.tres"),
 			# Thumbnail
 			preload("grid_counting_b/variants/1_4_thumbnail.png")
 		),
@@ -61,9 +69,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_5",
 			# Scene
-			preload("grid_counting_b/variants/1_5.tscn"),
+			preload("grid_counting_b/level.tscn"),
 			# Title
 			"1 - 5",
+			# Program Vars
+			preload("grid_counting_b/variants/1_5.tres"),
 			# Thumbnail
 			preload("grid_counting_b/variants/1_5_thumbnail.png")
 		),
@@ -71,9 +81,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_6",
 			# Scene
-			preload("grid_counting_b/variants/1_6.tscn"),
+			preload("grid_counting_b/level.tscn"),
 			# Title
 			"1 - 6",
+			# Program Vars
+			preload("grid_counting_b/variants/1_6.tres"),
 			# Thumbnail
 			preload("grid_counting_b/variants/1_6_thumbnail.png")
 		),
@@ -81,9 +93,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_random",
 			# Scene
-			preload("grid_counting_b/variants/1_random.tscn"),
+			preload("grid_counting_b/level.tscn"),
 			# Title
 			"1 - Random",
+			# Program Vars
+			preload("grid_counting_b/variants/1_random.tres"),
 			# Thumbnail
 			preload("grid_counting_b/variants/1_random_thumbnail.png")
 		),
@@ -165,9 +179,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_1",
 			# Scene
-			preload("grid_counting_c/variants/3_1.tscn"),
+			preload("grid_counting_c/level.tscn"),
 			# Title
 			"3 - 1",
+			# Program Vars
+			preload("grid_counting_c/variants/3_1.tres"),
 			# Thumbnail
 			preload("grid_counting_c/variants/3_1_thumbnail.png")
 		),
@@ -175,9 +191,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_2",
 			# Scene
-			preload("grid_counting_c/variants/3_2.tscn"),
+			preload("grid_counting_c/level.tscn"),
 			# Title
 			"3 - 2",
+			# Program Vars
+			preload("grid_counting_c/variants/3_2.tres"),
 			# Thumbnail
 			preload("grid_counting_c/variants/3_2_thumbnail.png")
 		),
@@ -185,9 +203,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_3",
 			# Scene
-			preload("grid_counting_c/variants/3_3.tscn"),
+			preload("grid_counting_c/level.tscn"),
 			# Title
 			"3 - 3",
+			# Program Vars
+			preload("grid_counting_c/variants/3_3.tres"),
 			# Thumbnail
 			preload("grid_counting_c/variants/3_3_thumbnail.png")
 		),
@@ -195,9 +215,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_4",
 			# Scene
-			preload("grid_counting_c/variants/3_4.tscn"),
+			preload("grid_counting_c/level.tscn"),
 			# Title
 			"3 - 4",
+			# Program Vars
+			preload("grid_counting_c/variants/3_4.tres"),
 			# Thumbnail
 			preload("grid_counting_c/variants/3_4_thumbnail.png")
 		),
@@ -205,9 +227,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_5",
 			# Scene
-			preload("grid_counting_c/variants/3_5.tscn"),
+			preload("grid_counting_c/level.tscn"),
 			# Title
 			"3 - 5",
+			# Program Vars
+			preload("grid_counting_c/variants/3_5.tres"),
 			# Thumbnail
 			preload("grid_counting_c/variants/3_5_thumbnail.png")
 		),
@@ -215,9 +239,11 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_6",
 			# Scene
-			preload("grid_counting_c/variants/3_6.tscn"),
+			preload("grid_counting_c/level.tscn"),
 			# Title
 			"3 - 6",
+			# Program Vars
+			preload("grid_counting_c/variants/3_6.tres"),
 			# Thumbnail
 			preload("grid_counting_c/variants/3_6_thumbnail.png")
 		),

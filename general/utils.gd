@@ -41,15 +41,6 @@ static func call_callables(callable_list: Array, args: Array = []) -> Array:
 	return result_list
 
 
-static func eval_given_or_random_int(given: int, random: bool,
-		min_value: int, max_value: int
-) -> int:
-	if not random:
-		return given
-	else:
-		return randi_range(min_value, max_value)
-
-
 static func are_unsorted_lists_equal(list_1: Array, list_2: Array,
 		check_function := (func(a, b): return a == b)
 ) -> bool:

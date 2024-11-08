@@ -8,33 +8,18 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends Resource
+class_name SumProblemsProgramVarsA
+extends LevelProgramVars
+
+@export var min_start_number: int = 0
+@export var max_start_number: int = -1
+@export var min_count: int = 0
+@export var max_count: int = -1
 
 
-static var topic = TopicResource.new(
-	# ID
-	"test_topic_4",
-	# Title
-	"Topic 4",
-	# Levels
-	[
-		LevelResource.new(
-			# ID
-			"dummy_level_4_1",
-			# Scene
-			null,
-			# Title
-			"Level 4.1",
-			# Program Vars
-			# Thumbnail
-		),
-	],
-	# Subtopics
-	[],
-	# Layout
-	preload("topic_4_layout.tscn"),
-	# Connections
-	[],
-	# Groups
-	[]
-)
+func new_start_number() -> int:
+	return _calc_min_max(min_start_number, max_start_number)
+
+
+func new_count() -> int:
+	return _calc_min_max(min_count, max_count)

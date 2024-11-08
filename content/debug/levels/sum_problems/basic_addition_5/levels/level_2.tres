@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SumProblemsProgramVarsB" load_steps=2 format=3 uid="uid://cnp060ifo3u5x"]
+
+[ext_resource type="Script" path="res://content/debug/levels/sum_problems/basic_addition_5/program_vars.gd" id="1_x1on2"]
+
+[resource]
+script = ExtResource("1_x1on2")
+min_start_number = 35
+max_start_number = -1
+min_addend = 7
+max_addend = -1

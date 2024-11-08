@@ -10,25 +10,16 @@
 
 extends LevelProgram
 
-@export var addend_1: int
-@export var _random_addend_1: bool
-@export var _min_addend_1: int
-@export var _max_addend_1: int
-@export var addend_2: int
-@export var _random_addend_2: bool
-@export var _min_addend_2: int
-@export var _max_addend_2: int
-
+var addend_1: int
+var addend_2: int
 var pim: Pim
 var field: Field
 var output_program: PimProgram
 
 
 func _setup_vars() -> void:
-	addend_1 = Utils.eval_given_or_random_int(
-			addend_1, _random_addend_1, _min_addend_1, _max_addend_1)
-	addend_2 = Utils.eval_given_or_random_int(
-			addend_2, _random_addend_2, _min_addend_2, _max_addend_2)
+	addend_1 = Game.current_level.program_vars.new_addend_1()
+	addend_2 = Game.current_level.program_vars.new_addend_2()
 
 
 func _start() -> void:

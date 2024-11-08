@@ -10,18 +10,14 @@
 
 extends LevelProgram
 
-@export var count: int
-@export var _random_count: bool
-@export var _min_count: int
-@export var _max_count: int
-
+var count: int
 var pim: Pim
 var field: Field
 var output_program: PimProgram
 
 
 func _setup_vars() -> void:
-	count = Utils.eval_given_or_random_int(count, _random_count, _min_count, _max_count)
+	count = Game.current_level.program_vars.new_count()
 
 
 func _start() -> void:

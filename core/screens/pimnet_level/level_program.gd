@@ -56,7 +56,10 @@ func _init() -> void:
 
 
 func _start() -> void:
-	_setup_vars()
+	assert(Game.current_level != null)
+
+	if Game.current_level.program_vars != null:
+		_setup_vars()
 
 	if _plan_data != null:
 		var replacements := _get_instruction_replacements()

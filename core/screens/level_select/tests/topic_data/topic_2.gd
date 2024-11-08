@@ -25,6 +25,7 @@ static var topic = TopicResource.new(
 			null,
 			# Title
 			"Level 2.1",
+			# Program Vars
 			# Thumbnail
 		),
 		LevelResource.new(

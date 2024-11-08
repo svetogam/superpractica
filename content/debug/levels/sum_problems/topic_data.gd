@@ -21,54 +21,66 @@ static var topic = TopicResource.new(
 			# ID
 			"debug_1_1_1",
 			# Scene
-			preload("basic_addition_1/levels/level_1.tscn"),
+			preload("basic_addition_1/level.tscn"),
 			# Title
 			"Addition 1",
+			# Program Vars
+			preload("basic_addition_1/levels/level_1.tres"),
 			# Thumbnail
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_1_2",
 			# Scene
-			preload("basic_addition_1/levels/level_2.tscn"),
+			preload("basic_addition_1/level.tscn"),
 			# Title
 			"Addition 1 Random",
+			# Program Vars
+			preload("basic_addition_1/levels/level_2.tres"),
 			# Thumbnail
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_1",
 			# Scene
-			preload("basic_addition_5/levels/level_1.tscn"),
+			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5.1",
+			# Program Vars
+			preload("basic_addition_5/levels/level_1.tres"),
 			# Thumbnail
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_2",
 			# Scene
-			preload("basic_addition_5/levels/level_2.tscn"),
+			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5.2",
+			# Program Vars
+			preload("basic_addition_5/levels/level_2.tres"),
 			# Thumbnail
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_3",
 			# Scene
-			preload("basic_addition_5/levels/level_3.tscn"),
+			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5.3",
+			# Program Vars
+			preload("basic_addition_5/levels/level_3.tres"),
 			# Thumbnail
 		),
 		LevelResource.new(
 			# ID
 			"debug_1_5_4",
 			# Scene
-			preload("basic_addition_5/levels/level_4.tscn"),
+			preload("basic_addition_5/level.tscn"),
 			# Title
 			"Addition 5 Random",
+			# Program Vars
+			preload("basic_addition_5/levels/level_4.tres"),
 			# Thumbnail
 		),
 	],

@@ -8,33 +8,18 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends Resource
+class_name GridCountingProgramVarsC
+extends LevelProgramVars
+
+@export var min_addend_1: int = 0
+@export var max_addend_1: int = -1
+@export var min_addend_2: int = 0
+@export var max_addend_2: int = -1
 
 
-static var topic = TopicResource.new(
-	# ID
-	"test_topic_4",
-	# Title
-	"Topic 4",
-	# Levels
-	[
-		LevelResource.new(
-			# ID
-			"dummy_level_4_1",
-			# Scene
-			null,
-			# Title
-			"Level 4.1",
-			# Program Vars
-			# Thumbnail
-		),
-	],
-	# Subtopics
-	[],
-	# Layout
-	preload("topic_4_layout.tscn"),
-	# Connections
-	[],
-	# Groups
-	[]
-)
+func new_addend_1() -> int:
+	return _calc_min_max(min_addend_1, max_addend_1)
+
+
+func new_addend_2() -> int:
+	return _calc_min_max(min_addend_2, max_addend_2)

@@ -22,15 +22,8 @@ const LEVEL_NAMES := {
 	6: "grid_counting_3_6",
 }
 const FOLDER_STRING := "res://content/packs/basic_addition/levels/grid_counting/"
-const LEVEL_SCENES := {
-	"3.1": FOLDER_STRING + "grid_counting_c/variants/3_1.tscn",
-	"3.2": FOLDER_STRING + "grid_counting_c/variants/3_2.tscn",
-	"3.3": FOLDER_STRING + "grid_counting_c/variants/3_3.tscn",
-	"3.4": FOLDER_STRING + "grid_counting_c/variants/3_4.tscn",
-	"3.5": FOLDER_STRING + "grid_counting_c/variants/3_5.tscn",
-	"3.6": FOLDER_STRING + "grid_counting_c/variants/3_6.tscn",
-}
-const REF_SCENE := FOLDER_STRING + "/tests/screen_ref_c.tscn"
+const LEVEL_SCENE := FOLDER_STRING + "grid_counting_c/level.tscn"
+const REF_SCENE := FOLDER_STRING + "tests/screen_ref_c.tscn"
 
 
 func before():
@@ -55,7 +48,7 @@ func test_golden_path_3_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.1"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square2.position, 0.01)
@@ -78,7 +71,7 @@ func test_golden_path_3_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.2"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square4.position, 0.01)
@@ -113,7 +106,7 @@ func test_golden_path_3_3():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.3"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square8.position, 0.01)
@@ -144,7 +137,7 @@ func test_golden_path_3_4():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.4"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square10.position, 0.01)
@@ -187,7 +180,7 @@ func test_golden_path_3_5():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[5]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.5"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square39.position, 0.01)
@@ -214,7 +207,7 @@ func test_golden_path_3_6_with_highlight():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.6"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square1.position, 0.01)
@@ -233,7 +226,7 @@ func test_golden_path_3_6_with_unit():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.6"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)
@@ -258,7 +251,7 @@ func test_complete_if_corrected_after_failure():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.2"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	# Stop one short of correct number of units
@@ -303,7 +296,7 @@ func test_complete_if_addends_to_mark_and_count_are_inefficiently_chosen():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.3"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square3.position, 0.01)
@@ -354,7 +347,7 @@ func test_complete_if_field_is_marked_in_the_opposite_order():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.3"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)
@@ -389,7 +382,7 @@ func test_do_not_complete_if_solution_is_reached_by_adding_units_alone():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.1"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)
@@ -417,7 +410,7 @@ func test_do_not_complete_if_solution_is_marked_with_no_units():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.2"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square8.position, 0.01)
@@ -435,7 +428,7 @@ func test_do_not_complete_if_units_start_on_marked_square():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.2"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square4.position, 0.01)
@@ -469,7 +462,7 @@ func test_do_not_complete_if_junk_gives_a_warning():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENES["3.1"])
+	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square2.position, 0.01)
