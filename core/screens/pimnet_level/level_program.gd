@@ -16,10 +16,6 @@ signal level_completed
 signal reset_called
 signal reset_changed
 
-var _plan_data: PlanResource:
-	get:
-		assert(Game.current_level != null)
-		return Game.current_level.program_plan
 var level: Level:
 	get:
 		assert(_target != null)
@@ -64,9 +60,9 @@ func _start() -> void:
 	if Game.current_level.program_vars != null:
 		_setup_vars()
 
-	if _plan_data != null:
+	if Game.current_level.program_plan != null:
 		var replacements := _get_instruction_replacements()
-		plan_panel.setup(_plan_data, replacements)
+		Game.current_level.program_plan.set_instruction_replacements(replacements)
 
 
 # Virtual
@@ -80,7 +76,7 @@ func _get_instruction_replacements() -> Dictionary:
 
 
 func complete_task() -> void:
-	if plan_panel.is_active():
+	if Game.current_level.program_plan != null:
 		plan_panel.complete_current_task()
 		task_completed.emit(plan_panel.current_task)
 		if plan_panel.are_all_tasks_completed():

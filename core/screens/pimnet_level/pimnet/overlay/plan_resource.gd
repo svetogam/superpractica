@@ -11,12 +11,15 @@
 class_name PlanResource
 extends Resource
 
+signal replacements_updated
+
 @export var _tasks: Array[TaskResource]
 
 
-func set_instruction_replacements(replacements := {}) -> void:
+func set_instruction_replacements(replacements: Dictionary) -> void:
 	for task in _tasks:
-		task.set_instruction_replacements(replacements)
+		task.replacements = replacements
+	replacements_updated.emit()
 
 
 func get_task_by_number(number: int) -> TaskResource:

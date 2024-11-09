@@ -14,16 +14,12 @@ extends Resource
 @export var name_id: String
 @export var name_text: String
 @export_multiline var _instructions: String
-var _replacements := {}
-
-
-func set_instruction_replacements(p_replacements := {}) -> void:
-	_replacements = p_replacements
+var replacements := {}
 
 
 func get_instructions() -> String:
-	if _replacements.size() > 0:
-		var formatted_instructions := _instructions.format(_replacements)
+	if replacements.size() > 0:
+		var formatted_instructions := _instructions.format(replacements)
 		return formatted_instructions
 	else:
 		return _instructions
