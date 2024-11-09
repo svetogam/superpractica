@@ -131,62 +131,62 @@ static var topic = TopicResource.new(
 		),
 
 
-		#LevelResource.new(
-			## ID
-			#"grid_counting_2_1",
-			## Title
-			#"2 - 1",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_2_2",
-			## Title
-			#"2 - 2",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_2_3",
-			## Title
-			#"2 - 3",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_2_4",
-			## Title
-			#"2 - 4",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_2_5",
-			## Title
-			#"2 - 5",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_2_6",
-			## Title
-			#"2 - 6",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_2_7",
-			## Title
-			#"2 - 7",
-			## Thumbnail
-			#null
-		#),
+		LevelResource.new(
+			# ID
+			"grid_counting_2_1",
+			# Title
+			"2 - 1",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_2_2",
+			# Title
+			"2 - 2",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_2_3",
+			# Title
+			"2 - 3",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_2_4",
+			# Title
+			"2 - 4",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_2_5",
+			# Title
+			"2 - 5",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_2_6",
+			# Title
+			"2 - 6",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_2_7",
+			# Title
+			"2 - 7",
+			# Thumbnail
+			null
+		),
 
 
 		LevelResource.new(
@@ -282,62 +282,62 @@ static var topic = TopicResource.new(
 		),
 
 
-		#LevelResource.new(
-			## ID
-			#"grid_counting_4_1",
-			## Title
-			#"4 - 1",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_4_2",
-			## Title
-			#"4 - 2",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_4_3",
-			## Title
-			#"4 - 3",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_4_4",
-			## Title
-			#"4 - 4",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_4_5",
-			## Title
-			#"4 - 5",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_4_6",
-			## Title
-			#"4 - 6",
-			## Thumbnail
-			#null
-		#),
-		#LevelResource.new(
-			## ID
-			#"grid_counting_4_random",
-			## Title
-			#"4 - Random",
-			## Thumbnail
-			#null
-		#),
+		LevelResource.new(
+			# ID
+			"grid_counting_4_1",
+			# Title
+			"4 - 1",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_4_2",
+			# Title
+			"4 - 2",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_4_3",
+			# Title
+			"4 - 3",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_4_4",
+			# Title
+			"4 - 4",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_4_5",
+			# Title
+			"4 - 5",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_4_6",
+			# Title
+			"4 - 6",
+			# Thumbnail
+			null
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_4_random",
+			# Title
+			"4 - Random",
+			# Thumbnail
+			null
+		),
 	],
 
 
@@ -389,42 +389,42 @@ static var topic = TopicResource.new(
 		),
 
 
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_2_1", "grid_counting_2_2",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_2_2", "grid_counting_2_3",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_2_3", "grid_counting_2_4",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_2_4", "grid_counting_2_5",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_2_5", "grid_counting_2_6",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_2_6", "grid_counting_2_7",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_2_1", "grid_counting_2_2",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_2_2", "grid_counting_2_3",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_2_3", "grid_counting_2_4",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_2_4", "grid_counting_2_5",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_2_5", "grid_counting_2_6",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_2_6", "grid_counting_2_7",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
 
 
 		TopicConnectorResource.new(
@@ -459,68 +459,68 @@ static var topic = TopicResource.new(
 		),
 
 
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_4_1", "grid_counting_4_2",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_4_2", "grid_counting_4_3",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_4_3", "grid_counting_4_4",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_4_4", "grid_counting_4_5",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_4_5", "grid_counting_4_6",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_4_6", "grid_counting_4_random",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		#),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_4_1", "grid_counting_4_2",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_4_2", "grid_counting_4_3",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_4_3", "grid_counting_4_4",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_4_4", "grid_counting_4_5",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_4_5", "grid_counting_4_6",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_4_6", "grid_counting_4_random",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
 
 
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_1_random", "grid_counting_2_1",
-			## Directions
-			#Utils.Direction.DOWN, Utils.Direction.RIGHT
-		#),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_1_random", "grid_counting_2_1",
+			# Directions
+			Utils.Direction.DOWN, Utils.Direction.RIGHT
+		),
 		TopicConnectorResource.new(
 			# IDs
 			"grid_counting_1_random", "grid_counting_3_1",
 			# Directions
 			Utils.Direction.DOWN, Utils.Direction.DOWN
 		),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_2_7", "grid_counting_4_1",
-			## Directions
-			#Utils.Direction.DOWN, Utils.Direction.DOWN
-		#),
-		#TopicConnectorResource.new(
-			## IDs
-			#"grid_counting_3_6", "grid_counting_4_1",
-			## Directions
-			#Utils.Direction.RIGHT, Utils.Direction.DOWN
-		#),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_2_7", "grid_counting_4_1",
+			# Directions
+			Utils.Direction.DOWN, Utils.Direction.DOWN
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_3_6", "grid_counting_4_1",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.DOWN
+		),
 	],
 
 
@@ -537,17 +537,17 @@ static var topic = TopicResource.new(
 				"grid_counting_1_random",
 			]
 		),
-		#TopicGroupResource.new(
-			#[
-				#"grid_counting_2_1",
-				#"grid_counting_2_2",
-				#"grid_counting_2_3",
-				#"grid_counting_2_4",
-				#"grid_counting_2_5",
-				#"grid_counting_2_6",
-				#"grid_counting_2_7",
-			#]
-		#),
+		TopicGroupResource.new(
+			[
+				"grid_counting_2_1",
+				"grid_counting_2_2",
+				"grid_counting_2_3",
+				"grid_counting_2_4",
+				"grid_counting_2_5",
+				"grid_counting_2_6",
+				"grid_counting_2_7",
+			]
+		),
 		TopicGroupResource.new(
 			[
 				"grid_counting_3_1",
@@ -558,17 +558,17 @@ static var topic = TopicResource.new(
 				"grid_counting_3_6",
 			]
 		),
-		#TopicGroupResource.new(
-			#[
-				#"grid_counting_4_1",
-				#"grid_counting_4_2",
-				#"grid_counting_4_3",
-				#"grid_counting_4_4",
-				#"grid_counting_4_5",
-				#"grid_counting_4_6",
-				#"grid_counting_4_random",
-			#]
-		#),
+		TopicGroupResource.new(
+			[
+				"grid_counting_4_1",
+				"grid_counting_4_2",
+				"grid_counting_4_3",
+				"grid_counting_4_4",
+				"grid_counting_4_5",
+				"grid_counting_4_6",
+				"grid_counting_4_random",
+			]
+		),
 	],
 
 
@@ -581,25 +581,25 @@ static var topic = TopicResource.new(
 		"grid_counting_1_5",
 		"grid_counting_1_6",
 		"grid_counting_1_random",
-		#"grid_counting_2_1",
-		#"grid_counting_2_2",
-		#"grid_counting_2_3",
-		#"grid_counting_2_4",
-		#"grid_counting_2_5",
-		#"grid_counting_2_6",
-		#"grid_counting_2_7",
+		"grid_counting_2_1",
+		"grid_counting_2_2",
+		"grid_counting_2_3",
+		"grid_counting_2_4",
+		"grid_counting_2_5",
+		"grid_counting_2_6",
+		"grid_counting_2_7",
 		"grid_counting_3_1",
 		"grid_counting_3_2",
 		"grid_counting_3_3",
 		"grid_counting_3_4",
 		"grid_counting_3_5",
 		"grid_counting_3_6",
-		#"grid_counting_4_1",
-		#"grid_counting_4_2",
-		#"grid_counting_4_3",
-		#"grid_counting_4_4",
-		#"grid_counting_4_5",
-		#"grid_counting_4_6",
-		#"grid_counting_4_random",
+		"grid_counting_4_1",
+		"grid_counting_4_2",
+		"grid_counting_4_3",
+		"grid_counting_4_4",
+		"grid_counting_4_5",
+		"grid_counting_4_6",
+		"grid_counting_4_random",
 	]
 )
