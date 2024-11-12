@@ -16,4 +16,4 @@ func _init() -> void:
 	object_type = GridCounting.Objects.UNIT
 	name_text = "Unit"
 	drag_sprite = preload("graphics/sprite.tscn")
-	icon = null
+	icon = preload("graphics/unit_icon.svg")

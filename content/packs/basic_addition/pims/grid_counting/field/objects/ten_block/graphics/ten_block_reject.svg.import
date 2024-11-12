@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbnke3wnr4mkh"
-path="res://.godot/imported/unit_warning.svg-90b6480480298ef53212b8ddf6ecacbe.ctex"
+uid="uid://drl0x7wl7xvyo"
+path="res://.godot/imported/ten_block_reject.svg-ae1bafc25c7758d4ca24b962d23ece94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/graphics/unit_warning.svg"
-dest_files=["res://.godot/imported/unit_warning.svg-90b6480480298ef53212b8ddf6ecacbe.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/objects/ten_block/graphics/ten_block_reject.svg"
+dest_files=["res://.godot/imported/ten_block_reject.svg-ae1bafc25c7758d4ca24b962d23ece94.ctex"]
 
 [params]
 

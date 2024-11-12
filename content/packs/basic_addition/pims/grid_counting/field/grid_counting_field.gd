@@ -48,8 +48,8 @@ const ProcessCircleNumbersInDirection := preload(
 		"processes/circle_numbers_in_direction.gd")
 const ProcessAddByCircles := preload("processes/add_by_circles.gd")
 
-const BOARD_RECT := Rect2(0, 0, 350, 350)
-const CELL_SIZE := BOARD_RECT.size / 10
+const BOARD_SIZE := Vector2(350, 350)
+const BOARD_GAP := 3.0
 
 var _grid_cells_dict: Dictionary = {} # {GridCell.number: GridCell, ...}
 var _units_dict: Dictionary = {} # {Unit.cell.number: Unit, ...}
@@ -75,25 +75,16 @@ func _ready() -> void:
 
 
 func _setup_board() -> void:
-	%BoardGraphic.set_properties({"rect": BOARD_RECT})
-
+	# Add grid cells
 	var number: int = 0
+	var grid_cell: GridCell
 	for row in range(10):
 		for col in range(10):
 			number += 1
-			var cell_x := BOARD_RECT.position.x + col * CELL_SIZE.x + CELL_SIZE.x/2
-			var cell_y := BOARD_RECT.position.y + row * CELL_SIZE.y + CELL_SIZE.y/2
-			var cell_position := Vector2(cell_x, cell_y)
-			_add_grid_cell(number, cell_position)
-
-
-func _add_grid_cell(number: int, cell_position: Vector2) -> GridCell:
-	var grid_cell := ObjectGridCell.instantiate() as GridCell
-	add_child(grid_cell)
-	grid_cell.setup(CELL_SIZE, number)
-	grid_cell.position = cell_position
-	_grid_cells_dict[number] = grid_cell
-	return grid_cell
+			grid_cell = ObjectGridCell.instantiate() as GridCell
+			add_child(grid_cell)
+			grid_cell.setup(number, row, col)
+			_grid_cells_dict[number] = grid_cell
 
 
 func _on_update(_update_type: int) -> void:

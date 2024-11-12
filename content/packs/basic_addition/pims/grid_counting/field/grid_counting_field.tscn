@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://w2a71fj77wwv"]
+[gd_scene load_steps=8 format=3 uid="uid://w2a71fj77wwv"]
 
 [ext_resource type="PackedScene" uid="uid://idqfe3v3d4rw" path="res://core/systems/field/field.tscn" id="1_4oogl"]
 [ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/grid_counting_field.gd" id="2_ikg1k"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/programs/count_by_units.gd" id="5_vvjgt"]
 [ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/programs/soft_count.gd" id="6_ej6ta"]
 [ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/programs/add_by_circles.gd" id="7_qao6u"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/board_graphic.gd" id="9_31pgs"]
 
 [node name="GridCountingField" instance=ExtResource("1_4oogl")]
 script = ExtResource("2_ikg1k")
@@ -39,6 +38,13 @@ script = ExtResource("6_ej6ta")
 [node name="AddByCircles" type="Node" parent="Programs" index="3"]
 script = ExtResource("7_qao6u")
 
-[node name="BoardGraphic" type="Node2D" parent="." index="3"]
+[node name="Background" type="ColorRect" parent="." index="3"]
 unique_name_in_owner = true
-script = ExtResource("9_31pgs")
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 1)

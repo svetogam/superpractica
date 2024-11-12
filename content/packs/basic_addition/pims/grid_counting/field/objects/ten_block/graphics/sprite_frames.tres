@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bmdpjgbwtdtkh" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/ten_block/graphics/ten_block_affirm.svg" id="1_ftngs"]
 [ext_resource type="Texture2D" uid="uid://clgmx1rv30cg2" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/ten_block/graphics/ten_block.svg" id="2_6dfum"]
-[ext_resource type="Texture2D" uid="uid://66bjgfojus6v" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/ten_block/graphics/ten_block_warning.svg" id="3_5fkyi"]
+[ext_resource type="Texture2D" uid="uid://drl0x7wl7xvyo" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/ten_block/graphics/ten_block_reject.svg" id="3_y307r"]
 
 [resource]
 animations = [{
@@ -24,7 +24,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_5fkyi")
+"texture": ExtResource("3_y307r")
 }],
 "loop": true,
 "name": &"warning",
