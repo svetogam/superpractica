@@ -16,12 +16,12 @@ const START_DELAY := 0.8
 func _enter(_last_state: String) -> void:
 	await Game.wait_for(START_DELAY)
 
-	# Make number-effect at highlighted cell
+	# Make number-effect at marked cell
 	var board_number: NumberEffect
-	var marked_cell = verification.field.get_highlighted_grid_cell()
+	var marked_cell = verification.field.get_marked_cell()
 	if marked_cell != null:
 		board_number = verification.field.give_number_effect_by_grid_cell(marked_cell)
-	# Or make a 0 number-effect at first cell if no cell is highlighted
+	# Or make a 0 number-effect at first cell if no cell is marked
 	else:
 		var first_cell = verification.field.get_grid_cell(1)
 		board_number = verification.field.math_effects.give_number(0, first_cell.position)

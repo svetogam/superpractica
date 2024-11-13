@@ -12,5 +12,5 @@ extends FieldObjectMode
 
 
 func _press(_point: Vector2) -> void:
-	field.push_action(field.toggle_highlight.bind(object))
+	field.push_action(field.toggle_mark.bind(object))
 	get_viewport().set_input_as_handled()

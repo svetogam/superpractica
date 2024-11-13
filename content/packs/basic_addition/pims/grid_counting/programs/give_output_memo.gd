@@ -32,15 +32,15 @@ func _update_output_memo() -> void:
 
 
 func _calc_output_number() -> int:
-	var highlights = field.get_highlighted_numbers()
-	if highlights.size() > 1:
+	var marks = field.get_marked_numbers()
+	if marks.size() > 1:
 		return -1
 
 	var first_number: int
-	if highlights.size() == 0:
+	if marks.size() == 0:
 		first_number = 0
 	else:
-		first_number = highlights[0]
+		first_number = marks[0]
 	var contiguous_numbers = field.get_contiguous_occupied_numbers_from(first_number + 1)
 	if contiguous_numbers.is_empty():
 		return first_number

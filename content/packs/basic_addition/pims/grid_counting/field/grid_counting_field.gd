@@ -207,15 +207,11 @@ func get_grid_cells_by_row(row: int) -> Array:
 	return get_grid_cells_by_numbers(number_array)
 
 
-func get_highlighted_grid_cell() -> GridCell:
+func get_marked_cell() -> GridCell:
 	for cell in get_grid_cell_list():
-		if cell.highlighted:
+		if cell.marked:
 			return cell
 	return null
-
-
-func is_any_cell_highlighted() -> bool:
-	return get_highlighted_grid_cell() != null
 
 
 func get_grid_cells_with_units() -> Array:
@@ -277,10 +273,10 @@ func is_row_occupied(row: int) -> bool:
 	return false
 
 
-func is_cell_highlighted(cell: GridCell) -> bool:
+func is_cell_marked(cell: GridCell) -> bool:
 	assert(cell != null)
 
-	return cell.highlighted
+	return cell.marked
 
 
 func get_numbers_with_units() -> Array:
@@ -372,10 +368,10 @@ func get_contiguous_occupied_numbers_from(first_number: int) -> Array:
 	return number_sequence
 
 
-func get_highlighted_numbers() -> Array:
-	var highlighted_cell := get_highlighted_grid_cell()
-	if highlighted_cell != null:
-		return [highlighted_cell.number]
+func get_marked_numbers() -> Array:
+	var cell := get_marked_cell()
+	if cell != null:
+		return [cell.number]
 	else:
 		return []
 
@@ -448,26 +444,26 @@ func move_unit_by_numbers(from: int, to: int) -> void:
 		move_unit(unit, grid_cell)
 
 
-func toggle_highlight(cell: GridCell) -> void:
-	if not cell.highlighted:
-		highlight_single_cell(cell)
+func toggle_mark(cell: GridCell) -> void:
+	if not cell.marked:
+		mark_single_cell(cell)
 	else:
-		unhighlight_cells()
+		unmark_cells()
 
 
-func highlight_single_cell(cell: GridCell) -> void:
-	var previous_cell = get_highlighted_grid_cell()
+func mark_single_cell(cell: GridCell) -> void:
+	var previous_cell = get_marked_cell()
 	if previous_cell != null:
-		previous_cell.toggle_highlight()
-		cell.toggle_highlight()
-	elif not cell.highlighted:
-		cell.toggle_highlight()
+		previous_cell.toggle_mark()
+		cell.toggle_mark()
+	elif not cell.marked:
+		cell.toggle_mark()
 
 
-func unhighlight_cells() -> void:
-	var cell = get_highlighted_grid_cell()
+func unmark_cells() -> void:
+	var cell = get_marked_cell()
 	if cell != null:
-		cell.toggle_highlight()
+		cell.toggle_mark()
 
 
 #--------------------------------------
@@ -520,7 +516,7 @@ func set_empty() -> void:
 	for ten_block in get_ten_block_list():
 		ten_block.free()
 
-	unhighlight_cells()
+	unmark_cells()
 	math_effects.clear()
 	effect_counter.reset_count()
 
@@ -546,7 +542,7 @@ func _get_cells_data() -> Dictionary:
 	var data := {}
 	for cell in get_grid_cell_list():
 		data[cell.number] = {
-			"highlighted": cell.highlighted,
+			"marked": cell.marked,
 			"has_unit": cell.has_unit(),
 		}
 	return data
@@ -577,8 +573,8 @@ func load_state(state: CRMemento) -> void:
 func _load_cell_data(cell_data: Dictionary) -> void:
 	for cell_number in cell_data.keys():
 		var cell = get_grid_cell(cell_number)
-		if cell_data[cell_number].highlighted:
-			toggle_highlight(cell)
+		if cell_data[cell_number].marked:
+			toggle_mark(cell)
 		if cell_data[cell_number].has_unit:
 			create_unit(cell)
 

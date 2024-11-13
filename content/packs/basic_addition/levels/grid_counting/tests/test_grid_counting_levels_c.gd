@@ -203,7 +203,7 @@ func test_golden_path_3_5():
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
 
-func test_golden_path_3_6_with_highlight():
+func test_golden_path_3_6_with_mark():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)

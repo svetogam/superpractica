@@ -25,7 +25,7 @@ func _init() -> void:
 			"name": "CellMarker",
 			"text": "Mark Square",
 			"object_modes": {
-				GridCounting.Objects.GRID_CELL: ["highlight"],
+				GridCounting.Objects.GRID_CELL: ["mark"],
 			},
 		},
 		GridCounting.Tools.UNIT_CREATOR: {

@@ -23,10 +23,10 @@ func setup(p_start_number: int) -> void:
 
 
 func _start() -> void:
-	field.connect_condition("toggle_highlight", _decide_toggle_highlight)
+	field.connect_condition("toggle_mark", _decide_toggle_mark)
 
 
-func _decide_toggle_highlight(cell: GridCell) -> bool:
+func _decide_toggle_mark(cell: GridCell) -> bool:
 	var correct := cell.number == _start_number
 	if correct:
 		effects.affirm(cell.position)
@@ -39,4 +39,4 @@ func _decide_toggle_highlight(cell: GridCell) -> bool:
 
 
 func _end() -> void:
-	field.disconnect_condition("toggle_highlight", _decide_toggle_highlight)
+	field.disconnect_condition("toggle_mark", _decide_toggle_mark)

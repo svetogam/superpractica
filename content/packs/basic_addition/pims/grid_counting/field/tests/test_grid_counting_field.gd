@@ -106,18 +106,18 @@ func test_find_grid_cells():
 	assert_array(field.get_grid_cells_by_row(10)).extract(
 			"get", ["number"]).contains_exactly([91, 92, 93, 94, 95, 96, 97, 98, 99, 100])
 
-	#get_highlighted_grid_cell
+	#get_marked_cell
 	field.load_state(EMPTY)
-	assert_object(field.get_highlighted_grid_cell()).is_null()
+	assert_object(field.get_marked_cell()).is_null()
 
 	field.load_state(CASE_1)
-	assert_object(field.get_highlighted_grid_cell()).is_null()
+	assert_object(field.get_marked_cell()).is_null()
 
 	field.load_state(CASE_2)
-	assert_int(field.get_highlighted_grid_cell().number).is_equal(35)
+	assert_int(field.get_marked_cell().number).is_equal(35)
 
 	field.load_state(CASE_4)
-	assert_int(field.get_highlighted_grid_cell().number).is_equal(20)
+	assert_int(field.get_marked_cell().number).is_equal(20)
 
 	#get_grid_cells_with_units
 	field.load_state(EMPTY)
@@ -323,24 +323,24 @@ func test_query_marked_cells():
 	assert_array(field.get_contiguous_occupied_numbers_from(60)).contains_exactly(
 			[60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71])
 
-	#get_highlighted_numbers
+	#get_marked_numbers
 	field.load_state(CASE_1)
-	assert_array(field.get_highlighted_numbers()).is_empty()
+	assert_array(field.get_marked_numbers()).is_empty()
 
 	field.load_state(CASE_2)
-	assert_array(field.get_highlighted_numbers()).contains_exactly([35])
+	assert_array(field.get_marked_numbers()).contains_exactly([35])
 
 	field.load_state(CASE_3)
-	assert_array(field.get_highlighted_numbers()).is_empty()
+	assert_array(field.get_marked_numbers()).is_empty()
 
 	field.load_state(CASE_4)
-	assert_array(field.get_highlighted_numbers()).contains_exactly([20])
+	assert_array(field.get_marked_numbers()).contains_exactly([20])
 
-	#is_cell_highlighted
+	#is_cell_marked
 	field.load_state(CASE_4)
-	assert_bool(field.is_cell_highlighted(field.get_grid_cell(1))).is_false()
-	assert_bool(field.is_cell_highlighted(field.get_grid_cell(20))).is_true()
-	assert_bool(field.is_cell_highlighted(field.get_grid_cell(60))).is_false()
+	assert_bool(field.is_cell_marked(field.get_grid_cell(1))).is_false()
+	assert_bool(field.is_cell_marked(field.get_grid_cell(20))).is_true()
+	assert_bool(field.is_cell_marked(field.get_grid_cell(60))).is_false()
 
 
 func test_query_marked_rows():
@@ -476,40 +476,40 @@ func test_unit_actions():
 
 
 func test_cell_actions():
-	#toggle_highlight
+	#toggle_mark
 	field.load_state(EMPTY)
-	field.toggle_highlight(field.get_grid_cell(1))
-	assert_array(field.get_highlighted_numbers()).contains_exactly([1])
+	field.toggle_mark(field.get_grid_cell(1))
+	assert_array(field.get_marked_numbers()).contains_exactly([1])
 
 	field.load_state(CASE_2)
-	field.toggle_highlight(field.get_grid_cell(100))
-	assert_array(field.get_highlighted_numbers()).contains_exactly([100])
+	field.toggle_mark(field.get_grid_cell(100))
+	assert_array(field.get_marked_numbers()).contains_exactly([100])
 
 	field.load_state(CASE_2)
-	field.toggle_highlight(field.get_grid_cell(35))
-	assert_array(field.get_highlighted_numbers()).is_empty()
+	field.toggle_mark(field.get_grid_cell(35))
+	assert_array(field.get_marked_numbers()).is_empty()
 
-	#highlight_single_cell
+	#mark_single_cell
 	field.load_state(EMPTY)
-	field.highlight_single_cell(field.get_grid_cell(1))
-	assert_array(field.get_highlighted_numbers()).contains_exactly([1])
+	field.mark_single_cell(field.get_grid_cell(1))
+	assert_array(field.get_marked_numbers()).contains_exactly([1])
 
 	field.load_state(CASE_2)
-	field.highlight_single_cell(field.get_grid_cell(100))
-	assert_array(field.get_highlighted_numbers()).contains_exactly([100])
+	field.mark_single_cell(field.get_grid_cell(100))
+	assert_array(field.get_marked_numbers()).contains_exactly([100])
 
 	field.load_state(CASE_2)
-	field.highlight_single_cell(field.get_grid_cell(35))
-	assert_array(field.get_highlighted_numbers()).contains_exactly([35])
+	field.mark_single_cell(field.get_grid_cell(35))
+	assert_array(field.get_marked_numbers()).contains_exactly([35])
 
-	#unhighlight_cells
+	#unmark_cells
 	field.load_state(EMPTY)
-	field.unhighlight_cells()
-	assert_array(field.get_highlighted_numbers()).is_empty()
+	field.unmark_cells()
+	assert_array(field.get_marked_numbers()).is_empty()
 
 	field.load_state(CASE_2)
-	field.unhighlight_cells()
-	assert_array(field.get_highlighted_numbers()).is_empty()
+	field.unmark_cells()
+	assert_array(field.get_marked_numbers()).is_empty()
 
 
 func test_make_effects():

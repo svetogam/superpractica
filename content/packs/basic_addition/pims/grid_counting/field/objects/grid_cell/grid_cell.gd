@@ -12,12 +12,11 @@ class_name GridCell
 extends FieldObject
 
 var number: int
-var highlighted := false
+var marked := false
 var _size: Vector2:
 	get:
 		return %Collider.shape.get_rect().size
 @onready var _circled_graphic := %CircledGraphic as ProceduralGraphic
-@onready var _highlight_graphic := %HighlightGraphic as ProceduralGraphic
 
 
 static func _get_object_type() -> int:
@@ -30,7 +29,6 @@ func setup(p_number: int, row: int, col: int) -> void:
 	number = p_number
 	%Label.text = str(number)
 	_circled_graphic.set_properties({"rect": get_rect()})
-	_highlight_graphic.set_properties({"rect": get_rect()})
 
 
 func get_rect() -> Rect2:
@@ -41,12 +39,12 @@ func set_circle_variant(variant: String) -> void:
 	_circled_graphic.set_properties({"variant": variant})
 
 
-func toggle_highlight() -> void:
-	highlighted = not highlighted
-	if highlighted:
-		_highlight_graphic.show()
+func toggle_mark() -> void:
+	marked = not marked
+	if marked:
+		_circled_graphic.show()
 	else:
-		_highlight_graphic.hide()
+		_circled_graphic.hide()
 
 
 func get_memo() -> IntegerMemo:

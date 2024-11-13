@@ -52,7 +52,7 @@ func _is_unit_valid(unit: FieldObject) -> bool:
 
 
 func _get_start_number() -> int:
-	var cell = field.get_highlighted_grid_cell()
+	var cell = field.get_marked_cell()
 	if cell == null:
 		return 0
 	else:
