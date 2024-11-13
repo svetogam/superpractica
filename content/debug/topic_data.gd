@@ -100,7 +100,6 @@ static var topic = TopicResource.new(
 	],
 	# Subtopics
 	[
-		preload("levels/sum_problems/topic_data.gd").topic,
 		preload("res://core/screens/level_select/tests/topic_data/topic_1.gd").topic,
 	],
 	# Layout
