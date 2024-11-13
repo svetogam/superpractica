@@ -23,7 +23,6 @@ enum Objects {
 }
 enum Tools {
 	NONE = Game.NO_TOOL,
-	NUMBER_CIRCLER,
 	CELL_MARKER,
 	UNIT_CREATOR,
 	PIECE_DELETER,
@@ -31,7 +30,6 @@ enum Tools {
 }
 enum CellMarks {
 	ALL = 0,
-	CIRCLE,
 	UNIT,
 	HIGHLIGHT,
 }
@@ -41,12 +39,6 @@ const ObjectUnit := preload("objects/unit/unit.tscn")
 const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 
 const ProcessCountUnits := preload("processes/count_units.gd")
-const ProcessCountCirclesInDirection := preload("processes/count_circles_in_direction.gd")
-const ProcessCountCells := preload("processes/count_cells.gd")
-const ProcessEmptyCountCell := preload("processes/empty_count_cell.gd")
-const ProcessCircleNumbersInDirection := preload(
-		"processes/circle_numbers_in_direction.gd")
-const ProcessAddByCircles := preload("processes/add_by_circles.gd")
 
 const BOARD_SIZE := Vector2(350, 350)
 const BOARD_GAP := 3.0
@@ -231,16 +223,6 @@ func is_any_cell_highlighted() -> bool:
 	return get_highlighted_grid_cell() != null
 
 
-# Deprecated
-func get_circled_grid_cells() -> Array:
-	var circled_cells: Array = []
-	var cells := get_grid_cell_list()
-	for cell in cells:
-		if cell.circled:
-			circled_cells.append(cell)
-	return circled_cells
-
-
 func get_grid_cells_with_units() -> Array:
 	var cells: Array = []
 	var units := get_unit_list()
@@ -306,21 +288,6 @@ func is_cell_highlighted(cell: GridCell) -> bool:
 	return cell.highlighted
 
 
-# Deprecated
-func get_circled_numbers() -> Array:
-	var numbers: Array = []
-	var cells := get_circled_grid_cells()
-	for cell in cells:
-		numbers.append(cell.number)
-	numbers.sort()
-	return numbers
-
-
-# Deprecated
-func is_number_circled(number: int) -> bool:
-	return get_circled_numbers().has(number)
-
-
 func get_numbers_with_units() -> Array:
 	var numbers: Array = []
 	var cells := get_grid_cells_with_units()
@@ -372,28 +339,6 @@ static func get_numbers_in_direction(start_number: int, number_of_numbers: int,
 	var skip_count: int = {"right": 1, "down": 10} [direction]
 	var bound_number := mini(start_number + number_of_numbers * skip_count, 100)
 	return get_numbers_by_skip_count(start_number, skip_count, bound_number)
-
-
-# Deprecated
-func get_circled_numbers_by_skip_count(start_number: int, skip_count: int,
-		bound_number: int = 100
-) -> Array:
-	var counted_numbers := get_numbers_by_skip_count(
-			start_number, skip_count, bound_number)
-	var circled_numbers: Array = []
-	for number in counted_numbers:
-		var cell := get_grid_cell(number)
-		if cell.circled:
-			circled_numbers.append(number)
-		else:
-			return circled_numbers
-	return circled_numbers
-
-
-# Deprecated
-func get_circled_numbers_in_direction(start_number: int, direction: String) -> Array:
-	var skip_count: int = {"right": 1, "down": 10} [direction]
-	return get_circled_numbers_by_skip_count(start_number, skip_count)
 
 
 func get_contiguous_numbers_with_units_from(first_number: int) -> Array:
@@ -450,8 +395,6 @@ func get_all_marked_numbers() -> Array:
 
 func get_marked_numbers(cell_mark_type := GridCounting.CellMarks.ALL) -> Array:
 	match cell_mark_type:
-		GridCounting.CellMarks.CIRCLE:
-			return get_circled_numbers()
 		GridCounting.CellMarks.UNIT:
 			return get_numbers_with_units()
 		GridCounting.CellMarks.HIGHLIGHT:
@@ -582,18 +525,6 @@ func move_unit_by_numbers(from: int, to: int) -> void:
 		move_unit(unit, grid_cell)
 
 
-# Deprecated
-func toggle_circle(cell: GridCell) -> void:
-	cell.toggle_circle()
-
-
-# Deprecated
-func uncircle_cells() -> void:
-	for cell in get_grid_cell_list():
-		if cell.circled:
-			cell.toggle_circle()
-
-
 func toggle_highlight(cell: GridCell) -> void:
 	if not cell.highlighted:
 		highlight_single_cell(cell)
@@ -666,7 +597,6 @@ func set_empty() -> void:
 	for ten_block in get_ten_block_list():
 		ten_block.free()
 
-	uncircle_cells()
 	unhighlight_cells()
 	math_effects.clear()
 	effect_counter.reset_count()
@@ -693,7 +623,6 @@ func _get_cells_data() -> Dictionary:
 	var data := {}
 	for cell in get_grid_cell_list():
 		data[cell.number] = {
-			"circled": cell.circled,
 			"highlighted": cell.highlighted,
 			"has_unit": cell.has_unit(),
 		}
@@ -725,8 +654,6 @@ func load_state(state: CRMemento) -> void:
 func _load_cell_data(cell_data: Dictionary) -> void:
 	for cell_number in cell_data.keys():
 		var cell = get_grid_cell(cell_number)
-		if cell_data[cell_number].circled:
-			toggle_circle(cell)
 		if cell_data[cell_number].highlighted:
 			toggle_highlight(cell)
 		if cell_data[cell_number].has_unit:

@@ -21,13 +21,6 @@ func _init() -> void:
 	}
 
 	tool_data = {
-		GridCounting.Tools.NUMBER_CIRCLER: {
-			"name": "NumberCircler",
-			"text": "Circle Number",
-			"object_modes": {
-				GridCounting.Objects.GRID_CELL: ["circle"],
-			},
-		},
 		GridCounting.Tools.CELL_MARKER: {
 			"name": "CellMarker",
 			"text": "Mark Square",

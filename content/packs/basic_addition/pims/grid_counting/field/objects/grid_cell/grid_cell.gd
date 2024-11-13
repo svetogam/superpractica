@@ -12,7 +12,6 @@ class_name GridCell
 extends FieldObject
 
 var number: int
-var circled := false
 var highlighted := false
 var _size: Vector2:
 	get:
@@ -36,14 +35,6 @@ func setup(p_number: int, row: int, col: int) -> void:
 
 func get_rect() -> Rect2:
 	return Rect2(-_size.x/2, -_size.y/2, _size.x, _size.y)
-
-
-func toggle_circle() -> void:
-	circled = not circled
-	if circled:
-		_circled_graphic.show()
-	else:
-		_circled_graphic.hide()
 
 
 func set_circle_variant(variant: String) -> void:

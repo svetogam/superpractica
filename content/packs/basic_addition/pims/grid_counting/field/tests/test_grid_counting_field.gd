@@ -135,9 +135,6 @@ func test_find_grid_cells():
 	assert_array(field.get_grid_cells_with_units()).extract(
 			"get", ["number"]).contains_exactly([60, 71])
 
-	# Deprecated
-	#get_circled_grid_cells
-
 
 func test_find_units():
 	#get_unit_list
@@ -529,12 +526,6 @@ func test_query_marked_cells():
 	assert_array(field.get_contiguous_number_sequences(
 			GridCounting.CellMarks.UNIT)).contains_exactly([[11, 29]])
 
-	# Deprecated
-	#is_number_circled
-	#get_circled_numbers
-	#get_circled_numbers_by_skip_count
-	#get_circled_numbers_in_direction
-
 
 func test_query_marked_rows():
 	#is_row_occupied
@@ -703,10 +694,6 @@ func test_cell_actions():
 	field.load_state(CASE_2)
 	field.unhighlight_cells()
 	assert_array(field.get_highlighted_numbers()).is_empty()
-
-	# Deprecated
-	#toggle_circle
-	#uncircle_cells
 
 
 func test_make_effects():
