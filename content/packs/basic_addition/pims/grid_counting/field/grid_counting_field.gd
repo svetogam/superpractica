@@ -28,11 +28,6 @@ enum Tools {
 	PIECE_DELETER,
 	PIECE_DRAGGER,
 }
-enum CellMarks {
-	ALL = 0,
-	UNIT,
-	HIGHLIGHT,
-}
 
 const ObjectGridCell := preload("objects/grid_cell/grid_cell.tscn")
 const ObjectUnit := preload("objects/unit/unit.tscn")
@@ -383,78 +378,6 @@ func get_highlighted_numbers() -> Array:
 		return [highlighted_cell.number]
 	else:
 		return []
-
-
-func get_all_marked_numbers() -> Array:
-	var marked_numbers: Array = []
-	for cell in get_grid_cell_list():
-		if is_cell_occupied(cell) or is_cell_highlighted(cell):
-			marked_numbers.append(cell.number)
-	return marked_numbers
-
-
-func get_marked_numbers(cell_mark_type := GridCounting.CellMarks.ALL) -> Array:
-	match cell_mark_type:
-		GridCounting.CellMarks.UNIT:
-			return get_numbers_with_units()
-		GridCounting.CellMarks.HIGHLIGHT:
-			return get_highlighted_numbers()
-		GridCounting.CellMarks.ALL:
-			return get_all_marked_numbers()
-		_:
-			assert(false)
-			return []
-
-
-func get_contiguous_number_sequences(cell_mark_type := GridCounting.CellMarks.ALL
-) -> Array:
-	var numbers := get_marked_numbers(cell_mark_type)
-	var contiguous_number_sequences: Array = []
-	var first_number: int = 0
-	var last_number: int = 0
-	var last_index: int = 0
-	for index in numbers.size():
-		if index == 0:
-			first_number = numbers[index]
-		elif numbers[index] == numbers[last_index] + 1:
-			last_number = numbers[index]
-		else:
-			if last_number > first_number:
-				contiguous_number_sequences.append([first_number, last_number])
-			first_number = numbers[index]
-		last_index = index
-	if last_number > first_number:
-		contiguous_number_sequences.append([first_number, last_number])
-	return contiguous_number_sequences
-
-
-func are_all_marks_contiguous(cell_mark_type := GridCounting.CellMarks.ALL) -> bool:
-	var numbers := get_marked_numbers(cell_mark_type)
-	if numbers.is_empty():
-		return false
-
-	var last_number: int = -1
-	for number in numbers:
-		if last_number != -1 and number != last_number + 1:
-			return false
-		last_number = number
-	return true
-
-
-func get_smallest_marked_number(cell_mark_type := GridCounting.CellMarks.ALL) -> int:
-	var numbers := get_marked_numbers(cell_mark_type)
-	if numbers.size() > 0:
-		numbers.sort()
-		return numbers[0]
-	return -1
-
-
-func get_biggest_marked_number(cell_mark_type := GridCounting.CellMarks.ALL) -> int:
-	var numbers := get_marked_numbers(cell_mark_type)
-	if numbers.size() > 0:
-		numbers.sort()
-		return numbers[-1]
-	return -1
 
 
 #endregion

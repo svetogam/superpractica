@@ -38,7 +38,7 @@ func _is_unit_valid(unit: FieldObject) -> bool:
 	var start_number = _get_start_number()
 
 	# Ensure first unit follows either the start or a valid ten-block
-	if field.get_smallest_marked_number(GridCounting.CellMarks.UNIT) == unit.cell.number:
+	if field.get_numbers_with_units().min() == unit.cell.number:
 		if unit.cell.number == start_number + 1:
 			return true
 		elif unit.cell.number != 1:
