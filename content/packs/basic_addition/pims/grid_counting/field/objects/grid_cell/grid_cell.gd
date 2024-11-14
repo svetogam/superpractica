@@ -16,7 +16,6 @@ var marked := false
 var _size: Vector2:
 	get:
 		return %Collider.shape.get_rect().size
-@onready var _circled_graphic := %CircledGraphic as ProceduralGraphic
 
 
 static func _get_object_type() -> int:
@@ -28,7 +27,6 @@ func setup(p_number: int, row: int, col: int) -> void:
 	position = Vector2(col * _size.x + _size.x/2, row * _size.y + _size.y/2)
 	number = p_number
 	%Label.text = str(number)
-	_circled_graphic.set_properties({"rect": get_rect()})
 
 
 func get_rect() -> Rect2:
@@ -36,15 +34,16 @@ func get_rect() -> Rect2:
 
 
 func set_circle_variant(variant: String) -> void:
-	_circled_graphic.set_properties({"variant": variant})
+	assert(%RingSprite.sprite_frames.has_animation(variant))
+	%RingSprite.animation = variant
 
 
 func toggle_mark() -> void:
 	marked = not marked
 	if marked:
-		_circled_graphic.show()
+		%RingSprite.show()
 	else:
-		_circled_graphic.hide()
+		%RingSprite.hide()
 
 
 func get_memo() -> IntegerMemo:
