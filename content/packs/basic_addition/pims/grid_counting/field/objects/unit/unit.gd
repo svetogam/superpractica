@@ -37,8 +37,8 @@ func put_on_cell(p_cell: GridCell) -> void:
 
 
 func set_variant(variant: StringName) -> void:
-	assert(%Graphic.sprite_frames.has_animation(variant))
-	%Graphic.animation = variant
+	assert(%Sprite.sprite_frames.has_animation(variant))
+	%Sprite.animation = variant
 
 
 func get_number() -> int:

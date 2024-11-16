@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://buqio37ttn8t7"
-path="res://.godot/imported/cell_ring_reject.svg-3ea7c2c9c403c6dd528095871997a662.ctex"
+path="res://.godot/imported/cell_ring_reject.svg-253a73eff5702c315c9898cfabcfa787.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/field/objects/grid_cell/graphics/cell_ring_reject.svg"
-dest_files=["res://.godot/imported/cell_ring_reject.svg-3ea7c2c9c403c6dd528095871997a662.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/graphics/cell_ring_reject.svg"
+dest_files=["res://.godot/imported/cell_ring_reject.svg-253a73eff5702c315c9898cfabcfa787.ctex"]
 
 [params]
 

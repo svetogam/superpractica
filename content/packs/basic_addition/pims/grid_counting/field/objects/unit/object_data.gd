@@ -15,5 +15,5 @@ func _init() -> void:
 	field_type = "GridCounting"
 	object_type = GridCounting.Objects.UNIT
 	name_text = "Unit"
-	drag_sprite = preload("graphics/sprite.tscn")
-	icon = preload("graphics/unit_icon.svg")
+	drag_sprite = preload("sprite.tscn")
+	icon = preload("res://content/packs/basic_addition/pims/grid_counting/graphics/unit_icon.svg")

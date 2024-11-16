@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/grid_cell/modes/highlight.gd" id="4_4inxv"]
 [ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/grid_cell/modes/create_unit.gd" id="5_375in"]
 [ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/grid_cell/modes/drag_unit.gd" id="6_8ojo4"]
-[ext_resource type="SpriteFrames" uid="uid://di8kw0j0ob355" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/grid_cell/graphics/sprite_frames.tres" id="7_bsmaw"]
-[ext_resource type="Texture2D" uid="uid://cahewf3u5svk7" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/grid_cell/graphics/grid_cell.svg" id="9_7dbvf"]
+[ext_resource type="SpriteFrames" uid="uid://di8kw0j0ob355" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/grid_cell/sprite_frames.tres" id="7_bsmaw"]
+[ext_resource type="Texture2D" uid="uid://cahewf3u5svk7" path="res://content/packs/basic_addition/pims/grid_counting/graphics/grid_cell.svg" id="9_7dbvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvplk"]
 size = Vector2(35, 35)

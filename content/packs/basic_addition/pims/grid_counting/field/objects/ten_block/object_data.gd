@@ -15,5 +15,5 @@ func _init() -> void:
 	field_type = "GridCounting"
 	object_type = GridCounting.Objects.TEN_BLOCK
 	name_text = "Ten Block"
-	drag_sprite = preload("graphics/sprite.tscn")
-	icon = preload("graphics/ten_block_icon.svg")
+	drag_sprite = preload("sprite.tscn")
+	icon = preload("res://content/packs/basic_addition/pims/grid_counting/graphics/ten_block_icon.svg")
