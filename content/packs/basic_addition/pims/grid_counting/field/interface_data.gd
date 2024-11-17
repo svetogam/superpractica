@@ -27,6 +27,18 @@ func _init() -> void:
 			# Icon
 			preload("graphics/unit_icon.svg"),
 		),
+		GridCounting.Objects.TWO_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.TWO_BLOCK,
+			# Name Text
+			"Two Block",
+			# Drag Sprite
+			preload("objects/two_block/sprite.tscn"),
+			# Icon
+			preload("graphics/two_block_icon.svg"),
+		),
 		GridCounting.Objects.TEN_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
@@ -71,6 +83,7 @@ func _init() -> void:
 			"text": "Delete Piece",
 			"object_modes": {
 				GridCounting.Objects.UNIT: ["delete"],
+				GridCounting.Objects.TWO_BLOCK: ["delete"],
 				GridCounting.Objects.TEN_BLOCK: ["delete"],
 			},
 		},
@@ -80,6 +93,7 @@ func _init() -> void:
 			"object_modes": {
 				GridCounting.Objects.GRID_CELL: ["drag_piece"],
 				GridCounting.Objects.UNIT: ["drag"],
+				GridCounting.Objects.TWO_BLOCK: ["drag"],
 				GridCounting.Objects.TEN_BLOCK: ["drag"],
 			},
 		},

@@ -19,6 +19,7 @@ extends Field
 enum Objects {
 	GRID_CELL,
 	UNIT,
+	TWO_BLOCK,
 	TEN_BLOCK,
 }
 enum Tools {
@@ -31,6 +32,7 @@ enum Tools {
 
 const ObjectGridCell := preload("objects/grid_cell/grid_cell.tscn")
 const ObjectUnit := preload("objects/unit/unit.tscn")
+const ObjectTwoBlock := preload("objects/two_block/two_block.tscn")
 const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 
 const ProcessCountUnits := preload("processes/count_units.gd")
@@ -88,6 +90,9 @@ func _incoming_drop(object_data: FieldObjectData, point: Vector2, _source: Field
 			match object_data.object_type:
 				GridCounting.Objects.UNIT:
 					_accept_incoming_unit(point)
+				GridCounting.Objects.TWO_BLOCK:
+					var first_number = get_2_grid_cells_at_point(point)[0].number
+					push_action(create_two_block.bind(first_number))
 				GridCounting.Objects.TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var row_number: int = get_row_number_for_cell_number(
@@ -109,7 +114,7 @@ func _outgoing_drop(object: FieldObject) -> void:
 	match object.object_type:
 		GridCounting.Objects.UNIT:
 			push_action(delete_unit.bind(object))
-		GridCounting.Objects.TEN_BLOCK:
+		GridCounting.Objects.TWO_BLOCK, GridCounting.Objects.TEN_BLOCK:
 			push_action(delete_block.bind(object))
 
 
@@ -136,6 +141,8 @@ func get_objects_by_type(object_type: int) -> Array:
 			return get_grid_cell_list()
 		Objects.UNIT:
 			return get_unit_list()
+		Objects.TWO_BLOCK:
+			return get_two_block_list()
 		Objects.TEN_BLOCK:
 			return get_ten_block_list()
 		_:
@@ -158,6 +165,10 @@ func get_unit_list(sort_ascending := false) -> Array:
 		return units
 
 
+func get_two_block_list() -> Array:
+	return get_objects_in_group("two_blocks")
+
+
 func get_ten_block_list() -> Array:
 	return get_objects_in_group("ten_blocks")
 
@@ -174,6 +185,13 @@ func get_unit(number: int) -> FieldObject:
 	return null
 
 
+func get_two_block(first_number: int, second_number: int) -> FieldObject:
+	for two_block in get_two_block_list():
+		if two_block.numbers == [first_number, second_number]:
+			return two_block
+	return null
+
+
 # Row numbers start at 1
 func get_ten_block(row_number: int) -> FieldObject:
 	for ten_block in get_ten_block_list():
@@ -187,6 +205,37 @@ func get_grid_cell_at_point(point: Vector2) -> GridCell:
 		if grid_cell.has_point(point):
 			return grid_cell
 	return null
+
+
+# Returns 2 horizontally connected grid cells closest to point
+func get_2_grid_cells_at_point(point: Vector2) -> Array:
+	# Make array of cells which have the point at double width
+	var grid_cells: Array = []
+	var rect: Rect2
+	for grid_cell in get_grid_cell_list():
+		rect = Rect2(
+			grid_cell.position.x - grid_cell.size.x,
+			grid_cell.position.y - grid_cell.size.y / 2,
+			grid_cell.size.x * 2,
+			grid_cell.size.y
+		)
+		if rect.has_point(point):
+			grid_cells.append(grid_cell)
+
+	# Add next farthest cell at edges
+	if grid_cells.size() == 1:
+		var second_cell: GridCell
+		if grid_cells[0].number % 10 == 0:
+			second_cell = get_grid_cell(grid_cells[0].number - 1)
+			grid_cells.push_front(second_cell)
+		elif grid_cells[0].number % 10 == 1:
+			second_cell = get_grid_cell(grid_cells[0].number + 1)
+			grid_cells.append(second_cell)
+		else:
+			assert(false)
+			return []
+
+	return grid_cells
 
 
 func get_grid_cells_by_numbers(number_list: Array) -> Array:
@@ -260,6 +309,9 @@ func is_cell_occupied(cell: GridCell) -> bool:
 
 	if cell.has_unit():
 		return true
+	for two_block in get_two_block_list():
+		if two_block.grid_cells.has(cell):
+			return true
 	for ten_block in get_ten_block_list():
 		if get_grid_cells_by_row(ten_block.row_number).has(cell):
 			return true
@@ -402,6 +454,20 @@ func create_unit_by_number(number: int) -> FieldObject:
 	return new_unit
 
 
+func create_two_block(first_number: int) -> FieldObject:
+	if first_number % 10 == 0:
+		first_number -= 1
+	var cells := get_grid_cells_by_numbers([first_number, first_number + 1])
+	for cell in cells:
+		if is_cell_occupied(cell):
+			return null
+
+	var two_block := GridCounting.ObjectTwoBlock.instantiate() as FieldObject
+	add_child(two_block)
+	two_block.put_on_cells(cells)
+	return two_block
+
+
 func create_ten_block(row_number: int) -> FieldObject:
 	var row_cells: Array = get_grid_cells_by_row(row_number)
 	for cell in row_cells:
@@ -513,6 +579,8 @@ func remove_ten_block_warning(ten_block: FieldObject) -> void:
 func set_empty() -> void:
 	for unit in get_unit_list():
 		unit.free()
+	for two_block in get_two_block_list():
+		two_block.free()
 	for ten_block in get_ten_block_list():
 		ten_block.free()
 
@@ -544,6 +612,7 @@ func _get_cells_data() -> Dictionary:
 		data[cell.number] = {
 			"marked": cell.marked,
 			"has_unit": cell.has_unit(),
+			"starts_two_block": get_two_block(cell.number, cell.number + 1) != null
 		}
 	return data
 
@@ -577,6 +646,8 @@ func _load_cell_data(cell_data: Dictionary) -> void:
 			toggle_mark(cell)
 		if cell_data[cell_number].has_unit:
 			create_unit(cell)
+		if cell_data[cell_number].starts_two_block:
+			create_two_block(cell.number)
 
 
 func _load_row_data(row_data: Dictionary) -> void:

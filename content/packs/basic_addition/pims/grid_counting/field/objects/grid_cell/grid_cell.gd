@@ -13,7 +13,7 @@ extends FieldObject
 
 var number: int
 var marked := false
-var _size: Vector2:
+var size: Vector2:
 	get:
 		return %Collider.shape.get_rect().size
 
@@ -24,13 +24,13 @@ static func _get_object_type() -> int:
 
 # First row and column are 0
 func setup(p_number: int, row: int, col: int) -> void:
-	position = Vector2(col * _size.x + _size.x/2, row * _size.y + _size.y/2)
+	position = Vector2(col * size.x + size.x/2, row * size.y + size.y/2)
 	number = p_number
 	%Label.text = str(number)
 
 
 func get_rect() -> Rect2:
-	return Rect2(-_size.x/2, -_size.y/2, _size.x, _size.y)
+	return Rect2(-size.x/2, -size.y/2, size.x, size.y)
 
 
 func set_circle_variant(variant: String) -> void:
@@ -59,5 +59,5 @@ func get_unit() -> FieldObject:
 
 
 func has_point(point: Vector2) -> bool:
-	var rect = Rect2(position - _size / 2, _size)
+	var rect = Rect2(position - size / 2, size)
 	return rect.has_point(point)
