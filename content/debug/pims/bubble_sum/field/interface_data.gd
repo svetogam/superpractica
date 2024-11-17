@@ -15,8 +15,28 @@ func _init() -> void:
 	field_type = "BubbleSum"
 
 	object_data = {
-		BubbleSum.Objects.UNIT: preload("objects/unit/object_data.gd").new(),
-		BubbleSum.Objects.BUBBLE: preload("objects/bubble/object_data.gd").new(),
+		BubbleSum.Objects.UNIT: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			BubbleSum.Objects.UNIT,
+			# Name Text
+			"Unit",
+			# Drag Sprite
+			preload("objects/unit/graphic.gd"),
+			# Icon
+		),
+		BubbleSum.Objects.BUBBLE: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			BubbleSum.Objects.BUBBLE,
+			# Name Text
+			"Bubble",
+			# Drag Sprite
+			preload("objects/bubble/graphic.gd"),
+			# Icon
+		),
 	}
 
 	tool_data = {

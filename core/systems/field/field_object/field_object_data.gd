@@ -18,6 +18,16 @@ var drag_sprite: Resource
 var icon: Texture2D
 
 
+func _init(p_field_type: String, p_object_type: int, p_name_text: String,
+		p_drag_sprite: Resource = null, p_icon: Texture2D = null
+) -> void:
+	field_type = p_field_type
+	object_type = p_object_type
+	name_text = p_name_text
+	drag_sprite = p_drag_sprite
+	icon = p_icon
+
+
 func is_draggable() -> bool:
 	return drag_sprite != null
 

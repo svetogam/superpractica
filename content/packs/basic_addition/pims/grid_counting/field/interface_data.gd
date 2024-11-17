@@ -15,9 +15,40 @@ func _init() -> void:
 	field_type = "GridCounting"
 
 	object_data = {
-		GridCounting.Objects.UNIT: preload("objects/unit/object_data.gd").new(),
-		GridCounting.Objects.TEN_BLOCK: preload("objects/ten_block/object_data.gd").new(),
-		GridCounting.Objects.GRID_CELL: preload("objects/grid_cell/object_data.gd").new(),
+		GridCounting.Objects.UNIT: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.UNIT,
+			# Name Text
+			"Unit",
+			# Drag Sprite
+			preload("objects/unit/sprite.tscn"),
+			# Icon
+			preload("graphics/unit_icon.svg"),
+		),
+		GridCounting.Objects.TEN_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.TEN_BLOCK,
+			# Name Text
+			"Ten Block",
+			# Drag Sprite
+			preload("objects/ten_block/sprite.tscn"),
+			# Icon
+			preload("graphics/ten_block_icon.svg"),
+		),
+		GridCounting.Objects.GRID_CELL: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.GRID_CELL,
+			# Name Text
+			"Grid Cell",
+			# Drag Sprite
+			# Icon
+		),
 	}
 
 	tool_data = {
