@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cahewf3u5svk7"
-path="res://.godot/imported/grid_cell.svg-9e5281659524cb49901b197632a468df.ctex"
+uid="uid://b5ib24uvwklvr"
+path="res://.godot/imported/four_block_icon.svg-7abf01a6001df3ec833bce694a0d462e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/graphics/grid_cell.svg"
-dest_files=["res://.godot/imported/grid_cell.svg-9e5281659524cb49901b197632a468df.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/four_block_icon.svg"
+dest_files=["res://.godot/imported/four_block_icon.svg-7abf01a6001df3ec833bce694a0d462e.ctex"]
 
 [params]
 
@@ -32,6 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
+svg/scale=4.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

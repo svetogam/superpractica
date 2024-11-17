@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djked33vqpp0k"
-path="res://.godot/imported/unit_reject.svg-4b224b310165ba11264c26295b7d6701.ctex"
+uid="uid://d28sqp7lf54hn"
+path="res://.godot/imported/two_block_affirm.svg-572002e756a658ea15644220fa4757b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/graphics/unit_reject.svg"
-dest_files=["res://.godot/imported/unit_reject.svg-4b224b310165ba11264c26295b7d6701.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/two_block_affirm.svg"
+dest_files=["res://.godot/imported/two_block_affirm.svg-572002e756a658ea15644220fa4757b0.ctex"]
 
 [params]
 

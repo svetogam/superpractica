@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp217b1p65gcf"
-path="res://.godot/imported/unit_affirm.svg-bf9cfa1384c26ac6c6c12c0114ae09a7.ctex"
+uid="uid://buqio37ttn8t7"
+path="res://.godot/imported/cell_ring_reject.svg-111aee85b53b725286ae0924a000b0b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/graphics/unit_affirm.svg"
-dest_files=["res://.godot/imported/unit_affirm.svg-bf9cfa1384c26ac6c6c12c0114ae09a7.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/cell_ring_reject.svg"
+dest_files=["res://.godot/imported/cell_ring_reject.svg-111aee85b53b725286ae0924a000b0b2.ctex"]
 
 [params]
 

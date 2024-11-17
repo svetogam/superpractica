@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cskv0t3rnstmx"
-path="res://.godot/imported/two_block_icon.svg-59048aeba59815c91ef791c95a119935.ctex"
+uid="uid://b7o63jjmhdti3"
+path="res://.godot/imported/four_block.svg-2ce2175ccd744c5ef2db913d83fcae8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/graphics/two_block_icon.svg"
-dest_files=["res://.godot/imported/two_block_icon.svg-59048aeba59815c91ef791c95a119935.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/four_block.svg"
+dest_files=["res://.godot/imported/four_block.svg-2ce2175ccd744c5ef2db913d83fcae8a.ctex"]
 
 [params]
 

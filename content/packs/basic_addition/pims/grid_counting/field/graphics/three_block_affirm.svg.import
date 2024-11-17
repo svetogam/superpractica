@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5ib24uvwklvr"
-path="res://.godot/imported/four_block_icon.svg-175c67264ff9f65b6ed2cc576b248a2f.ctex"
+uid="uid://c0vvka2ae0tbp"
+path="res://.godot/imported/three_block_affirm.svg-33d002203e6a9bad81831ec122c140b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/graphics/four_block_icon.svg"
-dest_files=["res://.godot/imported/four_block_icon.svg-175c67264ff9f65b6ed2cc576b248a2f.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/three_block_affirm.svg"
+dest_files=["res://.godot/imported/three_block_affirm.svg-33d002203e6a9bad81831ec122c140b5.ctex"]
 
 [params]
 
