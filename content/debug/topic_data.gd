@@ -19,19 +19,6 @@ static var topic = TopicResource.new(
 	[
 		LevelResource.new(
 			# ID
-			"bubble_sum",
-			# Title
-			"Bubble Sum Pim",
-			# Thumbnail
-			preload("levels/bubble_sum/thumbnail.png"),
-			# Pimnet Setup
-			preload("levels/bubble_sum/pimnet_setup.tres"),
-			# Program
-			# Program Vars
-			# Program Plan
-		),
-		LevelResource.new(
-			# ID
 			"grid_counting",
 			# Title
 			"Grid Counting Pim",
@@ -90,7 +77,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Field Pims",
 			# Thumbnail
-			preload("levels/field_pims/thumbnail.png"),
+			null,
 			# Pimnet Setup
 			preload("levels/field_pims/pimnet_setup.tres"),
 			# Program

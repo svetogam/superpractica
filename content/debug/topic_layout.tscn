@@ -4,17 +4,6 @@
 
 [node name="Layout" type="Node"]
 
-[node name="Level1" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -42.0
-offset_top = -23.0
-offset_right = 58.0
-offset_bottom = 27.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
-script = ExtResource("1_c4l2i")
-id = "bubble_sum"
-
 [node name="Level3" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = 184.0
