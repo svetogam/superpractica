@@ -8,18 +8,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldObjectMode
+extends FieldAction
 
 
-func _take_drop(dropped_object: FieldObject, point: Vector2) -> void:
-	if not field.is_cell_occupied(object):
-		match dropped_object.object_type:
-			GridCounting.Objects.UNIT:
-				GridCounting.ActionCreateUnit.new(field).setup(object).push()
-			GridCounting.Objects.TWO_BLOCK:
-				var first_number = field.get_2_grid_cells_at_point(point)[0].number
-				GridCounting.ActionCreateTwoBlock.new(field).setup(first_number).push()
-			GridCounting.Objects.TEN_BLOCK:
-				var row_number = field.get_row_number_for_cell_number(object.number)
-				GridCounting.ActionCreateTenBlock.new(field).setup(row_number).push()
-	get_viewport().set_input_as_handled()
+func do() -> void:
+	for unit in field.get_unit_list():
+		unit.free()
+	for two_block in field.get_two_block_list():
+		two_block.free()
+	for ten_block in field.get_ten_block_list():
+		ten_block.free()
+
+	var cell = field.get_marked_cell()
+	if cell != null:
+		cell.toggle_mark()
+
+	field.math_effects.clear()
+	field.effect_counter.reset_count()

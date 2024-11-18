@@ -35,6 +35,14 @@ const ObjectUnit := preload("objects/unit/unit.tscn")
 const ObjectTwoBlock := preload("objects/two_block/two_block.tscn")
 const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 
+const ActionCreateUnit := preload("actions/create_unit.gd")
+const ActionCreateTwoBlock := preload("actions/create_two_block.gd")
+const ActionCreateTenBlock := preload("actions/create_ten_block.gd")
+const ActionDeleteUnit := preload("actions/delete_unit.gd")
+const ActionDeleteBlock := preload("actions/delete_block.gd")
+const ActionToggleMark := preload("actions/toggle_mark.gd")
+const ActionSetEmpty := preload("actions/set_empty.gd")
+
 const ProcessCountUnits := preload("processes/count_units.gd")
 
 const BOARD_SIZE := Vector2(350, 350)
@@ -81,7 +89,7 @@ func _on_update(_update_type: int) -> void:
 
 
 func reset_state() -> void:
-	push_action(set_empty)
+	ActionSetEmpty.new(self).push()
 
 
 func _incoming_drop(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
@@ -92,30 +100,25 @@ func _incoming_drop(object_data: FieldObjectData, point: Vector2, _source: Field
 					_accept_incoming_unit(point)
 				GridCounting.Objects.TWO_BLOCK:
 					var first_number = get_2_grid_cells_at_point(point)[0].number
-					push_action(create_two_block.bind(first_number))
+					ActionCreateTwoBlock.new(self).setup(first_number).push()
 				GridCounting.Objects.TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
-					var row_number: int = get_row_number_for_cell_number(
-							dest_cell.number)
-					push_action(create_ten_block.bind(row_number))
-		"BubbleSum":
-			match object_data.object_type:
-				BubbleSum.Objects.UNIT:
-					_accept_incoming_unit(point)
+					var row_number := get_row_number_for_cell_number(dest_cell.number)
+					ActionCreateTenBlock.new(self).setup(row_number).push()
 
 
 func _accept_incoming_unit(point: Vector2) -> void:
 	var cell = get_grid_cell_at_point(point)
 	if cell != null and not is_cell_occupied(cell):
-		push_action(create_unit.bind(cell))
+		ActionCreateUnit.new(self).setup(cell).push()
 
 
 func _outgoing_drop(object: FieldObject) -> void:
 	match object.object_type:
 		GridCounting.Objects.UNIT:
-			push_action(delete_unit.bind(object))
+			ActionDeleteUnit.new(self).setup(object).push()
 		GridCounting.Objects.TWO_BLOCK, GridCounting.Objects.TEN_BLOCK:
-			push_action(delete_block.bind(object))
+			ActionDeleteBlock.new(self).setup(object).push()
 
 
 func _on_unit_number_changed(old_number: int, new_number: int, unit: FieldObject) -> void:
@@ -435,104 +438,6 @@ func get_marked_numbers() -> Array:
 #region
 
 #--------------------------------------
-# Basic Actions
-#--------------------------------------
-
-func create_unit(grid_cell: GridCell) -> FieldObject:
-	if not is_cell_occupied(grid_cell):
-		var unit := GridCounting.ObjectUnit.instantiate() as FieldObject
-		unit.number_changed.connect(_on_unit_number_changed.bind(unit))
-		add_child(unit)
-		unit.put_on_cell(grid_cell)
-		return unit
-	return null
-
-
-func create_unit_by_number(number: int) -> FieldObject:
-	var grid_cell = get_grid_cell(number)
-	var new_unit := create_unit(grid_cell)
-	return new_unit
-
-
-func create_two_block(first_number: int) -> FieldObject:
-	if first_number % 10 == 0:
-		first_number -= 1
-	var cells := get_grid_cells_by_numbers([first_number, first_number + 1])
-	for cell in cells:
-		if is_cell_occupied(cell):
-			return null
-
-	var two_block := GridCounting.ObjectTwoBlock.instantiate() as FieldObject
-	add_child(two_block)
-	two_block.put_on_cells(cells)
-	return two_block
-
-
-func create_ten_block(row_number: int) -> FieldObject:
-	var row_cells: Array = get_grid_cells_by_row(row_number)
-	for cell in row_cells:
-		if is_cell_occupied(cell):
-			return null
-
-	var ten_block := GridCounting.ObjectTenBlock.instantiate() as FieldObject
-	add_child(ten_block)
-	ten_block.put_on_row(row_number)
-	return ten_block
-
-
-func delete_unit(unit: FieldObject) -> void:
-	unit.free()
-
-
-func delete_unit_by_number(number: int) -> void:
-	var unit = get_unit(number)
-	unit.free()
-
-
-func delete_block(block: FieldObject) -> void:
-	block.free()
-
-
-func move_unit(unit: FieldObject, cell: GridCell) -> void:
-	unit.put_on_cell(cell)
-
-
-func move_unit_by_numbers(from: int, to: int) -> void:
-	var unit = get_unit(from)
-	var grid_cell = get_grid_cell(to)
-	assert(unit != null)
-	assert(grid_cell != null)
-	if from == to:
-		return
-	elif is_cell_occupied(grid_cell):
-		delete_unit(unit)
-	else:
-		move_unit(unit, grid_cell)
-
-
-func toggle_mark(cell: GridCell) -> void:
-	if not cell.marked:
-		mark_single_cell(cell)
-	else:
-		unmark_cells()
-
-
-func mark_single_cell(cell: GridCell) -> void:
-	var previous_cell = get_marked_cell()
-	if previous_cell != null:
-		previous_cell.toggle_mark()
-		cell.toggle_mark()
-	elif not cell.marked:
-		cell.toggle_mark()
-
-
-func unmark_cells() -> void:
-	var cell = get_marked_cell()
-	if cell != null:
-		cell.toggle_mark()
-
-
-#--------------------------------------
 # Effects
 #--------------------------------------
 
@@ -570,23 +475,6 @@ func remove_unit_warning(unit: FieldObject) -> void:
 
 func remove_ten_block_warning(ten_block: FieldObject) -> void:
 	ten_block.set_variant("default")
-
-
-#--------------------------------------
-# Field-Setting
-#--------------------------------------
-
-func set_empty() -> void:
-	for unit in get_unit_list():
-		unit.free()
-	for two_block in get_two_block_list():
-		two_block.free()
-	for ten_block in get_ten_block_list():
-		ten_block.free()
-
-	unmark_cells()
-	math_effects.clear()
-	effect_counter.reset_count()
 
 
 #endregion
@@ -631,7 +519,7 @@ func _get_rows_data() -> Dictionary:
 #--------------------------------------
 
 func load_state(state: CRMemento) -> void:
-	set_empty()
+	ActionSetEmpty.new(self).push()
 
 	_load_cell_data(state.data.cells)
 	_load_row_data(state.data.rows)
@@ -643,17 +531,17 @@ func _load_cell_data(cell_data: Dictionary) -> void:
 	for cell_number in cell_data.keys():
 		var cell = get_grid_cell(cell_number)
 		if cell_data[cell_number].marked:
-			toggle_mark(cell)
+			ActionToggleMark.new(self).setup(cell).push()
 		if cell_data[cell_number].has_unit:
-			create_unit(cell)
+			ActionCreateUnit.new(self).setup(cell).push()
 		if cell_data[cell_number].starts_two_block:
-			create_two_block(cell.number)
+			ActionCreateTwoBlock.new(self).setup(cell.number).push()
 
 
 func _load_row_data(row_data: Dictionary) -> void:
 	for row_number in row_data.keys():
 		if row_data[row_number].has_ten_block:
-			create_ten_block(row_number)
+			ActionCreateTenBlock.new(self).setup(row_number).push()
 
 
 #endregion

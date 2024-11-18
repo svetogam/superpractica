@@ -12,5 +12,5 @@ extends FieldObjectMode
 
 
 func _press(_point: Vector2) -> void:
-	field.push_action(field.delete_block.bind(object))
+	GridCounting.ActionDeleteBlock.new(field).setup(object).push()
 	get_viewport().set_input_as_handled()

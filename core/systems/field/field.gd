@@ -188,10 +188,6 @@ func request_drag_memo(memo: Memo) -> void:
 	dragged_memo_requested.emit(memo)
 
 
-func push_action(action: Callable) -> void:
-	action_queue.push(action)
-
-
 func connect_condition(action_name: String, callable: Callable) -> void:
 	action_queue.connect_condition(action_name, callable)
 

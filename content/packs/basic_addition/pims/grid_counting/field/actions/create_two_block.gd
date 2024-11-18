@@ -8,18 +8,30 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldObjectMode
+extends FieldAction
+
+var first_number: int = -1
 
 
-func _take_drop(dropped_object: FieldObject, point: Vector2) -> void:
-	if not field.is_cell_occupied(object):
-		match dropped_object.object_type:
-			GridCounting.Objects.UNIT:
-				GridCounting.ActionCreateUnit.new(field).setup(object).push()
-			GridCounting.Objects.TWO_BLOCK:
-				var first_number = field.get_2_grid_cells_at_point(point)[0].number
-				GridCounting.ActionCreateTwoBlock.new(field).setup(first_number).push()
-			GridCounting.Objects.TEN_BLOCK:
-				var row_number = field.get_row_number_for_cell_number(object.number)
-				GridCounting.ActionCreateTenBlock.new(field).setup(row_number).push()
-	get_viewport().set_input_as_handled()
+func setup(p_first_number: int) -> FieldAction:
+	first_number = p_first_number
+	return self
+
+
+func is_valid() -> bool:
+	if first_number == -1:
+		return false
+	return true
+
+
+func do() -> void:
+	if first_number % 10 == 0:
+		first_number -= 1
+	var cells = field.get_grid_cells_by_numbers([first_number, first_number + 1])
+	for cell in cells:
+		if field.is_cell_occupied(cell):
+			return
+
+	var two_block := GridCounting.ObjectTwoBlock.instantiate() as FieldObject
+	field.add_child(two_block)
+	two_block.put_on_cells(cells)

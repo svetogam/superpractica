@@ -8,18 +8,28 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldObjectMode
+extends FieldAction
+
+var row_number: int = -1
 
 
-func _take_drop(dropped_object: FieldObject, point: Vector2) -> void:
-	if not field.is_cell_occupied(object):
-		match dropped_object.object_type:
-			GridCounting.Objects.UNIT:
-				GridCounting.ActionCreateUnit.new(field).setup(object).push()
-			GridCounting.Objects.TWO_BLOCK:
-				var first_number = field.get_2_grid_cells_at_point(point)[0].number
-				GridCounting.ActionCreateTwoBlock.new(field).setup(first_number).push()
-			GridCounting.Objects.TEN_BLOCK:
-				var row_number = field.get_row_number_for_cell_number(object.number)
-				GridCounting.ActionCreateTenBlock.new(field).setup(row_number).push()
-	get_viewport().set_input_as_handled()
+func setup(p_row_number: int) -> FieldAction:
+	row_number = p_row_number
+	return self
+
+
+func is_valid() -> bool:
+	if row_number == -1:
+		return false
+	return true
+
+
+func do() -> void:
+	var row_cells: Array = field.get_grid_cells_by_row(row_number)
+	for cell in row_cells:
+		if field.is_cell_occupied(cell):
+			return
+
+	var ten_block := GridCounting.ObjectTenBlock.instantiate() as FieldObject
+	field.add_child(ten_block)
+	ten_block.put_on_row(row_number)
