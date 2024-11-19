@@ -14,8 +14,8 @@ signal completed
 signal affirmed
 signal rejected
 
-@export var _start_number: int
-@export var _count: int
+var _start_number: int
+var _count: int
 var _next_number: int
 var _last_number: int
 
@@ -29,9 +29,6 @@ func setup(p_start_number: int, p_count: int = -1) -> void:
 
 
 func _start() -> void:
-	#field.connect_condition("create_unit", _decide_create)
-	#field.connect_post_action("create_unit", _on_unit_created)
-
 	_next_number = _start_number + 1
 
 	if _count != -1:
@@ -40,34 +37,28 @@ func _start() -> void:
 		_last_number = -1
 
 
-func _decide_create(cell: GridCell) -> bool:
-	if cell.number == _next_number:
-		effects.affirm(cell.position)
-		affirmed.emit()
-		_next_number += 1
-
-		return true
-
-	else:
-		effects.reject(cell.position)
-		rejected.emit()
-		return false
-
-
-func _on_unit_created(cell: GridCell) -> void:
-	assert(cell.get_unit() != null)
-
-	cell.get_unit().set_variant("affirmation")
-
-	if _is_completing_number(cell.number):
-		completed.emit()
-		stop()
+func _before_action(action: FieldAction) -> bool:
+	match action.name:
+		"create_unit":
+			if action.grid_cell.number == _next_number:
+				return true
+			else:
+				effects.reject(action.grid_cell.position)
+				rejected.emit()
+				return false
+		_:
+			return true
 
 
-func _is_completing_number(number: int) -> bool:
-	return _last_number != -1 and number == _last_number
+func _after_action(action: FieldAction) -> void:
+	match action.name:
+		"create_unit":
+			effects.affirm(action.grid_cell.position)
+			affirmed.emit()
+			_next_number += 1
+			var unit = action.grid_cell.get_unit()
+			unit.set_variant("affirmation")
 
-
-#func _end() -> void:
-	#field.disconnect_condition("create_unit", _decide_create)
-	#field.disconnect_post_action("create_unit", _on_unit_created)
+			if _last_number != -1 and action.grid_cell.number == _last_number:
+				completed.emit()
+				stop()

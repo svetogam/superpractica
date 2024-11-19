@@ -38,12 +38,16 @@ static var topic = TopicResource.new(
 			"grid_counting_0_2",
 			# Title
 			"Intro - 2",
-		),
-		LevelResource.new(
-			# ID
-			"grid_counting_0_3",
-			# Title
-			"Intro - 3",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("grid_counting_e/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_e/program.tscn"),
+			# Program Vars
+			preload("grid_counting_e/variants/0_2.tres"),
+			# Program Plan
+			preload("grid_counting_e/plan/plan_data.tres")
 		),
 
 
@@ -387,12 +391,6 @@ static var topic = TopicResource.new(
 			# Directions
 			Utils.Direction.RIGHT, Utils.Direction.RIGHT
 		),
-		TopicConnectorResource.new(
-			# IDs
-			"grid_counting_0_2", "grid_counting_0_3",
-			# Directions
-			Utils.Direction.RIGHT, Utils.Direction.RIGHT
-		),
 
 
 		TopicConnectorResource.new(
@@ -543,7 +541,7 @@ static var topic = TopicResource.new(
 
 		TopicConnectorResource.new(
 			# IDs
-			"grid_counting_0_3", "grid_counting_1_1",
+			"grid_counting_0_2", "grid_counting_1_1",
 			# Directions
 			Utils.Direction.DOWN, Utils.Direction.DOWN
 		),
@@ -580,7 +578,6 @@ static var topic = TopicResource.new(
 			[
 				"grid_counting_0_1",
 				"grid_counting_0_2",
-				"grid_counting_0_3",
 			]
 		),
 		TopicGroupResource.new(
@@ -633,7 +630,6 @@ static var topic = TopicResource.new(
 	[
 		"grid_counting_0_1",
 		"grid_counting_0_2",
-		"grid_counting_0_3",
 		"grid_counting_1_1",
 		"grid_counting_1_2",
 		"grid_counting_1_3",

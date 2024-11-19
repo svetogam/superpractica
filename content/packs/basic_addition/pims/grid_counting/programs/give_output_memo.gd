@@ -15,6 +15,7 @@ signal output_decided(output_number) #int with -1 for no output
 
 func _start() -> void:
 	pim.output_slot.show()
+	_update_output_memo()
 	field.updated.connect(_on_field_updated)
 
 

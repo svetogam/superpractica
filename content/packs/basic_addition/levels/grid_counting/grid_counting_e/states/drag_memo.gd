@@ -8,37 +8,11 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldProgram
-
-signal completed
-signal rejected
-
-var _start_number: int
+extends LevelProgramState
 
 
-func setup(p_start_number: int) -> void:
-	assert(not is_running())
+func _enter(_last_state: String) -> void:
+	program.field.set_tool(Game.NO_TOOL)
+	pimnet.overlay.disable_panel(PimnetOverlay.PimnetPanels.CREATION)
 
-	_start_number = p_start_number
-
-
-func _before_action(action: FieldAction) -> bool:
-	match action.name:
-		"toggle_mark":
-			if action.grid_cell.number == _start_number:
-				return true
-			else:
-				effects.reject(action.grid_cell.position)
-				rejected.emit()
-				return false
-		_:
-			return true
-
-
-func _after_action(action: FieldAction) -> void:
-	match action.name:
-		"toggle_mark":
-			action.grid_cell.set_ring_variant("affirmation")
-			effects.affirm(action.grid_cell.position)
-			stop()
-			completed.emit()
+	goal_panel.slot_filled.connect(complete)

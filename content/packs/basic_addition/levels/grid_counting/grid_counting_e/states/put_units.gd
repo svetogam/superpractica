@@ -8,37 +8,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldProgram
+extends LevelProgramState
 
-signal completed
-signal rejected
-
-var _start_number: int
+var _field_program: FieldProgram
 
 
-func setup(p_start_number: int) -> void:
-	assert(not is_running())
+func _enter(_last_state: String) -> void:
+	creation_panel.exclude_all("GridCounting")
+	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
 
-	_start_number = p_start_number
-
-
-func _before_action(action: FieldAction) -> bool:
-	match action.name:
-		"toggle_mark":
-			if action.grid_cell.number == _start_number:
-				return true
-			else:
-				effects.reject(action.grid_cell.position)
-				rejected.emit()
-				return false
-		_:
-			return true
+	_field_program = program.pim.field.get_program("CountByUnits")
+	_field_program.setup(0, program.count)
+	_field_program.run()
+	_field_program.completed.connect(complete)
 
 
-func _after_action(action: FieldAction) -> void:
-	match action.name:
-		"toggle_mark":
-			action.grid_cell.set_ring_variant("affirmation")
-			effects.affirm(action.grid_cell.position)
-			stop()
-			completed.emit()
+func _exit(_next_state: String) -> void:
+	_field_program.completed.disconnect(complete)

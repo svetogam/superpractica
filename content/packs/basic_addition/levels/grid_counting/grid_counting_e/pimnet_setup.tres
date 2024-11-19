@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="PimnetSetupResource" load_steps=3 format=3 uid="uid://my28mbx5ny7c"]
+
+[ext_resource type="PackedScene" uid="uid://c42cuesvvqpr3" path="res://content/packs/basic_addition/pims/grid_counting/grid_counting_pim.tscn" id="1_clsau"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet_setup_resource.gd" id="2_15pfp"]
+
+[resource]
+script = ExtResource("2_15pfp")
+pims = Array[PackedScene]([ExtResource("1_clsau")])
+reversion_enable = false
+inventory_enable = false
+inventory_start_active = false
+tools_enable = false
+tools_start_active = false
+creation_enable = true
+creation_start_active = true
+translation_enable = false
+translation_start_active = false
+goal_type = 1
+goal_start_active = true
+plan_enable = false
+plan_start_active = false

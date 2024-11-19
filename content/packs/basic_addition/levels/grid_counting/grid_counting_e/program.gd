@@ -8,37 +8,31 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldProgram
+extends LevelProgram
 
-signal completed
-signal rejected
-
-var _start_number: int
-
-
-func setup(p_start_number: int) -> void:
-	assert(not is_running())
-
-	_start_number = p_start_number
+var count: int
+var pim: Pim
+var field: Field
+var output_program: PimProgram
 
 
-func _before_action(action: FieldAction) -> bool:
-	match action.name:
-		"toggle_mark":
-			if action.grid_cell.number == _start_number:
-				return true
-			else:
-				effects.reject(action.grid_cell.position)
-				rejected.emit()
-				return false
-		_:
-			return true
+func _setup_vars() -> void:
+	count = Game.current_level.program_vars.new_count()
 
 
-func _after_action(action: FieldAction) -> void:
-	match action.name:
-		"toggle_mark":
-			action.grid_cell.set_ring_variant("affirmation")
-			effects.affirm(action.grid_cell.position)
-			stop()
-			completed.emit()
+func _start() -> void:
+	super()
+
+	pim = pimnet.get_pim()
+	field = pim.field
+
+	goal_panel.slot.set_memo(IntegerMemo, count, true)
+
+	output_program = pim.get_program("GiveOutputMemo")
+	output_program.run()
+
+	$StateMachine.activate()
+
+
+func _get_instruction_replacements() -> Dictionary:
+	return {"count": count}
