@@ -22,22 +22,23 @@ func setup(p_start_number: int) -> void:
 	_start_number = p_start_number
 
 
-func _start() -> void:
-	field.action_queue.add_action_condition("toggle_mark", _decide_toggle_mark)
+func _before_action(action: FieldAction) -> bool:
+	match action.name:
+		"toggle_mark":
+			if action.grid_cell.number == _start_number:
+				return true
+			else:
+				effects.reject(action.grid_cell.position)
+				rejected.emit()
+				return false
+		_:
+			return true
 
 
-func _decide_toggle_mark(action: FieldAction) -> bool:
-	var correct = action.grid_cell.number == _start_number
-	if correct:
-		action.grid_cell.set_ring_variant("affirmation")
-		effects.affirm(action.grid_cell.position)
-		stop()
-		completed.emit()
-	else:
-		effects.reject(action.grid_cell.position)
-		rejected.emit()
-	return correct
-
-
-func _end() -> void:
-	field.action_queue.remove_action_condition("toggle_mark", _decide_toggle_mark)
+func _after_action(action: FieldAction) -> void:
+	match action.name:
+		"toggle_mark":
+			action.grid_cell.set_ring_variant("affirmation")
+			effects.affirm(action.grid_cell.position)
+			stop()
+			completed.emit()

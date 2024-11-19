@@ -21,3 +21,14 @@ var effects: NavigEffectGroup:
 			effects = NavigEffectGroup.new(field.effect_layer)
 			assert(effects != null)
 		return effects
+
+
+## Return true to continue with the action and false to cancel it.
+# Virtual
+func _before_action(_action: FieldAction) -> bool:
+	return true
+
+
+# Virtual
+func _after_action(_action: FieldAction) -> void:
+	return

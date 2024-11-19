@@ -29,8 +29,8 @@ func setup(p_start_number: int, p_count: int = -1) -> void:
 
 
 func _start() -> void:
-	field.connect_condition("create_unit", _decide_create)
-	field.connect_post_action("create_unit", _on_unit_created)
+	#field.connect_condition("create_unit", _decide_create)
+	#field.connect_post_action("create_unit", _on_unit_created)
 
 	_next_number = _start_number + 1
 
@@ -68,6 +68,6 @@ func _is_completing_number(number: int) -> bool:
 	return _last_number != -1 and number == _last_number
 
 
-func _end() -> void:
-	field.disconnect_condition("create_unit", _decide_create)
-	field.disconnect_post_action("create_unit", _on_unit_created)
+#func _end() -> void:
+	#field.disconnect_condition("create_unit", _decide_create)
+	#field.disconnect_post_action("create_unit", _on_unit_created)

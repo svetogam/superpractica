@@ -188,16 +188,12 @@ func request_drag_memo(memo: Memo) -> void:
 	dragged_memo_requested.emit(memo)
 
 
-func connect_post_action(action_name: String, callable: Callable) -> void:
-	action_queue.connect_post_action(action_name, callable)
-
-
-func disconnect_post_action(action_name: String, callable: Callable) -> void:
-	action_queue.disconnect_post_action(action_name, callable)
-
-
 func get_program(program_name: String) -> FieldProgram:
 	return programs.get_mode(program_name)
+
+
+func get_active_programs() -> Array:
+	return programs.get_active_modes()
 
 
 #====================================================================
