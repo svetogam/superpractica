@@ -83,10 +83,6 @@ func _trigger_update(update_type: int) -> void:
 	warning_effects.flush_stage()
 
 
-#====================================================================
-# Virtual Mechanics
-#====================================================================
-
 # Virtual
 func _on_update(_update_type: int) -> void:
 	pass
@@ -113,9 +109,23 @@ func _on_selected() -> void:
 	pass
 
 
-#====================================================================
-# Tools and Modes
-#====================================================================
+# Virtual
+func build_state() -> CRMemento:
+	assert(false)
+	return null
+
+
+# Call this _trigger_update line after loading in implementations:
+	#_trigger_update(UpdateTypes.STATE_LOADED)
+# Virtual
+func load_state(_state: CRMemento) -> void:
+	assert(false)
+
+
+# Virtual
+func get_objects_by_type(_object_type: int) -> Array:
+	return []
+
 
 func on_tool_panel_tool_selected(toolset_name: String, tool_mode: int) -> void:
 	if toolset_name == field_type:
@@ -153,10 +163,6 @@ func get_tool() -> int:
 		return Game.NO_TOOL
 
 
-#====================================================================
-# Object Management
-#====================================================================
-
 func get_field_objects() -> Array:
 	var field_objects: Array = []
 	for object in Utils.get_children_in_group(self, "field_objects"):
@@ -169,15 +175,6 @@ func get_objects_in_group(group: String) -> Array:
 	var field_objects := get_field_objects()
 	return field_objects.filter(func(object: Node): return object.is_in_group(group))
 
-
-# Virtual
-func get_objects_by_type(_object_type: int) -> Array:
-	return []
-
-
-#====================================================================
-# Mechanics
-#====================================================================
 
 func request_drag_object(original: FieldObject) -> void:
 	dragged_object_requested.emit(original)
@@ -194,20 +191,3 @@ func get_program(program_name: String) -> FieldProgram:
 
 func get_active_programs() -> Array:
 	return programs.get_active_modes()
-
-
-#====================================================================
-# Mem-States
-#====================================================================
-
-# Virtual
-func build_state() -> CRMemento:
-	assert(false)
-	return null
-
-
-# Call this _trigger_update line after loading in implementations:
-	#_trigger_update(UpdateTypes.STATE_LOADED)
-# Virtual
-func load_state(_state: CRMemento) -> void:
-	assert(false)
