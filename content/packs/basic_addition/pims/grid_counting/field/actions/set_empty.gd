@@ -11,8 +11,8 @@
 extends FieldAction
 
 
-static func get_name() -> String:
-	return "set_empty"
+static func get_name() -> int:
+	return GridCounting.Actions.SET_EMPTY
 
 
 func do() -> void:

@@ -22,6 +22,15 @@ enum Objects {
 	TWO_BLOCK,
 	TEN_BLOCK,
 }
+enum Actions {
+	CREATE_TEN_BLOCK,
+	CREATE_TWO_BLOCK,
+	CREATE_UNIT,
+	DELETE_UNIT,
+	DELETE_BLOCK,
+	SET_EMPTY,
+	TOGGLE_MARK,
+}
 enum Tools {
 	NONE = Game.NO_TOOL,
 	CELL_MARKER,

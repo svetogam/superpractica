@@ -39,7 +39,7 @@ func _start() -> void:
 
 func _before_action(action: FieldAction) -> bool:
 	match action.name:
-		"create_unit":
+		GridCounting.Actions.CREATE_UNIT:
 			if action.grid_cell.number == _next_number:
 				return true
 			else:
@@ -52,7 +52,7 @@ func _before_action(action: FieldAction) -> bool:
 
 func _after_action(action: FieldAction) -> void:
 	match action.name:
-		"create_unit":
+		GridCounting.Actions.CREATE_UNIT:
 			effects.affirm(action.grid_cell.position)
 			affirmed.emit()
 			_next_number += 1

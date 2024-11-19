@@ -13,8 +13,8 @@ extends FieldAction
 var row_number: int = -1
 
 
-static func get_name() -> String:
-	return "create_ten_block"
+static func get_name() -> int:
+	return GridCounting.Actions.CREATE_TEN_BLOCK
 
 
 func setup(p_row_number: int) -> FieldAction:

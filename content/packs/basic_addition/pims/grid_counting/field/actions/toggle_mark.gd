@@ -13,8 +13,8 @@ extends FieldAction
 var grid_cell: GridCell
 
 
-static func get_name() -> String:
-	return "toggle_mark"
+static func get_name() -> int:
+	return GridCounting.Actions.TOGGLE_MARK
 
 
 func setup(p_grid_cell: GridCell) -> FieldAction:

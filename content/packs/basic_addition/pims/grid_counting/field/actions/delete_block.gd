@@ -13,8 +13,8 @@ extends FieldAction
 var block: FieldObject
 
 
-static func get_name() -> String:
-	return "delete_block"
+static func get_name() -> int:
+	return GridCounting.Actions.DELETE_BLOCK
 
 
 func setup(p_block: FieldObject) -> FieldAction:

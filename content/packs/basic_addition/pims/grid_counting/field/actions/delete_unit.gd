@@ -13,8 +13,8 @@ extends FieldAction
 var unit: FieldObject
 
 
-static func get_name() -> String:
-	return "delete_unit"
+static func get_name() -> int:
+	return GridCounting.Actions.DELETE_UNIT
 
 
 func setup(p_unit: FieldObject) -> FieldAction:
