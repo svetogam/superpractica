@@ -8,25 +8,19 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldAction
+extends LevelProgramState
 
-var unit: FieldObject
-
-
-static func get_name() -> String:
-	return "delete_unit"
+var _field_program: FieldProgram
 
 
-func setup(p_unit: FieldObject) -> FieldAction:
-	unit = p_unit
-	return self
+func _enter(_last_state: String) -> void:
+	program.field.set_tool(GridCounting.Tools.CELL_MARKER)
+
+	_field_program = program.field.get_program("SelectCorrectCell")
+	_field_program.setup(program.number)
+	_field_program.run()
+	_field_program.completed.connect(complete)
 
 
-func is_valid() -> bool:
-	if unit == null:
-		return false
-	return true
-
-
-func do() -> void:
-	unit.free()
+func _exit(_next_state: String) -> void:
+	_field_program.completed.disconnect(complete)

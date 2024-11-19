@@ -33,7 +33,7 @@ func get_rect() -> Rect2:
 	return Rect2(-size.x/2, -size.y/2, size.x, size.y)
 
 
-func set_circle_variant(variant: String) -> void:
+func set_ring_variant(variant: String) -> void:
 	assert(%RingSprite.sprite_frames.has_animation(variant))
 	%RingSprite.animation = variant
 

@@ -13,6 +13,10 @@ extends FieldAction
 var row_number: int = -1
 
 
+static func get_name() -> String:
+	return "create_ten_block"
+
+
 func setup(p_row_number: int) -> FieldAction:
 	row_number = p_row_number
 	return self

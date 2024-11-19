@@ -8,25 +8,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldAction
+extends StateData
 
-var unit: FieldObject
-
-
-static func get_name() -> String:
-	return "delete_unit"
-
-
-func setup(p_unit: FieldObject) -> FieldAction:
-	unit = p_unit
-	return self
-
-
-func is_valid() -> bool:
-	if unit == null:
-		return false
-	return true
+const DATA := {
+	"initial": "SelectCell",
+	"transitions": {
+		"SelectCell": {
+			"done": "DragMemo",
+		},
+		"DragMemo": {
+			"done": State.NULL_STATE,
+		},
+	}
+}
 
 
-func do() -> void:
-	unit.free()
+func _get_data() -> Dictionary:
+	return DATA

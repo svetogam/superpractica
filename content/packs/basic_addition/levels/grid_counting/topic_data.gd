@@ -19,6 +19,36 @@ static var topic = TopicResource.new(
 	[
 		LevelResource.new(
 			# ID
+			"grid_counting_0_1",
+			# Title
+			"Intro - 1",
+			# Thumbnail
+			null,
+			# Pimnet Setup
+			preload("grid_counting_d/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_d/program.tscn"),
+			# Program Vars
+			preload("grid_counting_d/variants/0_1.tres"),
+			# Program Plan
+			preload("grid_counting_d/plan/plan_data.tres")
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_0_2",
+			# Title
+			"Intro - 2",
+		),
+		LevelResource.new(
+			# ID
+			"grid_counting_0_3",
+			# Title
+			"Intro - 3",
+		),
+
+
+		LevelResource.new(
+			# ID
 			"grid_counting_1_1",
 			# Title
 			"1 - 1",
@@ -353,6 +383,20 @@ static var topic = TopicResource.new(
 	[
 		TopicConnectorResource.new(
 			# IDs
+			"grid_counting_0_1", "grid_counting_0_2",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+		TopicConnectorResource.new(
+			# IDs
+			"grid_counting_0_2", "grid_counting_0_3",
+			# Directions
+			Utils.Direction.RIGHT, Utils.Direction.RIGHT
+		),
+
+
+		TopicConnectorResource.new(
+			# IDs
 			"grid_counting_1_1", "grid_counting_1_2",
 			# Directions
 			Utils.Direction.RIGHT, Utils.Direction.RIGHT
@@ -499,6 +543,12 @@ static var topic = TopicResource.new(
 
 		TopicConnectorResource.new(
 			# IDs
+			"grid_counting_0_3", "grid_counting_1_1",
+			# Directions
+			Utils.Direction.DOWN, Utils.Direction.DOWN
+		),
+		TopicConnectorResource.new(
+			# IDs
 			"grid_counting_1_random", "grid_counting_2_1",
 			# Directions
 			Utils.Direction.DOWN, Utils.Direction.RIGHT
@@ -526,6 +576,13 @@ static var topic = TopicResource.new(
 
 	# Groups
 	[
+		TopicGroupResource.new(
+			[
+				"grid_counting_0_1",
+				"grid_counting_0_2",
+				"grid_counting_0_3",
+			]
+		),
 		TopicGroupResource.new(
 			[
 				"grid_counting_1_1",
@@ -574,6 +631,9 @@ static var topic = TopicResource.new(
 
 	# Suggested Order
 	[
+		"grid_counting_0_1",
+		"grid_counting_0_2",
+		"grid_counting_0_3",
 		"grid_counting_1_1",
 		"grid_counting_1_2",
 		"grid_counting_1_3",

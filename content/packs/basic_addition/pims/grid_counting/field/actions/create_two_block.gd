@@ -13,6 +13,10 @@ extends FieldAction
 var first_number: int = -1
 
 
+static func get_name() -> String:
+	return "create_two_block"
+
+
 func setup(p_first_number: int) -> FieldAction:
 	first_number = p_first_number
 	return self

@@ -4,6 +4,39 @@
 
 [node name="Layout" type="Node"]
 
+[node name="Level0_1" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -48.0
+offset_top = -209.0
+offset_right = 52.0
+offset_bottom = -159.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_0_1"
+
+[node name="Level0_2" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 112.0
+offset_top = -209.0
+offset_right = 212.0
+offset_bottom = -159.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_0_2"
+
+[node name="Level0_3" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 272.0
+offset_top = -209.0
+offset_right = 372.0
+offset_bottom = -159.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_3ye2f")
+id = "grid_counting_0_3"
+
 [node name="Level1_1" type="ReferenceRect" parent="."]
 custom_minimum_size = Vector2(100, 50)
 offset_left = -48.0

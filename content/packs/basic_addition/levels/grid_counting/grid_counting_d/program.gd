@@ -8,25 +8,31 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldAction
+extends LevelProgram
 
-var unit: FieldObject
-
-
-static func get_name() -> String:
-	return "delete_unit"
-
-
-func setup(p_unit: FieldObject) -> FieldAction:
-	unit = p_unit
-	return self
+var number: int
+var pim: Pim
+var field: Field
+var output_program: PimProgram
 
 
-func is_valid() -> bool:
-	if unit == null:
-		return false
-	return true
+func _setup_vars() -> void:
+	number = Game.current_level.program_vars.new_number()
 
 
-func do() -> void:
-	unit.free()
+func _start() -> void:
+	super()
+
+	pim = pimnet.get_pim()
+	field = pim.field
+
+	goal_panel.slot.set_memo(IntegerMemo, number, true)
+
+	output_program = pim.get_program("GiveOutputMemo")
+	output_program.run()
+
+	$StateMachine.activate()
+
+
+func _get_instruction_replacements() -> Dictionary:
+	return {"number": number}

@@ -8,25 +8,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldAction
-
-var unit: FieldObject
+extends LevelProgramState
 
 
-static func get_name() -> String:
-	return "delete_unit"
+func _enter(_last_state: String) -> void:
+	program.field.set_tool(Game.NO_TOOL)
 
-
-func setup(p_unit: FieldObject) -> FieldAction:
-	unit = p_unit
-	return self
-
-
-func is_valid() -> bool:
-	if unit == null:
-		return false
-	return true
-
-
-func do() -> void:
-	unit.free()
+	goal_panel.slot_filled.connect(complete)

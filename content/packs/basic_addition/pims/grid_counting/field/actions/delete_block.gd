@@ -13,6 +13,10 @@ extends FieldAction
 var block: FieldObject
 
 
+static func get_name() -> String:
+	return "delete_block"
+
+
 func setup(p_block: FieldObject) -> FieldAction:
 	block = p_block
 	return self

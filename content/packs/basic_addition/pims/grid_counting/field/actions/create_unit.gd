@@ -13,6 +13,10 @@ extends FieldAction
 var grid_cell: GridCell
 
 
+static func get_name() -> String:
+	return "create_unit"
+
+
 func setup(p_grid_cell: GridCell) -> FieldAction:
 	grid_cell = p_grid_cell
 	return self

@@ -17,21 +17,25 @@ signal flushed
 var auto_flush := true
 var _field: Field
 var _queue: Array = []
-#var _action_conditions_map := CallableMap.new()
+var _action_conditions := {} # {action_name: [Callable, ...], ...}
 
 
 func _init(p_field: Field) -> void:
 	_field = p_field
 
 
-func connect_condition(action_name: String, condition: Callable) -> void:
-	return
-	#_action_conditions_map.add(action_name, condition)
+func add_action_condition(action_name: String, condition_func: Callable) -> void:
+	if not _action_conditions.has(action_name):
+		_action_conditions[action_name] = []
+	_action_conditions[action_name].append(condition_func)
 
 
-func disconnect_condition(action_name: String, condition: Callable) -> void:
-	return
-	#_action_conditions_map.remove(action_name, condition)
+func remove_action_condition(action_name: String, condition_func: Callable) -> void:
+	if not _action_conditions.has(action_name):
+		return
+	_action_conditions[action_name].erase(condition_func)
+	if _action_conditions[action_name].is_empty():
+		_action_conditions.erase(action_name)
 
 
 func connect_post_action(action_name: String, callable: Callable) -> void:
@@ -50,11 +54,15 @@ func disconnect_post_action(action_name: String, callable: Callable) -> void:
 
 
 func push(action: FieldAction) -> void:
-	#var condition_results := _action_conditions_map.call_by_key(
-			#action.get_method(), action.get_bound_arguments())
-	#if condition_results.all(func(a: bool): return a):
-		#_add_action(action)
-	_add_action(action)
+	assert(action != null)
+	assert(action.is_valid())
+
+	# Add action only if action has no conditions or they all return true
+	var condition_results: Array = []
+	for condition in _action_conditions.get(action.name, []):
+		condition_results.append(condition.call(action))
+	if condition_results.all(func(a: bool): return a):
+		_add_action(action)
 
 	if auto_flush:
 		flush()

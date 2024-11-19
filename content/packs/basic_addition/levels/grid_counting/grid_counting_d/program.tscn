@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://k7tbki55kkeu"]
+
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_d/program.gd" id="1_s3wvb"]
+[ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_g0u6w"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_d/state_data.gd" id="3_54gch"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_d/states/select_cell.gd" id="4_kylk3"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_d/states/drag_memo.gd" id="5_f8bj6"]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource("1_s3wvb")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_g0u6w")
+SetupData = ExtResource("3_54gch")
+_auto_activate = false
+
+[node name="SelectCell" type="Node" parent="StateMachine"]
+script = ExtResource("4_kylk3")
+
+[node name="DragMemo" type="Node" parent="StateMachine"]
+script = ExtResource("5_f8bj6")

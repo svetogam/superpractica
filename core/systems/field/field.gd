@@ -188,14 +188,6 @@ func request_drag_memo(memo: Memo) -> void:
 	dragged_memo_requested.emit(memo)
 
 
-func connect_condition(action_name: String, callable: Callable) -> void:
-	action_queue.connect_condition(action_name, callable)
-
-
-func disconnect_condition(action_name: String, callable: Callable) -> void:
-	action_queue.disconnect_condition(action_name, callable)
-
-
 func connect_post_action(action_name: String, callable: Callable) -> void:
 	action_queue.connect_post_action(action_name, callable)
 

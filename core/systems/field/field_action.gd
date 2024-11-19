@@ -12,6 +12,14 @@ class_name FieldAction
 extends RefCounted
 
 var field: Field
+var name: String:
+	get:
+		return get_name()
+
+
+# Virtual
+static func get_name() -> String:
+	return ""
 
 
 func _init(p_field: Field) -> void:

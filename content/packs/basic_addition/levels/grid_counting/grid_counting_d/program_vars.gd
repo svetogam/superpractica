@@ -8,25 +8,12 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldAction
+class_name GridCountingProgramVarsD
+extends LevelProgramVars
 
-var unit: FieldObject
-
-
-static func get_name() -> String:
-	return "delete_unit"
+@export var min_number: int = 0
+@export var max_number: int = -1
 
 
-func setup(p_unit: FieldObject) -> FieldAction:
-	unit = p_unit
-	return self
-
-
-func is_valid() -> bool:
-	if unit == null:
-		return false
-	return true
-
-
-func do() -> void:
-	unit.free()
+func new_number() -> int:
+	return _calc_min_max(min_number, max_number)

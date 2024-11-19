@@ -11,6 +11,10 @@
 extends FieldAction
 
 
+static func get_name() -> String:
+	return "set_empty"
+
+
 func do() -> void:
 	for unit in field.get_unit_list():
 		unit.free()
