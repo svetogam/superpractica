@@ -18,4 +18,4 @@ func _press(_point: Vector2) -> void:
 func _drop(point: Vector2) -> void:
 	var dest_cell = field.get_grid_cell_at_point(point)
 	if object.cell.number != dest_cell.number and not field.is_cell_occupied(dest_cell):
-		GridCounting.ActionDeleteUnit.new(field).setup(object).push()
+		GridCountingActionDeleteUnit.new(field).setup(object).push()

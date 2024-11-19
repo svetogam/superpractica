@@ -8,6 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
+class_name GridCountingActionDeleteUnit
 extends FieldAction
 
 var unit: FieldObject

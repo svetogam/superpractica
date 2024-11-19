@@ -44,16 +44,6 @@ const ObjectUnit := preload("objects/unit/unit.tscn")
 const ObjectTwoBlock := preload("objects/two_block/two_block.tscn")
 const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 
-const ActionCreateUnit := preload("actions/create_unit.gd")
-const ActionCreateTwoBlock := preload("actions/create_two_block.gd")
-const ActionCreateTenBlock := preload("actions/create_ten_block.gd")
-const ActionDeleteUnit := preload("actions/delete_unit.gd")
-const ActionDeleteBlock := preload("actions/delete_block.gd")
-const ActionToggleMark := preload("actions/toggle_mark.gd")
-const ActionSetEmpty := preload("actions/set_empty.gd")
-
-const ProcessCountUnits := preload("processes/count_units.gd")
-
 const BOARD_SIZE := Vector2(350, 350)
 const BOARD_GAP := 3.0
 
@@ -98,7 +88,7 @@ func _on_update(_update_type: int) -> void:
 
 
 func reset_state() -> void:
-	ActionSetEmpty.new(self).push()
+	GridCountingActionSetEmpty.new(self).push()
 
 
 func _incoming_drop(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
@@ -109,25 +99,25 @@ func _incoming_drop(object_data: FieldObjectData, point: Vector2, _source: Field
 					_accept_incoming_unit(point)
 				GridCounting.Objects.TWO_BLOCK:
 					var first_number = get_2_grid_cells_at_point(point)[0].number
-					ActionCreateTwoBlock.new(self).setup(first_number).push()
+					GridCountingActionCreateTwoBlock.new(self).setup(first_number).push()
 				GridCounting.Objects.TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var row_number := get_row_number_for_cell_number(dest_cell.number)
-					ActionCreateTenBlock.new(self).setup(row_number).push()
+					GridCountingActionCreateTenBlock.new(self).setup(row_number).push()
 
 
 func _accept_incoming_unit(point: Vector2) -> void:
 	var cell = get_grid_cell_at_point(point)
 	if cell != null and not is_cell_occupied(cell):
-		ActionCreateUnit.new(self).setup(cell).push()
+		GridCountingActionCreateUnit.new(self).setup(cell).push()
 
 
 func _outgoing_drop(object: FieldObject) -> void:
 	match object.object_type:
 		GridCounting.Objects.UNIT:
-			ActionDeleteUnit.new(self).setup(object).push()
+			GridCountingActionDeleteUnit.new(self).setup(object).push()
 		GridCounting.Objects.TWO_BLOCK, GridCounting.Objects.TEN_BLOCK:
-			ActionDeleteBlock.new(self).setup(object).push()
+			GridCountingActionDeleteBlock.new(self).setup(object).push()
 
 
 func _on_unit_number_changed(old_number: int, new_number: int, unit: FieldObject) -> void:
@@ -528,7 +518,7 @@ func _get_rows_data() -> Dictionary:
 #--------------------------------------
 
 func load_state(state: CRMemento) -> void:
-	ActionSetEmpty.new(self).push()
+	GridCountingActionSetEmpty.new(self).push()
 
 	_load_cell_data(state.data.cells)
 	_load_row_data(state.data.rows)
@@ -540,17 +530,17 @@ func _load_cell_data(cell_data: Dictionary) -> void:
 	for cell_number in cell_data.keys():
 		var cell = get_grid_cell(cell_number)
 		if cell_data[cell_number].marked:
-			ActionToggleMark.new(self).setup(cell).push()
+			GridCountingActionToggleMark.new(self).setup(cell).push()
 		if cell_data[cell_number].has_unit:
-			ActionCreateUnit.new(self).setup(cell).push()
+			GridCountingActionCreateUnit.new(self).setup(cell).push()
 		if cell_data[cell_number].starts_two_block:
-			ActionCreateTwoBlock.new(self).setup(cell.number).push()
+			GridCountingActionCreateTwoBlock.new(self).setup(cell.number).push()
 
 
 func _load_row_data(row_data: Dictionary) -> void:
 	for row_number in row_data.keys():
 		if row_data[row_number].has_ten_block:
-			ActionCreateTenBlock.new(self).setup(row_number).push()
+			GridCountingActionCreateTenBlock.new(self).setup(row_number).push()
 
 
 #endregion

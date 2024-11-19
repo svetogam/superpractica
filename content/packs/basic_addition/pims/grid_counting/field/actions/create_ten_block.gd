@@ -8,6 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
+class_name GridCountingActionCreateTenBlock
 extends FieldAction
 
 var row_number: int = -1

@@ -21,7 +21,7 @@ func _enter(_last_state: String) -> void:
 
 	# Count units in order
 	var units = verification.field.get_unit_list(true)
-	(GridCounting.ProcessCountUnits.new(units, zero_position)
+	(GridCountingProcessCountUnits.new(units, zero_position)
 			.run(verification.field, _on_count_complete))
 
 

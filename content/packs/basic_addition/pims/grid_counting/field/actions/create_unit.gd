@@ -8,6 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
+class_name GridCountingActionCreateUnit
 extends FieldAction
 
 var grid_cell: GridCell

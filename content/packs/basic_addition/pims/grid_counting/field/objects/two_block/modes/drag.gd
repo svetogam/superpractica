@@ -19,4 +19,4 @@ func _drop(point: Vector2) -> void:
 	var dest_cells = field.get_2_grid_cells_at_point(point)
 	if (not dest_cells.any(field.is_cell_occupied)
 			and object.first_number != dest_cells[0].number):
-		GridCounting.ActionDeleteBlock.new(field).setup(object).push()
+		GridCountingActionDeleteBlock.new(field).setup(object).push()
