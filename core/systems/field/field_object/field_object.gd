@@ -11,13 +11,20 @@
 class_name FieldObject
 extends Area2D
 
+enum _States {
+	NONE,
+	PRESSED,
+	INTERNAL_GRABBED,
+	EXTERNAL_GRABBED,
+}
+
 var field: Field
 var object_type: int:
 	get = _get_object_type
 var object_data: FieldObjectData:
 	get:
 		return field.interface_data.object_data[object_type]
-var _pressing := false
+var _state: _States = _States.NONE
 @onready var _modes := $ActiveModes as ModeGroup
 
 
@@ -42,90 +49,138 @@ func _on_field_found(p_field: Field) -> void:
 
 
 # Virtual
-func _hover(_held_object: FieldObject) -> void:
+func _pressed(_point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _unhover() -> void:
+func _released(_point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _press(_point: Vector2) -> void:
+func _dragged(_external: bool, _point: Vector2, _change: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _release(_point: Vector2) -> void:
+func _dropped(_external: bool, _point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _drag(_point: Vector2, _change: Vector2) -> void:
+func _received(_external: bool, _dropped_object: FieldObject, _point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _drop(_point: Vector2) -> void:
+func _dropped_out(_receiver: Field) -> void:
 	pass
 
 
 # Virtual
-func _take_drop(_dropped_object: FieldObject, _point: Vector2) -> void:
+func _hovered(_external: bool, _grabbed_object: FieldObject) -> void:
+	pass
+
+
+# Virtual
+func _unhovered(_external: bool, _grabbed_object: FieldObject) -> void:
 	pass
 
 
 func _mouse_enter() -> void:
-	_hover(field.dragged_object)
+	_hovered(is_grabbed_externally(), field.dragged_object)
 	for mode in _modes.get_active_modes():
-		mode._hover(field.dragged_object)
+		mode._hovered(is_grabbed_externally(), field.dragged_object)
 
 
 func _mouse_exit() -> void:
-	_unhover()
+	_unhovered(is_grabbed_externally(), field.dragged_object)
 	for mode in _modes.get_active_modes():
-		mode._unhover()
+		mode._unhovered(is_grabbed_externally(), field.dragged_object)
 
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("primary_mouse"):
-		_pressing = true
-		_press(event.position)
+		_state = _States.PRESSED
+		_pressed(event.position)
 		for mode in _modes.get_active_modes():
-			mode._press(event.position)
+			mode._pressed(event.position)
 
-	elif (event.is_action_released("primary_mouse") and not _pressing
+	elif (event.is_action_released("primary_mouse") and not is_pressed()
 			and field.dragged_object != null
 			and field.dragged_object.get_instance_id() != get_instance_id()):
-		_take_drop(field.dragged_object, event.position)
+		_received(field.dragged_object.is_grabbed_externally(),
+				field.dragged_object, event.position)
 		for mode in _modes.get_active_modes():
-			mode._take_drop(field.dragged_object, event.position)
+			mode._received(field.dragged_object.is_grabbed_externally(),
+					field.dragged_object, event.position)
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and _pressing:
-		_drag(event.position, event.relative)
+	if event is InputEventMouseMotion and is_grabbed():
+		_dragged(is_grabbed_externally(), event.position, event.relative)
 		for mode in _modes.get_active_modes():
-			mode._drag(event.position, event.relative)
-	elif event.is_action_released("primary_mouse") and _pressing:
-		if _pressing:
-			_release(event.position)
+			mode._dragged(is_grabbed_externally(), event.position, event.relative)
+
+	elif event.is_action_released("primary_mouse"):
+		if is_pressed():
+			_state = _States.NONE
+			_released(event.position)
 			for mode in _modes.get_active_modes():
-				mode._release(event.position)
-		_pressing = false
+				mode._released(event.position)
+		elif is_grabbed_internally():
+			_dropped(false, event.position)
+			for mode in _modes.get_active_modes():
+				mode._dropped(false, event.position)
+			field.end_drag()
+			end_grab()
 
 
-func start_interfield_drag() -> void:
-	hide()
+func grab(external: bool) -> void:
+	if external:
+		_state = _States.EXTERNAL_GRABBED
+		field.drag_object(self, true)
+		hide()
+	else:
+		_state = _States.INTERNAL_GRABBED
+		field.drag_object(self, false)
+	get_viewport().set_input_as_handled()
 
 
-func end_interfield_drag(point: Vector2) -> void:
+func end_external_drag(outgoing: bool, point: Vector2, destination: Field = null) -> void:
 	move_to_front()
 	show()
-	_drop(point)
-	for mode in _modes.get_active_modes():
-		mode._drop(point)
+	if outgoing:
+		_dropped_out(destination)
+		for mode in _modes.get_active_modes():
+			mode._dropped_out(destination)
+	else:
+		_dropped(true, point)
+		for mode in _modes.get_active_modes():
+			mode._dropped(true, point)
+	end_grab()
+
+
+func end_grab() -> void:
+	# Defer so that input-processing order does not matter
+	set_deferred("_state", _States.NONE)
+
+
+func is_pressed() -> bool:
+	return _state == _States.PRESSED
+
+
+func is_grabbed() -> bool:
+	return _state == _States.INTERNAL_GRABBED or _state == _States.EXTERNAL_GRABBED
+
+
+func is_grabbed_internally() -> bool:
+	return _state == _States.INTERNAL_GRABBED
+
+
+func is_grabbed_externally() -> bool:
+	return _state == _States.EXTERNAL_GRABBED
 
 
 func update_active_modes(_new_tool := Game.NO_TOOL) -> void:

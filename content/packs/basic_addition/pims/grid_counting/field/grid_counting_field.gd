@@ -91,7 +91,7 @@ func reset_state() -> void:
 	GridCountingActionSetEmpty.new(self).push()
 
 
-func _incoming_drop(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
+func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
 	match object_data.field_type:
 		"GridCounting":
 			match object_data.object_type:
@@ -110,14 +110,6 @@ func _accept_incoming_unit(point: Vector2) -> void:
 	var cell = get_grid_cell_at_point(point)
 	if cell != null and not is_cell_occupied(cell):
 		GridCountingActionCreateUnit.new(self).setup(cell).push()
-
-
-func _outgoing_drop(object: FieldObject) -> void:
-	match object.object_type:
-		GridCounting.Objects.UNIT:
-			GridCountingActionDeleteUnit.new(self).setup(object).push()
-		GridCounting.Objects.TWO_BLOCK, GridCounting.Objects.TEN_BLOCK:
-			GridCountingActionDeleteBlock.new(self).setup(object).push()
 
 
 func _on_unit_number_changed(old_number: int, new_number: int, unit: FieldObject) -> void:

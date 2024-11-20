@@ -22,35 +22,40 @@ var field: Field:
 
 
 # Virtual
-func _hover(_held_object: FieldObject) -> void:
+func _pressed(_point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _unhover() -> void:
+func _released(_point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _press(_point: Vector2) -> void:
+func _dragged(_external: bool, _point: Vector2, _change: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _release(_point: Vector2) -> void:
+func _dropped(_external: bool, _point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _drag(_point: Vector2, _change: Vector2) -> void:
+func _received(_external: bool, _dropped_object: FieldObject, _point: Vector2) -> void:
 	pass
 
 
 # Virtual
-func _drop(_point: Vector2) -> void:
+func _dropped_out(_receiver: Field) -> void:
 	pass
 
 
 # Virtual
-func _take_drop(_dropped_object: FieldObject, _point: Vector2) -> void:
+func _hovered(_external: bool, _grabbed_object: FieldObject) -> void:
+	pass
+
+
+# Virtual
+func _unhovered(_external: bool, _grabbed_object: FieldObject) -> void:
 	pass

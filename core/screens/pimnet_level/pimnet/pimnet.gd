@@ -29,7 +29,7 @@ var _dragging := false
 
 func _enter_tree() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
-			"dragged_object_requested", start_interfield_drag)
+			"external_drag_requested", start_interfield_drag)
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
 			"dragged_memo_requested", create_dragged_memo)
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
@@ -262,7 +262,6 @@ func start_interfield_drag(object: FieldObject) -> void:
 	assert(dragged_object == null)
 
 	dragged_object = object
-	dragged_object.start_interfield_drag()
 	for field in get_field_list():
 		field.dragged_object = dragged_object
 
@@ -291,24 +290,19 @@ func process_interfield_drop(object_data: FieldObjectData) -> void:
 
 	# React in source pim to drop in other pim
 	if source != null and destination != source:
-		source._outgoing_drop(dragged_object)
+		dragged_object.end_external_drag(true, field_point, destination)
 
 	if destination != null:
 		# React in pim to drop within itself
 		if destination == source:
-			dragged_object.end_interfield_drag(field_point)
-			dragged_object._drop(field_point)
+			dragged_object.end_external_drag(false, field_point)
 
 		# React in destination pim to drop from anywhere
 		else:
-			destination._incoming_drop(object_data, field_point, source)
+			destination._received_in(object_data, field_point, source)
 
-	# Defer ending drag so that input-processing order does not matter
+	# Defer so that input-processing order does not matter
 	if dragged_object != null:
-		_end_interfield_drag.call_deferred()
-
-
-func _end_interfield_drag() -> void:
-	dragged_object = null
-	for field in get_field_list():
-		field.dragged_object = null
+		for field in get_field_list():
+			field.end_drag()
+		set_deferred("dragged_object", null)

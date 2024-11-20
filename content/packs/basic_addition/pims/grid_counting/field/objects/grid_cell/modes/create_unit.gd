@@ -11,7 +11,7 @@
 extends FieldObjectMode
 
 
-func _press(_point: Vector2) -> void:
+func _pressed(_point: Vector2) -> void:
 	if not field.is_cell_occupied(object):
 		GridCountingActionCreateUnit.new(field).setup(object).push()
 

@@ -13,7 +13,7 @@ extends Node
 
 signal updated
 signal tool_changed(tool_mode)
-signal dragged_object_requested(original)
+signal external_drag_requested(original)
 signal dragged_memo_requested(memo)
 
 enum UpdateTypes {
@@ -94,13 +94,8 @@ func reset_state() -> void:
 
 
 # Virtual
-func _incoming_drop(_object_data: FieldObjectData, _point: Vector2, _source: Field
+func _received_in(_object_data: FieldObjectData, _point: Vector2, _source: Field
 ) -> void:
-	assert(false)
-
-
-# Virtual
-func _outgoing_drop(_object: FieldObject) -> void:
 	assert(false)
 
 
@@ -176,9 +171,16 @@ func get_objects_in_group(group: String) -> Array:
 	return field_objects.filter(func(object: Node): return object.is_in_group(group))
 
 
-func request_drag_object(original: FieldObject) -> void:
-	dragged_object_requested.emit(original)
-	get_viewport().set_input_as_handled()
+func drag_object(original: FieldObject, external_drag := false) -> void:
+	if external_drag:
+		external_drag_requested.emit(original)
+	else:
+		dragged_object = original
+
+
+func end_drag() -> void:
+	# Defer so that input-processing order does not matter
+	set_deferred("dragged_object", null)
 
 
 func request_drag_memo(memo: Memo) -> void:

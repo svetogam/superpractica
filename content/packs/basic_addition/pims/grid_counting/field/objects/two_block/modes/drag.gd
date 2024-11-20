@@ -11,12 +11,17 @@
 extends FieldObjectMode
 
 
-func _press(_point: Vector2) -> void:
-	field.request_drag_object(object)
+func _pressed(_point: Vector2) -> void:
+	object.grab(true)
 
 
-func _drop(point: Vector2) -> void:
-	var dest_cells = field.get_2_grid_cells_at_point(point)
-	if (not dest_cells.any(field.is_cell_occupied)
-			and object.first_number != dest_cells[0].number):
-		GridCountingActionDeleteBlock.new(field).setup(object).push()
+func _dropped(external: bool, point: Vector2) -> void:
+	if external:
+		var dest_cells = field.get_2_grid_cells_at_point(point)
+		if (not dest_cells.any(field.is_cell_occupied)
+				and object.first_number != dest_cells[0].number):
+			GridCountingActionDeleteBlock.new(field).setup(object).push()
+
+
+func _dropped_out(_receiver: Field) -> void:
+	GridCountingActionDeleteBlock.new(field).setup(object).push()
