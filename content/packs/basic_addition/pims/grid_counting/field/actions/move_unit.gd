@@ -8,17 +8,36 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldObjectMode
+class_name GridCountingActionMoveUnit
+extends FieldAction
+
+var unit: FieldObject
+var dest_cell: GridCell
 
 
-func _received(external: bool, dropped_object: FieldObject, point: Vector2) -> void:
-	if external:
-		if not field.is_cell_occupied(object):
-			match dropped_object.object_type:
-				GridCounting.Objects.TWO_BLOCK:
-					var first_number = field.get_2_grid_cells_at_point(point)[0].number
-					GridCountingActionCreateTwoBlock.new(field).setup(first_number).push()
-				GridCounting.Objects.TEN_BLOCK:
-					var row_number = field.get_row_number_for_cell_number(object.number)
-					GridCountingActionCreateTenBlock.new(field).setup(row_number).push()
-		get_viewport().set_input_as_handled()
+static func get_name() -> int:
+	return GridCounting.Actions.MOVE_UNIT
+
+
+func setup(p_unit: FieldObject, p_dest_cell: GridCell) -> FieldAction:
+	unit = p_unit
+	dest_cell = p_dest_cell
+	return self
+
+
+func is_valid() -> bool:
+	if dest_cell == null or unit == null:
+		return false
+	return true
+
+
+func is_possible() -> bool:
+	return (
+		is_valid()
+		and unit.cell.number != dest_cell.number
+		and not field.is_cell_occupied(dest_cell)
+	)
+
+
+func do() -> void:
+	unit.put_on_cell(dest_cell)

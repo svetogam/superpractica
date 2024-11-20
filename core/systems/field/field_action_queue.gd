@@ -45,8 +45,9 @@ func push(action: FieldAction) -> void:
 func flush() -> void:
 	if _queue.size() > 0:
 		for action in _queue:
-			action.do()
-			for program in _field.get_active_programs():
-				program._after_action(action)
+			if action.is_possible():
+				action.do()
+				for program in _field.get_active_programs():
+					program._after_action(action)
 		_queue.clear()
 		flushed.emit()

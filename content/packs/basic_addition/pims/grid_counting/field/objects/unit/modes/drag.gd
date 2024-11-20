@@ -15,12 +15,9 @@ func _pressed(_point: Vector2) -> void:
 	object.grab(true)
 
 
-func _dropped(external: bool, point: Vector2) -> void:
-	if external:
-		var dest_cell = field.get_grid_cell_at_point(point)
-		if (object.cell.number != dest_cell.number
-				and not field.is_cell_occupied(dest_cell)):
-			GridCountingActionDeleteUnit.new(field).setup(object).push()
+func _dropped(_external: bool, point: Vector2) -> void:
+	var dest_cell = field.get_grid_cell_at_point(point)
+	GridCountingActionMoveUnit.new(field).setup(object, dest_cell).push()
 
 
 func _dropped_out(_receiver: Field) -> void:

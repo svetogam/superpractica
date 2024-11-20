@@ -29,9 +29,15 @@ func is_valid() -> bool:
 	return true
 
 
+func is_possible() -> bool:
+	return (
+		is_valid()
+		and not field.is_cell_occupied(grid_cell)
+	)
+
+
 func do() -> void:
-	if not field.is_cell_occupied(grid_cell):
-		var unit := GridCounting.ObjectUnit.instantiate() as FieldObject
-		unit.number_changed.connect(field._on_unit_number_changed.bind(unit))
-		field.add_child(unit)
-		unit.put_on_cell(grid_cell)
+	var unit := GridCounting.ObjectUnit.instantiate() as FieldObject
+	unit.number_changed.connect(field._on_unit_number_changed.bind(unit))
+	field.add_child(unit)
+	unit.put_on_cell(grid_cell)

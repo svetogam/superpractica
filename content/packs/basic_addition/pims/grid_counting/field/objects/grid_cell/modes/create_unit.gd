@@ -12,7 +12,6 @@ extends FieldObjectMode
 
 
 func _pressed(_point: Vector2) -> void:
-	if not field.is_cell_occupied(object):
-		GridCountingActionCreateUnit.new(field).setup(object).push()
+	GridCountingActionCreateUnit.new(field).setup(object).push()
 
 	get_viewport().set_input_as_handled()

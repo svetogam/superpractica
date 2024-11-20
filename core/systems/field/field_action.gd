@@ -32,6 +32,11 @@ func is_valid() -> bool:
 
 
 # Virtual
+func is_possible() -> bool:
+	return is_valid()
+
+
+# Virtual
 func do() -> void:
 	assert(is_valid())
 

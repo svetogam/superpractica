@@ -28,6 +28,7 @@ enum Actions {
 	CREATE_UNIT,
 	DELETE_UNIT,
 	DELETE_BLOCK,
+	MOVE_UNIT,
 	SET_EMPTY,
 	TOGGLE_MARK,
 }
@@ -96,7 +97,9 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 		"GridCounting":
 			match object_data.object_type:
 				GridCounting.Objects.UNIT:
-					_accept_incoming_unit(point)
+					var cell = get_grid_cell_at_point(point)
+					if cell != null:
+						GridCountingActionCreateUnit.new(self).setup(cell).push()
 				GridCounting.Objects.TWO_BLOCK:
 					var first_number = get_2_grid_cells_at_point(point)[0].number
 					GridCountingActionCreateTwoBlock.new(self).setup(first_number).push()
@@ -104,12 +107,6 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 					var dest_cell = get_grid_cell_at_point(point)
 					var row_number := get_row_number_for_cell_number(dest_cell.number)
 					GridCountingActionCreateTenBlock.new(self).setup(row_number).push()
-
-
-func _accept_incoming_unit(point: Vector2) -> void:
-	var cell = get_grid_cell_at_point(point)
-	if cell != null and not is_cell_occupied(cell):
-		GridCountingActionCreateUnit.new(self).setup(cell).push()
 
 
 func _on_unit_number_changed(old_number: int, new_number: int, unit: FieldObject) -> void:
