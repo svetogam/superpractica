@@ -91,7 +91,6 @@ func _init() -> void:
 			"name": "PieceDragger",
 			"text": "Drag Piece",
 			"object_modes": {
-				GridCounting.Objects.GRID_CELL: ["drag_piece"],
 				GridCounting.Objects.UNIT: ["drag"],
 				GridCounting.Objects.TWO_BLOCK: ["drag"],
 				GridCounting.Objects.TEN_BLOCK: ["drag"],
