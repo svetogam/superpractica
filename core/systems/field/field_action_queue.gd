@@ -25,7 +25,10 @@ func _init(p_field: Field) -> void:
 
 func push(action: FieldAction) -> void:
 	assert(action != null)
-	assert(action.is_valid())
+
+	# Ignore invalid actions
+	if not action.is_valid():
+		return
 
 	# Add action only if no active programs return false in _before_action()
 	var results: Array = []

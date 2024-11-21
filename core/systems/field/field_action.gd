@@ -33,7 +33,7 @@ func is_valid() -> bool:
 
 # Virtual
 func is_possible() -> bool:
-	return is_valid()
+	return true
 
 
 # Virtual
@@ -42,6 +42,4 @@ func do() -> void:
 
 
 func push() -> void:
-	assert(is_valid())
-
 	field.action_queue.push(self)
