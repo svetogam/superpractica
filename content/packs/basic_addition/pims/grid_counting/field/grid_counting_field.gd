@@ -99,14 +99,14 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 				GridCounting.Objects.UNIT:
 					var cell = get_grid_cell_at_point(point)
 					if cell != null:
-						GridCountingActionCreateUnit.new(self).setup(cell).push()
+						GridCountingActionCreateUnit.new(self, cell).push()
 				GridCounting.Objects.TWO_BLOCK:
 					var first_number = get_2_grid_cells_at_point(point)[0].number
-					GridCountingActionCreateTwoBlock.new(self).setup(first_number).push()
+					GridCountingActionCreateTwoBlock.new(self, first_number).push()
 				GridCounting.Objects.TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var row_number := get_row_number_for_cell_number(dest_cell.number)
-					GridCountingActionCreateTenBlock.new(self).setup(row_number).push()
+					GridCountingActionCreateTenBlock.new(self, row_number).push()
 
 
 func _on_unit_number_changed(old_number: int, new_number: int, unit: FieldObject) -> void:
@@ -519,17 +519,17 @@ func _load_cell_data(cell_data: Dictionary) -> void:
 	for cell_number in cell_data.keys():
 		var cell = get_grid_cell(cell_number)
 		if cell_data[cell_number].marked:
-			GridCountingActionToggleMark.new(self).setup(cell).push()
+			GridCountingActionToggleMark.new(self, cell).push()
 		if cell_data[cell_number].has_unit:
-			GridCountingActionCreateUnit.new(self).setup(cell).push()
+			GridCountingActionCreateUnit.new(self, cell).push()
 		if cell_data[cell_number].starts_two_block:
-			GridCountingActionCreateTwoBlock.new(self).setup(cell.number).push()
+			GridCountingActionCreateTwoBlock.new(self, cell.number).push()
 
 
 func _load_row_data(row_data: Dictionary) -> void:
 	for row_number in row_data.keys():
 		if row_data[row_number].has_ten_block:
-			GridCountingActionCreateTenBlock.new(self).setup(row_number).push()
+			GridCountingActionCreateTenBlock.new(self, row_number).push()
 
 
 #endregion

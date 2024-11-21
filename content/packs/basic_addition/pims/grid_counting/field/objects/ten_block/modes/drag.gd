@@ -20,8 +20,8 @@ func _dropped(external: bool, point: Vector2) -> void:
 		var dest_cell = field.get_grid_cell_at_point(point)
 		var dest_row = field.get_row_number_for_cell_number(dest_cell.number)
 		if object.row_number != dest_row and not field.is_row_occupied(dest_row):
-			GridCountingActionDeleteBlock.new(field).setup(object).push()
+			GridCountingActionDeleteBlock.new(field, object).push()
 
 
 func _dropped_out(_receiver: Field) -> void:
-	GridCountingActionDeleteBlock.new(field).setup(object).push()
+	GridCountingActionDeleteBlock.new(field, object).push()

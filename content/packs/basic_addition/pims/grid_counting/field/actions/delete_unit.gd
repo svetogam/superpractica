@@ -18,9 +18,9 @@ static func get_name() -> int:
 	return GridCounting.Actions.DELETE_UNIT
 
 
-func setup(p_unit: FieldObject) -> FieldAction:
+func _init(p_field: Field, p_unit: FieldObject) -> void:
+	super(p_field)
 	unit = p_unit
-	return self
 
 
 func is_valid() -> bool:

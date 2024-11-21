@@ -18,9 +18,9 @@ static func get_name() -> int:
 	return GridCounting.Actions.CREATE_TEN_BLOCK
 
 
-func setup(p_row_number: int) -> FieldAction:
+func _init(p_field: Field, p_row_number: int) -> void:
+	super(p_field)
 	row_number = p_row_number
-	return self
 
 
 func is_valid() -> bool:

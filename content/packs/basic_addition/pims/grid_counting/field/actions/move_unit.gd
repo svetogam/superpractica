@@ -19,10 +19,10 @@ static func get_name() -> int:
 	return GridCounting.Actions.MOVE_UNIT
 
 
-func setup(p_unit: FieldObject, p_dest_cell: GridCell) -> FieldAction:
+func _init(p_field: Field, p_unit: FieldObject, p_dest_cell: GridCell) -> void:
+	super(p_field)
 	unit = p_unit
 	dest_cell = p_dest_cell
-	return self
 
 
 func is_valid() -> bool:

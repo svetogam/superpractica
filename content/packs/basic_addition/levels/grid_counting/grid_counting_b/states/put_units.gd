@@ -44,7 +44,7 @@ func _reset() -> void:
 	var blocks_to_add: int = program.intermediate_goal / 10
 	for i in range(blocks_to_add):
 		var row = i + 1
-		GridCountingActionCreateTenBlock.new(program.field).setup(row).push()
+		GridCountingActionCreateTenBlock.new(program.field, row).push()
 
 
 func _exit(_next_state: String) -> void:

@@ -17,8 +17,8 @@ func _received(external: bool, dropped_object: FieldObject, point: Vector2) -> v
 			match dropped_object.object_type:
 				GridCounting.Objects.TWO_BLOCK:
 					var first_number = field.get_2_grid_cells_at_point(point)[0].number
-					GridCountingActionCreateTwoBlock.new(field).setup(first_number).push()
+					GridCountingActionCreateTwoBlock.new(field, first_number).push()
 				GridCounting.Objects.TEN_BLOCK:
 					var row_number = field.get_row_number_for_cell_number(object.number)
-					GridCountingActionCreateTenBlock.new(field).setup(row_number).push()
+					GridCountingActionCreateTenBlock.new(field, row_number).push()
 		get_viewport().set_input_as_handled()

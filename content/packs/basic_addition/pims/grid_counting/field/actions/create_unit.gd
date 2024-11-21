@@ -18,9 +18,9 @@ static func get_name() -> int:
 	return GridCounting.Actions.CREATE_UNIT
 
 
-func setup(p_grid_cell: GridCell) -> FieldAction:
+func _init(p_field: Field, p_grid_cell: GridCell) -> void:
+	super(p_field)
 	grid_cell = p_grid_cell
-	return self
 
 
 func is_valid() -> bool:

@@ -18,9 +18,9 @@ static func get_name() -> int:
 	return GridCounting.Actions.DELETE_BLOCK
 
 
-func setup(p_block: FieldObject) -> FieldAction:
+func _init(p_field: Field, p_block: FieldObject) -> void:
+	super(p_field)
 	block = p_block
-	return self
 
 
 func is_valid() -> bool:

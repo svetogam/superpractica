@@ -17,8 +17,8 @@ func _pressed(_point: Vector2) -> void:
 
 func _dropped(_external: bool, point: Vector2) -> void:
 	var dest_cell = field.get_grid_cell_at_point(point)
-	GridCountingActionMoveUnit.new(field).setup(object, dest_cell).push()
+	GridCountingActionMoveUnit.new(field, object, dest_cell).push()
 
 
 func _dropped_out(_receiver: Field) -> void:
-	GridCountingActionDeleteUnit.new(field).setup(object).push()
+	GridCountingActionDeleteUnit.new(field, object).push()
