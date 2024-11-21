@@ -21,4 +21,4 @@ func _dropped(_external: bool, point: Vector2) -> void:
 
 
 func _dropped_out(_receiver: Field) -> void:
-	GridCountingActionDeleteUnit.new(field, object.number).push()
+	GridCountingActionDeleteUnit.new(field, object.cell.number).push()
