@@ -11,13 +11,10 @@
 extends FieldObjectMode
 
 
-func _received(external: bool, dropped_object: FieldObject, point: Vector2) -> void:
+func _received(external: bool, dropped_object: FieldObject, _point: Vector2) -> void:
 	if external:
 		if not field.is_cell_occupied(object):
 			match dropped_object.object_type:
-				GridCounting.Objects.TWO_BLOCK:
-					var first_number = field.get_2_grid_cells_at_point(point)[0].number
-					GridCountingActionCreateTwoBlock.new(field, first_number).push()
 				GridCounting.Objects.TEN_BLOCK:
 					var row_number = field.get_row_number_for_cell_number(object.number)
 					GridCountingActionCreateTenBlock.new(field, row_number).push()
