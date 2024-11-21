@@ -11,7 +11,7 @@
 class_name GridCountingActionCreateTwoBlock
 extends FieldAction
 
-var first_number: int = -1
+var first_number: int
 
 
 static func get_name() -> int:
@@ -24,19 +24,16 @@ func _init(p_field: Field, p_first_number: int) -> void:
 
 
 func is_valid() -> bool:
-	if first_number == -1:
-		return false
-	return true
+	return first_number >= 1 and first_number <= 99 and first_number % 10 != 0
+
+
+func is_possible() -> bool:
+	var cells: Array = field.get_grid_cells_by_numbers([first_number, first_number + 1])
+	return not cells.any(field.is_cell_occupied)
 
 
 func do() -> void:
-	if first_number % 10 == 0:
-		first_number -= 1
-	var cells = field.get_grid_cells_by_numbers([first_number, first_number + 1])
-	for cell in cells:
-		if field.is_cell_occupied(cell):
-			return
-
 	var two_block := GridCounting.ObjectTwoBlock.instantiate() as FieldObject
 	field.add_child(two_block)
+	var cells = field.get_grid_cells_by_numbers([first_number, first_number + 1])
 	two_block.put_on_cells(cells)

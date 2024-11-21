@@ -11,6 +11,11 @@
 extends FieldObject
 
 var row_number: int # Row numbers start at 1
+var numbers: Array:
+	get = _get_numbers
+var first_number: int:
+	get:
+		return GridCounting.get_first_number_in_row(row_number)
 
 
 static func _get_object_type() -> int:
@@ -29,3 +34,8 @@ func put_on_row(p_row_number: int) -> void:
 func set_variant(variant: StringName) -> void:
 	assert(%Sprite.sprite_frames.has_animation(variant))
 	%Sprite.animation = variant
+
+
+func _get_numbers() -> Array:
+	return range(GridCounting.get_first_number_in_row(row_number),
+			GridCounting.get_last_number_in_row(row_number) + 1)

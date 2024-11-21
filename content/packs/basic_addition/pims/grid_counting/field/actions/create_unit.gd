@@ -11,33 +11,30 @@
 class_name GridCountingActionCreateUnit
 extends FieldAction
 
-var grid_cell: GridCell
+var cell_number: int
 
 
 static func get_name() -> int:
 	return GridCounting.Actions.CREATE_UNIT
 
 
-func _init(p_field: Field, p_grid_cell: GridCell) -> void:
+func _init(p_field: Field, p_cell_number: int) -> void:
 	super(p_field)
-	grid_cell = p_grid_cell
+	cell_number = p_cell_number
 
 
 func is_valid() -> bool:
-	if grid_cell == null:
-		return false
-	return true
+	return cell_number >= 1 and cell_number <= 100
 
 
 func is_possible() -> bool:
-	return (
-		is_valid()
-		and not field.is_cell_occupied(grid_cell)
-	)
+	var cell = field.get_grid_cell(cell_number)
+	return not field.is_cell_occupied(cell)
 
 
 func do() -> void:
 	var unit := GridCounting.ObjectUnit.instantiate() as FieldObject
 	unit.number_changed.connect(field._on_unit_number_changed.bind(unit))
 	field.add_child(unit)
-	unit.put_on_cell(grid_cell)
+	var cell = field.get_grid_cell(cell_number)
+	unit.put_on_cell(cell)

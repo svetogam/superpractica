@@ -99,7 +99,7 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 				GridCounting.Objects.UNIT:
 					var cell = get_grid_cell_at_point(point)
 					if cell != null:
-						GridCountingActionCreateUnit.new(self, cell).push()
+						GridCountingActionCreateUnit.new(self, cell.number).push()
 				GridCounting.Objects.TWO_BLOCK:
 					var first_number = get_2_grid_cells_at_point(point)[0].number
 					GridCountingActionCreateTwoBlock.new(self, first_number).push()
@@ -164,15 +164,37 @@ func get_ten_block_list() -> Array:
 	return get_objects_in_group("ten_blocks")
 
 
-func get_grid_cell(number: int) -> GridCell:
-	if _grid_cells_dict.has(number):
-		return _grid_cells_dict[number]
+func get_grid_cell(cell_number: int) -> GridCell:
+	if _grid_cells_dict.has(cell_number):
+		return _grid_cells_dict[cell_number]
 	return null
 
 
-func get_unit(number: int) -> FieldObject:
-	if _units_dict.has(number):
-		return _units_dict[number]
+func get_unit(cell_number: int) -> FieldObject:
+	if _units_dict.has(cell_number):
+		return _units_dict[cell_number]
+	return null
+
+
+# cell_number can be any cell that the block occupies
+func get_block(cell_number: int) -> FieldObject:
+	for block in get_ten_block_list():
+		if block.numbers.has(cell_number):
+			return block
+	for block in get_two_block_list():
+		if block.numbers.has(cell_number):
+			return block
+	return null
+
+
+# cell_number can be any cell that the piece occupies
+func get_piece(cell_number: int) -> FieldObject:
+	var unit := get_unit(cell_number)
+	if unit != null:
+		return unit
+	var block := get_block(cell_number)
+	if block != null:
+		return block
 	return null
 
 
@@ -517,13 +539,12 @@ func load_state(state: CRMemento) -> void:
 
 func _load_cell_data(cell_data: Dictionary) -> void:
 	for cell_number in cell_data.keys():
-		var cell = get_grid_cell(cell_number)
 		if cell_data[cell_number].marked:
-			GridCountingActionToggleMark.new(self, cell).push()
+			GridCountingActionToggleMark.new(self, cell_number).push()
 		if cell_data[cell_number].has_unit:
-			GridCountingActionCreateUnit.new(self, cell).push()
+			GridCountingActionCreateUnit.new(self, cell_number).push()
 		if cell_data[cell_number].starts_two_block:
-			GridCountingActionCreateTwoBlock.new(self, cell.number).push()
+			GridCountingActionCreateTwoBlock.new(self, cell_number).push()
 
 
 func _load_row_data(row_data: Dictionary) -> void:

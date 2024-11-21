@@ -12,6 +12,6 @@ extends FieldObjectMode
 
 
 func _pressed(_point: Vector2) -> void:
-	GridCountingActionCreateUnit.new(field, object).push()
+	GridCountingActionCreateUnit.new(field, object.number).push()
 
 	get_viewport().set_input_as_handled()

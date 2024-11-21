@@ -11,7 +11,7 @@
 class_name GridCountingActionCreateTenBlock
 extends FieldAction
 
-var row_number: int = -1
+var row_number: int
 
 
 static func get_name() -> int:
@@ -24,17 +24,15 @@ func _init(p_field: Field, p_row_number: int) -> void:
 
 
 func is_valid() -> bool:
-	if row_number == -1:
-		return false
-	return true
+	return row_number >= 1 and row_number <= 10
+
+
+func is_possible() -> bool:
+	var row_cells: Array = field.get_grid_cells_by_row(row_number)
+	return not row_cells.any(field.is_cell_occupied)
 
 
 func do() -> void:
-	var row_cells: Array = field.get_grid_cells_by_row(row_number)
-	for cell in row_cells:
-		if field.is_cell_occupied(cell):
-			return
-
 	var ten_block := GridCounting.ObjectTenBlock.instantiate() as FieldObject
 	field.add_child(ten_block)
 	ten_block.put_on_row(row_number)

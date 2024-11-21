@@ -11,23 +11,25 @@
 class_name GridCountingActionDeleteBlock
 extends FieldAction
 
-var block: FieldObject
+var cell_number: int
 
 
 static func get_name() -> int:
 	return GridCounting.Actions.DELETE_BLOCK
 
 
-func _init(p_field: Field, p_block: FieldObject) -> void:
+func _init(p_field: Field, p_cell_number: int) -> void:
 	super(p_field)
-	block = p_block
+	cell_number = p_cell_number
 
 
 func is_valid() -> bool:
-	if block == null:
-		return false
-	return true
+	return cell_number >= 1 and cell_number <= 100
+
+
+func is_possible() -> bool:
+	return field.get_block(cell_number) != null
 
 
 func do() -> void:
-	block.free()
+	field.get_block(cell_number).free()
