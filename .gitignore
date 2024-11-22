@@ -20,3 +20,4 @@ export/*
 
 # Addon-related
 addons/ProjectBuilder
+addons/gdUnit4/GdUnitRunner.cfg
