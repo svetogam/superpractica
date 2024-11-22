@@ -25,10 +25,11 @@ func setup(p_start_number: int) -> void:
 func _before_action(action: FieldAction) -> bool:
 	match action.name:
 		GridCounting.Actions.TOGGLE_MARK:
-			if action.grid_cell.number == _start_number:
+			if action.cell_number == _start_number:
 				return true
 			else:
-				effects.reject(action.grid_cell.position)
+				var cell = field.get_grid_cell(action.cell_number)
+				effects.reject(cell.position)
 				rejected.emit()
 				return false
 		_:
@@ -38,7 +39,8 @@ func _before_action(action: FieldAction) -> bool:
 func _after_action(action: FieldAction) -> void:
 	match action.name:
 		GridCounting.Actions.TOGGLE_MARK:
-			action.grid_cell.set_ring_variant("affirmation")
-			effects.affirm(action.grid_cell.position)
+			var cell = field.get_grid_cell(action.cell_number)
+			cell.set_ring_variant("affirmation")
+			effects.affirm(cell.position)
 			stop()
 			completed.emit()

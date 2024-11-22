@@ -40,10 +40,11 @@ func _start() -> void:
 func _before_action(action: FieldAction) -> bool:
 	match action.name:
 		GridCounting.Actions.CREATE_UNIT:
-			if action.grid_cell.number == _next_number:
+			if action.cell_number == _next_number:
 				return true
 			else:
-				effects.reject(action.grid_cell.position)
+				var cell = field.get_grid_cell(action.cell_number)
+				effects.reject(cell.position)
 				rejected.emit()
 				return false
 		_:
@@ -53,12 +54,13 @@ func _before_action(action: FieldAction) -> bool:
 func _after_action(action: FieldAction) -> void:
 	match action.name:
 		GridCounting.Actions.CREATE_UNIT:
-			effects.affirm(action.grid_cell.position)
+			var cell = field.get_grid_cell(action.cell_number)
+			effects.affirm(cell.position)
 			affirmed.emit()
 			_next_number += 1
-			var unit = action.grid_cell.get_unit()
+			var unit = cell.get_unit()
 			unit.set_variant("affirmation")
 
-			if _last_number != -1 and action.grid_cell.number == _last_number:
+			if _last_number != -1 and action.cell_number == _last_number:
 				completed.emit()
 				stop()
