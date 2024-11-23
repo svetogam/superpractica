@@ -8,6 +8,11 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
+## A [FieldObjectMode] hooks responses to particular affordances on [FieldObject]s.
+##
+## This is an extension of the interface in [FieldObject].
+## See that documentation.
+
 class_name FieldObjectMode
 extends Mode
 

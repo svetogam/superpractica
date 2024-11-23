@@ -8,6 +8,42 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
+## [FieldObject]s are the interactible things on [Field]s.
+## Each represents a group of affordances and signifiers.
+##
+## Whether a [FieldObject] will accept an input or not depends on the
+## combination of its active modes and the [Field]'s current tool.
+## Tools map onto some combination of active modes for every [FieldObject].
+## Inputs first call [FieldObject] hooks and then those same hooks in the
+## [FieldObject]'s active [FieldObjectMode]s.
+## [br][br]
+## [b]Dragging[/b]
+## [br]
+## [b]1.[/b] It all begins in [method _pressed].
+## There are 3 options to modify how inputs are processed:
+## [br]
+## [b]1a.[/b] If [method grab] is not called, then [method _released] will be called after
+## input is released.
+## This will be called whether the release input is above the [FieldObject] or not.
+## [br]
+## [b]1b.[/b] If [code]grab(false)[/code] is called, this will begin "internal grab".
+## [br]
+## [b]1c.[/b] If [code]grab(true)[/code] is called, this will begin "external grab".
+## [br]
+## [b]2.[/b] If either grab is started, then [method _dragged] will be called on all
+## movements and [method _dropped] will be called instead of [method _released]
+## on release.
+## [method _received] will also be called on the object that the grabbed object
+## is dropped onto, with the grabbed object as an argument.
+## [br]
+## [b]3.[/b] External drag makes it possible for the grabbed object to exit its original
+## [Field].
+## If it is dropped outside of its original Field, then [method _dropped_out]
+## will be called instead of [method _dropped].
+## If it is dropped onto a different [Field], then in addition to calling
+## [method _dropped_out], [method Field._received_in] will be called on the
+## receiving [Field], with the dragged object's [member object_data] as an argument.
+
 class_name FieldObject
 extends Area2D
 
