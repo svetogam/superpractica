@@ -450,30 +450,16 @@ func get_marked_numbers() -> Array:
 
 #endregion
 #====================================================================
-# Actions
+# Effects
 #====================================================================
 #region
-
-#--------------------------------------
-# Effects
-#--------------------------------------
 
 func give_number_effect_by_grid_cell(cell: GridCell) -> NumberEffect:
 	return math_effects.give_number(cell.number, cell.global_position, "grow")
 
 
-func give_number_effect_by_number(number: int) -> NumberEffect:
-	var grid_cell = get_grid_cell(number)
-	return give_number_effect_by_grid_cell(grid_cell)
-
-
 func count_unit(unit: FieldObject) -> NumberEffect:
 	return effect_counter.count_next(unit.global_position)
-
-
-func count_cell(number: int) -> NumberEffect:
-	var cell = get_grid_cell(number)
-	return effect_counter.count_next(cell.global_position)
 
 
 func stage_unit_warning(unit: FieldObject) -> void:
