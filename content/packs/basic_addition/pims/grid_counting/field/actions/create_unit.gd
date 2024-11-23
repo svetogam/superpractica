@@ -34,7 +34,6 @@ func is_possible() -> bool:
 
 func do() -> void:
 	var unit := GridCounting.ObjectUnit.instantiate() as FieldObject
-	unit.number_changed.connect(field._on_unit_number_changed.bind(unit))
 	field.add_child(unit)
 	var cell = field.get_grid_cell(cell_number)
 	unit.put_on_cell(cell)

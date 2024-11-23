@@ -19,6 +19,10 @@ static func _get_object_type() -> int:
 	return GridCounting.Objects.UNIT
 
 
+func _enter_tree() -> void:
+	CSConnector.with(self).register("unit")
+
+
 func _exit_tree() -> void:
 	var old_number: int = -1
 	if cell != null:

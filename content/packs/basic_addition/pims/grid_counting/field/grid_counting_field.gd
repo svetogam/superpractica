@@ -70,6 +70,7 @@ static func _get_interface_data() -> FieldInterfaceData:
 
 func _ready() -> void:
 	super()
+	CSConnector.with(self).connect_setup("unit", _setup_unit)
 	_setup_board()
 
 
@@ -116,6 +117,10 @@ func _on_unit_number_changed(old_number: int, new_number: int, unit: FieldObject
 		_units_dict.erase(old_number)
 	if new_number != -1:
 		_units_dict[new_number] = unit
+
+
+func _setup_unit(unit: FieldObject) -> void:
+	unit.number_changed.connect(_on_unit_number_changed.bind(unit))
 
 
 #endregion
