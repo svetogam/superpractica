@@ -29,7 +29,7 @@ func _is_ten_block_valid(ten_block: FieldObject) -> bool:
 		return false
 
 	# Ensure ten-blocks follow each other in an unbroken sequence
-	var first_row = field.get_row_number_for_cell_number(start_number + 1)
+	var first_row = field.static_model.get_row_of_cell(start_number + 1)
 	var correct_rows = field.get_contiguous_rows_with_ten_blocks_from(first_row)
 	return correct_rows.has(ten_block.row_number)
 
@@ -42,7 +42,7 @@ func _is_unit_valid(unit: FieldObject) -> bool:
 		if unit.cell.number == start_number + 1:
 			return true
 		elif unit.cell.number != 1:
-			var row_number = field.get_row_number_for_cell_number(unit.cell.number - 1)
+			var row_number = field.static_model.get_row_of_cell(unit.cell.number - 1)
 			var ten_block = field.get_ten_block(row_number)
 			return ten_block != null and _is_ten_block_valid(ten_block)
 

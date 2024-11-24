@@ -15,7 +15,7 @@ var numbers: Array:
 	get = _get_numbers
 var first_number: int:
 	get:
-		return GridCounting.get_first_number_in_row(row_number)
+		return field.static_model.get_first_cell_in_row(row_number)
 
 
 static func _get_object_type() -> int:
@@ -37,5 +37,5 @@ func set_variant(variant: StringName) -> void:
 
 
 func _get_numbers() -> Array:
-	return range(GridCounting.get_first_number_in_row(row_number),
-			GridCounting.get_last_number_in_row(row_number) + 1)
+	return range(field.static_model.get_first_cell_in_row(row_number),
+			field.static_model.get_last_cell_in_row(row_number) + 1)

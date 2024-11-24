@@ -50,6 +50,7 @@ const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 const BOARD_SIZE := Vector2(350, 350)
 const BOARD_GAP := 3.0
 
+var static_model := RectilinearGridModel.new(10, 10)
 var _grid_cells_dict: Dictionary = {} # {GridCell.number: GridCell, ...}
 var _units_dict: Dictionary = {} # {Unit.cell.number: Unit, ...}
 
@@ -108,7 +109,7 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 					GridCountingActionCreateTwoBlock.new(self, first_number).push()
 				GridCounting.Objects.TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
-					var row_number := get_row_number_for_cell_number(dest_cell.number)
+					var row_number := static_model.get_row_of_cell(dest_cell.number)
 					GridCountingActionCreateTenBlock.new(self, row_number).push()
 
 
@@ -270,9 +271,7 @@ func get_grid_cells_by_numbers(number_list: Array) -> Array:
 func get_grid_cells_by_row(row: int) -> Array:
 	assert(row > 0 and row <= 10)
 
-	var first_number := get_first_number_in_row(row)
-	var last_number := get_last_number_in_row(row)
-	var number_array := range(first_number, last_number + 1)
+	var number_array := static_model.get_cells_in_row(row)
 	return get_grid_cells_by_numbers(number_array)
 
 
@@ -295,34 +294,6 @@ func get_grid_cells_with_units() -> Array:
 #--------------------------------------
 # Analysis
 #--------------------------------------
-
-static func get_numbers() -> Array:
-	return range(1, 101)
-
-
-static func get_first_number_in_row(row: int) -> int:
-	assert(row > 0 and row <= 10)
-
-	return get_last_number_in_row(row) - 9
-
-
-static func get_last_number_in_row(row: int) -> int:
-	assert(row > 0 and row <= 10)
-
-	return row * 10
-
-
-# Row numbers start at 1
-static func get_row_number_for_cell_number(number: int) -> int:
-	assert(number > 0 and number <= 100)
-
-	var n: int = 0
-	n += IntegerMath.get_hundreds_digit(number) * 10
-	n += IntegerMath.get_tens_digit(number)
-	if IntegerMath.get_ones_digit(number) != 0:
-		n += 1
-	return n
-
 
 func is_cell_occupied(cell: GridCell) -> bool:
 	assert(cell != null)
@@ -369,39 +340,6 @@ func does_row_have_ten_block(row_number: int) -> bool:
 		if ten_block.row_number == row_number:
 			return true
 	return false
-
-
-static func get_numbers_between(start_number: int, end_number: int, skip_count_tens: bool
-) -> Array:
-	if skip_count_tens:
-		if end_number >= start_number + 10:
-			var numbers: Array = []
-			numbers += get_numbers_by_skip_count(start_number, 10, end_number)
-			if numbers[-1] == end_number:
-				numbers.pop_back()
-			else:
-				numbers += range(numbers[-1] + 1, end_number)
-			return numbers
-		else:
-			return []
-	else:
-		return range(start_number + 1, end_number)
-
-
-static func get_numbers_by_skip_count(start_number: int, skip_count: int,
-		bound_number: int = 100
-) -> Array:
-	var numbers := range(start_number, bound_number + 1, skip_count)
-	numbers.remove_at(0)
-	return numbers
-
-
-static func get_numbers_in_direction(start_number: int, number_of_numbers: int,
-		direction: String
-) -> Array:
-	var skip_count: int = {"right": 1, "down": 10} [direction]
-	var bound_number := mini(start_number + number_of_numbers * skip_count, 100)
-	return get_numbers_by_skip_count(start_number, skip_count, bound_number)
 
 
 func get_contiguous_numbers_with_units_from(first_number: int) -> Array:
