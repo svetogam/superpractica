@@ -25,12 +25,11 @@ var cells: int:
 
 
 func _init(p_rows: int, p_columns: int) -> void:
+	assert(p_rows >= 1)
+	assert(p_columns >= 1)
+
 	rows = p_rows
 	columns = p_columns
-
-
-func get_numbers() -> Array:
-	return range(1, cells + 1)
 
 
 func get_first_cell_in_row(row: int) -> int:
