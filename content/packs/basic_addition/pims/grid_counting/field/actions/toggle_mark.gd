@@ -31,5 +31,5 @@ func do() -> void:
 	var marked_cell = field.get_marked_cell()
 	if marked_cell != null and marked_cell.number != cell_number:
 		marked_cell.toggle_mark()
-	var new_cell = field.get_grid_cell(cell_number)
+	var new_cell = field.dynamic_model.get_grid_cell(cell_number)
 	new_cell.toggle_mark()

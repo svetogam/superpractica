@@ -34,7 +34,7 @@ func is_valid() -> bool:
 
 
 func is_possible() -> bool:
-	if field.get_ten_block(from_row_number) == null:
+	if field.dynamic_model.get_ten_block(from_row_number) == null:
 		return false
 
 	var row_cells: Array = field.get_grid_cells_by_row(to_row_number)
@@ -42,5 +42,5 @@ func is_possible() -> bool:
 
 
 func do() -> void:
-	var ten_block = field.get_ten_block(from_row_number)
+	var ten_block = field.dynamic_model.get_ten_block(from_row_number)
 	ten_block.put_on_row(to_row_number)

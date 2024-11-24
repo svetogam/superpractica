@@ -35,5 +35,4 @@ func is_possible() -> bool:
 func do() -> void:
 	var two_block := GridCounting.ObjectTwoBlock.instantiate() as FieldObject
 	field.add_child(two_block)
-	var cells = field.get_grid_cells_by_numbers([first_number, first_number + 1])
-	two_block.put_on_cells(cells)
+	two_block.put_on_grid(first_number)

@@ -17,10 +17,11 @@ func _enter(_last_state: String) -> void:
 	var marked_cell = verification.field.get_marked_cell()
 	if marked_cell != null:
 		zero_cell_number = marked_cell.number + 1
-	var zero_position = verification.field.get_grid_cell(zero_cell_number).position
+	var zero_position = verification.field.dynamic_model.get_grid_cell(
+			zero_cell_number).position
 
 	# Count units in order
-	var units = verification.field.get_unit_list(true)
+	var units = verification.field.dynamic_model.get_units()
 	(GridCountingProcessCountUnits.new(units, zero_position)
 			.run(verification.field, _on_count_complete))
 

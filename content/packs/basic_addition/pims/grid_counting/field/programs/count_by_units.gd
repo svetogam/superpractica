@@ -43,7 +43,7 @@ func _before_action(action: FieldAction) -> bool:
 			if action.cell_number == _next_number:
 				return true
 			else:
-				var cell = field.get_grid_cell(action.cell_number)
+				var cell = field.dynamic_model.get_grid_cell(action.cell_number)
 				effects.reject(cell.position)
 				rejected.emit()
 				return false
@@ -54,12 +54,11 @@ func _before_action(action: FieldAction) -> bool:
 func _after_action(action: FieldAction) -> void:
 	match action.name:
 		GridCounting.Actions.CREATE_UNIT:
-			var cell = field.get_grid_cell(action.cell_number)
+			var cell = field.dynamic_model.get_grid_cell(action.cell_number)
 			effects.affirm(cell.position)
 			affirmed.emit()
 			_next_number += 1
-			var unit = cell.get_unit()
-			unit.set_variant("affirmation")
+			cell.unit.set_variant("affirmation")
 
 			if _last_number != -1 and action.cell_number == _last_number:
 				completed.emit()

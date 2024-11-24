@@ -10,29 +10,39 @@
 
 extends FieldObject
 
-var grid_cells: Array = []
+var first_number: int = -1
 var numbers: Array:
 	get:
-		assert(grid_cells.size() == 2)
-		return [grid_cells[0].number, grid_cells[1].number]
-var first_number: int:
+		return [first_number, first_number + 1]
+var cells: Array:
 	get:
-		assert(grid_cells.size() == 2)
-		return grid_cells[0].number
+		return [
+			field.dynamic_model.get_grid_cell(first_number),
+			field.dynamic_model.get_grid_cell(first_number + 1),
+		]
 
 
 static func _get_object_type() -> int:
 	return GridCounting.Objects.TWO_BLOCK
 
 
-func put_on_cells(p_grid_cells: Array) -> void:
-	assert(p_grid_cells.size() == 2)
+func _exit_tree() -> void:
+	field.dynamic_model.unset_two_block(first_number, self)
 
-	grid_cells = p_grid_cells
-	var center_x = (grid_cells[0].position.x
-			+ (grid_cells[1].position.x - grid_cells[0].position.x) / 2)
-	var center_y = grid_cells[0].position.y
-	position = Vector2(center_x, center_y)
+
+# p_first_number is the first cell the block occupies
+func put_on_grid(p_first_number: int) -> void:
+	assert(p_first_number % 10 != 0)
+
+	if first_number != -1:
+		field.dynamic_model.unset_two_block(first_number, self)
+	field.dynamic_model.set_two_block(p_first_number, self)
+
+	first_number = p_first_number
+	position = Vector2(
+		cells[0].position.x + (cells[1].position.x - cells[0].position.x) / 2,
+		cells[0].position.y
+	)
 
 
 func set_variant(variant: StringName) -> void:

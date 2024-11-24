@@ -51,8 +51,7 @@ const BOARD_SIZE := Vector2(350, 350)
 const BOARD_GAP := 3.0
 
 var static_model := RectilinearGridModel.new(10, 10)
-var _grid_cells_dict: Dictionary = {} # {GridCell.number: GridCell, ...}
-var _units_dict: Dictionary = {} # {Unit.cell.number: Unit, ...}
+var dynamic_model := GridCountingDynamicModel.new()
 
 
 static func _get_field_type() -> String:
@@ -71,7 +70,6 @@ static func _get_interface_data() -> FieldInterfaceData:
 
 func _ready() -> void:
 	super()
-	CSConnector.with(self).connect_setup("unit", _setup_unit)
 	_setup_board()
 
 
@@ -85,7 +83,8 @@ func _setup_board() -> void:
 			grid_cell = ObjectGridCell.instantiate() as GridCell
 			add_child(grid_cell)
 			grid_cell.setup(number, row, col)
-			_grid_cells_dict[number] = grid_cell
+			dynamic_model.set_grid_cell(number, grid_cell)
+
 
 
 func _on_update(_update_type: int) -> void:
@@ -113,17 +112,6 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 					GridCountingActionCreateTenBlock.new(self, row_number).push()
 
 
-func _on_unit_number_changed(old_number: int, new_number: int, unit: FieldObject) -> void:
-	if old_number != -1:
-		_units_dict.erase(old_number)
-	if new_number != -1:
-		_units_dict[new_number] = unit
-
-
-func _setup_unit(unit: FieldObject) -> void:
-	unit.number_changed.connect(_on_unit_number_changed.bind(unit))
-
-
 #endregion
 #====================================================================
 # Queries
@@ -137,59 +125,24 @@ func _setup_unit(unit: FieldObject) -> void:
 func get_objects_by_type(object_type: int) -> Array:
 	match object_type:
 		Objects.GRID_CELL:
-			return get_grid_cell_list()
+			return dynamic_model.get_grid_cells()
 		Objects.UNIT:
-			return get_unit_list()
+			return dynamic_model.get_units()
 		Objects.TWO_BLOCK:
-			return get_two_block_list()
+			return dynamic_model.get_two_blocks()
 		Objects.TEN_BLOCK:
-			return get_ten_block_list()
+			return dynamic_model.get_ten_blocks()
 		_:
 			assert(false)
 			return []
 
 
-func get_grid_cell_list() -> Array:
-	return _grid_cells_dict.values()
-
-
-func get_unit_list(sort_ascending := false) -> Array:
-	if not sort_ascending:
-		return _units_dict.values()
-	else:
-		var units: Array = []
-		var numbers := get_numbers_with_units()
-		for number in numbers:
-			units.append(_units_dict[number])
-		return units
-
-
-func get_two_block_list() -> Array:
-	return get_objects_in_group("two_blocks")
-
-
-func get_ten_block_list() -> Array:
-	return get_objects_in_group("ten_blocks")
-
-
-func get_grid_cell(cell_number: int) -> GridCell:
-	if _grid_cells_dict.has(cell_number):
-		return _grid_cells_dict[cell_number]
-	return null
-
-
-func get_unit(cell_number: int) -> FieldObject:
-	if _units_dict.has(cell_number):
-		return _units_dict[cell_number]
-	return null
-
-
 # cell_number can be any cell that the block occupies
 func get_block(cell_number: int) -> FieldObject:
-	for block in get_ten_block_list():
+	for block in dynamic_model.get_ten_blocks():
 		if block.numbers.has(cell_number):
 			return block
-	for block in get_two_block_list():
+	for block in dynamic_model.get_two_blocks():
 		if block.numbers.has(cell_number):
 			return block
 	return null
@@ -197,7 +150,7 @@ func get_block(cell_number: int) -> FieldObject:
 
 # cell_number can be any cell that the piece occupies
 func get_piece(cell_number: int) -> FieldObject:
-	var unit := get_unit(cell_number)
+	var unit := dynamic_model.get_unit(cell_number)
 	if unit != null:
 		return unit
 	var block := get_block(cell_number)
@@ -206,23 +159,8 @@ func get_piece(cell_number: int) -> FieldObject:
 	return null
 
 
-func get_two_block(first_number: int, second_number: int) -> FieldObject:
-	for two_block in get_two_block_list():
-		if two_block.numbers == [first_number, second_number]:
-			return two_block
-	return null
-
-
-# Row numbers start at 1
-func get_ten_block(row_number: int) -> FieldObject:
-	for ten_block in get_ten_block_list():
-		if ten_block.row_number == row_number:
-			return ten_block
-	return null
-
-
 func get_grid_cell_at_point(point: Vector2) -> GridCell:
-	for grid_cell in get_grid_cell_list():
+	for grid_cell in dynamic_model.get_grid_cells():
 		if grid_cell.has_point(point):
 			return grid_cell
 	return null
@@ -233,7 +171,7 @@ func get_2_grid_cells_at_point(point: Vector2) -> Array:
 	# Make array of cells which have the point at double width
 	var grid_cells: Array = []
 	var rect: Rect2
-	for grid_cell in get_grid_cell_list():
+	for grid_cell in dynamic_model.get_grid_cells():
 		rect = Rect2(
 			grid_cell.position.x - grid_cell.size.x,
 			grid_cell.position.y - grid_cell.size.y / 2,
@@ -247,10 +185,10 @@ func get_2_grid_cells_at_point(point: Vector2) -> Array:
 	if grid_cells.size() == 1:
 		var second_cell: GridCell
 		if grid_cells[0].number % 10 == 0:
-			second_cell = get_grid_cell(grid_cells[0].number - 1)
+			second_cell = dynamic_model.get_grid_cell(grid_cells[0].number - 1)
 			grid_cells.push_front(second_cell)
 		elif grid_cells[0].number % 10 == 1:
-			second_cell = get_grid_cell(grid_cells[0].number + 1)
+			second_cell = dynamic_model.get_grid_cell(grid_cells[0].number + 1)
 			grid_cells.append(second_cell)
 		else:
 			assert(false)
@@ -262,7 +200,7 @@ func get_2_grid_cells_at_point(point: Vector2) -> Array:
 func get_grid_cells_by_numbers(number_list: Array) -> Array:
 	var grid_cells: Array = []
 	for number in number_list:
-		var grid_cell := get_grid_cell(number)
+		var grid_cell := dynamic_model.get_grid_cell(number)
 		grid_cells.append(grid_cell)
 	return grid_cells
 
@@ -276,7 +214,7 @@ func get_grid_cells_by_row(row: int) -> Array:
 
 
 func get_marked_cell() -> GridCell:
-	for cell in get_grid_cell_list():
+	for cell in dynamic_model.get_grid_cells():
 		if cell.marked:
 			return cell
 	return null
@@ -284,10 +222,9 @@ func get_marked_cell() -> GridCell:
 
 func get_grid_cells_with_units() -> Array:
 	var cells: Array = []
-	var units := get_unit_list()
+	var units := dynamic_model.get_units()
 	for unit in units:
-		if not cells.has(unit.cell):
-			cells.append(unit.cell)
+		cells.append(unit.cell)
 	return cells
 
 
@@ -300,10 +237,10 @@ func is_cell_occupied(cell: GridCell) -> bool:
 
 	if cell.has_unit():
 		return true
-	for two_block in get_two_block_list():
-		if two_block.grid_cells.has(cell):
+	for two_block in dynamic_model.get_two_blocks():
+		if two_block.cells.has(cell):
 			return true
-	for ten_block in get_ten_block_list():
+	for ten_block in dynamic_model.get_ten_blocks():
 		if get_grid_cells_by_row(ten_block.row_number).has(cell):
 			return true
 	return false
@@ -336,7 +273,7 @@ func does_number_have_unit(number: int) -> bool:
 
 
 func does_row_have_ten_block(row_number: int) -> bool:
-	for ten_block in get_ten_block_list():
+	for ten_block in dynamic_model.get_ten_blocks():
 		if ten_block.row_number == row_number:
 			return true
 	return false
@@ -369,7 +306,7 @@ func get_contiguous_occupied_numbers_from(first_number: int) -> Array:
 	var number_sequence: Array = []
 	var number := first_number
 	while number <= 100:
-		var cell: GridCell = get_grid_cell(number)
+		var cell: GridCell = dynamic_model.get_grid_cell(number)
 		if is_cell_occupied(cell):
 			number_sequence.append(number)
 			number += 1
@@ -437,18 +374,18 @@ func build_state() -> CRMemento:
 
 func _get_cells_data() -> Dictionary:
 	var data := {}
-	for cell in get_grid_cell_list():
+	for cell in dynamic_model.get_grid_cells():
 		data[cell.number] = {
 			"marked": cell.marked,
 			"has_unit": cell.has_unit(),
-			"starts_two_block": get_two_block(cell.number, cell.number + 1) != null
+			"starts_two_block": dynamic_model.get_two_block(cell.number) != null
 		}
 	return data
 
 
 func _get_rows_data() -> Dictionary:
 	var data := {}
-	for ten_block in get_ten_block_list():
+	for ten_block in dynamic_model.get_ten_blocks():
 		data[ten_block.row_number] = {
 			"has_ten_block": true,
 		}

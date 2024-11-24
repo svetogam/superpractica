@@ -16,6 +16,9 @@ var marked := false
 var size: Vector2:
 	get:
 		return %Collider.shape.get_rect().size
+var unit: FieldObject:
+	get:
+		return field.dynamic_model.get_unit(number)
 
 
 static func _get_object_type() -> int:
@@ -51,11 +54,7 @@ func get_memo() -> IntegerMemo:
 
 
 func has_unit() -> bool:
-	return field.get_grid_cells_with_units().has(self)
-
-
-func get_unit() -> FieldObject:
-	return field.get_unit(number)
+	return unit != null
 
 
 func has_point(point: Vector2) -> bool:

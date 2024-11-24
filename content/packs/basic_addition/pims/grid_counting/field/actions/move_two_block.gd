@@ -36,7 +36,7 @@ func is_valid() -> bool:
 
 
 func is_possible() -> bool:
-	var block = field.get_two_block(from_first_number, from_first_number + 1)
+	var block = field.dynamic_model.get_two_block(from_first_number)
 	if block == null:
 		return false
 
@@ -48,6 +48,5 @@ func is_possible() -> bool:
 
 
 func do() -> void:
-	var block = field.get_two_block(from_first_number, from_first_number + 1)
-	var cells = field.get_grid_cells_by_numbers([to_first_number, to_first_number + 1])
-	block.put_on_cells(cells)
+	var block = field.dynamic_model.get_two_block(from_first_number)
+	block.put_on_grid(to_first_number)

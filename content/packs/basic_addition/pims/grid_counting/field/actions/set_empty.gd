@@ -17,11 +17,11 @@ static func get_name() -> int:
 
 
 func do() -> void:
-	for unit in field.get_unit_list():
+	for unit in field.dynamic_model.get_units():
 		unit.free()
-	for two_block in field.get_two_block_list():
+	for two_block in field.dynamic_model.get_two_blocks():
 		two_block.free()
-	for ten_block in field.get_ten_block_list():
+	for ten_block in field.dynamic_model.get_ten_blocks():
 		ten_block.free()
 
 	var cell = field.get_marked_cell()

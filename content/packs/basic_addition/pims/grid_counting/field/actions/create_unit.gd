@@ -28,12 +28,11 @@ func is_valid() -> bool:
 
 
 func is_possible() -> bool:
-	var cell = field.get_grid_cell(cell_number)
+	var cell = field.dynamic_model.get_grid_cell(cell_number)
 	return not field.is_cell_occupied(cell)
 
 
 func do() -> void:
 	var unit := GridCounting.ObjectUnit.instantiate() as FieldObject
 	field.add_child(unit)
-	var cell = field.get_grid_cell(cell_number)
-	unit.put_on_cell(cell)
+	unit.put_on_cell(cell_number)

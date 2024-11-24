@@ -28,8 +28,8 @@ func is_valid() -> bool:
 
 
 func is_possible() -> bool:
-	return field.get_unit(unit_cell_number) != null
+	return field.dynamic_model.get_unit(unit_cell_number) != null
 
 
 func do() -> void:
-	field.get_unit(unit_cell_number).free()
+	field.dynamic_model.get_unit(unit_cell_number).free()

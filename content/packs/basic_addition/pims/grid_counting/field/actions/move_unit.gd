@@ -35,12 +35,11 @@ func is_valid() -> bool:
 
 func is_possible() -> bool:
 	return (
-		field.get_grid_cell(unit_cell_number).has_unit()
-		and not field.is_cell_occupied(field.get_grid_cell(to_cell_number))
+		field.dynamic_model.get_grid_cell(unit_cell_number).has_unit()
+		and not field.is_cell_occupied(field.dynamic_model.get_grid_cell(to_cell_number))
 	)
 
 
 func do() -> void:
-	var unit = field.get_unit(unit_cell_number)
-	var dest_cell = field.get_grid_cell(to_cell_number)
-	unit.put_on_cell(dest_cell)
+	var unit = field.dynamic_model.get_unit(unit_cell_number)
+	unit.put_on_cell(to_cell_number)

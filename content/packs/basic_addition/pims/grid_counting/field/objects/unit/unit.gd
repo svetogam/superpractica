@@ -10,41 +10,29 @@
 
 extends FieldObject
 
-signal number_changed(old_number, new_number) # -1 for no number
-
-var cell: GridCell = null
+var cell_number: int = -1
+var cell: GridCell:
+	get:
+		return field.dynamic_model.get_grid_cell(cell_number)
 
 
 static func _get_object_type() -> int:
 	return GridCounting.Objects.UNIT
 
 
-func _enter_tree() -> void:
-	CSConnector.with(self).register("unit")
-
-
 func _exit_tree() -> void:
-	var old_number: int = -1
-	if cell != null:
-		old_number = get_number()
-	number_changed.emit(old_number, -1)
+	field.dynamic_model.unset_unit(cell_number, self)
 
 
-func put_on_cell(p_cell: GridCell) -> void:
-	var old_number: int = -1
-	if cell != null:
-		old_number = get_number()
+func put_on_cell(p_cell_number: int) -> void:
+	if cell_number != -1:
+		field.dynamic_model.unset_unit(cell_number, self)
+	field.dynamic_model.set_unit(p_cell_number, self)
 
-	cell = p_cell
+	cell_number = p_cell_number
 	position = cell.position
-	number_changed.emit(old_number, cell.number)
 
 
 func set_variant(variant: StringName) -> void:
 	assert(%Sprite.sprite_frames.has_animation(variant))
 	%Sprite.animation = variant
-
-
-func get_number() -> int:
-	assert(cell != null)
-	return cell.number

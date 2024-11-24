@@ -43,7 +43,7 @@ func _is_unit_valid(unit: FieldObject) -> bool:
 			return true
 		elif unit.cell.number != 1:
 			var row_number = field.static_model.get_row_of_cell(unit.cell.number - 1)
-			var ten_block = field.get_ten_block(row_number)
+			var ten_block = field.dynamic_model.get_ten_block(row_number)
 			return ten_block != null and _is_ten_block_valid(ten_block)
 
 	# Ensure units follow each other in an unbroken sequence

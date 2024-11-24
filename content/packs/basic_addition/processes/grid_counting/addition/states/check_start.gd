@@ -23,7 +23,7 @@ func _enter(_last_state: String) -> void:
 		board_number = verification.field.give_number_effect_by_grid_cell(marked_cell)
 	# Or make a 0 number-effect at first cell if no cell is marked
 	else:
-		var first_cell = verification.field.get_grid_cell(1)
+		var first_cell = verification.field.dynamic_model.get_grid_cell(1)
 		board_number = verification.field.math_effects.give_number(0, first_cell.position)
 
 	await Game.wait_for(0.5)
