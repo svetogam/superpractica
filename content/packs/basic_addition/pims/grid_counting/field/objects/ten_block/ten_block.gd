@@ -10,7 +10,7 @@
 
 extends FieldObject
 
-var row_number: int = -1 # Row numbers start at 1
+var row_number: int # Row numbers start at 1
 var numbers: Array:
 	get = _get_numbers
 var first_number: int:
@@ -22,19 +22,10 @@ static func _get_object_type() -> int:
 	return GridCounting.Objects.TEN_BLOCK
 
 
-func _exit_tree() -> void:
-	field.dynamic_model.unset_ten_block(row_number, self)
-
-
 func put_on_row(p_row_number: int) -> void:
 	assert(p_row_number >= 1 and p_row_number <= 100)
 
-	if row_number != -1:
-		field.dynamic_model.unset_ten_block(row_number, self)
-	field.dynamic_model.set_ten_block(p_row_number, self)
-
 	row_number = p_row_number
-
 	var cells = field.get_grid_cells_by_row(row_number)
 	position = Vector2(
 		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,

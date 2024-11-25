@@ -11,35 +11,36 @@
 class_name GridCountingActionMoveUnit
 extends FieldAction
 
-var unit_cell_number: int
+var from_cell_number: int
 var to_cell_number: int
+var unit: FieldObject
 
 
 static func get_name() -> int:
 	return GridCounting.Actions.MOVE_UNIT
 
 
-func _init(p_field: Field, p_unit_cell_number: int, p_to_cell_number: int) -> void:
+func _init(p_field: Field, p_from_cell_number: int, p_to_cell_number: int) -> void:
 	super(p_field)
-	unit_cell_number = p_unit_cell_number
+	from_cell_number = p_from_cell_number
 	to_cell_number = p_to_cell_number
 
 
 func is_valid() -> bool:
 	return (
-		unit_cell_number >= 1 and unit_cell_number <= 100
+		from_cell_number >= 1 and from_cell_number <= 100
 		and to_cell_number >= 1 and to_cell_number <= 100
-		and unit_cell_number != to_cell_number
+		and from_cell_number != to_cell_number
 	)
 
 
 func is_possible() -> bool:
 	return (
-		field.dynamic_model.get_grid_cell(unit_cell_number).has_unit()
+		field.dynamic_model.get_grid_cell(from_cell_number).has_unit()
 		and not field.is_cell_occupied(field.dynamic_model.get_grid_cell(to_cell_number))
 	)
 
 
 func do() -> void:
-	var unit = field.dynamic_model.get_unit(unit_cell_number)
+	unit = field.dynamic_model.get_unit(from_cell_number)
 	unit.put_on_cell(to_cell_number)

@@ -12,6 +12,7 @@ class_name GridCountingActionCreateTenBlock
 extends FieldAction
 
 var row_number: int
+var block: FieldObject
 
 
 static func get_name() -> int:
@@ -33,6 +34,6 @@ func is_possible() -> bool:
 
 
 func do() -> void:
-	var ten_block := GridCounting.ObjectTenBlock.instantiate() as FieldObject
-	field.add_child(ten_block)
-	ten_block.put_on_row(row_number)
+	block = GridCounting.ObjectTenBlock.instantiate() as FieldObject
+	field.add_child(block)
+	block.put_on_row(row_number)

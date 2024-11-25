@@ -30,6 +30,7 @@ func setup(p_number: int, row: int, col: int) -> void:
 	position = Vector2(col * size.x + size.x/2, row * size.y + size.y/2)
 	number = p_number
 	%Label.text = str(number)
+	field.dynamic_model.set_grid_cell(number, self)
 
 
 func get_rect() -> Rect2:

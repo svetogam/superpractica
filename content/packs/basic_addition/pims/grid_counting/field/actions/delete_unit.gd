@@ -11,25 +11,25 @@
 class_name GridCountingActionDeleteUnit
 extends FieldAction
 
-var unit_cell_number: int
+var cell_number: int
 
 
 static func get_name() -> int:
 	return GridCounting.Actions.DELETE_UNIT
 
 
-func _init(p_field: Field, p_unit_cell_number: int) -> void:
+func _init(p_field: Field, p_cell_number: int) -> void:
 	super(p_field)
-	unit_cell_number = p_unit_cell_number
+	cell_number = p_cell_number
 
 
 func is_valid() -> bool:
-	return unit_cell_number >= 1 and unit_cell_number <= 100
+	return cell_number >= 1 and cell_number <= 100
 
 
 func is_possible() -> bool:
-	return field.dynamic_model.get_unit(unit_cell_number) != null
+	return field.dynamic_model.get_unit(cell_number) != null
 
 
 func do() -> void:
-	field.dynamic_model.get_unit(unit_cell_number).free()
+	field.dynamic_model.get_unit(cell_number).free()

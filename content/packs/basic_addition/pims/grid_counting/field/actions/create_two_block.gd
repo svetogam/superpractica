@@ -12,6 +12,7 @@ class_name GridCountingActionCreateTwoBlock
 extends FieldAction
 
 var first_number: int
+var block: FieldObject
 
 
 static func get_name() -> int:
@@ -33,6 +34,6 @@ func is_possible() -> bool:
 
 
 func do() -> void:
-	var two_block := GridCounting.ObjectTwoBlock.instantiate() as FieldObject
-	field.add_child(two_block)
-	two_block.put_on_grid(first_number)
+	block = GridCounting.ObjectTwoBlock.instantiate() as FieldObject
+	field.add_child(block)
+	block.put_on_grid(first_number)

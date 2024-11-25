@@ -31,7 +31,8 @@ enum Actions {
 	MOVE_TWO_BLOCK,
 	MOVE_TEN_BLOCK,
 	DELETE_UNIT,
-	DELETE_BLOCK,
+	DELETE_TWO_BLOCK,
+	DELETE_TEN_BLOCK,
 	SET_EMPTY,
 }
 enum Tools {
@@ -47,11 +48,13 @@ const ObjectUnit := preload("objects/unit/unit.tscn")
 const ObjectTwoBlock := preload("objects/two_block/two_block.tscn")
 const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 
+const ROWS: int = 10
+const COLUMNS: int = 10
 const BOARD_SIZE := Vector2(350, 350)
 const BOARD_GAP := 3.0
 
-var static_model := RectilinearGridModel.new(10, 10)
-var dynamic_model := GridCountingDynamicModel.new()
+var static_model := RectilinearGridModel.new(ROWS, COLUMNS)
+var dynamic_model := GridCountingDynamicModel.new(self)
 
 
 static func _get_field_type() -> String:
@@ -77,14 +80,12 @@ func _setup_board() -> void:
 	# Add grid cells
 	var number: int = 0
 	var grid_cell: GridCell
-	for row in range(10):
-		for col in range(10):
+	for row in range(ROWS):
+		for col in range(COLUMNS):
 			number += 1
 			grid_cell = ObjectGridCell.instantiate() as GridCell
 			add_child(grid_cell)
 			grid_cell.setup(number, row, col)
-			dynamic_model.set_grid_cell(number, grid_cell)
-
 
 
 func _on_update(_update_type: int) -> void:

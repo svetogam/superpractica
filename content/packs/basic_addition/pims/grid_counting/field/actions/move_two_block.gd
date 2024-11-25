@@ -13,6 +13,7 @@ extends FieldAction
 
 var from_first_number: int
 var to_first_number: int
+var block: FieldObject
 
 
 static func get_name() -> int:
@@ -36,8 +37,7 @@ func is_valid() -> bool:
 
 
 func is_possible() -> bool:
-	var block = field.dynamic_model.get_two_block(from_first_number)
-	if block == null:
+	if field.dynamic_model.get_two_block(from_first_number) == null:
 		return false
 
 	var needed_cell_numbers: Array = [to_first_number, to_first_number + 1]
@@ -48,5 +48,5 @@ func is_possible() -> bool:
 
 
 func do() -> void:
-	var block = field.dynamic_model.get_two_block(from_first_number)
+	block = field.dynamic_model.get_two_block(from_first_number)
 	block.put_on_grid(to_first_number)

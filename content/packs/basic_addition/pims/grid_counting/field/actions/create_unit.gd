@@ -12,6 +12,7 @@ class_name GridCountingActionCreateUnit
 extends FieldAction
 
 var cell_number: int
+var unit: FieldObject
 
 
 static func get_name() -> int:
@@ -33,6 +34,6 @@ func is_possible() -> bool:
 
 
 func do() -> void:
-	var unit := GridCounting.ObjectUnit.instantiate() as FieldObject
+	unit = GridCounting.ObjectUnit.instantiate() as FieldObject
 	field.add_child(unit)
 	unit.put_on_cell(cell_number)

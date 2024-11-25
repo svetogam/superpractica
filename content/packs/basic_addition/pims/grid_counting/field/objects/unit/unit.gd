@@ -10,7 +10,7 @@
 
 extends FieldObject
 
-var cell_number: int = -1
+var cell_number: int
 var cell: GridCell:
 	get:
 		return field.dynamic_model.get_grid_cell(cell_number)
@@ -20,15 +20,7 @@ static func _get_object_type() -> int:
 	return GridCounting.Objects.UNIT
 
 
-func _exit_tree() -> void:
-	field.dynamic_model.unset_unit(cell_number, self)
-
-
 func put_on_cell(p_cell_number: int) -> void:
-	if cell_number != -1:
-		field.dynamic_model.unset_unit(cell_number, self)
-	field.dynamic_model.set_unit(p_cell_number, self)
-
 	cell_number = p_cell_number
 	position = cell.position
 

@@ -13,6 +13,7 @@ extends RefCounted
 
 signal got_actions_to_do
 signal flushed
+signal action_done(action)
 
 var auto_flush := true
 var _field: Field
@@ -50,6 +51,7 @@ func flush() -> void:
 		for action in _queue:
 			if action.is_possible():
 				action.do()
+				action_done.emit(action)
 				for program in _field.get_active_programs():
 					program._after_action(action)
 		_queue.clear()

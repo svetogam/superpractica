@@ -10,7 +10,7 @@
 
 extends FieldObject
 
-var first_number: int = -1
+var first_number: int
 var numbers: Array:
 	get:
 		return [first_number, first_number + 1]
@@ -26,17 +26,9 @@ static func _get_object_type() -> int:
 	return GridCounting.Objects.TWO_BLOCK
 
 
-func _exit_tree() -> void:
-	field.dynamic_model.unset_two_block(first_number, self)
-
-
 # p_first_number is the first cell the block occupies
 func put_on_grid(p_first_number: int) -> void:
 	assert(p_first_number % 10 != 0)
-
-	if first_number != -1:
-		field.dynamic_model.unset_two_block(first_number, self)
-	field.dynamic_model.set_two_block(p_first_number, self)
 
 	first_number = p_first_number
 	position = Vector2(
