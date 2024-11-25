@@ -138,28 +138,6 @@ func get_objects_by_type(object_type: int) -> Array:
 			return []
 
 
-# cell_number can be any cell that the block occupies
-func get_block(cell_number: int) -> FieldObject:
-	for block in dynamic_model.get_ten_blocks():
-		if block.numbers.has(cell_number):
-			return block
-	for block in dynamic_model.get_two_blocks():
-		if block.numbers.has(cell_number):
-			return block
-	return null
-
-
-# cell_number can be any cell that the piece occupies
-func get_piece(cell_number: int) -> FieldObject:
-	var unit := dynamic_model.get_unit(cell_number)
-	if unit != null:
-		return unit
-	var block := get_block(cell_number)
-	if block != null:
-		return block
-	return null
-
-
 func get_grid_cell_at_point(point: Vector2) -> GridCell:
 	for grid_cell in dynamic_model.get_grid_cells():
 		if grid_cell.has_point(point):
