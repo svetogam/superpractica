@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwyj"]
 size = Vector2(175, 26)
 
-[node name="FiveBlock" groups=["five_blocks"] instance=ExtResource("1_cc0o5")]
+[node name="FiveBlock" instance=ExtResource("1_cc0o5")]
 script = ExtResource("2_tr051")
 
 [node name="delete" type="Node" parent="ActiveModes" index="0"]

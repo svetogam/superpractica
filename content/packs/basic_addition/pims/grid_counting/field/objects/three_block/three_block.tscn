@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwyj"]
 size = Vector2(105, 26)
 
-[node name="ThreeBlock" groups=["three_blocks"] instance=ExtResource("1_iml3b")]
+[node name="ThreeBlock" instance=ExtResource("1_iml3b")]
 script = ExtResource("2_yv8qx")
 
 [node name="delete" type="Node" parent="ActiveModes" index="0"]

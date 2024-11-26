@@ -13,7 +13,7 @@ size = Vector2(35, 35)
 [sub_resource type="LabelSettings" id="LabelSettings_jddee"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="GridCell" groups=["number_squares"] instance=ExtResource("1_182cb")]
+[node name="GridCell" instance=ExtResource("1_182cb")]
 script = ExtResource("2_gj6cy")
 
 [node name="mark" type="Node" parent="ActiveModes" index="0"]

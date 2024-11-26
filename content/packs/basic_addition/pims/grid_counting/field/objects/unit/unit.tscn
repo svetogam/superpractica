@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_wocpa"]
 radius = 14.0
 
-[node name="Unit" groups=["units"] instance=ExtResource("1_wwowv")]
+[node name="Unit" instance=ExtResource("1_wwowv")]
 script = ExtResource("2_r6yf3")
 
 [node name="delete" type="Node" parent="ActiveModes" index="0"]
