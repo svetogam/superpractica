@@ -20,18 +20,30 @@ enum Objects {
 	GRID_CELL,
 	UNIT,
 	TWO_BLOCK,
+	THREE_BLOCK,
+	FOUR_BLOCK,
+	FIVE_BLOCK,
 	TEN_BLOCK,
 }
 enum Actions {
 	TOGGLE_MARK,
 	CREATE_UNIT,
 	CREATE_TWO_BLOCK,
+	CREATE_THREE_BLOCK,
+	CREATE_FOUR_BLOCK,
+	CREATE_FIVE_BLOCK,
 	CREATE_TEN_BLOCK,
 	MOVE_UNIT,
 	MOVE_TWO_BLOCK,
+	MOVE_THREE_BLOCK,
+	MOVE_FOUR_BLOCK,
+	MOVE_FIVE_BLOCK,
 	MOVE_TEN_BLOCK,
 	DELETE_UNIT,
 	DELETE_TWO_BLOCK,
+	DELETE_THREE_BLOCK,
+	DELETE_FOUR_BLOCK,
+	DELETE_FIVE_BLOCK,
 	DELETE_TEN_BLOCK,
 	SET_EMPTY,
 }
@@ -46,6 +58,9 @@ enum Tools {
 const ObjectGridCell := preload("objects/grid_cell/grid_cell.tscn")
 const ObjectUnit := preload("objects/unit/unit.tscn")
 const ObjectTwoBlock := preload("objects/two_block/two_block.tscn")
+const ObjectThreeBlock := preload("objects/three_block/three_block.tscn")
+const ObjectFourBlock := preload("objects/four_block/four_block.tscn")
+const ObjectFiveBlock := preload("objects/five_block/five_block.tscn")
 const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 
 const ROWS: int = 10
@@ -107,6 +122,15 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 				GridCounting.Objects.TWO_BLOCK:
 					var first_number = get_2_grid_cells_at_point(point)[0].number
 					GridCountingActionCreateTwoBlock.new(self, first_number).push()
+				GridCounting.Objects.THREE_BLOCK:
+					var first_number = get_grid_cell_at_point(point).number - 1
+					GridCountingActionCreateThreeBlock.new(self, first_number).push()
+				GridCounting.Objects.FOUR_BLOCK:
+					var first_number = get_2_grid_cells_at_point(point)[0].number - 1
+					GridCountingActionCreateFourBlock.new(self, first_number).push()
+				GridCounting.Objects.FIVE_BLOCK:
+					var first_number = get_grid_cell_at_point(point).number - 2
+					GridCountingActionCreateFiveBlock.new(self, first_number).push()
 				GridCounting.Objects.TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var row_number := static_model.get_row_of_cell(dest_cell.number)
@@ -131,6 +155,12 @@ func get_objects_by_type(object_type: int) -> Array:
 			return dynamic_model.get_units()
 		Objects.TWO_BLOCK:
 			return dynamic_model.get_two_blocks()
+		Objects.THREE_BLOCK:
+			return dynamic_model.get_three_blocks()
+		Objects.FOUR_BLOCK:
+			return dynamic_model.get_four_blocks()
+		Objects.FIVE_BLOCK:
+			return dynamic_model.get_five_blocks()
 		Objects.TEN_BLOCK:
 			return dynamic_model.get_ten_blocks()
 		_:
@@ -218,6 +248,15 @@ func is_cell_occupied(cell: GridCell) -> bool:
 		return true
 	for two_block in dynamic_model.get_two_blocks():
 		if two_block.cells.has(cell):
+			return true
+	for three_block in dynamic_model.get_three_blocks():
+		if three_block.cells.has(cell):
+			return true
+	for four_block in dynamic_model.get_four_blocks():
+		if four_block.cells.has(cell):
+			return true
+	for five_block in dynamic_model.get_five_blocks():
+		if five_block.cells.has(cell):
 			return true
 	for ten_block in dynamic_model.get_ten_blocks():
 		if get_grid_cells_by_row(ten_block.row_number).has(cell):
@@ -357,7 +396,10 @@ func _get_cells_data() -> Dictionary:
 		data[cell.number] = {
 			"marked": cell.marked,
 			"has_unit": cell.has_unit(),
-			"starts_two_block": dynamic_model.get_two_block(cell.number) != null
+			"starts_two_block": dynamic_model.get_two_block(cell.number) != null,
+			"starts_three_block": dynamic_model.get_three_block(cell.number) != null,
+			"starts_four_block": dynamic_model.get_four_block(cell.number) != null,
+			"starts_five_block": dynamic_model.get_five_block(cell.number) != null,
 		}
 	return data
 
@@ -392,6 +434,12 @@ func _load_cell_data(cell_data: Dictionary) -> void:
 			GridCountingActionCreateUnit.new(self, cell_number).push()
 		if cell_data[cell_number].starts_two_block:
 			GridCountingActionCreateTwoBlock.new(self, cell_number).push()
+		if cell_data[cell_number].starts_three_block:
+			GridCountingActionCreateThreeBlock.new(self, cell_number).push()
+		if cell_data[cell_number].starts_four_block:
+			GridCountingActionCreateFourBlock.new(self, cell_number).push()
+		if cell_data[cell_number].starts_five_block:
+			GridCountingActionCreateFiveBlock.new(self, cell_number).push()
 
 
 func _load_row_data(row_data: Dictionary) -> void:

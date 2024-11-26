@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-class_name GridCountingActionMoveTwoBlock
+class_name GridCountingActionMoveThreeBlock
 extends FieldAction
 
 var from_first_number: int
@@ -17,7 +17,7 @@ var block: FieldObject
 
 
 static func get_name() -> int:
-	return GridCounting.Actions.MOVE_TWO_BLOCK
+	return GridCounting.Actions.MOVE_THREE_BLOCK
 
 
 func _init(p_field: Field, p_from_first_number: int, p_to_first_number: int) -> void:
@@ -32,21 +32,28 @@ func is_valid() -> bool:
 		and to_first_number >= 1 and to_first_number <= 100
 		and from_first_number % 10 != 0
 		and to_first_number % 10 != 0
+		and from_first_number % 10 != 9
+		and to_first_number % 10 != 9
 		and from_first_number != to_first_number
 	)
 
 
 func is_possible() -> bool:
-	if field.dynamic_model.get_two_block(from_first_number) == null:
+	if field.dynamic_model.get_three_block(from_first_number) == null:
 		return false
 
-	var needed_cell_numbers: Array = [to_first_number, to_first_number + 1]
+	var needed_cell_numbers: Array = [
+		to_first_number,
+		to_first_number + 1,
+		to_first_number + 2,
+	]
 	needed_cell_numbers.erase(from_first_number)
 	needed_cell_numbers.erase(from_first_number + 1)
+	needed_cell_numbers.erase(from_first_number + 2)
 	var cells: Array = field.get_grid_cells_by_numbers(needed_cell_numbers)
 	return not cells.any(field.is_cell_occupied)
 
 
 func do() -> void:
-	block = field.dynamic_model.get_two_block(from_first_number)
+	block = field.dynamic_model.get_three_block(from_first_number)
 	block.put_on_grid(to_first_number)

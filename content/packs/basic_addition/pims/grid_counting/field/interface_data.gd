@@ -39,6 +39,42 @@ func _init() -> void:
 			# Icon
 			preload("graphics/two_block_icon.svg"),
 		),
+		GridCounting.Objects.THREE_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.THREE_BLOCK,
+			# Name Text
+			"Three Block",
+			# Drag Sprite
+			preload("objects/three_block/sprite.tscn"),
+			# Icon
+			preload("graphics/three_block_icon.svg"),
+		),
+		GridCounting.Objects.FOUR_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.FOUR_BLOCK,
+			# Name Text
+			"Four Block",
+			# Drag Sprite
+			preload("objects/four_block/sprite.tscn"),
+			# Icon
+			preload("graphics/four_block_icon.svg"),
+		),
+		GridCounting.Objects.FIVE_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.FIVE_BLOCK,
+			# Name Text
+			"Five Block",
+			# Drag Sprite
+			preload("objects/five_block/sprite.tscn"),
+			# Icon
+			preload("graphics/five_block_icon.svg"),
+		),
 		GridCounting.Objects.TEN_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
@@ -84,6 +120,9 @@ func _init() -> void:
 			"object_modes": {
 				GridCounting.Objects.UNIT: ["delete"],
 				GridCounting.Objects.TWO_BLOCK: ["delete"],
+				GridCounting.Objects.THREE_BLOCK: ["delete"],
+				GridCounting.Objects.FOUR_BLOCK: ["delete"],
+				GridCounting.Objects.FIVE_BLOCK: ["delete"],
 				GridCounting.Objects.TEN_BLOCK: ["delete"],
 			},
 		},
@@ -93,6 +132,9 @@ func _init() -> void:
 			"object_modes": {
 				GridCounting.Objects.UNIT: ["drag"],
 				GridCounting.Objects.TWO_BLOCK: ["drag"],
+				GridCounting.Objects.THREE_BLOCK: ["drag"],
+				GridCounting.Objects.FOUR_BLOCK: ["drag"],
+				GridCounting.Objects.FIVE_BLOCK: ["drag"],
 				GridCounting.Objects.TEN_BLOCK: ["drag"],
 			},
 		},

@@ -25,7 +25,11 @@ func _init(p_field: Field, p_first_number: int) -> void:
 
 
 func is_valid() -> bool:
-	return first_number >= 1 and first_number <= 99 and first_number % 10 != 0
+	return (
+		first_number >= 1
+		and first_number <= 100
+		and first_number % 10 != 0
+	)
 
 
 func is_possible() -> bool:

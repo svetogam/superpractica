@@ -8,14 +8,15 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-class_name GridCountingActionDeleteTwoBlock
+class_name GridCountingActionCreateFourBlock
 extends FieldAction
 
 var first_number: int
+var block: FieldObject
 
 
 static func get_name() -> int:
-	return GridCounting.Actions.DELETE_TWO_BLOCK
+	return GridCounting.Actions.CREATE_FOUR_BLOCK
 
 
 func _init(p_field: Field, p_first_number: int) -> void:
@@ -28,12 +29,18 @@ func is_valid() -> bool:
 		first_number >= 1
 		and first_number <= 100
 		and first_number % 10 != 0
+		and first_number % 10 != 9
+		and first_number % 10 != 8
 	)
 
 
 func is_possible() -> bool:
-	return field.dynamic_model.get_two_block(first_number) != null
+	var cells: Array = field.get_grid_cells_by_numbers([first_number, first_number + 1,
+			first_number + 2, first_number + 3])
+	return not cells.any(field.is_cell_occupied)
 
 
 func do() -> void:
-	field.dynamic_model.get_two_block(first_number).free()
+	block = GridCounting.ObjectFourBlock.instantiate() as FieldObject
+	field.add_child(block)
+	block.put_on_grid(first_number)
