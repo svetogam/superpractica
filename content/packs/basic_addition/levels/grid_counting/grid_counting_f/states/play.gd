@@ -22,3 +22,15 @@ func _enter(_last_state: String) -> void:
 
 	_field_program = program.field.get_program("SoftCount")
 	_field_program.run()
+
+	goal_panel.verification_requested.connect(_on_verification_requested)
+
+
+func _on_verification_requested() -> void:
+	(BasicAdditionProcesses.VerifGridCountingAddition.instantiate()
+			.setup(program.pim)
+			.run(verifier, complete_task))
+
+
+func _exit(_next_state: String) -> void:
+	goal_panel.verification_requested.disconnect(_on_verification_requested)

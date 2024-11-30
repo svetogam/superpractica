@@ -35,7 +35,7 @@ func _start() -> void:
 	field = pim.field
 	field_program = field.get_program("SoftCount")
 
-	goal_panel.add_condition(IntegerMemo.new(object_sum), null, object_sum_icon)
-	goal_panel.add_condition(IntegerMemo.new(object_count), null, object_count_icon)
+	goal_panel.add_condition(IntegerMemo.new(object_sum), object_sum_icon)
+	goal_panel.add_condition(IntegerMemo.new(object_count), object_count_icon)
 
 	$StateMachine.activate()

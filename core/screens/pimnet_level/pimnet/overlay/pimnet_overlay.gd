@@ -219,6 +219,7 @@ func _set_goal_type(p_goal_type: GoalPanels) -> void:
 		GoalPanels.NONE:
 			%HintedMemoSlotPanel.hide()
 			%SolutionMemoSlotsPanel.hide()
+			%ConditionCompletionPanel.hide()
 		GoalPanels.HINTED_MEMO_SLOT:
 			%HintedMemoSlotPanel.show()
 		GoalPanels.SOLUTION_MEMO_SLOTS:
@@ -226,6 +227,7 @@ func _set_goal_type(p_goal_type: GoalPanels) -> void:
 			%SolutionColumn.show()
 		GoalPanels.CONDITION_COMPLETION:
 			%ConditionCompletionPanel.show()
+			%SolutionColumn.show()
 
 
 func _get_goal_type() -> GoalPanels:

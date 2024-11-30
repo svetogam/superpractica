@@ -13,8 +13,7 @@ extends PanelContainer
 signal slot_filled
 
 @onready var verification_panel := %SolutionVerificationPanel as PanelContainer
-@onready var problem_slot_1 := %ProblemSlot1 as MemoSlot
-@onready var problem_slot_2 := %ProblemSlot2 as MemoSlot
+@onready var problem_slots: Array = [%ProblemSlot1, %ProblemSlot2]
 @onready var solution_slot := %SolutionSlot as MemoSlot
 
 
@@ -27,12 +26,8 @@ func _on_memo_accepted(_memo: Memo) -> void:
 	slot_filled.emit()
 
 
-func open_verification_panel() -> void:
-	verification_panel.clear_slots()
-	verification_panel.show()
-	verification_panel.left_slots[0].set_by_memo(problem_slot_1.memo, true)
-	verification_panel.left_slots[1].set_by_memo(problem_slot_2.memo, true)
-
-
-func close_verification_panel() -> void:
-	verification_panel.hide()
+func set_problem_memos(memos: Array) -> void:
+	verification_panel.correct_memos.clear()
+	for i in problem_slots.size():
+		problem_slots[i].set_by_memo(memos[i], true)
+		verification_panel.correct_memos.append(memos[i])

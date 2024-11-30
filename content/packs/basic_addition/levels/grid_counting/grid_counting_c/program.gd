@@ -28,8 +28,7 @@ func _start() -> void:
 	pim = pimnet.get_pim()
 	field = pim.field
 
-	goal_panel.problem_slot_1.set_memo(IntegerMemo, addend_1, true)
-	goal_panel.problem_slot_2.set_memo(IntegerMemo, addend_2, true)
+	goal_panel.set_problem_memos([IntegerMemo.new(addend_1), IntegerMemo.new(addend_2)])
 
 	output_program = pim.get_program("GiveOutputMemo")
 	output_program.run()

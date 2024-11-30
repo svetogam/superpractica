@@ -10,35 +10,26 @@
 
 extends PanelContainer
 
-signal verification_started
+signal verification_requested
 
 var used_condition_rows: int = 0
-var verifications: Array = []
+@onready var verification_panel := %SolutionVerificationPanel as PanelContainer
 @onready var condition_icons: Array = [%ConditionIcon1, %ConditionIcon2]
-@onready var left_slots: Array = [%LeftConditionSlot1, %LeftConditionSlot2]
-@onready var right_slots: Array = [%RightConditionSlot1, %RightConditionSlot2]
-@onready var check_slots: Array = [%CheckConditionSlot1, %CheckConditionSlot2]
+@onready var condition_slots: Array = [%ConditionSlot1, %ConditionSlot2]
 @onready var verify_button := %VerifyConditionsButton as Button
 
 
 func _ready() -> void:
-	for slot in right_slots:
-		slot.set_empty()
 	verify_button.pressed.connect(_on_verify_button_pressed)
 
 
 func _on_verify_button_pressed() -> void:
-	verification_started.emit()
+	verification_requested.emit()
 
 
-func add_condition(memo: Memo, verification, icon: Texture2D) -> void:
+func add_condition(memo: Memo, icon: Texture2D) -> void:
 	condition_icons[used_condition_rows].texture = icon
-	left_slots[used_condition_rows].set_by_memo(memo, true)
-	verifications.append(verification)
+	condition_slots[used_condition_rows].set_by_memo(memo, true)
+	verification_panel.correct_memos.append(memo)
 
 	used_condition_rows += 1
-
-
-func clear_slots() -> void:
-	for slot in right_slots:
-		slot.set_empty()

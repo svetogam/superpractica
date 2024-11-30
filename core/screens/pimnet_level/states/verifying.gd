@@ -21,9 +21,11 @@ var overlay: PimnetOverlay:
 func _enter(_last_state: String) -> void:
 	match overlay.goal_type:
 		PimnetOverlay.GoalPanels.SOLUTION_MEMO_SLOTS:
-			overlay.goal_panel.open_verification_panel()
+			overlay.verification_panel.open()
 			overlay.goal_panel.solution_slot.set_highlight(
 					MemoSlot.HighlightTypes.REGULAR)
+		PimnetOverlay.GoalPanels.CONDITION_COMPLETION:
+			overlay.verification_panel.open()
 
 	level.pimnet.disable_verification_input(true)
 	if level.program != null:

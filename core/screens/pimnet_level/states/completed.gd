@@ -25,10 +25,12 @@ func _enter(_last_state: String) -> void:
 			overlay.goal_panel.slot.set_faded(false)
 			overlay.goal_panel.slot.set_highlight(MemoSlot.HighlightTypes.AFFIRMATION)
 		PimnetOverlay.GoalPanels.SOLUTION_MEMO_SLOTS:
-			overlay.goal_panel.close_verification_panel()
+			overlay.verification_panel.close()
 			overlay.goal_panel.solution_slot.set_input_output_ability(false, false)
 			overlay.goal_panel.solution_slot.set_highlight(
 					MemoSlot.HighlightTypes.AFFIRMATION)
+		PimnetOverlay.GoalPanels.CONDITION_COMPLETION:
+			overlay.verification_panel.close()
 
 	Game.set_current_level_completed()
 	overlay.show_completion_popup()

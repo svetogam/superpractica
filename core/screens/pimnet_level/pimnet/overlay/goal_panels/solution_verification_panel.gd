@@ -20,6 +20,7 @@ var filled_row_numbers: Array:
 		return verified_row_numbers + rejected_row_numbers
 var empty_row_numbers: Array:
 	get = get_empty_row_numbers
+var correct_memos: Array
 @onready var left_slots: Array = [%LeftSlot1, %LeftSlot2]
 @onready var right_slots: Array = [%RightSlot1, %RightSlot2]
 @onready var check_slots: Array = [%CheckSlot1, %CheckSlot2]
@@ -30,6 +31,17 @@ func _ready() -> void:
 		slot.set_empty()
 	for slot in right_slots:
 		slot.set_empty()
+
+
+func open() -> void:
+	clear_slots()
+	show()
+	for row_number in row_numbers:
+		left_slots[row_number].set_by_memo(correct_memos[row_number], true)
+
+
+func close() -> void:
+	hide()
 
 
 func affirm_in_row(memo: Memo, row_number: int) -> void:
