@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://drmqi1my2og81"]
+
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_f/program.gd" id="1_84bvw"]
+[ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_qj2nq"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_f/state_data.gd" id="3_0615s"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_f/states/play.gd" id="4_xqlpx"]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource("1_84bvw")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_qj2nq")
+SetupData = ExtResource("3_0615s")
+_auto_activate = false
+
+[node name="Play" type="Node" parent="StateMachine"]
+script = ExtResource("4_xqlpx")

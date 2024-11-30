@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=30 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/screens/pimnet_level/verifier/verifier.tscn" id="12_4kqqx"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_verification_panel.gd" id="14_l20jg"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/condition_completion_panel.gd" id="25_7axkj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2q4"]
 content_margin_left = 20.0
@@ -737,6 +738,108 @@ memo_output_enabled = false
 [node name="Empty" type="Control" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="ConditionCompletionPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+script = ExtResource("25_7axkj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer"]
+layout_mode = 2
+text = "Construct!"
+label_settings = SubResource("LabelSettings_mwy2r")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+columns = 4
+
+[node name="ConditionIcon1" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftConditionSlot1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckConditionSlot1" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "="
+horizontal_alignment = 1
+
+[node name="RightConditionSlot1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="ConditionIcon2" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftConditionSlot2" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckConditionSlot2" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "="
+horizontal_alignment = 1
+
+[node name="RightConditionSlot2" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="VerifyConditionsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/ConditionCompletionPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Verify"
 
 [node name="BottomBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(0, 50)

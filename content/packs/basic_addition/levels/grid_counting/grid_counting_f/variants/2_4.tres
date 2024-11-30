@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GridCountingProgramVarsF" load_steps=2 format=3 uid="uid://mwlcqp4pg52j"]
+
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_f/program_vars.gd" id="1_h3vuh"]
+
+[resource]
+script = ExtResource("1_h3vuh")
+object_sum = 19
+object_count = 3

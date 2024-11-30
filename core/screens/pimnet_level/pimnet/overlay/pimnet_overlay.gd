@@ -27,6 +27,7 @@ enum GoalPanels {
 	NONE = 0,
 	HINTED_MEMO_SLOT,
 	SOLUTION_MEMO_SLOTS,
+	CONDITION_COMPLETION,
 }
 
 const PANEL_TYPE_LIST := [
@@ -211,19 +212,20 @@ func _set_goal_type(p_goal_type: GoalPanels) -> void:
 		return
 	elif goal_type != GoalPanels.NONE:
 		deactivate_panel(PimnetPanels.GOAL)
+		%SolutionColumn.hide()
 
 	goal_type = p_goal_type
 	match goal_type:
 		GoalPanels.NONE:
 			%HintedMemoSlotPanel.hide()
 			%SolutionMemoSlotsPanel.hide()
-			%SolutionColumn.hide()
 		GoalPanels.HINTED_MEMO_SLOT:
 			%HintedMemoSlotPanel.show()
-			%SolutionColumn.hide()
 		GoalPanels.SOLUTION_MEMO_SLOTS:
 			%SolutionMemoSlotsPanel.show()
 			%SolutionColumn.show()
+		GoalPanels.CONDITION_COMPLETION:
+			%ConditionCompletionPanel.show()
 
 
 func _get_goal_type() -> GoalPanels:
@@ -241,6 +243,8 @@ func _get_goal_panel() -> Control:
 			return %HintedMemoSlotPanel
 		GoalPanels.SOLUTION_MEMO_SLOTS:
 			return %SolutionMemoSlotsPanel
+		GoalPanels.CONDITION_COMPLETION:
+			return %ConditionCompletionPanel
 		_:
 			assert(false)
 			return null

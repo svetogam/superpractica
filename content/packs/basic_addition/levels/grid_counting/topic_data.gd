@@ -171,7 +171,14 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 1",
 			# Thumbnail
-			null
+			null,
+			# Pimnet Setup
+			preload("grid_counting_f/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_f/program.tscn"),
+			# Program Vars
+			preload("grid_counting_f/variants/2_1.tres"),
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
@@ -179,7 +186,14 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 2",
 			# Thumbnail
-			null
+			null,
+			# Pimnet Setup
+			preload("grid_counting_f/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_f/program.tscn"),
+			# Program Vars
+			preload("grid_counting_f/variants/2_2.tres"),
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
@@ -187,7 +201,14 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 3",
 			# Thumbnail
-			null
+			null,
+			# Pimnet Setup
+			preload("grid_counting_f/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_f/program.tscn"),
+			# Program Vars
+			preload("grid_counting_f/variants/2_3.tres"),
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
@@ -195,7 +216,14 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 4",
 			# Thumbnail
-			null
+			null,
+			# Pimnet Setup
+			preload("grid_counting_f/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_f/program.tscn"),
+			# Program Vars
+			preload("grid_counting_f/variants/2_4.tres"),
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
@@ -203,7 +231,14 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 5",
 			# Thumbnail
-			null
+			null,
+			# Pimnet Setup
+			preload("grid_counting_f/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_f/program.tscn"),
+			# Program Vars
+			preload("grid_counting_f/variants/2_5.tres"),
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
@@ -211,7 +246,14 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 6",
 			# Thumbnail
-			null
+			null,
+			# Pimnet Setup
+			preload("grid_counting_f/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_f/program.tscn"),
+			# Program Vars
+			preload("grid_counting_f/variants/2_6.tres"),
+			# Program Plan
 		),
 		LevelResource.new(
 			# ID
@@ -219,7 +261,14 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 7",
 			# Thumbnail
-			null
+			null,
+			# Pimnet Setup
+			preload("grid_counting_f/pimnet_setup.tres"),
+			# Program
+			preload("grid_counting_f/program.tscn"),
+			# Program Vars
+			preload("grid_counting_f/variants/2_7.tres"),
+			# Program Plan
 		),
 
 
