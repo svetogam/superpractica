@@ -8,7 +8,28 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-class_name BasicAdditionProcesses
+extends Verification
 
-const VerifGridCountingAddition := preload("grid_counting/addition/addition.tscn")
-const VerifGridCountingSumPieces := preload("grid_counting/sum_pieces/sum_pieces.tscn")
+const START_DELAY := 0.8
+var pim: FieldPim
+var field: GridCounting
+
+
+func setup(p_pim: FieldPim) -> Verification:
+	pim = p_pim
+	field = pim.field
+	return self
+
+
+func _ready() -> void:
+	await Game.wait_for(START_DELAY)
+	GridCountingProcessSumPieces.new().run(field, _on_sum_complete)
+
+
+func _on_sum_complete(sum: NumberEffect) -> void:
+	goal_verifier.verify_equality(sum, [0], verify, reject)
+
+
+func _exit_tree() -> void:
+	if field != null:
+		field.math_effects.clear()

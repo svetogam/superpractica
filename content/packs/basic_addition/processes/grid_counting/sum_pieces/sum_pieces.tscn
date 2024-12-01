@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhuipey6ahq5b"]
+
+[ext_resource type="Script" path="res://content/packs/basic_addition/processes/grid_counting/sum_pieces/sum_pieces.gd" id="1_rbfel"]
+
+[node name="Verification" type="Node"]
+script = ExtResource("1_rbfel")

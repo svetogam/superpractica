@@ -65,6 +65,7 @@ const ObjectTenBlock := preload("objects/ten_block/ten_block.tscn")
 
 const ROWS: int = 10
 const COLUMNS: int = 10
+const NUMBER_CELLS: int = ROWS * COLUMNS
 const BOARD_SIZE := Vector2(350, 350)
 const BOARD_GAP := 3.0
 
@@ -240,6 +241,25 @@ func get_grid_cells_with_units() -> Array:
 #--------------------------------------
 # Analysis
 #--------------------------------------
+
+func get_object_value(object_type: GridCounting.Objects) -> int:
+	match object_type:
+		GridCounting.Objects.UNIT:
+			return 1
+		GridCounting.Objects.TWO_BLOCK:
+			return 2
+		GridCounting.Objects.THREE_BLOCK:
+			return 3
+		GridCounting.Objects.FOUR_BLOCK:
+			return 4
+		GridCounting.Objects.FIVE_BLOCK:
+			return 5
+		GridCounting.Objects.TEN_BLOCK:
+			return 10
+		_:
+			assert(false)
+			return -1
+
 
 func is_cell_occupied(cell: GridCell) -> bool:
 	assert(cell != null)

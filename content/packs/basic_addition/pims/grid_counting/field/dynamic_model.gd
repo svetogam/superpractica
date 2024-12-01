@@ -11,14 +11,16 @@
 class_name GridCountingDynamicModel
 extends RefCounted
 
+var field: Field
 var _cells: Dictionary #[int, [String, FieldObject]]
 var _rows: Dictionary #[int, [String, FieldObject]]
 
 
-func _init(field: GridCounting) -> void:
+func _init(p_field: GridCounting) -> void:
+	field = p_field
 	field.action_queue.action_done.connect(_on_action)
 
-	for cell_number in range(1, field.ROWS * field.COLUMNS + 1):
+	for cell_number in range(1, field.NUMBER_CELLS + 1):
 		_cells[cell_number] = {
 			"grid_cell": null,
 			"unit": null,
@@ -190,3 +192,37 @@ func get_blocks() -> Array:
 	blocks.append_array(get_five_blocks())
 	blocks.append_array(get_ten_blocks())
 	return blocks
+
+
+# Returns the list in order of increasing occupied cell numbers.
+func get_pieces() -> Array:
+	var pieces: Array = []
+	var piece: FieldObject
+	var cell_number: int = 1
+	for i in _cells:
+		if cell_number > _cells.size():
+			break
+		var row_number = field.static_model.get_row_of_cell(cell_number)
+		if get_unit(cell_number) != null:
+			piece = get_unit(cell_number)
+			cell_number += 1
+		elif get_two_block(cell_number) != null:
+			piece = get_two_block(cell_number)
+			cell_number += 2
+		elif get_three_block(cell_number) != null:
+			piece = get_three_block(cell_number)
+			cell_number += 3
+		elif get_four_block(cell_number) != null:
+			piece = get_four_block(cell_number)
+			cell_number += 4
+		elif get_five_block(cell_number) != null:
+			piece = get_five_block(cell_number)
+			cell_number += 5
+		elif get_ten_block(row_number) != null:
+			piece = get_ten_block(row_number)
+			cell_number += 10
+		else:
+			cell_number += 1
+			continue
+		pieces.append(piece)
+	return pieces
