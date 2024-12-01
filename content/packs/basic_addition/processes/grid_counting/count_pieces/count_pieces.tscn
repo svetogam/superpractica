@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://baxn0bb468xqt"]
+
+[ext_resource type="Script" path="res://content/packs/basic_addition/processes/grid_counting/count_pieces/count_pieces.gd" id="1_g1p7b"]
+
+[node name="Verification" type="Node"]
+script = ExtResource("1_g1p7b")

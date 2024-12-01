@@ -8,8 +8,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-class_name BasicAdditionProcesses
+class_name GridCountingProcessCountPieces
+extends CountInField
 
-const VerifGridCountingAddition := preload("grid_counting/addition/addition.tscn")
-const VerifGridCountingSumPieces := preload("grid_counting/sum_pieces/sum_pieces.tscn")
-const VerifGridCountingCountPieces := preload("grid_counting/count_pieces/count_pieces.tscn")
+var _zero_position: Vector2
+
+
+func _init(p_objects_to_count: Array, p_zero_position: Vector2) -> void:
+	super(p_objects_to_count)
+	_zero_position = p_zero_position
+
+
+func _count(object: FieldObject) -> NumberEffect:
+	return field.count_piece(object)
+
+
+func _count_zero() -> NumberEffect:
+	return field.math_effects.give_number(0, _zero_position)

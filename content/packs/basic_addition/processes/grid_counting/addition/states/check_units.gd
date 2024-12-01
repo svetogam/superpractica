@@ -22,7 +22,7 @@ func _enter(_last_state: String) -> void:
 
 	# Count units in order
 	var units = verification.field.dynamic_model.get_units()
-	(GridCountingProcessCountUnits.new(units, zero_position)
+	(GridCountingProcessCountPieces.new(units, zero_position)
 			.run(verification.field, _on_count_complete))
 
 

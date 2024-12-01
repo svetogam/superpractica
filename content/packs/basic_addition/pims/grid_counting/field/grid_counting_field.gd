@@ -371,8 +371,8 @@ func give_number_effect_by_grid_cell(cell: GridCell) -> NumberEffect:
 	return math_effects.give_number(cell.number, cell.global_position, "grow")
 
 
-func count_unit(unit: FieldObject) -> NumberEffect:
-	return effect_counter.count_next(unit.global_position)
+func count_piece(piece: FieldObject) -> NumberEffect:
+	return effect_counter.count_next(piece.global_position)
 
 
 func stage_unit_warning(unit: FieldObject) -> void:

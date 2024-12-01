@@ -8,20 +8,32 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-class_name GridCountingProcessCountUnits
-extends CountInField
+extends Verification
 
-var _zero_position: Vector2
-
-
-func _init(p_objects_to_count: Array, p_zero_position: Vector2) -> void:
-	super(p_objects_to_count)
-	_zero_position = p_zero_position
+const START_DELAY := 0.8
+var pim: FieldPim
+var field: GridCounting
 
 
-func _count(object: FieldObject) -> NumberEffect:
-	return field.count_unit(object)
+func setup(p_pim: FieldPim) -> Verification:
+	pim = p_pim
+	field = pim.field
+	return self
 
 
-func _count_zero() -> NumberEffect:
-	return field.math_effects.give_number(0, _zero_position)
+func _ready() -> void:
+	await Game.wait_for(START_DELAY)
+
+	var pieces = field.dynamic_model.get_pieces()
+	var zero_position = field.dynamic_model.get_grid_cell(1).position
+	(GridCountingProcessCountPieces.new(pieces, zero_position)
+			.run(field, _on_count_complete))
+
+
+func _on_count_complete(count: NumberEffect) -> void:
+	goal_verifier.verify_equality(count, [1], verify, reject)
+
+
+func _exit_tree() -> void:
+	if field != null:
+		field.effect_counter.reset_count()
