@@ -16,9 +16,27 @@ var _field_program: FieldProgram
 func _enter(_last_state: String) -> void:
 	program.field.set_tool(GridCounting.Tools.PIECE_DRAGGER)
 	creation_panel.exclude_all("GridCounting")
-	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
-	creation_panel.include("GridCounting", GridCounting.Objects.TWO_BLOCK)
-	creation_panel.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
+
+	if Game.current_level.program_vars.allow_unit:
+		creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
+	if Game.current_level.program_vars.allow_two_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.TWO_BLOCK)
+	if Game.current_level.program_vars.allow_three_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.THREE_BLOCK)
+	if Game.current_level.program_vars.allow_four_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.FOUR_BLOCK)
+	if Game.current_level.program_vars.allow_five_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.FIVE_BLOCK)
+	if Game.current_level.program_vars.allow_ten_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
+	#if Game.current_level.program_vars.allow_twenty_block:
+		#creation_panel.include("GridCounting", GridCounting.Objects.TWENTY_BLOCK)
+	#if Game.current_level.program_vars.allow_thirty_block:
+		#creation_panel.include("GridCounting", GridCounting.Objects.THIRTY_BLOCK)
+	#if Game.current_level.program_vars.allow_fourty_block:
+		#creation_panel.include("GridCounting", GridCounting.Objects.FOURTY_BLOCK)
+	#if Game.current_level.program_vars.allow_fifty_block:
+		#creation_panel.include("GridCounting", GridCounting.Objects.FIFTY_BLOCK)
 
 	_field_program = program.field.get_program("SoftCount")
 	_field_program.run()

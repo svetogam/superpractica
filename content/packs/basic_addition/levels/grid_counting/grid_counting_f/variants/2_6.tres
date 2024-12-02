@@ -6,3 +6,13 @@
 script = ExtResource("1_pjpo7")
 object_sum = 72
 object_count = 3
+allow_unit = true
+allow_two_block = true
+allow_three_block = true
+allow_four_block = true
+allow_five_block = true
+allow_ten_block = true
+allow_twenty_block = true
+allow_thirty_block = true
+allow_fourty_block = true
+allow_fifty_block = false
