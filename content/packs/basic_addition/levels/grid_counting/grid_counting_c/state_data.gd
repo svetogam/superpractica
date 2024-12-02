@@ -14,6 +14,7 @@ const DATA := {
 	"initial": "Play",
 	"transitions": {
 		"Play": {
+			"done": State.NULL_STATE,
 		},
 	}
 }

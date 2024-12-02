@@ -57,12 +57,10 @@ func _on_verification_requested() -> void:
 func _on_first_verification_completed() -> void:
 	(BasicAdditionProcesses.VerifGridCountingCountPieces.instantiate()
 			.setup(program.pim)
-			.run(verifier, complete_task))
+			.run(verifier, complete))
 
 
 func _exit(_next_state: String) -> void:
-	program.field.warning_effects.warned.disconnect(
-			goal_panel.verify_button.set.bind("disabled", true))
-	program.field.warning_effects.unwarned.disconnect(
-			goal_panel.verify_button.set.bind("disabled", false))
+	program.field.warning_effects.warned.disconnect(goal_panel.verify_button.set)
+	program.field.warning_effects.unwarned.disconnect(goal_panel.verify_button.set)
 	goal_panel.verification_requested.disconnect(_on_verification_requested)

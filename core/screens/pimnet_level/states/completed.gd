@@ -31,6 +31,7 @@ func _enter(_last_state: String) -> void:
 					MemoSlot.HighlightTypes.AFFIRMATION)
 		PimnetOverlay.GoalPanels.CONDITION_COMPLETION:
 			overlay.verification_panel.close()
+			overlay.goal_panel.verify_button.disabled = true
 
 	Game.set_current_level_completed()
 	overlay.show_completion_popup()
