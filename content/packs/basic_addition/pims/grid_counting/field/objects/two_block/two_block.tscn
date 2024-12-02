@@ -19,6 +19,7 @@ script = ExtResource("3_cpx12")
 script = ExtResource("4_vcr50")
 
 [node name="Sprite" parent="." index="1" instance=ExtResource("5_ql1pm")]
+unique_name_in_owner = true
 
 [node name="Collider" type="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_fnwyj")

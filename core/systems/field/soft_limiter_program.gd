@@ -15,6 +15,11 @@ var _object_rules := {} # {object_type: [Callable, ...], ...}
 var _object_outcomes := {} #{object_type: {"pass": Callable, "fail": Callable}, ...}
 
 
+# Virtual
+func _cache() -> void:
+	pass
+
+
 func _start() -> void:
 	field.updated.connect(_run_rules)
 
@@ -38,6 +43,8 @@ func disallow_object(object_type: int) -> void:
 
 
 func is_valid() -> bool:
+	_cache()
+
 	for object_type in _object_outcomes.keys():
 		for object in field.get_objects_by_type(object_type):
 			var conditions = _object_rules.get(object_type, [])
@@ -49,6 +56,8 @@ func is_valid() -> bool:
 
 
 func _run_rules() -> void:
+	_cache()
+
 	for object_type in _object_outcomes.keys():
 		for object in field.get_objects_by_type(object_type):
 			var conditions = _object_rules.get(object_type, [])

@@ -375,22 +375,13 @@ func count_piece(piece: FieldObject) -> NumberEffect:
 	return effect_counter.count_next(piece.global_position)
 
 
-func stage_unit_warning(unit: FieldObject) -> void:
-	unit.set_variant("warning")
-	warning_effects.stage_warning(unit.position)
+func stage_piece_warning(piece: FieldObject) -> void:
+	piece.set_variant("warning")
+	warning_effects.stage_warning(piece.position)
 
 
-func stage_ten_block_warning(ten_block: FieldObject) -> void:
-	ten_block.set_variant("warning")
-	warning_effects.stage_warning(ten_block.position)
-
-
-func remove_unit_warning(unit: FieldObject) -> void:
-	unit.set_variant("default")
-
-
-func remove_ten_block_warning(ten_block: FieldObject) -> void:
-	ten_block.set_variant("default")
+func remove_piece_warning(piece: FieldObject) -> void:
+	piece.set_variant("default")
 
 
 #endregion

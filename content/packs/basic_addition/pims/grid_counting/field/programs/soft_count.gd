@@ -10,45 +10,47 @@
 
 extends SoftLimiterProgram
 
+var start_number: int
+var valid_numbers: Array
+
+
+func _cache() -> void:
+	start_number = _get_start_number()
+	valid_numbers = field.get_contiguous_occupied_numbers_from(start_number + 1)
+
 
 func _ready() -> void:
 	# Build program rules
 	add_object_rule(GridCounting.Objects.UNIT, _is_unit_valid)
-	add_object_rule(GridCounting.Objects.TEN_BLOCK, _is_ten_block_valid)
+	add_object_rule(GridCounting.Objects.TWO_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.THREE_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.FOUR_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.FIVE_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.TEN_BLOCK, _is_block_valid)
 	set_object_rule_results(GridCounting.Objects.UNIT,
-			field.remove_unit_warning, field.stage_unit_warning)
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.TWO_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.THREE_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.FOUR_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.FIVE_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
 	set_object_rule_results(GridCounting.Objects.TEN_BLOCK,
-			field.remove_ten_block_warning, field.stage_ten_block_warning)
-
-
-func _is_ten_block_valid(ten_block: FieldObject) -> bool:
-	var start_number = _get_start_number()
-
-	# Ensure start number is aligned with the start of rows
-	if start_number % 10 != 0:
-		return false
-
-	# Ensure ten-blocks follow each other in an unbroken sequence
-	var first_row = field.static_model.get_row_of_cell(start_number + 1)
-	var correct_rows = field.get_contiguous_rows_with_ten_blocks_from(first_row)
-	return correct_rows.has(ten_block.row_number)
+			field.remove_piece_warning, field.stage_piece_warning)
 
 
 func _is_unit_valid(unit: FieldObject) -> bool:
-	var start_number = _get_start_number()
+	if unit.cell_number <= start_number:
+		return false
+	return valid_numbers.has(unit.cell_number)
 
-	# Ensure first unit follows either the start or a valid ten-block
-	if field.get_numbers_with_units().min() == unit.cell.number:
-		if unit.cell.number == start_number + 1:
-			return true
-		elif unit.cell.number != 1:
-			var row_number = field.static_model.get_row_of_cell(unit.cell.number - 1)
-			var ten_block = field.dynamic_model.get_ten_block(row_number)
-			return ten_block != null and _is_ten_block_valid(ten_block)
 
-	# Ensure units follow each other in an unbroken sequence
-	var valid_numbers = field.get_contiguous_occupied_numbers_from(start_number + 1)
-	return valid_numbers.has(unit.cell.number)
+func _is_block_valid(block: FieldObject) -> bool:
+	if block.first_number <= start_number:
+		return false
+	return valid_numbers.has(block.first_number)
 
 
 func _get_start_number() -> int:

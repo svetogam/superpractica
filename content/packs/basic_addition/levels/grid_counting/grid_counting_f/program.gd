@@ -20,7 +20,6 @@ var object_sum: int
 var object_count: int
 var pim: Pim
 var field: Field
-var field_program: FieldProgram
 
 
 func _setup_vars() -> void:
@@ -33,7 +32,6 @@ func _start() -> void:
 
 	pim = pimnet.get_pim()
 	field = pim.field
-	field_program = field.get_program("SoftCount")
 
 	goal_panel.add_condition(IntegerMemo.new(object_sum), object_sum_icon)
 	goal_panel.add_condition(IntegerMemo.new(object_count), object_count_icon)

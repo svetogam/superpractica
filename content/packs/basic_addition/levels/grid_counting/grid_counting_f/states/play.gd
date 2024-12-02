@@ -10,7 +10,7 @@
 
 extends LevelProgramState
 
-#var _field_program: FieldProgram
+var _field_program: FieldProgram
 
 
 func _enter(_last_state: String) -> void:
@@ -20,8 +20,8 @@ func _enter(_last_state: String) -> void:
 	creation_panel.include("GridCounting", GridCounting.Objects.TWO_BLOCK)
 	creation_panel.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
 
-	#_field_program = program.field.get_program("SoftCount")
-	#_field_program.run()
+	_field_program = program.field.get_program("SoftCount")
+	_field_program.run()
 
 	goal_panel.verification_requested.connect(_on_verification_requested)
 
