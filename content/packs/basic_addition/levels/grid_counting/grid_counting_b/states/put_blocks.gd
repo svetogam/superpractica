@@ -47,4 +47,3 @@ func _exit(_next_state: String) -> void:
 	program.output_program.output_decided.disconnect(_on_output_decided)
 	program.field.warning_effects.warned.disconnect(_set_output_warning)
 	program.field.warning_effects.unwarned.disconnect(_set_output_warning)
-	program.field_program.stop()

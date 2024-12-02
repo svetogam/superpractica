@@ -38,8 +38,17 @@ func add_object_rule(object_type: int, condition_func: Callable) -> void:
 	_object_rules[object_type].append(condition_func)
 
 
+func remove_object_rule(object_type: int, condition_func: Callable) -> void:
+	if _object_rules.has(object_type):
+		_object_rules[object_type].erase(condition_func)
+
+
 func disallow_object(object_type: int) -> void:
-	add_object_rule(object_type, func(_a: FieldObject): return false)
+	add_object_rule(object_type, _disallowed_object_rule)
+
+
+func reallow_object(object_type: int) -> void:
+	remove_object_rule(object_type, _disallowed_object_rule)
 
 
 func is_valid() -> bool:
@@ -82,3 +91,7 @@ func _end() -> void:
 	_object_outcomes.clear()
 	field.warning_effects.clear()
 	field.updated.disconnect(_run_rules)
+
+
+func _disallowed_object_rule(_object: FieldObject) -> bool:
+	return false

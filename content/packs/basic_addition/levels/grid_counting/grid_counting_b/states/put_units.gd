@@ -15,7 +15,7 @@ func _enter(_last_state: String) -> void:
 	level.reverter.history.clear()
 	program.set_custom_reset(_reset)
 
-	program.field_program.run()
+	program.field_program.reallow_object(GridCounting.Objects.UNIT)
 
 	program.output_program.output_decided.connect(_on_output_decided)
 	program.field.warning_effects.warned.connect(_set_output_warning.bind(true))
