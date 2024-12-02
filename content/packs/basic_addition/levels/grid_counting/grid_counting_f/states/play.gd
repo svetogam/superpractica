@@ -23,6 +23,10 @@ func _enter(_last_state: String) -> void:
 	_field_program = program.field.get_program("SoftCount")
 	_field_program.run()
 
+	program.field.warning_effects.warned.connect(
+			goal_panel.verify_button.set.bind("disabled", true))
+	program.field.warning_effects.unwarned.connect(
+			goal_panel.verify_button.set.bind("disabled", false))
 	goal_panel.verification_requested.connect(_on_verification_requested)
 
 
@@ -39,4 +43,8 @@ func _on_first_verification_completed() -> void:
 
 
 func _exit(_next_state: String) -> void:
+	program.field.warning_effects.warned.disconnect(
+			goal_panel.verify_button.set.bind("disabled", true))
+	program.field.warning_effects.unwarned.disconnect(
+			goal_panel.verify_button.set.bind("disabled", false))
 	goal_panel.verification_requested.disconnect(_on_verification_requested)
