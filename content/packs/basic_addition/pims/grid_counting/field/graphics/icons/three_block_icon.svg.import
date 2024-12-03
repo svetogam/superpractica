@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkor8qo5sy7xa"
-path="res://.godot/imported/condition_sum_icon.svg-055d182c61c2c73e24aea9ab12e45d0b.ctex"
+uid="uid://bfpimcpjfvyas"
+path="res://.godot/imported/three_block_icon.svg-4ad5c4e3201787c678d88033c401034c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/condition_sum_icon.svg"
-dest_files=["res://.godot/imported/condition_sum_icon.svg-055d182c61c2c73e24aea9ab12e45d0b.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/icons/three_block_icon.svg"
+dest_files=["res://.godot/imported/three_block_icon.svg-4ad5c4e3201787c678d88033c401034c.ctex"]
 
 [params]
 

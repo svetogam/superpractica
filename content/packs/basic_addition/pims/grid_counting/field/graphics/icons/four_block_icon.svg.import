@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1uuhvgu1mymw"
-path="res://.godot/imported/condition_start_icon.svg-3d101087e514994dd2e5f873c5d71879.ctex"
+uid="uid://b5ib24uvwklvr"
+path="res://.godot/imported/four_block_icon.svg-3ecc9da1c19ac15d61e859acaaa58968.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/condition_start_icon.svg"
-dest_files=["res://.godot/imported/condition_start_icon.svg-3d101087e514994dd2e5f873c5d71879.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/icons/four_block_icon.svg"
+dest_files=["res://.godot/imported/four_block_icon.svg-3ecc9da1c19ac15d61e859acaaa58968.ctex"]
 
 [params]
 

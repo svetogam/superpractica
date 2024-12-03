@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdksjnlvih5g3"
-path="res://.godot/imported/five_block_icon.svg-d43f2ef9ade4500e11e736a0a0e97ae3.ctex"
+path="res://.godot/imported/five_block_icon.svg-f03fcb09c37d2f4d0a61244ae5566c13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/five_block_icon.svg"
-dest_files=["res://.godot/imported/five_block_icon.svg-d43f2ef9ade4500e11e736a0a0e97ae3.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/icons/five_block_icon.svg"
+dest_files=["res://.godot/imported/five_block_icon.svg-f03fcb09c37d2f4d0a61244ae5566c13.ctex"]
 
 [params]
 

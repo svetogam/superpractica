@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caqvd811whwr2"
-path="res://.godot/imported/condition_objects_icon.svg-c2107014367986525e361dd6c5ef2863.ctex"
+uid="uid://g2vsike58ss"
+path="res://.godot/imported/ten_block_icon.svg-91ec24bd6560764cca8ed275a11da061.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/condition_objects_icon.svg"
-dest_files=["res://.godot/imported/condition_objects_icon.svg-c2107014367986525e361dd6c5ef2863.ctex"]
+source_file="res://content/packs/basic_addition/pims/grid_counting/field/graphics/icons/ten_block_icon.svg"
+dest_files=["res://.godot/imported/ten_block_icon.svg-91ec24bd6560764cca8ed275a11da061.ctex"]
 
 [params]
 
@@ -32,6 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=2.0
+svg/scale=4.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

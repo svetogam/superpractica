@@ -25,7 +25,7 @@ func _init() -> void:
 			# Drag Sprite
 			preload("objects/unit/sprite.tscn"),
 			# Icon
-			preload("graphics/unit_icon.svg"),
+			preload("graphics/icons/unit_icon.svg"),
 		),
 		GridCounting.Objects.TWO_BLOCK: FieldObjectData.new(
 			# Field Type
@@ -37,7 +37,7 @@ func _init() -> void:
 			# Drag Sprite
 			preload("objects/two_block/sprite.tscn"),
 			# Icon
-			preload("graphics/two_block_icon.svg"),
+			preload("graphics/icons/two_block_icon.svg"),
 		),
 		GridCounting.Objects.THREE_BLOCK: FieldObjectData.new(
 			# Field Type
@@ -49,7 +49,7 @@ func _init() -> void:
 			# Drag Sprite
 			preload("objects/three_block/sprite.tscn"),
 			# Icon
-			preload("graphics/three_block_icon.svg"),
+			preload("graphics/icons/three_block_icon.svg"),
 		),
 		GridCounting.Objects.FOUR_BLOCK: FieldObjectData.new(
 			# Field Type
@@ -61,7 +61,7 @@ func _init() -> void:
 			# Drag Sprite
 			preload("objects/four_block/sprite.tscn"),
 			# Icon
-			preload("graphics/four_block_icon.svg"),
+			preload("graphics/icons/four_block_icon.svg"),
 		),
 		GridCounting.Objects.FIVE_BLOCK: FieldObjectData.new(
 			# Field Type
@@ -73,7 +73,7 @@ func _init() -> void:
 			# Drag Sprite
 			preload("objects/five_block/sprite.tscn"),
 			# Icon
-			preload("graphics/five_block_icon.svg"),
+			preload("graphics/icons/five_block_icon.svg"),
 		),
 		GridCounting.Objects.TEN_BLOCK: FieldObjectData.new(
 			# Field Type
@@ -85,7 +85,7 @@ func _init() -> void:
 			# Drag Sprite
 			preload("objects/ten_block/sprite.tscn"),
 			# Icon
-			preload("graphics/ten_block_icon.svg"),
+			preload("graphics/icons/ten_block_icon.svg"),
 		),
 		GridCounting.Objects.GRID_CELL: FieldObjectData.new(
 			# Field Type
