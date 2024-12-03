@@ -29,14 +29,14 @@ func _enter(_last_state: String) -> void:
 		creation_panel.include("GridCounting", GridCounting.Objects.FIVE_BLOCK)
 	if Game.current_level.program_vars.allow_ten_block:
 		creation_panel.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
-	#if Game.current_level.program_vars.allow_twenty_block:
-		#creation_panel.include("GridCounting", GridCounting.Objects.TWENTY_BLOCK)
-	#if Game.current_level.program_vars.allow_thirty_block:
-		#creation_panel.include("GridCounting", GridCounting.Objects.THIRTY_BLOCK)
-	#if Game.current_level.program_vars.allow_fourty_block:
-		#creation_panel.include("GridCounting", GridCounting.Objects.FOURTY_BLOCK)
-	#if Game.current_level.program_vars.allow_fifty_block:
-		#creation_panel.include("GridCounting", GridCounting.Objects.FIFTY_BLOCK)
+	if Game.current_level.program_vars.allow_twenty_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.TWENTY_BLOCK)
+	if Game.current_level.program_vars.allow_thirty_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.THIRTY_BLOCK)
+	if Game.current_level.program_vars.allow_forty_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.FORTY_BLOCK)
+	if Game.current_level.program_vars.allow_fifty_block:
+		creation_panel.include("GridCounting", GridCounting.Objects.FIFTY_BLOCK)
 
 	_field_program = program.field.get_program("SoftCount")
 	_field_program.run()

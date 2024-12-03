@@ -6,11 +6,11 @@
 offset_right = 248.0
 offset_bottom = 164.0
 mouse_filter = 2
-columns = 3
+columns = 5
 script = ExtResource("1_3da5r")
 
 [node name="CreateButton1" type="Button" parent="." groups=["disable_during_verification"]]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 action_mode = 0
 keep_pressed_outside = true
@@ -21,7 +21,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CreateButton2" type="Button" parent="." groups=["disable_during_verification"]]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 action_mode = 0
 keep_pressed_outside = true
@@ -32,7 +32,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CreateButton3" type="Button" parent="." groups=["disable_during_verification"]]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 action_mode = 0
 keep_pressed_outside = true
@@ -43,7 +43,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CreateButton4" type="Button" parent="." groups=["disable_during_verification"]]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 action_mode = 0
 keep_pressed_outside = true
@@ -54,7 +54,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CreateButton5" type="Button" parent="." groups=["disable_during_verification"]]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 action_mode = 0
 keep_pressed_outside = true
@@ -65,7 +65,106 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="CreateButton6" type="Button" parent="." groups=["disable_during_verification"]]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton7" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton8" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton9" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton10" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton11" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton12" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton13" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton14" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
+text = "Object"
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="CreateButton15" type="Button" parent="." groups=["disable_during_verification"]]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 action_mode = 0
 keep_pressed_outside = true

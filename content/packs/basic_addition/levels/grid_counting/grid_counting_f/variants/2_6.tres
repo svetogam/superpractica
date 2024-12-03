@@ -14,5 +14,5 @@ allow_five_block = true
 allow_ten_block = true
 allow_twenty_block = true
 allow_thirty_block = true
-allow_fourty_block = true
+allow_forty_block = true
 allow_fifty_block = false

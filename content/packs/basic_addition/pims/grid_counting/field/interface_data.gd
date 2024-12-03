@@ -87,6 +87,54 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/ten_block_icon.svg"),
 		),
+		GridCounting.Objects.TWENTY_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.TWENTY_BLOCK,
+			# Name Text
+			"Twenty Block",
+			# Drag Sprite
+			preload("objects/twenty_block/sprite.tscn"),
+			# Icon
+			preload("graphics/icons/twenty_block_icon.svg"),
+		),
+		GridCounting.Objects.THIRTY_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.THIRTY_BLOCK,
+			# Name Text
+			"Thirty Block",
+			# Drag Sprite
+			preload("objects/thirty_block/sprite.tscn"),
+			# Icon
+			preload("graphics/icons/thirty_block_icon.svg"),
+		),
+		GridCounting.Objects.FORTY_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.FORTY_BLOCK,
+			# Name Text
+			"Forty Block",
+			# Drag Sprite
+			preload("objects/forty_block/sprite.tscn"),
+			# Icon
+			preload("graphics/icons/forty_block_icon.svg"),
+		),
+		GridCounting.Objects.FIFTY_BLOCK: FieldObjectData.new(
+			# Field Type
+			field_type,
+			# Object Type
+			GridCounting.Objects.FIFTY_BLOCK,
+			# Name Text
+			"Fifty Block",
+			# Drag Sprite
+			preload("objects/fifty_block/sprite.tscn"),
+			# Icon
+			preload("graphics/icons/fifty_block_icon.svg"),
+		),
 		GridCounting.Objects.GRID_CELL: FieldObjectData.new(
 			# Field Type
 			field_type,
@@ -124,6 +172,10 @@ func _init() -> void:
 				GridCounting.Objects.FOUR_BLOCK: ["delete"],
 				GridCounting.Objects.FIVE_BLOCK: ["delete"],
 				GridCounting.Objects.TEN_BLOCK: ["delete"],
+				GridCounting.Objects.TWENTY_BLOCK: ["delete"],
+				GridCounting.Objects.THIRTY_BLOCK: ["delete"],
+				GridCounting.Objects.FORTY_BLOCK: ["delete"],
+				GridCounting.Objects.FIFTY_BLOCK: ["delete"],
 			},
 		},
 		GridCounting.Tools.PIECE_DRAGGER: {
@@ -136,6 +188,10 @@ func _init() -> void:
 				GridCounting.Objects.FOUR_BLOCK: ["drag"],
 				GridCounting.Objects.FIVE_BLOCK: ["drag"],
 				GridCounting.Objects.TEN_BLOCK: ["drag"],
+				GridCounting.Objects.TWENTY_BLOCK: ["drag"],
+				GridCounting.Objects.THIRTY_BLOCK: ["drag"],
+				GridCounting.Objects.FORTY_BLOCK: ["drag"],
+				GridCounting.Objects.FIFTY_BLOCK: ["drag"],
 			},
 		},
 	}

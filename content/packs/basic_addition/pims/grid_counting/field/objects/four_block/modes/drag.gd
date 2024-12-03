@@ -16,7 +16,7 @@ func _pressed(_point: Vector2) -> void:
 
 
 func _dropped(_external: bool, point: Vector2) -> void:
-	var dest_cells = field.get_2_grid_cells_at_point(point)
+	var dest_cells = field.get_h_adjacent_grid_cells_at_point(point)
 	GridCountingActionMoveFourBlock.new(
 			field, object.first_number, dest_cells[0].number - 1).push()
 

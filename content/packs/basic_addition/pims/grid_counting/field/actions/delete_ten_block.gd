@@ -24,7 +24,7 @@ func _init(p_field: Field, p_row_number: int) -> void:
 
 
 func is_valid() -> bool:
-	return row_number >= 1 and row_number <= 100
+	return row_number >= 1 and row_number <= 10
 
 
 func is_possible() -> bool:

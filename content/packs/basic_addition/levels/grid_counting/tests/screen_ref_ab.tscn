@@ -39,13 +39,13 @@ stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="UnitA" type="Marker2D" parent="."]
-position = Vector2(149, 412)
+position = Vector2(150, 390)
 
 [node name="UnitB" type="Marker2D" parent="."]
-position = Vector2(110, 413)
+position = Vector2(117, 388)
 
 [node name="TenBlock" type="Marker2D" parent="."]
-position = Vector2(192, 417)
+position = Vector2(178, 389)
 
 [node name="OutputSlot" type="Marker2D" parent="."]
 position = Vector2(426, 91)

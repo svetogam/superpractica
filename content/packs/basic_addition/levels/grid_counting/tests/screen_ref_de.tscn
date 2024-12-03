@@ -15,7 +15,7 @@ texture = ExtResource("1_gs682")
 stretch_mode = 5
 
 [node name="Unit" type="Marker2D" parent="."]
-position = Vector2(152, 421)
+position = Vector2(149, 403)
 
 [node name="OutputSlot" type="Marker2D" parent="."]
 position = Vector2(415, 91)

@@ -27,6 +27,10 @@ func _ready() -> void:
 	add_object_rule(GridCounting.Objects.FOUR_BLOCK, _is_block_valid)
 	add_object_rule(GridCounting.Objects.FIVE_BLOCK, _is_block_valid)
 	add_object_rule(GridCounting.Objects.TEN_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.TWENTY_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.THIRTY_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.FORTY_BLOCK, _is_block_valid)
+	add_object_rule(GridCounting.Objects.FIFTY_BLOCK, _is_block_valid)
 	set_object_rule_results(GridCounting.Objects.UNIT,
 			field.remove_piece_warning, field.stage_piece_warning)
 	set_object_rule_results(GridCounting.Objects.TWO_BLOCK,
@@ -38,6 +42,14 @@ func _ready() -> void:
 	set_object_rule_results(GridCounting.Objects.FIVE_BLOCK,
 			field.remove_piece_warning, field.stage_piece_warning)
 	set_object_rule_results(GridCounting.Objects.TEN_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.TWENTY_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.THIRTY_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.FORTY_BLOCK,
+			field.remove_piece_warning, field.stage_piece_warning)
+	set_object_rule_results(GridCounting.Objects.FIFTY_BLOCK,
 			field.remove_piece_warning, field.stage_piece_warning)
 
 

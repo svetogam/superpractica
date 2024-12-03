@@ -15,7 +15,7 @@ texture = ExtResource("3_kyesh")
 stretch_mode = 5
 
 [node name="Unit" type="Marker2D" parent="."]
-position = Vector2(455, 421)
+position = Vector2(455, 405)
 
 [node name="OutputSlot" type="Marker2D" parent="."]
 position = Vector2(426, 91)

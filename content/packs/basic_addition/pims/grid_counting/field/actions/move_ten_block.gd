@@ -38,7 +38,7 @@ func is_possible() -> bool:
 	if field.dynamic_model.get_ten_block(from_row_number) == null:
 		return false
 
-	var row_cells: Array = field.get_grid_cells_by_row(to_row_number)
+	var row_cells: Array = field.get_grid_cells_by_rows([to_row_number])
 	return not row_cells.any(field.is_cell_occupied)
 
 

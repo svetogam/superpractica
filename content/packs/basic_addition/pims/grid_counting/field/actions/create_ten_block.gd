@@ -29,7 +29,7 @@ func is_valid() -> bool:
 
 
 func is_possible() -> bool:
-	var row_cells: Array = field.get_grid_cells_by_row(row_number)
+	var row_cells: Array = field.get_grid_cells_by_rows([row_number])
 	return not row_cells.any(field.is_cell_occupied)
 
 

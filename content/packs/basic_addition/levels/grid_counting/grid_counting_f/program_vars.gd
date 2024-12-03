@@ -21,5 +21,5 @@ extends LevelProgramVars
 @export var allow_ten_block := false
 @export var allow_twenty_block := false
 @export var allow_thirty_block := false
-@export var allow_fourty_block := false
+@export var allow_forty_block := false
 @export var allow_fifty_block := false
