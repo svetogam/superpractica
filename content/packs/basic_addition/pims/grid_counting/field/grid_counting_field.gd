@@ -396,54 +396,6 @@ func is_cell_marked(cell: GridCell) -> bool:
 	return cell.marked
 
 
-# Unused
-func get_numbers_with_units() -> Array:
-	var numbers: Array = []
-	var cells := get_grid_cells_with_units()
-	for cell in cells:
-		numbers.append(cell.number)
-	numbers.sort()
-	return numbers
-
-
-# Unused
-func does_number_have_unit(number: int) -> bool:
-	return get_numbers_with_units().has(number)
-
-
-# Unused
-func does_row_have_ten_block(row_number: int) -> bool:
-	for ten_block in dynamic_model.get_ten_blocks():
-		if ten_block.row_number == row_number:
-			return true
-	return false
-
-
-# Unused
-func get_contiguous_numbers_with_units_from(first_number: int) -> Array:
-	var number_sequence: Array = []
-	var number := first_number
-	while number < 200:
-		if does_number_have_unit(number):
-			number_sequence.append(number)
-			number += 1
-		else:
-			return number_sequence
-	return number_sequence
-
-
-# Unused
-func get_contiguous_rows_with_ten_blocks_from(first_row: int) -> Array:
-	var row_sequence: Array = []
-	for row_number in range(first_row, 11):
-		if does_row_have_ten_block(row_number):
-			row_sequence.append(row_number)
-			row_number += 1
-		else:
-			break
-	return row_sequence
-
-
 func get_contiguous_occupied_numbers_from(first_number: int) -> Array:
 	var number_sequence: Array = []
 	var number := first_number
