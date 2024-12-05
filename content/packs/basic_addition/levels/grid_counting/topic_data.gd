@@ -26,6 +26,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_d/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_d/program.tscn"),
 			# Program Vars
@@ -42,6 +44,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_e/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_e/program.tscn"),
 			# Program Vars
@@ -60,6 +64,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_a/variants/1_1_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_a/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_a/program.tscn"),
 			# Program Vars
@@ -76,6 +82,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_a/variants/1_2_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_a/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_a/program.tscn"),
 			# Program Vars
@@ -92,6 +100,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_b/variants/1_3_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
@@ -108,6 +118,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_b/variants/1_4_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
@@ -124,6 +136,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_b/variants/1_5_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
@@ -140,6 +154,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_b/variants/1_6_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
@@ -156,6 +172,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_b/variants/1_random_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
@@ -174,6 +192,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.CONDITION_COMPLETION,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -189,6 +209,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.CONDITION_COMPLETION,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -204,6 +226,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.CONDITION_COMPLETION,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -219,6 +243,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.CONDITION_COMPLETION,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -234,6 +260,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.CONDITION_COMPLETION,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -249,6 +277,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.CONDITION_COMPLETION,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -264,6 +294,8 @@ static var topic = TopicResource.new(
 			null,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.CONDITION_COMPLETION,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -281,6 +313,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_c/variants/3_1_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
@@ -297,6 +331,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_c/variants/3_2_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
@@ -312,6 +348,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_c/variants/3_3_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
@@ -327,6 +365,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_c/variants/3_4_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
@@ -342,6 +382,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_c/variants/3_5_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
@@ -357,6 +399,8 @@ static var topic = TopicResource.new(
 			preload("grid_counting_c/variants/3_6_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
+			# Goal Type
+			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars

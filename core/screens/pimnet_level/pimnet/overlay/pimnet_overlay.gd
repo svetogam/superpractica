@@ -23,12 +23,6 @@ enum PimnetPanels {
 	GOAL,
 	PLAN,
 }
-enum GoalPanels {
-	NONE = 0,
-	HINTED_MEMO_SLOT,
-	SOLUTION_MEMO_SLOTS,
-	CONDITION_COMPLETION,
-}
 
 const PANEL_TYPE_LIST := [
 	PimnetPanels.INVENTORY,
@@ -41,7 +35,7 @@ const PANEL_TYPE_LIST := [
 
 var maximum_active_panels: int:
 	get = _get_maximum_active_panels
-var goal_type: GoalPanels = GoalPanels.NONE:
+var goal_type: LevelResource.GoalTypes:
 	set = _set_goal_type,
 	get = _get_goal_type
 var goal_panel: Control:
@@ -207,45 +201,45 @@ func _get_button(panel_type: PimnetPanels) -> Button:
 			return null
 
 
-func _set_goal_type(p_goal_type: GoalPanels) -> void:
+func _set_goal_type(p_goal_type: LevelResource.GoalTypes) -> void:
 	if p_goal_type == goal_type:
 		return
-	elif goal_type != GoalPanels.NONE:
+	elif goal_type != LevelResource.GoalTypes.NONE:
 		deactivate_panel(PimnetPanels.GOAL)
 		%SolutionColumn.hide()
 
 	goal_type = p_goal_type
 	match goal_type:
-		GoalPanels.NONE:
+		LevelResource.GoalTypes.NONE:
 			%HintedMemoSlotPanel.hide()
 			%SolutionMemoSlotsPanel.hide()
 			%ConditionCompletionPanel.hide()
-		GoalPanels.HINTED_MEMO_SLOT:
+		LevelResource.GoalTypes.HINTED_MEMO_SLOT:
 			%HintedMemoSlotPanel.show()
-		GoalPanels.SOLUTION_MEMO_SLOTS:
+		LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 			%SolutionMemoSlotsPanel.show()
 			%SolutionColumn.show()
-		GoalPanels.CONDITION_COMPLETION:
+		LevelResource.GoalTypes.CONDITION_COMPLETION:
 			%ConditionCompletionPanel.show()
 			%SolutionColumn.show()
 
 
-func _get_goal_type() -> GoalPanels:
+func _get_goal_type() -> LevelResource.GoalTypes:
 	if %GoalButton != null and not %GoalButton.visible:
-		return GoalPanels.NONE
+		return LevelResource.GoalTypes.NONE
 	else:
 		return goal_type
 
 
 func _get_goal_panel() -> Control:
 	match goal_type:
-		GoalPanels.NONE:
+		LevelResource.GoalTypes.NONE:
 			return null
-		GoalPanels.HINTED_MEMO_SLOT:
+		LevelResource.GoalTypes.HINTED_MEMO_SLOT:
 			return %HintedMemoSlotPanel
-		GoalPanels.SOLUTION_MEMO_SLOTS:
+		LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 			return %SolutionMemoSlotsPanel
-		GoalPanels.CONDITION_COMPLETION:
+		LevelResource.GoalTypes.CONDITION_COMPLETION:
 			return %ConditionCompletionPanel
 		_:
 			assert(false)

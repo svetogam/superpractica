@@ -19,6 +19,10 @@ var setup_resource: PimnetSetupResource:
 	get:
 		assert(Game.current_level != null)
 		return Game.current_level.pimnet_setup
+var goal_type: LevelResource.GoalTypes:
+	get:
+		assert(Game.current_level != null)
+		return Game.current_level.goal_type
 var dragged_object: FieldObject
 var _pims_left_to_right: Array = []
 var _dragging := false
@@ -59,9 +63,9 @@ func _ready() -> void:
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.TRANSLATION,
 				setup_resource.translation_enable,
 				setup_resource.translation_start_active)
-		overlay.goal_type = setup_resource.goal_type
+		overlay.goal_type = goal_type
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.GOAL,
-				overlay.goal_type != PimnetOverlay.GoalPanels.NONE,
+				overlay.goal_type != LevelResource.GoalTypes.NONE,
 				setup_resource.goal_start_active)
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.PLAN,
 				setup_resource.plan_enable,

@@ -20,12 +20,12 @@ var overlay: PimnetOverlay:
 
 func _enter(last_state: String) -> void:
 	if last_state == "Verifying":
-		match overlay.goal_type:
-			PimnetOverlay.GoalPanels.SOLUTION_MEMO_SLOTS:
+		match Game.current_level.goal_type:
+			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 				overlay.verification_panel.close()
 				overlay.goal_panel.solution_slot.set_highlight(
 						MemoSlot.HighlightTypes.WARNING)
-			PimnetOverlay.GoalPanels.CONDITION_COMPLETION:
+			LevelResource.GoalTypes.CONDITION_COMPLETION:
 				overlay.verification_panel.close()
 
 	if level.program != null:
