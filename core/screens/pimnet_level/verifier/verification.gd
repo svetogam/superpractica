@@ -19,6 +19,7 @@ signal completed
 signal verified
 signal rejected
 
+var row_numbers: Array
 var verifier: Verifier:
 	get:
 		if verifier == null:
@@ -44,13 +45,20 @@ func _init() -> void:
 
 
 func _enter_tree() -> void:
+	for filled_number in verification_panel.filled_row_numbers:
+		row_numbers.erase(filled_number)
 	CSConnector.with(self).register(Game.AGENT_VERIFICATION)
 
+	assert(row_numbers.size() > 0)
 
-func run(target: Node, verified_callback: Callable, rejected_callback := Callable()
+
+func run(target: Node, p_row_numbers: Array,
+		verified_callback: Callable, rejected_callback := Callable()
 ) -> Verification:
 	assert(not is_inside_tree())
+	assert(p_row_numbers.size() > 0)
 
+	row_numbers = p_row_numbers
 	verified.connect(verified_callback)
 	if not rejected_callback.is_null():
 		rejected.connect(rejected_callback)

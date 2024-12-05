@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 func _on_sum_complete(sum: NumberEffect) -> void:
-	goal_verifier.verify_equality(sum, [0], verify, reject)
+	goal_verifier.verify_equality(sum, row_numbers, verify, reject)
 
 
 func _exit_tree() -> void:

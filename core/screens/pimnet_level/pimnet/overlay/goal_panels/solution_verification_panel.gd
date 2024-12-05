@@ -18,8 +18,6 @@ var rejected_row_numbers: Array = []
 var filled_row_numbers: Array:
 	get:
 		return verified_row_numbers + rejected_row_numbers
-var empty_row_numbers: Array:
-	get = get_empty_row_numbers
 var correct_memos: Array
 @onready var left_slots: Array = [%LeftSlot1, %LeftSlot2]
 @onready var right_slots: Array = [%RightSlot1, %RightSlot2]
@@ -41,6 +39,7 @@ func open() -> void:
 
 
 func close() -> void:
+	clear_slots()
 	hide()
 
 
@@ -67,11 +66,3 @@ func clear_slots() -> void:
 		slot.set_highlight(MemoSlot.HighlightTypes.REGULAR)
 	verified_row_numbers.clear()
 	rejected_row_numbers.clear()
-
-
-func get_empty_row_numbers() -> Array:
-	var array: Array = []
-	for row_number in row_numbers:
-		if not filled_row_numbers.has(row_number):
-			array.append(row_number)
-	return array

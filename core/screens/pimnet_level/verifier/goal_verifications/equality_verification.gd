@@ -13,19 +13,16 @@ extends Verification
 const PRE_CHECK_DELAY := 0.1
 var _number_effect: NumberEffect
 var _current_row_number: int = -1
-var _row_numbers: Array
 var _current_index: int = -1
 
 
-func _init(p_number_effect: NumberEffect, p_row_numbers: Array) -> void:
+func _init(p_number_effect: NumberEffect) -> void:
 	super()
 	_number_effect = p_number_effect
-	_row_numbers = p_row_numbers
 
 
 func _ready() -> void:
 	assert(_number_effect != null)
-	assert(_row_numbers.size() > 0)
 
 	_current_row_number = _get_next_row_number()
 	_check_next_row()
@@ -44,7 +41,7 @@ func _on_move_completed() -> void:
 		verification_panel.affirm_in_row(
 				IntegerMemo.new(_number_effect.number), _current_row_number)
 	# Reject only if checking in exactly one row
-	elif _row_numbers.size() == 1:
+	elif row_numbers.size() == 1:
 		verification_panel.reject_in_row(
 				IntegerMemo.new(_number_effect.number), _current_row_number)
 
@@ -72,7 +69,7 @@ func _is_equal() -> bool:
 
 func _get_next_row_number() -> int:
 	_current_index += 1
-	if _current_index < _row_numbers.size():
-		return _row_numbers[_current_index]
+	if _current_index < row_numbers.size():
+		return row_numbers[_current_index]
 	else:
 		return -1

@@ -51,13 +51,13 @@ func _enter(_last_state: String) -> void:
 func _on_verification_requested() -> void:
 	(BasicAdditionProcesses.VerifGridCountingSumPieces.instantiate()
 			.setup(program.pim)
-			.run(verifier, _on_first_verification_completed))
+			.run(verifier, [0], _on_first_verification_completed))
 
 
 func _on_first_verification_completed() -> void:
 	(BasicAdditionProcesses.VerifGridCountingCountPieces.instantiate()
 			.setup(program.pim)
-			.run(verifier, complete))
+			.run(verifier, [1], complete))
 
 
 func _exit(_next_state: String) -> void:

@@ -41,7 +41,7 @@ func _set_output_warning(warned: bool) -> void:
 func _on_goal_slot_filled() -> void:
 	(BasicAdditionProcesses.VerifGridCountingAddition.instantiate()
 			.setup(program.pim)
-			.run(verifier, complete))
+			.run(verifier, [0, 1], complete))
 
 
 func _exit(_next_state: String) -> void:

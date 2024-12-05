@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func _on_count_complete(count: NumberEffect) -> void:
-	goal_verifier.verify_equality(count, [1], verify, reject)
+	goal_verifier.verify_equality(count, row_numbers, verify, reject)
 
 
 func _exit_tree() -> void:

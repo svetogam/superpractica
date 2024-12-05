@@ -27,8 +27,7 @@ func _enter(_last_state: String) -> void:
 
 
 func _on_count_complete(count: NumberEffect) -> void:
-	goal_verifier.verify_equality(
-			count, verification_panel.empty_row_numbers, verify, reject)
+	goal_verifier.verify_equality(count, verification.row_numbers, verify, reject)
 
 
 func _exit(_next_state: String) -> void:

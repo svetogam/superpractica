@@ -35,8 +35,8 @@ func verify_equality(number_effect: NumberEffect, row_numbers: Array,
 		verified_callback: Callable, rejected_callback := Callable()
 ) -> Verification:
 	number_effect.reparent_from_sub_to_root_group(goal_effects)
-	return (EqualityVerification.new(number_effect, row_numbers)
-			.run(self, verified_callback, rejected_callback))
+	return (EqualityVerification.new(number_effect)
+			.run(self, row_numbers, verified_callback, rejected_callback))
 
 
 func animate_equality_setup(number_effect: NumberEffect, row_number: int,
