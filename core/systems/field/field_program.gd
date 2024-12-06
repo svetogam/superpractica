@@ -18,8 +18,7 @@ var field: Field:
 var effects: NavigEffectGroup:
 	get:
 		if effects == null:
-			effects = NavigEffectGroup.new(field.effect_layer)
-			assert(effects != null)
+			effects = NavigEffectGroup.new(field.effect_layer, field.effect_offset_source)
 		return effects
 
 

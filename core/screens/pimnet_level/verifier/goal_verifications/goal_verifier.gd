@@ -34,7 +34,6 @@ func _enter_tree() -> void:
 func verify_equality(number_effect: NumberEffect, row_numbers: Array,
 		verified_callback: Callable, rejected_callback := Callable()
 ) -> Verification:
-	number_effect.reparent_from_sub_to_root_group(goal_effects)
 	return (EqualityVerification.new(number_effect)
 			.run(self, row_numbers, verified_callback, rejected_callback))
 

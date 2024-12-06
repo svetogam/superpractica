@@ -34,3 +34,8 @@ func _enter(_last_state: String) -> void:
 
 func _on_verify() -> void:
 	_change_state("CheckUnits")
+
+
+func _exit(_next_state: String) -> void:
+	if verification.field != null:
+		verification.field.math_effects.clear()

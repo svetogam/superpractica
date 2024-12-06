@@ -25,27 +25,32 @@ enum UpdateTypes {
 
 var action_queue := FieldActionQueue.new(self)
 var dragged_object: FieldObject
+var effect_layer: CanvasLayer:
+	get:
+		if effect_layer == null:
+			effect_layer = %EffectLayer
+		return effect_layer
+var effect_offset_source: CanvasItem = null
 var warning_effects: WarningEffectGroup:
 	get:
 		if warning_effects == null:
-			warning_effects = WarningEffectGroup.new(effect_layer)
+			warning_effects = WarningEffectGroup.new(effect_layer, effect_offset_source)
 		return warning_effects
 var math_effects: MathEffectGroup:
 	get:
 		if math_effects == null:
-			math_effects = MathEffectGroup.new(effect_layer)
+			math_effects = MathEffectGroup.new(effect_layer, effect_offset_source)
 		return math_effects
 var effect_counter: EffectCounter:
 	get:
 		if effect_counter == null:
-			effect_counter = EffectCounter.new(effect_layer)
+			effect_counter = EffectCounter.new(effect_layer, effect_offset_source)
 		return effect_counter
 var field_type: String:
 	get = _get_field_type
 var interface_data: FieldInterfaceData:
 	get = _get_interface_data
 @onready var programs := $Programs as ModeGroup
-@onready var effect_layer := %EffectLayer as CanvasLayer
 @onready var _tool_modes := $ToolModes as ModeGroup
 
 

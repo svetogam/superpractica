@@ -37,6 +37,12 @@ func _enter_tree() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
 			"dragged_memo_requested", create_dragged_memo)
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
+	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
+
+
+func _setup_field(field: Field) -> void:
+	field.effect_layer = effect_layer
+	field.effect_offset_source = field.get_viewport().get_parent()
 
 
 func _ready() -> void:

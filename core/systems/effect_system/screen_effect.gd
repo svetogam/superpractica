@@ -36,6 +36,7 @@ func animate(animation: String) -> void:
 	_animation_player.advance(0)
 
 
+# Unused
 func reparent_from_sub_to_root_group(root_group: ScreenEffectGroup) -> void:
 	var local_effect_layer = get_canvas_layer_node()
 	var root_effect_layer = root_group.get_canvas_layer_node()

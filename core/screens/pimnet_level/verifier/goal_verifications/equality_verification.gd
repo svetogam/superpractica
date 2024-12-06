@@ -28,6 +28,10 @@ func _ready() -> void:
 	_check_next_row()
 
 
+func _exit_tree() -> void:
+	goal_verifier.goal_effects.clear()
+
+
 func _check_next_row() -> void:
 	goal_verifier.animate_equality_setup(
 			_number_effect, _current_row_number, _on_move_completed)
@@ -50,12 +54,10 @@ func _on_move_completed() -> void:
 
 func _after_check() -> void:
 	if _is_equal():
-		goal_verifier.goal_effects.clear()
 		verify()
 	else:
 		_current_row_number = _get_next_row_number()
 		if _current_row_number == -1:
-			goal_verifier.goal_effects.clear()
 			reject()
 		else:
 			_check_next_row()
