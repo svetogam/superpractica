@@ -10,7 +10,6 @@
 
 extends Verification
 
-const START_DELAY := 0.8
 var pim: FieldPim
 var field: GridCounting
 
@@ -22,8 +21,6 @@ func setup(p_pim: FieldPim) -> Verification:
 
 
 func _ready() -> void:
-	await Game.wait_for(START_DELAY)
-
 	var pieces = field.dynamic_model.get_pieces()
 	var zero_position = field.dynamic_model.get_grid_cell(1).position
 	(GridCountingProcessCountPieces.new(pieces, zero_position)
