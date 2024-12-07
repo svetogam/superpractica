@@ -42,6 +42,18 @@ func is_possible() -> bool:
 	return not row_cells.any(field.is_cell_occupied)
 
 
+func prefigure() -> void:
+	if not is_valid() or not is_possible():
+		field.clear_prefig()
+		return
+
+	field.prefigure_ten_block(to_row_number)
+
+
+func unprefigure() -> void:
+	field.clear_prefig()
+
+
 func do() -> void:
 	block = field.dynamic_model.get_ten_block(from_row_number)
 	block.put_on_row(to_row_number)

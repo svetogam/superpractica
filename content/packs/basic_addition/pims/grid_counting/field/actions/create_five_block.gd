@@ -42,6 +42,18 @@ func is_possible() -> bool:
 	return not cells.any(field.is_cell_occupied)
 
 
+func prefigure() -> void:
+	if not is_valid() or not is_possible():
+		field.clear_prefig()
+		return
+
+	field.prefigure_five_block(first_number)
+
+
+func unprefigure() -> void:
+	field.clear_prefig()
+
+
 func do() -> void:
 	block = GridCounting.ObjectFiveBlock.instantiate() as FieldObject
 	field.add_child(block)

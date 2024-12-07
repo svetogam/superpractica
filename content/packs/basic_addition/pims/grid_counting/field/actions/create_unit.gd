@@ -33,6 +33,18 @@ func is_possible() -> bool:
 	return not field.is_cell_occupied(cell)
 
 
+func prefigure() -> void:
+	if not is_valid() or not is_possible():
+		field.clear_prefig()
+		return
+
+	field.prefigure_unit(cell_number)
+
+
+func unprefigure() -> void:
+	field.clear_prefig()
+
+
 func do() -> void:
 	unit = GridCounting.ObjectUnit.instantiate() as FieldObject
 	field.add_child(unit)

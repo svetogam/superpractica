@@ -63,12 +63,7 @@ func prefigure() -> void:
 		field.clear_prefig()
 		return
 
-	field.set_prefig(GridCounting.Objects.FOUR_BLOCK)
-	var dest_cell = field.dynamic_model.get_grid_cell(to_first_number)
-	field.prefig.position = Vector2(
-		dest_cell.position.x + dest_cell.size.x * 3 / 2,
-		dest_cell.position.y
-	)
+	field.prefigure_four_block(to_first_number)
 
 
 func unprefigure() -> void:

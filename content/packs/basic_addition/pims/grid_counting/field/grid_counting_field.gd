@@ -137,10 +137,43 @@ func _dragged_in(object_data: FieldObjectData, point: Vector2, _source: Field) -
 	match object_data.field_type:
 		"GridCounting":
 			match object_data.object_type:
+				GridCounting.Objects.UNIT:
+					var cell = get_grid_cell_at_point(point)
+					GridCountingActionCreateUnit.new(self, cell.number).prefigure()
+				GridCounting.Objects.TWO_BLOCK:
+					var cells = get_h_adjacent_grid_cells_at_point(point)
+					var first_number = cells[0].number
+					GridCountingActionCreateTwoBlock.new(self, first_number).prefigure()
+				GridCounting.Objects.THREE_BLOCK:
+					var first_number = get_grid_cell_at_point(point).number - 1
+					GridCountingActionCreateThreeBlock.new(self, first_number).prefigure()
 				GridCounting.Objects.FOUR_BLOCK:
 					var cells = get_h_adjacent_grid_cells_at_point(point)
 					var first_number = cells[0].number - 1
 					GridCountingActionCreateFourBlock.new(self, first_number).prefigure()
+				GridCounting.Objects.FIVE_BLOCK:
+					var first_number = get_grid_cell_at_point(point).number - 2
+					GridCountingActionCreateFiveBlock.new(self, first_number).prefigure()
+				GridCounting.Objects.TEN_BLOCK:
+					var dest_cell = get_grid_cell_at_point(point)
+					var row_number := static_model.get_row_of_cell(dest_cell.number)
+					GridCountingActionCreateTenBlock.new(self, row_number).prefigure()
+				GridCounting.Objects.TWENTY_BLOCK:
+					var dest_cells = get_v_adjacent_grid_cells_at_point(point)
+					var dest_row := static_model.get_row_of_cell(dest_cells[0].number)
+					GridCountingActionCreateTwentyBlock.new(self, dest_row).prefigure()
+				GridCounting.Objects.THIRTY_BLOCK:
+					var dest_cell = get_grid_cell_at_point(point)
+					var dest_row = static_model.get_row_of_cell(dest_cell.number) - 1
+					GridCountingActionCreateThirtyBlock.new(self, dest_row).prefigure()
+				GridCounting.Objects.FORTY_BLOCK:
+					var dest_cells = get_v_adjacent_grid_cells_at_point(point)
+					var dest_row = static_model.get_row_of_cell(dest_cells[0].number) - 1
+					GridCountingActionCreateFortyBlock.new(self, dest_row).prefigure()
+				GridCounting.Objects.FIFTY_BLOCK:
+					var dest_cell = get_grid_cell_at_point(point)
+					var dest_row = static_model.get_row_of_cell(dest_cell.number) - 2
+					GridCountingActionCreateFiftyBlock.new(self, dest_row).prefigure()
 
 
 func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
@@ -149,8 +182,7 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 			match object_data.object_type:
 				GridCounting.Objects.UNIT:
 					var cell = get_grid_cell_at_point(point)
-					if cell != null:
-						GridCountingActionCreateUnit.new(self, cell.number).push()
+					GridCountingActionCreateUnit.new(self, cell.number).push()
 				GridCounting.Objects.TWO_BLOCK:
 					var cells = get_h_adjacent_grid_cells_at_point(point)
 					var first_number = cells[0].number
@@ -449,6 +481,114 @@ func stage_piece_warning(piece: FieldObject) -> void:
 
 func remove_piece_warning(piece: FieldObject) -> void:
 	piece.set_variant("default")
+
+
+func prefigure_unit(cell_number: int) -> void:
+	set_prefig(GridCounting.Objects.UNIT)
+	var cell = dynamic_model.get_grid_cell(cell_number)
+	prefig.position = Vector2(
+		cell.position.x,
+		cell.position.y
+	)
+
+
+func prefigure_two_block(first_number: int) -> void:
+	set_prefig(GridCounting.Objects.TWO_BLOCK)
+	var cell = dynamic_model.get_grid_cell(first_number)
+	prefig.position = Vector2(
+		cell.position.x + cell.size.x / 2,
+		cell.position.y
+	)
+
+
+func prefigure_three_block(first_number: int) -> void:
+	set_prefig(GridCounting.Objects.THREE_BLOCK)
+	var cell = dynamic_model.get_grid_cell(first_number)
+	prefig.position = Vector2(
+		cell.position.x + cell.size.x,
+		cell.position.y
+	)
+
+
+func prefigure_four_block(first_number: int) -> void:
+	set_prefig(GridCounting.Objects.FOUR_BLOCK)
+	var cell = dynamic_model.get_grid_cell(first_number)
+	prefig.position = Vector2(
+		cell.position.x + cell.size.x * 3 / 2,
+		cell.position.y
+	)
+
+
+func prefigure_five_block(first_number: int) -> void:
+	set_prefig(GridCounting.Objects.FIVE_BLOCK)
+	var cell = dynamic_model.get_grid_cell(first_number)
+	prefig.position = Vector2(
+		cell.position.x + cell.size.x * 2,
+		cell.position.y
+	)
+
+
+func prefigure_ten_block(row_number: int) -> void:
+	set_prefig(GridCounting.Objects.TEN_BLOCK)
+	var cells = get_grid_cells_by_rows([row_number])
+	prefig.position = Vector2(
+		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
+		cells[0].position.y
+	)
+
+
+func prefigure_twenty_block(first_row_number: int) -> void:
+	set_prefig(GridCounting.Objects.TWENTY_BLOCK)
+	var cells = get_grid_cells_by_rows([
+		first_row_number,
+		first_row_number + 1,
+	])
+	prefig.position = Vector2(
+		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
+		cells[0].position.y + (cells[10].position.y - cells[0].position.y) / 2
+	)
+
+
+func prefigure_thirty_block(first_row_number: int) -> void:
+	set_prefig(GridCounting.Objects.THIRTY_BLOCK)
+	var cells = get_grid_cells_by_rows([
+		first_row_number,
+		first_row_number + 1,
+		first_row_number + 2,
+	])
+	prefig.position = Vector2(
+		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
+		cells[10].position.y
+	)
+
+
+func prefigure_forty_block(first_row_number: int) -> void:
+	set_prefig(GridCounting.Objects.FORTY_BLOCK)
+	var cells = get_grid_cells_by_rows([
+		first_row_number,
+		first_row_number + 1,
+		first_row_number + 2,
+		first_row_number + 3,
+	])
+	prefig.position = Vector2(
+		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
+		cells[0].position.y + (cells[30].position.y - cells[0].position.y) / 2
+	)
+
+
+func prefigure_fifty_block(first_row_number: int) -> void:
+	set_prefig(GridCounting.Objects.FIFTY_BLOCK)
+	var cells = get_grid_cells_by_rows([
+		first_row_number,
+		first_row_number + 1,
+		first_row_number + 2,
+		first_row_number + 3,
+		first_row_number + 4,
+	])
+	prefig.position = Vector2(
+		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
+		cells[20].position.y
+	)
 
 
 func set_prefig(prefig_type: Objects) -> void:

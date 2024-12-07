@@ -41,6 +41,18 @@ func is_possible() -> bool:
 	)
 
 
+func prefigure() -> void:
+	if not is_valid() or not is_possible():
+		field.clear_prefig()
+		return
+
+	field.prefigure_unit(to_cell_number)
+
+
+func unprefigure() -> void:
+	field.clear_prefig()
+
+
 func do() -> void:
 	unit = field.dynamic_model.get_unit(from_cell_number)
 	unit.put_on_cell(to_cell_number)
