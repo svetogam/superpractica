@@ -199,8 +199,7 @@ func end_external_drag(outgoing: bool, point: Vector2, destination: Field = null
 
 
 func end_grab() -> void:
-	# Defer so that input-processing order does not matter
-	set_deferred("_state", _States.NONE)
+	_state = _States.NONE
 
 
 func is_pressed() -> bool:

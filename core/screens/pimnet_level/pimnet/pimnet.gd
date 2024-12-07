@@ -338,8 +338,7 @@ func process_interfield_drop(object_data: FieldObjectData) -> void:
 		else:
 			destination._received_in(object_data, field_point, source)
 
-	# Defer so that input-processing order does not matter
 	if dragged_object != null:
 		for field in get_field_list():
 			field.end_drag()
-		set_deferred("dragged_object", null)
+		dragged_object = null

@@ -193,8 +193,7 @@ func drag_object(original: FieldObject, external_drag := false) -> void:
 
 
 func end_drag() -> void:
-	# Defer so that input-processing order does not matter
-	set_deferred("dragged_object", null)
+	dragged_object = null
 
 
 func request_drag_memo(memo: Memo) -> void:
