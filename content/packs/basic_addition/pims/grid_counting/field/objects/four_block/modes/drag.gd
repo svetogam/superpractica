@@ -23,6 +23,8 @@ func _dragged(_external: bool, point: Vector2, _change: Vector2) -> void:
 		drop_action = GridCountingActionMoveFourBlock.new(
 				field, object.first_number, dest_cells[0].number - 1)
 		drop_action.prefigure()
+	elif drop_action != null:
+		drop_action.unprefigure()
 
 
 func _dropped(_external: bool, _point: Vector2) -> void:

@@ -271,6 +271,10 @@ func get_grid_cell_at_point(point: Vector2) -> GridCell:
 
 # Returns 2 horizontally adjacent grid cells closest to point
 func get_h_adjacent_grid_cells_at_point(point: Vector2) -> Array:
+	# Disregard if point is not over any cell
+	if get_grid_cell_at_point(point) == null:
+		return []
+
 	# Make array of cells which have the point at double width
 	var grid_cells: Array = []
 	var rect: Rect2
@@ -302,6 +306,10 @@ func get_h_adjacent_grid_cells_at_point(point: Vector2) -> Array:
 
 # Returns 2 vertically adjacent grid cells closest to point
 func get_v_adjacent_grid_cells_at_point(point: Vector2) -> Array:
+	# Disregard if point is not over any cell
+	if get_grid_cell_at_point(point) == null:
+		return []
+
 	# Make array of cells which have the point at double height
 	var grid_cells: Array = []
 	var rect: Rect2
