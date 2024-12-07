@@ -176,6 +176,10 @@ func _dragged_in(object_data: FieldObjectData, point: Vector2, _source: Field) -
 					GridCountingActionCreateFiftyBlock.new(self, dest_row).prefigure()
 
 
+func _dragged_out(_object_data: FieldObjectData, _point: Vector2, _source: Field) -> void:
+	clear_prefig()
+
+
 func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
 	match object_data.field_type:
 		"GridCounting":

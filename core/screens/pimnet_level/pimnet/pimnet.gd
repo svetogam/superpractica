@@ -26,6 +26,7 @@ var goal_type: LevelResource.GoalTypes:
 var dragged_object: FieldObject
 var _pims_left_to_right: Array = []
 var _dragging := false
+var _last_destination: Field
 @onready var overlay := %Overlay as PimnetOverlay
 @onready var effect_layer := %RootEffectLayer as CanvasLayer
 @onready var dragged_object_layer := %DraggedObjectLayer as CanvasLayer
@@ -302,6 +303,12 @@ func process_interfield_drag(object_data: FieldObjectData) -> void:
 	# React in destination
 	if destination != null and destination != source:
 		destination._dragged_in(object_data, field_point, source)
+
+	# React in old destination if exiting
+	elif _last_destination != null and destination != _last_destination:
+		_last_destination._dragged_out(object_data, field_point, source)
+
+	_last_destination = destination
 
 
 func process_interfield_drop(object_data: FieldObjectData) -> void:

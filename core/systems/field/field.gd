@@ -104,6 +104,11 @@ func _dragged_in(_object_data: FieldObjectData, _point: Vector2, _source: Field)
 
 
 # Virtual
+func _dragged_out(_object_data: FieldObjectData, _point: Vector2, _source: Field) -> void:
+	pass
+
+
+# Virtual
 func _received_in(_object_data: FieldObjectData, _point: Vector2, _source: Field) -> void:
 	pass
 
