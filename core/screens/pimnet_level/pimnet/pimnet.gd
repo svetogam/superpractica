@@ -285,6 +285,25 @@ func create_interfield_object(object_data: FieldObjectData) -> InterfieldObject:
 	return interfield_object
 
 
+func process_interfield_drag(object_data: FieldObjectData) -> void:
+	# Obtain relevant variables
+	var source: Field = null
+	if dragged_object != null:
+		source = dragged_object.field
+	var destination: Field
+	var external_point: Vector2 = %PimStrip.get_global_mouse_position()
+	var field_point: Vector2
+	for pim in _pims_left_to_right:
+		if pim is FieldPim and pim.field_has_point(external_point):
+			destination = pim.field
+			field_point = pim.convert_external_to_internal_point(external_point)
+			break
+
+	# React in destination
+	if destination != null and destination != source:
+		destination._dragged_in(object_data, field_point, source)
+
+
 func process_interfield_drop(object_data: FieldObjectData) -> void:
 	# Obtain relevant variables
 	var source: Field = null
@@ -297,17 +316,18 @@ func process_interfield_drop(object_data: FieldObjectData) -> void:
 		if pim is FieldPim and pim.field_has_point(external_point):
 			destination = pim.field
 			field_point = pim.convert_external_to_internal_point(external_point)
+			break
 
-	# React in source pim to drop in other pim
+	# React in source field to drop in other field
 	if source != null and destination != source:
 		dragged_object.end_external_drag(true, field_point, destination)
 
 	if destination != null:
-		# React in pim to drop within itself
+		# React in field to drop within itself
 		if destination == source:
 			dragged_object.end_external_drag(false, field_point)
 
-		# React in destination pim to drop from anywhere
+		# React in destination field to drop from anywhere
 		else:
 			destination._received_in(object_data, field_point, source)
 

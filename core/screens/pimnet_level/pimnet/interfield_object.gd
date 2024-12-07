@@ -35,6 +35,7 @@ func _input(event: InputEvent) -> void:
 	# Drag
 	if event is InputEventMouseMotion:
 		position = event.position
+		_pimnet.process_interfield_drag(object_data)
 
 	# Drop
 	elif event.is_action_released("primary_mouse"):

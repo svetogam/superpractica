@@ -133,6 +133,16 @@ func reset_state() -> void:
 	GridCountingActionSetEmpty.new(self).push()
 
 
+func _dragged_in(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
+	match object_data.field_type:
+		"GridCounting":
+			match object_data.object_type:
+				GridCounting.Objects.FOUR_BLOCK:
+					var cells = get_h_adjacent_grid_cells_at_point(point)
+					var first_number = cells[0].number - 1
+					GridCountingActionCreateFourBlock.new(self, first_number).prefigure()
+
+
 func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) -> void:
 	match object_data.field_type:
 		"GridCounting":

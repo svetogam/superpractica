@@ -99,9 +99,13 @@ func reset_state() -> void:
 
 
 # Virtual
-func _received_in(_object_data: FieldObjectData, _point: Vector2, _source: Field
-) -> void:
-	assert(false)
+func _dragged_in(_object_data: FieldObjectData, _point: Vector2, _source: Field) -> void:
+	pass
+
+
+# Virtual
+func _received_in(_object_data: FieldObjectData, _point: Vector2, _source: Field) -> void:
+	pass
 
 
 # Virtual
