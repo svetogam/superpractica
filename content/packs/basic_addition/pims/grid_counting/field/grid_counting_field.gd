@@ -91,6 +91,7 @@ const BOARD_GAP := 3.0
 
 var static_model := RectilinearGridModel.new(ROWS, COLUMNS)
 var dynamic_model := GridCountingDynamicModel.new(self)
+@onready var prefig := %Prefig as Node2D
 
 
 static func _get_field_type() -> String:
@@ -438,6 +439,20 @@ func stage_piece_warning(piece: FieldObject) -> void:
 
 func remove_piece_warning(piece: FieldObject) -> void:
 	piece.set_variant("default")
+
+
+func set_prefig(prefig_type: Objects) -> void:
+	assert(interface_data.object_data.has(prefig_type))
+
+	clear_prefig()
+	prefig.add_child(interface_data.object_data[prefig_type].new_sprite())
+	prefig.show()
+
+
+func clear_prefig() -> void:
+	prefig.hide()
+	for child in prefig.get_children():
+		child.free()
 
 
 #endregion

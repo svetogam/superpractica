@@ -37,9 +37,20 @@ func is_possible() -> bool:
 
 
 # Virtual
+func prefigure() -> void:
+	pass
+
+
+# Virtual
+func unprefigure() -> void:
+	pass
+
+
+# Virtual
 func do() -> void:
 	assert(is_valid())
 
 
 func push() -> void:
+	unprefigure()
 	field.action_queue.push(self)
