@@ -50,11 +50,10 @@ func is_possible() -> bool:
 
 
 func prefigure() -> void:
-	if not is_valid() or not is_possible():
-		field.clear_prefig()
-		return
-
-	field.prefigure_twenty_block(to_first_row_number)
+	if is_valid() and is_possible():
+		field.prefigure_twenty_block(to_first_row_number)
+	else:
+		field.prefigure_twenty_block(from_first_row_number)
 
 
 func unprefigure() -> void:
