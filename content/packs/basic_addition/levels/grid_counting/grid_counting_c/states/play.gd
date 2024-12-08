@@ -13,17 +13,16 @@ extends LevelProgramState
 var _field_program: FieldProgram
 
 
-func _enter(last_state: String) -> void:
-	if last_state == State.NULL_STATE:
-		tool_panel.exclude_all("GridCounting")
-		tool_panel.include("GridCounting", GridCounting.Tools.CELL_MARKER)
-		tool_panel.include("GridCounting", GridCounting.Tools.PIECE_DRAGGER)
-		program.field.set_tool(GridCounting.Tools.CELL_MARKER)
-		creation_panel.exclude_all("GridCounting")
-		creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
+func _enter(_last_state: String) -> void:
+	tool_panel.exclude_all("GridCounting")
+	tool_panel.include("GridCounting", GridCounting.Tools.CELL_MARKER)
+	tool_panel.include("GridCounting", GridCounting.Tools.PIECE_DRAGGER)
+	program.field.set_tool(GridCounting.Tools.CELL_MARKER)
+	creation_panel.exclude_all("GridCounting")
+	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
 
-		_field_program = program.field.get_program("SoftCount")
-		_field_program.run()
+	_field_program = program.field.get_program("SoftCount")
+	_field_program.run()
 
 	program.field.warning_effects.warned.connect(_set_output_warning.bind(true))
 	program.field.warning_effects.unwarned.connect(_set_output_warning.bind(false))
