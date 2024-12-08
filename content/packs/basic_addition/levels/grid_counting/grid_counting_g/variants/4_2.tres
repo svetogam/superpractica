@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GridCountingProgramVarsG" load_steps=2 format=3 uid="uid://ckq1roxuduubu"]
+
+[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_g/program_vars.gd" id="1_72q5k"]
+
+[resource]
+script = ExtResource("1_72q5k")
+min_addend_1 = 19
+max_addend_1 = -1
+min_addend_2 = 9
+max_addend_2 = -1
