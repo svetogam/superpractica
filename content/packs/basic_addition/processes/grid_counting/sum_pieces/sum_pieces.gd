@@ -23,7 +23,8 @@ func setup(p_pim: FieldPim) -> Verification:
 
 func _ready() -> void:
 	await Game.wait_for(START_DELAY)
-	GridCountingProcessSumPieces.new().run(field, _on_sum_complete)
+	var pieces = field.dynamic_model.get_pieces()
+	GridCountingProcessSumPieces.new(pieces, 1).run(field, _on_sum_complete)
 
 
 func _on_sum_complete(sum: NumberEffect) -> void:

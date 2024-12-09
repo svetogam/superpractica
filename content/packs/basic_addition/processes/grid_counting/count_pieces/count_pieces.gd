@@ -22,9 +22,7 @@ func setup(p_pim: FieldPim) -> Verification:
 
 func _ready() -> void:
 	var pieces = field.dynamic_model.get_pieces()
-	var zero_position = field.dynamic_model.get_grid_cell(1).position
-	(GridCountingProcessCountPieces.new(pieces, zero_position)
-			.run(field, _on_count_complete))
+	GridCountingProcessCountPieces.new(pieces, 1).run(field, _on_count_complete)
 
 
 func _on_count_complete(count: NumberEffect) -> void:
