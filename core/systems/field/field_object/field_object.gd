@@ -143,6 +143,12 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 		for mode in _modes.get_active_modes():
 			mode._pressed(event.position)
 
+		# Ensure initial call to _dragged()
+		if is_grabbed():
+			_dragged(is_grabbed_externally(), event.position, Vector2.ZERO)
+			for mode in _modes.get_active_modes():
+				mode._dragged(is_grabbed_externally(), event.position, Vector2.ZERO)
+
 	elif (event.is_action_released("primary_mouse") and not is_pressed()
 			and field.dragged_object != null
 			and field.dragged_object.get_instance_id() != get_instance_id()):
