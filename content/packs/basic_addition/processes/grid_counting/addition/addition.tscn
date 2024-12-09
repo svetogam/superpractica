@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://content/packs/basic_addition/processes/grid_counting/addition/addition.gd" id="1_7skim"]
 [ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_lncla"]
 [ext_resource type="Script" path="res://content/packs/basic_addition/processes/grid_counting/addition/states/check_start.gd" id="4_s3qew"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/processes/grid_counting/addition/states/check_units.gd" id="5_wxsgy"]
+[ext_resource type="Script" path="res://content/packs/basic_addition/processes/grid_counting/addition/states/check_pieces.gd" id="5_wxsgy"]
 
 [node name="Verification" type="Node"]
 script = ExtResource("1_7skim")
@@ -16,5 +16,5 @@ _auto_deactivate = true
 [node name="CheckStart" type="Node" parent="StateMachine"]
 script = ExtResource("4_s3qew")
 
-[node name="CheckUnits" type="Node" parent="StateMachine"]
+[node name="CheckPieces" type="Node" parent="StateMachine"]
 script = ExtResource("5_wxsgy")
