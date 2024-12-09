@@ -2,7 +2,7 @@
 
 ## About
 
-* All changes to the game that are notable to players will be documented in this file.
+* This changelog documents changes that are notable to players.
 * Greater version increases indicate completion of major new content, features, and aesthetic theming.
 * Smaller version increases indicate partial completion and other improvements.
 * There may be more features and content in "debug levels", but they will be ignored and counted as removed here.
