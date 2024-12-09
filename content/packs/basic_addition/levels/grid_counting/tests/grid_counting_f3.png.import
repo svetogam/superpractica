@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt05mnenmh344"
-path="res://.godot/imported/grid_counting_f3.png-39a2d8c111241c91b23aab3177489552.ctex"
+path.s3tc="res://.godot/imported/grid_counting_f3.png-39a2d8c111241c91b23aab3177489552.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://content/packs/basic_addition/levels/grid_counting/tests/grid_counting_f3.png"
-dest_files=["res://.godot/imported/grid_counting_f3.png-39a2d8c111241c91b23aab3177489552.ctex"]
+dest_files=["res://.godot/imported/grid_counting_f3.png-39a2d8c111241c91b23aab3177489552.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
