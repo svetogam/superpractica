@@ -32,7 +32,7 @@ To contribute modifications, see the [general contributing guide](https://codebe
 
 To contribute funds, go to [Liberapay](https://liberapay.com/SuperPractica/) or [Patreon](https://www.patreon.com/superpractica).
 
-To discuss Super Practica outside of particular issues, you can visit the [chat](https://superpractica.zulipchat.com/) or the [development forum](https://codeberg.org/superpractica/discussion).
+To discuss Super Practica outside of particular issues, visit the [Zulip chat](https://superpractica.zulipchat.com/).
 
 
 ## Copyright
