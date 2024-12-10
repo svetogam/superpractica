@@ -24,7 +24,7 @@ func _enter(_last_state: String) -> void:
 			overlay.verification_panel.open()
 			overlay.goal_panel.solution_slot.set_highlight(
 					MemoSlot.HighlightTypes.REGULAR)
-		LevelResource.GoalTypes.CONDITION_COMPLETION:
+		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 			overlay.verification_panel.open()
 
 	level.pimnet.disable_verification_input(true)

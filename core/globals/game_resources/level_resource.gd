@@ -15,7 +15,7 @@ enum GoalTypes {
 	NONE = 0,
 	HINTED_MEMO_SLOT,
 	SOLUTION_MEMO_SLOTS,
-	CONDITION_COMPLETION,
+	CONSTRUCT_CONDITIONS,
 }
 
 @export var id: String

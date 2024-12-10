@@ -193,7 +193,7 @@ static var topic = TopicResource.new(
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
-			LevelResource.GoalTypes.CONDITION_COMPLETION,
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -210,7 +210,7 @@ static var topic = TopicResource.new(
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
-			LevelResource.GoalTypes.CONDITION_COMPLETION,
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -227,7 +227,7 @@ static var topic = TopicResource.new(
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
-			LevelResource.GoalTypes.CONDITION_COMPLETION,
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -244,7 +244,7 @@ static var topic = TopicResource.new(
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
-			LevelResource.GoalTypes.CONDITION_COMPLETION,
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -261,7 +261,7 @@ static var topic = TopicResource.new(
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
-			LevelResource.GoalTypes.CONDITION_COMPLETION,
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -278,7 +278,7 @@ static var topic = TopicResource.new(
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
-			LevelResource.GoalTypes.CONDITION_COMPLETION,
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
@@ -295,7 +295,7 @@ static var topic = TopicResource.new(
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
-			LevelResource.GoalTypes.CONDITION_COMPLETION,
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars

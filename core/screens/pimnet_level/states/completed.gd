@@ -29,7 +29,7 @@ func _enter(_last_state: String) -> void:
 			overlay.goal_panel.solution_slot.set_input_output_ability(false, false)
 			overlay.goal_panel.solution_slot.set_highlight(
 					MemoSlot.HighlightTypes.AFFIRMATION)
-		LevelResource.GoalTypes.CONDITION_COMPLETION:
+		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 			overlay.verification_panel.close()
 			overlay.goal_panel.verify_button.disabled = true
 

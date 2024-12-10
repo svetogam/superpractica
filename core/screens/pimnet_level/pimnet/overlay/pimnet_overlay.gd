@@ -213,14 +213,14 @@ func _set_goal_type(p_goal_type: LevelResource.GoalTypes) -> void:
 		LevelResource.GoalTypes.NONE:
 			%HintedMemoSlotPanel.hide()
 			%SolutionMemoSlotsPanel.hide()
-			%ConditionCompletionPanel.hide()
+			%ConstructConditionsPanel.hide()
 		LevelResource.GoalTypes.HINTED_MEMO_SLOT:
 			%HintedMemoSlotPanel.show()
 		LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 			%SolutionMemoSlotsPanel.show()
 			%SolutionColumn.show()
-		LevelResource.GoalTypes.CONDITION_COMPLETION:
-			%ConditionCompletionPanel.show()
+		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
+			%ConstructConditionsPanel.show()
 			%SolutionColumn.show()
 
 
@@ -239,8 +239,8 @@ func _get_goal_panel() -> Control:
 			return %HintedMemoSlotPanel
 		LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 			return %SolutionMemoSlotsPanel
-		LevelResource.GoalTypes.CONDITION_COMPLETION:
-			return %ConditionCompletionPanel
+		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
+			return %ConstructConditionsPanel
 		_:
 			assert(false)
 			return null

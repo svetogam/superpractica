@@ -25,7 +25,7 @@ func _enter(last_state: String) -> void:
 				overlay.verification_panel.close()
 				overlay.goal_panel.solution_slot.set_highlight(
 						MemoSlot.HighlightTypes.WARNING)
-			LevelResource.GoalTypes.CONDITION_COMPLETION:
+			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 				overlay.verification_panel.close()
 
 	if level.program != null:
