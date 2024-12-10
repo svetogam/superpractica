@@ -155,13 +155,6 @@ func _init() -> void:
 				GridCounting.Objects.GRID_CELL: ["mark"],
 			},
 		},
-		GridCounting.Tools.UNIT_CREATOR: {
-			"name": "UnitCreator",
-			"text": "Create Unit",
-			"object_modes": {
-				GridCounting.Objects.GRID_CELL: ["create_unit"],
-			},
-		},
 		GridCounting.Tools.PIECE_DELETER: {
 			"name": "PieceDeleter",
 			"text": "Delete Piece",

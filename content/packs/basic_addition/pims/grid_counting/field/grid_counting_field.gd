@@ -66,7 +66,6 @@ enum Actions {
 enum Tools {
 	NONE = Game.NO_TOOL,
 	CELL_MARKER,
-	UNIT_CREATOR,
 	PIECE_DELETER,
 	PIECE_DRAGGER,
 }
