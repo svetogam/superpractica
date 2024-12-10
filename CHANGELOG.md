@@ -32,12 +32,12 @@ The main progression of grid-counting levels from beginning to end is complete, 
 * Grid-counting: New blocks of sizes 2, 3, 4, 5, 20, 30, 40, and 50
 * "Hard-constraint" rejection mechanics (in intro level set)
     * Back after being cut in v0.7.0.
-* "Condition construction" goal mechanic (in level set 2)
+* "Construct conditions" goal mechanic (in level set 2)
 * "Prefigurations" for dragging objects
 
 #### Removed
 
-* Grid-counting: "Number circler" and "cell marker" tools are merged
+* Grid-counting: Unnecessary tools are merged or removed
 
 
 ### Aesthetic
@@ -47,10 +47,6 @@ The main progression of grid-counting levels from beginning to end is complete, 
 * Grid-counting: Graphics are modified with better consistency
 * Effects including warnings no longer get cut off by pim boundaries
 * Icons are smaller in Create Objects panel to fit more objects
-
-#### Removed
-
-* Grid-counting: Grid cells can no longer be highlighted
 
 
 ## [v0.7.1] - Pre-Player-Facing Demo 2 - 2024-09-30
