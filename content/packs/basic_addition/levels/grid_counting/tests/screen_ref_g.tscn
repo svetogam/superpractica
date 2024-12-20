@@ -236,5 +236,11 @@ position = Vector2(558, 313)
 [node name="Square61" type="Marker2D" parent="."]
 position = Vector2(243, 344)
 
+[node name="Square62" type="Marker2D" parent="."]
+position = Vector2(276, 345)
+
+[node name="Square63" type="Marker2D" parent="."]
+position = Vector2(312, 345)
+
 [node name="Off" type="Marker2D" parent="."]
 position = Vector2(687, 252)

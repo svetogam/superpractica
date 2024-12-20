@@ -70,9 +70,31 @@ func test_golden_path_4_1():
 
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
-
 func test_golden_path_4_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
+	Game.current_level = level_data
+	Game.debug.add_ref_scene(self, REF_SCENE)
+	var runner := scene_runner(LEVEL_SCENE)
+	runner.set_time_factor(100)
+
+	await runner.simulate_mouse_move_absolute($Ref/Square20.position, 0.01)
+	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Block30.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/Square31.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/OutputSlot.position, 0.01)
+	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
+	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
+	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
+	await runner.await_signal_on(
+			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+
+	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
+
+
+func test_golden_path_4_3():
+	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
@@ -102,26 +124,22 @@ func test_golden_path_4_2():
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
 
-func test_golden_path_4_3():
-	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
+func test_golden_path_4_4():
+	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
 	runner.set_time_factor(100)
 
-	await runner.simulate_mouse_move_absolute($Ref/Square35.position, 0.01)
+	await runner.simulate_mouse_move_absolute($Ref/Square30.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	await runner.simulate_mouse_move_absolute($Ref/Block5.position, 0.01)
-	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
-	await runner.simulate_mouse_move_absolute($Ref/Square38.position, 0.01)
-	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
-	await runner.simulate_mouse_move_absolute($Ref/Block10.position, 0.01)
+	await runner.simulate_mouse_move_absolute($Ref/Block30.position, 0.01)
 	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
 	await runner.simulate_mouse_move_absolute($Ref/Square41.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.simulate_mouse_move_absolute($Ref/Block5.position, 0.01)
 	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
-	await runner.simulate_mouse_move_absolute($Ref/Square53.position, 0.01)
+	await runner.simulate_mouse_move_absolute($Ref/Square63.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.simulate_mouse_move_absolute($Ref/OutputSlot.position, 0.01)
 	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
@@ -133,8 +151,8 @@ func test_golden_path_4_3():
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
 
-func test_golden_path_4_4():
-	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
+func test_golden_path_4_5():
+	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[5]])
 	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
@@ -154,23 +172,6 @@ func test_golden_path_4_4():
 	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
 	await runner.simulate_mouse_move_absolute($Ref/Square51.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
-	await runner.simulate_mouse_move_absolute($Ref/OutputSlot.position, 0.01)
-	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
-	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
-	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
-	await runner.await_signal_on(
-			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
-
-	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
-
-
-func test_golden_path_4_5():
-	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[5]])
-	Game.current_level = level_data
-	Game.debug.add_ref_scene(self, REF_SCENE)
-	var runner := scene_runner(LEVEL_SCENE)
-	runner.set_time_factor(100)
-
 	await runner.simulate_mouse_move_absolute($Ref/OutputSlot.position, 0.01)
 	runner.simulate_mouse_button_press(MOUSE_BUTTON_LEFT)
 	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
