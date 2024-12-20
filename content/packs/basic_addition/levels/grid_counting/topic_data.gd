@@ -23,7 +23,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Intro - 1",
 			# Thumbnail
-			null,
+			preload("grid_counting_d/variants/0_1_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_d/pimnet_setup.tres"),
 			# Goal Type
@@ -41,7 +41,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Intro - 2",
 			# Thumbnail
-			null,
+			preload("grid_counting_e/variants/0_2_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_e/pimnet_setup.tres"),
 			# Goal Type
@@ -169,7 +169,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - Random",
 			# Thumbnail
-			preload("grid_counting_b/variants/1_random_thumbnail.png"),
+			null,
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
 			# Goal Type
@@ -189,7 +189,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 1",
 			# Thumbnail
-			null,
+			preload("grid_counting_f/variants/2_1_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -206,7 +206,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 2",
 			# Thumbnail
-			null,
+			preload("grid_counting_f/variants/2_2_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -223,7 +223,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 3",
 			# Thumbnail
-			null,
+			preload("grid_counting_f/variants/2_3_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -240,7 +240,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 4",
 			# Thumbnail
-			null,
+			preload("grid_counting_f/variants/2_4_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -257,7 +257,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 5",
 			# Thumbnail
-			null,
+			preload("grid_counting_f/variants/2_5_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -274,7 +274,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 6",
 			# Thumbnail
-			null,
+			preload("grid_counting_f/variants/2_6_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -291,7 +291,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 7",
 			# Thumbnail
-			null,
+			preload("grid_counting_f/variants/2_7_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -415,7 +415,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 1",
 			# Thumbnail
-			null,
+			preload("grid_counting_g/variants/4_1_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -432,7 +432,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 2",
 			# Thumbnail
-			null,
+			preload("grid_counting_g/variants/4_2_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -449,7 +449,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 3",
 			# Thumbnail
-			null,
+			preload("grid_counting_g/variants/4_3_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -466,7 +466,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 4",
 			# Thumbnail
-			null,
+			preload("grid_counting_g/variants/4_4_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -483,7 +483,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 5",
 			# Thumbnail
-			null,
+			preload("grid_counting_g/variants/4_5_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -500,7 +500,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 6",
 			# Thumbnail
-			null,
+			preload("grid_counting_g/variants/4_6_thumbnail.png"),
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
