@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_4hb0g")
-min_addend_1 = 35
+min_addend_1 = 19
 max_addend_1 = -1
-min_addend_2 = 20
+min_addend_2 = 9
 max_addend_2 = -1
