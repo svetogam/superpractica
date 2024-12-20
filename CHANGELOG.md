@@ -13,40 +13,42 @@
 
 ### Summary
 
-The main progression of grid-counting levels from beginning to end is complete, together with the grid-counting pim's most important features.
+The main features and level progression for the Grid-Counting pim are complete.
 
 
 ### Content
 
 #### Added
 
-* Grid-counting: intro level set
-* Grid-counting: level set 2
-* Grid-counting: level set 4
+* Grid-Counting Levels: Intro group
+* Grid-Counting Levels: Group 2
+* Grid-Counting Levels: Group 4
+* Grid-Counting Pim: New blocks of sizes 2, 3, 4, 5, 20, 30, 40, and 50
+
+#### Changed
+
+* Grid-Counting Pim: Toolset is simplified.
 
 
-### Features
+### Core Features
 
 #### Added
 
-* Grid-counting: New blocks of sizes 2, 3, 4, 5, 20, 30, 40, and 50
-* "Hard-constraint" rejection mechanics (in intro level set)
+* "Hard-Constraint" mechanics and signals
+    * Can be seen in Grid-Counting-Intro levels.
     * Back after being cut in v0.7.0.
-* "Construct conditions" goal mechanic (in level set 2)
-* "Prefigurations" for dragging objects
-
-#### Removed
-
-* Grid-counting: Unnecessary tools are merged or removed
+* "Construct Conditions" goal
+    * Can be seen in Grid-Counting-2 levels.
+* "Prefiguration" signals for dragging objects
 
 
 ### Aesthetic
 
 #### Changed
 
-* Grid-counting: Graphics are modified with better consistency
-* Effects including warnings no longer get cut off by pim boundaries
-* Icons are smaller in Create Objects panel to fit more objects
+* Grid-Counting Pim: Graphics are slightly different and more consistent.
+* Pim signals are no longer cut off by pim boundaries.
+* Icons are smaller in the Create Objects panel to fit more objects.
 
 
 ## [v0.7.1] - Pre-Player-Facing Demo 2 - 2024-09-30
