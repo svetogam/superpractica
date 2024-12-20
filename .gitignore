@@ -14,9 +14,11 @@ export.cfg
 data_*/
 mono_crash.*.json
 
-# Export folder
+# Special folders
 export/*
 !export/.gdignore
+screenshots/*
+!screenshots/.gdignore
 
 # Addon-related
 addons/ProjectBuilder
