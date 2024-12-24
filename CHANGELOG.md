@@ -9,7 +9,7 @@
 * For plans for upcoming releases, see the [Roadmap](https://superpractica.org/resources/roadmap). (The changelog of the future!)
 
 
-## [Unreleased] - Pre-Player-Facing Demo 3
+## [v0.7.2] - Pre-Player-Facing Demo 3 - 2024-12-23
 
 ### Summary
 
@@ -141,6 +141,7 @@ This demo is only a proof of concept. Its purpose is to test some ideas, clarify
 
 
 [Unreleased]: https://codeberg.org/superpractica/superpractica
+[v0.7.2]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.2
 [v0.7.1]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.1
 [v0.7.0]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.0
 [v0.6.0]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.6.0
