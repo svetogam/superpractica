@@ -2,7 +2,7 @@
 
 Copyright 2023-present Super Practica contributors
 
-See [AUTHORS.md](AUTHORS.md) for the list of Super Practica contributors.
+See [CREDITS.md](CREDITS.md) for the list of Super Practica contributors.
 
 
 ## Game
