@@ -1,3 +1,3 @@
 # Super Practica Contributors
 
-* svetogam (Sviatoslav Sokolov)
+* Svetogam (Sviatoslav Sokolov)
