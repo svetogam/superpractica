@@ -6,8 +6,8 @@
 [sub_resource type="InputEventKey" id="InputEventKey_1aajw"]
 device = -1
 ctrl_pressed = true
-keycode = 96
-unicode = 96
+keycode = 47
+unicode = 47
 
 [sub_resource type="Shortcut" id="Shortcut_dr4kf"]
 events = [SubResource("InputEventKey_1aajw")]
