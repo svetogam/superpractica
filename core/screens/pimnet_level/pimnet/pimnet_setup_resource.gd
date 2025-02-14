@@ -16,8 +16,6 @@ extends Resource
 @export_group("Top Bar")
 @export var reversion_enable := false
 @export_group("Bottom Bar")
-@export var inventory_enable := false
-@export var inventory_start_active := false
 @export var tools_enable := false
 @export var tools_start_active := false
 @export var creation_enable := false

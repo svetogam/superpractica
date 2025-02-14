@@ -7,15 +7,12 @@
 script = ExtResource("4_1vl07")
 pims = Array[PackedScene]([ExtResource("1_bymnj"), ExtResource("1_bymnj")])
 reversion_enable = true
-inventory_enable = false
-inventory_start_active = false
 tools_enable = true
-tools_start_active = false
+tools_start_active = true
 creation_enable = true
-creation_start_active = false
+creation_start_active = true
 translation_enable = false
 translation_start_active = false
-goal_type = 0
 goal_start_active = false
 plan_enable = false
 plan_start_active = false

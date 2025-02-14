@@ -16,7 +16,6 @@ signal next_level_requested()
 
 enum PimnetPanels {
 	NONE = 0,
-	INVENTORY,
 	TOOLS,
 	CREATION,
 	TRANSLATION,
@@ -24,20 +23,19 @@ enum PimnetPanels {
 	PLAN,
 }
 
-const PANEL_TYPE_LIST := [
-	PimnetPanels.INVENTORY,
-	PimnetPanels.TOOLS,
-	PimnetPanels.CREATION,
-	PimnetPanels.TRANSLATION,
-	PimnetPanels.GOAL,
-	PimnetPanels.PLAN,
-]
+#const PANEL_TYPE_LIST := [
+	#PimnetPanels.TOOLS,
+	#PimnetPanels.CREATION,
+	#PimnetPanels.TRANSLATION,
+	#PimnetPanels.GOAL,
+	#PimnetPanels.PLAN,
+#]
 
-var maximum_active_panels: int:
-	get = _get_maximum_active_panels
-var goal_type: LevelResource.GoalTypes:
-	set = _set_goal_type,
-	get = _get_goal_type
+#var maximum_active_panels: int:
+	#get = _get_maximum_active_panels
+var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
+	set = _set_goal_type
+	#get = _get_goal_type
 var goal_panel: Control:
 	get = _get_goal_panel
 @onready var reversion_menu := %ReversionMenu as Control
@@ -49,9 +47,13 @@ var goal_panel: Control:
 
 func _ready() -> void:
 	# Connect panel-buttons
-	for panel_type in PANEL_TYPE_LIST:
-		var button := _get_button(panel_type)
-		button.toggled.connect(_on_panel_button_toggled.bind(panel_type))
+	%ToolsButton.toggled.connect(_on_panel_button_toggled.bind(PimnetPanels.TOOLS))
+	%CreationButton.toggled.connect(_on_panel_button_toggled.bind(PimnetPanels.CREATION))
+	%TranslationButton.toggled.connect(
+			_on_panel_button_toggled.bind(PimnetPanels.TRANSLATION))
+	#for panel_type in PANEL_TYPE_LIST:
+		#var button := _get_button(panel_type)
+		#button.toggled.connect(_on_panel_button_toggled.bind(panel_type))
 
 	%LevelTitle.text = Game.get_current_level_title()
 
@@ -97,23 +99,29 @@ func _on_next_level_button_pressed() -> void:
 func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> void:
 	var panel := _get_panel(panel_type)
 	panel.visible = toggled_on
-	deactivate_overflowing_panels(panel_type)
+	#deactivate_overflowing_panels(panel_type)
 
 
-func deactivate_overflowing_panels(priority_panel_type: PimnetPanels = PimnetPanels.NONE
-) -> void:
-	if _get_number_active_panels() > maximum_active_panels:
-		for panel_type in PANEL_TYPE_LIST:
-			if panel_type != priority_panel_type:
-				var other_panel := _get_panel(panel_type)
-				if other_panel.visible:
-					deactivate_panel(panel_type)
-					break
-
-	assert(_get_number_active_panels() <= maximum_active_panels)
+#func deactivate_overflowing_panels(priority_panel_type: PimnetPanels = PimnetPanels.NONE
+#) -> void:
+	#if _get_number_active_panels() > maximum_active_panels:
+		#for panel_type in PANEL_TYPE_LIST:
+			#if panel_type != priority_panel_type:
+				#var other_panel := _get_panel(panel_type)
+				#if other_panel.visible:
+					#deactivate_panel(panel_type)
+					#break
+#
+	#assert(_get_number_active_panels() <= maximum_active_panels)
 
 
 func setup_panel(panel_type: PimnetPanels, enable: bool, start_active: bool) -> void:
+	# Hacky override
+	if panel_type == PimnetPanels.GOAL:
+		return
+	if panel_type == PimnetPanels.PLAN:
+		return
+
 	var button := _get_button(panel_type)
 	if not enable:
 		button.visible = false
@@ -150,23 +158,12 @@ func deactivate_panel(panel_type: PimnetPanels) -> void:
 	assert(not panel.visible)
 
 
-func enable_scroll_buttons(enable := true) -> void:
-	if enable:
-		%LeftButton.show()
-		%RightButton.show()
-	else:
-		%LeftButton.hide()
-		%RightButton.hide()
-
-
 func show_completion_popup() -> void:
 	%CompletionPopup.visible = true
 
 
 func _get_panel(panel_type: PimnetPanels) -> PanelContainer:
 	match panel_type:
-		PimnetPanels.INVENTORY:
-			return %InventoryPanel
 		PimnetPanels.TOOLS:
 			return %ToolPanel
 		PimnetPanels.CREATION:
@@ -184,16 +181,12 @@ func _get_panel(panel_type: PimnetPanels) -> PanelContainer:
 
 func _get_button(panel_type: PimnetPanels) -> Button:
 	match panel_type:
-		PimnetPanels.INVENTORY:
-			return %InventoryButton
 		PimnetPanels.TOOLS:
 			return %ToolsButton
 		PimnetPanels.CREATION:
 			return %CreationButton
 		PimnetPanels.TRANSLATION:
 			return %TranslationButton
-		PimnetPanels.GOAL:
-			return %GoalButton
 		PimnetPanels.PLAN:
 			return %PlanButton
 		_:
@@ -206,7 +199,6 @@ func _set_goal_type(p_goal_type: LevelResource.GoalTypes) -> void:
 		return
 	elif goal_type != LevelResource.GoalTypes.NONE:
 		deactivate_panel(PimnetPanels.GOAL)
-		%SolutionColumn.hide()
 
 	goal_type = p_goal_type
 	match goal_type:
@@ -218,17 +210,8 @@ func _set_goal_type(p_goal_type: LevelResource.GoalTypes) -> void:
 			%HintedMemoSlotPanel.show()
 		LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 			%SolutionMemoSlotsPanel.show()
-			%SolutionColumn.show()
 		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 			%ConstructConditionsPanel.show()
-			%SolutionColumn.show()
-
-
-func _get_goal_type() -> LevelResource.GoalTypes:
-	if %GoalButton != null and not %GoalButton.visible:
-		return LevelResource.GoalTypes.NONE
-	else:
-		return goal_type
 
 
 func _get_goal_panel() -> Control:
@@ -246,19 +229,19 @@ func _get_goal_panel() -> Control:
 			return null
 
 
-func _get_number_active_panels() -> int:
-	var count := 0
-	for panel_type in PANEL_TYPE_LIST:
-		var panel := _get_panel(panel_type)
-		if panel != null and panel.visible:
-			count += 1
-	return count
+#func _get_number_active_panels() -> int:
+	#var count := 0
+	#for panel_type in PANEL_TYPE_LIST:
+		#var panel := _get_panel(panel_type)
+		#if panel != null and panel.visible:
+			#count += 1
+	#return count
 
 
-func _get_maximum_active_panels() -> int:
+#func _get_maximum_active_panels() -> int:
 	#const PANEL_WIDTH := 300.0
 	#var screen_rect := Game.get_screen_rect()
 	#return floori(screen_rect.size.x / PANEL_WIDTH)
 
 	# Using this hack instead until panels conserve space better
-	return 3
+	#return 3

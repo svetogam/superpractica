@@ -58,9 +58,6 @@ func _ready() -> void:
 
 		# Set up panels
 		overlay.reversion_menu.visible = setup_resource.reversion_enable
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.INVENTORY,
-				setup_resource.inventory_enable,
-				setup_resource.inventory_start_active)
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.TOOLS,
 				setup_resource.tools_enable,
 				setup_resource.tools_start_active)
@@ -82,7 +79,6 @@ func _ready() -> void:
 		_setup_creation_panel()
 
 	# Set up camera and scrolling
-	overlay.enable_scroll_buttons(_pims_left_to_right.size() > 1)
 	_clamp_camera_in_bounds.call_deferred(false)
 
 	if _pims_left_to_right.size() > 0:
@@ -107,40 +103,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Start dragging camera
 	if event is InputEventMouseButton and event.is_action_pressed("primary_mouse"):
 		_dragging = true
-
-
-func _on_left_button_pressed() -> void:
-	if _pims_left_to_right.is_empty():
-		return
-
-	var pim_to_focus
-	if _is_camera_left_of_pim(_pims_left_to_right.front()):
-		pim_to_focus = _pims_left_to_right.front()
-	else:
-		for pim in _pims_left_to_right:
-			if _is_camera_right_of_pim(pim):
-				pim_to_focus = pim
-
-	_center_camera_on_pim(pim_to_focus)
-	pim_to_focus.focus_entered.emit()
-
-
-func _on_right_button_pressed() -> void:
-	if _pims_left_to_right.is_empty():
-		return
-
-	var pim_to_focus
-	if _is_camera_right_of_pim(_pims_left_to_right.back()):
-		pim_to_focus = _pims_left_to_right.back()
-	else:
-		var pims_right_to_left = _pims_left_to_right.duplicate()
-		pims_right_to_left.reverse()
-		for pim in pims_right_to_left:
-			if _is_camera_left_of_pim(pim):
-				pim_to_focus = pim
-
-	_center_camera_on_pim(pim_to_focus)
-	pim_to_focus.focus_entered.emit()
 
 
 func disable_verification_input(disable := true) -> void:

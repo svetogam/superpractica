@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=28 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -15,12 +15,10 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creation_panel.gd" id="8_60rcw"]
 [ext_resource type="Texture2D" uid="uid://bhtglrn1p1yh7" path="res://general/icons/mono_icons/undo.svg" id="9_ej3ht"]
 [ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
-[ext_resource type="Texture2D" uid="uid://dide6qwcw3llo" path="res://general/icons/mono_icons/caret-left.svg" id="10_52ncp"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="10_c051s"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
 [ext_resource type="Texture2D" uid="uid://dnjqiatl8efl" path="res://general/icons/mono_icons/refresh.svg" id="10_eebhu"]
 [ext_resource type="Texture2D" uid="uid://bjbn3j8vmmwyj" path="res://general/icons/mono_icons/circle.svg" id="11_0u5l8"]
-[ext_resource type="Texture2D" uid="uid://n0t70qwjgtwh" path="res://general/icons/mono_icons/caret-right.svg" id="11_6rg46"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="11_worie"]
 [ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/screens/pimnet_level/verifier/verifier.tscn" id="12_4kqqx"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
@@ -31,10 +29,10 @@
 content_margin_left = 20.0
 content_margin_right = 20.0
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_mwy2r"]
 font_size = 24
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
 
 [node name="Level" type="Node"]
 process_mode = 1
@@ -69,9 +67,11 @@ position_smoothing_speed = 20.0
 
 [node name="PimStrip" type="HBoxContainer" parent="Pimnet"]
 unique_name_in_owner = true
-anchors_preset = 9
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1230.0
+offset_top = 50.0
+offset_bottom = -150.0
 grow_vertical = 2
 theme_override_constants/separation = 25
 
@@ -173,26 +173,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Next Level"
 
-[node name="TopBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
-custom_minimum_size = Vector2(0, 50)
+[node name="TopLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="TopLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar"]
-layout_mode = 2
+offset_right = 250.0
+offset_bottom = 50.0
 size_flags_horizontal = 3
 
-[node name="ReversionMenu" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft"]
+[node name="ReversionMenu" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft"]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("4_ux8xa")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu"]
 layout_mode = 2
 
-[node name="UndoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer"]
+[node name="UndoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -200,7 +196,7 @@ tooltip_text = "Undo"
 icon = ExtResource("9_ej3ht")
 icon_alignment = 1
 
-[node name="RedoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer"]
+[node name="RedoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -208,7 +204,7 @@ tooltip_text = "Redo"
 icon = ExtResource("10_eebhu")
 icon_alignment = 1
 
-[node name="ResetButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -216,202 +212,457 @@ tooltip_text = "Reset"
 icon = ExtResource("11_0u5l8")
 icon_alignment = 1
 
-[node name="ButtonEnabler" type="Node" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu"]
+[node name="ButtonEnabler" type="Node" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu"]
 script = ExtResource("5_6mqp5")
 
-[node name="TitlePanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
+[node name="Top" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_right = 113.0
+offset_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
 
-[node name="LevelTitle" type="Label" parent="Pimnet/OverlayLayer/Overlay/TopBar/TitlePanel"]
+[node name="TitlePanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelTitle" type="Label" parent="Pimnet/OverlayLayer/Overlay/Top/TitlePanel"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3j2q4")
 text = "Level Title"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TopRight" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopBar"]
-layout_mode = 2
+[node name="TopRight" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="PauseMenuButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopBar/TopRight"]
+[node name="PauseMenuButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Pause Menu"
 icon = ExtResource("10_c051s")
 icon_alignment = 1
 
-[node name="StripControls" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+[node name="BottomLeft" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(50, 150)
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.3
-anchor_right = 1.0
-anchor_bottom = 0.7
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -104.0
+offset_right = 50.0
+offset_bottom = -4.0
+grow_vertical = 0
+size_flags_horizontal = 3
+alignment = 2
 
-[node name="LeftButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/StripControls" groups=["disable_during_verification"]]
+[node name="PlanButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomLeft"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 2
-icon = ExtResource("10_52ncp")
-icon_alignment = 1
-
-[node name="RightButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/StripControls" groups=["disable_during_verification"]]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 10
-icon = ExtResource("11_6rg46")
-icon_alignment = 1
-
-[node name="PanelBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+visible = false
 custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Plan"
+toggle_mode = true
+text = "Plan"
+clip_text = true
+
+[node name="LayoutButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomLeft"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Plan"
+toggle_mode = true
+text = "Layout"
+clip_text = true
+
+[node name="Bottom" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(0, 140)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -50.0
+offset_left = 50.0
+offset_right = -200.0
 grow_vertical = 0
-mouse_filter = 2
-
-[node name="PanelBarLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar"]
-layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="InventoryPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
+[node name="ToolPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/Bottom"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(200, 140)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/InventoryPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/InventoryPanel/VBoxContainer"]
-layout_mode = 2
-text = "Inventory"
-horizontal_alignment = 1
-
-[node name="ToolPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(300, 200)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
 script = ExtResource("6_lh3eo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/Bottom/ToolPanel"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/Bottom/ToolPanel/VBoxContainer"]
 layout_mode = 2
 text = "Tools"
 horizontal_alignment = 1
 
-[node name="ToolContainer1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/ToolPanel/VBoxContainer" instance=ExtResource("7_ysl18")]
+[node name="ToolContainer1" parent="Pimnet/OverlayLayer/Overlay/Bottom/ToolPanel/VBoxContainer" instance=ExtResource("7_ysl18")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-size_flags_horizontal = 4
 
-[node name="CreationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
+[node name="CreationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/Bottom"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(200, 140)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
 mouse_filter = 2
 script = ExtResource("8_60rcw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/Bottom/CreationPanel"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/Bottom/CreationPanel/VBoxContainer"]
 layout_mode = 2
 text = "Create Objects"
 horizontal_alignment = 1
 
-[node name="CreatablesContainer1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/CreationPanel/VBoxContainer" instance=ExtResource("9_jk2o1")]
+[node name="CreatablesContainer1" parent="Pimnet/OverlayLayer/Overlay/Bottom/CreationPanel/VBoxContainer" instance=ExtResource("9_jk2o1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TranslationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/Bottom"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="TranslationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/TranslationPanel"]
+custom_minimum_size = Vector2(200, 140)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarLeft/TranslationPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/Bottom/TranslationPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/Bottom/TranslationPanel/VBoxContainer"]
 layout_mode = 2
 text = "Translate"
 horizontal_alignment = 1
 
-[node name="PanelBarRight" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar"]
-layout_mode = 2
+[node name="BottomRight" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(200, 500)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -150.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="PlanPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight"]
+[node name="SolutionVerificationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("14_l20jg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
+layout_mode = 2
+text = "Checking"
+label_settings = SubResource("LabelSettings_mwy2r")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="LeftSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckSlot1" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 40
+text = "="
+horizontal_alignment = 1
+
+[node name="RightSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="LeftSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckSlot2" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 40
+text = "="
+horizontal_alignment = 1
+
+[node name="RightSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="HintedMemoSlotPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+size_flags_vertical = 8
+script = ExtResource("10_cm7g1")
+
+[node name="HintedMemoSlot" parent="Pimnet/OverlayLayer/Overlay/BottomRight/HintedMemoSlotPanel" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+memo_output_enabled = false
+
+[node name="SolutionMemoSlotsPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+script = ExtResource("14_d6muc")
+
+[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+columns = 3
+
+[node name="ProblemSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="Operator" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "+"
+horizontal_alignment = 1
+
+[node name="ProblemSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="Equals" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 40
+text = "="
+horizontal_alignment = 1
+
+[node name="SolutionSlot" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 6
+memo_output_enabled = false
+
+[node name="Empty" type="Control" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConstructConditionsPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+script = ExtResource("25_7axkj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/v_separation = 5
+columns = 2
+
+[node name="ConditionIcon1" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ConditionSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="ConditionIcon2" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ConditionSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="VerifyConditionsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer" groups=["disable_during_verification"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Verify"
+
+[node name="BelowBottom" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = -200.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="ToolsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Tools"
+toggle_mode = true
+text = "Tools"
+clip_text = true
+
+[node name="CreationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Create Objects"
+toggle_mode = true
+text = "Create Objects"
+clip_text = true
+
+[node name="TranslationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Translate"
+toggle_mode = true
+text = "Translate"
+clip_text = true
+
+[node name="PlanPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(300, 250)
 layout_mode = 2
+offset_top = 350.0
+offset_right = 300.0
+offset_bottom = 600.0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 script = ExtResource("8_8tc01")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer"]
 layout_mode = 2
 text = "Plan"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_vertical = 4
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="TaskList" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer"]
+[node name="TaskList" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Task1" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+[node name="Task1" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Task1CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1"]
+[node name="Task1CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 
-[node name="Task1Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1"]
+[node name="Task1Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task1"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -421,19 +672,19 @@ text = "Task 1"
 alignment = 0
 text_overrun_behavior = 1
 
-[node name="Task2" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+[node name="Task2" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Task2CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2"]
+[node name="Task2CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 
-[node name="Task2Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2"]
+[node name="Task2Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -443,19 +694,19 @@ text = "Task 2"
 alignment = 0
 text_overrun_behavior = 1
 
-[node name="Task3" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+[node name="Task3" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Task3CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3"]
+[node name="Task3CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 
-[node name="Task3Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3"]
+[node name="Task3Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -465,19 +716,19 @@ text = "Task 3"
 alignment = 0
 text_overrun_behavior = 1
 
-[node name="Task4" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+[node name="Task4" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Task4CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4"]
+[node name="Task4CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 
-[node name="Task4Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4"]
+[node name="Task4Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task4"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -487,19 +738,19 @@ text = "Task 4"
 alignment = 0
 text_overrun_behavior = 1
 
-[node name="Task5" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+[node name="Task5" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Task5CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5"]
+[node name="Task5CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 
-[node name="Task5Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5"]
+[node name="Task5Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task5"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -509,19 +760,19 @@ text = "Task 5"
 alignment = 0
 text_overrun_behavior = 1
 
-[node name="Task6" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+[node name="Task6" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Task6CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6"]
+[node name="Task6CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 
-[node name="Task6Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6"]
+[node name="Task6Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task6"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -531,19 +782,19 @@ text = "Task 6"
 alignment = 0
 text_overrun_behavior = 1
 
-[node name="Task7" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
+[node name="Task7" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Task7CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7"]
+[node name="Task7CheckBox" type="CheckBox" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 
-[node name="Task7Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7"]
+[node name="Task7Button" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer/TaskList/Task7"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -553,333 +804,18 @@ text = "Task 7"
 alignment = 0
 text_overrun_behavior = 1
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer"]
+[node name="ScrollContainer2" type="ScrollContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="TaskInstructions" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/PlanPanel/VBoxContainer/ScrollContainer2"]
+[node name="TaskInstructions" type="Label" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer/ScrollContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(292, 0)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Instructions go here."
 autowrap_mode = 3
-
-[node name="HintedMemoSlotPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-script = ExtResource("10_cm7g1")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/HintedMemoSlotPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/HintedMemoSlotPanel/VBoxContainer"]
-layout_mode = 2
-text = "Fill!"
-label_settings = SubResource("LabelSettings_mwy2r")
-horizontal_alignment = 1
-
-[node name="HintedMemoSlot" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/HintedMemoSlotPanel/VBoxContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-memo_output_enabled = false
-
-[node name="SolutionColumn" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-alignment = 2
-
-[node name="SolutionVerificationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-script = ExtResource("14_l20jg")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer"]
-layout_mode = 2
-text = "Checking"
-label_settings = SubResource("LabelSettings_mwy2r")
-horizontal_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 10
-columns = 3
-
-[node name="LeftSlot1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="CheckSlot1" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_font_sizes/font_size = 40
-text = "="
-horizontal_alignment = 1
-
-[node name="RightSlot1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="LeftSlot2" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="CheckSlot2" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_font_sizes/font_size = 40
-text = "="
-horizontal_alignment = 1
-
-[node name="RightSlot2" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="SolutionMemoSlotsPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-script = ExtResource("14_d6muc")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer"]
-layout_mode = 2
-text = "Solve!"
-label_settings = SubResource("LabelSettings_mwy2r")
-horizontal_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-columns = 3
-
-[node name="ProblemSlot1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="Operator" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "+"
-horizontal_alignment = 1
-
-[node name="ProblemSlot2" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="Equals" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_font_sizes/font_size = 40
-text = "="
-horizontal_alignment = 1
-
-[node name="SolutionSlot" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 6
-memo_output_enabled = false
-
-[node name="Empty" type="Control" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/SolutionMemoSlotsPanel/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ConstructConditionsPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-script = ExtResource("25_7axkj")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel/VBoxContainer"]
-layout_mode = 2
-text = "Construct!"
-label_settings = SubResource("LabelSettings_mwy2r")
-horizontal_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-theme_override_constants/v_separation = 10
-columns = 2
-
-[node name="ConditionIcon1" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel/VBoxContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ConditionSlot1" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="ConditionIcon2" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel/VBoxContainer/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ConditionSlot2" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-memo_input_enabled = false
-memo_output_enabled = false
-
-[node name="VerifyConditionsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelBar/PanelBarRight/SolutionColumn/ConstructConditionsPanel/VBoxContainer" groups=["disable_during_verification"]]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 28
-text = "Verify"
-
-[node name="BottomBar" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="BottomLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="InventoryButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Inventory"
-toggle_mode = true
-text = "Inventory"
-clip_text = true
-
-[node name="ToolsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Tools"
-toggle_mode = true
-text = "Tools"
-clip_text = true
-
-[node name="CreationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Create Objects"
-toggle_mode = true
-text = "Create Objects"
-clip_text = true
-
-[node name="TranslationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomLeft"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Translate"
-toggle_mode = true
-text = "Translate"
-clip_text = true
-
-[node name="BottomRight" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="PlanButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomRight"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Plan"
-toggle_mode = true
-text = "Plan"
-clip_text = true
-
-[node name="GoalButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomBar/BottomRight" groups=["disable_during_verification"]]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Goal"
-toggle_mode = true
-text = "Goal"
-clip_text = true
 
 [node name="DummySlot" parent="Pimnet" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
@@ -900,9 +836,7 @@ pimnet = NodePath("../Pimnet")
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/StayButton" to="Pimnet/OverlayLayer/Overlay" method="_on_stay_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/SelectLevelButton" to="Pimnet/OverlayLayer/Overlay" method="_on_select_level_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/NextLevelButton" to="Pimnet/OverlayLayer/Overlay" method="_on_next_level_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopBar/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopBar/TopRight/PauseMenuButton" to="Pimnet/OverlayLayer/Overlay" method="_on_pause_menu_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/StripControls/LeftButton" to="Pimnet" method="_on_left_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/StripControls/RightButton" to="Pimnet" method="_on_right_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopRight/PauseMenuButton" to="Pimnet/OverlayLayer/Overlay" method="_on_pause_menu_button_pressed"]
