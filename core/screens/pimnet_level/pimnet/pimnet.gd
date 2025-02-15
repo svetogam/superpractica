@@ -40,6 +40,9 @@ func _enter_tree() -> void:
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
 	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
 
+	_center_camera_on_pim_strip()
+	get_viewport().size_changed.connect(_center_camera_on_pim_strip)
+
 
 func _setup_field(field: Field) -> void:
 	field.effect_layer = effect_layer
@@ -96,7 +99,7 @@ func _input(event: InputEvent) -> void:
 
 	# Drag camera
 	if event is InputEventMouseMotion and _dragging:
-		%CameraPoint.position -= event.relative
+		%CameraPoint.position.x -= event.relative.x
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -148,24 +151,20 @@ func _setup_creation_panel() -> void:
 					overlay.creation_panel.show_toolset.bind(pim.field.field_type))
 
 
+func _center_camera_on_pim_strip() -> void:
+	%CameraPoint.position.y = Game.get_screen_rect().get_center().y
+
+
 func _center_camera_on_pim(pim: Pim) -> void:
-	%CameraPoint.position = pim.get_rect().get_center()
-
-
-func _is_camera_left_of_pim(pim: Pim) -> bool:
-	return %CameraPoint.position.x < pim.get_global_rect().get_center().x
-
-
-func _is_camera_right_of_pim(pim: Pim) -> bool:
-	return %CameraPoint.position.x > pim.get_global_rect().get_center().x
+	%CameraPoint.position.x = pim.get_rect().get_center().x
 
 
 func _clamp_camera_in_bounds(smoothly := true) -> void:
 	var camera_limit_rect: Rect2
 	if _pims_left_to_right.size() > 1:
 		camera_limit_rect = _get_camera_limit_rect()
-		%CameraPoint.position = %CameraPoint.position.clamp(
-				camera_limit_rect.position, camera_limit_rect.end)
+		%CameraPoint.position.x = clamp(%CameraPoint.position.x,
+				camera_limit_rect.position.x, camera_limit_rect.end.x)
 	elif _pims_left_to_right.size() == 1:
 		_center_camera_on_pim(_pims_left_to_right[0])
 
@@ -184,7 +183,7 @@ func _get_camera_limit_rect() -> Rect2:
 
 
 func _get_pim_strip_width() -> float:
-	const PIM_SEPARATION_WIDTH := 40.0
+	const PIM_SEPARATION_WIDTH := 50.0
 	var combined_width := 0.0
 	for pim in _pims_left_to_right:
 		combined_width += pim.size.x

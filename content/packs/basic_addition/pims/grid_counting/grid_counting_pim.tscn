@@ -8,6 +8,10 @@
 
 [node name="GridCountingPim" instance=ExtResource("1_kut85")]
 custom_minimum_size = Vector2(350, 350)
+offset_left = -175.0
+offset_top = -175.0
+offset_right = 175.0
+offset_bottom = 175.0
 script = ExtResource("2_vmq6c")
 
 [node name="GiveOutputMemo" type="Node" parent="Programs" index="0"]
