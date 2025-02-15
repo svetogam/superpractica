@@ -16,6 +16,11 @@ const PimnetLevel := preload("res://core/screens/pimnet_level/pimnet_level_scree
 var _current_scene: Node = null
 
 
+func _enter_tree() -> void:
+	get_window().min_size = Vector2i(800, 600)
+	get_window().max_size = Vector2i(1280, 800)
+
+
 func _ready() -> void:
 	enter_main_menu()
 
