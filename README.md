@@ -23,19 +23,18 @@ Note that this game is incomplete and that major changes and additions are plann
 
 3. Open the project folder in Godot.
 
-The game should be playable and editable in Godot. Please tell me if you followed the instructions and it's not working.
+The game should be playable and editable in Godot. Please open an issue if you followed the instructions and it's not working.
 
 
 ## How to contribute
 
-To contribute modifications, see the [general contributing guide](https://codeberg.org/superpractica/wiki/wiki/Contributing-Guide) and the [game development page](https://codeberg.org/superpractica/wiki/wiki/Game-Development) on the wiki.
+See the [Contribute page](https://superpractica.org/contribute/) on the website for general contribution instructions.
+
+Discussion takes place on the [Zulip chat](https://superpractica.zulipchat.com/). [Register](https://superpractica.zulipchat.com/register/) and post in the [Gamedev channel](https://superpractica.zulipchat.com/#narrow/channel/483189) to discuss how to improve the game and what to do. Also see [issues](https://codeberg.org/superpractica/superpractica/issues) and [projects](https://codeberg.org/superpractica/superpractica/projects).
 
 To contribute funds, go to [Liberapay](https://liberapay.com/SuperPractica/) or [Patreon](https://www.patreon.com/superpractica).
-
-To discuss Super Practica outside of particular issues, visit the [Zulip chat](https://superpractica.zulipchat.com/).
 
 
 ## Copyright
 
 See [COPYRIGHT.md](COPYRIGHT.md) for copyright and license information.
-
