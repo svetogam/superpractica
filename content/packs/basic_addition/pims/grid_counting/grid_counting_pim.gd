@@ -8,13 +8,13 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends FieldPim
+extends Pim
 
 @onready var output_slot: MemoSlot = %OutputSlot as MemoSlot
 
 
 func _ready() -> void:
-	super()
+	_setup_field(%FieldContainer)
 
 	_setup_slot(output_slot)
 	set_slot_empty()

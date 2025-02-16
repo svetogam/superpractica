@@ -132,7 +132,7 @@ func disable_verification_input(disable := true) -> void:
 
 func _setup_tool_panel() -> void:
 	for pim in _pims_left_to_right:
-		if pim is FieldPim:
+		if pim.has_field():
 			overlay.tool_panel.add_toolset(pim.field.interface_data)
 			overlay.tool_panel.tool_selected.connect(
 					pim.field.on_tool_panel_tool_selected)
@@ -145,7 +145,7 @@ func _setup_tool_panel() -> void:
 func _setup_creation_panel() -> void:
 	overlay.creation_panel.tool_dragged.connect(create_interfield_object)
 	for pim in _pims_left_to_right:
-		if pim is FieldPim:
+		if pim.has_field():
 			overlay.creation_panel.add_toolset(pim.field.interface_data)
 			pim.focus_entered.connect(
 					overlay.creation_panel.show_toolset.bind(pim.field.field_type))
@@ -256,8 +256,9 @@ func process_interfield_drag(object_data: FieldObjectData) -> void:
 	var external_point: Vector2 = %PimStrip.get_global_mouse_position()
 	var field_point: Vector2
 	for pim in _pims_left_to_right:
-		if pim is FieldPim and pim.field_has_point(external_point):
-			destination = pim.field
+		var field = pim.get_field_at_point(external_point)
+		if field != null:
+			destination = field
 			field_point = pim.convert_external_to_internal_point(external_point)
 			break
 
@@ -281,8 +282,9 @@ func process_interfield_drop(object_data: FieldObjectData) -> void:
 	var external_point: Vector2 = %PimStrip.get_global_mouse_position()
 	var field_point: Vector2
 	for pim in _pims_left_to_right:
-		if pim is FieldPim and pim.field_has_point(external_point):
-			destination = pim.field
+		var field = pim.get_field_at_point(external_point)
+		if field != null:
+			destination = field
 			field_point = pim.convert_external_to_internal_point(external_point)
 			break
 

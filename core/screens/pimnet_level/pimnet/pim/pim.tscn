@@ -23,5 +23,3 @@ script = ExtResource("1_mx7wt")
 
 [node name="Programs" type="Node" parent="."]
 script = ExtResource("2_a33of")
-
-[connection signal="focus_entered" from="." to="." method="_on_focus"]

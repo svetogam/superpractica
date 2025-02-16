@@ -10,11 +10,11 @@
 
 extends Verification
 
-var pim: FieldPim
+var pim: Pim
 var field: GridCounting
 
 
-func setup(p_pim: FieldPim) -> Verification:
+func setup(p_pim: Pim) -> Verification:
 	pim = p_pim
 	field = pim.field
 	return self

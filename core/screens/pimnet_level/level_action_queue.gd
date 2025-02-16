@@ -17,7 +17,7 @@ var _fields: Array = []
 
 func setup(pimnet: Pimnet) -> void:
 	for pim in pimnet.get_pim_list():
-		if pim is FieldPim:
+		if pim.has_field():
 			_bind_to_field(pim.field)
 
 
