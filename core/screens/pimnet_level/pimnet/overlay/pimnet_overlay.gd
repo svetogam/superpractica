@@ -56,15 +56,7 @@ func _ready() -> void:
 		#button.toggled.connect(_on_panel_button_toggled.bind(panel_type))
 
 	%LevelTitle.text = Game.get_current_level_title()
-
-
-func _on_pause_menu_button_pressed() -> void:
-	%PauseMenuPopup.visible = true
-	get_tree().paused = true
-
-
-func _on_continue_button_pressed() -> void:
-	%PauseMenuPopup.visible = false
+	%OverlayStateMachine.activate()
 
 
 func _on_settings_button_pressed() -> void:
@@ -74,10 +66,6 @@ func _on_settings_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false
 	exit_pressed.emit()
-
-
-func _on_pause_menu_popup_hide() -> void:
-	get_tree().paused = false
 
 
 func _on_completion_popup_visibility_changed() -> void:

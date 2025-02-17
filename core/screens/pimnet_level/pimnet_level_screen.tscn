@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=30 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -10,9 +10,11 @@
 [ext_resource type="Script" path="res://general/behaviors/button_enabler.gd" id="5_6mqp5"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/states/completed.gd" id="5_gboy6"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_panel.gd" id="6_lh3eo"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="PackedScene" uid="uid://bpihviyvti7aa" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_container.tscn" id="7_ysl18"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creation_panel.gd" id="8_60rcw"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/exclusive.gd" id="8_pb15e"]
 [ext_resource type="Texture2D" uid="uid://bhtglrn1p1yh7" path="res://general/icons/mono_icons/undo.svg" id="9_ej3ht"]
 [ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="10_c051s"]
@@ -38,18 +40,19 @@ font_size = 24
 process_mode = 1
 script = ExtResource("1_o01nh")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+[node name="LevelStateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+unique_name_in_owner = true
 script = ExtResource("2_26ecp")
 _initial_state = NodePath("Playing")
 _auto_activate = false
 
-[node name="Playing" type="Node" parent="StateMachine"]
+[node name="Playing" type="Node" parent="LevelStateMachine"]
 script = ExtResource("3_thn1s")
 
-[node name="Verifying" type="Node" parent="StateMachine"]
+[node name="Verifying" type="Node" parent="LevelStateMachine"]
 script = ExtResource("4_8b6fo")
 
-[node name="Completed" type="Node" parent="StateMachine"]
+[node name="Completed" type="Node" parent="LevelStateMachine"]
 script = ExtResource("5_gboy6")
 
 [node name="Pimnet" type="Node" parent="."]
@@ -99,40 +102,18 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_7rkio")
 
-[node name="PauseMenuPopup" type="PopupPanel" parent="Pimnet/OverlayLayer/Overlay"]
+[node name="OverlayStateMachine" type="Node" parent="Pimnet/OverlayLayer/Overlay" node_paths=PackedStringArray("_initial_state")]
 unique_name_in_owner = true
 process_mode = 3
-title = "Pause Menu"
-initial_position = 1
-size = Vector2i(300, 300)
+script = ExtResource("2_26ecp")
+_initial_state = NodePath("Normal")
+_auto_activate = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PauseMenuPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 296.0
-offset_bottom = 296.0
+[node name="Normal" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
+script = ExtResource("7_s3qtb")
 
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PauseMenuPopup/VBoxContainer"]
-layout_mode = 2
-text = "Pause Menu"
-horizontal_alignment = 1
-
-[node name="ContinueButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PauseMenuPopup/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-text = "Continue"
-
-[node name="SettingsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PauseMenuPopup/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-disabled = true
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PauseMenuPopup/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 10
-text = "Quit Level"
+[node name="Exclusive" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
+script = ExtResource("8_pb15e")
 
 [node name="CompletionPopup" type="PopupPanel" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -146,8 +127,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 316.0
-offset_bottom = 196.0
+offset_right = -4.0
+offset_bottom = -4.0
 
 [node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer"]
 layout_mode = 2
@@ -254,7 +235,7 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="PauseMenuButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
+[node name="SystemButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Pause Menu"
@@ -620,6 +601,59 @@ toggle_mode = true
 text = "Translate"
 clip_text = true
 
+[node name="ModalBarrier" type="ColorRect" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+modulate = Color(0.25098, 0.25098, 0.25098, 0.501961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SystemPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(250, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/SystemPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+layout_mode = 2
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 0
+disabled = true
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Quit Level"
+
 [node name="PlanPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
 visible = false
@@ -830,10 +864,6 @@ offset_bottom = 10070.0
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
 
-[connection signal="popup_hide" from="Pimnet/OverlayLayer/Overlay/PauseMenuPopup" to="Pimnet/OverlayLayer/Overlay" method="_on_pause_menu_popup_hide"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/PauseMenuPopup/VBoxContainer/ContinueButton" to="Pimnet/OverlayLayer/Overlay" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/PauseMenuPopup/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/PauseMenuPopup/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]
 [connection signal="visibility_changed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup" to="Pimnet/OverlayLayer/Overlay" method="_on_completion_popup_visibility_changed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/StayButton" to="Pimnet/OverlayLayer/Overlay" method="_on_stay_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/SelectLevelButton" to="Pimnet/OverlayLayer/Overlay" method="_on_select_level_button_pressed"]
@@ -841,4 +871,8 @@ pimnet = NodePath("../Pimnet")
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopRight/PauseMenuButton" to="Pimnet/OverlayLayer/Overlay" method="_on_pause_menu_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopRight/SystemButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Normal" method="_on_system_button_pressed"]
+[connection signal="gui_input" from="Pimnet/OverlayLayer/Overlay/ModalBarrier" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Exclusive" method="_on_modal_barrier_gui_input"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/ContinueButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Exclusive" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]

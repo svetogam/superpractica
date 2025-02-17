@@ -43,7 +43,7 @@ func _ready() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
 			"memo_changed", updated.emit.unbind(1))
 
-	$StateMachine.activate()
+	%LevelStateMachine.activate()
 	_run_program()
 
 
