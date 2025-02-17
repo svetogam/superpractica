@@ -30,11 +30,11 @@ func _enter(_last_state: String) -> void:
 
 
 func _set_output_warning(warned: bool) -> void:
-	program.pim.output_slot.memo_output_enabled = not warned
+	program.pim.slot.memo_output_enabled = not warned
 	if warned:
-		program.pim.output_slot.set_highlight(MemoSlot.HighlightTypes.WARNING)
+		program.pim.slot.set_highlight(MemoSlot.HighlightTypes.WARNING)
 	else:
-		program.pim.output_slot.set_highlight(MemoSlot.HighlightTypes.REGULAR)
+		program.pim.slot.set_highlight(MemoSlot.HighlightTypes.REGULAR)
 
 
 func _on_goal_slot_filled() -> void:

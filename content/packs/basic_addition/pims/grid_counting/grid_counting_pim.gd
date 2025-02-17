@@ -10,12 +10,7 @@
 
 extends Pim
 
-@onready var output_slot: MemoSlot = %OutputSlot as MemoSlot
-
 
 func _ready() -> void:
-	_setup_field(%FieldContainer)
-
-	_setup_slot(output_slot)
-	set_slot_empty()
-	output_slot.hide()
+	slot.set_empty()
+	slot.hide()

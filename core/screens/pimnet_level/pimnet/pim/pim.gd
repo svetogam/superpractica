@@ -11,8 +11,6 @@
 class_name Pim
 extends Panel
 
-const DEFAULT_FIELD_NAME := "field"
-const DEFAULT_SLOT_NAME := "slot"
 var field_map := {}
 var slot_map := {}
 # Shortcut assuming 1 field
@@ -30,6 +28,11 @@ var field_viewport: SubViewport:
 	get:
 		assert(field_map.values().size() == 1)
 		return field_map.values()[0].viewport
+# Shortcut assuming 1 slot
+var slot: MemoSlot:
+	get:
+		assert(slot_map.values().size() == 1)
+		return slot_map.values()[0]
 var _effects: MathEffectGroup
 @onready var programs := $Programs as ModeGroup
 
@@ -37,6 +40,8 @@ var _effects: MathEffectGroup
 func _enter_tree() -> void:
 	CSLocator.with(self).connect_service_changed(
 			Game.SERVICE_ROOT_EFFECT_LAYER, _on_effect_layer_changed)
+	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
+	CSConnector.with(self).connect_setup(Game.AGENT_MEMO_SLOT, _setup_slot)
 
 
 func get_program(program_name: String) -> PimProgram:
@@ -47,28 +52,19 @@ func get_program(program_name: String) -> PimProgram:
 # Field Stuff
 #====================================================================
 
-func _setup_field(viewport_container: SubViewportContainer,
-		field_name := DEFAULT_FIELD_NAME
-) -> void:
-	# Find viewport
-	var viewport: SubViewport = viewport_container.get_child(0)
+func _setup_field(p_field: Field) -> void:
+	var viewport: SubViewport = p_field.get_parent()
 	assert(viewport != null)
+	var container: SubViewportContainer = viewport.get_parent()
+	assert(container != null)
 
-	# Find field
-	var found_field: Field
-	for child in viewport.get_children():
-		if child is Field:
-			found_field = child
-			break
-	assert(found_field != null)
-
-	field_map[field_name] = {
-		"field": found_field,
-		"container": viewport_container,
+	field_map[p_field.name] = {
+		"field": p_field,
+		"container": container,
 		"viewport": viewport,
 	}
-	found_field.updated.connect(focus_entered.emit)
-	focus_entered.connect(_on_field_focused.bind(found_field))
+	p_field.updated.connect(focus_entered.emit)
+	focus_entered.connect(_on_field_focused.bind(p_field))
 
 
 func _on_field_focused(p_field: Field) -> void:
@@ -138,58 +134,24 @@ func _on_slot_changed(_memo: Memo, _slot_name: String) -> void:
 	pass
 
 
-func _setup_slot(slot: MemoSlot, slot_name := DEFAULT_SLOT_NAME) -> void:
-	slot_map[slot_name] = slot
-	slot.memo_changed.connect(_on_slot_changed.bind(slot_name))
+func _setup_slot(p_slot: MemoSlot) -> void:
+	slot_map[p_slot.name] = p_slot
+	p_slot.memo_changed.connect(_on_slot_changed.bind(p_slot.name))
 
 
-func set_slot(memo_type: GDScript, value: Variant, slot_name := DEFAULT_SLOT_NAME
-) -> void:
-	assert(slot_map.has(slot_name))
-	slot_map[slot_name].set_memo(memo_type, value)
+func get_slot(slot_name: String) -> MemoSlot:
+	return slot_map.get(slot_name)
 
 
-func set_slot_empty(slot_name := DEFAULT_SLOT_NAME) -> void:
-	assert(slot_map.has(slot_name))
-	slot_map[slot_name].set_empty()
-
-
-func set_slot_input_output_ability(input: bool, output: bool,
-		slot_name := DEFAULT_SLOT_NAME
-) -> void:
-	assert(slot_map.has(slot_name))
-	slot_map[slot_name].set_input_output_ability(input, output)
-
-
-func get_slot(slot_name := DEFAULT_SLOT_NAME) -> MemoSlot:
-	assert(slot_map.has(slot_name))
-	return slot_map[slot_name]
-
-
-func get_slot_value(slot_name := DEFAULT_SLOT_NAME) -> Variant:
-	assert(slot_map.has(slot_name))
-	return slot_map[slot_name].memo.get_value()
-
-
-func is_slot_empty(slot_name := DEFAULT_SLOT_NAME) -> bool:
-	assert(slot_map.has(slot_name))
-	return slot_map[slot_name].is_empty()
-
-
-func get_slot_string(slot_name := DEFAULT_SLOT_NAME) -> String:
-	assert(slot_map.has(slot_name))
-	return slot_map[slot_name].memo.get_string()
-
-
-func get_slot_position(slot_name := DEFAULT_SLOT_NAME) -> Vector2:
+func get_slot_position(slot_name: String) -> Vector2:
 	assert(slot_map.has(slot_name))
 	return slot_map[slot_name].get_global_rect().get_center()
 
 
-func create_number_effect(slot_name := DEFAULT_SLOT_NAME) -> NumberEffect:
+func create_number_effect(slot_name: String) -> NumberEffect:
 	assert(slot_map.has(slot_name))
 	if _effects != null:
-		var number = get_slot_value(slot_name)
+		var number = get_slot(slot_name).value
 		var number_position := get_slot_position(slot_name)
 		return _effects.give_number(number, number_position, "grow") as NumberEffect
 	else:

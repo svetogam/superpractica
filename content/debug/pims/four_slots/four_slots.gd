@@ -10,22 +10,12 @@
 
 extends Pim
 
-@onready var _slot_1 := %Slot1 as MemoSlot
-@onready var _slot_2 := %Slot2 as MemoSlot
-@onready var _slot_3 := %Slot3 as MemoSlot
-@onready var _slot_4 := %Slot4 as MemoSlot
-
 
 func _ready() -> void:
-	_setup_slot(_slot_1, "1")
-	_setup_slot(_slot_2, "2")
-	_setup_slot(_slot_3, "3")
-	_setup_slot(_slot_4, "4")
-
-	set_slot(IntegerMemo, 1, "1")
-	set_slot(IntegerMemo, 2, "2")
-	set_slot(IntegerMemo, 3, "3")
-	set_slot(IntegerMemo, 4, "4")
+	get_slot("Slot1").set_memo(IntegerMemo, 1)
+	get_slot("Slot2").set_memo(IntegerMemo, 2)
+	get_slot("Slot3").set_memo(IntegerMemo, 3)
+	get_slot("Slot4").set_memo(IntegerMemo, 4)
 
 	clear_effects()
 

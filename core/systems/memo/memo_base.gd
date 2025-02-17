@@ -11,6 +11,12 @@
 class_name Memo
 extends RefCounted
 
+var value:
+	get:
+		return get_value()
+var string: String:
+	get:
+		return get_string()
 
 func is_same_type(other_memo: Memo) -> bool:
 	return get_class() == other_memo.get_class()

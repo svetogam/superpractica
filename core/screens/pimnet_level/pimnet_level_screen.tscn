@@ -68,7 +68,7 @@ position_smoothing_speed = 20.0
 [node name="PimStrip" type="HBoxContainer" parent="Pimnet"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 400)
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 50.0

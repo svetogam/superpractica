@@ -36,6 +36,10 @@ const MemoDragPreview := preload("memo_drag_preview.tscn")
 var memo: Memo
 var pimnet: Pimnet
 var accept_condition := Callable()
+var value:
+	get:
+		assert(memo != null)
+		return memo.value
 var _previous_slot_color: Color
 @onready var _background := %Background as ColorRect
 @onready var _label := %Label as Label
@@ -111,9 +115,9 @@ func would_accept_memo(p_memo: Memo) -> bool:
 	return false
 
 
-func set_memo(memo_type: GDScript, value: Variant, bypass_hooks := false) -> void:
+func set_memo(memo_type: GDScript, p_value: Variant, bypass_hooks := false) -> void:
 	var new_memo: Memo = memo_type.new()
-	new_memo.set_by_value(value)
+	new_memo.set_by_value(p_value)
 	_accept_memo(new_memo, bypass_hooks)
 
 

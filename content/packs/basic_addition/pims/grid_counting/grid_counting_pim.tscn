@@ -27,13 +27,11 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="OutputSlot" parent="VBoxContainer" index="0" instance=ExtResource("4_flmjy")]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 memo_input_enabled = false
 
 [node name="FieldContainer" type="SubViewportContainer" parent="VBoxContainer" index="1"]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="FieldViewport" type="SubViewport" parent="VBoxContainer/FieldContainer" index="0"]
