@@ -170,6 +170,7 @@ layout_mode = 1
 offset_right = 250.0
 offset_bottom = 50.0
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="ReversionMenu" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft"]
 unique_name_in_owner = true
@@ -216,6 +217,7 @@ offset_left = -127.0
 offset_right = 113.0
 offset_bottom = 40.0
 grow_horizontal = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="TitlePanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/Top"]
@@ -241,6 +243,7 @@ offset_left = -50.0
 offset_bottom = 50.0
 grow_horizontal = 0
 size_flags_horizontal = 3
+mouse_filter = 2
 alignment = 2
 
 [node name="SystemButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
@@ -262,6 +265,7 @@ offset_left = 50.0
 offset_right = -200.0
 grow_vertical = 0
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="ToolPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels"]
 unique_name_in_owner = true
@@ -330,6 +334,7 @@ offset_top = -150.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
+mouse_filter = 2
 alignment = 2
 
 [node name="SolutionVerificationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
@@ -546,6 +551,7 @@ anchor_bottom = 1.0
 offset_top = -150.0
 offset_right = 50.0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="EditPanelsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomLeft"]
 unique_name_in_owner = true
@@ -838,6 +844,7 @@ offset_left = 50.0
 offset_right = -200.0
 offset_bottom = 50.0
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="ToolsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelLayoutButtons"]
 unique_name_in_owner = true
