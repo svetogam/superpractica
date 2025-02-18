@@ -10,8 +10,6 @@
 
 extends State
 
-const SYSTEM_PANEL_OUT_Y := -300
-const SYSTEM_PANEL_IN_Y := 0
 const SLIDE_DURATION := 0.2
 
 
@@ -22,7 +20,7 @@ func _enter(_last_state: String) -> void:
 
 	%SystemPanel.show()
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(%SystemPanel, "position:y", SYSTEM_PANEL_IN_Y, SLIDE_DURATION)
+	tween.tween_property(%SystemPanel, "position:y", 0, SLIDE_DURATION)
 
 
 func _on_modal_barrier_gui_input(event: InputEvent) -> void:
@@ -36,7 +34,7 @@ func _transition_to_normal() -> void:
 	%ModalBarrier.gui_input.disconnect(_on_modal_barrier_gui_input)
 
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(%SystemPanel, "position:y", SYSTEM_PANEL_OUT_Y, SLIDE_DURATION)
+	tween.tween_property(%SystemPanel, "position:y", -%SystemPanel.size.y, SLIDE_DURATION)
 	tween.tween_callback(_change_state.bind("Normal"))
 
 

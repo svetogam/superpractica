@@ -72,6 +72,7 @@ func _ready() -> void:
 				setup_resource.translation_start_active)
 		overlay.goal_type = goal_type
 		%PlanButton.visible = setup_resource.plan_enable
+		%EditPanelsButton.visible = setup_resource.edit_panels_enable
 
 		_setup_tool_panel()
 		_setup_creation_panel()

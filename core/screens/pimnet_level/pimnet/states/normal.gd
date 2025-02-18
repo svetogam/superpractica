@@ -17,3 +17,7 @@ func _on_system_button_pressed() -> void:
 
 func _on_plan_button_pressed() -> void:
 	_change_state("Plan")
+
+
+func _on_edit_panels_button_pressed() -> void:
+	_change_state("EditPanels")

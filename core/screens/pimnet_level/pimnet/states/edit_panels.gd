@@ -17,9 +17,20 @@ func _enter(_last_state: String) -> void:
 	%ModalBarrier.show()
 	%ModalBarrier.gui_input.connect(_on_modal_barrier_gui_input)
 
-	%PlanPanel.show()
+	%PanelLayoutButtons.show()
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(%PlanPanel, "position:x", 0, SLIDE_DURATION)
+	tween.tween_property(
+		%PanelLayoutButtons,
+		"position:y",
+		Game.get_screen_rect().end.y - %PanelLayoutButtons.size.y,
+		SLIDE_DURATION
+	)
+	tween.parallel().tween_property(
+		%BottomPanels,
+		"position:y",
+		Game.get_screen_rect().end.y - %PanelLayoutButtons.size.y - %BottomPanels.size.y,
+		SLIDE_DURATION
+	)
 
 
 func _on_modal_barrier_gui_input(event: InputEvent) -> void:
@@ -32,9 +43,20 @@ func _transition_to_normal() -> void:
 	%ModalBarrier.gui_input.disconnect(_on_modal_barrier_gui_input)
 
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(%PlanPanel, "position:x", -%PlanPanel.size.x, SLIDE_DURATION)
+	tween.tween_property(
+		%PanelLayoutButtons,
+		"position:y",
+		Game.get_screen_rect().end.y,
+		SLIDE_DURATION
+	)
+	tween.parallel().tween_property(
+		%BottomPanels,
+		"position:y",
+		Game.get_screen_rect().end.y - %BottomPanels.size.y,
+		SLIDE_DURATION
+	)
 	tween.tween_callback(_change_state.bind("Normal"))
 
 
 func _exit(_next_state: String) -> void:
-	%PlanPanel.hide()
+	%PanelLayoutButtons.hide()
