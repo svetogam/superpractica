@@ -247,6 +247,7 @@ mouse_filter = 2
 alignment = 2
 
 [node name="SystemButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Pause Menu"
@@ -891,8 +892,5 @@ pimnet = NodePath("../Pimnet")
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopRight/SystemButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Normal" method="_on_system_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/BottomLeft/EditPanelsButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Normal" method="_on_edit_panels_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/BottomLeft/PlanButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Normal" method="_on_plan_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]
