@@ -104,12 +104,6 @@ func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> voi
 
 
 func setup_panel(panel_type: PimnetPanels, enable: bool, start_active: bool) -> void:
-	# Hacky override
-	if panel_type == PimnetPanels.GOAL:
-		return
-	if panel_type == PimnetPanels.PLAN:
-		return
-
 	var button := _get_button(panel_type)
 	if not enable:
 		button.visible = false

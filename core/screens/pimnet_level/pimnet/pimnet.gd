@@ -71,12 +71,7 @@ func _ready() -> void:
 				setup_resource.translation_enable,
 				setup_resource.translation_start_active)
 		overlay.goal_type = goal_type
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.GOAL,
-				overlay.goal_type != LevelResource.GoalTypes.NONE,
-				setup_resource.goal_start_active)
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.PLAN,
-				setup_resource.plan_enable,
-				setup_resource.plan_start_active)
+		%PlanButton.visible = setup_resource.plan_enable
 
 		_setup_tool_panel()
 		_setup_creation_panel()

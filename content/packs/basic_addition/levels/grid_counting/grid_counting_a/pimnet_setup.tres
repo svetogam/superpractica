@@ -15,4 +15,3 @@ translation_enable = false
 translation_start_active = false
 goal_start_active = true
 plan_enable = true
-plan_start_active = false

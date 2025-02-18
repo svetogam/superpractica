@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=31 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -14,9 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bpihviyvti7aa" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_container.tscn" id="7_ysl18"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creation_panel.gd" id="8_60rcw"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/exclusive.gd" id="8_pb15e"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
 [ext_resource type="Texture2D" uid="uid://bhtglrn1p1yh7" path="res://general/icons/mono_icons/undo.svg" id="9_ej3ht"]
 [ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/plan.gd" id="10_7acvs"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="10_c051s"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
 [ext_resource type="Texture2D" uid="uid://dnjqiatl8efl" path="res://general/icons/mono_icons/refresh.svg" id="10_eebhu"]
@@ -112,8 +113,11 @@ _auto_activate = false
 [node name="Normal" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
 script = ExtResource("7_s3qtb")
 
-[node name="Exclusive" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
+[node name="System" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
 script = ExtResource("8_pb15e")
+
+[node name="Plan" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
+script = ExtResource("10_7acvs")
 
 [node name="CompletionPopup" type="PopupPanel" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -242,39 +246,6 @@ tooltip_text = "Pause Menu"
 icon = ExtResource("10_c051s")
 icon_alignment = 1
 
-[node name="BottomLeft" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
-custom_minimum_size = Vector2(50, 150)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -104.0
-offset_right = 50.0
-offset_bottom = -4.0
-grow_vertical = 0
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="PlanButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomLeft"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Plan"
-toggle_mode = true
-text = "Plan"
-clip_text = true
-
-[node name="LayoutButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomLeft"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Plan"
-toggle_mode = true
-text = "Layout"
-clip_text = true
-
 [node name="Bottom" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 1
@@ -286,7 +257,6 @@ offset_left = 50.0
 offset_right = -200.0
 grow_vertical = 0
 size_flags_horizontal = 3
-mouse_filter = 2
 
 [node name="ToolPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/Bottom"]
 unique_name_in_owner = true
@@ -355,7 +325,6 @@ offset_top = -150.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
-mouse_filter = 2
 alignment = 2
 
 [node name="SolutionVerificationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
@@ -563,42 +532,45 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Verify"
 
-[node name="BelowBottom" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+[node name="Panel" type="Panel" parent="Pimnet/OverlayLayer/Overlay"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 200)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 50.0
+grow_vertical = 0
+
+[node name="LayoutButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/Panel"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 50.0
+grow_vertical = 0
+tooltip_text = "Plan"
+text = "Layout"
+clip_text = true
+
+[node name="PlanButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 50.0
-offset_right = -200.0
-offset_bottom = 50.0
-size_flags_horizontal = 3
-
-[node name="ToolsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Tools"
-toggle_mode = true
-text = "Tools"
-clip_text = true
-
-[node name="CreationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Create Objects"
-toggle_mode = true
-text = "Create Objects"
-clip_text = true
-
-[node name="TranslationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Translate"
-toggle_mode = true
-text = "Translate"
+offset_top = -100.0
+offset_right = 50.0
+offset_bottom = -50.0
+grow_vertical = 2
+tooltip_text = "Plan"
+text = "Plan"
 clip_text = true
 
 [node name="ModalBarrier" type="ColorRect" parent="Pimnet/OverlayLayer/Overlay"]
@@ -616,6 +588,7 @@ grow_vertical = 2
 [node name="SystemPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 custom_minimum_size = Vector2(250, 300)
 layout_mode = 1
 anchors_preset = -1
@@ -635,12 +608,6 @@ layout_mode = 2
 text = "Pause Menu"
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 0
-text = "Continue"
-
 [node name="SettingsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -658,10 +625,13 @@ text = "Quit Level"
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(300, 250)
-layout_mode = 2
-offset_top = 350.0
-offset_right = 300.0
-offset_bottom = 600.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_bottom = -100.0
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 script = ExtResource("8_8tc01")
@@ -853,6 +823,44 @@ size_flags_vertical = 3
 text = "Instructions go here."
 autowrap_mode = 3
 
+[node name="BelowBottom" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = -200.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="ToolsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Tools"
+toggle_mode = true
+text = "Tools"
+clip_text = true
+
+[node name="CreationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Create Objects"
+toggle_mode = true
+text = "Create Objects"
+clip_text = true
+
+[node name="TranslationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BelowBottom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Translate"
+toggle_mode = true
+text = "Translate"
+clip_text = true
+
 [node name="DummySlot" parent="Pimnet" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
 offset_left = 10000.0
@@ -872,7 +880,6 @@ pimnet = NodePath("../Pimnet")
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopRight/SystemButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Normal" method="_on_system_button_pressed"]
-[connection signal="gui_input" from="Pimnet/OverlayLayer/Overlay/ModalBarrier" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Exclusive" method="_on_modal_barrier_gui_input"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/ContinueButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Exclusive" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/Panel/PlanButton" to="Pimnet/OverlayLayer/Overlay/OverlayStateMachine/Normal" method="_on_plan_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]

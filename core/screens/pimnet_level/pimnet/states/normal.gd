@@ -12,4 +12,8 @@ extends State
 
 
 func _on_system_button_pressed() -> void:
-	_change_state("Exclusive")
+	_change_state("System")
+
+
+func _on_plan_button_pressed() -> void:
+	_change_state("Plan")

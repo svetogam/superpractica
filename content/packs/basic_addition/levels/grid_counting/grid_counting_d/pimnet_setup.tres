@@ -14,5 +14,4 @@ creation_start_active = false
 translation_enable = false
 translation_start_active = false
 goal_start_active = true
-plan_enable = false
-plan_start_active = false
+plan_enable = true

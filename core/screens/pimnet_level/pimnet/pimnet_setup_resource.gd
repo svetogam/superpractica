@@ -24,4 +24,3 @@ extends Resource
 @export var translation_start_active := false
 @export var goal_start_active := false
 @export var plan_enable := false
-@export var plan_start_active := false
