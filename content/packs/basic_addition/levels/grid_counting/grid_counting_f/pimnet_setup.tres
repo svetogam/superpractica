@@ -15,3 +15,4 @@ translation_enable = false
 translation_start_active = false
 goal_start_active = true
 plan_enable = false
+edit_panels_enable = false
