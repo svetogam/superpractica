@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=34 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/edit_panels.gd" id="11_vrqbd"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="11_worie"]
 [ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/screens/pimnet_level/verifier/verifier.tscn" id="12_4kqqx"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/completion.gd" id="13_pjab3"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_verification_panel.gd" id="14_l20jg"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/construct_conditions_panel.gd" id="25_7axkj"]
@@ -37,6 +38,10 @@ content_margin_right = 20.0
 font_size = 24
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_os7jo"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node"]
 process_mode = 1
@@ -123,46 +128,8 @@ script = ExtResource("10_7acvs")
 [node name="EditPanels" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
 script = ExtResource("11_vrqbd")
 
-[node name="CompletionPopup" type="PopupPanel" parent="Pimnet/OverlayLayer/Overlay"]
-unique_name_in_owner = true
-title = "Completion Menu"
-initial_position = 1
-size = Vector2i(320, 200)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 316.0
-offset_bottom = 196.0
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "Level Complete!"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="StayButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Stay Here"
-
-[node name="SelectLevelButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Select Level"
-
-[node name="NextLevelButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Next Level"
+[node name="Completion" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
+script = ExtResource("13_pjab3")
 
 [node name="TopLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(250, 50)
@@ -174,6 +141,7 @@ mouse_filter = 2
 
 [node name="ReversionMenu" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 script = ExtResource("4_ux8xa")
 
@@ -213,9 +181,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -127.0
-offset_right = 113.0
-offset_bottom = 40.0
+offset_left = -120.0
+offset_right = 120.0
+offset_bottom = 41.0
 grow_horizontal = 2
 mouse_filter = 2
 alignment = 1
@@ -330,8 +298,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -150.0
+offset_left = -206.0
+offset_top = -500.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -341,6 +309,7 @@ alignment = 2
 [node name="SolutionVerificationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
 script = ExtResource("14_l20jg")
 
@@ -361,7 +330,7 @@ columns = 3
 
 [node name="LeftSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -371,14 +340,14 @@ memo_output_enabled = false
 [node name="CheckSlot1" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40
 text = "="
 horizontal_alignment = 1
 
 [node name="RightSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -387,7 +356,7 @@ memo_output_enabled = false
 
 [node name="LeftSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -397,14 +366,14 @@ memo_output_enabled = false
 [node name="CheckSlot2" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40
 text = "="
 horizontal_alignment = 1
 
 [node name="RightSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -438,19 +407,22 @@ script = ExtResource("14_d6muc")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 3
 
 [node name="ProblemSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
 [node name="Operator" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40
 text = "+"
 horizontal_alignment = 1
@@ -459,14 +431,14 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
 [node name="Equals" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40
 text = "="
 horizontal_alignment = 1
@@ -475,13 +447,14 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 4
 size_flags_vertical = 6
 memo_output_enabled = false
 
 [node name="Empty" type="Control" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="ConstructConditionsPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
 unique_name_in_owner = true
@@ -492,17 +465,18 @@ script = ExtResource("25_7axkj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-theme_override_constants/v_separation = 5
+theme_override_constants/v_separation = 0
 columns = 2
 
 [node name="ConditionIcon1" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 45)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -511,7 +485,7 @@ stretch_mode = 5
 
 [node name="ConditionSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 45)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -520,7 +494,7 @@ memo_output_enabled = false
 
 [node name="ConditionIcon2" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 45)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -529,7 +503,7 @@ stretch_mode = 5
 
 [node name="ConditionSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 45)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -587,13 +561,25 @@ clip_text = true
 unique_name_in_owner = true
 process_mode = 3
 visible = false
-modulate = Color(0.25098, 0.25098, 0.25098, 0.501961)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.25, 0.25, 0.25, 0.501961)
+
+[node name="CompletionBarrier" type="ColorRect" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.501961)
 
 [node name="SystemPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -874,6 +860,55 @@ toggle_mode = true
 text = "Translate"
 clip_text = true
 
+[node name="CompletionPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -160.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer"]
+layout_mode = 2
+text = "Level Complete!"
+label_settings = SubResource("LabelSettings_os7jo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="CompletionSelectButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/icon_max_width = 50
+text = "Select"
+icon = ExtResource("11_0u5l8")
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+
+[node name="CompletionNextButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/icon_max_width = 50
+text = "Next"
+icon = ExtResource("11_0u5l8")
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+
 [node name="DummySlot" parent="Pimnet" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
 offset_left = 10000.0
@@ -885,12 +920,10 @@ offset_bottom = 10070.0
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
 
-[connection signal="visibility_changed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup" to="Pimnet/OverlayLayer/Overlay" method="_on_completion_popup_visibility_changed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/StayButton" to="Pimnet/OverlayLayer/Overlay" method="_on_stay_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/SelectLevelButton" to="Pimnet/OverlayLayer/Overlay" method="_on_select_level_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPopup/VBoxContainer/HBoxContainer/NextLevelButton" to="Pimnet/OverlayLayer/Overlay" method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer/CompletionSelectButton" to="Pimnet/OverlayLayer/Overlay" method="_on_completion_select_button_pressed"]
+[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer/CompletionNextButton" to="Pimnet/OverlayLayer/Overlay" method="_on_completion_next_button_pressed"]

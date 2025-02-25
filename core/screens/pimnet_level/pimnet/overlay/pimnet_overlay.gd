@@ -53,19 +53,11 @@ func _on_quit_button_pressed() -> void:
 	exit_pressed.emit()
 
 
-func _on_completion_popup_visibility_changed() -> void:
-	%NextLevelButton.disabled = not Game.is_level_suggested_after_current()
-
-
-func _on_stay_button_pressed() -> void:
-	%CompletionPopup.hide()
-
-
-func _on_select_level_button_pressed() -> void:
+func _on_completion_select_button_pressed() -> void:
 	exit_pressed.emit()
 
 
-func _on_next_level_button_pressed() -> void:
+func _on_completion_next_button_pressed() -> void:
 	next_level_requested.emit()
 
 
@@ -109,10 +101,6 @@ func deactivate_panel(panel_type: PimnetPanels) -> void:
 
 	var panel := _get_panel(panel_type)
 	assert(not panel.visible)
-
-
-func show_completion_popup() -> void:
-	%CompletionPopup.visible = true
 
 
 func _get_panel(panel_type: PimnetPanels) -> PanelContainer:
