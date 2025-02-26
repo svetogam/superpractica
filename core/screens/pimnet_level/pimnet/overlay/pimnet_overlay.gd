@@ -18,7 +18,6 @@ enum PimnetPanels {
 	NONE = 0,
 	PIM_TOOLS,
 	PIM_OBJECTS,
-	TRANSLATION,
 }
 
 var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
@@ -37,8 +36,6 @@ func _ready() -> void:
 	%PimToolsButton.toggled.connect(_on_panel_button_toggled.bind(PimnetPanels.PIM_TOOLS))
 	%PimObjectsButton.toggled.connect(_on_panel_button_toggled.bind(
 			PimnetPanels.PIM_OBJECTS))
-	%TranslationButton.toggled.connect(
-			_on_panel_button_toggled.bind(PimnetPanels.TRANSLATION))
 
 	goal_type = Game.current_level.goal_type
 	%LevelTitle.text = Game.get_current_level_title()
@@ -121,8 +118,6 @@ func _get_button(panel_type: PimnetPanels) -> Button:
 			return %PimToolsButton
 		PimnetPanels.PIM_OBJECTS:
 			return %PimObjectsButton
-		PimnetPanels.TRANSLATION:
-			return %TranslationButton
 		_:
 			assert(false)
 			return null

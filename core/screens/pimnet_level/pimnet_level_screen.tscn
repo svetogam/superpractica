@@ -244,20 +244,6 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="TranslationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 140)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/TranslationPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/TranslationPanel/VBoxContainer"]
-layout_mode = 2
-text = "Translate"
-horizontal_alignment = 1
-
 [node name="BottomRight" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(200, 500)
 layout_mode = 1
@@ -805,15 +791,6 @@ layout_mode = 2
 tooltip_text = "Create Objects"
 toggle_mode = true
 text = "Objects"
-clip_text = true
-
-[node name="TranslationButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelLayoutButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Translate"
-toggle_mode = true
-text = "Translate"
 clip_text = true
 
 [node name="CompletionPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]

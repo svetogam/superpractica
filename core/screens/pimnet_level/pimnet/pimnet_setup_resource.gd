@@ -20,8 +20,6 @@ extends Resource
 @export var tools_start_active := false
 @export var creation_enable := false
 @export var creation_start_active := false
-@export var translation_enable := false
-@export var translation_start_active := false
 @export var goal_start_active := false
 @export var plan_enable := false
 @export var edit_panels_enable := false

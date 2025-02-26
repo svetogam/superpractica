@@ -63,9 +63,6 @@ func _ready() -> void:
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS,
 				setup_resource.creation_enable,
 				setup_resource.creation_start_active)
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.TRANSLATION,
-				setup_resource.translation_enable,
-				setup_resource.translation_start_active)
 		%PlanButton.visible = setup_resource.plan_enable
 		%EditPanelsButton.visible = setup_resource.edit_panels_enable
 
