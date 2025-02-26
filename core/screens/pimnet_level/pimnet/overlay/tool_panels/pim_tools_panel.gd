@@ -8,11 +8,11 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends BasePimnetToolPanel
+extends BaseToolButtonPanel
 
 signal tool_selected(toolset_name, tool_mode)
 
-const ToolContainer := preload("tool_container.tscn")
+const ToolContainer := preload("tool_button_container.tscn")
 @onready var _first_container: GridContainer = %ToolContainer1 as GridContainer
 
 

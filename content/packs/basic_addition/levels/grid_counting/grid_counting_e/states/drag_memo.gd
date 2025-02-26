@@ -13,6 +13,6 @@ extends LevelProgramState
 
 func _enter(_last_state: String) -> void:
 	program.field.set_tool(Game.NO_TOOL)
-	pimnet.overlay.disable_panel(PimnetOverlay.PimnetPanels.CREATION)
+	pimnet.overlay.disable_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 
 	goal_panel.slot_filled.connect(complete)

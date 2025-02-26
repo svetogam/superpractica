@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-class_name BasePimnetToolPanel
+class_name BaseToolButtonPanel
 extends PanelContainer
 
 var _containers: Dictionary # {toolset_name_1: container_object_1, ...}

@@ -57,10 +57,10 @@ func _ready() -> void:
 
 		# Set up panels
 		overlay.reversion_menu.visible = setup_resource.reversion_enable
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.TOOLS,
+		overlay.setup_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS,
 				setup_resource.tools_enable,
 				setup_resource.tools_start_active)
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.CREATION,
+		overlay.setup_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS,
 				setup_resource.creation_enable,
 				setup_resource.creation_start_active)
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.TRANSLATION,
@@ -69,8 +69,28 @@ func _ready() -> void:
 		%PlanButton.visible = setup_resource.plan_enable
 		%EditPanelsButton.visible = setup_resource.edit_panels_enable
 
-		_setup_tool_panel()
-		_setup_creation_panel()
+		# Setup pim-tools panel
+		for pim in _pims_left_to_right:
+			if pim.has_field():
+				overlay.pim_tools.add_toolset(pim.field.interface_data)
+				overlay.pim_tools.tool_selected.connect(
+					_on_pim_tool_selected.bind(pim.field)
+				)
+				pim.field.tool_changed.connect(
+					overlay.pim_tools.on_field_tool_changed.bind(pim.field.field_type)
+				)
+				pim.focus_entered.connect(
+					overlay.pim_tools.show_toolset.bind(pim.field.field_type)
+				)
+
+		# Setup pim-objects panel
+		overlay.pim_objects.tool_dragged.connect(create_interfield_object)
+		for pim in _pims_left_to_right:
+			if pim.has_field():
+				overlay.pim_objects.add_toolset(pim.field.interface_data)
+				pim.focus_entered.connect(
+					overlay.pim_objects.show_toolset.bind(pim.field.field_type)
+				)
 
 	# Set up camera and scrolling
 	_clamp_camera_in_bounds.call_deferred(false)
@@ -99,6 +119,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		_dragging = true
 
 
+func _on_pim_tool_selected(toolset_name: String, tool_mode: int, field: Field) -> void:
+	if toolset_name == field.field_type:
+		field.set_tool(tool_mode)
+
+
 func disable_verification_input(disable := true) -> void:
 	set_process_input(not disable)
 	overlay.set_process_input(not disable)
@@ -119,27 +144,6 @@ func disable_verification_input(disable := true) -> void:
 			button.mouse_default_cursor_shape = Control.CURSOR_BUSY
 		else:
 			button.mouse_default_cursor_shape = Control.CURSOR_ARROW
-
-
-func _setup_tool_panel() -> void:
-	for pim in _pims_left_to_right:
-		if pim.has_field():
-			overlay.tool_panel.add_toolset(pim.field.interface_data)
-			overlay.tool_panel.tool_selected.connect(
-					pim.field.on_tool_panel_tool_selected)
-			pim.field.tool_changed.connect(
-					overlay.tool_panel.on_field_tool_changed.bind(pim.field.field_type))
-			pim.focus_entered.connect(
-					overlay.tool_panel.show_toolset.bind(pim.field.field_type))
-
-
-func _setup_creation_panel() -> void:
-	overlay.creation_panel.tool_dragged.connect(create_interfield_object)
-	for pim in _pims_left_to_right:
-		if pim.has_field():
-			overlay.creation_panel.add_toolset(pim.field.interface_data)
-			pim.focus_entered.connect(
-					overlay.creation_panel.show_toolset.bind(pim.field.field_type))
 
 
 func _center_camera_on_pim_strip() -> void:

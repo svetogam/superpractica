@@ -136,11 +136,6 @@ func get_objects_by_type(_object_type: int) -> Array:
 	return []
 
 
-func on_tool_panel_tool_selected(toolset_name: String, tool_mode: int) -> void:
-	if toolset_name == field_type:
-		set_tool(tool_mode)
-
-
 func set_tool(tool_mode: int) -> void:
 	if tool_mode != get_tool():
 		if tool_mode != Game.NO_TOOL:

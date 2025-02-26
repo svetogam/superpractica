@@ -14,8 +14,8 @@ var _field_program: FieldProgram
 
 
 func _enter(_last_state: String) -> void:
-	creation_panel.exclude_all("GridCounting")
-	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
+	overlay.pim_objects.exclude_all("GridCounting")
+	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
 
 	_field_program = program.pim.field.get_program("CountByUnits")
 	_field_program.setup(0, program.count)

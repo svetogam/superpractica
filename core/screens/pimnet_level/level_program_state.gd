@@ -43,14 +43,6 @@ var plan_panel: Control:
 	get:
 		assert(level.pimnet.overlay.plan_panel != null)
 		return level.pimnet.overlay.plan_panel
-var tool_panel: Control:
-	get:
-		assert(level.pimnet.overlay.tool_panel != null)
-		return level.pimnet.overlay.tool_panel
-var creation_panel: Control:
-	get:
-		assert(level.pimnet.overlay.creation_panel != null)
-		return level.pimnet.overlay.creation_panel
 
 
 func complete_task() -> void:

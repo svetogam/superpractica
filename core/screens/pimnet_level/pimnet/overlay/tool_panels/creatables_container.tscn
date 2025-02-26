@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djrt5a81ge2js"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_container.gd" id="1_3da5r"]
+[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_button_container.gd" id="1_3da5r"]
 [ext_resource type="Texture2D" uid="uid://bjbn3j8vmmwyj" path="res://general/icons/mono_icons/circle.svg" id="2_ngw1a"]
 
 [node name="CreatablesContainer" type="GridContainer"]

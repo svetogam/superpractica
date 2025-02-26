@@ -14,11 +14,11 @@ var _field_program: FieldProgram
 
 
 func _enter(_last_state: String) -> void:
-	tool_panel.exclude_all("GridCounting")
-	tool_panel.include("GridCounting", GridCounting.Tools.CELL_MARKER)
-	tool_panel.include("GridCounting", GridCounting.Tools.PIECE_DRAGGER)
+	overlay.pim_tools.exclude_all("GridCounting")
+	overlay.pim_tools.include("GridCounting", GridCounting.Tools.CELL_MARKER)
+	overlay.pim_tools.include("GridCounting", GridCounting.Tools.PIECE_DRAGGER)
 	program.field.set_tool(GridCounting.Tools.CELL_MARKER)
-	creation_panel.include_all("GridCounting")
+	overlay.pim_objects.include_all("GridCounting")
 
 	_field_program = program.field.get_program("SoftCount")
 	_field_program.run()

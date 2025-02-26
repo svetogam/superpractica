@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends BasePimnetToolPanel
+extends BaseToolButtonPanel
 
 signal tool_dragged(tool_data)
 

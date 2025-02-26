@@ -13,9 +13,9 @@ extends LevelProgramState
 
 func _enter(_last_state: String) -> void:
 	program.field.set_tool(GridCounting.Tools.PIECE_DRAGGER)
-	creation_panel.exclude_all("GridCounting")
-	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
-	creation_panel.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
+	overlay.pim_objects.exclude_all("GridCounting")
+	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
+	overlay.pim_objects.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
 
 	program.field_program.disallow_object(GridCounting.Objects.UNIT)
 	program.field_program.run()

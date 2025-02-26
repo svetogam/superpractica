@@ -16,8 +16,8 @@ signal next_level_requested()
 
 enum PimnetPanels {
 	NONE = 0,
-	TOOLS,
-	CREATION,
+	PIM_TOOLS,
+	PIM_OBJECTS,
 	TRANSLATION,
 }
 
@@ -27,15 +27,16 @@ var goal_panel: Control:
 	get = _get_goal_panel
 @onready var reversion_menu := %ReversionMenu as Control
 @onready var plan_panel := %PlanPanel as Control
-@onready var tool_panel := %ToolPanel as Control
-@onready var creation_panel := %CreationPanel as Control
+@onready var pim_tools := %PimToolsPanel as Control
+@onready var pim_objects := %PimObjectsPanel as Control
 @onready var verification_panel := %SolutionVerificationPanel as Control
 
 
 func _ready() -> void:
 	# Connect panel-buttons
-	%ToolsButton.toggled.connect(_on_panel_button_toggled.bind(PimnetPanels.TOOLS))
-	%CreationButton.toggled.connect(_on_panel_button_toggled.bind(PimnetPanels.CREATION))
+	%PimToolsButton.toggled.connect(_on_panel_button_toggled.bind(PimnetPanels.PIM_TOOLS))
+	%PimObjectsButton.toggled.connect(_on_panel_button_toggled.bind(
+			PimnetPanels.PIM_OBJECTS))
 	%TranslationButton.toggled.connect(
 			_on_panel_button_toggled.bind(PimnetPanels.TRANSLATION))
 
@@ -105,10 +106,10 @@ func deactivate_panel(panel_type: PimnetPanels) -> void:
 
 func _get_panel(panel_type: PimnetPanels) -> PanelContainer:
 	match panel_type:
-		PimnetPanels.TOOLS:
-			return %ToolPanel
-		PimnetPanels.CREATION:
-			return %CreationPanel
+		PimnetPanels.PIM_TOOLS:
+			return %PimToolsPanel
+		PimnetPanels.PIM_OBJECTS:
+			return %PimObjectsPanel
 		_:
 			assert(false)
 			return null
@@ -116,10 +117,10 @@ func _get_panel(panel_type: PimnetPanels) -> PanelContainer:
 
 func _get_button(panel_type: PimnetPanels) -> Button:
 	match panel_type:
-		PimnetPanels.TOOLS:
-			return %ToolsButton
-		PimnetPanels.CREATION:
-			return %CreationButton
+		PimnetPanels.PIM_TOOLS:
+			return %PimToolsButton
+		PimnetPanels.PIM_OBJECTS:
+			return %PimObjectsButton
 		PimnetPanels.TRANSLATION:
 			return %TranslationButton
 		_:

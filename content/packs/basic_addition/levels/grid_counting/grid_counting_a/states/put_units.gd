@@ -15,8 +15,8 @@ var _field_program: FieldProgram
 
 func _enter(_last_state: String) -> void:
 	program.field.set_tool(GridCounting.Tools.PIECE_DRAGGER)
-	creation_panel.exclude_all("GridCounting")
-	creation_panel.include("GridCounting", GridCounting.Objects.UNIT)
+	overlay.pim_objects.exclude_all("GridCounting")
+	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
 
 	_field_program = program.field.get_program("SoftCount")
 	_field_program.run()
