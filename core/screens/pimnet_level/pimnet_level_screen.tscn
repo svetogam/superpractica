@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=32 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -9,14 +9,10 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/reversion_menu.gd" id="4_ux8xa"]
 [ext_resource type="Script" path="res://general/behaviors/button_enabler.gd" id="5_6mqp5"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/states/completed.gd" id="5_gboy6"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_panel.gd" id="6_lh3eo"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
-[ext_resource type="PackedScene" uid="uid://bpihviyvti7aa" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_container.tscn" id="7_ysl18"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creation_panel.gd" id="8_60rcw"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
 [ext_resource type="Texture2D" uid="uid://bhtglrn1p1yh7" path="res://general/icons/mono_icons/undo.svg" id="9_ej3ht"]
-[ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="9_jk2o1"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/plan.gd" id="10_7acvs"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="10_c051s"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
@@ -28,6 +24,8 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/completion.gd" id="13_pjab3"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_verification_panel.gd" id="14_l20jg"]
+[ext_resource type="PackedScene" uid="uid://cdrvta3syyupk" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_panel.tscn" id="19_du77a"]
+[ext_resource type="PackedScene" uid="uid://cuub56rvendyu" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creation_panel.tscn" id="20_htwnw"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/construct_conditions_panel.gd" id="25_7axkj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2q4"]
@@ -236,44 +234,14 @@ grow_vertical = 0
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ToolPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels"]
+[node name="ToolPanel" parent="Pimnet/OverlayLayer/Overlay/BottomPanels" instance=ExtResource("19_du77a")]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(200, 140)
-layout_mode = 2
-script = ExtResource("6_lh3eo")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/ToolPanel"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/ToolPanel/VBoxContainer"]
-layout_mode = 2
-text = "Tools"
-horizontal_alignment = 1
-
-[node name="ToolContainer1" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/ToolPanel/VBoxContainer" instance=ExtResource("7_ysl18")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="CreationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels"]
+[node name="CreationPanel" parent="Pimnet/OverlayLayer/Overlay/BottomPanels" instance=ExtResource("20_htwnw")]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(200, 140)
-layout_mode = 2
-mouse_filter = 2
-script = ExtResource("8_60rcw")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/CreationPanel"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/CreationPanel/VBoxContainer"]
-layout_mode = 2
-text = "Create Objects"
-horizontal_alignment = 1
-
-[node name="CreatablesContainer1" parent="Pimnet/OverlayLayer/Overlay/BottomPanels/CreationPanel/VBoxContainer" instance=ExtResource("9_jk2o1")]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TranslationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomPanels"]

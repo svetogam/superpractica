@@ -43,7 +43,6 @@ func add_toolset(data: FieldInterfaceData) -> void:
 	# Set up used buttons
 	for object_type in data.get_draggable_objects():
 		var tool_button = container.activate_tool_button(object_type)
-		tool_button.text = ""
 		tool_button.tooltip_text = data.get_object_text(object_type)
 
 		# Set icon or use sprite as fallback if no icon is found
