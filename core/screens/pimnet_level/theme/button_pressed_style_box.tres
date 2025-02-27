@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b7cnajccl65p3"]
+
+[ext_resource type="Texture2D" uid="uid://c1y4v0qe54bnl" path="res://general/kenney_ui_pack/button_square_flat_blue.svg" id="1_xvwkp"]
+
+[resource]
+texture = ExtResource("1_xvwkp")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0

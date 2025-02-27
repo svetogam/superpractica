@@ -1,21 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2a86jgs6wneu"]
+[gd_scene load_steps=4 format=3 uid="uid://d2a86jgs6wneu"]
 
+[ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="1_d3gi4"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/memo_slot.gd" id="1_gvg2n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hirx1"]
 font_size = 30
 font_color = Color(0, 0, 0, 1)
 
-[node name="MemoSlot" type="Control"]
+[node name="MemoSlot" type="Panel"]
 custom_minimum_size = Vector2(70, 70)
-layout_mode = 3
-anchors_preset = 0
 offset_right = 70.0
 offset_bottom = 70.0
+theme = ExtResource("1_d3gi4")
+theme_type_variation = &"MemoSlot"
 script = ExtResource("1_gvg2n")
 
 [node name="Background" type="ColorRect" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=33 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/reversion_menu.gd" id="4_ux8xa"]
 [ext_resource type="Script" path="res://general/behaviors/button_enabler.gd" id="5_6mqp5"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/states/completed.gd" id="5_gboy6"]
+[ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="7_7dceb"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
@@ -82,6 +83,7 @@ anchor_bottom = 1.0
 offset_top = 50.0
 offset_bottom = -150.0
 grow_vertical = 2
+theme = ExtResource("7_7dceb")
 theme_override_constants/separation = 50
 alignment = 1
 
@@ -105,6 +107,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("7_7dceb")
 script = ExtResource("3_7rkio")
 
 [node name="OverlayStateMachine" type="Node" parent="Pimnet/OverlayLayer/Overlay" node_paths=PackedStringArray("_initial_state")]
