@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpihviyvti7aa"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_button_container.gd" id="1_4t5dr"]
-[ext_resource type="Texture2D" uid="uid://bjbn3j8vmmwyj" path="res://general/icons/mono_icons/circle.svg" id="2_8nrmv"]
+[ext_resource type="Texture2D" uid="uid://c8hll8oe7ed61" path="res://placeholder-icon.svg" id="2_rolt6"]
 
 [node name="ToolContainer" type="GridContainer"]
 offset_right = 250.0
@@ -15,7 +15,7 @@ script = ExtResource("1_4t5dr")
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -23,7 +23,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -31,7 +31,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -39,7 +39,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -47,7 +47,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -55,7 +55,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -63,7 +63,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -71,7 +71,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -79,7 +79,7 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
 
@@ -87,6 +87,6 @@ icon_alignment = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("2_8nrmv")
+icon = ExtResource("2_rolt6")
 text_overrun_behavior = 1
 icon_alignment = 1
