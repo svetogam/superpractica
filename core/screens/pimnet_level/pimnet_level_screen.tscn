@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=41 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -13,21 +13,29 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
-[ext_resource type="Texture2D" uid="uid://bhtglrn1p1yh7" path="res://general/icons/mono_icons/undo.svg" id="9_ej3ht"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/plan.gd" id="10_7acvs"]
-[ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="10_c051s"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
-[ext_resource type="Texture2D" uid="uid://dnjqiatl8efl" path="res://general/icons/mono_icons/refresh.svg" id="10_eebhu"]
-[ext_resource type="Texture2D" uid="uid://bjbn3j8vmmwyj" path="res://general/icons/mono_icons/circle.svg" id="11_0u5l8"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/edit_panels.gd" id="11_vrqbd"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="11_worie"]
 [ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/screens/pimnet_level/verifier/verifier.tscn" id="12_4kqqx"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/completion.gd" id="13_pjab3"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_verification_panel.gd" id="14_l20jg"]
+[ext_resource type="Texture2D" uid="uid://d2ridubmmqp1v" path="res://core/screens/pimnet_level/icons/undo-icon.svg" id="15_3kdyd"]
+[ext_resource type="Texture2D" uid="uid://b3iid2brn653w" path="res://core/screens/pimnet_level/icons/redo-icon.svg" id="16_0jhgg"]
+[ext_resource type="Texture2D" uid="uid://dkttkljaax1ps" path="res://core/screens/pimnet_level/icons/reset-icon.svg" id="17_pw235"]
+[ext_resource type="Texture2D" uid="uid://dy3frmhn1np2w" path="res://core/screens/pimnet_level/icons/menu-icon.svg" id="19_5iuia"]
 [ext_resource type="PackedScene" uid="uid://cdrvta3syyupk" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_tools_panel.tscn" id="19_du77a"]
 [ext_resource type="PackedScene" uid="uid://cuub56rvendyu" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_objects_panel.tscn" id="20_htwnw"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/construct_conditions_panel.gd" id="25_7axkj"]
+[ext_resource type="Texture2D" uid="uid://bbf6taxprlqqt" path="res://core/screens/pimnet_level/icons/verify-icon.svg" id="27_q5v4u"]
+[ext_resource type="Texture2D" uid="uid://b4eehel8hwiat" path="res://core/screens/pimnet_level/icons/edit-tool-panels-icon.svg" id="28_3kql4"]
+[ext_resource type="Texture2D" uid="uid://dnvqvly5r4h0x" path="res://core/screens/pimnet_level/icons/plan-icon.svg" id="29_2d3et"]
+[ext_resource type="Texture2D" uid="uid://cg0jepelg4xss" path="res://core/screens/pimnet_level/icons/settings-icon.svg" id="30_p5xyg"]
+[ext_resource type="Texture2D" uid="uid://3ngkmwe0rt5s" path="res://core/screens/pimnet_level/icons/level-select-icon.svg" id="31_dl57t"]
+[ext_resource type="Texture2D" uid="uid://ujoqabcqkp3k" path="res://core/screens/pimnet_level/icons/pim-tools-icon.svg" id="33_6aw2x"]
+[ext_resource type="Texture2D" uid="uid://dicw37v6oee72" path="res://core/screens/pimnet_level/icons/pim-objects-icon.svg" id="34_jl1dt"]
+[ext_resource type="Texture2D" uid="uid://d3d1t78646dmt" path="res://core/screens/pimnet_level/icons/next-level-icon.svg" id="35_cvj1c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2q4"]
 content_margin_left = 20.0
@@ -154,24 +162,27 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Undo"
-icon = ExtResource("9_ej3ht")
+icon = ExtResource("15_3kdyd")
 icon_alignment = 1
+expand_icon = true
 
 [node name="RedoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Redo"
-icon = ExtResource("10_eebhu")
+icon = ExtResource("16_0jhgg")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ResetButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Reset"
-icon = ExtResource("11_0u5l8")
+icon = ExtResource("17_pw235")
 icon_alignment = 1
+expand_icon = true
 
 [node name="ButtonEnabler" type="Node" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu"]
 script = ExtResource("5_6mqp5")
@@ -220,8 +231,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Pause Menu"
-icon = ExtResource("10_c051s")
+icon = ExtResource("19_5iuia")
 icon_alignment = 1
+expand_icon = true
 
 [node name="BottomPanels" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -473,6 +485,8 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Verify"
+icon = ExtResource("27_q5v4u")
+expand_icon = true
 
 [node name="BottomLeft" type="Control" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(50, 150)
@@ -495,9 +509,11 @@ anchor_bottom = 1.0
 offset_top = -50.0
 offset_right = 50.0
 grow_vertical = 0
-tooltip_text = "Plan"
-text = "Layout"
+tooltip_text = "Edit Panels"
+icon = ExtResource("28_3kql4")
 clip_text = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="PlanButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomLeft"]
 unique_name_in_owner = true
@@ -511,8 +527,10 @@ offset_right = 50.0
 offset_bottom = -50.0
 grow_vertical = 2
 tooltip_text = "Plan"
-text = "Plan"
+icon = ExtResource("29_2d3et")
 clip_text = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ModalBarrier" type="ColorRect" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -555,12 +573,16 @@ layout_mode = 2
 size_flags_vertical = 0
 disabled = true
 text = "Settings"
+icon = ExtResource("30_p5xyg")
+expand_icon = true
 
 [node name="QuitButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 10
 text = "Quit Level"
+icon = ExtResource("31_dl57t")
+expand_icon = true
 
 [node name="PlanPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -784,17 +806,21 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Tools"
 toggle_mode = true
-text = "Tools"
+icon = ExtResource("33_6aw2x")
 clip_text = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="PimObjectsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PanelLayoutButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-tooltip_text = "Create Objects"
+tooltip_text = "Objects"
 toggle_mode = true
-text = "Objects"
+icon = ExtResource("34_jl1dt")
 clip_text = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="CompletionPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -826,9 +852,10 @@ alignment = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+tooltip_text = "To Level Selection"
 theme_override_constants/icon_max_width = 50
 text = "Select"
-icon = ExtResource("11_0u5l8")
+icon = ExtResource("31_dl57t")
 icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
@@ -838,9 +865,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+tooltip_text = "To Next Level"
 theme_override_constants/icon_max_width = 50
 text = "Next"
-icon = ExtResource("11_0u5l8")
+icon = ExtResource("35_cvj1c")
 icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
