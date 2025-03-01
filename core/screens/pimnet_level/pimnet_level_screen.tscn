@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=42 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="7_7dceb"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
+[ext_resource type="Texture2D" uid="uid://cxb2b8icrkk67" path="res://core/screens/pimnet_level/cubes_background.png" id="8_apsv0"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/plan.gd" id="10_7acvs"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
@@ -103,6 +104,19 @@ follow_viewport_enabled = true
 [node name="DraggedObjectLayer" type="CanvasLayer" parent="Pimnet"]
 unique_name_in_owner = true
 layer = 2
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="Pimnet"]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Background" type="TextureRect" parent="Pimnet/BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_apsv0")
+stretch_mode = 5
 
 [node name="OverlayLayer" type="CanvasLayer" parent="Pimnet"]
 
