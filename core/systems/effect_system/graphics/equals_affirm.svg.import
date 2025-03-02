@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpmwk2q3qmsql"
-path.s3tc="res://.godot/imported/unequals_reject.svg-90c8b0b422fd7c6cca071ba1ed2c6936.s3tc.ctex"
+uid="uid://bfx7ryxfxg4gq"
+path="res://.godot/imported/equals_affirm.svg-51fc1b36f351a146f7fa0006d5f36477.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/screens/pimnet_level/verifier/goal_verifications/effects/unequals_reject.svg"
-dest_files=["res://.godot/imported/unequals_reject.svg-90c8b0b422fd7c6cca071ba1ed2c6936.s3tc.ctex"]
+source_file="res://core/systems/effect_system/graphics/equals_affirm.svg"
+dest_files=["res://.godot/imported/equals_affirm.svg-51fc1b36f351a146f7fa0006d5f36477.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
