@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://51v0feqeyjdr"]
 
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/effect_system/screen_effect.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://ch48avda0hx1g" path="res://core/systems/effect_system/effects/navig/effects/tick_correct.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cqwdr66lre5r2" path="res://core/systems/effect_system/graphics/tick_affirm.svg" id="2_pn8g5"]
 
 [node name="CorrectEffect" instance=ExtResource("1")]
 
@@ -9,7 +9,7 @@
 scale = Vector2(0.4, 0.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
-texture = ExtResource("2")
+texture = ExtResource("2_pn8g5")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "popup_bounce_anim"

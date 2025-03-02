@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmg7uc5b3wqhc"]
 
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/effect_system/screen_effect.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://ck5bbf7rg7k5h" path="res://core/systems/effect_system/effects/navig/effects/cross_wrong.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcvdn7e6hbmsi" path="res://core/systems/effect_system/graphics/cross_reject.svg" id="2_urxrt"]
 
 [node name="WrongEffect" instance=ExtResource("1")]
 
@@ -9,7 +9,7 @@
 scale = Vector2(0.4, 0.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
-texture = ExtResource("2")
+texture = ExtResource("2_urxrt")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "popup_shake_anim"
