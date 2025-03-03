@@ -8,15 +8,15 @@ script = ExtResource("2")
 
 [node name="Graphic" parent="." index="0"]
 unique_name_in_owner = true
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.2, 0.2)
 
 [node name="Ones" type="Sprite2D" parent="Graphic" index="0"]
 unique_name_in_owner = true
 
 [node name="Tens" type="Sprite2D" parent="Graphic" index="1"]
 unique_name_in_owner = true
-position = Vector2(-660, 0)
+position = Vector2(-165, 0)
 
 [node name="Hundreds" type="Sprite2D" parent="Graphic" index="2"]
 unique_name_in_owner = true
-position = Vector2(-1320, 0)
+position = Vector2(-330, 0)

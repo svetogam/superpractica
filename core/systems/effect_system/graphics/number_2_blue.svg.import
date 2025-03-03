@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bit22x3d081r0"
-path="res://.godot/imported/number6_v3f1.png-189a1bdeed75d216c2345411537f8b67.ctex"
+uid="uid://dik7uxl22ydqj"
+path="res://.godot/imported/number_2_blue.svg-bd24b5134828a5a2831f4d8bc4ffd97a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/systems/effect_system/effects/math_effects/number_effect/number6_v3f1.png"
-dest_files=["res://.godot/imported/number6_v3f1.png-189a1bdeed75d216c2345411537f8b67.ctex"]
+source_file="res://core/systems/effect_system/graphics/number_2_blue.svg"
+dest_files=["res://.godot/imported/number_2_blue.svg-bd24b5134828a5a2831f4d8bc4ffd97a.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
