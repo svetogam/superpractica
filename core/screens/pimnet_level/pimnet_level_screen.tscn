@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=40 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/states/playing.gd" id="3_thn1s"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/states/verifying.gd" id="4_8b6fo"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/reversion_menu.gd" id="4_ux8xa"]
-[ext_resource type="Script" path="res://general/behaviors/button_enabler.gd" id="5_6mqp5"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/states/completed.gd" id="5_gboy6"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="7_7dceb"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
@@ -163,19 +161,7 @@ offset_bottom = 50.0
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ReversionMenu" type="Control" parent="Pimnet/OverlayLayer/Overlay/TopLeft"]
-unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-script = ExtResource("4_ux8xa")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu"]
+[node name="ReversionButtons" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,7 +170,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="UndoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
+[node name="UndoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -193,7 +179,7 @@ icon = ExtResource("15_3kdyd")
 icon_alignment = 1
 expand_icon = true
 
-[node name="RedoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
+[node name="RedoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -202,7 +188,7 @@ icon = ExtResource("16_0jhgg")
 icon_alignment = 1
 expand_icon = true
 
-[node name="ResetButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionButtons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -210,9 +196,6 @@ tooltip_text = "Reset"
 icon = ExtResource("17_pw235")
 icon_alignment = 1
 expand_icon = true
-
-[node name="ButtonEnabler" type="Node" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu"]
-script = ExtResource("5_6mqp5")
 
 [node name="Top" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(240, 40)
@@ -911,9 +894,6 @@ offset_bottom = 10070.0
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
 
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/UndoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_undo_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/RedoButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_redo_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer/ResetButton" to="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer/CompletionSelectButton" to="Pimnet/OverlayLayer/Overlay" method="_on_completion_select_button_pressed"]

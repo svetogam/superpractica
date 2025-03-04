@@ -66,27 +66,23 @@ func _setup_reversion() -> void:
 	if reverter.has_connections():
 		reverter.commit()
 
-	# Setup reversion menu
-	var menu = pimnet.overlay.reversion_menu
-	menu.undo_pressed.connect(reverter.undo)
-	menu.redo_pressed.connect(reverter.redo)
+	# Setup reversion
+	%UndoButton.pressed.connect(reverter.undo)
+	%RedoButton.pressed.connect(reverter.redo)
 	actions_completed.connect(reverter.commit)
-	menu.enabler.connect_button("undo", reverter.is_undo_possible)
-	menu.enabler.connect_button("redo", reverter.is_redo_possible)
-	menu.enabler.connect_general(verifier.is_running, false)
-	updated.connect(menu.enabler.update)
-	reverter.saved.connect(menu.enabler.update)
-	reverter.loaded.connect(menu.enabler.update)
+	reverter.saved.connect(_update_reversion_buttons)
+	reverter.loaded.connect(_update_reversion_buttons)
 	if program != null:
-		menu.reset_pressed.connect(program.reset)
-		menu.enabler.connect_button("reset", program.is_reset_possible)
-		program.reset_changed.connect(menu.enabler.update)
+		%ResetButton.pressed.connect(program.reset)
+		program.reset_changed.connect(_update_reversion_buttons)
 		program.reset_called.connect(_do_queued_actions)
 		program.set_custom_reset(_default_reset)
 	else:
-		menu.reset_pressed.connect(_default_reset)
-		menu.reset_pressed.connect(_do_queued_actions)
-	menu.enabler.update()
+		%ResetButton.pressed.connect(_default_reset)
+		%ResetButton.pressed.connect(_do_queued_actions)
+
+	_update_reversion_buttons()
+	updated.connect(_update_reversion_buttons)
 
 
 func _run_program() -> void:
@@ -105,3 +101,11 @@ func _do_queued_actions() -> void:
 	if not _action_queue.is_empty():
 		_action_queue.flush()
 		actions_completed.emit()
+
+
+func _update_reversion_buttons() -> void:
+	%UndoButton.disabled = verifier.is_running() or not reverter.is_undo_possible()
+	%RedoButton.disabled = verifier.is_running() or not reverter.is_redo_possible()
+	%ResetButton.disabled = (
+		verifier.is_running() or (program != null and not program.is_reset_possible())
+	)

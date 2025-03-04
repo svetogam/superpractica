@@ -56,7 +56,9 @@ func _ready() -> void:
 			%PimStrip.add_child(pim)
 
 		# Set up panels
-		overlay.reversion_menu.visible = setup_resource.reversion_enable
+		%UndoButton.visible = setup_resource.reversion_enable
+		%RedoButton.visible = setup_resource.reversion_enable
+		%ResetButton.visible = setup_resource.reversion_enable
 		overlay.setup_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS,
 				setup_resource.tools_enable,
 				setup_resource.tools_start_active)

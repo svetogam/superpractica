@@ -24,7 +24,6 @@ var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
 	set = _set_goal_type
 var goal_panel: Control:
 	get = _get_goal_panel
-@onready var reversion_menu := %ReversionMenu as Control
 @onready var plan_panel := %PlanPanel as Control
 @onready var pim_tools := %PimToolsPanel as Control
 @onready var pim_objects := %PimObjectsPanel as Control
