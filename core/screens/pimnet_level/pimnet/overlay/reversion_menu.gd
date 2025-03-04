@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-extends PanelContainer
+extends Control
 
 signal undo_pressed
 signal redo_pressed

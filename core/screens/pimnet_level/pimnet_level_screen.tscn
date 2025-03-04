@@ -154,22 +154,35 @@ script = ExtResource("11_vrqbd")
 [node name="Completion" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
 script = ExtResource("13_pjab3")
 
-[node name="TopLeft" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay"]
+[node name="TopLeft" type="Control" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
+anchors_preset = 0
 offset_right = 250.0
 offset_bottom = 50.0
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ReversionMenu" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft"]
+[node name="ReversionMenu" type="Control" parent="Pimnet/OverlayLayer/Overlay/TopLeft"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("4_ux8xa")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
 [node name="UndoButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopLeft/ReversionMenu/HBoxContainer"]
 unique_name_in_owner = true
