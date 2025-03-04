@@ -258,6 +258,7 @@ offset_right = -200.0
 grow_vertical = 0
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_constants/separation = 0
 
 [node name="PimToolsPanel" parent="Pimnet/OverlayLayer/Overlay/BottomPanels" instance=ExtResource("19_du77a")]
 unique_name_in_owner = true
@@ -283,6 +284,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_constants/separation = 0
 alignment = 2
 
 [node name="SolutionVerificationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
