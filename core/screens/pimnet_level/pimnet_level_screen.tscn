@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=41 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dy3frmhn1np2w" path="res://core/screens/pimnet_level/icons/menu-icon.svg" id="19_5iuia"]
 [ext_resource type="PackedScene" uid="uid://cdrvta3syyupk" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_tools_panel.tscn" id="19_du77a"]
 [ext_resource type="PackedScene" uid="uid://cuub56rvendyu" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_objects_panel.tscn" id="20_htwnw"]
+[ext_resource type="PackedScene" uid="uid://ydfjg3gkr2ka" path="res://core/screens/pimnet_level/pimnet/static_symbols/equals_symbol.tscn" id="23_4pr2j"]
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/construct_conditions_panel.gd" id="25_7axkj"]
 [ext_resource type="Texture2D" uid="uid://bbf6taxprlqqt" path="res://core/screens/pimnet_level/icons/verify-icon.svg" id="27_q5v4u"]
 [ext_resource type="Texture2D" uid="uid://b4eehel8hwiat" path="res://core/screens/pimnet_level/icons/edit-tool-panels-icon.svg" id="28_3kql4"]
@@ -318,13 +319,11 @@ size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
-[node name="CheckSlot1" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer"]
+[node name="CheckSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("23_4pr2j")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
-text = "="
-horizontal_alignment = 1
+size_flags_vertical = 4
 
 [node name="RightSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
@@ -344,13 +343,11 @@ size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
-[node name="CheckSlot2" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer"]
+[node name="CheckSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("23_4pr2j")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
-text = "="
-horizontal_alignment = 1
+size_flags_vertical = 4
 
 [node name="RightSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
@@ -417,12 +414,10 @@ size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
-[node name="Equals" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer"]
+[node name="StaticSymbol" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer" instance=ExtResource("23_4pr2j")]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
-text = "="
-horizontal_alignment = 1
+size_flags_vertical = 4
 
 [node name="SolutionSlot" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionMemoSlotsPanel/GridContainer" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
