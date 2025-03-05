@@ -8,14 +8,10 @@
 # SPDX-License-Identifier: MIT                                               #
 #============================================================================#
 
-#Incomplete. See test_expression_object.gd for what functionality is incomplete.
+# Incomplete. See test_expression_object.gd for what functionality is incomplete.
 
 class_name ExpressionObject
 extends RefCounted
-
-#====================================================================
-# Static
-#====================================================================
 
 const SYMBOL_MAP := {
 	"plus": "+",
@@ -23,9 +19,11 @@ const SYMBOL_MAP := {
 	"multiply": "*",
 	"divide": "/",
 	"open_paren": "(",
-	"close_paren": ")"
+	"close_paren": ")",
 }
 const WHITE_SPACE: Array = [" "]
+var _element_list: Array = []
+var _invalid := true
 
 
 static func is_symbol(character: String) -> bool:
@@ -34,14 +32,6 @@ static func is_symbol(character: String) -> bool:
 
 static func is_white_space(character: String) -> bool:
 	return WHITE_SPACE.has(character)
-
-
-#====================================================================
-# Object
-#====================================================================
-
-var _element_list: Array = []
-var _invalid := true
 
 
 func _init(string := "") -> void:
@@ -145,3 +135,11 @@ func get_string(use_spaces := false) -> String:
 			output_string += str(element)
 
 	return output_string
+
+
+func get_numbers() -> Array:
+	var numbers: Array = []
+	for element in _element_list:
+		if element.is_valid_int():
+			numbers.append(int(element))
+	return numbers

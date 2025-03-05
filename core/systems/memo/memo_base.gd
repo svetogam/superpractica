@@ -38,7 +38,7 @@ func get_value():
 
 
 # Virtual
-func get_string(_kwargs := {}) -> String:
+func get_string() -> String:
 	assert(false)
 	return ""
 

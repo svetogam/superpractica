@@ -31,7 +31,7 @@ func get_value() -> int:
 	return number
 
 
-func get_string(_kwargs := {}) -> String:
+func get_string() -> String:
 	return str(number)
 
 

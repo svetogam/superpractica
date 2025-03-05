@@ -8,7 +8,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later                                 #
 #============================================================================#
 
-#Incomplete. See test_expression_object.gd for what functionality is incomplete.
+# Incomplete. See test_expression_object.gd for what functionality is incomplete.
 
 class_name ExpressionMemo
 extends Memo
@@ -16,8 +16,8 @@ extends Memo
 var expression: ExpressionObject
 
 
-func _init(string := "") -> void:
-	expression = ExpressionObject.new(string)
+func _init(p_string := "") -> void:
+	expression = ExpressionObject.new(p_string)
 
 
 func set_by_memo(source: Memo) -> void:
@@ -25,16 +25,16 @@ func set_by_memo(source: Memo) -> void:
 	expression = ExpressionObject.new(source.get_string())
 
 
-func set_by_value(string: String) -> void:
-	expression = ExpressionObject.new(string)
+func set_by_value(p_string: String) -> void:
+	expression = ExpressionObject.new(p_string)
 
 
 func get_value() -> int:
 	return expression.evaluate()
 
 
-func get_string(kwargs := {"use_spaces": false}) -> String:
-	return expression.get_string(kwargs.use_spaces)
+func get_string() -> String:
+	return expression.get_string(true)
 
 
 func is_memo_equal(other: Memo) -> bool:
