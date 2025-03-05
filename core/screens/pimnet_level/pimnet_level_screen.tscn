@@ -42,7 +42,8 @@ content_margin_left = 20.0
 content_margin_right = 20.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_mwy2r"]
-font_size = 24
+font_size = 23
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
 
@@ -291,12 +292,13 @@ alignment = 2
 [node name="SolutionVerificationPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(200, 120)
 layout_mode = 2
 script = ExtResource("14_l20jg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel"]
 layout_mode = 2
+theme_override_constants/separation = 3
 
 [node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
 layout_mode = 2
@@ -304,54 +306,116 @@ text = "Checking"
 label_settings = SubResource("LabelSettings_mwy2r")
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 10
-columns = 3
-
-[node name="LeftSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+[node name="CheckRow1" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
+visible = false
+layout_mode = 2
+
+[node name="LeftSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow1" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
-[node name="CheckSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("23_4pr2j")]
+[node name="CheckSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow1" instance=ExtResource("23_4pr2j")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="RightSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+[node name="RightSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow1" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
-[node name="LeftSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+[node name="CheckRow2" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
+visible = false
+layout_mode = 2
+
+[node name="LeftSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow2" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
-[node name="CheckSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("23_4pr2j")]
+[node name="CheckSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow2" instance=ExtResource("23_4pr2j")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="RightSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/GridContainer" instance=ExtResource("11_worie")]
+[node name="RightSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow2" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckRow3" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="LeftSlot3" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow3" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckSlot3" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow3" instance=ExtResource("23_4pr2j")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RightSlot3" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow3" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckRow4" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="LeftSlot4" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow4" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+memo_input_enabled = false
+memo_output_enabled = false
+
+[node name="CheckSlot4" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow4" instance=ExtResource("23_4pr2j")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RightSlot4" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow4" instance=ExtResource("11_worie")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -502,7 +566,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 22
-text = "Verify"
+text = "Check"
 icon = ExtResource("27_q5v4u")
 icon_alignment = 1
 vertical_icon_alignment = 2
