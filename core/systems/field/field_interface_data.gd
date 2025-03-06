@@ -56,3 +56,7 @@ func get_object_modes(tool: int, object: int) -> Array:
 
 func get_tool_text(tool: int) -> String:
 	return tool_data[tool].text
+
+
+func get_tool_icon(tool: int) -> Texture2D:
+	return tool_data[tool].icon

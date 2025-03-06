@@ -44,6 +44,7 @@ func add_toolset(data: FieldInterfaceData) -> void:
 	# Set up used buttons
 	for tool_mode in data.get_tools():
 		var tool_button = container.activate_tool_button(tool_mode)
+		tool_button.icon = data.get_tool_icon(tool_mode)
 		tool_button.tooltip_text = data.get_tool_text(tool_mode)
 
 
