@@ -150,7 +150,7 @@ func _init() -> void:
 	tool_data = {
 		GridCounting.Tools.CELL_MARKER: {
 			"name": "CellMarker",
-			"text": "Mark Square",
+			"text": "Mark Cell",
 			"icon": preload("graphics/icons/action_mark_cell_icon.svg"),
 			"object_modes": {
 				GridCounting.Objects.GRID_CELL: ["mark"],
