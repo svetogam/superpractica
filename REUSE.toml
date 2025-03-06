@@ -4,3 +4,33 @@ version = 1
 path = "**.import"
 SPDX-FileCopyrightText = "2023 Super Practica contributors"
 SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = "addons/creverter/**"
+SPDX-FileCopyrightText = "Copyright (c) 2024 svetogam"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "addons/csconnector/**"
+SPDX-FileCopyrightText = "Copyright (c) 2024 svetogam"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "addons/cslocator/**"
+SPDX-FileCopyrightText = "Copyright (c) 2024 svetogam"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "addons/gdUnit4/**"
+SPDX-FileCopyrightText = "Copyright (c) 2023 Mike Schulze"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "addons/papershot/**"
+SPDX-FileCopyrightText = "Copyright Anni Ryynänen"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "addons/your_buil/**"
+SPDX-FileCopyrightText = ["Copyright (c) 2024 svetogam", "Copyright (c) 2019 Tomek"]
+SPDX-License-Identifier = "MIT"
