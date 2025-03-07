@@ -37,4 +37,16 @@ To contribute funds, go to [Liberapay](https://liberapay.com/SuperPractica/) or 
 
 ## Copyright
 
-See [COPYRIGHT.md](COPYRIGHT.md) for copyright and license information.
+Copyright 2023 Super Practica contributors
+
+See [CREDITS.md](CREDITS.md) for the list of Super Practica contributors.
+
+Super Practica as a playable game is licensed under the [GNU Affero General Public License](LICENSES/AGPL-3.0) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This repository is [REUSE-compliant](https://reuse.software/). This means you can find copyright and license information for all source files in 3 places:
+
+* Comment headers in files
+* Corresponding `.license` files
+* The `REUSE.toml` file
+
+For a summary, player-facing stuff in the `core/` and `content/` folders is mostly under copyleft licenses such as the AGPL, and utilities in the `general/` folder are mostly under permissive licenses such as the MIT license.
