@@ -1,6 +1,6 @@
 # Project-Wide Copyright Information
 
-Copyright 2023-present Super Practica contributors
+Copyright 2023 Super Practica contributors
 
 See [CREDITS.md](CREDITS.md) for the list of Super Practica contributors.
 
