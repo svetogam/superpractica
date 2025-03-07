@@ -1,14 +1,8 @@
-#============================================================================#
-# This file is part of Super Practica.                                       #
-# Copyright (c) 2023 Super Practica contributors                             #
-# Copyright (c) 2007-2022 Juan Linietsky, Ariel Manzur.                      #
-# Copyright (c) 2014-2022 Godot Engine contributors.                         #
-#----------------------------------------------------------------------------#
-# See the COPYRIGHT.md file at the top-level directory of this project       #
-# for information on the license terms of Super Practica as a whole.         #
-#----------------------------------------------------------------------------#
-# SPDX-License-Identifier: MIT                                               #
-#============================================================================#
+# SPDX-FileCopyrightText: 2023 Super Practica contributors
+# SPDX-FileCopyrightText: Copyright (c) 2007-2022 Juan Linietsky, Ariel Manzur.
+# SPDX-FileCopyrightText: Copyright (c) 2014-2022 Godot Engine contributors.
+#
+# SPDX-License-Identifier: MIT
 
 class_name StateData
 extends RefCounted
