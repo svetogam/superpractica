@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="PlanResource" load_steps=6 format=3 uid="uid://d0lqvjdl6n55g"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_myt7e"]
+[ext_resource type="Script" uid="uid://biio3cevgtl1q" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_myt7e"]
 [ext_resource type="Resource" uid="uid://i0jel4oijf0c" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_b/plan/put_blocks_task.tres" id="1_wuxti"]
 [ext_resource type="Resource" uid="uid://cieq5da5iw8wl" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_b/plan/put_units_task.tres" id="2_ba1y6"]
 [ext_resource type="Resource" uid="uid://cdacp34e4m3ld" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_b/plan/drag_memo_task.tres" id="3_xk3dj"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_resource.gd" id="5_mwxd6"]
+[ext_resource type="Script" uid="uid://dvo46tf3sfgmu" path="res://core/screens/pimnet_level/pimnet/overlay/plan_resource.gd" id="5_mwxd6"]
 
 [resource]
 script = ExtResource("5_mwxd6")

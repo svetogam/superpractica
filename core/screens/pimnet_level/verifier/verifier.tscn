@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgqn5mt15f232"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/verifier/verifier.gd" id="1"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/verifier/goal_verifications/goal_verifier.gd" id="2_st50l"]
+[ext_resource type="Script" uid="uid://pwsp85t0mo17" path="res://core/screens/pimnet_level/verifier/verifier.gd" id="1"]
+[ext_resource type="Script" uid="uid://rj42v6kqdvb3" path="res://core/screens/pimnet_level/verifier/goal_verifications/goal_verifier.gd" id="2_st50l"]
 
 [node name="Verifier" type="Node"]
 script = ExtResource("1")

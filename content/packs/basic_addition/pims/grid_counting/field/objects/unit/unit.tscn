@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbm2mkvarb4t4"]
 
 [ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/systems/field/field_object/field_object.tscn" id="1_wwowv"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/unit.gd" id="2_r6yf3"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/modes/delete.gd" id="3_dsk71"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/modes/drag.gd" id="4_smua2"]
+[ext_resource type="Script" uid="uid://8kbe4l8tcmvh" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/unit.gd" id="2_r6yf3"]
+[ext_resource type="Script" uid="uid://deey2lxxyxuyr" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/modes/delete.gd" id="3_dsk71"]
+[ext_resource type="Script" uid="uid://dultjoj5y4uwf" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/modes/drag.gd" id="4_smua2"]
 [ext_resource type="PackedScene" uid="uid://b6lad36e31clx" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/unit/sprite.tscn" id="5_of0k1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wocpa"]

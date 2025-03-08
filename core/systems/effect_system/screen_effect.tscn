@@ -4,19 +4,19 @@
 [ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/systems/effect_system/effects/animations/popup_bounce_anim.tres" id="2"]
 [ext_resource type="Animation" uid="uid://dndrepda7juld" path="res://core/systems/effect_system/effects/animations/popup_shake_anim.tres" id="3"]
 [ext_resource type="Animation" uid="uid://c5ghu0ff2xo4r" path="res://core/systems/effect_system/effects/animations/popup_fade_in_anim.tres" id="4"]
-[ext_resource type="Script" path="res://core/systems/effect_system/screen_effect.gd" id="5"]
+[ext_resource type="Script" uid="uid://wbc05kjo6s8n" path="res://core/systems/effect_system/screen_effect.gd" id="5"]
 [ext_resource type="Animation" uid="uid://depuallq4wr1e" path="res://core/systems/effect_system/effects/animations/popup_rise_anim.tres" id="6"]
-[ext_resource type="Script" path="res://general/behaviors/animator_2d.gd" id="7"]
+[ext_resource type="Script" uid="uid://b4qnhn0q5xwsf" path="res://general/behaviors/animator_2d.gd" id="7"]
 [ext_resource type="Animation" uid="uid://ceuv52itq7bet" path="res://core/systems/effect_system/effects/animations/popup_descend_anim.tres" id="8"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6t3in"]
 _data = {
-"popup_bounce_anim": ExtResource("2"),
-"popup_descend_anim": ExtResource("8"),
-"popup_fade_in_anim": ExtResource("4"),
-"popup_grow_anim": ExtResource("1"),
-"popup_rise_anim": ExtResource("6"),
-"popup_shake_anim": ExtResource("3")
+&"popup_bounce_anim": ExtResource("2"),
+&"popup_descend_anim": ExtResource("8"),
+&"popup_fade_in_anim": ExtResource("4"),
+&"popup_grow_anim": ExtResource("1"),
+&"popup_rise_anim": ExtResource("6"),
+&"popup_shake_anim": ExtResource("3")
 }
 
 [node name="ScreenEffect" type="Node2D"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dptvi1ets22q5"]
 
-[ext_resource type="Script" path="res://general/mode_nodes/mode_group.gd" id="1"]
-[ext_resource type="Script" path="res://general/mode_nodes/tests/a_mode.gd" id="2"]
-[ext_resource type="Script" path="res://general/mode_nodes/tests/a_context.gd" id="3"]
+[ext_resource type="Script" uid="uid://bho5rqikwwijh" path="res://general/mode_nodes/mode_group.gd" id="1"]
+[ext_resource type="Script" uid="uid://dadh7dehis3il" path="res://general/mode_nodes/tests/a_mode.gd" id="2"]
+[ext_resource type="Script" uid="uid://bmaakfxnh1jyn" path="res://general/mode_nodes/tests/a_context.gd" id="3"]
 
 [node name="Context" type="Node"]
 script = ExtResource("3")

@@ -57,7 +57,7 @@ func _setup_reversion() -> void:
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
 
 	# Initial commit
-	if reverter.has_connections():
+	if reverter.has_connected_funcs():
 		reverter.commit()
 
 	# Setup reversion

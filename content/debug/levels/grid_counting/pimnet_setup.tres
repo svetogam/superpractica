@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PimnetSetupResource" load_steps=3 format=3 uid="uid://b7sio84nklx5v"]
 
 [ext_resource type="PackedScene" uid="uid://nu5s6eayhrhh" path="res://content/packs/basic_addition/pims/grid_counting/grid_counting_pim.tscn" id="1_wwily"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/pimnet_setup_resource.gd" id="2_cykao"]
+[ext_resource type="Script" uid="uid://darqtaxbscw2l" path="res://core/screens/pimnet_level/pimnet/pimnet_setup_resource.gd" id="2_cykao"]
 
 [resource]
 script = ExtResource("2_cykao")

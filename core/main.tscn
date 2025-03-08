@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkmqj7ih4aww2"]
 
-[ext_resource type="Script" path="res://core/main.gd" id="1_pwbki"]
-[ext_resource type="Script" path="res://addons/papershot/papershot.gd" id="2_bkdwp"]
+[ext_resource type="Script" uid="uid://bci16101psp3l" path="res://core/main.gd" id="1_pwbki"]
+[ext_resource type="Script" uid="uid://dnqi7y5cpr6bc" path="res://addons/papershot/papershot.gd" id="2_bkdwp"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1aajw"]
 device = -1

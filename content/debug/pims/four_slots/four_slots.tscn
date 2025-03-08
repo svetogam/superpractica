@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d00uqiv02mlin"]
 
 [ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/screens/pimnet_level/pimnet/pim/pim.tscn" id="1_hhvjb"]
-[ext_resource type="Script" path="res://content/debug/pims/four_slots/four_slots.gd" id="2_vep7i"]
+[ext_resource type="Script" uid="uid://c3lal3cgjrvnm" path="res://content/debug/pims/four_slots/four_slots.gd" id="2_vep7i"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot.tscn" id="3_cvogn"]
 
 [node name="FourSlots" instance=ExtResource("1_hhvjb")]

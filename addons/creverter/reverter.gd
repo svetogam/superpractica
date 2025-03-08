@@ -289,7 +289,7 @@ func load_tag(tag: StringName) -> void:
 		loaded.emit()
 
 
-func has_connections() -> bool:
+func has_connected_funcs() -> bool:
 	return not _connections.is_empty()
 
 

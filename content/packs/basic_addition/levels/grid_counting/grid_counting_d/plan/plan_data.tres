@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PlanResource" load_steps=5 format=3 uid="uid://cdmmmedndxipj"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_s1hja"]
+[ext_resource type="Script" uid="uid://biio3cevgtl1q" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_s1hja"]
 [ext_resource type="Resource" uid="uid://6a7f22je7on7" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_d/plan/select_cell_task.tres" id="2_qmrri"]
 [ext_resource type="Resource" uid="uid://b38578uuumewv" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_d/plan/drag_memo_task.tres" id="3_13jds"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/plan_resource.gd" id="4_s8hv1"]
+[ext_resource type="Script" uid="uid://dvo46tf3sfgmu" path="res://core/screens/pimnet_level/pimnet/overlay/plan_resource.gd" id="4_s8hv1"]
 
 [resource]
 script = ExtResource("4_s8hv1")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://7jqvribmyuyc"]
 
-[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_c/program.gd" id="1_x8xxu"]
-[ext_resource type="Script" path="res://general/state_machine/state_machine.gd" id="2_klj3r"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_c/state_data.gd" id="3_qjcgb"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_c/states/play.gd" id="4_55xbd"]
+[ext_resource type="Script" uid="uid://cexntcxu7lyjd" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_c/program.gd" id="1_x8xxu"]
+[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_klj3r"]
+[ext_resource type="Script" uid="uid://wxk04etqsj0" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_c/state_data.gd" id="3_qjcgb"]
+[ext_resource type="Script" uid="uid://df23or7aqxf1d" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_c/states/play.gd" id="4_55xbd"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_x8xxu")

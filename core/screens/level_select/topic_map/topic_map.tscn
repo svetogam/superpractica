@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfbau85l7veik"]
 
-[ext_resource type="Script" path="res://core/screens/level_select/topic_map/topic_map.gd" id="1_i8m7m"]
+[ext_resource type="Script" uid="uid://dvsgggeqojnfd" path="res://core/screens/level_select/topic_map/topic_map.gd" id="1_i8m7m"]
 
 [node name="TopicMap" type="Node"]
 script = ExtResource("1_i8m7m")

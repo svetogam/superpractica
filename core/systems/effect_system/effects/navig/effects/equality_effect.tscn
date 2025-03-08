@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://r2lr30ufuth5"]
 
-[ext_resource type="Script" path="res://core/systems/effect_system/effects/navig/effects/equality_effect.gd" id="1"]
+[ext_resource type="Script" uid="uid://0cvht2hfbj12" path="res://core/systems/effect_system/effects/navig/effects/equality_effect.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/effect_system/screen_effect.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bfx7ryxfxg4gq" path="res://core/systems/effect_system/graphics/equals_affirm.svg" id="3_rek3h"]
 [ext_resource type="Texture2D" uid="uid://d2q8ljwqwjj7" path="res://core/systems/effect_system/graphics/unequals_reject.svg" id="4_gk7lq"]
@@ -13,12 +13,12 @@
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a8sld"]
 _data = {
-"popup_bounce_anim": ExtResource("5_gv1tk"),
-"popup_descend_anim": ExtResource("6_8u1ja"),
-"popup_fade_in_anim": ExtResource("7_b17qw"),
-"popup_grow_anim": ExtResource("8_13qsx"),
-"popup_rise_anim": ExtResource("9_qpbyn"),
-"popup_shake_anim": ExtResource("10_78o1w")
+&"popup_bounce_anim": ExtResource("5_gv1tk"),
+&"popup_descend_anim": ExtResource("6_8u1ja"),
+&"popup_fade_in_anim": ExtResource("7_b17qw"),
+&"popup_grow_anim": ExtResource("8_13qsx"),
+&"popup_rise_anim": ExtResource("9_qpbyn"),
+&"popup_shake_anim": ExtResource("10_78o1w")
 }
 
 [node name="EqualityEffect" instance=ExtResource("2")]

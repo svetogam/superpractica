@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cuub56rvendyu"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_objects_panel.gd" id="1_ajhwb"]
+[ext_resource type="Script" uid="uid://bwi43et1qlnhj" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_objects_panel.gd" id="1_ajhwb"]
 [ext_resource type="PackedScene" uid="uid://djrt5a81ge2js" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/creatables_container.tscn" id="2_7knw5"]
 
 [node name="PimObjectsPanel" type="PanelContainer"]

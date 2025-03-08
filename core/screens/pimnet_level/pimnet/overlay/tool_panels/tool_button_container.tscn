@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpihviyvti7aa"]
 
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_button_container.gd" id="1_4t5dr"]
+[ext_resource type="Script" uid="uid://cft03sir0cbcr" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_button_container.gd" id="1_4t5dr"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="2_ec4bd"]
 [ext_resource type="Texture2D" uid="uid://c8hll8oe7ed61" path="res://placeholder-icon.svg" id="2_rolt6"]
 

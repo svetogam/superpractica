@@ -6,6 +6,7 @@ version = 1
 [[annotations]]
     path = [
         "**.import",
+        "**.uid",
         ".gitignore",
         "project.godot",
         "export_presets.cfg",

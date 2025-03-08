@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkv3586pstrou"]
 
 [ext_resource type="PackedScene" uid="uid://bl0lkke2v2tq2" path="res://core/screens/level_select/topic_map/topic_nodes/topic_node.tscn" id="1_to55i"]
-[ext_resource type="Script" path="res://core/screens/level_select/topic_map/topic_nodes/level_node.gd" id="1_tpmk7"]
+[ext_resource type="Script" uid="uid://cclxngkyu1142" path="res://core/screens/level_select/topic_map/topic_nodes/level_node.gd" id="1_tpmk7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sayny"]
 resource_local_to_scene = true

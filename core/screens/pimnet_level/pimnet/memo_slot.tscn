@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2a86jgs6wneu"]
 
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="1_d3gi4"]
-[ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/memo_slot.gd" id="1_gvg2n"]
+[ext_resource type="Script" uid="uid://b4l3845xljv24" path="res://core/screens/pimnet_level/pimnet/memo_slot.gd" id="1_gvg2n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hirx1"]
 font_size = 30

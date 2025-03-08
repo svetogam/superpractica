@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GridCountingProgramVarsB" load_steps=2 format=3 uid="uid://y4lunoyp38k4"]
 
-[ext_resource type="Script" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_b/program_vars.gd" id="1_my2tn"]
+[ext_resource type="Script" uid="uid://co7ud7f37nx4u" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_b/program_vars.gd" id="1_my2tn"]
 
 [resource]
 script = ExtResource("1_my2tn")

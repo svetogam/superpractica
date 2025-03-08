@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3gbvd85o8eds"]
 
 [ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/systems/field/field_object/field_object.tscn" id="1_iml3b"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/three_block/three_block.gd" id="2_yv8qx"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/three_block/modes/delete.gd" id="3_fhg7r"]
-[ext_resource type="Script" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/three_block/modes/drag.gd" id="4_o65iw"]
+[ext_resource type="Script" uid="uid://bb45gthqgud6a" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/three_block/three_block.gd" id="2_yv8qx"]
+[ext_resource type="Script" uid="uid://cdwulm03vr1tc" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/three_block/modes/delete.gd" id="3_fhg7r"]
+[ext_resource type="Script" uid="uid://b1u1755ekokgy" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/three_block/modes/drag.gd" id="4_o65iw"]
 [ext_resource type="PackedScene" uid="uid://cr5gtuffraeqv" path="res://content/packs/basic_addition/pims/grid_counting/field/objects/three_block/sprite.tscn" id="5_e7wo2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwyj"]
