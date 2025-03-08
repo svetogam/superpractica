@@ -7,8 +7,7 @@ extends Node
 
 const POST_EQUALITY_CHECK_DELAY := 0.8
 const EqualityVerification := preload("equality_verification.gd")
-const EqualityEffect = preload(
-		"res://core/systems/effect_system/effects/navig/effects/equality_effect.tscn")
+const EqualityEffect = preload("uid://r2lr30ufuth5")
 
 @export var verifier: Verifier
 var goal_effects: MathEffectGroup

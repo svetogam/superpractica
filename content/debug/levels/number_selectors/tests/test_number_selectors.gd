@@ -4,7 +4,7 @@
 
 extends GdUnitTestSuite
 
-const TOPIC_DATA = preload("res://content/debug/topic_data.gd").topic
+const TOPIC_DATA = preload("uid://b7a4jd7gy2c1o").topic
 const LEVEL_NAMES := {
 	1: "select_number_1",
 	2: "select_number_2",

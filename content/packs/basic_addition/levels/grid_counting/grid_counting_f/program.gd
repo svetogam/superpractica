@@ -4,12 +4,8 @@
 
 extends LevelProgram
 
-var object_sum_icon := preload(
-		"res://content/packs/basic_addition/pims/grid_counting/field/graphics/"
-		+ "icons/condition_sum_icon.svg")
-var object_count_icon := preload(
-		"res://content/packs/basic_addition/pims/grid_counting/field/graphics/"
-		+ "icons/condition_objects_icon.svg")
+var object_sum_icon := preload("uid://bkor8qo5sy7xa")
+var object_count_icon := preload("uid://caqvd811whwr2")
 var object_sum: int
 var object_count: int
 var pim: Pim

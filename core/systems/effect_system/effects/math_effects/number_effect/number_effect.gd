@@ -6,16 +6,16 @@ class_name NumberEffect
 extends ScreenEffect
 
 const NUMBER_TEXTURES := {
-	0: preload("res://core/systems/effect_system/graphics/number_0_blue.svg"),
-	1: preload("res://core/systems/effect_system/graphics/number_1_blue.svg"),
-	2: preload("res://core/systems/effect_system/graphics/number_2_blue.svg"),
-	3: preload("res://core/systems/effect_system/graphics/number_3_blue.svg"),
-	4: preload("res://core/systems/effect_system/graphics/number_4_blue.svg"),
-	5: preload("res://core/systems/effect_system/graphics/number_5_blue.svg"),
-	6: preload("res://core/systems/effect_system/graphics/number_6_blue.svg"),
-	7: preload("res://core/systems/effect_system/graphics/number_7_blue.svg"),
-	8: preload("res://core/systems/effect_system/graphics/number_8_blue.svg"),
-	9: preload("res://core/systems/effect_system/graphics/number_9_blue.svg"),
+	0: preload("uid://mjef7w41ffwd"),
+	1: preload("uid://0t4p4rrkqxr1"),
+	2: preload("uid://dik7uxl22ydqj"),
+	3: preload("uid://b72hif1uvhtml"),
+	4: preload("uid://c7uguam1aagtr"),
+	5: preload("uid://djqvot68bfymn"),
+	6: preload("uid://dce351gf436p1"),
+	7: preload("uid://dxh0c7ppuevc"),
+	8: preload("uid://1f51so35i05f"),
+	9: preload("uid://bm458k3udalha"),
 }
 
 var number: int:

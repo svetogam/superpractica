@@ -88,7 +88,7 @@ static var topic = TopicResource.new(
 	],
 	# Subtopics
 	[
-		preload("res://core/screens/level_select/tests/topic_data/topic_1.gd").topic,
+		preload("uid://20af6ny36mrn").topic,
 	],
 	# Layout
 	preload("topic_layout.tscn"),

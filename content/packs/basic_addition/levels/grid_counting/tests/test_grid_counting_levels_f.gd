@@ -5,8 +5,7 @@
 extends GdUnitTestSuite
 
 const VERIFICATION_TIMEOUT: int = 4000
-const TOPIC_DATA: TopicResource = preload(
-		"res://content/packs/basic_addition/levels/grid_counting/topic_data.gd").topic
+const TOPIC_DATA: TopicResource = preload("uid://d2ufkfk2dn426").topic
 const LEVEL_NAMES := {
 	1: "grid_counting_2_1",
 	2: "grid_counting_2_2",

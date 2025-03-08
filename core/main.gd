@@ -4,9 +4,9 @@
 
 extends Node
 
-const MainMenu := preload("res://core/screens/main_menu/main_menu_screen.tscn")
-const LevelSelect := preload("res://core/screens/level_select/level_select_screen.tscn")
-const PimnetLevel := preload("res://core/screens/pimnet_level/pimnet_level_screen.tscn")
+const MainMenu := preload("uid://dtsgoie3mkpl")
+const LevelSelect := preload("uid://c7261ypnucte8")
+const PimnetLevel := preload("uid://2ert4t63mict")
 var _current_scene: Node = null
 
 
