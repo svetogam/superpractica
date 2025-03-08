@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://djrt5a81ge2js"]
+[gd_scene load_steps=4 format=3 uid="uid://djrt5a81ge2js"]
 
 [ext_resource type="Script" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_button_container.gd" id="1_3da5r"]
+[ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="2_50awo"]
 [ext_resource type="Texture2D" uid="uid://c8hll8oe7ed61" path="res://placeholder-icon.svg" id="2_isiid"]
 
 [node name="CreatablesContainer" type="GridContainer"]
@@ -14,6 +15,8 @@ script = ExtResource("1_3da5r")
 [node name="CreateButton1" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -25,6 +28,8 @@ expand_icon = true
 [node name="CreateButton2" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -36,6 +41,8 @@ expand_icon = true
 [node name="CreateButton3" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -47,6 +54,8 @@ expand_icon = true
 [node name="CreateButton4" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -58,6 +67,8 @@ expand_icon = true
 [node name="CreateButton5" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -69,6 +80,8 @@ expand_icon = true
 [node name="CreateButton6" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -80,6 +93,8 @@ expand_icon = true
 [node name="CreateButton7" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -91,6 +106,8 @@ expand_icon = true
 [node name="CreateButton8" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -102,6 +119,8 @@ expand_icon = true
 [node name="CreateButton9" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")
@@ -113,6 +132,8 @@ expand_icon = true
 [node name="CreateButton10" type="Button" parent="." groups=["disable_during_verification"]]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("2_50awo")
+theme_type_variation = &"ToolButton"
 action_mode = 0
 keep_pressed_outside = true
 icon = ExtResource("2_isiid")

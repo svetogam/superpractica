@@ -22,3 +22,6 @@ MemoSlot/base_type = &"Panel"
 MemoSlot/styles/panel = ExtResource("4_ep3hk")
 Panel/styles/panel = null
 PanelContainer/styles/panel = ExtResource("5_ybn66")
+ToolButton/base_type = &"Button"
+ToolButton/colors/icon_normal_color = Color(1, 1, 1, 1)
+ToolButton/colors/icon_pressed_color = Color(1, 1, 1, 1)
