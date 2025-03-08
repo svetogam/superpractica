@@ -24,13 +24,13 @@ texture = ExtResource("1_0yiga")
 stretch_mode = 5
 
 [node name="PlusButton" type="Marker2D" parent="Selector1"]
-position = Vector2(429, 340)
+position = Vector2(435, 274)
 
 [node name="SelectorSlot" type="Marker2D" parent="Selector1"]
-position = Vector2(409, 268)
+position = Vector2(415, 208)
 
 [node name="GoalSlot" type="Marker2D" parent="Selector1"]
-position = Vector2(700, 469)
+position = Vector2(700, 499)
 
 [node name="Selector2" type="Node" parent="."]
 
@@ -51,13 +51,13 @@ texture = ExtResource("2_4bqx6")
 stretch_mode = 5
 
 [node name="Num2Button" type="Marker2D" parent="Selector2"]
-position = Vector2(398, 365)
+position = Vector2(398, 303)
 
 [node name="Num7Button" type="Marker2D" parent="Selector2"]
-position = Vector2(349, 252)
+position = Vector2(349, 190)
 
 [node name="SelectorSlot" type="Marker2D" parent="Selector2"]
-position = Vector2(408, 197)
+position = Vector2(408, 135)
 
 [node name="GoalSlot" type="Marker2D" parent="Selector2"]
-position = Vector2(699, 473)
+position = Vector2(709, 509)

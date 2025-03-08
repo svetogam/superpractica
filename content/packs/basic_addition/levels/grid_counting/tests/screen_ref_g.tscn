@@ -15,232 +15,232 @@ texture = ExtResource("1_8xdvo")
 stretch_mode = 5
 
 [node name="Unit" type="Marker2D" parent="."]
-position = Vector2(348, 402)
+position = Vector2(347, 503)
 
 [node name="Block2" type="Marker2D" parent="."]
-position = Vector2(401, 405)
+position = Vector2(400, 506)
 
 [node name="Block3" type="Marker2D" parent="."]
-position = Vector2(456, 402)
+position = Vector2(455, 503)
 
 [node name="Block4" type="Marker2D" parent="."]
-position = Vector2(505, 401)
+position = Vector2(504, 502)
 
 [node name="Block5" type="Marker2D" parent="."]
-position = Vector2(565, 406)
+position = Vector2(564, 507)
 
 [node name="Block10" type="Marker2D" parent="."]
-position = Vector2(346, 453)
+position = Vector2(345, 554)
 
 [node name="Block20" type="Marker2D" parent="."]
-position = Vector2(401, 456)
+position = Vector2(400, 557)
 
 [node name="Block30" type="Marker2D" parent="."]
-position = Vector2(449, 456)
+position = Vector2(448, 557)
 
 [node name="Block40" type="Marker2D" parent="."]
-position = Vector2(506, 457)
+position = Vector2(505, 558)
 
 [node name="Block50" type="Marker2D" parent="."]
-position = Vector2(565, 456)
+position = Vector2(564, 557)
 
 [node name="OutputSlot" type="Marker2D" parent="."]
-position = Vector2(426, 91)
+position = Vector2(425, 76)
 
 [node name="GoalSlot" type="Marker2D" parent="."]
-position = Vector2(711, 513)
+position = Vector2(722, 548)
 
 [node name="Square1" type="Marker2D" parent="."]
-position = Vector2(242, 141)
+position = Vector2(244, 120)
 
 [node name="Square2" type="Marker2D" parent="."]
-position = Vector2(276, 143)
+position = Vector2(278, 122)
 
 [node name="Square3" type="Marker2D" parent="."]
-position = Vector2(308, 139)
+position = Vector2(310, 118)
 
 [node name="Square4" type="Marker2D" parent="."]
-position = Vector2(345, 143)
+position = Vector2(347, 122)
 
 [node name="Square5" type="Marker2D" parent="."]
-position = Vector2(374, 139)
+position = Vector2(376, 118)
 
 [node name="Square6" type="Marker2D" parent="."]
-position = Vector2(420, 139)
+position = Vector2(422, 118)
 
 [node name="Square7" type="Marker2D" parent="."]
-position = Vector2(454, 143)
+position = Vector2(456, 122)
 
 [node name="Square8" type="Marker2D" parent="."]
-position = Vector2(487, 142)
+position = Vector2(489, 121)
 
 [node name="Square9" type="Marker2D" parent="."]
-position = Vector2(520, 142)
+position = Vector2(522, 121)
 
 [node name="Square10" type="Marker2D" parent="."]
-position = Vector2(557, 139)
+position = Vector2(559, 118)
 
 [node name="Square11" type="Marker2D" parent="."]
-position = Vector2(244, 176)
+position = Vector2(246, 155)
 
 [node name="Square12" type="Marker2D" parent="."]
-position = Vector2(277, 178)
+position = Vector2(279, 157)
 
 [node name="Square13" type="Marker2D" parent="."]
-position = Vector2(312, 175)
+position = Vector2(314, 154)
 
 [node name="Square14" type="Marker2D" parent="."]
-position = Vector2(350, 174)
+position = Vector2(352, 153)
 
 [node name="Square15" type="Marker2D" parent="."]
-position = Vector2(382, 179)
+position = Vector2(384, 158)
 
 [node name="Square16" type="Marker2D" parent="."]
-position = Vector2(418, 176)
+position = Vector2(420, 155)
 
 [node name="Square17" type="Marker2D" parent="."]
-position = Vector2(455, 173)
+position = Vector2(457, 152)
 
 [node name="Square18" type="Marker2D" parent="."]
-position = Vector2(488, 174)
+position = Vector2(490, 153)
 
 [node name="Square19" type="Marker2D" parent="."]
-position = Vector2(522, 177)
+position = Vector2(524, 156)
 
 [node name="Square20" type="Marker2D" parent="."]
-position = Vector2(557, 174)
+position = Vector2(559, 153)
 
 [node name="Square21" type="Marker2D" parent="."]
-position = Vector2(244, 212)
+position = Vector2(246, 191)
 
 [node name="Square22" type="Marker2D" parent="."]
-position = Vector2(277, 214)
+position = Vector2(279, 193)
 
 [node name="Square23" type="Marker2D" parent="."]
-position = Vector2(312, 211)
+position = Vector2(314, 190)
 
 [node name="Square24" type="Marker2D" parent="."]
-position = Vector2(350, 210)
+position = Vector2(352, 189)
 
 [node name="Square25" type="Marker2D" parent="."]
-position = Vector2(382, 215)
+position = Vector2(384, 194)
 
 [node name="Square26" type="Marker2D" parent="."]
-position = Vector2(418, 212)
+position = Vector2(420, 191)
 
 [node name="Square27" type="Marker2D" parent="."]
-position = Vector2(455, 209)
+position = Vector2(457, 188)
 
 [node name="Square28" type="Marker2D" parent="."]
-position = Vector2(488, 210)
+position = Vector2(490, 189)
 
 [node name="Square29" type="Marker2D" parent="."]
-position = Vector2(522, 213)
+position = Vector2(524, 192)
 
 [node name="Square30" type="Marker2D" parent="."]
-position = Vector2(557, 210)
+position = Vector2(559, 189)
 
 [node name="Square31" type="Marker2D" parent="."]
-position = Vector2(243, 248)
+position = Vector2(245, 227)
 
 [node name="Square31_41" type="Marker2D" parent="."]
-position = Vector2(242, 264)
+position = Vector2(244, 243)
 
 [node name="Square32" type="Marker2D" parent="."]
-position = Vector2(276, 250)
+position = Vector2(278, 229)
 
 [node name="Square33" type="Marker2D" parent="."]
-position = Vector2(311, 247)
+position = Vector2(313, 226)
 
 [node name="Square34" type="Marker2D" parent="."]
-position = Vector2(349, 246)
+position = Vector2(351, 225)
 
 [node name="Square35" type="Marker2D" parent="."]
-position = Vector2(381, 251)
+position = Vector2(383, 230)
 
 [node name="Square36" type="Marker2D" parent="."]
-position = Vector2(417, 248)
+position = Vector2(419, 227)
 
 [node name="Square37" type="Marker2D" parent="."]
-position = Vector2(454, 245)
+position = Vector2(456, 224)
 
 [node name="Square38" type="Marker2D" parent="."]
-position = Vector2(487, 246)
+position = Vector2(489, 225)
 
 [node name="Square39" type="Marker2D" parent="."]
-position = Vector2(521, 249)
+position = Vector2(523, 228)
 
 [node name="Square40" type="Marker2D" parent="."]
-position = Vector2(556, 246)
+position = Vector2(558, 225)
 
 [node name="Square41" type="Marker2D" parent="."]
-position = Vector2(246, 281)
+position = Vector2(248, 260)
 
 [node name="Square42" type="Marker2D" parent="."]
-position = Vector2(279, 283)
+position = Vector2(281, 262)
 
 [node name="Square43" type="Marker2D" parent="."]
-position = Vector2(314, 280)
+position = Vector2(316, 259)
 
 [node name="Square44" type="Marker2D" parent="."]
-position = Vector2(352, 279)
+position = Vector2(354, 258)
 
 [node name="Square45" type="Marker2D" parent="."]
-position = Vector2(384, 284)
+position = Vector2(386, 263)
 
 [node name="Square46" type="Marker2D" parent="."]
-position = Vector2(420, 281)
+position = Vector2(422, 260)
 
 [node name="Square47" type="Marker2D" parent="."]
-position = Vector2(457, 278)
+position = Vector2(459, 257)
 
 [node name="Square48" type="Marker2D" parent="."]
-position = Vector2(490, 279)
+position = Vector2(492, 258)
 
 [node name="Square49" type="Marker2D" parent="."]
-position = Vector2(524, 282)
+position = Vector2(526, 261)
 
 [node name="Square50" type="Marker2D" parent="."]
-position = Vector2(559, 279)
+position = Vector2(561, 258)
 
 [node name="Square51" type="Marker2D" parent="."]
-position = Vector2(245, 315)
+position = Vector2(247, 294)
 
 [node name="Square52" type="Marker2D" parent="."]
-position = Vector2(278, 317)
+position = Vector2(280, 296)
 
 [node name="Square53" type="Marker2D" parent="."]
-position = Vector2(313, 314)
+position = Vector2(315, 293)
 
 [node name="Square54" type="Marker2D" parent="."]
-position = Vector2(351, 313)
+position = Vector2(353, 292)
 
 [node name="Square55" type="Marker2D" parent="."]
-position = Vector2(383, 318)
+position = Vector2(385, 297)
 
 [node name="Square56" type="Marker2D" parent="."]
-position = Vector2(419, 315)
+position = Vector2(421, 294)
 
 [node name="Square57" type="Marker2D" parent="."]
-position = Vector2(456, 312)
+position = Vector2(458, 291)
 
 [node name="Square58" type="Marker2D" parent="."]
-position = Vector2(489, 313)
+position = Vector2(491, 292)
 
 [node name="Square59" type="Marker2D" parent="."]
-position = Vector2(523, 316)
+position = Vector2(525, 295)
 
 [node name="Square60" type="Marker2D" parent="."]
-position = Vector2(558, 313)
+position = Vector2(560, 292)
 
 [node name="Square61" type="Marker2D" parent="."]
-position = Vector2(243, 344)
+position = Vector2(245, 323)
 
 [node name="Square62" type="Marker2D" parent="."]
-position = Vector2(276, 345)
+position = Vector2(278, 324)
 
 [node name="Square63" type="Marker2D" parent="."]
-position = Vector2(312, 345)
+position = Vector2(314, 324)
 
 [node name="Off" type="Marker2D" parent="."]
 position = Vector2(687, 252)

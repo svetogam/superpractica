@@ -5,7 +5,6 @@
 [node name="Ref" type="Node"]
 
 [node name="ScreenE" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(800, 600)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,28 +14,28 @@ texture = ExtResource("1_gs682")
 stretch_mode = 5
 
 [node name="Unit" type="Marker2D" parent="."]
-position = Vector2(149, 403)
+position = Vector2(184, 529)
 
 [node name="OutputSlot" type="Marker2D" parent="."]
-position = Vector2(415, 91)
+position = Vector2(418, 78)
 
 [node name="GoalSlot" type="Marker2D" parent="."]
-position = Vector2(717, 475)
+position = Vector2(709, 532)
 
 [node name="Square1" type="Marker2D" parent="."]
-position = Vector2(242, 141)
+position = Vector2(242, 121)
 
 [node name="Square2" type="Marker2D" parent="."]
-position = Vector2(276, 143)
+position = Vector2(276, 123)
 
 [node name="Square3" type="Marker2D" parent="."]
-position = Vector2(308, 139)
+position = Vector2(308, 119)
 
 [node name="Square4" type="Marker2D" parent="."]
-position = Vector2(345, 143)
+position = Vector2(345, 123)
 
 [node name="Square5" type="Marker2D" parent="."]
-position = Vector2(374, 139)
+position = Vector2(374, 119)
 
 [node name="Off" type="Marker2D" parent="."]
 position = Vector2(687, 252)

@@ -41,7 +41,6 @@ texture = ExtResource("3_a23c7")
 stretch_mode = 5
 
 [node name="ScreenF7" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(800, 600)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,127 +50,133 @@ texture = ExtResource("1_46ydr")
 stretch_mode = 5
 
 [node name="UnitF1" type="Marker2D" parent="."]
-position = Vector2(89, 400)
+position = Vector2(132, 530)
 
 [node name="UnitF2" type="Marker2D" parent="."]
-position = Vector2(71, 399)
+position = Vector2(108, 530)
 
 [node name="UnitF7" type="Marker2D" parent="."]
-position = Vector2(43, 399)
+position = Vector2(73, 499)
 
 [node name="Block2F1" type="Marker2D" parent="."]
-position = Vector2(141, 399)
+position = Vector2(181, 526)
 
 [node name="Block2F2" type="Marker2D" parent="."]
-position = Vector2(123, 399)
+position = Vector2(159, 530)
 
 [node name="Block2F7" type="Marker2D" parent="."]
-position = Vector2(98, 400)
+position = Vector2(128, 500)
 
 [node name="Block3F2" type="Marker2D" parent="."]
-position = Vector2(176, 400)
+position = Vector2(205, 537)
+
+[node name="Block3F3" type="Marker2D" parent="."]
+position = Vector2(189, 533)
 
 [node name="Block3F7" type="Marker2D" parent="."]
-position = Vector2(152, 400)
+position = Vector2(182, 500)
 
-[node name="Block4" type="Marker2D" parent="."]
-position = Vector2(204, 399)
+[node name="Block4F3" type="Marker2D" parent="."]
+position = Vector2(240, 526)
+
+[node name="Block4F7" type="Marker2D" parent="."]
+position = Vector2(234, 499)
 
 [node name="Block5" type="Marker2D" parent="."]
-position = Vector2(256, 402)
+position = Vector2(286, 502)
 
 [node name="Block10F1" type="Marker2D" parent="."]
-position = Vector2(198, 399)
+position = Vector2(232, 529)
 
 [node name="Block10F2" type="Marker2D" parent="."]
-position = Vector2(231, 400)
+position = Vector2(258, 528)
 
 [node name="Block10F3" type="Marker2D" parent="."]
-position = Vector2(268, 403)
+position = Vector2(289, 528)
 
 [node name="Block10F7" type="Marker2D" parent="."]
-position = Vector2(44, 459)
+position = Vector2(74, 559)
 
 [node name="Block20" type="Marker2D" parent="."]
-position = Vector2(99, 460)
+position = Vector2(129, 560)
 
 [node name="Block30" type="Marker2D" parent="."]
-position = Vector2(153, 460)
+position = Vector2(183, 560)
 
 [node name="Block40" type="Marker2D" parent="."]
-position = Vector2(205, 459)
+position = Vector2(235, 559)
 
 [node name="Block50" type="Marker2D" parent="."]
-position = Vector2(257, 462)
+position = Vector2(287, 562)
 
 [node name="VerifyButton" type="Marker2D" parent="."]
-position = Vector2(705, 526)
+position = Vector2(733, 523)
 
 [node name="Square1_2" type="Marker2D" parent="."]
-position = Vector2(261, 140)
+position = Vector2(260, 93)
 
 [node name="Square2" type="Marker2D" parent="."]
-position = Vector2(276, 143)
+position = Vector2(275, 96)
 
 [node name="Square3_4" type="Marker2D" parent="."]
-position = Vector2(329, 140)
+position = Vector2(328, 93)
 
 [node name="Square5" type="Marker2D" parent="."]
-position = Vector2(374, 139)
+position = Vector2(373, 92)
 
 [node name="Square5_6" type="Marker2D" parent="."]
-position = Vector2(404, 143)
+position = Vector2(403, 96)
 
 [node name="Square7" type="Marker2D" parent="."]
-position = Vector2(453, 142)
+position = Vector2(452, 95)
 
 [node name="Square8" type="Marker2D" parent="."]
-position = Vector2(486, 145)
+position = Vector2(485, 98)
 
 [node name="Square11" type="Marker2D" parent="."]
-position = Vector2(246, 178)
+position = Vector2(245, 131)
 
 [node name="Square13" type="Marker2D" parent="."]
-position = Vector2(315, 179)
+position = Vector2(314, 132)
 
 [node name="Square15_25" type="Marker2D" parent="."]
-position = Vector2(384, 190)
+position = Vector2(383, 143)
 
 [node name="Square17_18" type="Marker2D" parent="."]
-position = Vector2(469, 176)
+position = Vector2(468, 129)
 
 [node name="Square21" type="Marker2D" parent="."]
-position = Vector2(245, 219)
+position = Vector2(244, 172)
 
 [node name="Square22_23" type="Marker2D" parent="."]
-position = Vector2(297, 210)
+position = Vector2(296, 163)
 
 [node name="Square25_35" type="Marker2D" parent="."]
-position = Vector2(386, 229)
+position = Vector2(385, 182)
 
 [node name="Square26" type="Marker2D" parent="."]
-position = Vector2(413, 213)
+position = Vector2(412, 166)
 
 [node name="Square29" type="Marker2D" parent="."]
-position = Vector2(527, 214)
+position = Vector2(526, 167)
 
 [node name="Square41" type="Marker2D" parent="."]
-position = Vector2(242, 284)
+position = Vector2(241, 237)
 
 [node name="Square55" type="Marker2D" parent="."]
-position = Vector2(381, 318)
+position = Vector2(380, 271)
 
 [node name="Square65" type="Marker2D" parent="."]
-position = Vector2(385, 355)
+position = Vector2(384, 308)
 
 [node name="Square71_72" type="Marker2D" parent="."]
-position = Vector2(261, 385)
+position = Vector2(260, 338)
 
 [node name="Square93" type="Marker2D" parent="."]
-position = Vector2(312, 458)
+position = Vector2(311, 411)
 
 [node name="Square97_98" type="Marker2D" parent="."]
-position = Vector2(471, 454)
+position = Vector2(470, 407)
 
 [node name="Off" type="Marker2D" parent="."]
 position = Vector2(687, 252)
