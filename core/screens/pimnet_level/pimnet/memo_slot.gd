@@ -2,27 +2,15 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+@tool # For drawing previews only
 class_name MemoSlot
 extends Control
 
 signal memo_accepted(memo)
 signal memo_changed(memo)
 
-enum HighlightTypes {
-	REGULAR,
-	ACCEPTING,
-	AFFIRMATION,
-	WARNING,
-	REJECTION,
-}
-
 const REGULAR_FONT_COLOR := Color.BLACK
 const FADED_FONT_COLOR := Color.SLATE_GRAY
-const REGULAR_SLOT_COLOR := Color.WHITE
-const ACCEPTING_SLOT_COLOR := Game.COLOR_HIGHLIGHT
-const AFFIRMATION_SLOT_COLOR := Game.COLOR_AFFIRMATION
-const WARNING_SLOT_COLOR := Color.GRAY
-const REJECTION_SLOT_COLOR := Game.COLOR_REJECTION
 const MemoDragPreview := preload("memo_drag_preview.tscn")
 @export var acceptable_types: Array[String]
 @export var memo_input_enabled := true
@@ -34,14 +22,60 @@ var value:
 	get:
 		assert(memo != null)
 		return memo.value
-var _previous_slot_color: Color
-@onready var _background := %Background as ColorRect
+var dragging := false:
+	set(value):
+		dragging = value
+		queue_redraw()
+var hovering := false:
+	set(value):
+		hovering = value
+		queue_redraw()
+var accepting_drag := false:
+	set(value):
+		accepting_drag = value
+		queue_redraw()
+var suggestion := Game.SuggestiveSignals.NONE:
+	set(value):
+		suggestion = value
+		queue_redraw()
 @onready var _label := %Label as Label
 
 
+func _draw() -> void:
+	var rect := Rect2(Vector2.ZERO, size)
+	var frame_box := get_theme_stylebox("frame")
+	var bg_rect := Rect2(
+		frame_box.texture_margin_left,
+		frame_box.texture_margin_top,
+		rect.size.x - frame_box.texture_margin_left - frame_box.texture_margin_right,
+		rect.size.y - frame_box.texture_margin_top - frame_box.texture_margin_bottom
+	)
+	var back_color: Color
+	if dragging:
+		back_color = get_theme_color("dragging")
+	elif accepting_drag and hovering:
+		back_color = get_theme_color("accepting")
+	elif accepting_drag and not hovering:
+		back_color = get_theme_color("pre_accepting")
+	elif memo_output_enabled and hovering:
+		back_color = get_theme_color("pre_drag")
+	elif suggestion == Game.SuggestiveSignals.AFFIRM:
+		back_color = get_theme_color("affirming")
+	elif suggestion == Game.SuggestiveSignals.WARN:
+		back_color = get_theme_color("warning")
+	elif suggestion == Game.SuggestiveSignals.REJECT:
+		back_color = get_theme_color("warning")
+	else:
+		back_color = get_theme_color("normal")
+
+	draw_rect(bg_rect, back_color)
+	draw_style_box(frame_box, rect)
+
+
 func _enter_tree() -> void:
-	CSConnector.with(self).register(Game.AGENT_MEMO_SLOT)
-	CSLocator.with(self).connect_service_found(Game.SERVICE_PIMNET, _on_pimnet_found)
+	if not Engine.is_editor_hint():
+		CSConnector.with(self).register(Game.AGENT_MEMO_SLOT)
+		CSLocator.with(self).connect_service_found(Game.SERVICE_PIMNET, _on_pimnet_found)
 
 
 func _on_pimnet_found(p_pimnet: Pimnet) -> void:
@@ -57,6 +91,7 @@ func _get_drag_data(_position: Vector2) -> Memo:
 		#set_drag_preview(preview)
 		var preview = make_memo_preview_2(memo)
 
+		dragging = true
 		pimnet.start_memo_drag(preview, memo)
 		return memo
 	return null
@@ -113,15 +148,27 @@ func set_memo(memo_type: GDScript, p_value: Variant, bypass_hooks := false) -> v
 	var new_memo: Memo = memo_type.new()
 	new_memo.set_by_value(p_value)
 	_accept_memo(new_memo, bypass_hooks)
+	_set_faded(false)
 
 
 func set_by_memo(p_memo: Memo, bypass_hooks := false) -> void:
 	var new_memo: Memo = p_memo.duplicate()
 	_accept_memo(new_memo, bypass_hooks)
+	_set_faded(false)
+
+
+func set_memo_as_hint(memo_type: GDScript, p_value: Variant) -> void:
+	set_memo(memo_type, p_value, true)
+	_set_faded()
 
 
 func set_text(text: String) -> void:
 	_label.text = text
+
+
+func set_text_as_hint(text: String) -> void:
+	_label.text = text
+	_set_faded()
 
 
 func set_no_memo_with_text(text: String) -> void:
@@ -135,27 +182,6 @@ func set_empty() -> void:
 
 func is_empty() -> bool:
 	return memo == null
-
-
-func set_highlight(highlight_type: int) -> void:
-	_previous_slot_color = _background.color
-	match highlight_type:
-		HighlightTypes.REGULAR:
-			_background.color = REGULAR_SLOT_COLOR
-		HighlightTypes.ACCEPTING:
-			_background.color = ACCEPTING_SLOT_COLOR
-		HighlightTypes.AFFIRMATION:
-			_background.color = AFFIRMATION_SLOT_COLOR
-		HighlightTypes.WARNING:
-			_background.color = WARNING_SLOT_COLOR
-		HighlightTypes.REJECTION:
-			_background.color = REJECTION_SLOT_COLOR
-		_:
-			assert(false)
-
-
-func _revert_highlight() -> void:
-	_background.color = _previous_slot_color
 
 
 func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
@@ -176,13 +202,14 @@ func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
 
 func _on_memo_drag_started(p_memo: Memo) -> void:
 	assert(p_memo != null)
+
 	if memo_input_enabled and would_accept_memo(p_memo):
-		set_highlight(HighlightTypes.ACCEPTING)
+		accepting_drag = true
 
 
 func _on_memo_drag_ended(_p_memo: Memo) -> void:
-	if _background.color == ACCEPTING_SLOT_COLOR:
-		_revert_highlight()
+	dragging = false
+	accepting_drag = false
 
 
 func set_input_output_ability(input: bool, output: bool) -> void:
@@ -190,9 +217,17 @@ func set_input_output_ability(input: bool, output: bool) -> void:
 	memo_output_enabled = output
 
 
-func set_faded(faded := true) -> void:
+func _set_faded(faded := true) -> void:
 	%Label.label_settings = %Label.label_settings.duplicate()
 	if faded:
 		%Label.label_settings.font_color = FADED_FONT_COLOR
 	else:
 		%Label.label_settings.font_color = REGULAR_FONT_COLOR
+
+
+func _on_mouse_entered() -> void:
+	hovering = true
+
+
+func _on_mouse_exited() -> void:
+	hovering = false

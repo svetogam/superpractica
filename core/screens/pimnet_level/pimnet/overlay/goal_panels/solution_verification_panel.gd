@@ -40,14 +40,14 @@ func close() -> void:
 
 func affirm_in_row(memo: Memo, row_number: int) -> void:
 	right_slots[row_number].set_by_memo(memo)
-	right_slots[row_number].set_highlight(MemoSlot.HighlightTypes.AFFIRMATION)
+	right_slots[row_number].suggestion = Game.SuggestiveSignals.AFFIRM
 	verified_row_numbers.append(row_number)
 	verified_row_numbers.sort()
 
 
 func reject_in_row(memo: Memo, row_number: int) -> void:
 	right_slots[row_number].set_by_memo(memo)
-	right_slots[row_number].set_highlight(MemoSlot.HighlightTypes.REJECTION)
+	right_slots[row_number].suggestion = Game.SuggestiveSignals.REJECT
 	rejected_row_numbers.append(row_number)
 	rejected_row_numbers.sort()
 
@@ -55,9 +55,9 @@ func reject_in_row(memo: Memo, row_number: int) -> void:
 func clear_slots() -> void:
 	for slot in left_slots:
 		slot.set_empty()
-		slot.set_highlight(MemoSlot.HighlightTypes.REGULAR)
+		slot.suggestion = Game.SuggestiveSignals.NONE
 	for slot in right_slots:
 		slot.set_empty()
-		slot.set_highlight(MemoSlot.HighlightTypes.REGULAR)
+		slot.suggestion = Game.SuggestiveSignals.NONE
 	verified_row_numbers.clear()
 	rejected_row_numbers.clear()

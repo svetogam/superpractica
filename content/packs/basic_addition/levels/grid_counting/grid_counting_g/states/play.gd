@@ -25,9 +25,9 @@ func _enter(_last_state: String) -> void:
 func _set_output_warning(warned: bool) -> void:
 	program.pim.slot.memo_output_enabled = not warned
 	if warned:
-		program.pim.slot.set_highlight(MemoSlot.HighlightTypes.WARNING)
+		program.pim.slot.suggestion = Game.SuggestiveSignals.WARN
 	else:
-		program.pim.slot.set_highlight(MemoSlot.HighlightTypes.REGULAR)
+		program.pim.slot.suggestion = Game.SuggestiveSignals.NONE
 
 
 func _on_goal_slot_filled() -> void:

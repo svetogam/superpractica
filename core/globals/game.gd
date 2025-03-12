@@ -4,6 +4,14 @@
 
 extends Node
 
+enum SuggestiveSignals {
+	NONE,
+	AFFIRM, # Correct after action
+	REJECT, # Incorrect after action
+	GUIDE, # Correct before action
+	WARN, # Incorrect before action
+}
+
 const SERVICE_PIMNET := "pimnet"
 const SERVICE_FIELD := "field"
 const SERVICE_ROOT_EFFECT_LAYER := "effect_layer"
@@ -20,9 +28,8 @@ const NO_TOOL: int = -1
 const WEBSITE_URL := "https://superpractica.org"
 const REPO_URL := "https://codeberg.org/superpractica/superpractica"
 
-const COLOR_HIGHLIGHT := Color(1.0, 1.0, 0.5)
-const COLOR_REJECTION := Color(1.0, 0.0, 0.0)
-const COLOR_AFFIRMATION := Color(0.6, 1.0, 0.6)
+const COLOR_AFFIRMATION := Color(0.09, 0.9, 0.09)
+const COLOR_REJECTION := Color(0.9, 0.09, 0.09)
 const COLOR_GUIDE := Color(0.5, 0.5, 1.0)
 
 var debug := GameDebug.new()

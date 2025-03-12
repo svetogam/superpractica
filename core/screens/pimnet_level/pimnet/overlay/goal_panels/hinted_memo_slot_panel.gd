@@ -10,7 +10,6 @@ signal slot_filled
 
 
 func _ready() -> void:
-	slot.set_faded()
 	slot.accept_condition = _accept_condition
 	slot.memo_accepted.connect(_on_memo_accepted)
 

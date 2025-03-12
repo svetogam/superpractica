@@ -17,8 +17,7 @@ func _enter(last_state: String) -> void:
 		match Game.current_level.goal_type:
 			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 				overlay.verification_panel.close()
-				overlay.goal_panel.solution_slot.set_highlight(
-						MemoSlot.HighlightTypes.WARNING)
+				overlay.goal_panel.solution_slot.suggestion = Game.SuggestiveSignals.WARN
 			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 				overlay.verification_panel.close()
 

@@ -27,7 +27,7 @@ func _start() -> void:
 	field = pim.field
 	field_program = field.get_program("SoftCount")
 
-	goal_panel.slot.set_memo(IntegerMemo, count, true)
+	goal_panel.slot.set_memo_as_hint(IntegerMemo, count)
 
 	output_program = pim.get_program("GiveOutputMemo")
 	output_program.run()

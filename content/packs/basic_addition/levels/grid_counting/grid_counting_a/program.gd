@@ -20,7 +20,7 @@ func _start() -> void:
 	pim = pimnet.get_pim()
 	field = pim.field
 
-	goal_panel.slot.set_memo(IntegerMemo, count, true)
+	goal_panel.slot.set_memo_as_hint(IntegerMemo, count)
 
 	output_program = pim.get_program("GiveOutputMemo")
 	output_program.run()

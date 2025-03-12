@@ -16,12 +16,10 @@ func _enter(_last_state: String) -> void:
 	match Game.current_level.goal_type:
 		LevelResource.GoalTypes.HINTED_MEMO_SLOT:
 			overlay.goal_panel.slot.set_input_output_ability(false, false)
-			overlay.goal_panel.slot.set_faded(false)
-			overlay.goal_panel.slot.set_highlight(MemoSlot.HighlightTypes.AFFIRMATION)
+			overlay.goal_panel.slot.suggestion = Game.SuggestiveSignals.AFFIRM
 		LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 			overlay.goal_panel.solution_slot.set_input_output_ability(false, false)
-			overlay.goal_panel.solution_slot.set_highlight(
-					MemoSlot.HighlightTypes.AFFIRMATION)
+			overlay.goal_panel.solution_slot.suggestion = Game.SuggestiveSignals.AFFIRM
 		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 			overlay.goal_panel.verify_button.disabled = true
 

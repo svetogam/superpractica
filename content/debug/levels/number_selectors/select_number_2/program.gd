@@ -8,7 +8,7 @@ extends LevelProgram
 func _start() -> void:
 	super()
 
-	goal_panel.slot.set_memo(IntegerMemo, 27, true)
+	goal_panel.slot.set_memo_as_hint(IntegerMemo, 27)
 	goal_panel.slot_filled.connect(complete_level)
 
 
