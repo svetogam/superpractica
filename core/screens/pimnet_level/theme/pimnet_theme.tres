@@ -1,10 +1,13 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cktgypu4e5gpa"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cktgypu4e5gpa"]
 
 [ext_resource type="StyleBox" uid="uid://biujihgsn6v3r" path="res://core/screens/pimnet_level/theme/button_normal_style_box.tres" id="1_3lkfa"]
 [ext_resource type="StyleBox" uid="uid://dcmyeu4b718dk" path="res://core/screens/pimnet_level/theme/button_hover_style_box.tres" id="2_vcn3k"]
 [ext_resource type="StyleBox" uid="uid://b7cnajccl65p3" path="res://core/screens/pimnet_level/theme/button_pressed_style_box.tres" id="3_5rjiq"]
-[ext_resource type="StyleBox" uid="uid://cke1les2nhns8" path="res://core/screens/pimnet_level/theme/slot_frame_style_box.tres" id="4_2gx38"]
+[ext_resource type="StyleBox" uid="uid://cddq336lvw6uk" path="res://core/screens/pimnet_level/theme/slot_frame_in_only_style_box.tres" id="4_hph0g"]
+[ext_resource type="StyleBox" uid="uid://cke1les2nhns8" path="res://core/screens/pimnet_level/theme/slot_frame_in_out_style_box.tres" id="5_6khpg"]
 [ext_resource type="StyleBox" uid="uid://xxja6vn0tiel" path="res://core/screens/pimnet_level/theme/panel_style_box.tres" id="5_ybn66"]
+[ext_resource type="StyleBox" uid="uid://csorg0qmqic57" path="res://core/screens/pimnet_level/theme/slot_frame_out_only_style_box.tres" id="6_n5ikt"]
+[ext_resource type="StyleBox" uid="uid://drbeora2bnpc6" path="res://core/screens/pimnet_level/theme/slot_frame_static_style_box.tres" id="7_21wjn"]
 
 [resource]
 Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
@@ -26,7 +29,10 @@ MemoSlot/colors/normal = Color(1, 1, 1, 1)
 MemoSlot/colors/pre_accepting = Color(1, 1, 0.8, 1)
 MemoSlot/colors/pre_drag = Color(0.909804, 0.909804, 1, 1)
 MemoSlot/colors/warning = Color(0.9, 0.36, 0.36, 1)
-MemoSlot/styles/frame = ExtResource("4_2gx38")
+MemoSlot/styles/frame_in = ExtResource("4_hph0g")
+MemoSlot/styles/frame_in_out = ExtResource("5_6khpg")
+MemoSlot/styles/frame_out = ExtResource("6_n5ikt")
+MemoSlot/styles/frame_static = ExtResource("7_21wjn")
 Panel/styles/panel = null
 PanelContainer/styles/panel = ExtResource("5_ybn66")
 ToolButton/base_type = &"Button"

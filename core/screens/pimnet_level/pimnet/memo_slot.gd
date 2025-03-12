@@ -13,8 +13,14 @@ const REGULAR_FONT_COLOR := Color.BLACK
 const FADED_FONT_COLOR := Color.SLATE_GRAY
 const MemoDragPreview := preload("memo_drag_preview.tscn")
 @export var acceptable_types: Array[String]
-@export var memo_input_enabled := true
-@export var memo_output_enabled := true
+@export var memo_input_enabled := true:
+	set(value):
+		memo_input_enabled = value
+		queue_redraw()
+@export var memo_output_enabled := true:
+	set(value):
+		memo_output_enabled = value
+		queue_redraw()
 var memo: Memo
 var pimnet: Pimnet
 var accept_condition := Callable()
@@ -43,7 +49,19 @@ var suggestion := Game.SuggestiveSignals.NONE:
 
 func _draw() -> void:
 	var rect := Rect2(Vector2.ZERO, size)
-	var frame_box := get_theme_stylebox("frame")
+
+	# Determine frame
+	var frame_box: StyleBox
+	if memo_input_enabled and memo_output_enabled:
+		frame_box = get_theme_stylebox("frame_in_out")
+	elif memo_input_enabled and not memo_output_enabled:
+		frame_box = get_theme_stylebox("frame_in")
+	elif not memo_input_enabled and memo_output_enabled:
+		frame_box = get_theme_stylebox("frame_out")
+	elif not memo_input_enabled and not memo_output_enabled:
+		frame_box = get_theme_stylebox("frame_static")
+
+	# Determine background
 	var bg_rect := Rect2(
 		frame_box.texture_margin_left,
 		frame_box.texture_margin_top,
@@ -68,6 +86,7 @@ func _draw() -> void:
 	else:
 		back_color = get_theme_color("normal")
 
+	# Draw
 	draw_rect(bg_rect, back_color)
 	draw_style_box(frame_box, rect)
 
