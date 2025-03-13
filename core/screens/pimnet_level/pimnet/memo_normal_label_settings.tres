@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://r6hdi8lnr2h1"]
+
+[resource]
+line_spacing = 0.0
+font_size = 30
+font_color = Color(0, 0, 0, 1)

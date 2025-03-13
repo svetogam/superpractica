@@ -12,6 +12,8 @@ signal memo_changed(memo)
 const REGULAR_FONT_COLOR := Color.BLACK
 const FADED_FONT_COLOR := Color.SLATE_GRAY
 const MemoDragPreview := preload("memo_drag_preview.tscn")
+const NormalLabelSettings := preload("memo_normal_label_settings.tres")
+const HintLabelSettings := preload("memo_hint_label_settings.tres")
 @export var acceptable_types: Array[String]
 @export var memo_input_enabled := true:
 	set(value):
@@ -48,7 +50,12 @@ var suggestion := Game.SuggestiveSignals.NONE:
 	set(value):
 		suggestion = value
 		queue_redraw()
-@onready var _label := %Label as Label
+var hinting := false:
+	set(value):
+		if value == true:
+			%Label.label_settings = HintLabelSettings
+		else:
+			%Label.label_settings = NormalLabelSettings
 
 
 func _draw() -> void:
@@ -107,6 +114,14 @@ func _on_pimnet_found(p_pimnet: Pimnet) -> void:
 	pimnet.memo_drag_ended.connect(_on_memo_drag_ended)
 
 
+func _on_mouse_entered() -> void:
+	hovering = true
+
+
+func _on_mouse_exited() -> void:
+	hovering = false
+
+
 func _get_drag_data(_position: Vector2) -> Memo:
 	if memo_output_enabled and memo != null:
 		# Use workaround because Godot's drag previews are bugged
@@ -129,6 +144,21 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	assert(data is Memo)
 
 	set_by_memo(data)
+
+
+func _on_memo_drag_started(p_memo: Memo) -> void:
+	assert(p_memo != null)
+
+	if not self_dragging:
+		other_dragging = true
+		if memo_input_enabled and would_accept_memo(p_memo):
+			accepting_drag = true
+
+
+func _on_memo_drag_ended(_p_memo: Memo) -> void:
+	self_dragging = false
+	other_dragging = false
+	accepting_drag = false
 
 
 # Godot's drag previews are bugged
@@ -160,6 +190,7 @@ func take_memo(p_memo: Memo) -> void:
 
 func would_accept_memo(p_memo: Memo) -> bool:
 	assert(p_memo != null)
+
 	if memo_input_enabled:
 		if accept_condition.is_null() or accept_condition.call(p_memo):
 			var memo_type := p_memo.get_class()
@@ -171,27 +202,27 @@ func set_memo(memo_type: GDScript, p_value: Variant, bypass_hooks := false) -> v
 	var new_memo: Memo = memo_type.new()
 	new_memo.set_by_value(p_value)
 	_accept_memo(new_memo, bypass_hooks)
-	_set_faded(false)
+	hinting = false
 
 
 func set_by_memo(p_memo: Memo, bypass_hooks := false) -> void:
 	var new_memo: Memo = p_memo.duplicate()
 	_accept_memo(new_memo, bypass_hooks)
-	_set_faded(false)
+	hinting = false
 
 
 func set_memo_as_hint(memo_type: GDScript, p_value: Variant) -> void:
 	set_memo(memo_type, p_value, true)
-	_set_faded()
+	hinting = true
 
 
 func set_text(text: String) -> void:
-	_label.text = text
+	%Label.text = text
 
 
 func set_text_as_hint(text: String) -> void:
-	_label.text = text
-	_set_faded()
+	%Label.text = text
+	hinting = true
 
 
 func set_no_memo_with_text(text: String) -> void:
@@ -221,39 +252,3 @@ func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
 
 	if not bypass_hooks:
 		memo_accepted.emit(memo)
-
-
-func _on_memo_drag_started(p_memo: Memo) -> void:
-	assert(p_memo != null)
-
-	if not self_dragging:
-		other_dragging = true
-		if memo_input_enabled and would_accept_memo(p_memo):
-			accepting_drag = true
-
-
-func _on_memo_drag_ended(_p_memo: Memo) -> void:
-	self_dragging = false
-	other_dragging = false
-	accepting_drag = false
-
-
-func set_input_output_ability(input: bool, output: bool) -> void:
-	memo_input_enabled = input
-	memo_output_enabled = output
-
-
-func _set_faded(faded := true) -> void:
-	%Label.label_settings = %Label.label_settings.duplicate()
-	if faded:
-		%Label.label_settings.font_color = FADED_FONT_COLOR
-	else:
-		%Label.label_settings.font_color = REGULAR_FONT_COLOR
-
-
-func _on_mouse_entered() -> void:
-	hovering = true
-
-
-func _on_mouse_exited() -> void:
-	hovering = false
