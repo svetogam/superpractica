@@ -28,9 +28,13 @@ var value:
 	get:
 		assert(memo != null)
 		return memo.value
-var dragging := false:
+var self_dragging := false:
 	set(value):
-		dragging = value
+		self_dragging = value
+		queue_redraw()
+var other_dragging := false:
+	set(value):
+		other_dragging = value
 		queue_redraw()
 var hovering := false:
 	set(value):
@@ -69,13 +73,13 @@ func _draw() -> void:
 		rect.size.y - frame_box.texture_margin_top - frame_box.texture_margin_bottom
 	)
 	var back_color: Color
-	if dragging:
+	if self_dragging:
 		back_color = get_theme_color("dragging")
-	elif accepting_drag and hovering:
+	elif accepting_drag and hovering and other_dragging:
 		back_color = get_theme_color("accepting")
-	elif accepting_drag and not hovering:
+	elif accepting_drag and not hovering and other_dragging:
 		back_color = get_theme_color("pre_accepting")
-	elif memo_output_enabled and hovering:
+	elif memo_output_enabled and hovering and not other_dragging:
 		back_color = get_theme_color("pre_drag")
 	elif suggestion == Game.SuggestiveSignals.AFFIRM:
 		back_color = get_theme_color("affirming")
@@ -110,7 +114,7 @@ func _get_drag_data(_position: Vector2) -> Memo:
 		#set_drag_preview(preview)
 		var preview = make_memo_preview_2(memo)
 
-		dragging = true
+		self_dragging = true
 		pimnet.start_memo_drag(preview, memo)
 		return memo
 	return null
@@ -222,12 +226,15 @@ func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:
 func _on_memo_drag_started(p_memo: Memo) -> void:
 	assert(p_memo != null)
 
-	if memo_input_enabled and would_accept_memo(p_memo):
-		accepting_drag = true
+	if not self_dragging:
+		other_dragging = true
+		if memo_input_enabled and would_accept_memo(p_memo):
+			accepting_drag = true
 
 
 func _on_memo_drag_ended(_p_memo: Memo) -> void:
-	dragging = false
+	self_dragging = false
+	other_dragging = false
 	accepting_drag = false
 
 
