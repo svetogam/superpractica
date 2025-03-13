@@ -61,6 +61,10 @@ ui/inspector/tree_view_mode=1
 
 disable_during_verification=""
 
+[gui]
+
+theme/custom="uid://6u5y2olmcrbm"
+
 [input]
 
 primary_mouse={

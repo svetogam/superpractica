@@ -28,10 +28,6 @@ const NO_TOOL: int = -1
 const WEBSITE_URL := "https://superpractica.org"
 const REPO_URL := "https://codeberg.org/superpractica/superpractica"
 
-const COLOR_AFFIRMATION := Color(0.09, 0.9, 0.09)
-const COLOR_REJECTION := Color(0.9, 0.09, 0.09)
-const COLOR_GUIDE := Color(0.5, 0.5, 1.0)
-
 var debug := GameDebug.new()
 var version: String:
 	get:
