@@ -1,10 +1,12 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://xxja6vn0tiel"]
 
-[ext_resource type="Texture2D" uid="uid://oph4gu0ogn4" path="res://general/kenney_ui_pack/button_square_border.svg" id="1_k3fl8"]
+[ext_resource type="Texture2D" uid="uid://bkf0ouvvnnxd8" path="res://core/screens/pimnet_level/graphics/panel.svg" id="1_31ook"]
 
 [resource]
-texture = ExtResource("1_k3fl8")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
+texture = ExtResource("1_31ook")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
