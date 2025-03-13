@@ -12,6 +12,7 @@ var string: String:
 	get:
 		return get_string()
 
+
 func is_same_type(other_memo: Memo) -> bool:
 	return get_class() == other_memo.get_class()
 
@@ -39,7 +40,7 @@ func get_string() -> String:
 
 #Returns true if the memos have the same data, not for mathematical equality
 # Virtual
-func is_memo_equal(_other_memo: Memo) -> bool:
+func is_memo_equal(_other: Memo) -> bool:
 	assert(false)
 	return false
 

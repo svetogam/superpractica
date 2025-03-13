@@ -32,4 +32,8 @@ func get_string() -> String:
 
 
 func is_memo_equal(other: Memo) -> bool:
-	return expression.is_identical(other.expression)
+	return (
+		other != null
+		and is_same_type(other)
+		and expression.is_identical(other.expression)
+	)

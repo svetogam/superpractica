@@ -29,5 +29,9 @@ func get_string() -> String:
 	return str(number)
 
 
-func is_memo_equal(other_memo: Memo) -> bool:
-	return number == other_memo.number
+func is_memo_equal(other: Memo) -> bool:
+	return (
+		other != null
+		and is_same_type(other)
+		and number == other.number
+	)
