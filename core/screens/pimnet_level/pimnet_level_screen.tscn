@@ -105,6 +105,15 @@ follow_viewport_enabled = true
 unique_name_in_owner = true
 layer = 2
 
+[node name="MemoDragSource" type="Control" parent="Pimnet/DraggedObjectLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10000.0
+offset_top = 10000.0
+offset_right = 10040.0
+offset_bottom = 10040.0
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="Pimnet"]
 layer = -1
 follow_viewport_enabled = true
@@ -956,13 +965,6 @@ icon = ExtResource("35_cvj1c")
 icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
-
-[node name="DummySlot" parent="Pimnet" instance=ExtResource("11_worie")]
-unique_name_in_owner = true
-offset_left = 10000.0
-offset_top = 10000.0
-offset_right = 10070.0
-offset_bottom = 10070.0
 
 [node name="Verifier" parent="." node_paths=PackedStringArray("effect_layer", "pimnet") instance=ExtResource("12_4kqqx")]
 effect_layer = NodePath("../Pimnet/RootEffectLayer")

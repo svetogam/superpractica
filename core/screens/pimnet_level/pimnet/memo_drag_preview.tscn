@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnw4xergg8qcn"]
+[gd_scene load_steps=3 format=3 uid="uid://cnw4xergg8qcn"]
 
 [ext_resource type="Script" uid="uid://cd37towtjxn6h" path="res://core/screens/pimnet_level/pimnet/memo_drag_preview.gd" id="1_mi0b0"]
+[ext_resource type="LabelSettings" uid="uid://r6hdi8lnr2h1" path="res://core/screens/pimnet_level/pimnet/memo_normal_label_settings.tres" id="2_17715"]
 
 [node name="MemoDragPreview" type="ColorRect"]
 custom_minimum_size = Vector2(120, 80)
 offset_right = 120.0
 offset_bottom = 80.0
-mouse_filter = 2
 color = Color(0.6, 0.6, 0.9, 0.5)
 script = ExtResource("1_mi0b0")
 
@@ -19,5 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Memo"
+label_settings = ExtResource("2_17715")
 horizontal_alignment = 1
 vertical_alignment = 1

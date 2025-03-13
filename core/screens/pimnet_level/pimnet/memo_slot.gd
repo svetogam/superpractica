@@ -11,7 +11,6 @@ signal memo_changed(memo)
 
 const REGULAR_FONT_COLOR := Color.BLACK
 const FADED_FONT_COLOR := Color.SLATE_GRAY
-const MemoDragPreview := preload("memo_drag_preview.tscn")
 const NormalLabelSettings := preload("memo_normal_label_settings.tres")
 const HintLabelSettings := preload("memo_hint_label_settings.tres")
 @export var acceptable_types: Array[String]
@@ -124,13 +123,8 @@ func _on_mouse_exited() -> void:
 
 func _get_drag_data(_position: Vector2) -> Memo:
 	if memo_output_enabled and memo != null:
-		# Use workaround because Godot's drag previews are bugged
-		#var preview = make_memo_preview(memo)
-		#set_drag_preview(preview)
-		var preview = make_memo_preview_2(memo)
-
+		pimnet.start_memo_drag(memo)
 		self_dragging = true
-		pimnet.start_memo_drag(preview, memo)
 		return memo
 	return null
 
@@ -159,28 +153,6 @@ func _on_memo_drag_ended(_p_memo: Memo) -> void:
 	self_dragging = false
 	other_dragging = false
 	accepting_drag = false
-
-
-# Godot's drag previews are bugged
-#func make_memo_preview(p_memo: Memo) -> Control:
-	#var preview := ColorRect.new()
-	#preview.color = Color(0.6, 0.6, 0.9, 0.5)
-	#preview.custom_minimum_size = Vector2(120.0, 80.0)
-	#preview.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#var preview_label := Label.new()
-	#preview_label.text = p_memo.get_string()
-	#preview_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	#preview_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	#preview_label.set_anchors_preset(Control.PRESET_FULL_RECT)
-	#preview.add_child(preview_label)
-	#return preview
-
-
-func make_memo_preview_2(p_memo: Memo) -> Control:
-	var preview := MemoDragPreview.instantiate()
-	pimnet.dragged_object_layer.add_child(preview)
-	preview.label.text = p_memo.get_string()
-	return preview
 
 
 func take_memo(p_memo: Memo) -> void:

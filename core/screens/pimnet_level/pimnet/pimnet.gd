@@ -9,6 +9,7 @@ signal memo_drag_started(memo)
 signal memo_drag_ended(memo)
 
 const InterfieldObjectScene := preload("interfield_object.tscn")
+const MemoDragPreview := preload("memo_drag_preview.tscn")
 var setup_resource: PimnetSetupResource:
 	get:
 		assert(Game.current_level != null)
@@ -26,7 +27,7 @@ func _enter_tree() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
 			"external_drag_requested", start_interfield_drag)
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
-			"dragged_memo_requested", create_dragged_memo)
+			"dragged_memo_requested", start_memo_drag)
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
 	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
 
@@ -203,16 +204,13 @@ func get_field_list() -> Array:
 # Drag and Drop
 #====================================================================
 
-func create_dragged_memo(memo: Memo) -> void:
-	# Use workaround because Godot's drag previews are bugged
-	#var preview = %DummySlot.make_memo_preview(memo)
-	var preview = %DummySlot.make_memo_preview_2(memo)
+func start_memo_drag(memo: Memo) -> void:
+	assert(memo != null)
 
-	%DummySlot.force_drag(memo, preview)
-	start_memo_drag(preview, memo)
+	var preview := MemoDragPreview.instantiate()
+	%MemoDragSource.force_drag(memo, preview)
+	preview.label.text = memo.get_string()
 
-
-func start_memo_drag(preview: Control, memo: Memo) -> void:
 	memo_drag_started.emit(memo)
 	preview.tree_exited.connect(memo_drag_ended.emit.bind(memo))
 
