@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oph4gu0ogn4"
-path="res://.godot/imported/button_square_border.svg-bbe6be640880f6fde294da35bda7a59c.ctex"
+uid="uid://d1638kxawsveh"
+path="res://.godot/imported/button_round_line.svg-ed04b2744b64510ed37b8aae5d9d2bd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://general/kenney_ui_pack/button_square_border.svg"
-dest_files=["res://.godot/imported/button_square_border.svg-bbe6be640880f6fde294da35bda7a59c.ctex"]
+source_file="res://core/screens/pimnet_level/graphics/button_round_line.svg"
+dest_files=["res://.godot/imported/button_round_line.svg-ed04b2744b64510ed37b8aae5d9d2bd3.ctex"]
 
 [params]
 

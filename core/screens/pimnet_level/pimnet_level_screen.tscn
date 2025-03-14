@@ -10,7 +10,7 @@
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="7_7dceb"]
 [ext_resource type="Script" uid="uid://djbekahesmdhu" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="Script" uid="uid://dw2plvxxj4uqg" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
-[ext_resource type="Texture2D" uid="uid://cxb2b8icrkk67" path="res://core/screens/pimnet_level/cubes_background.png" id="8_apsv0"]
+[ext_resource type="Texture2D" uid="uid://cxb2b8icrkk67" path="res://core/screens/pimnet_level/graphics/cubes_background.png" id="8_apsv0"]
 [ext_resource type="Script" uid="uid://d2h55l15kp1ie" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
 [ext_resource type="Script" uid="uid://bah5ey0ca2um6" path="res://core/screens/pimnet_level/pimnet/states/plan.gd" id="10_7acvs"]
 [ext_resource type="Script" uid="uid://c7d1wrkyblrs0" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]

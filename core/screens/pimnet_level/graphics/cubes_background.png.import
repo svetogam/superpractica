@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxb2b8icrkk67"
-path.s3tc="res://.godot/imported/cubes_background.png-70a0ef5d6dbb09702de3edd6d61d9ed2.s3tc.ctex"
+path.s3tc="res://.godot/imported/cubes_background.png-20b21572e5a95094145ba8a356430e32.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://core/screens/pimnet_level/cubes_background.png"
-dest_files=["res://.godot/imported/cubes_background.png-70a0ef5d6dbb09702de3edd6d61d9ed2.s3tc.ctex"]
+source_file="res://core/screens/pimnet_level/graphics/cubes_background.png"
+dest_files=["res://.godot/imported/cubes_background.png-20b21572e5a95094145ba8a356430e32.s3tc.ctex"]
 
 [params]
 

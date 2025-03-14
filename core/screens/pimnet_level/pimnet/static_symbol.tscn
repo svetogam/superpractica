@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca840xege7n3g"]
 
-[ext_resource type="Texture2D" uid="uid://d1638kxawsveh" path="res://general/kenney_ui_pack/button_round_line.svg" id="1_7km3i"]
+[ext_resource type="Texture2D" uid="uid://d1638kxawsveh" path="res://core/screens/pimnet_level/graphics/button_round_line.svg" id="1_7km3i"]
 
 [node name="StaticSymbol" type="TextureRect"]
 custom_minimum_size = Vector2(40, 40)
