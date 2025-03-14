@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1y4v0qe54bnl"
-path="res://.godot/imported/button_square_flat_blue.svg-2dcc697b39f2aa17107efeb3d6865f7f.ctex"
+uid="uid://bmatvo0u67dsf"
+path="res://.godot/imported/button.svg-098e56fb4ace33b46dd723faac2f5eac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://general/kenney_ui_pack/button_square_flat_blue.svg"
-dest_files=["res://.godot/imported/button_square_flat_blue.svg-2dcc697b39f2aa17107efeb3d6865f7f.ctex"]
+source_file="res://core/screens/pimnet_level/graphics/button.svg"
+dest_files=["res://.godot/imported/button.svg-098e56fb4ace33b46dd723faac2f5eac.ctex"]
 
 [params]
 

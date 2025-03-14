@@ -1,8 +1,10 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cktgypu4e5gpa"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cktgypu4e5gpa"]
 
 [ext_resource type="StyleBox" uid="uid://biujihgsn6v3r" path="res://core/screens/pimnet_level/theme/button_normal_style_box.tres" id="1_3lkfa"]
+[ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_n5ikt"]
 [ext_resource type="StyleBox" uid="uid://dcmyeu4b718dk" path="res://core/screens/pimnet_level/theme/button_hover_style_box.tres" id="2_vcn3k"]
 [ext_resource type="StyleBox" uid="uid://b7cnajccl65p3" path="res://core/screens/pimnet_level/theme/button_pressed_style_box.tres" id="3_5rjiq"]
+[ext_resource type="StyleBox" uid="uid://dugsl1kobydk2" path="res://core/screens/pimnet_level/theme/button_hover_pressed_style_box.tres" id="3_21wjn"]
 [ext_resource type="StyleBox" uid="uid://cddq336lvw6uk" path="res://core/screens/pimnet_level/theme/slot_frame_in_only_style_box.tres" id="4_hph0g"]
 [ext_resource type="StyleBox" uid="uid://cke1les2nhns8" path="res://core/screens/pimnet_level/theme/slot_frame_in_out_style_box.tres" id="5_6khpg"]
 [ext_resource type="StyleBox" uid="uid://xxja6vn0tiel" path="res://core/screens/pimnet_level/theme/panel_style_box.tres" id="5_ybn66"]
@@ -16,8 +18,9 @@ Button/colors/font_hover_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
 Button/colors/font_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
 Button/colors/icon_normal_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
 Button/colors/icon_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/styles/disabled = ExtResource("1_3lkfa")
+Button/styles/disabled = ExtResource("1_n5ikt")
 Button/styles/hover = ExtResource("2_vcn3k")
+Button/styles/hover_pressed = ExtResource("3_21wjn")
 Button/styles/normal = ExtResource("1_3lkfa")
 Button/styles/pressed = ExtResource("3_5rjiq")
 Label/colors/font_color = Color(0.0509804, 0.0509804, 0.0509804, 1)

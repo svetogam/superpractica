@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dcmyeu4b718dk"]
 
-[ext_resource type="Texture2D" uid="uid://bmatvo0u67dsf" path="res://general/kenney_ui_pack/button_square_flat_grey.svg" id="1_cjutw"]
+[ext_resource type="Texture2D" uid="uid://bmatvo0u67dsf" path="res://core/screens/pimnet_level/graphics/button.svg" id="1_cjutw"]
 
 [resource]
 texture = ExtResource("1_cjutw")
@@ -8,3 +8,4 @@ texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
+modulate_color = Color(0.7, 0.91, 1, 1)
