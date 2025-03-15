@@ -46,7 +46,7 @@ func animate_equality_setup(number_effect: NumberEffect, row_number: int,
 
 func animate_equality_check(equal: bool, row_number: int, callback := Callable()
 ) -> void:
-	_popup_comparator(equal, row_number)
+	popup_comparator(equal, row_number)
 
 	await Game.wait_for(POST_EQUALITY_CHECK_DELAY)
 
@@ -54,24 +54,24 @@ func animate_equality_check(equal: bool, row_number: int, callback := Callable()
 		callback.call()
 
 
-func _popup_comparator(equal: bool, row_number: int) -> void:
+func popup_comparator(equal: bool, row_number: int) -> void:
 	var check_slot = verification_panel.check_slots[row_number]
 	var overlay_position = check_slot.get_global_rect().get_center()
 	var effect_position = pimnet.overlay_position_to_effect_layer(overlay_position)
 
 	if equal:
-		_popup_equality(effect_position)
+		popup_equality(effect_position)
 	else:
-		_popup_inequality(effect_position)
+		popup_inequality(effect_position)
 
 
-func _popup_equality(position: Vector2) -> void:
+func popup_equality(position: Vector2) -> void:
 	var effect := goal_effects.create_effect(EqualityEffect, position)
 	effect.set_type("equality")
 	effect.animate("rise")
 
 
-func _popup_inequality(position: Vector2) -> void:
+func popup_inequality(position: Vector2) -> void:
 	var effect := goal_effects.create_effect(EqualityEffect, position)
 	effect.set_type("inequality")
 	effect.animate("shake")

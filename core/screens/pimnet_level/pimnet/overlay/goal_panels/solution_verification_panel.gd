@@ -40,24 +40,26 @@ func close() -> void:
 
 func affirm_in_row(memo: Memo, row_number: int) -> void:
 	right_slots[row_number].set_by_memo(memo)
-	right_slots[row_number].suggestion = Game.SuggestiveSignals.AFFIRM
+	check_slots[row_number].suggestion = Game.SuggestiveSignals.AFFIRM
 	verified_row_numbers.append(row_number)
 	verified_row_numbers.sort()
 
 
-func reject_in_row(memo: Memo, row_number: int) -> void:
-	right_slots[row_number].set_by_memo(memo)
-	right_slots[row_number].suggestion = Game.SuggestiveSignals.REJECT
-	rejected_row_numbers.append(row_number)
-	rejected_row_numbers.sort()
+# final means that this row will not be checked again
+func reject_in_row(memo: Memo, row_number: int, final := false) -> void:
+	if final:
+		right_slots[row_number].set_by_memo(memo)
+		check_slots[row_number].suggestion = Game.SuggestiveSignals.REJECT
+		rejected_row_numbers.append(row_number)
+		rejected_row_numbers.sort()
 
 
 func clear_slots() -> void:
 	for slot in left_slots:
 		slot.set_empty()
-		slot.suggestion = Game.SuggestiveSignals.NONE
 	for slot in right_slots:
 		slot.set_empty()
+	for slot in check_slots:
 		slot.suggestion = Game.SuggestiveSignals.NONE
 	verified_row_numbers.clear()
 	rejected_row_numbers.clear()

@@ -34,20 +34,24 @@ func _check_next_row() -> void:
 func _on_move_completed() -> void:
 	await Game.wait_for(PRE_CHECK_DELAY)
 
-	var equal := _is_equal()
+	var got_memo := IntegerMemo.new(_number_effect.number)
+	var wanted_memo = verification_panel.left_slots[_current_row_number].memo
+	var equal = got_memo.value == wanted_memo.value
 	if equal:
-		verification_panel.affirm_in_row(
-				IntegerMemo.new(_number_effect.number), _current_row_number)
-	# Reject only if checking in exactly one row
-	elif row_numbers.size() == 1:
-		verification_panel.reject_in_row(
-				IntegerMemo.new(_number_effect.number), _current_row_number)
+		verification_panel.affirm_in_row(got_memo, _current_row_number)
+	else:
+		var last_to_check := row_numbers.size() == 1
+		verification_panel.reject_in_row(got_memo, _current_row_number, last_to_check)
 
-	goal_verifier.animate_equality_check(equal, _current_row_number, _after_check)
+		var check_slot = verification_panel.check_slots[_current_row_number]
+		var overlay_position = check_slot.get_global_rect().get_center()
+		var effect_position = pimnet.overlay_position_to_effect_layer(overlay_position)
+		goal_verifier.popup_inequality(effect_position)
 
+	await Game.wait_for(0.8)
 
-func _after_check() -> void:
-	if _is_equal():
+	if equal:
+		_number_effect.free()
 		verify()
 	else:
 		_current_row_number = _get_next_row_number()
@@ -55,12 +59,6 @@ func _after_check() -> void:
 			reject()
 		else:
 			_check_next_row()
-
-
-func _is_equal() -> bool:
-	var slot = verification_panel.left_slots[_current_row_number]
-	var slot_value = slot.memo.get_value()
-	return _number_effect.number == slot_value
 
 
 func _get_next_row_number() -> int:
