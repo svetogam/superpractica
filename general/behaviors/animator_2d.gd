@@ -10,7 +10,6 @@ signal growth_completed
 
 const DEFAULT_MOVE_TIME := 1.0
 const DEFAULT_GROWTH_TIME := 1.0
-const DEFAULT_DELETE_DELAY := 1.0
 var _target: Node2D
 
 
@@ -38,7 +37,7 @@ func grow_to_ratio(size_ratio: float, growth_time := DEFAULT_GROWTH_TIME) -> voi
 	tween.tween_callback(growth_completed.emit)
 
 
-func delete_after_delay(delay := DEFAULT_DELETE_DELAY) -> void:
+func delete_after_delay(delay: float) -> void:
 	var timer := get_tree().create_timer(delay)
 	timer.timeout.connect(_target.queue_free)
 

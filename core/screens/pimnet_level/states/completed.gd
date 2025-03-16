@@ -20,6 +20,7 @@ func _enter(_last_state: String) -> void:
 		LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 			overlay.goal_panel.solution_slot.memo_input_enabled = false
 			overlay.goal_panel.solution_slot.suggestion = Game.SuggestiveSignals.AFFIRM
+			overlay.goal_panel.check_slot.suggestion = Game.SuggestiveSignals.AFFIRM
 		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 			overlay.goal_panel.verify_button.disabled = true
 

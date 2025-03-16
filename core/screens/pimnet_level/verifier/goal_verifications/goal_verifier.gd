@@ -11,6 +11,7 @@ const EqualityEffect = preload("uid://r2lr30ufuth5")
 
 @export var verifier: Verifier
 var goal_effects: MathEffectGroup
+var goal_effects_b: NavigEffectGroup
 var pimnet: Pimnet:
 	get:
 		assert(verifier.pimnet != null)
@@ -23,6 +24,7 @@ var verification_panel: PanelContainer:
 
 func _enter_tree() -> void:
 	goal_effects = MathEffectGroup.new(verifier.effect_layer)
+	goal_effects_b = NavigEffectGroup.new(verifier.effect_layer)
 
 
 func verify_equality(number_effect: NumberEffect, row_numbers: Array,

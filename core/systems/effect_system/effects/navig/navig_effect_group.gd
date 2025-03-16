@@ -9,6 +9,7 @@ const AffirmEffect := preload("effects/correct_effect.tscn")
 const RejectEffect := preload("effects/wrong_effect.tscn")
 const WarningEffect := preload("effects/warning_effect.tscn")
 const NEAR_OFFSET := Vector2(20, 15)
+const DEFAULT_DELETE_DELAY := 1.0
 
 
 func affirm_or_else_reject(p_affirm: bool, pos: Vector2) -> ScreenEffect:
@@ -18,15 +19,15 @@ func affirm_or_else_reject(p_affirm: bool, pos: Vector2) -> ScreenEffect:
 		return reject(pos)
 
 
-func affirm(pos: Vector2) -> ScreenEffect:
+func affirm(pos: Vector2, deletion_delay := DEFAULT_DELETE_DELAY) -> ScreenEffect:
 	var effect := create_effect(AffirmEffect, pos)
-	effect.animator.delete_after_delay()
+	effect.animator.delete_after_delay(deletion_delay)
 	return effect
 
 
-func reject(pos: Vector2) -> ScreenEffect:
+func reject(pos: Vector2, deletion_delay := DEFAULT_DELETE_DELAY) -> ScreenEffect:
 	var effect := create_effect(RejectEffect, pos)
-	effect.animator.delete_after_delay()
+	effect.animator.delete_after_delay(deletion_delay)
 	return effect
 
 

@@ -9,6 +9,7 @@ signal slot_filled
 @onready var verification_panel := %SolutionVerificationPanel as PanelContainer
 @onready var problem_slot := %ProblemSlot as MemoSlot
 @onready var solution_slot := %SolutionSlot as MemoSlot
+@onready var check_slot := %SolutionCheckSlot
 
 
 func _ready() -> void:
