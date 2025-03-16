@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlanResource" load_steps=4 format=3 uid="uid://dxbi513gc726b"]
+
+[ext_resource type="Script" uid="uid://biio3cevgtl1q" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_wlra5"]
+[ext_resource type="Resource" uid="uid://ccp0sk5csh3se" path="res://content/debug/levels/number_selectors/select_number_1/plan/win_task.tres" id="2_pk0fv"]
+[ext_resource type="Script" uid="uid://dvo46tf3sfgmu" path="res://core/screens/pimnet_level/pimnet/overlay/plan_resource.gd" id="4_ichyx"]
+
+[resource]
+script = ExtResource("4_ichyx")
+_tasks = Array[ExtResource("1_wlra5")]([ExtResource("2_pk0fv")])

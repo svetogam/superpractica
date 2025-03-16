@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TaskResource" load_steps=2 format=3 uid="uid://dds6diar7km3p"]
+
+[ext_resource type="Script" uid="uid://biio3cevgtl1q" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_xnefm"]
+
+[resource]
+script = ExtResource("1_xnefm")
+name_id = "win"
+name_text = "Win"
+_instructions = "Put the thing in the thing to win."
