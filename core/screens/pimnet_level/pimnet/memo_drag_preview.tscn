@@ -4,10 +4,11 @@
 [ext_resource type="LabelSettings" uid="uid://r6hdi8lnr2h1" path="res://core/screens/pimnet_level/pimnet/memo_normal_label_settings.tres" id="2_17715"]
 
 [node name="MemoDragPreview" type="ColorRect"]
+modulate = Color(1, 1, 1, 0.5)
 custom_minimum_size = Vector2(120, 80)
 offset_right = 120.0
 offset_bottom = 80.0
-color = Color(0.6, 0.6, 0.9, 0.5)
+color = Color(0.6, 0.6, 0.9, 1)
 script = ExtResource("1_mi0b0")
 
 [node name="Label" type="Label" parent="."]
