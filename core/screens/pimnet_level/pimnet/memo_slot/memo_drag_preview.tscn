@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnw4xergg8qcn"]
 
-[ext_resource type="Script" uid="uid://cd37towtjxn6h" path="res://core/screens/pimnet_level/pimnet/memo_drag_preview.gd" id="1_mi0b0"]
-[ext_resource type="LabelSettings" uid="uid://r6hdi8lnr2h1" path="res://core/screens/pimnet_level/pimnet/memo_normal_label_settings.tres" id="2_17715"]
+[ext_resource type="Script" uid="uid://cd37towtjxn6h" path="res://core/screens/pimnet_level/pimnet/memo_slot/memo_drag_preview.gd" id="1_mi0b0"]
+[ext_resource type="LabelSettings" uid="uid://r6hdi8lnr2h1" path="res://core/screens/pimnet_level/pimnet/memo_slot/memo_normal_label_settings.tres" id="2_17715"]
 
 [node name="MemoDragPreview" type="ColorRect"]
 modulate = Color(1, 1, 1, 0.5)

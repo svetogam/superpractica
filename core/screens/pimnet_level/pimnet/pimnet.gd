@@ -9,7 +9,7 @@ signal memo_drag_started(memo)
 signal memo_drag_ended(memo)
 
 const InterfieldObjectScene := preload("interfield_object.tscn")
-const MemoDragPreview := preload("memo_drag_preview.tscn")
+const MemoDragPreview := preload("memo_slot/memo_drag_preview.tscn")
 var setup_resource: PimnetSetupResource:
 	get:
 		assert(Game.current_level != null)
