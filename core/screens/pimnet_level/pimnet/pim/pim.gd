@@ -31,6 +31,12 @@ var _effects: MathEffectGroup
 @onready var programs := $Programs as ModeGroup
 
 
+func _draw() -> void:
+	var rect := Rect2(Vector2.ZERO, size)
+	var frame = get_theme_stylebox("focus")
+	draw_style_box(frame, rect)
+
+
 func _enter_tree() -> void:
 	CSLocator.with(self).connect_service_changed(
 			Game.SERVICE_ROOT_EFFECT_LAYER, _on_effect_layer_changed)
