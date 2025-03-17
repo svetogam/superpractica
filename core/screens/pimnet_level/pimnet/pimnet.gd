@@ -15,6 +15,16 @@ var setup_resource: PimnetSetupResource:
 		assert(Game.current_level != null)
 		return Game.current_level.pimnet_setup
 var dragged_object: FieldObject
+var pims: Array:
+	get:
+		return _pims_left_to_right
+var fields: Array:
+	get:
+		var list: Array = []
+		for pim in pims:
+			if pim.has_field():
+				list.append(pim.field)
+		return list
 var _pims_left_to_right: Array = []
 var _dragging := false
 var _last_destination: Field
@@ -112,7 +122,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_pim_tool_selected(toolset_name: String, tool_mode: int) -> void:
-	for field in get_field_list():
+	for field in fields:
 		if toolset_name == field.field_type:
 			field.set_tool(tool_mode)
 
@@ -183,20 +193,14 @@ func overlay_position_to_effect_layer(p_position: Vector2) -> Vector2:
 	return p_position + overlay_offset
 
 
-func get_pim_list() -> Array:
-	return Utils.get_children_in_group(self, "pims")
-
-
-func get_pim(index: int = 0) -> Pim:
-	var pims = get_pim_list()
-	if pims.size() > 0:
-		return pims[index]
-	else:
-		return null
-
-
-func get_field_list() -> Array:
-	return Utils.get_children_in_group(self, "fields")
+func get_pim(pim_name := "") -> Pim:
+	if pim_name == "":
+		assert(pims.size() == 1)
+		return pims[0]
+	for pim in pims:
+		if pim.name == pim_name:
+			return pim
+	return null
 
 
 #====================================================================
@@ -219,7 +223,7 @@ func start_interfield_drag(object: FieldObject) -> void:
 	assert(dragged_object == null)
 
 	dragged_object = object
-	for field in get_field_list():
+	for field in fields:
 		field.dragged_object = dragged_object
 
 	create_interfield_object(object.object_data)
@@ -287,6 +291,6 @@ func process_interfield_drop(object_data: FieldObjectData) -> void:
 			destination._received_in(object_data, field_point, source)
 
 	if dragged_object != null:
-		for field in get_field_list():
+		for field in fields:
 			field.end_drag()
 		dragged_object = null

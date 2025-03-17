@@ -87,7 +87,7 @@ func _run_program() -> void:
 
 
 func _default_reset() -> void:
-	for pim in pimnet.get_pim_list():
+	for pim in pimnet.pims:
 		pim.reset()
 
 
