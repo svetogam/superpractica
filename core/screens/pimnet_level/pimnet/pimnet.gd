@@ -64,12 +64,10 @@ func _ready() -> void:
 		%EditPanelsButton.visible = setup_resource.edit_panels_enable
 
 		# Setup pim-tools panel
+		overlay.pim_tools.tool_selected.connect(_on_pim_tool_selected)
 		for pim in _pims_left_to_right:
 			if pim.has_field():
 				overlay.pim_tools.add_toolset(pim.field.interface_data)
-				overlay.pim_tools.tool_selected.connect(
-					_on_pim_tool_selected.bind(pim.field)
-				)
 				pim.field.tool_changed.connect(
 					overlay.pim_tools.on_field_tool_changed.bind(pim.field.field_type)
 				)
@@ -113,9 +111,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_dragging = true
 
 
-func _on_pim_tool_selected(toolset_name: String, tool_mode: int, field: Field) -> void:
-	if toolset_name == field.field_type:
-		field.set_tool(tool_mode)
+func _on_pim_tool_selected(toolset_name: String, tool_mode: int) -> void:
+	for field in get_field_list():
+		if toolset_name == field.field_type:
+			field.set_tool(tool_mode)
 
 
 func disable_verification_input(disable := true) -> void:
