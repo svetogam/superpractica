@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://cktgypu4e5gpa"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://cktgypu4e5gpa"]
 
 [ext_resource type="StyleBox" uid="uid://biujihgsn6v3r" path="res://core/screens/pimnet_level/theme/button_normal_style_box.tres" id="1_3lkfa"]
 [ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_n5ikt"]
@@ -11,6 +11,7 @@
 [ext_resource type="StyleBox" uid="uid://xxja6vn0tiel" path="res://core/screens/pimnet_level/theme/panel_style_box.tres" id="5_ybn66"]
 [ext_resource type="StyleBox" uid="uid://csorg0qmqic57" path="res://core/screens/pimnet_level/theme/slot_frame_out_only_style_box.tres" id="6_n5ikt"]
 [ext_resource type="StyleBox" uid="uid://drbeora2bnpc6" path="res://core/screens/pimnet_level/theme/slot_frame_static_style_box.tres" id="7_21wjn"]
+[ext_resource type="StyleBox" uid="uid://do7xsmkt2t2oc" path="res://core/screens/pimnet_level/theme/tooltip_style_box.tres" id="12_l64s5"]
 
 [resource]
 Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
@@ -49,3 +50,8 @@ StaticSymbol/colors/warn = Color(0.901961, 0.360784, 0.360784, 1)
 ToolButton/base_type = &"Button"
 ToolButton/colors/icon_normal_color = Color(1, 1, 1, 1)
 ToolButton/colors/icon_pressed_color = Color(1, 1, 1, 1)
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+TooltipLabel/constants/outline_size = 18
+TooltipLabel/font_sizes/font_size = 24
+TooltipPanel/styles/panel = ExtResource("12_l64s5")
