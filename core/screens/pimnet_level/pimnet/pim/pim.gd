@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 class_name Pim
-extends Panel
+extends PanelContainer
 
 var field_map := {}
 var slot_map := {}
@@ -34,7 +34,9 @@ var _effects: MathEffectGroup
 func _draw() -> void:
 	var rect := Rect2(Vector2.ZERO, size)
 	var frame = get_theme_stylebox("focus")
+	var panel = get_theme_stylebox("panel")
 	draw_style_box(frame, rect)
+	draw_style_box(panel, rect)
 
 
 func _enter_tree() -> void:

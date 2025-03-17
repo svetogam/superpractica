@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://cktgypu4e5gpa"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cktgypu4e5gpa"]
 
 [ext_resource type="StyleBox" uid="uid://biujihgsn6v3r" path="res://core/screens/pimnet_level/theme/button_normal_style_box.tres" id="1_3lkfa"]
 [ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_n5ikt"]
@@ -13,6 +13,7 @@
 [ext_resource type="StyleBox" uid="uid://drbeora2bnpc6" path="res://core/screens/pimnet_level/theme/slot_frame_static_style_box.tres" id="7_21wjn"]
 [ext_resource type="StyleBox" uid="uid://do7xsmkt2t2oc" path="res://core/screens/pimnet_level/theme/tooltip_style_box.tres" id="12_l64s5"]
 [ext_resource type="StyleBox" uid="uid://bget0dwqv2bgx" path="res://core/screens/pimnet_level/theme/pim_focused_style_box.tres" id="12_toa7j"]
+[ext_resource type="StyleBox" uid="uid://ovd4nqj8vbw7" path="res://core/screens/pimnet_level/theme/pim_panel_style_box.tres" id="13_44iv6"]
 
 [resource]
 Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
@@ -46,6 +47,7 @@ Panel/styles/panel = null
 PanelContainer/styles/panel = ExtResource("5_ybn66")
 Pim/base_type = &"Panel"
 Pim/styles/focus = ExtResource("12_toa7j")
+Pim/styles/panel = ExtResource("13_44iv6")
 StaticSymbol/base_type = &"Panel"
 StaticSymbol/colors/affirm = Color(0.0901961, 0.898039, 0.0901961, 1)
 StaticSymbol/colors/normal = Color(1, 1, 1, 1)

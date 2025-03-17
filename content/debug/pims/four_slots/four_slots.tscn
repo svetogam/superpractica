@@ -8,12 +8,7 @@
 script = ExtResource("2_vep7i")
 
 [node name="GridContainer" type="GridContainer" parent="." index="1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 columns = 2
 
 [node name="Slot1" parent="GridContainer" index="0" instance=ExtResource("3_cvogn")]
