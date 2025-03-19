@@ -5,11 +5,8 @@
 
 [node name="WarningEffect" instance=ExtResource("1")]
 
-[node name="Graphic" parent="." index="0"]
-modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.3, 0.3)
-
 [node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_ro0jw")
 
 [node name="AnimationPlayer" parent="." index="1"]
