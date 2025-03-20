@@ -22,7 +22,7 @@ _data = {
 [node name="EqualityEffect" instance=ExtResource("2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
-scale = Vector2(0.32, 0.32)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_rek3h")
 
 [node name="AnimationPlayer" parent="." index="1"]
