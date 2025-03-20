@@ -13,13 +13,3 @@ func give_number(number: int, pos: Vector2, animation := "rise") -> NumberEffect
 	effect.number = number
 	effect.animate(animation)
 	return effect
-
-
-func new_number_from_digit_of_original(original: NumberEffect, digit_place: int
-) -> NumberEffect:
-	var digit := IntegerMath.get_digit_at_place(original.number, digit_place)
-	var pos := original.get_position_for_digit(digit_place)
-	var effect := create_effect(NUMBER_EFFECT, pos)
-	effect.number = digit
-	effect.scale = original.scale
-	return effect
