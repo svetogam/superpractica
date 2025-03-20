@@ -14,18 +14,18 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("5_xxqvd")
-animation = &"1"
+animation = &"empty"
 
 [node name="Tens" type="AnimatedSprite2D" parent="Graphic" index="1"]
 unique_name_in_owner = true
-position = Vector2(-33, 0)
+position = Vector2(-31, 0)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("5_xxqvd")
-animation = &"1"
+animation = &"empty"
 
 [node name="Hundreds" type="AnimatedSprite2D" parent="Graphic" index="2"]
 unique_name_in_owner = true
-position = Vector2(-66, 0)
+position = Vector2(-62, 0)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("5_xxqvd")
-animation = &"1"
+animation = &"empty"
