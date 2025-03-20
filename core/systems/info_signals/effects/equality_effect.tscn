@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://r2lr30ufuth5"]
+[gd_scene load_steps=10 format=3 uid="uid://r2lr30ufuth5"]
 
-[ext_resource type="Script" uid="uid://0cvht2hfbj12" path="res://core/systems/info_signals/effects/equality_effect.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/screen_effect.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bfx7ryxfxg4gq" path="res://core/systems/info_signals/graphics/equals_affirm.svg" id="3_rek3h"]
-[ext_resource type="Texture2D" uid="uid://d2q8ljwqwjj7" path="res://core/systems/info_signals/graphics/unequals_reject.svg" id="4_gk7lq"]
 [ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/systems/info_signals/animations/popup_bounce_anim.tres" id="5_gv1tk"]
 [ext_resource type="Animation" uid="uid://ceuv52itq7bet" path="res://core/systems/info_signals/animations/popup_descend_anim.tres" id="6_8u1ja"]
 [ext_resource type="Animation" uid="uid://c5ghu0ff2xo4r" path="res://core/systems/info_signals/animations/popup_fade_in_anim.tres" id="7_b17qw"]
@@ -22,18 +20,10 @@ _data = {
 }
 
 [node name="EqualityEffect" instance=ExtResource("2")]
-script = ExtResource("1")
 
-[node name="EqualitySprite" type="Sprite2D" parent="Graphic" index="0"]
-unique_name_in_owner = true
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
 scale = Vector2(0.32, 0.32)
 texture = ExtResource("3_rek3h")
-
-[node name="InequalitySprite" type="Sprite2D" parent="Graphic" index="1"]
-unique_name_in_owner = true
-visible = false
-scale = Vector2(0.32, 0.32)
-texture = ExtResource("4_gk7lq")
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

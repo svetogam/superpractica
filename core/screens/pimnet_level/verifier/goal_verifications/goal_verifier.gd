@@ -8,6 +8,7 @@ extends Node
 const POST_EQUALITY_CHECK_DELAY := 0.8
 const EqualityVerification := preload("equality_verification.gd")
 const EqualityEffect = preload("uid://r2lr30ufuth5")
+const InequalityEffect = preload("uid://d3fuvg0owj4ty")
 
 @export var verifier: Verifier
 var goal_effects: MathEffectGroup
@@ -69,11 +70,9 @@ func popup_comparator(equal: bool, row_number: int) -> void:
 
 func popup_equality(position: Vector2) -> void:
 	var effect := goal_effects.create_effect(EqualityEffect, position)
-	effect.set_type("equality")
 	effect.animate("rise")
 
 
 func popup_inequality(position: Vector2) -> void:
-	var effect := goal_effects.create_effect(EqualityEffect, position)
-	effect.set_type("inequality")
+	var effect := goal_effects.create_effect(InequalityEffect, position)
 	effect.animate("shake")
