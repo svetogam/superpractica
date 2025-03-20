@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm458k3udalha"
-path="res://.godot/imported/number_9_blue.svg-32ef248dd40ada32d6af0a336639a039.ctex"
+uid="uid://cqwdr66lre5r2"
+path="res://.godot/imported/tick_affirm.svg-d875b536acdb32cb7239d732d0962dea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/systems/effect_system/graphics/number_9_blue.svg"
-dest_files=["res://.godot/imported/number_9_blue.svg-32ef248dd40ada32d6af0a336639a039.ctex"]
+source_file="res://core/systems/info_signals/graphics/tick_affirm.svg"
+dest_files=["res://.godot/imported/tick_affirm.svg-d875b536acdb32cb7239d732d0962dea.ctex"]
 
 [params]
 

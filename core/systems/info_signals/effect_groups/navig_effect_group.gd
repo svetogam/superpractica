@@ -5,9 +5,9 @@
 class_name NavigEffectGroup
 extends ScreenEffectGroup
 
-const AffirmEffect := preload("effects/correct_effect.tscn")
-const RejectEffect := preload("effects/wrong_effect.tscn")
-const WarningEffect := preload("effects/warning_effect.tscn")
+const AffirmEffect := preload("uid://51v0feqeyjdr")
+const RejectEffect := preload("uid://dmg7uc5b3wqhc")
+const WarningEffect := preload("uid://dk3ojkrwuffyq")
 const NEAR_OFFSET := Vector2(20, 15)
 const DEFAULT_DELETE_DELAY := 1.0
 

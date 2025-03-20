@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2q8ljwqwjj7"
-path="res://.godot/imported/unequals_reject.svg-3b1c68d5ba7541ce4418864ce70d194b.ctex"
+uid="uid://bm458k3udalha"
+path="res://.godot/imported/number_9_blue.svg-74d5a074dde7f50a5a00c81cb095480c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/systems/effect_system/graphics/unequals_reject.svg"
-dest_files=["res://.godot/imported/unequals_reject.svg-3b1c68d5ba7541ce4418864ce70d194b.ctex"]
+source_file="res://core/systems/info_signals/graphics/number_9_blue.svg"
+dest_files=["res://.godot/imported/number_9_blue.svg-74d5a074dde7f50a5a00c81cb095480c.ctex"]
 
 [params]
 

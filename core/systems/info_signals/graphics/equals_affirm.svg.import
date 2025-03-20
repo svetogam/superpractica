@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mjef7w41ffwd"
-path="res://.godot/imported/number_0_blue.svg-34a371899467a8472a7bffac704f72cb.ctex"
+uid="uid://bfx7ryxfxg4gq"
+path="res://.godot/imported/equals_affirm.svg-96a0c7bb04a3a0be99f8fa2b510a0764.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/systems/effect_system/graphics/number_0_blue.svg"
-dest_files=["res://.godot/imported/number_0_blue.svg-34a371899467a8472a7bffac704f72cb.ctex"]
+source_file="res://core/systems/info_signals/graphics/equals_affirm.svg"
+dest_files=["res://.godot/imported/equals_affirm.svg-96a0c7bb04a3a0be99f8fa2b510a0764.ctex"]
 
 [params]
 

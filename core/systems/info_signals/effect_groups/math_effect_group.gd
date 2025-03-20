@@ -5,7 +5,7 @@
 class_name MathEffectGroup
 extends ScreenEffectGroup
 
-const NUMBER_EFFECT := preload("number_effect/number_effect.tscn")
+const NUMBER_EFFECT := preload("uid://cobbyy58sstrk")
 
 
 func give_number(number: int, pos: Vector2, animation := "rise") -> NumberEffect:
