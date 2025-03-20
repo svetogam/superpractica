@@ -26,11 +26,3 @@ func _update_sprites() -> void:
 	var offset_x = -(number_digits - 1) * (%Tens.position.x / 2) / %Tens.scale.x
 	for sprite in _digit_sprites:
 		sprite.offset.x = offset_x
-
-
-func set_by_effect(original: ScreenEffect) -> void:
-	number = original.number
-
-
-func is_equal_to(other_count: NumberEffect) -> bool:
-	return number == other_count.number
