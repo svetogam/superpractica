@@ -17,7 +17,7 @@ var field: Field:
 	get:
 		assert(pim.field != null)
 		return pim.field
-var effects: NavigEffectGroup:
+var effects: ScreenEffectGroup:
 	get:
 		assert(program.effects != null)
 		return program.effects

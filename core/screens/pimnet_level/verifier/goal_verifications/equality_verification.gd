@@ -44,8 +44,9 @@ func _on_move_completed() -> void:
 		var check_slot = verification_panel.check_slots[_current_row_number]
 		var overlay_position = check_slot.get_global_rect().get_center()
 		var effect_position = pimnet.overlay_position_to_effect_layer(overlay_position)
-		goal_verifier.goal_effects_b.affirm(
-				effect_position + NavigEffectGroup.NEAR_OFFSET, POST_EQUALITY_CHECK_DELAY)
+		goal_verifier.goal_effects.affirm(
+			effect_position + ScreenEffectGroup.NEAR_OFFSET, POST_EQUALITY_CHECK_DELAY
+		)
 	else:
 		var last_to_check := row_numbers.size() == 1
 		verification_panel.reject_in_row(got_memo, _current_row_number, last_to_check)

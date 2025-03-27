@@ -27,4 +27,4 @@ func _on_sum_complete(sum: NumberEffect) -> void:
 
 func _exit_tree() -> void:
 	if field != null:
-		field.math_effects.clear()
+		field.info_signaler.clear()

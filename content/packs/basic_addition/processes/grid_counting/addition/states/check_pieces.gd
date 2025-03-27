@@ -25,4 +25,4 @@ func _on_count_complete(count: NumberEffect) -> void:
 func _exit(_next_state: String) -> void:
 	if verification.field != null:
 		verification.field.effect_counter.reset_count()
-		verification.field.math_effects.clear()
+		verification.field.info_signaler.clear()

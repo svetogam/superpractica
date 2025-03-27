@@ -20,5 +20,5 @@ func do() -> void:
 	if cell != null:
 		cell.toggle_mark()
 
-	field.math_effects.clear()
+	field.info_signaler.clear()
 	field.effect_counter.reset_count()

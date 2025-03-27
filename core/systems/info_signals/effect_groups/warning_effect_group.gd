@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 class_name WarningEffectGroup
-extends NavigEffectGroup
+extends ScreenEffectGroup
 
 signal warned
 signal unwarned

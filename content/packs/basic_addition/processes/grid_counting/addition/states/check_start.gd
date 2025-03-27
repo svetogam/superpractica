@@ -18,7 +18,8 @@ func _enter(_last_state: String) -> void:
 	# Or make a 0 number-effect at first cell if no cell is marked
 	else:
 		var first_cell = verification.field.dynamic_model.get_grid_cell(1)
-		board_number = verification.field.math_effects.give_number(0, first_cell.position)
+		board_number = verification.field.info_signaler.give_number(
+				0, first_cell.position)
 
 	await Game.wait_for(0.5)
 
@@ -32,4 +33,4 @@ func _on_verify() -> void:
 
 func _exit(_next_state: String) -> void:
 	if verification.field != null:
-		verification.field.math_effects.clear()
+		verification.field.info_signaler.clear()

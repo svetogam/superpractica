@@ -28,7 +28,7 @@ func _count_next() -> void:
 		_current_count += 1
 	else:
 		var zero_position = field.dynamic_model.get_grid_cell(zero_cell_number).position
-		_last_count_object = field.math_effects.give_number(0, zero_position)
+		_last_count_object = field.info_signaler.give_number(0, zero_position)
 
 	Game.call_after(_on_delay_completed, COUNT_DELAY)
 

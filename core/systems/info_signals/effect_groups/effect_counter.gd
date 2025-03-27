@@ -3,25 +3,18 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 class_name EffectCounter
-extends MathEffectGroup
+extends ScreenEffectGroup
 
-const NEAR_OFFSET := Vector2(30, 20)
 var _count: int = 0
 
 
-func count_next(pos: Vector2, beside := false) -> NumberEffect:
+func count_next(pos: Vector2) -> NumberEffect:
 	_count += 1
-	if beside:
-		return give_number(_count, pos + NEAR_OFFSET)
-	else:
-		return give_number(_count, pos)
+	return give_number(_count, pos)
 
 
-func give_current_count(pos: Vector2, beside := false) -> NumberEffect:
-	if beside:
-		return give_number(_count, pos + NEAR_OFFSET)
-	else:
-		return give_number(_count, pos)
+func give_current_count(pos: Vector2) -> NumberEffect:
+	return give_number(_count, pos)
 
 
 func remove_last_count() -> void:

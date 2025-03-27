@@ -25,16 +25,16 @@ var effect_layer: CanvasLayer:
 			effect_layer = %EffectLayer
 		return effect_layer
 var effect_offset_source: CanvasItem = null
+var info_signaler: ScreenEffectGroup:
+	get:
+		if info_signaler == null:
+			info_signaler = ScreenEffectGroup.new(effect_layer, effect_offset_source)
+		return info_signaler
 var warning_effects: WarningEffectGroup:
 	get:
 		if warning_effects == null:
 			warning_effects = WarningEffectGroup.new(effect_layer, effect_offset_source)
 		return warning_effects
-var math_effects: MathEffectGroup:
-	get:
-		if math_effects == null:
-			math_effects = MathEffectGroup.new(effect_layer, effect_offset_source)
-		return math_effects
 var effect_counter: EffectCounter:
 	get:
 		if effect_counter == null:

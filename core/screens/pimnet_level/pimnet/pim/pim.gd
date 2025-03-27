@@ -27,7 +27,6 @@ var slot: MemoSlot:
 	get:
 		assert(slot_map.values().size() == 1)
 		return slot_map.values()[0]
-var _effects: MathEffectGroup
 @onready var programs := $Programs as ModeGroup
 
 
@@ -40,8 +39,6 @@ func _draw() -> void:
 
 
 func _enter_tree() -> void:
-	CSLocator.with(self).connect_service_changed(
-			Game.SERVICE_ROOT_EFFECT_LAYER, _on_effect_layer_changed)
 	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
 	CSConnector.with(self).connect_setup(Game.AGENT_MEMO_SLOT, _setup_slot)
 
@@ -148,25 +145,3 @@ func get_slot(slot_name: String) -> MemoSlot:
 func get_slot_position(slot_name: String) -> Vector2:
 	assert(slot_map.has(slot_name))
 	return slot_map[slot_name].get_global_rect().get_center()
-
-
-func create_number_effect(slot_name: String) -> NumberEffect:
-	assert(slot_map.has(slot_name))
-	if _effects != null:
-		var number = get_slot(slot_name).value
-		var number_position := get_slot_position(slot_name)
-		return _effects.give_number(number, number_position, "grow") as NumberEffect
-	else:
-		return null
-
-
-func clear_effects() -> void:
-	if _effects != null:
-		_effects.clear()
-
-
-func _on_effect_layer_changed(effect_layer: CanvasLayer) -> void:
-	if _effects == null and effect_layer != null:
-		_effects = MathEffectGroup.new(effect_layer)
-	elif _effects != null and effect_layer == null:
-		_effects = null

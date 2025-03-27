@@ -9,10 +9,12 @@ var field: Field:
 	get:
 		assert(_target != null)
 		return _target
-var effects: NavigEffectGroup:
+var effects: ScreenEffectGroup:
 	get:
 		if effects == null:
-			effects = NavigEffectGroup.new(field.effect_layer, field.effect_offset_source)
+			effects = ScreenEffectGroup.new(
+				field.effect_layer, field.effect_offset_source
+			)
 		return effects
 
 
