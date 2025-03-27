@@ -83,7 +83,7 @@ func _end() -> void:
 
 	_object_rules.clear()
 	_object_outcomes.clear()
-	field.warning_effects.clear()
+	field.warning_signaler.clear()
 	field.updated.disconnect(_run_rules)
 
 

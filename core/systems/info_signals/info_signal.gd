@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-class_name ScreenEffect
+class_name InfoSignal
 extends Node2D
 
 @onready var animator := $Animator as Animator2D

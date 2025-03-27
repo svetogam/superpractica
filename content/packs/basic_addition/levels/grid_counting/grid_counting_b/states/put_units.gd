@@ -12,8 +12,8 @@ func _enter(_last_state: String) -> void:
 	program.field_program.reallow_object(GridCounting.Objects.UNIT)
 
 	program.output_program.output_decided.connect(_on_output_decided)
-	program.field.warning_effects.warned.connect(_set_output_warning.bind(true))
-	program.field.warning_effects.unwarned.connect(_set_output_warning.bind(false))
+	program.field.warning_signaler.warned.connect(_set_output_warning.bind(true))
+	program.field.warning_signaler.unwarned.connect(_set_output_warning.bind(false))
 
 	if program.count == program.intermediate_goal:
 		complete()
@@ -39,5 +39,5 @@ func _reset() -> void:
 
 func _exit(_next_state: String) -> void:
 	program.output_program.output_decided.disconnect(_on_output_decided)
-	program.field.warning_effects.warned.disconnect(_set_output_warning)
-	program.field.warning_effects.unwarned.disconnect(_set_output_warning)
+	program.field.warning_signaler.warned.disconnect(_set_output_warning)
+	program.field.warning_signaler.unwarned.disconnect(_set_output_warning)

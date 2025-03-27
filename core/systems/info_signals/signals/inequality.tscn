@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://d3fuvg0owj4ty"]
 
-[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/screen_effect.tscn" id="1_1rat4"]
+[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/info_signal.tscn" id="1_1rat4"]
 [ext_resource type="Texture2D" uid="uid://d2q8ljwqwjj7" path="res://core/systems/info_signals/graphics/unequals_reject.svg" id="4_huuks"]
 [ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/systems/info_signals/animations/popup_bounce_anim.tres" id="5_o64va"]
 [ext_resource type="Animation" uid="uid://ceuv52itq7bet" path="res://core/systems/info_signals/animations/popup_descend_anim.tres" id="6_ipdwe"]
@@ -19,7 +19,7 @@ _data = {
 &"popup_shake_anim": ExtResource("10_2kr3i")
 }
 
-[node name="InequalityEffect" instance=ExtResource("1_1rat4")]
+[node name="Inequality" instance=ExtResource("1_1rat4")]
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
 scale = Vector2(0.25, 0.25)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmg7uc5b3wqhc"]
+
+[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/info_signal.tscn" id="1_yeelb"]
+[ext_resource type="Texture2D" uid="uid://bcvdn7e6hbmsi" path="res://core/systems/info_signals/graphics/cross_reject.svg" id="2_kv4nf"]
+
+[node name="Wrong" instance=ExtResource("1_yeelb")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_kv4nf")
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "popup_shake_anim"

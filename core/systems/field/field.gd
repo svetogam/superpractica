@@ -24,9 +24,9 @@ var effect_layer: CanvasLayer:
 		if effect_layer == null:
 			effect_layer = %EffectLayer
 		return effect_layer
-var info_signaler := ScreenEffectGroup.new()
-var warning_effects := WarningEffectGroup.new()
-var effect_counter := EffectCounter.new()
+var info_signaler := InfoSignaler.new()
+var warning_signaler := WarningSignaler.new()
+var count_signaler := CountSignaler.new()
 var field_type: String:
 	get = _get_field_type
 var interface_data: FieldInterfaceData:
@@ -62,8 +62,8 @@ func _ready() -> void:
 	CSLocator.with(self).register(Game.SERVICE_FIELD, self)
 
 	effect_layer.add_child(info_signaler)
-	effect_layer.add_child(warning_effects)
-	effect_layer.add_child(effect_counter)
+	effect_layer.add_child(warning_signaler)
+	effect_layer.add_child(count_signaler)
 
 	_trigger_update(UpdateTypes.INITIAL)
 
@@ -71,7 +71,7 @@ func _ready() -> void:
 func _trigger_update(update_type: int) -> void:
 	_on_update(update_type)
 	updated.emit()
-	warning_effects.flush_stage()
+	warning_signaler.flush_stage()
 
 
 # Virtual

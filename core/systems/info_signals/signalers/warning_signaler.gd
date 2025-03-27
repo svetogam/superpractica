@@ -2,15 +2,15 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-class_name WarningEffectGroup
-extends ScreenEffectGroup
+class_name WarningSignaler
+extends InfoSignaler
 
 signal warned
 signal unwarned
 
 var _staged_warning_positions: Array = []
 var _current_warning_positions: Array = []
-var _positions_to_warnings: Dictionary # {Vector2: ScreenEffect}
+var _positions_to_warnings: Dictionary # {Vector2: InfoSignal}
 
 
 func stage_warning(p_position: Vector2) -> void:

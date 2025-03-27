@@ -21,4 +21,4 @@ func do() -> void:
 		cell.toggle_mark()
 
 	field.info_signaler.clear()
-	field.effect_counter.reset_count()
+	field.count_signaler.reset_count()

@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://cobbyy58sstrk"]
 
-[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/screen_effect.tscn" id="1"]
-[ext_resource type="Script" uid="uid://bjo2ndni6ol53" path="res://core/systems/info_signals/effects/number_effect.gd" id="2"]
-[ext_resource type="SpriteFrames" uid="uid://d3m7nqnv7ush8" path="res://core/systems/info_signals/effects/numeral_frames.tres" id="5_xxqvd"]
+[ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/info_signal.tscn" id="1_fasmd"]
+[ext_resource type="Script" uid="uid://bjo2ndni6ol53" path="res://core/systems/info_signals/signals/number.gd" id="2_70dm8"]
+[ext_resource type="SpriteFrames" uid="uid://d3m7nqnv7ush8" path="res://core/systems/info_signals/signals/numeral_frames.tres" id="3_13mgn"]
 
-[node name="NumberEffect" instance=ExtResource("1")]
-script = ExtResource("2")
+[node name="Number" instance=ExtResource("1_fasmd")]
+script = ExtResource("2_70dm8")
 
 [node name="Graphic" parent="." index="0"]
 unique_name_in_owner = true
@@ -13,19 +13,19 @@ unique_name_in_owner = true
 [node name="Ones" type="AnimatedSprite2D" parent="Graphic" index="0"]
 unique_name_in_owner = true
 scale = Vector2(0.2, 0.2)
-sprite_frames = ExtResource("5_xxqvd")
+sprite_frames = ExtResource("3_13mgn")
 animation = &"empty"
 
 [node name="Tens" type="AnimatedSprite2D" parent="Graphic" index="1"]
 unique_name_in_owner = true
 position = Vector2(-31, 0)
 scale = Vector2(0.2, 0.2)
-sprite_frames = ExtResource("5_xxqvd")
+sprite_frames = ExtResource("3_13mgn")
 animation = &"empty"
 
 [node name="Hundreds" type="AnimatedSprite2D" parent="Graphic" index="2"]
 unique_name_in_owner = true
 position = Vector2(-62, 0)
 scale = Vector2(0.2, 0.2)
-sprite_frames = ExtResource("5_xxqvd")
+sprite_frames = ExtResource("3_13mgn")
 animation = &"empty"

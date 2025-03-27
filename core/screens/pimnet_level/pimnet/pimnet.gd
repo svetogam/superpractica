@@ -193,7 +193,7 @@ func overlay_position_to_effect_layer(p_position: Vector2) -> Vector2:
 
 
 func move_info_signal_to_overlay_position(
-	info_signal: ScreenEffect, overlay_position: Vector2
+	info_signal: InfoSignal, overlay_position: Vector2
 ) -> void:
 	var destination = overlay_position_to_effect_layer(overlay_position)
 	info_signal.animator.move_to_position(destination, true)

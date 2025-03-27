@@ -16,8 +16,8 @@ func _enter(_last_state: String) -> void:
 	_field_program.run()
 
 	program.output_program.output_decided.connect(_on_output_decided)
-	program.field.warning_effects.warned.connect(_set_output_warning.bind(true))
-	program.field.warning_effects.unwarned.connect(_set_output_warning.bind(false))
+	program.field.warning_signaler.warned.connect(_set_output_warning.bind(true))
+	program.field.warning_signaler.unwarned.connect(_set_output_warning.bind(false))
 
 
 func _on_output_decided(output_number: int) -> void:
@@ -32,5 +32,5 @@ func _set_output_warning(warned: bool) -> void:
 
 func _exit(_next_state: String) -> void:
 	program.output_program.output_decided.disconnect(_on_output_decided)
-	program.field.warning_effects.warned.disconnect(_set_output_warning)
-	program.field.warning_effects.unwarned.disconnect(_set_output_warning)
+	program.field.warning_signaler.warned.disconnect(_set_output_warning)
+	program.field.warning_signaler.unwarned.disconnect(_set_output_warning)

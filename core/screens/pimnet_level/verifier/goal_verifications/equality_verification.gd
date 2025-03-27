@@ -6,36 +6,36 @@ extends Verification
 
 const PRE_CHECK_DELAY := 0.1
 const POST_EQUALITY_CHECK_DELAY := 0.8
-var _number_effect: NumberEffect
+var _number_signal: InfoSignal
 var _current_row_number: int = -1
 var _current_index: int = -1
 
 
-func _init(p_number_effect: NumberEffect) -> void:
+func _init(p_number_signal: InfoSignal) -> void:
 	super()
-	_number_effect = p_number_effect
+	_number_signal = p_number_signal
 
 
 func _ready() -> void:
-	assert(_number_effect != null)
+	assert(_number_signal != null)
 
 	_current_row_number = _get_next_row_number()
 	_check_next_row()
 
 
 func _exit_tree() -> void:
-	goal_verifier.goal_effects.clear()
+	goal_verifier.info_signaler.clear()
 
 
 func _check_next_row() -> void:
 	goal_verifier.animate_equality_setup(
-			_number_effect, _current_row_number, _on_move_completed)
+			_number_signal, _current_row_number, _on_move_completed)
 
 
 func _on_move_completed() -> void:
 	await Game.wait_for(PRE_CHECK_DELAY)
 
-	var got_memo := IntegerMemo.new(_number_effect.number)
+	var got_memo := IntegerMemo.new(_number_signal.number)
 	var wanted_memo = verification_panel.left_slots[_current_row_number].memo
 	var equal = got_memo.value == wanted_memo.value
 	if equal:
@@ -43,9 +43,9 @@ func _on_move_completed() -> void:
 
 		var check_slot = verification_panel.check_slots[_current_row_number]
 		var overlay_position = check_slot.get_global_rect().get_center()
-		var effect_position = pimnet.overlay_position_to_effect_layer(overlay_position)
-		goal_verifier.goal_effects.affirm(
-			effect_position + ScreenEffectGroup.NEAR_OFFSET, POST_EQUALITY_CHECK_DELAY
+		var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
+		goal_verifier.info_signaler.affirm(
+			signal_position + InfoSignaler.NEAR_OFFSET, POST_EQUALITY_CHECK_DELAY
 		)
 	else:
 		var last_to_check := row_numbers.size() == 1
@@ -53,13 +53,13 @@ func _on_move_completed() -> void:
 
 		var check_slot = verification_panel.check_slots[_current_row_number]
 		var overlay_position = check_slot.get_global_rect().get_center()
-		var effect_position = pimnet.overlay_position_to_effect_layer(overlay_position)
-		goal_verifier.popup_inequality(effect_position)
+		var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
+		goal_verifier.popup_inequality(signal_position)
 
 	await Game.wait_for(POST_EQUALITY_CHECK_DELAY)
 
 	if equal:
-		_number_effect.free()
+		_number_signal.free()
 		verify()
 	else:
 		_current_row_number = _get_next_row_number()

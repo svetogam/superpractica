@@ -7,11 +7,11 @@ extends Node
 
 const POST_EQUALITY_CHECK_DELAY := 0.8
 const EqualityVerification := preload("equality_verification.gd")
-const EqualityEffect = preload("uid://r2lr30ufuth5")
-const InequalityEffect = preload("uid://d3fuvg0owj4ty")
+const EqualityScene = preload("uid://r2lr30ufuth5")
+const InequalityScene = preload("uid://d3fuvg0owj4ty")
 
 @export var verifier: Verifier
-var goal_effects := ScreenEffectGroup.new()
+var info_signaler := InfoSignaler.new()
 var pimnet: Pimnet:
 	get:
 		assert(verifier.pimnet != null)
@@ -23,25 +23,25 @@ var verification_panel: PanelContainer:
 
 
 func _enter_tree() -> void:
-	verifier.effect_layer.add_child(goal_effects)
+	verifier.effect_layer.add_child(info_signaler)
 
 
-func verify_equality(number_effect: NumberEffect, row_numbers: Array,
+func verify_equality(number_signal: InfoSignal, row_numbers: Array,
 		verified_callback: Callable, rejected_callback := Callable()
 ) -> Verification:
-	return (EqualityVerification.new(number_effect)
+	return (EqualityVerification.new(number_signal)
 			.run(self, row_numbers, verified_callback, rejected_callback))
 
 
-func animate_equality_setup(number_effect: NumberEffect, row_number: int,
+func animate_equality_setup(number_signal: InfoSignal, row_number: int,
 		callback := Callable()
 ) -> void:
 	var slot = verification_panel.right_slots[row_number]
 	var destination = slot.get_global_rect().get_center()
-	pimnet.move_info_signal_to_overlay_position(number_effect, destination)
+	pimnet.move_info_signal_to_overlay_position(number_signal, destination)
 
 	if not callback.is_null():
-		number_effect.animator.move_completed.connect(callback, CONNECT_ONE_SHOT)
+		number_signal.animator.move_completed.connect(callback, CONNECT_ONE_SHOT)
 
 
 func animate_equality_check(equal: bool, row_number: int, callback := Callable()
@@ -57,19 +57,19 @@ func animate_equality_check(equal: bool, row_number: int, callback := Callable()
 func popup_comparator(equal: bool, row_number: int) -> void:
 	var check_slot = verification_panel.check_slots[row_number]
 	var overlay_position = check_slot.get_global_rect().get_center()
-	var effect_position = pimnet.overlay_position_to_effect_layer(overlay_position)
+	var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
 
 	if equal:
-		popup_equality(effect_position)
+		popup_equality(signal_position)
 	else:
-		popup_inequality(effect_position)
+		popup_inequality(signal_position)
 
 
 func popup_equality(position: Vector2) -> void:
-	var effect := goal_effects.create_effect(EqualityEffect, position)
-	effect.animate("rise")
+	var info_signal := info_signaler.create_signal(EqualityScene, position)
+	info_signal.animate("rise")
 
 
 func popup_inequality(position: Vector2) -> void:
-	var effect := goal_effects.create_effect(InequalityEffect, position)
-	effect.animate("shake")
+	var info_signal := info_signaler.create_signal(InequalityScene, position)
+	info_signal.animate("shake")

@@ -72,8 +72,8 @@ func _setup_field(p_field: Field) -> void:
 func _update_field_signalers() -> void:
 	for dict in field_map.values():
 		dict.field.info_signaler.position = dict.container.global_position
-		dict.field.warning_effects.position = dict.container.global_position
-		dict.field.effect_counter.position = dict.container.global_position
+		dict.field.warning_signaler.position = dict.container.global_position
+		dict.field.count_signaler.position = dict.container.global_position
 
 
 func _on_field_focused(p_field: Field) -> void:

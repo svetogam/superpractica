@@ -467,21 +467,21 @@ func get_marked_numbers() -> Array:
 
 #endregion
 #====================================================================
-# Effects
+# Info Signals
 #====================================================================
 #region
 
-func give_number_effect_by_grid_cell(cell: GridCell) -> NumberEffect:
+func give_number_by_grid_cell(cell: GridCell) -> InfoSignal:
 	return info_signaler.give_number(cell.number, cell.position, "grow")
 
 
-func count_piece(piece: FieldObject) -> NumberEffect:
-	return effect_counter.count_next(piece.position)
+func count_piece(piece: FieldObject) -> InfoSignal:
+	return count_signaler.count_next(piece.position)
 
 
 func stage_piece_warning(piece: FieldObject) -> void:
 	piece.set_variant("warning")
-	warning_effects.stage_warning(piece.position)
+	warning_signaler.stage_warning(piece.position)
 
 
 func remove_piece_warning(piece: FieldObject) -> void:

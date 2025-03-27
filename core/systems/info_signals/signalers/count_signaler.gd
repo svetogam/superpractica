@@ -2,18 +2,18 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-class_name EffectCounter
-extends ScreenEffectGroup
+class_name CountSignaler
+extends InfoSignaler
 
 var _count: int = 0
 
 
-func count_next(pos: Vector2) -> NumberEffect:
+func count_next(pos: Vector2) -> InfoSignal:
 	_count += 1
 	return give_number(_count, pos)
 
 
-func give_current_count(pos: Vector2) -> NumberEffect:
+func give_current_count(pos: Vector2) -> InfoSignal:
 	return give_number(_count, pos)
 
 
@@ -34,7 +34,7 @@ func get_count() -> int:
 	return _count
 
 
-func get_highest_count_object() -> NumberEffect:
-	assert(not get_effects().is_empty())
+func get_highest_count_object() -> InfoSignal:
+	assert(not get_children().is_empty())
 
-	return get_effects().back()
+	return get_children().back()

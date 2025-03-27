@@ -19,10 +19,10 @@ func _ready() -> void:
 	GridCountingProcessCountPieces.new(pieces, 1).run(field, _on_count_complete)
 
 
-func _on_count_complete(count: NumberEffect) -> void:
+func _on_count_complete(count: InfoSignal) -> void:
 	goal_verifier.verify_equality(count, row_numbers, verify, reject)
 
 
 func _exit_tree() -> void:
 	if field != null:
-		field.effect_counter.reset_count()
+		field.count_signaler.reset_count()

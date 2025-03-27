@@ -2,8 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-class_name NumberEffect
-extends ScreenEffect
+extends InfoSignal
 
 var number: int:
 	set(value):

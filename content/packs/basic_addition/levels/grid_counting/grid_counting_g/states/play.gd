@@ -17,8 +17,8 @@ func _enter(_last_state: String) -> void:
 	_field_program = program.field.get_program("SoftCount")
 	_field_program.run()
 
-	program.field.warning_effects.warned.connect(_set_output_warning.bind(true))
-	program.field.warning_effects.unwarned.connect(_set_output_warning.bind(false))
+	program.field.warning_signaler.warned.connect(_set_output_warning.bind(true))
+	program.field.warning_signaler.unwarned.connect(_set_output_warning.bind(false))
 	goal_panel.slot_filled.connect(_on_goal_slot_filled)
 
 
@@ -33,6 +33,6 @@ func _on_goal_slot_filled() -> void:
 
 
 func _exit(_next_state: String) -> void:
-	program.field.warning_effects.warned.disconnect(_set_output_warning)
-	program.field.warning_effects.unwarned.disconnect(_set_output_warning)
+	program.field.warning_signaler.warned.disconnect(_set_output_warning)
+	program.field.warning_signaler.unwarned.disconnect(_set_output_warning)
 	goal_panel.slot_filled.disconnect(_on_goal_slot_filled)
