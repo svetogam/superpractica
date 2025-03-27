@@ -18,16 +18,17 @@ func _enter_tree() -> void:
 	assert(_target != null)
 
 
-func move_to_position(destination: Vector2, move_time := DEFAULT_MOVE_TIME) -> void:
+func move_to_position(
+	destination: Vector2, global := false, move_time := DEFAULT_MOVE_TIME
+) -> void:
+	var property := "position"
+	if global:
+		property = "global_position"
+
 	move_time = move_time * Game.get_animation_time_modifier()
 	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(_target, "position", destination, move_time)
+	tween.tween_property(_target, property, destination, move_time)
 	tween.tween_callback(move_completed.emit)
-
-
-func move_to_proportional_position(pos: Vector2, move_time := DEFAULT_MOVE_TIME) -> void:
-	var destination := _get_position_in_screen(pos)
-	move_to_position(destination, move_time)
 
 
 func grow_to_ratio(size_ratio: float, growth_time := DEFAULT_GROWTH_TIME) -> void:

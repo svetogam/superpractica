@@ -23,7 +23,7 @@ func _before_action(action: FieldAction) -> bool:
 				return true
 			else:
 				var cell = field.dynamic_model.get_grid_cell(action.cell_number)
-				effects.reject(cell.position)
+				field.info_signaler.reject(cell.position)
 				rejected.emit()
 				return false
 		_:
@@ -35,6 +35,6 @@ func _after_action(action: FieldAction) -> void:
 		GridCounting.Actions.TOGGLE_MARK:
 			var cell = field.dynamic_model.get_grid_cell(action.cell_number)
 			cell.set_ring_variant("affirmation")
-			effects.affirm(cell.position)
+			field.info_signaler.affirm(cell.position)
 			stop()
 			completed.emit()

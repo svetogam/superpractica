@@ -47,7 +47,6 @@ func _enter_tree() -> void:
 
 func _setup_field(field: Field) -> void:
 	field.effect_layer = effect_layer
-	field.effect_offset_source = field.get_viewport().get_parent()
 
 
 func _ready() -> void:
@@ -191,6 +190,13 @@ func _get_pim_strip_width() -> float:
 func overlay_position_to_effect_layer(p_position: Vector2) -> Vector2:
 	var overlay_offset = %CameraPoint.global_position - Game.get_screen_rect().size/2
 	return p_position + overlay_offset
+
+
+func move_info_signal_to_overlay_position(
+	info_signal: ScreenEffect, overlay_position: Vector2
+) -> void:
+	var destination = overlay_position_to_effect_layer(overlay_position)
+	info_signal.animator.move_to_position(destination, true)
 
 
 func get_pim(pim_name := "") -> Pim:

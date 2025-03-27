@@ -11,7 +11,7 @@ const EqualityEffect = preload("uid://r2lr30ufuth5")
 const InequalityEffect = preload("uid://d3fuvg0owj4ty")
 
 @export var verifier: Verifier
-var goal_effects: ScreenEffectGroup
+var goal_effects := ScreenEffectGroup.new()
 var pimnet: Pimnet:
 	get:
 		assert(verifier.pimnet != null)
@@ -23,7 +23,7 @@ var verification_panel: PanelContainer:
 
 
 func _enter_tree() -> void:
-	goal_effects = ScreenEffectGroup.new(verifier.effect_layer)
+	verifier.effect_layer.add_child(goal_effects)
 
 
 func verify_equality(number_effect: NumberEffect, row_numbers: Array,
@@ -37,9 +37,8 @@ func animate_equality_setup(number_effect: NumberEffect, row_number: int,
 		callback := Callable()
 ) -> void:
 	var slot = verification_panel.right_slots[row_number]
-	var overlay_destination = slot.get_global_rect().get_center()
-	var destination = pimnet.overlay_position_to_effect_layer(overlay_destination)
-	number_effect.animator.move_to_position(destination)
+	var destination = slot.get_global_rect().get_center()
+	pimnet.move_info_signal_to_overlay_position(number_effect, destination)
 
 	if not callback.is_null():
 		number_effect.animator.move_completed.connect(callback, CONNECT_ONE_SHOT)

@@ -62,8 +62,18 @@ func _setup_field(p_field: Field) -> void:
 		"container": container,
 		"viewport": viewport,
 	}
+
+	item_rect_changed.connect(_update_field_signalers)
+	container.item_rect_changed.connect(_update_field_signalers)
 	p_field.updated.connect(focus_entered.emit)
 	focus_entered.connect(_on_field_focused.bind(p_field))
+
+
+func _update_field_signalers() -> void:
+	for dict in field_map.values():
+		dict.field.info_signaler.position = dict.container.global_position
+		dict.field.warning_effects.position = dict.container.global_position
+		dict.field.effect_counter.position = dict.container.global_position
 
 
 func _on_field_focused(p_field: Field) -> void:

@@ -11,20 +11,12 @@ const AffirmEffect := preload("uid://51v0feqeyjdr")
 const RejectEffect := preload("uid://dmg7uc5b3wqhc")
 const WarningEffect := preload("uid://dk3ojkrwuffyq")
 const NumberEffectScene := preload("uid://cobbyy58sstrk")
-var offset_source: CanvasItem
-
-
-func _init(effect_layer: CanvasLayer, p_offset_source: CanvasItem = null) -> void:
-	effect_layer.add_child(self)
-	offset_source = p_offset_source
 
 
 func create_effect(effect_scene: PackedScene, pos: Vector2) -> ScreenEffect:
 	var effect := effect_scene.instantiate()
 	add_child(effect)
 	effect.position = pos
-	if offset_source != null:
-		effect.position += offset_source.global_position
 	return effect
 
 

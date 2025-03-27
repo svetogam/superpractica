@@ -13,9 +13,3 @@ var field: Field:
 	get:
 		assert(pim.field != null)
 		return pim.field
-var effects: ScreenEffectGroup:
-	get:
-		if effects == null:
-			effects = ScreenEffectGroup.new(field.effect_layer)
-			assert(effects != null)
-		return effects

@@ -472,11 +472,11 @@ func get_marked_numbers() -> Array:
 #region
 
 func give_number_effect_by_grid_cell(cell: GridCell) -> NumberEffect:
-	return info_signaler.give_number(cell.number, cell.global_position, "grow")
+	return info_signaler.give_number(cell.number, cell.position, "grow")
 
 
 func count_piece(piece: FieldObject) -> NumberEffect:
-	return effect_counter.count_next(piece.global_position)
+	return effect_counter.count_next(piece.position)
 
 
 func stage_piece_warning(piece: FieldObject) -> void:

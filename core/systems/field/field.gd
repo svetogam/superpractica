@@ -24,22 +24,9 @@ var effect_layer: CanvasLayer:
 		if effect_layer == null:
 			effect_layer = %EffectLayer
 		return effect_layer
-var effect_offset_source: CanvasItem = null
-var info_signaler: ScreenEffectGroup:
-	get:
-		if info_signaler == null:
-			info_signaler = ScreenEffectGroup.new(effect_layer, effect_offset_source)
-		return info_signaler
-var warning_effects: WarningEffectGroup:
-	get:
-		if warning_effects == null:
-			warning_effects = WarningEffectGroup.new(effect_layer, effect_offset_source)
-		return warning_effects
-var effect_counter: EffectCounter:
-	get:
-		if effect_counter == null:
-			effect_counter = EffectCounter.new(effect_layer, effect_offset_source)
-		return effect_counter
+var info_signaler := ScreenEffectGroup.new()
+var warning_effects := WarningEffectGroup.new()
+var effect_counter := EffectCounter.new()
 var field_type: String:
 	get = _get_field_type
 var interface_data: FieldInterfaceData:
@@ -73,6 +60,11 @@ func _ready() -> void:
 	tool_changed.connect(_on_tool_changed)
 	action_queue.flushed.connect(_trigger_update.bind(UpdateTypes.ACTIONS_COMPLETED))
 	CSLocator.with(self).register(Game.SERVICE_FIELD, self)
+
+	effect_layer.add_child(info_signaler)
+	effect_layer.add_child(warning_effects)
+	effect_layer.add_child(effect_counter)
+
 	_trigger_update(UpdateTypes.INITIAL)
 
 
