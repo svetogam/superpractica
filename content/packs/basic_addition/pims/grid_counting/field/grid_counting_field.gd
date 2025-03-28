@@ -471,8 +471,8 @@ func get_marked_numbers() -> Array:
 #====================================================================
 #region
 
-func give_number_by_grid_cell(cell: GridCell) -> InfoSignal:
-	return info_signaler.give_number(cell.number, cell.position, "grow")
+func popup_number_by_grid_cell(cell: GridCell) -> InfoSignal:
+	return info_signaler.popup_number(cell.number, cell.position, "in_grow")
 
 
 func count_piece(piece: FieldObject) -> InfoSignal:

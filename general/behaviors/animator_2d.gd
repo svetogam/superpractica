@@ -38,11 +38,6 @@ func grow_to_ratio(size_ratio: float, growth_time := DEFAULT_GROWTH_TIME) -> voi
 	tween.tween_callback(growth_completed.emit)
 
 
-func delete_after_delay(delay: float) -> void:
-	var timer := get_tree().create_timer(delay)
-	timer.timeout.connect(_target.queue_free)
-
-
 func _get_position_in_screen(position: Vector2) -> Vector2:
 	assert(position.x >= 0 and position.x <= 1)
 	assert(position.y >= 0 and position.y <= 1)

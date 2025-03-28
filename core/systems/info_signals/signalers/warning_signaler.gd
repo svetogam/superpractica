@@ -28,7 +28,7 @@ func flush_stage() -> void:
 	for warning_position in _current_warning_positions:
 		if not _staged_warning_positions.has(warning_position):
 			var warning = _positions_to_warnings[warning_position]
-			warning.free()
+			warning.erase()
 			_positions_to_warnings.erase(warning_position)
 
 	# Emit signal if status has changed

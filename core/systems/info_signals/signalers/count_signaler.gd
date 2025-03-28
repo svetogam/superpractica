@@ -10,18 +10,18 @@ var _count: int = 0
 
 func count_next(pos: Vector2) -> InfoSignal:
 	_count += 1
-	return give_number(_count, pos)
+	return popup_number(_count, pos)
 
 
-func give_current_count(pos: Vector2) -> InfoSignal:
-	return give_number(_count, pos)
+func popup_current_count(pos: Vector2) -> InfoSignal:
+	return popup_number(_count, pos)
 
 
 func remove_last_count() -> void:
 	assert(_count != 0)
 
 	var last_count := get_highest_count_object()
-	last_count.free()
+	last_count.erase()
 	_count -= 1
 
 

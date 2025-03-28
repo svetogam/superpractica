@@ -1,23 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://r2lr30ufuth5"]
+[gd_scene load_steps=3 format=3 uid="uid://r2lr30ufuth5"]
 
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/info_signal.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bfx7ryxfxg4gq" path="res://core/systems/info_signals/graphics/equals_affirm.svg" id="3_rek3h"]
-[ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/systems/info_signals/animations/popup_bounce_anim.tres" id="5_gv1tk"]
-[ext_resource type="Animation" uid="uid://ceuv52itq7bet" path="res://core/systems/info_signals/animations/popup_descend_anim.tres" id="6_8u1ja"]
-[ext_resource type="Animation" uid="uid://c5ghu0ff2xo4r" path="res://core/systems/info_signals/animations/popup_fade_in_anim.tres" id="7_b17qw"]
-[ext_resource type="Animation" uid="uid://clf4y3uumddjt" path="res://core/systems/info_signals/animations/popup_grow_anim.tres" id="8_13qsx"]
-[ext_resource type="Animation" uid="uid://depuallq4wr1e" path="res://core/systems/info_signals/animations/popup_rise_anim.tres" id="9_qpbyn"]
-[ext_resource type="Animation" uid="uid://dndrepda7juld" path="res://core/systems/info_signals/animations/popup_shake_anim.tres" id="10_78o1w"]
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8sld"]
-_data = {
-&"popup_bounce_anim": ExtResource("5_gv1tk"),
-&"popup_descend_anim": ExtResource("6_8u1ja"),
-&"popup_fade_in_anim": ExtResource("7_b17qw"),
-&"popup_grow_anim": ExtResource("8_13qsx"),
-&"popup_rise_anim": ExtResource("9_qpbyn"),
-&"popup_shake_anim": ExtResource("10_78o1w")
-}
 
 [node name="Equality" instance=ExtResource("2")]
 
@@ -25,7 +9,5 @@ _data = {
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_rek3h")
 
-[node name="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_a8sld")
-}
+[node name="BaseAnimationPlayer" parent="." index="1"]
+autoplay = "in_rise"

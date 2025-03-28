@@ -9,5 +9,5 @@
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_ro0jw")
 
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "popup_fade_in_anim"
+[node name="BaseAnimationPlayer" parent="." index="1"]
+autoplay = "in_shake"

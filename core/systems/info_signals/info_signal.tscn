@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cw0u7dp55fr54"]
+[gd_scene load_steps=10 format=3 uid="uid://cw0u7dp55fr54"]
 
 [ext_resource type="Script" uid="uid://wbc05kjo6s8n" path="res://core/systems/info_signals/info_signal.gd" id="1_ksaee"]
-[ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/systems/info_signals/animations/popup_bounce_anim.tres" id="2_hwg2i"]
-[ext_resource type="Animation" uid="uid://ceuv52itq7bet" path="res://core/systems/info_signals/animations/popup_descend_anim.tres" id="3_b407l"]
-[ext_resource type="Animation" uid="uid://c5ghu0ff2xo4r" path="res://core/systems/info_signals/animations/popup_fade_in_anim.tres" id="4_2fw8y"]
-[ext_resource type="Animation" uid="uid://clf4y3uumddjt" path="res://core/systems/info_signals/animations/popup_grow_anim.tres" id="5_uk2tv"]
-[ext_resource type="Animation" uid="uid://depuallq4wr1e" path="res://core/systems/info_signals/animations/popup_rise_anim.tres" id="6_eevai"]
-[ext_resource type="Animation" uid="uid://dndrepda7juld" path="res://core/systems/info_signals/animations/popup_shake_anim.tres" id="7_iwb8f"]
+[ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/systems/info_signals/animations/in_bounce.tres" id="2_hwg2i"]
+[ext_resource type="Animation" uid="uid://clf4y3uumddjt" path="res://core/systems/info_signals/animations/in_grow.tres" id="5_uk2tv"]
+[ext_resource type="Animation" uid="uid://depuallq4wr1e" path="res://core/systems/info_signals/animations/in_rise.tres" id="6_eevai"]
+[ext_resource type="Animation" uid="uid://dndrepda7juld" path="res://core/systems/info_signals/animations/in_shake.tres" id="7_iwb8f"]
 [ext_resource type="Script" uid="uid://b4qnhn0q5xwsf" path="res://general/behaviors/animator_2d.gd" id="8_edovb"]
+[ext_resource type="Animation" uid="uid://iqvb0j0uugn" path="res://core/systems/info_signals/animations/out_fade.tres" id="8_hwg2i"]
 
 [sub_resource type="Animation" id="Animation_pqmah"]
 length = 0.001
@@ -47,16 +46,27 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphic:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6t3in"]
 _data = {
 &"RESET": SubResource("Animation_pqmah"),
-&"popup_bounce_anim": ExtResource("2_hwg2i"),
-&"popup_descend_anim": ExtResource("3_b407l"),
-&"popup_fade_in_anim": ExtResource("4_2fw8y"),
-&"popup_grow_anim": ExtResource("5_uk2tv"),
-&"popup_rise_anim": ExtResource("6_eevai"),
-&"popup_shake_anim": ExtResource("7_iwb8f")
+&"in_bounce": ExtResource("2_hwg2i"),
+&"in_grow": ExtResource("5_uk2tv"),
+&"in_rise": ExtResource("6_eevai"),
+&"in_shake": ExtResource("7_iwb8f"),
+&"out_fade": ExtResource("8_hwg2i")
 }
 
 [node name="InfoSignal" type="Node2D"]
@@ -64,8 +74,10 @@ z_index = 100
 script = ExtResource("1_ksaee")
 
 [node name="Graphic" type="Node2D" parent="."]
+visible = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="BaseAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_6t3in")
 }

@@ -7,8 +7,6 @@ extends Node
 
 const POST_EQUALITY_CHECK_DELAY := 0.8
 const EqualityVerification := preload("equality_verification.gd")
-const EqualityScene = preload("uid://r2lr30ufuth5")
-const InequalityScene = preload("uid://d3fuvg0owj4ty")
 
 @export var verifier: Verifier
 var info_signaler := InfoSignaler.new()
@@ -54,22 +52,11 @@ func animate_equality_check(equal: bool, row_number: int, callback := Callable()
 		callback.call()
 
 
-func popup_comparator(equal: bool, row_number: int) -> void:
+func popup_comparator(equal: bool, row_number: int) -> InfoSignal:
 	var check_slot = verification_panel.check_slots[row_number]
 	var overlay_position = check_slot.get_global_rect().get_center()
 	var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
-
 	if equal:
-		popup_equality(signal_position)
+		return info_signaler.popup_equality(signal_position)
 	else:
-		popup_inequality(signal_position)
-
-
-func popup_equality(position: Vector2) -> void:
-	var info_signal := info_signaler.create_signal(EqualityScene, position)
-	info_signal.animate("rise")
-
-
-func popup_inequality(position: Vector2) -> void:
-	var info_signal := info_signaler.create_signal(InequalityScene, position)
-	info_signal.animate("shake")
+		return info_signaler.popup_inequality(signal_position)
