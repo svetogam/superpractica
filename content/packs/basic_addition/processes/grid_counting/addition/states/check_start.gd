@@ -23,8 +23,8 @@ func _enter(_last_state: String) -> void:
 
 	await Game.wait_for(0.5)
 
-	goal_verifier.verify_equality(
-			board_number, verification.row_numbers, _on_verify, reject)
+	(EqualityVerification.new(board_number)
+			.run(self, verification.row_numbers, _on_verify, reject))
 
 
 func _on_verify() -> void:

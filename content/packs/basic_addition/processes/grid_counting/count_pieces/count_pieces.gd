@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _on_count_complete(count: InfoSignal) -> void:
-	goal_verifier.verify_equality(count, row_numbers, verify, reject)
+	EqualityVerification.new(count).run(self, row_numbers, verify, reject)
 
 
 func _exit_tree() -> void:

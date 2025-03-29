@@ -13,18 +13,15 @@ var verifier: Verifier:
 	get:
 		assert(_target.verifier != null)
 		return _target.verifier
-var goal_verifier: GoalVerifier:
-	get:
-		assert(verifier.goal_verifier != null)
-		return verifier.goal_verifier
-var verification_panel: PanelContainer:
-	get:
-		assert(goal_verifier.verification_panel != null)
-		return goal_verifier.verification_panel
 var pimnet: Pimnet:
 	get:
 		assert(_target.pimnet != null)
 		return _target.pimnet
+var verification_panel: PanelContainer:
+	get:
+		assert(pimnet.overlay != null)
+		assert(pimnet.overlay.verification_panel != null)
+		return pimnet.overlay.verification_panel
 
 
 func verify() -> void:

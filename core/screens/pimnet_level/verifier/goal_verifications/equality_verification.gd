@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+class_name EqualityVerification
 extends Verification
 
 const PRE_CHECK_DELAY := 0.1
@@ -31,8 +32,10 @@ func _exit_tree() -> void:
 
 
 func _check_next_row() -> void:
-	goal_verifier.animate_equality_setup(
-			_number_signal, _current_row_number, _on_move_completed)
+	var slot = verification_panel.right_slots[_current_row_number]
+	var destination = slot.get_global_rect().get_center()
+	(ProcessMoveSignalToOverlay.new(_number_signal, destination)
+			.run(pimnet, _on_move_completed))
 
 
 func _on_move_completed() -> void:
@@ -47,7 +50,7 @@ func _on_move_completed() -> void:
 		var check_slot = verification_panel.check_slots[_current_row_number]
 		var overlay_position = check_slot.get_global_rect().get_center()
 		var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
-		goal_verifier.info_signaler.affirm(signal_position + InfoSignaler.NEAR_OFFSET)
+		pimnet.info_signaler.affirm(signal_position + InfoSignaler.NEAR_OFFSET)
 	else:
 		var last_to_check := row_numbers.size() == 1
 		verification_panel.reject_in_row(got_memo, _current_row_number, last_to_check)
@@ -55,8 +58,7 @@ func _on_move_completed() -> void:
 		var check_slot = verification_panel.check_slots[_current_row_number]
 		var overlay_position = check_slot.get_global_rect().get_center()
 		var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
-		var inequality_signal = goal_verifier.info_signaler.popup_inequality(
-				signal_position)
+		var inequality_signal = pimnet.info_signaler.popup_inequality(signal_position)
 		_inequality_signals.append(inequality_signal)
 
 	await Game.wait_for(POST_EQUALITY_CHECK_DELAY)

@@ -22,7 +22,8 @@ func _ready() -> void:
 
 
 func _on_sum_complete(sum: InfoSignal) -> void:
-	goal_verifier.verify_equality(sum, row_numbers, verify, reject)
+	EqualityVerification.new(sum).run(self, row_numbers, verify, reject)
+
 
 
 func _exit_tree() -> void:

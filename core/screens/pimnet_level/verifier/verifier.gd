@@ -11,7 +11,6 @@ signal verifications_completed
 @export var effect_layer: CanvasLayer
 @export var pimnet: Pimnet
 var _verifications_running: int = 0
-@onready var goal_verifier := %GoalVerifier as GoalVerifier
 
 
 func _enter_tree() -> void:

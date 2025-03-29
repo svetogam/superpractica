@@ -20,18 +20,15 @@ var verifier: Verifier:
 			verifier = CSLocator.with(self).find(Game.SERVICE_VERIFIER)
 			assert(verifier != null)
 		return verifier
-var goal_verifier: GoalVerifier:
-	get:
-		assert(verifier.goal_verifier != null)
-		return verifier.goal_verifier
-var verification_panel: PanelContainer:
-	get:
-		assert(goal_verifier.verification_panel != null)
-		return goal_verifier.verification_panel
 var pimnet: Pimnet:
 	get:
 		assert(verifier.pimnet != null)
 		return verifier.pimnet
+var verification_panel: PanelContainer:
+	get:
+		assert(pimnet.overlay != null)
+		assert(pimnet.overlay.verification_panel != null)
+		return pimnet.overlay.verification_panel
 
 
 func _init() -> void:

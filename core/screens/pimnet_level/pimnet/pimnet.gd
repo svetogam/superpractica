@@ -31,6 +31,7 @@ var _last_destination: Field
 @onready var overlay := %Overlay as PimnetOverlay
 @onready var effect_layer := %RootEffectLayer as CanvasLayer
 @onready var dragged_object_layer := %DraggedObjectLayer as CanvasLayer
+@onready var info_signaler := %InfoSignaler as InfoSignaler
 
 
 func _enter_tree() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=42 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -11,12 +11,12 @@
 [ext_resource type="Script" uid="uid://djbekahesmdhu" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="Script" uid="uid://dw2plvxxj4uqg" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Texture2D" uid="uid://cxb2b8icrkk67" path="res://core/screens/pimnet_level/graphics/cubes_background.png" id="8_apsv0"]
+[ext_resource type="Script" uid="uid://bjqliagq15odq" path="res://core/systems/info_signals/info_signaler.gd" id="8_l0rup"]
 [ext_resource type="Script" uid="uid://d2h55l15kp1ie" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
 [ext_resource type="Script" uid="uid://bah5ey0ca2um6" path="res://core/screens/pimnet_level/pimnet/states/plan.gd" id="10_7acvs"]
 [ext_resource type="Script" uid="uid://c7d1wrkyblrs0" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
 [ext_resource type="Script" uid="uid://ch8ktd6bb8vdi" path="res://core/screens/pimnet_level/pimnet/states/edit_panels.gd" id="11_vrqbd"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot/memo_slot.tscn" id="11_worie"]
-[ext_resource type="PackedScene" uid="uid://bgqn5mt15f232" path="res://core/screens/pimnet_level/verifier/verifier.tscn" id="12_4kqqx"]
 [ext_resource type="Script" uid="uid://bp32f0e8p0gul" path="res://core/screens/pimnet_level/pimnet/states/completion.gd" id="13_pjab3"]
 [ext_resource type="Script" uid="uid://b444bcgssjaoq" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
 [ext_resource type="Script" uid="uid://b6dmkt4tbg426" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_verification_panel.gd" id="14_l20jg"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://ujoqabcqkp3k" path="res://core/screens/pimnet_level/icons/pim-tools-icon.svg" id="33_6aw2x"]
 [ext_resource type="Texture2D" uid="uid://dicw37v6oee72" path="res://core/screens/pimnet_level/icons/pim-objects-icon.svg" id="34_jl1dt"]
 [ext_resource type="Texture2D" uid="uid://d3d1t78646dmt" path="res://core/screens/pimnet_level/icons/next-level-icon.svg" id="35_cvj1c"]
+[ext_resource type="Script" uid="uid://pwsp85t0mo17" path="res://core/screens/pimnet_level/verifier/verifier.gd" id="37_l0rup"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2q4"]
 content_margin_left = 20.0
@@ -100,6 +101,11 @@ alignment = 1
 unique_name_in_owner = true
 layer = 3
 follow_viewport_enabled = true
+
+[node name="InfoSignaler" type="Node2D" parent="Pimnet/RootEffectLayer"]
+unique_name_in_owner = true
+script = ExtResource("8_l0rup")
+metadata/_custom_type_script = "uid://bjqliagq15odq"
 
 [node name="DraggedObjectLayer" type="CanvasLayer" parent="Pimnet"]
 unique_name_in_owner = true
@@ -967,7 +973,8 @@ icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
 
-[node name="Verifier" parent="." node_paths=PackedStringArray("effect_layer", "pimnet") instance=ExtResource("12_4kqqx")]
+[node name="Verifier" type="Node" parent="." node_paths=PackedStringArray("effect_layer", "pimnet")]
+script = ExtResource("37_l0rup")
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
 

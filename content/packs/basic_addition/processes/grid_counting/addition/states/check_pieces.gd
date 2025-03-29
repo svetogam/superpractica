@@ -19,7 +19,7 @@ func _enter(_last_state: String) -> void:
 
 
 func _on_count_complete(count: InfoSignal) -> void:
-	goal_verifier.verify_equality(count, verification.row_numbers, verify, reject)
+	EqualityVerification.new(count).run(self, verification.row_numbers, verify, reject)
 
 
 func _exit(_next_state: String) -> void:
