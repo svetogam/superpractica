@@ -5,36 +5,14 @@
 class_name CountSignaler
 extends InfoSignaler
 
-var _count: int = 0
+var count: int = 0
 
 
 func count_next(pos: Vector2) -> InfoSignal:
-	_count += 1
-	return popup_number(_count, pos)
-
-
-func popup_current_count(pos: Vector2) -> InfoSignal:
-	return popup_number(_count, pos)
-
-
-func remove_last_count() -> void:
-	assert(_count != 0)
-
-	var last_count := get_highest_count_object()
-	last_count.erase()
-	_count -= 1
+	count += 1
+	return popup_number(count, pos)
 
 
 func reset_count() -> void:
-	_count = 0
+	count = 0
 	clear()
-
-
-func get_count() -> int:
-	return _count
-
-
-func get_highest_count_object() -> InfoSignal:
-	assert(not get_children().is_empty())
-
-	return get_children().back()

@@ -49,7 +49,3 @@ func clear() -> void:
 	_staged_warning_positions.clear()
 	_current_warning_positions.clear()
 	_positions_to_warnings.clear()
-
-
-func is_stage_empty() -> bool:
-	return _staged_warning_positions.is_empty()
