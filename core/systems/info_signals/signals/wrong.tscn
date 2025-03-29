@@ -2,37 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/info_signal.tscn" id="1_yeelb"]
 [ext_resource type="Texture2D" uid="uid://bcvdn7e6hbmsi" path="res://core/systems/info_signals/graphics/cross_reject.svg" id="2_kv4nf"]
-
-[sub_resource type="Animation" id="Animation_yeelb"]
-resource_name = "new_animation"
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BaseAnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("in_shake", "out_fade"),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"free"
-}]
-}
+[ext_resource type="Animation" uid="uid://ysei6piamdm0" path="res://core/systems/info_signals/animations/signal_wrong.tres" id="3_kv4nf"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kv4nf"]
 _data = {
-&"new_animation": SubResource("Animation_yeelb")
+&"signal_wrong": ExtResource("3_kv4nf")
 }
 
 [node name="Wrong" instance=ExtResource("1_yeelb")]
@@ -45,4 +19,4 @@ texture = ExtResource("2_kv4nf")
 libraries = {
 &"": SubResource("AnimationLibrary_kv4nf")
 }
-autoplay = "new_animation"
+autoplay = "signal_wrong"

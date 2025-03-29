@@ -2,37 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cw0u7dp55fr54" path="res://core/systems/info_signals/info_signal.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cqwdr66lre5r2" path="res://core/systems/info_signals/graphics/tick_affirm.svg" id="2_pn8g5"]
-
-[sub_resource type="Animation" id="Animation_dkvru"]
-resource_name = "new_animation"
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BaseAnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("in_bounce", "out_fade"),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"free"
-}]
-}
+[ext_resource type="Animation" uid="uid://c324w3d0svr1t" path="res://core/systems/info_signals/animations/signal_correct.tres" id="3_cxkk1"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cxkk1"]
 _data = {
-&"new_animation": SubResource("Animation_dkvru")
+&"signal_correct": ExtResource("3_cxkk1")
 }
 
 [node name="Correct" instance=ExtResource("1")]
@@ -45,4 +19,4 @@ texture = ExtResource("2_pn8g5")
 libraries = {
 &"": SubResource("AnimationLibrary_cxkk1")
 }
-autoplay = "new_animation"
+autoplay = "signal_correct"
