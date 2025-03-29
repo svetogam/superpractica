@@ -192,13 +192,6 @@ func overlay_position_to_effect_layer(p_position: Vector2) -> Vector2:
 	return p_position + overlay_offset
 
 
-func move_info_signal_to_overlay_position(
-	info_signal: InfoSignal, overlay_position: Vector2
-) -> void:
-	var destination = overlay_position_to_effect_layer(overlay_position)
-	info_signal.animator.move_to_position(destination, true)
-
-
 func get_pim(pim_name := "") -> Pim:
 	if pim_name == "":
 		assert(pims.size() == 1)

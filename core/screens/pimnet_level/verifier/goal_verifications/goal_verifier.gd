@@ -36,10 +36,7 @@ func animate_equality_setup(number_signal: InfoSignal, row_number: int,
 ) -> void:
 	var slot = verification_panel.right_slots[row_number]
 	var destination = slot.get_global_rect().get_center()
-	pimnet.move_info_signal_to_overlay_position(number_signal, destination)
-
-	if not callback.is_null():
-		number_signal.animator.move_completed.connect(callback, CONNECT_ONE_SHOT)
+	ProcessMoveSignalToOverlay.new(number_signal, destination).run(pimnet, callback)
 
 
 func animate_equality_check(equal: bool, row_number: int, callback := Callable()

@@ -5,7 +5,6 @@
 class_name InfoSignal
 extends Node2D
 
-@onready var animator := $Animator as Animator2D
 @onready var anim_player := %BaseAnimationPlayer as AnimationPlayer
 
 

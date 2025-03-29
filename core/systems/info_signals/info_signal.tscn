@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw0u7dp55fr54"]
+[gd_scene load_steps=9 format=3 uid="uid://cw0u7dp55fr54"]
 
 [ext_resource type="Script" uid="uid://wbc05kjo6s8n" path="res://core/systems/info_signals/info_signal.gd" id="1_ksaee"]
 [ext_resource type="Animation" uid="uid://2gnu3kysvqix" path="res://core/systems/info_signals/animations/in_bounce.tres" id="2_hwg2i"]
 [ext_resource type="Animation" uid="uid://clf4y3uumddjt" path="res://core/systems/info_signals/animations/in_grow.tres" id="5_uk2tv"]
 [ext_resource type="Animation" uid="uid://depuallq4wr1e" path="res://core/systems/info_signals/animations/in_rise.tres" id="6_eevai"]
 [ext_resource type="Animation" uid="uid://dndrepda7juld" path="res://core/systems/info_signals/animations/in_shake.tres" id="7_iwb8f"]
-[ext_resource type="Script" uid="uid://b4qnhn0q5xwsf" path="res://general/behaviors/animator_2d.gd" id="8_edovb"]
 [ext_resource type="Animation" uid="uid://iqvb0j0uugn" path="res://core/systems/info_signals/animations/out_fade.tres" id="8_hwg2i"]
 
 [sub_resource type="Animation" id="Animation_pqmah"]
@@ -81,6 +80,3 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_6t3in")
 }
-
-[node name="Animator" type="Node" parent="."]
-script = ExtResource("8_edovb")
