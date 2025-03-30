@@ -15,3 +15,14 @@ func erase(animation := "out_fade") -> void:
 
 func _on_exit_animation_finished(_animation: StringName) -> void:
 	queue_free()
+
+
+# Virtual
+func get_base_size() -> Vector2:
+	assert(false)
+	return Vector2(0, 0)
+
+
+func get_size() -> Vector2:
+	var base_size = get_base_size()
+	return Vector2(base_size.x * scale.x, base_size.y * scale.y)

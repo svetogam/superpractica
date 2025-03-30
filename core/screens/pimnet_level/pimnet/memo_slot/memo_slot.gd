@@ -58,9 +58,8 @@ var hinting := false:
 
 
 func _draw() -> void:
-	var rect := Rect2(Vector2.ZERO, size)
-
 	# Determine frame
+	var frame_rect := Rect2(Vector2.ZERO, size)
 	var frame_box: StyleBox
 	if memo_input_enabled and memo_output_enabled:
 		frame_box = get_theme_stylebox("frame_in_out")
@@ -72,12 +71,7 @@ func _draw() -> void:
 		frame_box = get_theme_stylebox("frame_static")
 
 	# Determine background
-	var bg_rect := Rect2(
-		frame_box.texture_margin_left,
-		frame_box.texture_margin_top,
-		rect.size.x - frame_box.texture_margin_left - frame_box.texture_margin_right,
-		rect.size.y - frame_box.texture_margin_top - frame_box.texture_margin_bottom
-	)
+	var bg_rect := get_content_rect()
 	var back_color: Color
 	if self_dragging:
 		back_color = get_theme_color("dragging")
@@ -98,7 +92,7 @@ func _draw() -> void:
 
 	# Draw
 	draw_rect(bg_rect, back_color)
-	draw_style_box(frame_box, rect)
+	draw_style_box(frame_box, frame_rect)
 
 
 func _enter_tree() -> void:
@@ -208,6 +202,17 @@ func set_empty() -> void:
 
 func is_empty() -> bool:
 	return memo == null
+
+
+func get_content_rect(padding := 0.0) -> Rect2:
+	var frame_box := get_theme_stylebox("frame_in_out")
+	var internal_rect := Rect2(
+		frame_box.texture_margin_left,
+		frame_box.texture_margin_top,
+		size.x - frame_box.texture_margin_left - frame_box.texture_margin_right,
+		size.y - frame_box.texture_margin_top - frame_box.texture_margin_bottom
+	)
+	return internal_rect.grow(-padding)
 
 
 func _accept_memo(new_memo: Memo, bypass_hooks := false) -> void:

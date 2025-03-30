@@ -4,11 +4,17 @@
 
 extends InfoSignal
 
+const DIGIT_SIZE := Vector2(32.0, 46.0) # Calculate using Ruler Mode
 var number: int:
 	set(value):
 		number = value
 		_update_sprites()
 @onready var _digit_sprites: Array = [%Ones, %Tens, %Hundreds]
+
+
+func get_base_size() -> Vector2:
+	var number_digits := IntegerMath.get_number_of_digits(number)
+	return Vector2(DIGIT_SIZE.x * number_digits, DIGIT_SIZE.y)
 
 
 func _update_sprites() -> void:
