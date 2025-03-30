@@ -328,7 +328,7 @@ layout_mode = 2
 
 [node name="LeftSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow1" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -343,7 +343,7 @@ size_flags_vertical = 4
 
 [node name="RightSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow1" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -357,7 +357,7 @@ layout_mode = 2
 
 [node name="LeftSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow2" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -372,7 +372,7 @@ size_flags_vertical = 4
 
 [node name="RightSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow2" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -386,7 +386,7 @@ layout_mode = 2
 
 [node name="LeftSlot3" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow3" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -401,7 +401,7 @@ size_flags_vertical = 4
 
 [node name="RightSlot3" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow3" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -415,7 +415,7 @@ layout_mode = 2
 
 [node name="LeftSlot4" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow4" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -430,7 +430,7 @@ size_flags_vertical = 4
 
 [node name="RightSlot4" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer/CheckRow4" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(68, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -499,6 +499,7 @@ script = ExtResource("25_7axkj")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel"]
 layout_mode = 2
+theme_override_constants/separation = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer"]
 layout_mode = 2
@@ -510,10 +511,11 @@ alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="ConditionIcon1" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer/VBoxContainer/ConditionRow1"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(42, 42)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -522,7 +524,7 @@ stretch_mode = 5
 
 [node name="ConditionSlot1" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer/VBoxContainer/ConditionRow1" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(42, 42)
+custom_minimum_size = Vector2(60, 42)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -533,6 +535,7 @@ memo_output_enabled = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="ConditionIcon2" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer/VBoxContainer/ConditionRow2"]
 unique_name_in_owner = true
@@ -545,7 +548,7 @@ stretch_mode = 5
 
 [node name="ConditionSlot2" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer/VBoxContainer/ConditionRow2" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(42, 42)
+custom_minimum_size = Vector2(60, 42)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -556,6 +559,7 @@ memo_output_enabled = false
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="ConditionIcon3" type="TextureRect" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer/VBoxContainer/ConditionRow3"]
 unique_name_in_owner = true
@@ -568,7 +572,7 @@ stretch_mode = 5
 
 [node name="ConditionSlot3" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer/VBoxContainer/ConditionRow3" instance=ExtResource("11_worie")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(42, 42)
+custom_minimum_size = Vector2(60, 42)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
