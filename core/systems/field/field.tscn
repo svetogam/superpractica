@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://idqfe3v3d4rw"]
+[gd_scene load_steps=6 format=3 uid="uid://idqfe3v3d4rw"]
 
 [ext_resource type="Script" uid="uid://do0q70pywy3l8" path="res://core/systems/field/field.gd" id="1_nko7a"]
 [ext_resource type="Script" uid="uid://bho5rqikwwijh" path="res://general/mode_nodes/mode_group.gd" id="1_v27fr"]
+[ext_resource type="Script" uid="uid://bjqliagq15odq" path="res://core/systems/info_signals/info_signaler.gd" id="2_5gy7y"]
+[ext_resource type="Script" uid="uid://pmop2q48181m" path="res://core/systems/info_signals/signalers/warning_signaler.gd" id="3_5stbd"]
+[ext_resource type="Script" uid="uid://dvw247gr2ypug" path="res://core/systems/info_signals/signalers/count_signaler.gd" id="4_epmbw"]
 
 [node name="Field" type="Node" groups=["fields"]]
 script = ExtResource("1_nko7a")
@@ -9,6 +12,21 @@ script = ExtResource("1_nko7a")
 [node name="EffectLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 follow_viewport_enabled = true
+
+[node name="InfoSignaler" type="Node2D" parent="EffectLayer"]
+unique_name_in_owner = true
+script = ExtResource("2_5gy7y")
+metadata/_custom_type_script = "uid://bjqliagq15odq"
+
+[node name="WarningSignaler" type="Node2D" parent="EffectLayer"]
+unique_name_in_owner = true
+script = ExtResource("3_5stbd")
+metadata/_custom_type_script = "uid://pmop2q48181m"
+
+[node name="CountSignaler" type="Node2D" parent="EffectLayer"]
+unique_name_in_owner = true
+script = ExtResource("4_epmbw")
+metadata/_custom_type_script = "uid://dvw247gr2ypug"
 
 [node name="ToolModes" type="Node" parent="."]
 script = ExtResource("1_v27fr")

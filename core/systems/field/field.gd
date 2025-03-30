@@ -19,18 +19,14 @@ enum UpdateTypes {
 
 var action_queue := FieldActionQueue.new(self)
 var dragged_object: FieldObject
-var effect_layer: CanvasLayer:
-	get:
-		if effect_layer == null:
-			effect_layer = %EffectLayer
-		return effect_layer
-var info_signaler := InfoSignaler.new()
-var warning_signaler := WarningSignaler.new()
-var count_signaler := CountSignaler.new()
 var field_type: String:
 	get = _get_field_type
 var interface_data: FieldInterfaceData:
 	get = _get_interface_data
+@onready var effect_layer := %EffectLayer as CanvasLayer
+@onready var info_signaler := %InfoSignaler as InfoSignaler
+@onready var warning_signaler := %WarningSignaler as WarningSignaler
+@onready var count_signaler := %CountSignaler as CountSignaler
 @onready var programs := $Programs as ModeGroup
 @onready var _tool_modes := $ToolModes as ModeGroup
 
@@ -52,20 +48,25 @@ func _enter_tree() -> void:
 	CSLocator.with(self).connect_service_found(Game.SERVICE_REVERTER, _on_reverter_found)
 
 
+func _ready() -> void:
+	tool_changed.connect(_on_tool_changed)
+	action_queue.flushed.connect(_trigger_update.bind(UpdateTypes.ACTIONS_COMPLETED))
+	CSLocator.with(self).connect_service_found(Game.SERVICE_ROOT_EFFECT_LAYER,
+			_on_root_effect_layer_found)
+	CSLocator.with(self).register(Game.SERVICE_FIELD, self)
+
+	_trigger_update(UpdateTypes.INITIAL)
+
+
 func _on_reverter_found(reverter: CReverter) -> void:
 	reverter.connect_save_load(get_instance_id(), build_state, load_state)
 
 
-func _ready() -> void:
-	tool_changed.connect(_on_tool_changed)
-	action_queue.flushed.connect(_trigger_update.bind(UpdateTypes.ACTIONS_COMPLETED))
-	CSLocator.with(self).register(Game.SERVICE_FIELD, self)
-
-	effect_layer.add_child(info_signaler)
-	effect_layer.add_child(warning_signaler)
-	effect_layer.add_child(count_signaler)
-
-	_trigger_update(UpdateTypes.INITIAL)
+func _on_root_effect_layer_found(p_effect_layer: CanvasLayer) -> void:
+	effect_layer = p_effect_layer
+	info_signaler.reparent(effect_layer)
+	warning_signaler.reparent(effect_layer)
+	count_signaler.reparent(effect_layer)
 
 
 func _trigger_update(update_type: int) -> void:
