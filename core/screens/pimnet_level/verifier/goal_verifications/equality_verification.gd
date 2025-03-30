@@ -33,9 +33,7 @@ func _exit_tree() -> void:
 
 func _check_next_row() -> void:
 	var slot = verification_panel.right_slots[_current_row_number]
-	var destination = slot.get_global_rect().get_center()
-	(ProcessMoveSignalToOverlay.new(_number_signal, destination)
-			.run(pimnet, _on_move_completed))
+	ProcessMoveSignalToSlot.new(_number_signal, slot).run(pimnet, _on_move_completed)
 
 
 func _on_move_completed() -> void:
