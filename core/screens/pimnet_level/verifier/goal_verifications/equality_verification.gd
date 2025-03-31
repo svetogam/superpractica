@@ -67,6 +67,7 @@ func _on_move_completed() -> void:
 	else:
 		_current_row_number = _get_next_row_number()
 		if _current_row_number == -1:
+			_number_signal.erase()
 			reject()
 		else:
 			_check_next_row()

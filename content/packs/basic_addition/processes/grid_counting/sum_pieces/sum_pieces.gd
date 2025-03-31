@@ -17,15 +17,11 @@ func setup(p_pim: Pim) -> Verification:
 
 func _ready() -> void:
 	await Game.wait_for(START_DELAY)
+	field.count_signaler.reset_count()
+
 	var pieces = field.dynamic_model.get_pieces()
 	GridCountingProcessSumPieces.new(pieces, 1).run(field, _on_sum_complete)
 
 
 func _on_sum_complete(sum: InfoSignal) -> void:
 	EqualityVerification.new(sum).run(self, row_numbers, verify, reject)
-
-
-
-func _exit_tree() -> void:
-	if field != null:
-		field.info_signaler.clear()

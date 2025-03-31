@@ -9,7 +9,6 @@ const COUNT_DELAY := 0.5
 var pieces: Array
 var zero_cell_number: int
 var _pieces_counted: int = 0
-var _current_count: int = 0
 var _last_count_object: InfoSignal
 
 
@@ -25,9 +24,8 @@ func _ready() -> void:
 func _count_next() -> void:
 	if not pieces.is_empty():
 		var next_object = pieces[_pieces_counted]
-		_current_count += field.get_object_value(next_object.object_type)
-		_last_count_object = field.info_signaler.popup_number(
-				_current_count, next_object.position)
+		var value = field.get_object_value(next_object.object_type)
+		_last_count_object = field.count_signaler.count_object(next_object, value)
 		_pieces_counted += 1
 	else:
 		var zero_position = field.dynamic_model.get_grid_cell(zero_cell_number).position

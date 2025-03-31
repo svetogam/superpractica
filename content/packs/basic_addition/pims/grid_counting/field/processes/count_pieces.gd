@@ -24,7 +24,7 @@ func _ready() -> void:
 func _count_next() -> void:
 	if not pieces.is_empty():
 		var next_object = pieces[_current_count]
-		_last_count_object = field.count_piece(next_object)
+		_last_count_object = field.count_signaler.count_object(next_object)
 		_current_count += 1
 	else:
 		var zero_position = field.dynamic_model.get_grid_cell(zero_cell_number).position

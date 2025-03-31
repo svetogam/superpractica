@@ -475,10 +475,6 @@ func popup_number_by_grid_cell(cell: GridCell) -> InfoSignal:
 	return info_signaler.popup_number(cell.number, cell.position, "in_grow")
 
 
-func count_piece(piece: FieldObject) -> InfoSignal:
-	return count_signaler.count_next(piece.position)
-
-
 func stage_piece_warning(piece: FieldObject) -> void:
 	piece.set_variant("warning")
 	warning_signaler.stage_warning(piece.position)
