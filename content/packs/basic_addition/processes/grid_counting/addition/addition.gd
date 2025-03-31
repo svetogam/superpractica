@@ -12,3 +12,7 @@ func setup(p_pim: Pim) -> Verification:
 	pim = p_pim
 	field = pim.field
 	return self
+
+
+func _start() -> void:
+	$StateMachine.activate()

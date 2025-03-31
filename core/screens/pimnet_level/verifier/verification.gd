@@ -13,6 +13,7 @@ signal completed
 signal verified
 signal rejected
 
+var start_delay := 0.0
 var row_numbers: Array
 var verifier: Verifier:
 	get:
@@ -41,6 +42,17 @@ func _enter_tree() -> void:
 	CSConnector.with(self).register(Game.AGENT_VERIFICATION)
 
 	assert(row_numbers.size() > 0)
+
+
+func _ready() -> void:
+	await Game.wait_for(start_delay)
+
+	_start()
+
+
+# Virtual
+func _start() -> void:
+	pass
 
 
 func run(target: Node, p_row_numbers: Array,

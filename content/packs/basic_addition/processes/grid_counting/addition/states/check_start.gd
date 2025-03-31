@@ -4,12 +4,8 @@
 
 extends VerificationState
 
-const START_DELAY := 0.8
-
 
 func _enter(_last_state: String) -> void:
-	await Game.wait_for(START_DELAY)
-
 	# Make number-effect at marked cell
 	var board_number: InfoSignal
 	var marked_cell = verification.field.get_marked_cell()

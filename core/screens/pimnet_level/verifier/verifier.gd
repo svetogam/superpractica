@@ -8,6 +8,7 @@ extends Node
 signal verifications_started
 signal verifications_completed
 
+const START_DELAY := 0.4
 @export var effect_layer: CanvasLayer
 @export var pimnet: Pimnet
 var _verifications_running: int = 0
@@ -26,6 +27,7 @@ func _register_verification(verification: Verification) -> void:
 
 	_verifications_running += 1
 	if _verifications_running == 1:
+		verification.start_delay = START_DELAY
 		verifications_started.emit()
 
 

@@ -14,7 +14,7 @@ func setup(p_pim: Pim) -> Verification:
 	return self
 
 
-func _ready() -> void:
+func _start() -> void:
 	field.count_signaler.reset_count()
 
 	var pieces = field.dynamic_model.get_pieces()

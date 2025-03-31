@@ -18,7 +18,7 @@ func _init(p_number_signal: InfoSignal) -> void:
 	_number_signal = p_number_signal
 
 
-func _ready() -> void:
+func _start() -> void:
 	assert(_number_signal != null)
 
 	_current_row_number = _get_next_row_number()
