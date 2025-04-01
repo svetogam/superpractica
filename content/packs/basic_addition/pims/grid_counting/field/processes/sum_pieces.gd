@@ -9,7 +9,7 @@ const COUNT_DELAY := 0.5
 var pieces: Array
 var zero_cell_number: int
 var _pieces_counted: int = 0
-var _last_count_object: InfoSignal
+var _last_count_object: NumberSignal
 
 
 func _init(p_pieces: Array, p_zero_cell_number: int) -> void:

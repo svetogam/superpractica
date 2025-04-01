@@ -6,12 +6,12 @@ extends VerificationState
 
 
 func _enter(_last_state: String) -> void:
-	# Make number-effect at marked cell
-	var board_number: InfoSignal
+	# Make number signal at marked cell
+	var board_number: NumberSignal
 	var marked_cell = verification.field.get_marked_cell()
 	if marked_cell != null:
 		board_number = verification.field.popup_number_by_grid_cell(marked_cell)
-	# Or make a 0 number-effect at first cell if no cell is marked
+	# Or make a 0 number signal at first cell if no cell is marked
 	else:
 		var first_cell = verification.field.dynamic_model.get_grid_cell(1)
 		board_number = verification.field.info_signaler.popup_number(

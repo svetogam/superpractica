@@ -21,5 +21,5 @@ func _start() -> void:
 	GridCountingProcessCountPieces.new(pieces, 1).run(field, _on_count_complete)
 
 
-func _on_count_complete(count: InfoSignal) -> void:
+func _on_count_complete(count: NumberSignal) -> void:
 	EqualityVerification.new(count).run(self, row_numbers, verify, reject)

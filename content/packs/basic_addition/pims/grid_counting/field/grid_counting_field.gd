@@ -471,7 +471,7 @@ func get_marked_numbers() -> Array:
 #====================================================================
 #region
 
-func popup_number_by_grid_cell(cell: GridCell) -> InfoSignal:
+func popup_number_by_grid_cell(cell: GridCell) -> NumberSignal:
 	return info_signaler.popup_number(cell.number, cell.position, "in_grow")
 
 

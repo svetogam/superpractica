@@ -18,7 +18,7 @@ func _enter(_last_state: String) -> void:
 			.run(verification.field, _on_count_complete))
 
 
-func _on_count_complete(count: InfoSignal) -> void:
+func _on_count_complete(count: NumberSignal) -> void:
 	EqualityVerification.new(count).run(self, verification.row_numbers, verify, reject)
 
 

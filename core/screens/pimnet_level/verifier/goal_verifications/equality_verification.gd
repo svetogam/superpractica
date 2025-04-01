@@ -7,13 +7,13 @@ extends Verification
 
 const PRE_CHECK_DELAY := 0.1
 const POST_CHECK_DELAY := 0.8
-var _number_signal: InfoSignal
+var _number_signal: NumberSignal
 var _inequality_signals: Array #[InfoSignal]
 var _current_row_number: int = -1
 var _current_index: int = -1
 
 
-func _init(p_number_signal: InfoSignal) -> void:
+func _init(p_number_signal: NumberSignal) -> void:
 	super()
 	_number_signal = p_number_signal
 
