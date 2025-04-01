@@ -10,6 +10,7 @@ _data = {
 }
 
 [node name="Wrong" instance=ExtResource("1_yeelb")]
+z_index = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphic" index="0"]
 scale = Vector2(0.4, 0.4)
