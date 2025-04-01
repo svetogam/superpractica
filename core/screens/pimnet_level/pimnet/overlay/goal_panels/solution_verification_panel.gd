@@ -45,13 +45,11 @@ func affirm_in_row(memo: Memo, row_number: int) -> void:
 	verified_row_numbers.sort()
 
 
-# final means that this row will not be checked again
-func reject_in_row(memo: Memo, row_number: int, final := false) -> void:
-	if final:
-		right_slots[row_number].set_by_memo(memo)
-		check_slots[row_number].suggestion = Game.SuggestiveSignals.REJECT
-		rejected_row_numbers.append(row_number)
-		rejected_row_numbers.sort()
+func reject_in_row(memo: Memo, row_number: int) -> void:
+	right_slots[row_number].set_by_memo(memo)
+	check_slots[row_number].suggestion = Game.SuggestiveSignals.REJECT
+	rejected_row_numbers.append(row_number)
+	rejected_row_numbers.sort()
 
 
 func clear_slots() -> void:
