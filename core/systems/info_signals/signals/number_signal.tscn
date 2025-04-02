@@ -5,6 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://d3m7nqnv7ush8" path="res://core/systems/info_signals/signals/numeral_frames.tres" id="3_13mgn"]
 
 [node name="NumberSignal" instance=ExtResource("1_fasmd")]
+modulate = Color(0.5, 0.5, 1, 1)
 script = ExtResource("2_70dm8")
 
 [node name="Graphic" parent="." index="0"]

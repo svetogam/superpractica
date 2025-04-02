@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djqvot68bfymn"
-path="res://.godot/imported/number_5_blue.svg-80e31a66218efc53941999794182cdc5.ctex"
+uid="uid://b72hif1uvhtml"
+path="res://.godot/imported/number_3.svg-d06d21bdd7e45d298adc4fc736d8174a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://core/systems/info_signals/graphics/number_5_blue.svg"
-dest_files=["res://.godot/imported/number_5_blue.svg-80e31a66218efc53941999794182cdc5.ctex"]
+source_file="res://core/systems/info_signals/graphics/number_3.svg"
+dest_files=["res://.godot/imported/number_3.svg-d06d21bdd7e45d298adc4fc736d8174a.ctex"]
 
 [params]
 
