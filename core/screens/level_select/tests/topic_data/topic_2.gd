@@ -17,7 +17,6 @@ static var topic = TopicResource.new(
 			"dummy_level_2_1",
 			# Title
 			"Level 2.1",
-			# Thumbnail
 			# Pimnet Setup
 			# Program
 			# Program Vars
@@ -28,7 +27,6 @@ static var topic = TopicResource.new(
 			"dummy_level_2_2",
 			# Title
 			"Level 2.2",
-			# Thumbnail
 			# Pimnet Setup
 			# Program
 			# Program Vars
@@ -39,7 +37,6 @@ static var topic = TopicResource.new(
 			"dummy_level_2_3",
 			# Title
 			"Level 2.3",
-			# Thumbnail
 			# Pimnet Setup
 			# Program
 			# Program Vars

@@ -17,7 +17,6 @@ static var topic = TopicResource.new(
 			"dummy_level_4_1",
 			# Title
 			"Level 4.1",
-			# Thumbnail
 			# Pimnet Setup
 			# Program
 			# Program Vars
