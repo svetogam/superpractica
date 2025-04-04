@@ -107,6 +107,12 @@ func _on_pimnet_found(p_pimnet: Pimnet) -> void:
 	pimnet.memo_drag_ended.connect(_on_memo_drag_ended)
 
 
+func _exit_tree() -> void:
+	if pimnet != null:
+		pimnet.memo_drag_started.disconnect(_on_memo_drag_started)
+		pimnet.memo_drag_ended.disconnect(_on_memo_drag_ended)
+
+
 func _on_mouse_entered() -> void:
 	hovering = true
 

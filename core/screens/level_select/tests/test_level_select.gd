@@ -41,6 +41,7 @@ func test_enter_level_directly() -> void:
 	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/LevelFocus/Inside.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await assert_signal(scene).is_emitted("level_decided", [level_data])
 	await assert_signal(scene).is_emitted("level_entered", [level_data])
 
 
@@ -68,6 +69,7 @@ func test_enter_topic_then_topic_then_level() -> void:
 	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/LevelFocus/Inside.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await assert_signal(scene).is_emitted("level_decided", [level_data])
 	await assert_signal(scene).is_emitted("level_entered", [level_data])
 
 
@@ -101,6 +103,7 @@ func test_enter_topic_then_back_then_different_topic_then_level() -> void:
 	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/LevelFocus/Inside.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	await assert_signal(scene).is_emitted("level_decided", [level_data])
 	await assert_signal(scene).is_emitted("level_entered", [level_data])
 
 

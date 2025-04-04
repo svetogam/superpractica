@@ -17,6 +17,7 @@ const SERVICE_FIELD := "field"
 const SERVICE_ROOT_EFFECT_LAYER := "effect_layer"
 const SERVICE_VERIFIER := "verifier"
 const SERVICE_REVERTER := "reverter"
+const SERVICE_PIMNET_LEVEL_VIEWPORT := "pimnet_level_viewport"
 
 const AGENT_FIELD := "fields"
 const AGENT_MEMO_SLOT := "memo_slots"
@@ -98,6 +99,10 @@ func get_animation_time_modifier() -> float:
 		return debug.get_animation_time_modifier()
 	else:
 		return 1.0
+
+
+func continue_as_coroutine() -> void:
+	await get_tree().process_frame
 
 
 #====================================================================

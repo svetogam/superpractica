@@ -5,6 +5,7 @@
 extends Node
 
 signal exit_pressed
+signal level_decided(level_data)
 signal level_entered(level_data)
 signal zoomed_in
 signal zoomed_out
@@ -26,6 +27,10 @@ var _current_topic_map: TopicMap
 @onready var camera_point := %CameraPoint as Node2D
 
 
+func _enter_tree() -> void:
+	CSConnector.with(self).connect_setup("level_nodes", _setup_level_node)
+
+
 func _ready() -> void:
 	assert(Game.root_topic != null)
 
@@ -36,6 +41,11 @@ func _ready() -> void:
 		enter_containing_map(Game.current_level.id)
 
 	$StateMachine.activate()
+
+
+func _setup_level_node(level_node: LevelNode) -> void:
+	if not level_node.level_hinted.is_connected(level_decided.emit):
+		level_node.level_hinted.connect(level_decided.emit)
 
 
 func _on_menu_button_pressed() -> void:
