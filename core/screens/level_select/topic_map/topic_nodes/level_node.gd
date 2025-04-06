@@ -60,3 +60,7 @@ func setup(value: LevelResource) -> void:
 	else:
 		%MaskCheckBox.button_pressed = false
 		%OverviewCheckBox.button_pressed = false
+
+
+func get_thumbnail_rect() -> Rect2:
+	return %Thumbnail.get_global_rect()

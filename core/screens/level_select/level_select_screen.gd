@@ -113,6 +113,15 @@ func transition_to_camera(next_camera: Camera2D, duration: float, callback := Ca
 		tween.finished.connect(callback)
 
 
+func update_level_camera() -> void:
+	var level_texture_rect = get_current_topic_map().focused_node.get_thumbnail_rect()
+	%LevelCamera.global_position = level_texture_rect.get_center()
+	%LevelCamera.zoom = Vector2(
+		%MainViewport.get_visible_rect().size.x / level_texture_rect.size.x,
+		%MainViewport.get_visible_rect().size.y / level_texture_rect.size.y
+	)
+
+
 func stage_topic_map(topic_data: TopicResource) -> TopicMap:
 	assert(_staged_topic_map == null)
 

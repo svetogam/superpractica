@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=13 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/level_select_theme.tres" id="1_y5cmv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cqq63fvs64ev" path="res://core/screens/level_select/states/node_view.gd" id="5_3qwui"]
 [ext_resource type="Script" uid="uid://b2i26xn1mgt3a" path="res://core/screens/level_select/states/zoom_out_to_map.gd" id="6_bbilf"]
 [ext_resource type="Script" uid="uid://dd6wfcod5kjw1" path="res://core/screens/level_select/states/zoom_in_to_topic.gd" id="8_mddll"]
+[ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/zoom_in_to_level.gd" id="9_7trmu"]
 [ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/zoom_out_to_topic.gd" id="9_73f7m"]
 [ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://general/icons/mono_icons/arrow-left.svg" id="10_r18v7"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="11_fia35"]
@@ -37,6 +38,9 @@ script = ExtResource("8_mddll")
 
 [node name="ZoomOutToTopic" type="Node" parent="StateMachine"]
 script = ExtResource("9_73f7m")
+
+[node name="ZoomInToLevel" type="Node" parent="StateMachine"]
+script = ExtResource("9_7trmu")
 
 [node name="StagingViewport" type="SubViewport" parent="."]
 unique_name_in_owner = true
@@ -81,6 +85,10 @@ enabled = false
 zoom = Vector2(0.7, 0.7)
 
 [node name="TransitionCamera" type="Camera2D" parent="ViewportContainer/MainViewport"]
+unique_name_in_owner = true
+enabled = false
+
+[node name="LevelCamera" type="Camera2D" parent="ViewportContainer/MainViewport"]
 unique_name_in_owner = true
 enabled = false
 

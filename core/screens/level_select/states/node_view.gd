@@ -28,8 +28,7 @@ func _on_node_pressed() -> void:
 	assert(_map.focused_node != null)
 
 	if _map.focused_node is LevelNode:
-		assert(_map.focused_node.level_data != null)
-		_target.level_entered.emit(_map.focused_node.level_data)
+		_change_state("ZoomInToLevel")
 	elif _map.focused_node is SubtopicNode:
 		_change_state("ZoomInToTopic")
 	else:

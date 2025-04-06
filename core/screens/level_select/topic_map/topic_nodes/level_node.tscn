@@ -36,8 +36,8 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_i5rlm")
-expand_mode = 1
-stretch_mode = 4
+expand_mode = 3
+stretch_mode = 5
 
 [node name="ThumbnailPlaceholder" type="Control" parent="OverviewPanel/OverviewButton/VBoxContainer/HBoxContainer" index="2"]
 unique_name_in_owner = true
