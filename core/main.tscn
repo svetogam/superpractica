@@ -21,6 +21,24 @@ folder = "screenshots"
 shortcut = SubResource("Shortcut_dr4kf")
 file_format = 1
 
+[node name="MainMenuContainer" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuViewport" type="SubViewport" parent="MainMenuContainer"]
+unique_name_in_owner = true
+process_mode = 1
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(800, 600)
+render_target_update_mode = 0
+
 [node name="PimnetLevelContainer" type="SubViewportContainer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
@@ -32,6 +50,60 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PimnetLevelViewport" type="SubViewport" parent="PimnetLevelContainer"]
+unique_name_in_owner = true
+process_mode = 1
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(800, 600)
+render_target_update_mode = 0
+
+[node name="LevelSelectContainer1" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelectViewport1" type="SubViewport" parent="LevelSelectContainer1"]
+unique_name_in_owner = true
+process_mode = 1
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(800, 600)
+render_target_update_mode = 0
+
+[node name="LevelSelectContainer2" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelectViewport2" type="SubViewport" parent="LevelSelectContainer2"]
+unique_name_in_owner = true
+process_mode = 1
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(800, 600)
+render_target_update_mode = 0
+
+[node name="LevelSelectContainer3" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelectViewport3" type="SubViewport" parent="LevelSelectContainer3"]
 unique_name_in_owner = true
 process_mode = 1
 disable_3d = true

@@ -9,6 +9,13 @@ const LevelSelect := preload("uid://c7261ypnucte8")
 const PimnetLevel := preload("uid://2ert4t63mict")
 var _current_scene: Node
 var _prepared_level: Node
+@onready var _viewports: Array = [
+	%MainMenuViewport,
+	%PimnetLevelViewport,
+	%LevelSelectViewport1,
+	%LevelSelectViewport2,
+	%LevelSelectViewport3,
+]
 
 
 func _enter_tree() -> void:
@@ -25,7 +32,8 @@ func _ready() -> void:
 
 
 func _on_window_size_changed() -> void:
-	%PimnetLevelViewport.size = get_window().size
+	for viewport in _viewports:
+		viewport.size = get_window().size
 
 
 func enter_main_menu() -> void:
@@ -33,8 +41,14 @@ func enter_main_menu() -> void:
 		_current_scene.queue_free()
 
 	_current_scene = MainMenu.instantiate()
-	add_child(_current_scene)
+	%MainMenuViewport.add_child(_current_scene)
+
+	%MainMenuContainer.show()
 	%PimnetLevelContainer.hide()
+	%LevelSelectContainer1.hide()
+	%LevelSelectContainer2.hide()
+	%LevelSelectContainer3.hide()
+	%MainMenuContainer.move_to_front()
 
 	_current_scene.topics_pressed.connect(enter_level_select)
 	_current_scene.exit_pressed.connect(exit_game)
@@ -45,8 +59,14 @@ func enter_level_select() -> void:
 		_current_scene.queue_free()
 
 	_current_scene = LevelSelect.instantiate()
-	add_child(_current_scene)
+	%LevelSelectViewport1.add_child(_current_scene)
+
+	%MainMenuContainer.hide()
 	%PimnetLevelContainer.show()
+	%LevelSelectContainer1.show()
+	%LevelSelectContainer2.show()
+	%LevelSelectContainer3.show()
+	%LevelSelectContainer1.move_to_front()
 
 	_current_scene.level_decided.connect(prepare_level)
 	_current_scene.level_entered.connect(enter_level)
@@ -81,7 +101,13 @@ func enter_level(level_data: LevelResource) -> void:
 		Game.current_level = level_data
 		_current_scene = PimnetLevel.instantiate()
 		%PimnetLevelViewport.add_child(_current_scene)
+
+	%MainMenuContainer.hide()
 	%PimnetLevelContainer.show()
+	%LevelSelectContainer1.hide()
+	%LevelSelectContainer2.hide()
+	%LevelSelectContainer3.hide()
+	%PimnetLevelContainer.move_to_front()
 
 	_current_scene.exited_to_level_select.connect(enter_level_select)
 	_current_scene.exited_to_next_level.connect(_try_to_enter_next_level)
