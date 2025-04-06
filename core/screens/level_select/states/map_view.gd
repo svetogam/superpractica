@@ -12,8 +12,9 @@ var _dragging := false
 
 func _enter(_last_state: String) -> void:
 	_map.hide_node_detail()
-	_target.player_camera.zoom = _target.MAP_ZOOM
-	_target.player_camera.position_smoothing_enabled = true
+
+	_target.set_active_camera(%ScrollCamera)
+	%ScrollCamera.position_smoothing_enabled = true
 
 	_map.node_pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
@@ -28,7 +29,7 @@ func _enter(_last_state: String) -> void:
 func _process(_delta: float) -> void:
 	# Keep camera in bounds
 	var camera_limit_rect = _target.get_camera_limit_rect()
-	_target.camera_point.position = _target.camera_point.position.clamp(
+	%CameraPoint.position = %CameraPoint.position.clamp(
 			camera_limit_rect.position, camera_limit_rect.end)
 
 
@@ -41,7 +42,7 @@ func _input(event: InputEvent) -> void:
 			_dragging = false
 
 	if _dragging and event is InputEventMouseMotion:
-		_target.camera_point.position -= event.relative * _target.ZOOM_SCALE
+		%CameraPoint.position -= event.relative * _target.ZOOM_SCALE
 
 
 func _on_node_pressed(node: Control) -> void:
@@ -50,7 +51,7 @@ func _on_node_pressed(node: Control) -> void:
 		_target.stage_topic_map(node.topic_data)
 
 	_map.show_node_detail(node.id, _target.staging_viewport.get_texture())
-	_target.player_camera.position_smoothing_enabled = false
+	%ScrollCamera.position_smoothing_enabled = false
 
 	_change_state("ZoomInToNode")
 

@@ -12,10 +12,11 @@ var _map: TopicMap:
 func _enter(_last_state: String) -> void:
 	assert(_map.focused_node != null)
 
+	%FocusCamera.position = _map.focused_node.get_rect().get_center()
+	_target.set_active_camera(%FocusCamera)
+
 	_map.focused_node.overview_button.pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
-
-	_target.player_camera.zoom = _target.NODE_ZOOM
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -10,11 +10,11 @@ var _map: TopicMap:
 
 
 func _enter(_last_state: String) -> void:
-	var tween = (create_tween().set_trans(Tween.TRANS_QUAD)
-			.set_ease(Tween.EASE_IN_OUT)
-			.tween_property(
-			_target.player_camera, "zoom", _target.MAP_ZOOM, _target.ZOOM_OUT_DURATION))
-	tween.finished.connect(_on_zoom_finished)
+	assert(_map.focused_node != null)
+
+	%CameraPoint.position = _map.focused_node.get_rect().get_center()
+	_target.transition_to_camera(
+			%ScrollCamera, _target.ZOOM_OUT_DURATION, _on_zoom_finished)
 
 
 func _on_zoom_finished() -> void:

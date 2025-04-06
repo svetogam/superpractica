@@ -10,9 +10,7 @@ signal level_entered(level_data)
 signal zoomed_in
 signal zoomed_out
 
-const ZOOM_SCALE := 10.0
-const NODE_ZOOM := Vector2(7.0, 7.0) / ZOOM_SCALE
-const MAP_ZOOM := Vector2(1.0, 1.0) / ZOOM_SCALE
+const ZOOM_SCALE := 10.0 # Should equal 1 / ScrollCamera.zoom
 const ZOOM_IN_DURATION := 0.5
 const ZOOM_OUT_DURATION := 0.35
 const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.25 * ZOOM_SCALE
@@ -23,8 +21,6 @@ var _staged_topic_map: TopicMap
 var _current_topic_map: TopicMap
 @onready var back_button := %BackButton as Button
 @onready var staging_viewport := %StagingViewport as SubViewport
-@onready var player_camera := %PlayerCamera as Camera2D
-@onready var camera_point := %CameraPoint as Node2D
 
 
 func _enter_tree() -> void:
@@ -64,6 +60,59 @@ func _on_exit_button_pressed() -> void:
 	exit_pressed.emit()
 
 
+func set_active_camera(next_camera: Camera2D) -> void:
+	%ScrollCamera.enabled = false
+	%FocusCamera.enabled = false
+	%TransitionCamera.enabled = false
+	next_camera.enabled = true
+
+
+func transition_to_camera(next_camera: Camera2D, duration: float, callback := Callable()
+) -> void:
+	var previous_camera = %MainViewport.get_camera_2d()
+	set_active_camera(%TransitionCamera)
+
+	# Prepare transition camera
+	if previous_camera != null:
+		%TransitionCamera.global_position = previous_camera.global_position
+		%TransitionCamera.offset = previous_camera.offset
+		%TransitionCamera.zoom = previous_camera.zoom
+
+	var tween = (create_tween()
+		.set_trans(Tween.TRANS_QUART)
+		.set_ease(Tween.EASE_OUT)
+		.tween_property(
+			%TransitionCamera,
+			"global_position",
+			next_camera.global_position,
+			duration
+		)
+	)
+	(create_tween()
+		.set_trans(Tween.TRANS_QUART)
+		.set_ease(Tween.EASE_OUT)
+		.tween_property(
+			%TransitionCamera,
+			"offset",
+			next_camera.offset,
+			duration
+		)
+	)
+	(create_tween()
+		.set_trans(Tween.TRANS_QUAD)
+		.set_ease(Tween.EASE_IN_OUT)
+		.tween_property(
+			%TransitionCamera,
+			"zoom",
+			next_camera.zoom,
+			duration
+		)
+	)
+	tween.finished.connect(set_active_camera.bind(next_camera))
+	if not callback.is_null():
+		tween.finished.connect(callback)
+
+
 func stage_topic_map(topic_data: TopicResource) -> TopicMap:
 	assert(_staged_topic_map == null)
 
@@ -96,8 +145,8 @@ func enter_staged_map() -> void:
 	_staged_topic_map = null
 
 	# Set player camera
-	camera_point.position = Vector2.ZERO
-	player_camera.reset_smoothing()
+	%CameraPoint.position = Vector2.ZERO
+	%ScrollCamera.reset_smoothing()
 
 
 func enter_containing_map(source_node_id: String) -> void:
@@ -120,8 +169,8 @@ func enter_containing_map(source_node_id: String) -> void:
 
 	# Set player camera
 	var source_node := _current_topic_map.get_topic_node(source_node_id)
-	camera_point.position = source_node.get_rect().get_center()
-	player_camera.reset_smoothing()
+	%CameraPoint.position = source_node.get_rect().get_center()
+	%ScrollCamera.reset_smoothing()
 
 
 func set_overlay(top_title: String, back_title := "") -> void:
