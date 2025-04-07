@@ -9,13 +9,6 @@ const LevelSelect := preload("uid://c7261ypnucte8")
 const PimnetLevel := preload("uid://2ert4t63mict")
 var _current_scene: Node
 var _prepared_level: Node
-@onready var _viewports: Array = [
-	%MainMenuViewport,
-	%PimnetLevelViewport,
-	%LevelSelectViewport1,
-	%LevelSelectViewport2,
-	%LevelSelectViewport3,
-]
 
 
 func _enter_tree() -> void:
@@ -26,14 +19,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	get_window().size_changed.connect(_on_window_size_changed)
-
 	enter_main_menu()
-
-
-func _on_window_size_changed() -> void:
-	for viewport in _viewports:
-		viewport.size = get_window().size
 
 
 func enter_main_menu() -> void:
@@ -45,9 +31,7 @@ func enter_main_menu() -> void:
 
 	%MainMenuContainer.show()
 	%PimnetLevelContainer.hide()
-	%LevelSelectContainer1.hide()
-	%LevelSelectContainer2.hide()
-	%LevelSelectContainer3.hide()
+	%LevelSelectContainer.hide()
 	%MainMenuContainer.move_to_front()
 
 	_current_scene.topics_pressed.connect(enter_level_select)
@@ -59,14 +43,12 @@ func enter_level_select() -> void:
 		_current_scene.queue_free()
 
 	_current_scene = LevelSelect.instantiate()
-	%LevelSelectViewport1.add_child(_current_scene)
+	%LevelSelectViewport.add_child(_current_scene)
 
 	%MainMenuContainer.hide()
 	%PimnetLevelContainer.show()
-	%LevelSelectContainer1.show()
-	%LevelSelectContainer2.show()
-	%LevelSelectContainer3.show()
-	%LevelSelectContainer1.move_to_front()
+	%LevelSelectContainer.show()
+	%LevelSelectContainer.move_to_front()
 
 	_current_scene.level_decided.connect(prepare_level)
 	_current_scene.level_entered.connect(enter_level)
@@ -104,9 +86,7 @@ func enter_level(level_data: LevelResource) -> void:
 
 	%MainMenuContainer.hide()
 	%PimnetLevelContainer.show()
-	%LevelSelectContainer1.hide()
-	%LevelSelectContainer2.hide()
-	%LevelSelectContainer3.hide()
+	%LevelSelectContainer.hide()
 	%PimnetLevelContainer.move_to_front()
 
 	_current_scene.exited_to_level_select.connect(enter_level_select)
