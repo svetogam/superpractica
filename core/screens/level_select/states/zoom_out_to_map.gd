@@ -6,20 +6,20 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.get_current_topic_map()
+		return _target.current_topic_map
 
 
 func _enter(_last_state: String) -> void:
 	assert(_map.focused_node != null)
 
-	%CameraPoint.position = _map.focused_node.get_rect().get_center()
-	_target.transition_to_camera(
-			%ScrollCamera, _target.ZOOM_OUT_DURATION, _on_zoom_finished)
+	_map.camera_point.position = _map.focused_node.get_rect().get_center()
+	_map.transition_to_camera(
+			_map.scroll_camera, _target.ZOOM_OUT_DURATION, _on_zoom_finished)
 
 
 func _on_zoom_finished() -> void:
 	if _map.focused_node is SubtopicNode:
-		_target.unstage_topic_map()
+		_target.disuse_viewport(_target.staging_viewport)
 
 	_target.zoomed_out.emit()
 	_change_state("MapView")

@@ -6,17 +6,24 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.get_current_topic_map()
+		return _target.current_topic_map
 
 
 func _enter(_last_state: String) -> void:
-	assert(_target.has_containing_topic() != null)
-
 	# Save current topic before changing it
 	var contained_topic := _map.topic_data
 
+	# Add containing viewport if not already added
+	if _target.containing_viewport == null:
+		var viewport = _target.get_unused_viewport()
+		_target.add_topic_map_to_viewport(contained_topic.supertopic, viewport)
+		_target.make_viewport_containing(viewport)
+
 	# Enter new topic
-	_target.enter_containing_map(contained_topic.id)
+	_target.make_viewport_preview(_target.current_viewport)
+	_target.make_viewport_current(_target.containing_viewport)
+	_target.current_topic_map.focus_on_node_id(contained_topic.id)
+	_target.containing_viewport = null
 
 	# Update overlay
 	if _target.has_containing_topic():
@@ -25,7 +32,7 @@ func _enter(_last_state: String) -> void:
 		_target.set_overlay(_map.topic_data.title)
 
 	_map.show_node_detail(contained_topic.id, _target.staging_viewport.get_texture())
-	%ScrollCamera.position_smoothing_enabled = false
+	_map.scroll_camera.position_smoothing_enabled = false
 
 	_on_zoom_finished()
 

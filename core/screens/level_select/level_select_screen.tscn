@@ -42,56 +42,6 @@ script = ExtResource("9_73f7m")
 [node name="ZoomInToLevel" type="Node" parent="StateMachine"]
 script = ExtResource("9_7trmu")
 
-[node name="StagingViewport" type="SubViewport" parent="."]
-unique_name_in_owner = true
-size = Vector2i(700, 400)
-
-[node name="SurveyCamera" type="Camera2D" parent="StagingViewport"]
-unique_name_in_owner = true
-
-[node name="ViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="MainViewport" type="SubViewport" parent="ViewportContainer"]
-unique_name_in_owner = true
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(800, 600)
-render_target_update_mode = 4
-
-[node name="CameraPoint" type="Node2D" parent="ViewportContainer/MainViewport"]
-unique_name_in_owner = true
-
-[node name="ScrollCamera" type="Camera2D" parent="ViewportContainer/MainViewport/CameraPoint"]
-unique_name_in_owner = true
-zoom = Vector2(0.1, 0.1)
-position_smoothing_enabled = true
-position_smoothing_speed = 25.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.0
-drag_top_margin = 0.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-
-[node name="FocusCamera" type="Camera2D" parent="ViewportContainer/MainViewport"]
-unique_name_in_owner = true
-enabled = false
-zoom = Vector2(0.7, 0.7)
-
-[node name="TransitionCamera" type="Camera2D" parent="ViewportContainer/MainViewport"]
-unique_name_in_owner = true
-enabled = false
-
-[node name="LevelCamera" type="Camera2D" parent="ViewportContainer/MainViewport"]
-unique_name_in_owner = true
-enabled = false
-
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
 
 [node name="MenuPopup" type="PopupPanel" parent="OverlayLayer"]
@@ -175,6 +125,49 @@ grow_horizontal = 0
 theme = ExtResource("1_y5cmv")
 icon = ExtResource("11_fia35")
 icon_alignment = 1
+
+[node name="ViewportContainer1" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="TopicMapViewport1" type="SubViewport" parent="ViewportContainer1"]
+unique_name_in_owner = true
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(800, 600)
+render_target_update_mode = 4
+
+[node name="ViewportContainer2" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="TopicMapViewport2" type="SubViewport" parent="ViewportContainer2"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(800, 600)
+render_target_update_mode = 4
+
+[node name="ViewportContainer3" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="TopicMapViewport3" type="SubViewport" parent="ViewportContainer3"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(800, 600)
+render_target_update_mode = 4
 
 [connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

@@ -6,11 +6,16 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.get_current_topic_map()
+		return _target.current_topic_map
 
 
 func _enter(_last_state: String) -> void:
-	_target.enter_staged_map()
+	if _target.containing_viewport != null:
+		_target.disuse_viewport(_target.containing_viewport)
+
+	_target.make_viewport_containing(_target.current_viewport)
+	_target.make_viewport_current(_target.staging_viewport)
+	_target.current_topic_map.camera_point.position = Vector2.ZERO
 	_target.set_overlay(_map.topic_data.title, _map.topic_data.supertopic.title)
 
 	_on_zoom_finished()

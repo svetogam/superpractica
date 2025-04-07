@@ -6,14 +6,14 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.get_current_topic_map()
+		return _target.current_topic_map
 
 
 func _enter(_last_state: String) -> void:
 	assert(_map.focused_node != null)
 
-	%FocusCamera.position = _map.focused_node.get_rect().get_center()
-	_target.set_active_camera(%FocusCamera)
+	_map.focus_camera.position = _map.focused_node.get_rect().get_center()
+	_map.set_active_camera(_map.focus_camera)
 
 	_map.focused_node.overview_button.pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)

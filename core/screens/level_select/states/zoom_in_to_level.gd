@@ -6,15 +6,15 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.get_current_topic_map()
+		return _target.current_topic_map
 
 
 func _enter(_last_state: String) -> void:
 	assert(_map.focused_node is LevelNode)
 
-	_target.update_level_camera()
-	_target.transition_to_camera(
-			%LevelCamera, _target.ZOOM_IN_DURATION, _on_zoom_finished)
+	_map.update_level_camera()
+	_map.transition_to_camera(
+			_map.level_camera, _target.ZOOM_IN_DURATION, _on_zoom_finished)
 
 
 func _on_zoom_finished() -> void:
