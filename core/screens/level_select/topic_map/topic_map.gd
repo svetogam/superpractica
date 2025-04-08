@@ -32,7 +32,7 @@ var _node_ids_to_nodes: Dictionary
 @onready var scroll_camera := %ScrollCamera as Camera2D
 @onready var focus_camera := %FocusCamera as Camera2D
 @onready var transition_camera := %TransitionCamera as Camera2D
-@onready var level_camera := %LevelCamera as Camera2D
+@onready var thumbnail_camera := %ThumbnailCamera as Camera2D
 @onready var survey_camera := %SurveyCamera as Camera2D
 
 
@@ -81,7 +81,7 @@ func show_node_detail(node_id: String, survey_texture: ViewportTexture = null) -
 	focused_node.overview_panel.show()
 	if focused_node is SubtopicNode:
 		assert(survey_texture != null)
-		focused_node.survey_map.texture = survey_texture
+		focused_node.thumbnail.texture = survey_texture
 
 
 func hide_node_detail() -> void:
@@ -95,7 +95,7 @@ func set_active_camera(next_camera: Camera2D) -> void:
 	scroll_camera.enabled = false
 	focus_camera.enabled = false
 	transition_camera.enabled = false
-	level_camera.enabled = false
+	thumbnail_camera.enabled = false
 	survey_camera.enabled = false
 
 	next_camera.enabled = true
@@ -158,10 +158,12 @@ func update_survey_camera() -> void:
 	survey_camera.position = camera_survey_rect.get_center()
 
 
-func update_level_camera() -> void:
+func update_thumbnail_camera() -> void:
+	assert(focused_node is LevelNode or focused_node is SubtopicNode)
+
 	var level_texture_rect = focused_node.get_thumbnail_rect()
-	level_camera.global_position = level_texture_rect.get_center()
-	level_camera.zoom = Vector2(
+	thumbnail_camera.global_position = level_texture_rect.get_center()
+	thumbnail_camera.zoom = Vector2(
 		get_viewport().get_visible_rect().size.x / level_texture_rect.size.x,
 		get_viewport().get_visible_rect().size.y / level_texture_rect.size.y
 	)

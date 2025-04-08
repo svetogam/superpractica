@@ -6,7 +6,7 @@ class_name SubtopicNode
 extends TopicNode
 
 var topic_data: TopicResource
-@onready var survey_map := %SurveyMap as TextureRect:
+@onready var thumbnail := %Thumbnail as TextureRect:
 	set(_value):
 		assert(false)
 
@@ -32,3 +32,7 @@ func setup(value: TopicResource) -> void:
 	%OverviewProgressBar.max_value = total_levels
 	%OverviewProgressBar.value = completed_levels
 	%FractionLabel.text = str(completed_levels) + " / " + str(total_levels)
+
+
+func get_thumbnail_rect() -> Rect2:
+	return %Thumbnail.get_global_rect()

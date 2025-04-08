@@ -55,10 +55,14 @@ func _ready() -> void:
 	if Game.current_level == null:
 		add_topic_map_to_viewport(Game.root_topic, viewport)
 		make_viewport_current(viewport)
+		current_topic_map.set_active_camera(current_topic_map.scroll_camera)
+		current_topic_map.scroll_camera.reset_smoothing()
 		current_topic_map.camera_point.position = Vector2.ZERO
 	else:
 		add_topic_map_to_viewport(Game.current_level.topic, viewport)
 		make_viewport_current(viewport)
+		current_topic_map.set_active_camera(current_topic_map.scroll_camera)
+		current_topic_map.scroll_camera.reset_smoothing()
 		current_topic_map.focus_on_node_id(Game.current_level.id)
 
 	$StateMachine.activate()
@@ -87,7 +91,6 @@ func _on_exit_button_pressed() -> void:
 
 func add_topic_map_to_viewport(topic_data: TopicResource, viewport: SubViewport
 ) -> TopicMap:
-	print("using")
 	var topic_map = TopicMapScene.instantiate()
 	viewport.add_child(topic_map)
 	topic_map.build(topic_data, ZOOM_SCALE)
@@ -97,10 +100,6 @@ func add_topic_map_to_viewport(topic_data: TopicResource, viewport: SubViewport
 
 func make_viewport_current(viewport: SubViewport) -> void:
 	current_viewport = viewport
-
-	current_topic_map.set_active_camera(current_topic_map.scroll_camera)
-	current_topic_map.scroll_camera.reset_smoothing()
-
 	viewport.get_parent().move_to_front()
 
 
@@ -116,9 +115,8 @@ func make_viewport_containing(viewport: SubViewport) -> void:
 
 
 func disuse_viewport(viewport: SubViewport) -> void:
-	print("disusing")
 	var topic_map = viewport.get_child(0)
-	topic_map.queue_free()
+	topic_map.free()
 	_unused_viewports.append(viewport)
 
 

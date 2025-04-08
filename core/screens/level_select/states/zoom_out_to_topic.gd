@@ -32,6 +32,7 @@ func _enter(_last_state: String) -> void:
 		_target.set_overlay(_map.topic_data.title)
 
 	_map.show_node_detail(contained_topic.id, _target.staging_viewport.get_texture())
+	_target.staged_topic_map.camera_point.position = Vector2.ZERO
 	_map.scroll_camera.position_smoothing_enabled = false
 
 	_on_zoom_finished()
