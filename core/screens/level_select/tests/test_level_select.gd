@@ -57,13 +57,13 @@ func test_enter_topic_then_topic_then_level() -> void:
 	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/TopicFocus/Inside.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	#await runner.await_signal("zoomed_in") # Immediate for now
+	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/Topic3/Topic4.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/TopicFocus/Inside.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	#await runner.await_signal("zoomed_in") # Immediate for now
+	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/Topic4/Level4_1.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	await runner.await_signal("zoomed_in")
@@ -85,7 +85,7 @@ func test_enter_topic_then_back_then_different_topic_then_level() -> void:
 	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/TopicFocus/Inside.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	#await runner.await_signal("zoomed_in") # Immediate for now
+	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/BackButton.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	#await runner.await_signal("zoomed_out") # Immediate for now
@@ -97,7 +97,7 @@ func test_enter_topic_then_back_then_different_topic_then_level() -> void:
 	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/TopicFocus/Inside.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	#await runner.await_signal("zoomed_in") # Immediate for now
+	await runner.await_signal("zoomed_in")
 	await runner.simulate_mouse_move_absolute($Ref/Topic2/Level2_1.position, 0.01)
 	runner.simulate_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	await runner.await_signal("zoomed_in")
