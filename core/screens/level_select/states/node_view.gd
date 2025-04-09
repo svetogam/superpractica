@@ -6,7 +6,7 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.current_topic_map
+		return _target.current_map
 
 
 func _enter(_last_state: String) -> void:

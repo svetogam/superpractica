@@ -6,7 +6,7 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.current_topic_map
+		return _target.current_map
 
 
 func _enter(_last_state: String) -> void:
@@ -19,7 +19,7 @@ func _enter(_last_state: String) -> void:
 
 func _on_zoom_finished() -> void:
 	if _map.focused_node is SubtopicNode:
-		_target.disuse_viewport(_target.staging_viewport)
+		_target.disuse_viewport(_target.ViewportPlace.INNER)
 
 	_target.zoomed_out.emit()
 	_change_state("MapView")

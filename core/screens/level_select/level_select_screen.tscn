@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=14 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/level_select_theme.tres" id="1_y5cmv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/zoom_out_to_topic.gd" id="9_73f7m"]
 [ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://general/icons/mono_icons/arrow-left.svg" id="10_r18v7"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="11_fia35"]
+[ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
 
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
@@ -126,48 +127,14 @@ theme = ExtResource("1_y5cmv")
 icon = ExtResource("11_fia35")
 icon_alignment = 1
 
-[node name="ViewportContainer1" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="TopicMapViewport1" type="SubViewport" parent="ViewportContainer1"]
+[node name="TopicMapContainer1" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
-disable_3d = true
-handle_input_locally = false
-size = Vector2i(800, 600)
-render_target_update_mode = 4
 
-[node name="ViewportContainer2" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="TopicMapViewport2" type="SubViewport" parent="ViewportContainer2"]
+[node name="TopicMapContainer2" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
-handle_input_locally = false
-size = Vector2i(800, 600)
-render_target_update_mode = 4
 
-[node name="ViewportContainer3" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="TopicMapViewport3" type="SubViewport" parent="ViewportContainer3"]
+[node name="TopicMapContainer3" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
-handle_input_locally = false
-size = Vector2i(800, 600)
-render_target_update_mode = 4
 
 [connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

@@ -181,6 +181,14 @@ func get_map_rect() -> Rect2:
 	return Utils.get_combined_control_rect(_node_ids_to_nodes.values())
 
 
+func get_camera_limit_rect() -> Rect2:
+	var map_rect := get_map_rect()
+	var viewport_size = get_viewport().get_visible_rect().size
+	var limit_margin = viewport_size * CAMERA_OVERSHOOT_MARGIN_RATIO
+	return map_rect.grow_individual(
+			limit_margin.x, limit_margin.y, limit_margin.x, limit_margin.y)
+
+
 #====================================================================
 # Connectors
 #====================================================================

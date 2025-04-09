@@ -6,7 +6,7 @@ extends State
 
 var _map: TopicMap:
 	get:
-		return _target.current_topic_map
+		return _target.current_map
 var _dragging := false
 
 
@@ -20,7 +20,7 @@ func _enter(_last_state: String) -> void:
 	_target.back_button.pressed.connect(_on_back_button_pressed)
 
 	# Update overlay
-	if _target.has_containing_topic():
+	if _map.topic_data.supertopic != null:
 		_target.set_overlay(_map.topic_data.title, _map.topic_data.supertopic.title)
 	else:
 		_target.set_overlay(_map.topic_data.title)
@@ -28,7 +28,7 @@ func _enter(_last_state: String) -> void:
 
 func _process(_delta: float) -> void:
 	# Keep camera in bounds
-	var camera_limit_rect = _target.get_camera_limit_rect()
+	var camera_limit_rect = _map.get_camera_limit_rect()
 	_map.camera_point.position = _map.camera_point.position.clamp(
 			camera_limit_rect.position, camera_limit_rect.end)
 
@@ -48,10 +48,11 @@ func _input(event: InputEvent) -> void:
 func _on_node_pressed(node: Control) -> void:
 	# Set up subtopic map
 	if node is SubtopicNode:
-		var viewport = _target.get_unused_viewport()
-		_target.add_topic_map_to_viewport(node.topic_data, viewport)
-		_target.make_viewport_preview(viewport)
-		_map.show_node_detail(node.id, _target.staging_viewport.get_texture())
+		_target.use_new_viewport(_target.ViewportPlace.INNER)
+		_target.add_topic_map(node.topic_data, _target.ViewportPlace.INNER)
+		_target.inner_map.set_active_camera(_target.inner_map.survey_camera)
+		_target.inner_map.update_survey_camera()
+		_map.show_node_detail(node.id, _target.inner_viewport.get_texture())
 	elif node is LevelNode:
 		_map.show_node_detail(node.id)
 
@@ -61,7 +62,6 @@ func _on_node_pressed(node: Control) -> void:
 
 
 func _on_back_button_pressed() -> void:
-	assert(_target.has_containing_topic())
 	_change_state("ZoomOutToTopic")
 
 
