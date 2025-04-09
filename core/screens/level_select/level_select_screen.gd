@@ -16,12 +16,6 @@ enum ViewportPlace {
 	OUTER,
 }
 
-const ZOOM_SCALE := 10.0 # Should equal 1 / ScrollCamera.zoom
-const ZOOM_IN_DURATION := 0.5
-const ZOOM_OUT_DURATION := 0.35
-const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.25 * ZOOM_SCALE
-const CAMERA_SURVEY_MARGIN := Vector2(80.0, 60.0) * ZOOM_SCALE
-
 var current_viewport: SubViewport:
 	get:
 		if _map_containers[ViewportPlace.CURRENT] != null:

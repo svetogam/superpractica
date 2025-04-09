@@ -42,7 +42,7 @@ func _input(event: InputEvent) -> void:
 			_dragging = false
 
 	if _dragging and event is InputEventMouseMotion:
-		_map.camera_point.position -= event.relative * _target.ZOOM_SCALE
+		_map.camera_point.position -= event.relative * TopicMap.ZOOM_SCALE
 
 
 func _on_node_pressed(node: Control) -> void:

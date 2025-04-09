@@ -4,6 +4,7 @@
 
 extends State
 
+const ZOOM_DURATION := 0.35
 var _map: TopicMap:
 	get:
 		return _target.current_map
@@ -13,8 +14,7 @@ func _enter(_last_state: String) -> void:
 	assert(_map.focused_node != null)
 
 	_map.camera_point.position = _map.focused_node.get_rect().get_center()
-	_map.transition_to_camera(
-			_map.scroll_camera, _target.ZOOM_OUT_DURATION, _on_zoom_finished)
+	_map.transition_to_camera(_map.scroll_camera, ZOOM_DURATION, _on_zoom_finished)
 
 
 func _on_zoom_finished() -> void:

@@ -7,13 +7,9 @@ extends Node
 
 signal node_pressed(node)
 
-# These are duplicates for now
 const ZOOM_SCALE := 10.0 # Should equal 1 / ScrollCamera.zoom
-const ZOOM_IN_DURATION := 0.5
-const ZOOM_OUT_DURATION := 0.35
 const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.25 * ZOOM_SCALE
 const CAMERA_SURVEY_MARGIN := Vector2(80.0, 60.0) * ZOOM_SCALE
-
 const CONNECTOR_LINE_WIDTH := 4.0
 const CONNECTOR_LINE_COLOR := Color.BLACK
 const ARROWHEAD_WIDTH := 18.0
