@@ -91,13 +91,11 @@ func build(p_topic_data: TopicResource) -> void:
 	_update_survey_camera()
 
 
-func show_node_detail(node_id: String, inner_viewport: SubViewport = null) -> void:
+func show_node_detail(node_id: String, thumbnail_viewport: SubViewport) -> void:
 	focused_node = _node_ids_to_nodes[node_id]
 	focused_node.mask.hide()
 	focused_node.overview_panel.show()
-	if focused_node is SubtopicNode:
-		assert(inner_viewport != null)
-		focused_node.thumbnail.texture = inner_viewport.get_texture()
+	focused_node.set_thumbnail(thumbnail_viewport)
 
 	# Update cameras
 	_update_focus_camera()

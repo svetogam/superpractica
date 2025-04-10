@@ -18,3 +18,13 @@ var id: String
 @onready var overview_button := %OverviewButton as BaseButton:
 	set(_value):
 		assert(false)
+
+
+# Virtual
+func set_thumbnail(_viewport: SubViewport) -> void:
+	pass
+
+
+# Virtual
+func get_thumbnail_rect() -> Rect2:
+	return Rect2()

@@ -18,13 +18,13 @@ func _enter(_last_state: String) -> void:
 
 
 func _on_node_pressed(node: Control) -> void:
-	# Set up subtopic map
 	if node is SubtopicNode:
 		_target.use_new_viewport(_target.ViewportPlace.INNER)
 		_target.add_topic_map(node.topic_data, _target.ViewportPlace.INNER)
 		_target.inner_map.set_active_camera(TopicMap.TopicCamera.SURVEY)
-
-	_target.current_map.show_node_detail(node.id, _target.inner_viewport)
+		_target.current_map.show_node_detail(node.id, _target.inner_viewport)
+	elif node is LevelNode:
+		_target.current_map.show_node_detail(node.id, _target.level_viewport)
 
 	_change_state("ZoomInToNode")
 

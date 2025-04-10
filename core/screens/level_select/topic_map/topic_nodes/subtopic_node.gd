@@ -6,9 +6,6 @@ class_name SubtopicNode
 extends TopicNode
 
 var topic_data: TopicResource
-@onready var thumbnail := %Thumbnail as TextureRect:
-	set(_value):
-		assert(false)
 
 
 func setup(value: TopicResource) -> void:
@@ -32,6 +29,10 @@ func setup(value: TopicResource) -> void:
 	%OverviewProgressBar.max_value = total_levels
 	%OverviewProgressBar.value = completed_levels
 	%FractionLabel.text = str(completed_levels) + " / " + str(total_levels)
+
+
+func set_thumbnail(viewport: SubViewport) -> void:
+	%Thumbnail.texture = viewport.get_texture()
 
 
 func get_thumbnail_rect() -> Rect2:

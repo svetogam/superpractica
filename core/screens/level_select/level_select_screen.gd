@@ -16,6 +16,7 @@ enum ViewportPlace {
 	OUTER,
 }
 
+var level_viewport: SubViewport
 var current_viewport: SubViewport:
 	get:
 		if _map_containers[ViewportPlace.CURRENT] != null:
@@ -61,6 +62,12 @@ var outer_map: TopicMap:
 
 func _enter_tree() -> void:
 	CSConnector.with(self).connect_setup("level_nodes", _setup_level_node)
+	CSLocator.with(self).connect_service_found(
+			Game.SERVICE_PIMNET_LEVEL_VIEWPORT, _on_level_viewport_found)
+
+
+func _on_level_viewport_found(p_level_viewport: SubViewport) -> void:
+	level_viewport = p_level_viewport
 
 
 func _ready() -> void:
