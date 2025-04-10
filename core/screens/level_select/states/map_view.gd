@@ -58,7 +58,7 @@ func _on_node_pressed(node: Control) -> void:
 
 
 func _on_back_button_pressed() -> void:
-	_change_state("ZoomOutToTopic")
+	_change_state("ZoomOutToNode")
 
 
 func _exit(_next_state: String) -> void:

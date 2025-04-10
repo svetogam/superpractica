@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://dxvuy3hmb8dyy" path="res://core/screens/level_select/states/zoom_in_to_node.gd" id="4_771x4"]
 [ext_resource type="Script" uid="uid://cqq63fvs64ev" path="res://core/screens/level_select/states/node_view.gd" id="5_3qwui"]
 [ext_resource type="Script" uid="uid://b2i26xn1mgt3a" path="res://core/screens/level_select/states/zoom_out_to_map.gd" id="6_bbilf"]
-[ext_resource type="Script" uid="uid://dd6wfcod5kjw1" path="res://core/screens/level_select/states/zoom_in_to_topic.gd" id="8_mddll"]
+[ext_resource type="Script" uid="uid://dd6wfcod5kjw1" path="res://core/screens/level_select/states/zoom_in_to_map.gd" id="8_mddll"]
 [ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/zoom_in_to_level.gd" id="9_7trmu"]
-[ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/zoom_out_to_topic.gd" id="9_73f7m"]
+[ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/zoom_out_to_node.gd" id="9_73f7m"]
 [ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://general/icons/mono_icons/arrow-left.svg" id="10_r18v7"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="11_fia35"]
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
@@ -25,19 +25,19 @@ _auto_activate = false
 [node name="MapView" type="Node" parent="StateMachine"]
 script = ExtResource("3_s8wdx")
 
-[node name="ZoomInToNode" type="Node" parent="StateMachine"]
-script = ExtResource("4_771x4")
-
 [node name="NodeView" type="Node" parent="StateMachine"]
 script = ExtResource("5_3qwui")
+
+[node name="ZoomInToNode" type="Node" parent="StateMachine"]
+script = ExtResource("4_771x4")
 
 [node name="ZoomOutToMap" type="Node" parent="StateMachine"]
 script = ExtResource("6_bbilf")
 
-[node name="ZoomInToTopic" type="Node" parent="StateMachine"]
+[node name="ZoomInToMap" type="Node" parent="StateMachine"]
 script = ExtResource("8_mddll")
 
-[node name="ZoomOutToTopic" type="Node" parent="StateMachine"]
+[node name="ZoomOutToNode" type="Node" parent="StateMachine"]
 script = ExtResource("9_73f7m")
 
 [node name="ZoomInToLevel" type="Node" parent="StateMachine"]
