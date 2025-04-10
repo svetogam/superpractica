@@ -5,20 +5,21 @@
 extends State
 
 const ZOOM_DURATION := 0.35
-var _map: TopicMap:
-	get:
-		return _target.current_map
 
 
 func _enter(_last_state: String) -> void:
-	assert(_map.focused_node != null)
+	assert(_target.current_map.focused_node != null)
 
-	_map.camera_point.position = _map.get_topic_node_center(_map.focused_node.id)
-	_map.transition_to_camera(_map.scroll_camera, ZOOM_DURATION, _on_zoom_finished)
+	_target.current_map.set_camera_point_to_node(_target.current_map.focused_node.id)
+	_target.current_map.transition_to_camera(
+		TopicMap.TopicCamera.SCROLL,
+		ZOOM_DURATION,
+		_on_zoom_finished
+	)
 
 
 func _on_zoom_finished() -> void:
-	if _map.focused_node is SubtopicNode:
+	if _target.current_map.focused_node is SubtopicNode:
 		_target.disuse_viewport(_target.ViewportPlace.INNER)
 
 	_target.zoomed_out.emit()

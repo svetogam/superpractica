@@ -7,7 +7,16 @@ extends Node
 
 signal node_pressed(node)
 
+enum TopicCamera {
+	SCROLL,
+	FOCUS,
+	THUMBNAIL,
+	SURVEY,
+	TRANSITION,
+}
+
 const ZOOM_SCALE := 10.0 # Should equal 1 / ScrollCamera.zoom
+const ORIGIN = Vector2.ZERO
 const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.25 * ZOOM_SCALE
 const CAMERA_SURVEY_MARGIN := Vector2(80.0, 60.0) * ZOOM_SCALE
 const CONNECTOR_LINE_WIDTH := 4.0
@@ -30,6 +39,15 @@ var _node_ids_to_nodes: Dictionary
 @onready var thumbnail_camera := %ThumbnailCamera as Camera2D
 @onready var survey_camera := %SurveyCamera as Camera2D
 @onready var _transition_camera := %TransitionCamera as Camera2D
+var _cameras: Dictionary:
+	get:
+		return {
+			TopicCamera.SCROLL: scroll_camera,
+			TopicCamera.FOCUS: focus_camera,
+			TopicCamera.THUMBNAIL: thumbnail_camera,
+			TopicCamera.SURVEY: survey_camera,
+			TopicCamera.TRANSITION: _transition_camera,
+		}
 
 
 func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
@@ -74,13 +92,13 @@ func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
 	_update_survey_camera()
 
 
-func show_node_detail(node_id: String, survey_texture: ViewportTexture = null) -> void:
+func show_node_detail(node_id: String, inner_viewport: SubViewport = null) -> void:
 	focused_node = _node_ids_to_nodes[node_id]
 	focused_node.mask.hide()
 	focused_node.overview_panel.show()
 	if focused_node is SubtopicNode:
-		assert(survey_texture != null)
-		focused_node.thumbnail.texture = survey_texture
+		assert(inner_viewport != null)
+		focused_node.thumbnail.texture = inner_viewport.get_texture()
 
 	# Update cameras
 	_update_focus_camera()
@@ -94,20 +112,24 @@ func hide_node_detail() -> void:
 		focused_node = null
 
 
-func set_active_camera(next_camera: Camera2D) -> void:
+func set_active_camera(next_camera: TopicCamera) -> void:
 	scroll_camera.enabled = false
 	focus_camera.enabled = false
 	thumbnail_camera.enabled = false
 	survey_camera.enabled = false
 	_transition_camera.enabled = false
 
-	next_camera.enabled = true
+	_cameras[next_camera].enabled = true
 
 
-func transition_to_camera(next_camera: Camera2D, duration: float, callback := Callable()
+func transition_to_camera(
+	p_next_camera: TopicCamera,
+	duration: float,
+	callback := Callable()
 ) -> void:
 	var previous_camera = get_viewport().get_camera_2d()
-	set_active_camera(_transition_camera)
+	var next_camera = _cameras[p_next_camera]
+	set_active_camera(TopicCamera.TRANSITION)
 
 	# Prepare transition camera
 	if previous_camera != null:
@@ -145,17 +167,17 @@ func transition_to_camera(next_camera: Camera2D, duration: float, callback := Ca
 			duration
 		)
 	)
-	tween.finished.connect(set_active_camera.bind(next_camera))
+	tween.finished.connect(set_active_camera.bind(p_next_camera))
 	if not callback.is_null():
 		tween.finished.connect(callback)
 
 
-func get_origin() -> Vector2:
-	return Vector2.ZERO
+func set_camera_point_to_origin() -> void:
+	camera_point.position = ORIGIN
 
 
-func get_topic_node_center(node_id: String) -> Vector2:
-	return get_topic_node(node_id).get_rect().get_center()
+func set_camera_point_to_node(node_id: String) -> void:
+	camera_point.position = get_topic_node(node_id).get_rect().get_center()
 
 
 func get_topic_node(node_id: String) -> TopicNode:

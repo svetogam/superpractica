@@ -4,17 +4,13 @@
 
 extends State
 
-var _map: TopicMap:
-	get:
-		return _target.current_map
-
 
 func _enter(_last_state: String) -> void:
-	assert(_map.focused_node != null)
+	assert(_target.current_map.focused_node != null)
 
-	_map.set_active_camera(_map.focus_camera)
+	_target.current_map.set_active_camera(TopicMap.TopicCamera.FOCUS)
 
-	_map.focused_node.overview_button.pressed.connect(_on_node_pressed)
+	_target.current_map.focused_node.overview_button.pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
 
 
@@ -24,11 +20,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_node_pressed() -> void:
-	assert(_map.focused_node != null)
-
-	if _map.focused_node is LevelNode:
+	if _target.current_map.focused_node is LevelNode:
 		_change_state("ZoomInToLevel")
-	elif _map.focused_node is SubtopicNode:
+	elif _target.current_map.focused_node is SubtopicNode:
 		_change_state("ZoomInToMap")
 	else:
 		assert(false)
@@ -39,5 +33,5 @@ func _on_back_button_pressed() -> void:
 
 
 func _exit(_next_state: String) -> void:
-	_map.focused_node.overview_button.pressed.disconnect(_on_node_pressed)
+	_target.current_map.focused_node.overview_button.pressed.disconnect(_on_node_pressed)
 	_target.back_button.pressed.disconnect(_on_back_button_pressed)

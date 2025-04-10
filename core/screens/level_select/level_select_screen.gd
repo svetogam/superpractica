@@ -69,13 +69,10 @@ func _ready() -> void:
 	use_new_viewport(ViewportPlace.CURRENT)
 	if Game.current_level == null:
 		add_topic_map(Game.root_topic, ViewportPlace.CURRENT)
-		current_map.set_active_camera(current_map.scroll_camera)
-		current_map.camera_point.position = current_map.get_origin()
+		current_map.set_camera_point_to_origin()
 	else:
 		add_topic_map(Game.current_level.topic, ViewportPlace.CURRENT)
-		current_map.set_active_camera(current_map.scroll_camera)
-		current_map.camera_point.position = current_map.get_topic_node_center(
-				Game.current_level.id)
+		current_map.set_camera_point_to_node(Game.current_level.id)
 
 	$StateMachine.activate()
 
@@ -142,11 +139,11 @@ func shift_viewports_out() -> void:
 	_map_containers[ViewportPlace.INNER] = null
 
 
-func set_overlay(top_title: String, back_title := "") -> void:
-	%TitleButton.text = top_title
+func set_overlay(topic_data: TopicResource) -> void:
+	%TitleButton.text = topic_data.title
 
-	if back_title != "":
+	if topic_data.supertopic != null:
 		back_button.show()
-		back_button.text = back_title
+		back_button.text = topic_data.supertopic.title
 	else:
 		back_button.hide()

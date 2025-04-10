@@ -4,14 +4,10 @@
 
 extends State
 
-var _map: TopicMap:
-	get:
-		return _target.current_map
-
 
 func _enter(_last_state: String) -> void:
 	# Save current topic before changing it
-	var contained_topic := _map.topic_data
+	var contained_topic = _target.current_map.topic_data
 
 	# Add containing viewport if not already added
 	if _target.outer_viewport == null:
@@ -20,18 +16,12 @@ func _enter(_last_state: String) -> void:
 
 	# Enter new topic
 	_target.shift_viewports_in()
-	_target.inner_map.set_active_camera(_target.inner_map.survey_camera)
-	_target.current_map.camera_point.position = _target.current_map.get_topic_node_center(
-			contained_topic.id)
+	_target.inner_map.set_active_camera(TopicMap.TopicCamera.SURVEY)
+	_target.current_map.set_camera_point_to_node(contained_topic.id)
 
-	# Update overlay
-	if _map.topic_data.supertopic != null:
-		_target.set_overlay(_map.topic_data.title, _map.topic_data.supertopic.title)
-	else:
-		_target.set_overlay(_map.topic_data.title)
-
-	_map.show_node_detail(contained_topic.id, _target.inner_viewport.get_texture())
-	_target.inner_map.camera_point.position = _target.inner_map.get_origin()
+	_target.set_overlay(_target.current_map.topic_data)
+	_target.current_map.show_node_detail(contained_topic.id, _target.inner_viewport)
+	_target.inner_map.set_camera_point_to_origin()
 
 	_on_zoom_finished()
 
