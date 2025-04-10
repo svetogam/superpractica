@@ -13,7 +13,6 @@ var _map: TopicMap:
 func _enter(_last_state: String) -> void:
 	assert(_map.focused_node != null)
 
-	_map.focus_camera.position = _map.focused_node.get_rect().get_center()
 	_map.transition_to_camera(_map.focus_camera, ZOOM_DURATION, _on_zoom_finished)
 
 

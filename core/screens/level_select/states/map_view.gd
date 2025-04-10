@@ -12,10 +12,9 @@ var _dragging := false
 
 func _enter(_last_state: String) -> void:
 	_map.hide_node_detail()
-
 	_map.set_active_camera(_map.scroll_camera)
-	_map.scroll_camera.position_smoothing_enabled = true
 
+	_map.scroll_camera.position_smoothing_enabled = true
 	_map.node_pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
 
@@ -51,12 +50,9 @@ func _on_node_pressed(node: Control) -> void:
 		_target.use_new_viewport(_target.ViewportPlace.INNER)
 		_target.add_topic_map(node.topic_data, _target.ViewportPlace.INNER)
 		_target.inner_map.set_active_camera(_target.inner_map.survey_camera)
-		_target.inner_map.update_survey_camera()
 		_map.show_node_detail(node.id, _target.inner_viewport.get_texture())
 	elif node is LevelNode:
 		_map.show_node_detail(node.id)
-
-	_map.scroll_camera.position_smoothing_enabled = false
 
 	_change_state("ZoomInToNode")
 
@@ -66,5 +62,6 @@ func _on_back_button_pressed() -> void:
 
 
 func _exit(_next_state: String) -> void:
+	_map.scroll_camera.position_smoothing_enabled = false
 	_map.node_pressed.disconnect(_on_node_pressed)
 	_target.back_button.pressed.disconnect(_on_back_button_pressed)

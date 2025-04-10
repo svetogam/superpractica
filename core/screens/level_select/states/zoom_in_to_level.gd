@@ -13,7 +13,6 @@ var _map: TopicMap:
 func _enter(_last_state: String) -> void:
 	assert(_map.focused_node is LevelNode)
 
-	_map.update_thumbnail_camera()
 	_map.transition_to_camera(_map.thumbnail_camera, ZOOM_DURATION, _on_zoom_finished)
 
 

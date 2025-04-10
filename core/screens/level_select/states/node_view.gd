@@ -12,7 +12,6 @@ var _map: TopicMap:
 func _enter(_last_state: String) -> void:
 	assert(_map.focused_node != null)
 
-	_map.focus_camera.position = _map.focused_node.get_rect().get_center()
 	_map.set_active_camera(_map.focus_camera)
 
 	_map.focused_node.overview_button.pressed.connect(_on_node_pressed)

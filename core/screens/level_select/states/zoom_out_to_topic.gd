@@ -21,8 +21,8 @@ func _enter(_last_state: String) -> void:
 	# Enter new topic
 	_target.shift_viewports_in()
 	_target.inner_map.set_active_camera(_target.inner_map.survey_camera)
-	_target.inner_map.update_survey_camera()
-	_target.current_map.focus_on_node_id(contained_topic.id)
+	_target.current_map.camera_point.position = _target.current_map.get_topic_node_center(
+			contained_topic.id)
 
 	# Update overlay
 	if _map.topic_data.supertopic != null:
@@ -31,8 +31,7 @@ func _enter(_last_state: String) -> void:
 		_target.set_overlay(_map.topic_data.title)
 
 	_map.show_node_detail(contained_topic.id, _target.inner_viewport.get_texture())
-	_target.inner_map.camera_point.position = Vector2.ZERO
-	_map.scroll_camera.position_smoothing_enabled = false
+	_target.inner_map.camera_point.position = _target.inner_map.get_origin()
 
 	_on_zoom_finished()
 

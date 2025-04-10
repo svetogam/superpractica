@@ -27,9 +27,9 @@ var _node_ids_to_nodes: Dictionary
 @onready var camera_point := %CameraPoint as Node2D
 @onready var scroll_camera := %ScrollCamera as Camera2D
 @onready var focus_camera := %FocusCamera as Camera2D
-@onready var transition_camera := %TransitionCamera as Camera2D
 @onready var thumbnail_camera := %ThumbnailCamera as Camera2D
 @onready var survey_camera := %SurveyCamera as Camera2D
+@onready var _transition_camera := %TransitionCamera as Camera2D
 
 
 func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
@@ -70,6 +70,9 @@ func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
 			nodes.append(_node_ids_to_nodes[node_id])
 		add_child(_build_box(nodes))
 
+	# Update cameras
+	_update_survey_camera()
+
 
 func show_node_detail(node_id: String, survey_texture: ViewportTexture = null) -> void:
 	focused_node = _node_ids_to_nodes[node_id]
@@ -78,6 +81,10 @@ func show_node_detail(node_id: String, survey_texture: ViewportTexture = null) -
 	if focused_node is SubtopicNode:
 		assert(survey_texture != null)
 		focused_node.thumbnail.texture = survey_texture
+
+	# Update cameras
+	_update_focus_camera()
+	_update_thumbnail_camera.call_deferred.call_deferred()
 
 
 func hide_node_detail() -> void:
@@ -90,9 +97,9 @@ func hide_node_detail() -> void:
 func set_active_camera(next_camera: Camera2D) -> void:
 	scroll_camera.enabled = false
 	focus_camera.enabled = false
-	transition_camera.enabled = false
 	thumbnail_camera.enabled = false
 	survey_camera.enabled = false
+	_transition_camera.enabled = false
 
 	next_camera.enabled = true
 
@@ -100,19 +107,19 @@ func set_active_camera(next_camera: Camera2D) -> void:
 func transition_to_camera(next_camera: Camera2D, duration: float, callback := Callable()
 ) -> void:
 	var previous_camera = get_viewport().get_camera_2d()
-	set_active_camera(transition_camera)
+	set_active_camera(_transition_camera)
 
 	# Prepare transition camera
 	if previous_camera != null:
-		transition_camera.global_position = previous_camera.global_position
-		transition_camera.offset = previous_camera.offset
-		transition_camera.zoom = previous_camera.zoom
+		_transition_camera.global_position = previous_camera.global_position
+		_transition_camera.offset = previous_camera.offset
+		_transition_camera.zoom = previous_camera.zoom
 
 	var tween = (create_tween()
 		.set_trans(Tween.TRANS_QUART)
 		.set_ease(Tween.EASE_OUT)
 		.tween_property(
-			transition_camera,
+			_transition_camera,
 			"global_position",
 			next_camera.global_position,
 			duration
@@ -122,7 +129,7 @@ func transition_to_camera(next_camera: Camera2D, duration: float, callback := Ca
 		.set_trans(Tween.TRANS_QUART)
 		.set_ease(Tween.EASE_OUT)
 		.tween_property(
-			transition_camera,
+			_transition_camera,
 			"offset",
 			next_camera.offset,
 			duration
@@ -132,7 +139,7 @@ func transition_to_camera(next_camera: Camera2D, duration: float, callback := Ca
 		.set_trans(Tween.TRANS_QUAD)
 		.set_ease(Tween.EASE_IN_OUT)
 		.tween_property(
-			transition_camera,
+			_transition_camera,
 			"zoom",
 			next_camera.zoom,
 			duration
@@ -143,30 +150,12 @@ func transition_to_camera(next_camera: Camera2D, duration: float, callback := Ca
 		tween.finished.connect(callback)
 
 
-func update_survey_camera() -> void:
-	var viewport_size = get_viewport().get_visible_rect().size
-	var camera_survey_rect := get_map_rect().grow_individual(
-			CAMERA_SURVEY_MARGIN.x, CAMERA_SURVEY_MARGIN.y,
-			CAMERA_SURVEY_MARGIN.x, CAMERA_SURVEY_MARGIN.y)
-	var stretched_zoom = viewport_size / camera_survey_rect.size
-	var zoom_value = min(stretched_zoom.x, stretched_zoom.y)
-	survey_camera.zoom = Vector2(zoom_value, zoom_value)
-	survey_camera.position = camera_survey_rect.get_center()
+func get_origin() -> Vector2:
+	return Vector2.ZERO
 
 
-func update_thumbnail_camera() -> void:
-	assert(focused_node is LevelNode or focused_node is SubtopicNode)
-
-	var level_texture_rect = focused_node.get_thumbnail_rect()
-	thumbnail_camera.global_position = level_texture_rect.get_center()
-	thumbnail_camera.zoom = Vector2(
-		get_viewport().get_visible_rect().size.x / level_texture_rect.size.x,
-		get_viewport().get_visible_rect().size.y / level_texture_rect.size.y
-	)
-
-
-func focus_on_node_id(node_id: String) -> void:
-	camera_point.position = get_topic_node(node_id).get_rect().get_center()
+func get_topic_node_center(node_id: String) -> Vector2:
+	return get_topic_node(node_id).get_rect().get_center()
 
 
 func get_topic_node(node_id: String) -> TopicNode:
@@ -183,6 +172,34 @@ func get_camera_limit_rect() -> Rect2:
 	var limit_margin = viewport_size * CAMERA_OVERSHOOT_MARGIN_RATIO
 	return map_rect.grow_individual(
 			limit_margin.x, limit_margin.y, limit_margin.x, limit_margin.y)
+
+
+func _update_survey_camera() -> void:
+	var viewport_size = get_viewport().get_visible_rect().size
+	var camera_survey_rect := get_map_rect().grow_individual(
+			CAMERA_SURVEY_MARGIN.x, CAMERA_SURVEY_MARGIN.y,
+			CAMERA_SURVEY_MARGIN.x, CAMERA_SURVEY_MARGIN.y)
+	var stretched_zoom = viewport_size / camera_survey_rect.size
+	var zoom_value = min(stretched_zoom.x, stretched_zoom.y)
+	survey_camera.zoom = Vector2(zoom_value, zoom_value)
+	survey_camera.position = camera_survey_rect.get_center()
+
+
+func _update_focus_camera() -> void:
+	assert(focused_node is LevelNode or focused_node is SubtopicNode)
+
+	focus_camera.position = focused_node.get_rect().get_center()
+
+
+func _update_thumbnail_camera() -> void:
+	assert(focused_node is LevelNode or focused_node is SubtopicNode)
+
+	var level_texture_rect = focused_node.get_thumbnail_rect()
+	thumbnail_camera.global_position = level_texture_rect.get_center()
+	thumbnail_camera.zoom = Vector2(
+		get_viewport().get_visible_rect().size.x / level_texture_rect.size.x,
+		get_viewport().get_visible_rect().size.y / level_texture_rect.size.y
+	)
 
 
 #====================================================================

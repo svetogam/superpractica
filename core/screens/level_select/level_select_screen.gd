@@ -70,13 +70,12 @@ func _ready() -> void:
 	if Game.current_level == null:
 		add_topic_map(Game.root_topic, ViewportPlace.CURRENT)
 		current_map.set_active_camera(current_map.scroll_camera)
-		current_map.scroll_camera.reset_smoothing()
-		current_map.camera_point.position = Vector2.ZERO
+		current_map.camera_point.position = current_map.get_origin()
 	else:
 		add_topic_map(Game.current_level.topic, ViewportPlace.CURRENT)
 		current_map.set_active_camera(current_map.scroll_camera)
-		current_map.scroll_camera.reset_smoothing()
-		current_map.focus_on_node_id(Game.current_level.id)
+		current_map.camera_point.position = current_map.get_topic_node_center(
+				Game.current_level.id)
 
 	$StateMachine.activate()
 
