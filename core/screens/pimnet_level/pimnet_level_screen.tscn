@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=43 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cdii7caqjh5yq" path="res://core/screens/pimnet_level/states/completed.gd" id="5_gboy6"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="7_7dceb"]
 [ext_resource type="Script" uid="uid://djbekahesmdhu" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
+[ext_resource type="Script" uid="uid://dy8a4msxtw51j" path="res://general/draggable_point.gd" id="7_yv63t"]
 [ext_resource type="Script" uid="uid://dw2plvxxj4uqg" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Texture2D" uid="uid://cxb2b8icrkk67" path="res://core/screens/pimnet_level/graphics/cubes_background.png" id="8_apsv0"]
 [ext_resource type="Script" uid="uid://bjqliagq15odq" path="res://core/systems/info_signals/info_signaler.gd" id="8_l0rup"]
@@ -78,11 +79,20 @@ script = ExtResource("2_6muex")
 [node name="CameraPoint" type="Node2D" parent="Pimnet"]
 unique_name_in_owner = true
 position = Vector2(0, 300)
+script = ExtResource("7_yv63t")
+draggable = false
+keep_in_bounds = true
+drag_speed = 0.5
 
 [node name="Camera" type="Camera2D" parent="Pimnet/CameraPoint"]
 unique_name_in_owner = true
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
+drag_horizontal_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 
 [node name="PimStrip" type="HBoxContainer" parent="Pimnet"]
 unique_name_in_owner = true

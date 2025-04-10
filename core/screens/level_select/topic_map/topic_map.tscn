@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfbau85l7veik"]
+[gd_scene load_steps=3 format=3 uid="uid://dfbau85l7veik"]
 
 [ext_resource type="Script" uid="uid://dvsgggeqojnfd" path="res://core/screens/level_select/topic_map/topic_map.gd" id="1_i8m7m"]
+[ext_resource type="Script" uid="uid://dy8a4msxtw51j" path="res://general/draggable_point.gd" id="2_cv6c8"]
 
 [node name="TopicMap" type="Node"]
 script = ExtResource("1_i8m7m")
@@ -19,6 +20,11 @@ color = Color(0.5, 0.5, 0.5, 1)
 
 [node name="CameraPoint" type="Node2D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("2_cv6c8")
+draggable = false
+blockable = false
+keep_in_bounds = true
+drag_speed = 10.0
 
 [node name="ScrollCamera" type="Camera2D" parent="CameraPoint"]
 unique_name_in_owner = true

@@ -30,7 +30,6 @@ const LevelNodeScene := preload("topic_nodes/level_node.tscn")
 const SubtopicNodeScene := preload("topic_nodes/subtopic_node.tscn")
 
 var topic_data: TopicResource
-var zoom_scale: float
 var focused_node: Control
 var _node_ids_to_nodes: Dictionary
 @onready var camera_point := %CameraPoint as Node2D
@@ -50,10 +49,9 @@ var _cameras: Dictionary:
 		}
 
 
-func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
+func build(p_topic_data: TopicResource) -> void:
 	assert(topic_data == null)
 	topic_data = p_topic_data
-	zoom_scale = p_zoom_scale
 
 	# Build layout
 	for level_data in topic_data.get_levels():
@@ -67,7 +65,7 @@ func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
 		subtopic_node.name = subtopic_node.id
 		_node_ids_to_nodes[subtopic_node.id] = subtopic_node
 	for node in _node_ids_to_nodes.values():
-		node.position = topic_data.get_node_position(node.id) * zoom_scale
+		node.position = topic_data.get_node_position(node.id) * ZOOM_SCALE
 		add_child(node)
 
 	# Connect node signals
@@ -88,7 +86,8 @@ func build(p_topic_data: TopicResource, p_zoom_scale: float) -> void:
 			nodes.append(_node_ids_to_nodes[node_id])
 		add_child(_build_box(nodes))
 
-	# Update cameras
+	# Set up cameras
+	camera_point.bounds = get_camera_limit_rect()
 	_update_survey_camera()
 
 
@@ -282,13 +281,13 @@ func _build_line(source_node: Control, dest_node: Control,
 
 	# Build line
 	var line := Line2D.new()
-	line.width = CONNECTOR_LINE_WIDTH * zoom_scale
+	line.width = CONNECTOR_LINE_WIDTH * ZOOM_SCALE
 	line.default_color = CONNECTOR_LINE_COLOR
 	line.add_point(start_point)
 	for point in turn_points:
 		line.add_point(point)
 	var arrowhead_direction = Utils.side_to_vector(end_side) * -1
-	var short_end_point = end_point - arrowhead_direction * ARROWHEAD_LENGTH * zoom_scale
+	var short_end_point = end_point - arrowhead_direction * ARROWHEAD_LENGTH * ZOOM_SCALE
 	line.add_point(short_end_point)
 	line.add_child(_build_arrowhead(end_point, arrowhead_direction))
 
@@ -319,8 +318,8 @@ func _build_arrowhead(tip_point: Vector2, direction: Vector2) -> Polygon2D:
 	var arrowhead := Polygon2D.new()
 	arrowhead.polygon = [
 		Vector2.ZERO,
-		Vector2(-ARROWHEAD_LENGTH * zoom_scale, ARROWHEAD_WIDTH * zoom_scale / 2),
-		Vector2(-ARROWHEAD_LENGTH * zoom_scale, -ARROWHEAD_WIDTH * zoom_scale / 2)
+		Vector2(-ARROWHEAD_LENGTH * ZOOM_SCALE, ARROWHEAD_WIDTH * ZOOM_SCALE / 2),
+		Vector2(-ARROWHEAD_LENGTH * ZOOM_SCALE, -ARROWHEAD_WIDTH * ZOOM_SCALE / 2)
 	]
 	arrowhead.color = CONNECTOR_LINE_COLOR
 	arrowhead.position = tip_point
@@ -348,18 +347,18 @@ func _build_box(nodes: Array) -> Line2D:
 
 	var box = Line2D.new()
 	box.closed = true
-	box.width = BOX_LINE_WIDTH * zoom_scale
+	box.width = BOX_LINE_WIDTH * ZOOM_SCALE
 	box.joint_mode = Line2D.LINE_JOINT_ROUND
 	box.default_color = BOX_COLOR
 	box.z_index = -10
 
 	var rect := Utils.get_combined_control_rect(nodes)
-	box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * zoom_scale,
-			rect.position.y - BOX_MARGIN.y * zoom_scale))
-	box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * zoom_scale,
-			rect.position.y - BOX_MARGIN.y * zoom_scale))
-	box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * zoom_scale,
-			rect.end.y + BOX_MARGIN.y * zoom_scale))
-	box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * zoom_scale,
-			rect.end.y + BOX_MARGIN.y * zoom_scale))
+	box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
+			rect.position.y - BOX_MARGIN.y * ZOOM_SCALE))
+	box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
+			rect.position.y - BOX_MARGIN.y * ZOOM_SCALE))
+	box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
+			rect.end.y + BOX_MARGIN.y * ZOOM_SCALE))
+	box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
+			rect.end.y + BOX_MARGIN.y * ZOOM_SCALE))
 	return box

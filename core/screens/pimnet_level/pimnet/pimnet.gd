@@ -26,7 +26,6 @@ var fields: Array:
 				list.append(pim.field)
 		return list
 var _pims_left_to_right: Array = []
-var _dragging := false
 var _last_destination: Field
 @onready var overlay := %Overlay as PimnetOverlay
 @onready var effect_layer := %RootEffectLayer as CanvasLayer
@@ -90,30 +89,17 @@ func _ready() -> void:
 				)
 
 	# Set up camera and scrolling
-	_clamp_camera_in_bounds.call_deferred(false)
+	if _pims_left_to_right.size() > 1:
+		%CameraPoint.draggable = true
+		%CameraPoint.bounds = _get_camera_limit_rect()
+		%CameraPoint.clamp_in_bounds.call_deferred()
+	elif _pims_left_to_right.size() == 1:
+		_center_camera_on_pim.call_deferred(_pims_left_to_right[0])
+	%Camera.reset_smoothing.call_deferred()
 
+	# Focus on first pim
 	if _pims_left_to_right.size() > 0:
 		_pims_left_to_right[0].focus_entered.emit()
-
-
-func _process(_delta: float) -> void:
-	_clamp_camera_in_bounds()
-
-
-func _input(event: InputEvent) -> void:
-	# Stop dragging camera
-	if event is InputEventMouseButton and event.is_action_released("primary_mouse"):
-		_dragging = false
-
-	# Drag camera
-	if event is InputEventMouseMotion and _dragging:
-		%CameraPoint.position.x -= event.relative.x
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	# Start dragging camera
-	if event is InputEventMouseButton and event.is_action_pressed("primary_mouse"):
-		_dragging = true
 
 
 func _on_pim_tool_selected(toolset_name: String, tool_mode: int) -> void:
@@ -150,19 +136,6 @@ func _center_camera_on_pim_strip() -> void:
 
 func _center_camera_on_pim(pim: Pim) -> void:
 	%CameraPoint.position.x = pim.get_rect().get_center().x
-
-
-func _clamp_camera_in_bounds(smoothly := true) -> void:
-	var camera_limit_rect: Rect2
-	if _pims_left_to_right.size() > 1:
-		camera_limit_rect = _get_camera_limit_rect()
-		%CameraPoint.position.x = clamp(%CameraPoint.position.x,
-				camera_limit_rect.position.x, camera_limit_rect.end.x)
-	elif _pims_left_to_right.size() == 1:
-		_center_camera_on_pim(_pims_left_to_right[0])
-
-	if not smoothly:
-		%Camera.reset_smoothing()
 
 
 func _get_camera_limit_rect() -> Rect2:

@@ -18,7 +18,7 @@ func add_topic_map(p_topic_data: TopicResource) -> TopicMap:
 
 	topic_map = TopicMapScene.instantiate()
 	viewport.add_child(topic_map)
-	topic_map.build(p_topic_data, TopicMap.ZOOM_SCALE)
+	topic_map.build(p_topic_data)
 	return topic_map
 
 
