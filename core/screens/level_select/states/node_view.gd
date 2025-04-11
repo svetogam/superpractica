@@ -16,20 +16,20 @@ func _enter(_last_state: String) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_action_pressed("primary_mouse"):
-		_change_state("ZoomOutToMap")
+		_change_state("OutFromNodeToMap")
 
 
 func _on_node_pressed() -> void:
 	if _target.current_map.focused_node is LevelNode:
-		_change_state("ZoomInToLevel")
+		_change_state("InFromNodeToLevel")
 	elif _target.current_map.focused_node is SubtopicNode:
-		_change_state("ZoomInToMap")
+		_change_state("InFromNodeToMap")
 	else:
 		assert(false)
 
 
 func _on_back_button_pressed() -> void:
-	_change_state("ZoomOutToMap")
+	_change_state("OutFromNodeToMap")
 
 
 func _exit(_next_state: String) -> void:

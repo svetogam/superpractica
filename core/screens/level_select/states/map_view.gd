@@ -26,11 +26,11 @@ func _on_node_pressed(node: Control) -> void:
 	elif node is LevelNode:
 		_target.current_map.show_node_detail(node.id, _target.level_viewport)
 
-	_change_state("ZoomInToNode")
+	_change_state("InFromMapToNode")
 
 
 func _on_back_button_pressed() -> void:
-	_change_state("ZoomOutToNode")
+	_change_state("OutFromMapToNode")
 
 
 func _exit(_next_state: String) -> void:

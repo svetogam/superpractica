@@ -4,12 +4,12 @@
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/level_select_theme.tres" id="1_y5cmv"]
 [ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_e1lo5"]
 [ext_resource type="Script" uid="uid://d3hqyvidvanrc" path="res://core/screens/level_select/states/map_view.gd" id="3_s8wdx"]
-[ext_resource type="Script" uid="uid://dxvuy3hmb8dyy" path="res://core/screens/level_select/states/zoom_in_to_node.gd" id="4_771x4"]
+[ext_resource type="Script" uid="uid://dxvuy3hmb8dyy" path="res://core/screens/level_select/states/in_from_map_to_node.gd" id="4_771x4"]
 [ext_resource type="Script" uid="uid://cqq63fvs64ev" path="res://core/screens/level_select/states/node_view.gd" id="5_3qwui"]
-[ext_resource type="Script" uid="uid://b2i26xn1mgt3a" path="res://core/screens/level_select/states/zoom_out_to_map.gd" id="6_bbilf"]
-[ext_resource type="Script" uid="uid://dd6wfcod5kjw1" path="res://core/screens/level_select/states/zoom_in_to_map.gd" id="8_mddll"]
-[ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/zoom_in_to_level.gd" id="9_7trmu"]
-[ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/zoom_out_to_node.gd" id="9_73f7m"]
+[ext_resource type="Script" uid="uid://b2i26xn1mgt3a" path="res://core/screens/level_select/states/out_from_node_to_map.gd" id="6_bbilf"]
+[ext_resource type="Script" uid="uid://dd6wfcod5kjw1" path="res://core/screens/level_select/states/in_from_node_to_map.gd" id="8_mddll"]
+[ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/in_from_node_to_level.gd" id="9_7trmu"]
+[ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/out_from_map_to_node.gd" id="9_73f7m"]
 [ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://general/icons/mono_icons/arrow-left.svg" id="10_r18v7"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="11_fia35"]
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
@@ -28,19 +28,19 @@ script = ExtResource("3_s8wdx")
 [node name="NodeView" type="Node" parent="StateMachine"]
 script = ExtResource("5_3qwui")
 
-[node name="ZoomInToNode" type="Node" parent="StateMachine"]
+[node name="InFromMapToNode" type="Node" parent="StateMachine"]
 script = ExtResource("4_771x4")
 
-[node name="ZoomOutToMap" type="Node" parent="StateMachine"]
+[node name="OutFromNodeToMap" type="Node" parent="StateMachine"]
 script = ExtResource("6_bbilf")
 
-[node name="ZoomInToMap" type="Node" parent="StateMachine"]
+[node name="InFromNodeToMap" type="Node" parent="StateMachine"]
 script = ExtResource("8_mddll")
 
-[node name="ZoomOutToNode" type="Node" parent="StateMachine"]
+[node name="OutFromMapToNode" type="Node" parent="StateMachine"]
 script = ExtResource("9_73f7m")
 
-[node name="ZoomInToLevel" type="Node" parent="StateMachine"]
+[node name="InFromNodeToLevel" type="Node" parent="StateMachine"]
 script = ExtResource("9_7trmu")
 
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
