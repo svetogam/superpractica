@@ -58,14 +58,3 @@ border_color = Color(0, 0, 0, 1)
 border_width = 4.0
 script = ExtResource("1_c4l2i")
 id = "field_pims"
-
-[node name="TestTopic" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -42.0
-offset_top = 411.0
-offset_right = 58.0
-offset_bottom = 461.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
-script = ExtResource("1_c4l2i")
-id = "test_topic_1"

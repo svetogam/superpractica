@@ -81,9 +81,7 @@ static var topic = TopicResource.new(
 		),
 	],
 	# Subtopics
-	[
-		preload("uid://20af6ny36mrn").topic,
-	],
+	[],
 	# Layout
 	preload("topic_layout.tscn"),
 	# Connections
