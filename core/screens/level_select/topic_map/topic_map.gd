@@ -50,6 +50,7 @@ var _cameras: Dictionary:
 
 
 func build(p_topic_data: TopicResource) -> void:
+	assert(p_topic_data != null)
 	assert(topic_data == null)
 	topic_data = p_topic_data
 

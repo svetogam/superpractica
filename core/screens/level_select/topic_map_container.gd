@@ -14,6 +14,7 @@ var topic_data: TopicResource:
 
 
 func add_topic_map(p_topic_data: TopicResource) -> TopicMap:
+	assert(p_topic_data != null)
 	assert(topic_map == null)
 
 	topic_map = TopicMapScene.instantiate()

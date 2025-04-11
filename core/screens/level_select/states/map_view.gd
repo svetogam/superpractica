@@ -8,13 +8,20 @@ extends State
 func _enter(_last_state: String) -> void:
 	_target.current_map.hide_node_detail()
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.SCROLL)
+	_target.set_overlay(_target.current_map.topic_data)
 
 	_target.current_map.camera_point.draggable = true
 	_target.current_map.scroll_camera.position_smoothing_enabled = true
 	_target.current_map.node_pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
 
-	_target.set_overlay(_target.current_map.topic_data)
+	# Prepare outer topic-map if necessary
+	var topic_data = _target.current_map.topic_data
+	if _target.outer_viewport == null and topic_data.supertopic != null:
+		_target.use_new_viewport(_target.ViewportPlace.OUTER)
+		_target.add_topic_map(topic_data.supertopic, _target.ViewportPlace.OUTER)
+		_target.outer_map.set_active_camera(TopicMap.TopicCamera.THUMBNAIL)
+		_target.outer_map.show_node_detail(topic_data.id, _target.current_viewport)
 
 
 func _on_node_pressed(node: Control) -> void:

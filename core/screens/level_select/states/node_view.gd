@@ -9,6 +9,7 @@ func _enter(_last_state: String) -> void:
 	assert(_target.current_map.focused_node != null)
 
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.FOCUS)
+	_target.set_overlay(_target.current_map.topic_data)
 
 	_target.current_map.focused_node.overview_button.pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)

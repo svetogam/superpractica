@@ -4,26 +4,17 @@
 
 extends State
 
+const ZOOM_DURATION := 0.5
+
 
 func _enter(_last_state: String) -> void:
-	# Save current topic before changing it
-	var contained_topic = _target.current_map.topic_data
-
-	# Add containing viewport if not already added
-	if _target.outer_viewport == null:
-		_target.use_new_viewport(_target.ViewportPlace.OUTER)
-		_target.add_topic_map(contained_topic.supertopic, _target.ViewportPlace.OUTER)
-
-	# Enter new topic
+	_target.current_map.transition_to_camera(
+		TopicMap.TopicCamera.SURVEY,
+		ZOOM_DURATION,
+		_on_zoom_finished
+	)
+	_target.outer_map.transition_to_camera(TopicMap.TopicCamera.FOCUS, ZOOM_DURATION)
 	_target.shift_viewports_in()
-	_target.inner_map.set_active_camera(TopicMap.TopicCamera.SURVEY)
-	_target.current_map.set_camera_point_to_node(contained_topic.id)
-
-	_target.set_overlay(_target.current_map.topic_data)
-	_target.current_map.show_node_detail(contained_topic.id, _target.inner_viewport)
-	_target.inner_map.set_camera_point_to_origin()
-
-	_on_zoom_finished()
 
 
 func _on_zoom_finished() -> void:
