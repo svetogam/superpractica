@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=15 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/level_select_theme.tres" id="1_y5cmv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dd6wfcod5kjw1" path="res://core/screens/level_select/states/in_from_node_to_map.gd" id="8_mddll"]
 [ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/in_from_node_to_level.gd" id="9_7trmu"]
 [ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/out_from_map_to_node.gd" id="9_73f7m"]
+[ext_resource type="Script" uid="uid://bfqdsy662g5vu" path="res://core/screens/level_select/states/out_from_level_to_map.gd" id="10_nortw"]
 [ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://general/icons/mono_icons/arrow-left.svg" id="10_r18v7"]
 [ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="11_fia35"]
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
@@ -17,9 +18,8 @@
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_e1lo5")
-_initial_state = NodePath("MapView")
 _auto_activate = false
 
 [node name="MapView" type="Node" parent="StateMachine"]
@@ -42,6 +42,9 @@ script = ExtResource("9_73f7m")
 
 [node name="InFromNodeToLevel" type="Node" parent="StateMachine"]
 script = ExtResource("9_7trmu")
+
+[node name="OutFromLevelToMap" type="Node" parent="StateMachine"]
+script = ExtResource("10_nortw")
 
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
 

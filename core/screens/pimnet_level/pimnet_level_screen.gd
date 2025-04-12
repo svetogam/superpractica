@@ -7,8 +7,9 @@ extends Node
 
 signal updated
 signal actions_completed
-signal exited_to_level_select
-signal exited_to_next_level
+signal level_select_decided
+signal level_select_entered
+signal next_level_entered
 
 const REVERTER_MAX_SIZE: int = 1000
 
@@ -28,8 +29,9 @@ func _ready() -> void:
 	_setup_program()
 	_setup_reversion()
 
-	pimnet.overlay.exit_pressed.connect(exited_to_level_select.emit)
-	pimnet.overlay.next_level_requested.connect(exited_to_next_level.emit)
+	pimnet.overlay.exit_pressed.connect(level_select_entered.emit)
+	pimnet.overlay.next_level_requested.connect(next_level_entered.emit)
+	pimnet.overlay.prepare_level_select_requested.connect(level_select_decided.emit)
 	verifier.verifications_started.connect(updated.emit)
 	verifier.verifications_completed.connect(updated.emit)
 	actions_completed.connect(updated.emit)

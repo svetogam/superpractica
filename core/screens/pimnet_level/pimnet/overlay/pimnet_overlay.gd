@@ -6,7 +6,8 @@ class_name PimnetOverlay
 extends Control
 
 signal exit_pressed
-signal next_level_requested()
+signal next_level_requested
+signal prepare_level_select_requested
 
 enum PimnetPanels {
 	NONE = 0,

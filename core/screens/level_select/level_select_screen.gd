@@ -6,6 +6,7 @@ extends Node
 
 signal exit_pressed
 signal level_decided(level_data)
+signal level_undecided
 signal level_entered(level_data)
 signal zoomed_in
 signal zoomed_out
@@ -77,11 +78,15 @@ func _ready() -> void:
 	if Game.current_level == null:
 		add_topic_map(Game.root_topic, ViewportPlace.CURRENT)
 		current_map.set_camera_point_to_origin()
+		$StateMachine.activate("MapView")
 	else:
 		add_topic_map(Game.current_level.topic, ViewportPlace.CURRENT)
 		current_map.set_camera_point_to_node(Game.current_level.id)
+		current_map.show_node_detail(Game.current_level.id, level_viewport)
 
-	$StateMachine.activate()
+
+func start_from_level() -> void:
+	$StateMachine.activate("OutFromLevelToMap")
 
 
 func _setup_level_node(level_node: LevelNode) -> void:
