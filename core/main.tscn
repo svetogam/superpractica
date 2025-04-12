@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkmqj7ih4aww2"]
+[gd_scene load_steps=9 format=3 uid="uid://dkmqj7ih4aww2"]
 
 [ext_resource type="Script" uid="uid://bci16101psp3l" path="res://core/main.gd" id="1_pwbki"]
 [ext_resource type="Script" uid="uid://dnqi7y5cpr6bc" path="res://addons/papershot/papershot.gd" id="2_bkdwp"]
+[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_csopv"]
+[ext_resource type="Script" uid="uid://yldronjahtqg" path="res://core/main_states/main_menu.gd" id="3_xa854"]
+[ext_resource type="Script" uid="uid://bj1pavdd5a1kl" path="res://core/main_states/level_select.gd" id="4_xa854"]
+[ext_resource type="Script" uid="uid://d1vmidqmu35rr" path="res://core/main_states/pimnet_level.gd" id="5_kagtj"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1aajw"]
 device = -1
@@ -14,6 +18,25 @@ events = [SubResource("InputEventKey_1aajw")]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_pwbki")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_target", "_initial_state")]
+script = ExtResource("2_csopv")
+_target = NodePath("..")
+_initial_state = NodePath("MainMenu")
+_auto_activate = false
+metadata/_custom_type_script = "uid://0kj2kxfkc6nd"
+
+[node name="MainMenu" type="Node" parent="StateMachine"]
+script = ExtResource("3_xa854")
+metadata/_custom_type_script = "uid://dgebexsvcu1tj"
+
+[node name="LevelSelect" type="Node" parent="StateMachine"]
+script = ExtResource("4_xa854")
+metadata/_custom_type_script = "uid://dgebexsvcu1tj"
+
+[node name="PimnetLevel" type="Node" parent="StateMachine"]
+script = ExtResource("5_kagtj")
+metadata/_custom_type_script = "uid://dgebexsvcu1tj"
 
 [node name="Papershot" type="Node" parent="."]
 script = ExtResource("2_bkdwp")
