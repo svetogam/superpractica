@@ -44,7 +44,7 @@ func prepare_level_select() -> void:
 
 	if _prepared_level_select != null:
 		# Abort if already prepared
-		if _prepared_level_select.current_map.topic_data.id == Game.current_level:
+		if _prepared_level_select.current_map.topic_data.id == Game.current_level.id:
 			return
 
 		# Prepare again if need to prepare something different
