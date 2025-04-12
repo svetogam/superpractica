@@ -4,16 +4,13 @@
 
 extends State
 
-const ZOOM_DURATION := 0.5
-
 
 func _enter(_last_state: String) -> void:
 	_target.current_map.transition_to_camera(
 		TopicMap.TopicCamera.SURVEY,
-		ZOOM_DURATION,
 		_on_zoom_finished
 	)
-	_target.outer_map.transition_to_camera(TopicMap.TopicCamera.FOCUS, ZOOM_DURATION)
+	_target.outer_map.transition_to_camera(TopicMap.TopicCamera.FOCUS)
 	_target.shift_viewports_in()
 
 

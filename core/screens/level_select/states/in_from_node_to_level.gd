@@ -4,15 +4,12 @@
 
 extends State
 
-const ZOOM_DURATION := 0.5
-
 
 func _enter(_last_state: String) -> void:
 	assert(_target.current_map.focused_node is LevelNode)
 
 	_target.current_map.transition_to_camera(
 		TopicMap.TopicCamera.THUMBNAIL,
-		ZOOM_DURATION,
 		_on_zoom_finished
 	)
 

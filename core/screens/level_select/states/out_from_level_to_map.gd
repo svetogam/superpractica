@@ -4,8 +4,6 @@
 
 extends State
 
-const ZOOM_DURATION := 0.5
-
 
 func _enter(_last_state: String) -> void:
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.THUMBNAIL)
@@ -13,7 +11,6 @@ func _enter(_last_state: String) -> void:
 
 	_target.current_map.transition_to_camera(
 		TopicMap.TopicCamera.SCROLL,
-		ZOOM_DURATION,
 		_on_zoom_finished
 	)
 

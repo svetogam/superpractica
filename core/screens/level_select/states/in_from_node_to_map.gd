@@ -4,8 +4,6 @@
 
 extends State
 
-const ZOOM_DURATION := 0.5
-
 
 func _enter(_last_state: String) -> void:
 	if _target.outer_viewport != null:
@@ -14,10 +12,9 @@ func _enter(_last_state: String) -> void:
 	_target.inner_map.set_camera_point_to_origin()
 	_target.current_map.transition_to_camera(
 		TopicMap.TopicCamera.THUMBNAIL,
-		ZOOM_DURATION,
 		_on_zoom_finished
 	)
-	_target.inner_map.transition_to_camera(TopicMap.TopicCamera.SCROLL, ZOOM_DURATION)
+	_target.inner_map.transition_to_camera(TopicMap.TopicCamera.SCROLL)
 
 
 func _on_zoom_finished() -> void:
