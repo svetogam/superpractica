@@ -15,10 +15,10 @@ func _enter(_last_state: String) -> void:
 
 
 func _on_zoom_finished() -> void:
-	assert(_target.current_map.focused_node.level_data != null)
+	assert(_target.current_map.focused_level != null)
 
 	_target.zoomed_in.emit()
-	_target.level_entered.emit(_target.current_map.focused_node.level_data)
+	_target.level_entered.emit(_target.current_map.focused_level)
 
 
 func _exit(_next_state: String) -> void:

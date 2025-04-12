@@ -5,13 +5,10 @@
 extends State
 
 
-func _enter(last_state: String) -> void:
-	match last_state:
-		"LevelSelect":
-			_target.level_select_screen.queue_free()
-
-	_target.main_menu_screen = _target.MainMenuScene.instantiate()
-	%MainMenuViewport.add_child(_target.main_menu_screen)
+func _enter(_last_state: String) -> void:
+	_target.unprepare_level_select()
+	_target.unprepare_pimnet_level()
+	_target.prepare_main_menu()
 
 	%MainMenuContainer.show()
 	%PimnetLevelContainer.hide()
@@ -23,4 +20,4 @@ func _enter(last_state: String) -> void:
 
 
 func _exit(_next_state: String) -> void:
-	pass
+	_target.unprepare_main_menu()

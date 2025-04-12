@@ -33,6 +33,11 @@ const SubtopicNodeScene := preload("topic_nodes/subtopic_node.tscn")
 
 var topic_data: TopicResource
 var focused_node: Control
+var focused_level: LevelResource:
+	get:
+		if focused_node != null and focused_node is LevelNode:
+			return focused_node.level_data
+		return null
 var _node_ids_to_nodes: Dictionary
 var _current_camera_type: TopicCamera
 @onready var camera_point := %CameraPoint as Node2D
