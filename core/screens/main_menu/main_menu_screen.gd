@@ -4,9 +4,6 @@
 
 extends Panel
 
-signal topics_pressed
-signal exit_pressed
-
 
 func _ready() -> void:
 	if OS.get_name() == "Web":
@@ -14,7 +11,7 @@ func _ready() -> void:
 
 
 func _on_topics_button_pressed() -> void:
-	topics_pressed.emit()
+	Game.request_enter_level_select.emit()
 
 
 func _on_about_button_pressed() -> void:
@@ -22,4 +19,4 @@ func _on_about_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	exit_pressed.emit()
+	Game.request_exit_game.emit()

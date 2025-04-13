@@ -16,7 +16,7 @@ func _enter(_last_state: String) -> void:
 
 
 func _on_zoom_finished() -> void:
-	_target.level_undecided.emit()
+	Game.request_unload_level.emit()
 
 	_target.zoomed_out.emit()
 	_change_state("MapView")

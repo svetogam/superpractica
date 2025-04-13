@@ -4,10 +4,6 @@
 
 extends Node
 
-signal exit_pressed
-signal level_decided(level_data)
-signal level_undecided
-signal level_entered(level_data)
 signal zoomed_in
 signal zoomed_out
 
@@ -62,7 +58,6 @@ var outer_map: TopicMap:
 
 
 func _enter_tree() -> void:
-	CSConnector.with(self).connect_setup("level_nodes", _setup_level_node)
 	CSLocator.with(self).connect_service_found(
 			Game.SERVICE_PIMNET_LEVEL_VIEWPORT, _on_level_viewport_found)
 
@@ -89,11 +84,6 @@ func start_from_level() -> void:
 	$StateMachine.activate("OutFromLevelToMap")
 
 
-func _setup_level_node(level_node: LevelNode) -> void:
-	if not level_node.level_hinted.is_connected(level_decided.emit):
-		level_node.level_hinted.connect(level_decided.emit)
-
-
 func _on_menu_button_pressed() -> void:
 	%MenuPopup.show()
 
@@ -107,7 +97,7 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	exit_pressed.emit()
+	Game.request_enter_main_menu.emit()
 
 
 func use_new_viewport(viewport_place: ViewportPlace) -> SubViewport:

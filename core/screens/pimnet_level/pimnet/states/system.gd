@@ -16,7 +16,7 @@ func _enter(_last_state: String) -> void:
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%SystemPanel, "position:y", 0, SLIDE_DURATION)
 
-	_target.prepare_level_select_requested.emit()
+	Game.request_load_level_select.emit()
 
 
 func _on_modal_barrier_gui_input(event: InputEvent) -> void:

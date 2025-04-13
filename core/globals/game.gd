@@ -4,6 +4,14 @@
 
 extends Node
 
+signal request_enter_main_menu
+signal request_load_level_select
+signal request_enter_level_select
+signal request_load_level(level_data)
+signal request_unload_level(level_data)
+signal request_enter_level(level_data)
+signal request_exit_game
+
 enum SuggestiveSignals {
 	NONE,
 	AFFIRM, # Correct after action
@@ -44,7 +52,7 @@ var version_tag: String:
 
 var root_topic: TopicResource
 var progress_data := GameProgressResource.new()
-var current_level: LevelResource = null
+var current_level: LevelResource
 
 
 func set_current_level_completed() -> void:

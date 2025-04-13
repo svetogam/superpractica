@@ -22,4 +22,4 @@ func _enter(_last_state: String) -> void:
 	tween.parallel().tween_property(
 			%ModalBarrier, "color:a", BACKGROUND_TRANSPARENCY, SLIDE_DURATION)
 
-	_target.prepare_level_select_requested.emit()
+	Game.request_load_level_select.emit()

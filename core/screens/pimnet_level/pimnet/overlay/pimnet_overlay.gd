@@ -5,10 +5,6 @@
 class_name PimnetOverlay
 extends Control
 
-signal exit_pressed
-signal next_level_requested
-signal prepare_level_select_requested
-
 enum PimnetPanels {
 	NONE = 0,
 	PIM_TOOLS,
@@ -42,15 +38,17 @@ func _on_settings_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false
-	exit_pressed.emit()
+	Game.request_enter_level_select.emit()
 
 
 func _on_completion_select_button_pressed() -> void:
-	exit_pressed.emit()
+	Game.request_enter_level_select.emit()
 
 
 func _on_completion_next_button_pressed() -> void:
-	next_level_requested.emit()
+	var next_level = Game.get_suggested_level_after_current()
+	if next_level != null:
+		Game.request_enter_level.emit(next_level)
 
 
 func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> void:

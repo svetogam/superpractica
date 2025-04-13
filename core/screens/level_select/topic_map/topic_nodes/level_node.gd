@@ -5,13 +5,7 @@
 class_name LevelNode
 extends TopicNode
 
-signal level_hinted(level_data)
-
 var level_data: LevelResource
-
-
-func _enter_tree() -> void:
-	CSConnector.with(self).register("level_nodes")
 
 
 func _ready() -> void:
@@ -19,7 +13,7 @@ func _ready() -> void:
 
 
 func _on_button_down() -> void:
-	level_hinted.emit(level_data)
+	Game.request_load_level.emit(level_data)
 
 
 func setup(p_level_data: LevelResource) -> void:
