@@ -15,10 +15,20 @@ var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
 	set = _set_goal_type
 var goal_panel: Control:
 	get = _get_goal_panel
+var _level_data: LevelResource
 @onready var plan_panel := %PlanPanel as Control
 @onready var pim_tools := %PimToolsPanel as Control
 @onready var pim_objects := %PimObjectsPanel as Control
 @onready var verification_panel := %SolutionVerificationPanel as Control
+
+
+func _enter_tree() -> void:
+	CSLocator.with(self).connect_service_changed(
+			Game.SERVICE_LEVEL_DATA, _on_level_data_changed)
+
+
+func _on_level_data_changed(p_level_data: LevelResource) -> void:
+	_level_data = p_level_data
 
 
 func _ready() -> void:
@@ -27,8 +37,9 @@ func _ready() -> void:
 	%PimObjectsButton.toggled.connect(_on_panel_button_toggled.bind(
 			PimnetPanels.PIM_OBJECTS))
 
-	goal_type = Game.current_level.goal_type
-	%LevelTitle.text = Game.get_current_level_title()
+	assert(_level_data != null)
+	goal_type = _level_data.goal_type
+	%LevelTitle.text = _level_data.extended_title
 	%OverlayStateMachine.activate()
 
 

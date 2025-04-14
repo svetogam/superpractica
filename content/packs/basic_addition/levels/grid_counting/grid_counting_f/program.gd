@@ -13,8 +13,8 @@ var field: Field
 
 
 func _setup_vars() -> void:
-	object_sum = Game.current_level.program_vars.object_sum
-	object_count = Game.current_level.program_vars.object_count
+	object_sum = level.level_data.program_vars.object_sum
+	object_count = level.level_data.program_vars.object_count
 
 
 func _start() -> void:

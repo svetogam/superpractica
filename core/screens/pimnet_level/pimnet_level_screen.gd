@@ -12,6 +12,7 @@ const REVERTER_MAX_SIZE: int = 1000
 
 var program: LevelProgram
 var reverter := CReverter.new()
+var level_data: LevelResource
 var _action_queue := LevelActionQueue.new()
 @onready var pimnet := %Pimnet as Pimnet
 @onready var verifier := $Verifier as Node
@@ -19,6 +20,8 @@ var _action_queue := LevelActionQueue.new()
 
 func _enter_tree() -> void:
 	assert(Game.current_level != null)
+	level_data = Game.current_level
+	CSLocator.with(self).register(Game.SERVICE_LEVEL_DATA, level_data)
 
 
 func _ready() -> void:
@@ -37,14 +40,18 @@ func _ready() -> void:
 	_run_program()
 
 
+#func load_level(p_level_data: LevelResource) -> void:
+	#pass
+
+
 func _physics_process(_delta: float) -> void:
 	# Do actions queued on the same frame together
 	_do_queued_actions()
 
 
 func _setup_program() -> void:
-	if Game.current_level.program != null:
-		program = Game.current_level.program.instantiate()
+	if level_data.program != null:
+		program = level_data.program.instantiate()
 		add_child(program)
 
 

@@ -13,7 +13,7 @@ var intermediate_goal: int
 
 
 func _setup_vars() -> void:
-	count = Game.current_level.program_vars.new_count()
+	count = level.level_data.program_vars.new_count()
 	if IntegerMath.get_hundreds_digit(count) == 1:
 		intermediate_goal = 100
 	else:

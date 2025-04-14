@@ -18,14 +18,14 @@ var _layout_data: Dictionary
 
 
 func _init(
-		p_id := "",
-		p_title := "",
-		p_levels: Array[LevelResource] = [],
-		p_subtopics: Array[TopicResource] = [],
-		p_layout: PackedScene = null,
-		p_connections: Array[TopicConnectorResource] = [],
-		p_groups: Array[TopicGroupResource] = [],
-		p_suggested_order: Array[String] = []
+	p_id := "",
+	p_title := "",
+	p_levels: Array[LevelResource] = [],
+	p_subtopics: Array[TopicResource] = [],
+	p_layout: PackedScene = null,
+	p_connections: Array[TopicConnectorResource] = [],
+	p_groups: Array[TopicGroupResource] = [],
+	p_suggested_order: Array[String] = []
 ) -> void:
 	id = p_id
 	title = p_title

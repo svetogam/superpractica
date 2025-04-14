@@ -41,14 +41,14 @@ func _init() -> void:
 
 
 func _start() -> void:
-	assert(Game.current_level != null)
+	assert(level.level_data != null)
 
-	if Game.current_level.program_vars != null:
+	if level.level_data.program_vars != null:
 		_setup_vars()
 
-	if Game.current_level.program_plan != null:
+	if level.level_data.program_plan != null:
 		var replacements := _get_instruction_replacements()
-		Game.current_level.program_plan.set_instruction_replacements(replacements)
+		level.level_data.program_plan.set_instruction_replacements(replacements)
 
 
 # Virtual
@@ -62,7 +62,7 @@ func _get_instruction_replacements() -> Dictionary:
 
 
 func complete_task() -> void:
-	if Game.current_level.program_plan != null:
+	if level.level_data.program_plan != null:
 		plan_panel.complete_current_task()
 		task_completed.emit(plan_panel.current_task)
 		if plan_panel.are_all_tasks_completed():

@@ -20,16 +20,19 @@ enum GoalTypes {
 @export var program_vars: LevelProgramVars
 @export var program_plan: PlanResource
 var topic: TopicResource
+var extended_title: String:
+	get:
+		return topic.title + " > " + title
 
 
 func _init(
-		p_id := "",
-		p_title := "",
-		p_pimnet_setup: PimnetSetupResource = null,
-		p_goal_type := GoalTypes.NONE,
-		p_program: PackedScene = null,
-		p_program_vars: LevelProgramVars = null,
-		p_program_plan: PlanResource = null,
+	p_id := "",
+	p_title := "",
+	p_pimnet_setup: PimnetSetupResource = null,
+	p_goal_type := GoalTypes.NONE,
+	p_program: PackedScene = null,
+	p_program_vars: LevelProgramVars = null,
+	p_program_plan: PlanResource = null,
 ) -> void:
 	id = p_id
 	title = p_title

@@ -14,7 +14,7 @@ var overlay: PimnetOverlay:
 
 func _enter(last_state: String) -> void:
 	if last_state == "Verifying":
-		match Game.current_level.goal_type:
+		match level.level_data.goal_type:
 			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS:
 				overlay.verification_panel.close()
 				overlay.goal_panel.solution_slot.suggestion = Game.SuggestiveSignals.WARN

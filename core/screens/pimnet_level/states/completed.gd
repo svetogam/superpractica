@@ -13,7 +13,7 @@ var overlay: PimnetOverlay:
 
 
 func _enter(_last_state: String) -> void:
-	match Game.current_level.goal_type:
+	match level.level_data.goal_type:
 		LevelResource.GoalTypes.HINTED_MEMO_SLOT:
 			overlay.goal_panel.slot.memo_input_enabled = false
 			overlay.goal_panel.slot.suggestion = Game.SuggestiveSignals.AFFIRM

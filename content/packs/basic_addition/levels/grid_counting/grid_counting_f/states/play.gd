@@ -11,25 +11,25 @@ func _enter(_last_state: String) -> void:
 	program.field.set_tool(GridCounting.Tools.PIECE_DRAGGER)
 	overlay.pim_objects.exclude_all("GridCounting")
 
-	if Game.current_level.program_vars.allow_unit:
+	if level.level_data.program_vars.allow_unit:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
-	if Game.current_level.program_vars.allow_two_block:
+	if level.level_data.program_vars.allow_two_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.TWO_BLOCK)
-	if Game.current_level.program_vars.allow_three_block:
+	if level.level_data.program_vars.allow_three_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.THREE_BLOCK)
-	if Game.current_level.program_vars.allow_four_block:
+	if level.level_data.program_vars.allow_four_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FOUR_BLOCK)
-	if Game.current_level.program_vars.allow_five_block:
+	if level.level_data.program_vars.allow_five_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FIVE_BLOCK)
-	if Game.current_level.program_vars.allow_ten_block:
+	if level.level_data.program_vars.allow_ten_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
-	if Game.current_level.program_vars.allow_twenty_block:
+	if level.level_data.program_vars.allow_twenty_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.TWENTY_BLOCK)
-	if Game.current_level.program_vars.allow_thirty_block:
+	if level.level_data.program_vars.allow_thirty_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.THIRTY_BLOCK)
-	if Game.current_level.program_vars.allow_forty_block:
+	if level.level_data.program_vars.allow_forty_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FORTY_BLOCK)
-	if Game.current_level.program_vars.allow_fifty_block:
+	if level.level_data.program_vars.allow_fifty_block:
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FIFTY_BLOCK)
 
 	_field_program = program.field.get_program("SoftCount")

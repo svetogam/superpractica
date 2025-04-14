@@ -20,6 +20,7 @@ enum SuggestiveSignals {
 	WARN, # Incorrect before action
 }
 
+const SERVICE_LEVEL_DATA := "level_data"
 const SERVICE_PIMNET := "pimnet"
 const SERVICE_FIELD := "field"
 const SERVICE_ROOT_EFFECT_LAYER := "effect_layer"
@@ -58,15 +59,6 @@ var current_level: LevelResource
 func set_current_level_completed() -> void:
 	if current_level != null:
 		progress_data.completed_levels.append(current_level.id)
-
-
-func get_current_level_title() -> String:
-	if current_level != null:
-		var topic_title = current_level.topic.title
-		var level_title = current_level.title
-		return topic_title + " > " + level_title
-	else:
-		return "No Title"
 
 
 func get_suggested_level_after_current() -> LevelResource:

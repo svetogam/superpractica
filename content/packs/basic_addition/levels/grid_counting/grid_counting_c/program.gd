@@ -12,8 +12,8 @@ var output_program: PimProgram
 
 
 func _setup_vars() -> void:
-	addend_1 = Game.current_level.program_vars.new_addend_1()
-	addend_2 = Game.current_level.program_vars.new_addend_2()
+	addend_1 = level.level_data.program_vars.new_addend_1()
+	addend_2 = level.level_data.program_vars.new_addend_2()
 
 
 func _start() -> void:

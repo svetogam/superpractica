@@ -8,10 +8,7 @@ const MAX_TASKS: int = 7
 
 var current_task := "":
 	set = _set_current_task
-var data: PlanResource:
-	get:
-		assert(Game.current_level != null)
-		return Game.current_level.program_plan
+var data: PlanResource
 @onready var _tasks: Array = [
 	%Task1, %Task2, %Task3, %Task4, %Task5, %Task6, %Task7,
 ]
@@ -23,6 +20,18 @@ var data: PlanResource:
 	%Task1CheckBox, %Task2CheckBox, %Task3CheckBox, %Task4CheckBox, %Task5CheckBox,
 	%Task6CheckBox, %Task7CheckBox,
 ]
+
+
+func _enter_tree() -> void:
+	CSLocator.with(self).connect_service_changed(
+			Game.SERVICE_LEVEL_DATA, _on_level_data_changed)
+
+
+func _on_level_data_changed(level_data: LevelResource) -> void:
+	if level_data != null:
+		data = level_data.program_plan
+	else:
+		data = null
 
 
 func _ready() -> void:

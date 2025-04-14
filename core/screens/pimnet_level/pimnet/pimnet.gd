@@ -10,10 +10,7 @@ signal memo_drag_ended(memo)
 
 const InterfieldObjectScene := preload("interfield_object.tscn")
 const MemoDragPreview := preload("memo_slot/memo_drag_preview.tscn")
-var setup_resource: PimnetSetupResource:
-	get:
-		assert(Game.current_level != null)
-		return Game.current_level.pimnet_setup
+var setup_resource: PimnetSetupResource
 var dragged_object: FieldObject
 var pims: Array:
 	get:
@@ -39,9 +36,15 @@ func _enter_tree() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
 			"dragged_memo_requested", start_memo_drag)
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
+	CSLocator.with(self).connect_service_changed(
+			Game.SERVICE_LEVEL_DATA, _on_level_data_changed)
 
 	_center_camera_on_pim_strip()
 	get_viewport().size_changed.connect(_center_camera_on_pim_strip)
+
+
+func _on_level_data_changed(level_data: LevelResource) -> void:
+	setup_resource = level_data.pimnet_setup
 
 
 func _ready() -> void:

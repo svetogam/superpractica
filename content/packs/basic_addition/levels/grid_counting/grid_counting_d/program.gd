@@ -11,7 +11,7 @@ var output_program: PimProgram
 
 
 func _setup_vars() -> void:
-	number = Game.current_level.program_vars.new_number()
+	number = level.level_data.program_vars.new_number()
 
 
 func _start() -> void:
