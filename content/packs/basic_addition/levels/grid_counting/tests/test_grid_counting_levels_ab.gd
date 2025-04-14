@@ -23,12 +23,10 @@ func before():
 
 
 func before_test():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
 func after():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
@@ -38,9 +36,9 @@ func after():
 
 func test_golden_path_1_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/UnitA.position, 0.01)
@@ -65,9 +63,9 @@ func test_golden_path_1_1():
 
 func test_golden_path_1_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/UnitA.position, 0.01)
@@ -104,9 +102,9 @@ func test_golden_path_1_2():
 
 func test_golden_path_1_3():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -131,9 +129,9 @@ func test_golden_path_1_3():
 
 func test_golden_path_1_4():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -162,9 +160,9 @@ func test_golden_path_1_4():
 
 func test_golden_path_1_5():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[5]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -213,9 +211,9 @@ func test_golden_path_1_5():
 
 func test_golden_path_1_6():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/TenBlock.position, 0.01)
@@ -272,9 +270,9 @@ func test_golden_path_1_6():
 
 func test_complete_if_warnings_are_fixed():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	# Fill the first 4 rows in backwards order
@@ -316,9 +314,9 @@ func test_complete_if_warnings_are_fixed():
 
 func test_do_not_complete_if_junk_gives_a_warning():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	# Add a ten-block in the wrong place to get a warning
@@ -353,9 +351,9 @@ func test_do_not_complete_if_junk_gives_a_warning():
 # IDK about this design
 func test_do_not_complete_if_filling_rows_with_units_instead_of_ten_blocks():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	# Complete first subtask

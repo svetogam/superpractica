@@ -10,9 +10,9 @@ signal actions_completed
 
 const REVERTER_MAX_SIZE: int = 1000
 
+@export var level_data: LevelResource
 var program: LevelProgram
 var reverter := CReverter.new()
-var level_data: LevelResource
 var _action_queue := LevelActionQueue.new()
 @onready var pimnet := %Pimnet as Pimnet
 @onready var verifier := $Verifier as Node
@@ -28,7 +28,8 @@ func _ready() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
 			"memo_changed", updated.emit.unbind(1))
 
-	load_level(Game.current_level)
+	if level_data != null:
+		load_level(level_data)
 
 
 func _physics_process(_delta: float) -> void:

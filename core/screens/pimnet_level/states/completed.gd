@@ -24,5 +24,5 @@ func _enter(_last_state: String) -> void:
 		LevelResource.GoalTypes.CONSTRUCT_CONDITIONS:
 			overlay.goal_panel.verify_button.disabled = true
 
-	Game.set_current_level_completed()
+	Game.progress_data.record_level_completion(level.level_data.id)
 	%OverlayStateMachine.change_state("Completion")

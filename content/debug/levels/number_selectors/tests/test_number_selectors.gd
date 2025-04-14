@@ -20,19 +20,17 @@ func before():
 
 
 func before_each():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
 func after():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
 func test_selector_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
-	Game.current_level = level_data
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Selector1/PlusButton.position, 0.01)
@@ -48,8 +46,8 @@ func test_selector_1():
 
 func test_selector_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
-	Game.current_level = level_data
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Selector2/Num2Button.position, 0.01)

@@ -15,7 +15,7 @@ var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
 	set = _set_goal_type
 var goal_panel: Control:
 	get = _get_goal_panel
-var _level_data: LevelResource
+var level_data: LevelResource
 @onready var plan_panel := %PlanPanel as Control
 @onready var pim_tools := %PimToolsPanel as Control
 @onready var pim_objects := %PimObjectsPanel as Control
@@ -28,11 +28,11 @@ func _enter_tree() -> void:
 
 
 func _on_level_data_changed(p_level_data: LevelResource) -> void:
-	_level_data = p_level_data
+	level_data = p_level_data
 
-	if _level_data != null:
-		goal_type = _level_data.goal_type
-		%LevelTitle.text = _level_data.extended_title
+	if level_data != null:
+		goal_type = level_data.goal_type
+		%LevelTitle.text = level_data.extended_title
 	else:
 		goal_type = LevelResource.GoalTypes.NONE
 		%LevelTitle.text = "Level Title"
@@ -61,7 +61,10 @@ func _on_completion_select_button_pressed() -> void:
 
 
 func _on_completion_next_button_pressed() -> void:
-	var next_level = Game.get_suggested_level_after_current()
+	if level_data == null:
+		return
+
+	var next_level = level_data.get_next_suggested_level()
 	if next_level != null:
 		Game.request_enter_level.emit(next_level)
 

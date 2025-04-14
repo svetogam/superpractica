@@ -6,8 +6,7 @@ extends State
 
 
 func _enter(_last_state: String) -> void:
-	assert(Game.current_level != null)
-	assert(_target.pimnet_level_screen != null)
+	assert(_target.current_level_data != null)
 
 	_target.unprepare_level_select()
 
@@ -26,7 +25,7 @@ func _load_level_select() -> void:
 	var level_select = _target.level_select_screen
 	if (
 		level_select == null
-		or level_select.current_map.focused_level.id != Game.current_level.id
+		or level_select.current_map.focused_level.id != _target.current_level_data.id
 	):
 		_target.prepare_level_select()
 

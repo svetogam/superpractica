@@ -15,7 +15,7 @@ func _enter(_last_state: String) -> void:
 	%ModalBarrier.color.a = 0.0
 	%ModalBarrier.show()
 
-	%CompletionNextButton.disabled = not Game.is_level_suggested_after_current()
+	%CompletionNextButton.disabled = not _target.level_data.has_next_suggested_level()
 	%CompletionPanel.show()
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%CompletionPanel, "position:y", TARGET_Y, SLIDE_DURATION)

@@ -25,12 +25,10 @@ func before():
 
 
 func before_test():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
 func after():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
@@ -40,9 +38,9 @@ func after():
 
 func test_golden_path_2_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Block2F1.position, 0.01)
@@ -71,9 +69,9 @@ func test_golden_path_2_1():
 
 func test_golden_path_2_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Block3F2.position, 0.01)
@@ -98,9 +96,9 @@ func test_golden_path_2_2():
 
 func test_golden_path_2_3():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Block10F3.position, 0.01)
@@ -133,9 +131,9 @@ func test_golden_path_2_3():
 
 func test_golden_path_2_4():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Block10F7.position, 0.01)
@@ -160,9 +158,9 @@ func test_golden_path_2_4():
 
 func test_golden_path_2_5():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[5]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Block20.position, 0.01)
@@ -187,9 +185,9 @@ func test_golden_path_2_5():
 
 func test_golden_path_2_6():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Block40.position, 0.01)
@@ -214,9 +212,9 @@ func test_golden_path_2_6():
 
 func test_golden_path_2_7():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[7]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Block40.position, 0.01)

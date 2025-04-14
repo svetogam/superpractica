@@ -70,14 +70,15 @@ func _ready() -> void:
 	assert(Game.root_topic != null)
 
 	use_new_viewport(ViewportPlace.CURRENT)
-	if Game.current_level == null:
+	var loaded_level_data = CSLocator.with(self).find(Game.SERVICE_LEVEL_DATA)
+	if loaded_level_data == null:
 		add_topic_map(Game.root_topic, ViewportPlace.CURRENT)
 		current_map.set_camera_point_to_origin()
 		$StateMachine.activate("MapView")
 	else:
-		add_topic_map(Game.current_level.topic, ViewportPlace.CURRENT)
-		current_map.set_camera_point_to_node(Game.current_level.id)
-		current_map.show_node_detail(Game.current_level.id, level_viewport)
+		add_topic_map(loaded_level_data.topic, ViewportPlace.CURRENT)
+		current_map.set_camera_point_to_node(loaded_level_data.id)
+		current_map.show_node_detail(loaded_level_data.id, level_viewport)
 
 
 func start_from_level() -> void:

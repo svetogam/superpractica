@@ -41,3 +41,11 @@ func _init(
 	program = p_program
 	program_vars = p_program_vars
 	program_plan = p_program_plan
+
+
+func get_next_suggested_level() -> LevelResource:
+	return topic.get_suggested_level_after(id)
+
+
+func has_next_suggested_level() -> bool:
+	return get_next_suggested_level() != null

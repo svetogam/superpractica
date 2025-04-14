@@ -19,12 +19,10 @@ func before():
 
 
 func before_test():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
 func after():
-	Game.current_level = null
 	Game.progress_data.clear()
 
 
@@ -34,9 +32,9 @@ func after():
 
 func test_golden_path_0_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Square5.position, 0.01)
@@ -51,9 +49,9 @@ func test_golden_path_0_1():
 
 func test_golden_path_0_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
-	Game.current_level = level_data
 	Game.debug.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
 	await runner.simulate_mouse_move_absolute($Ref/Unit.position, 0.01)

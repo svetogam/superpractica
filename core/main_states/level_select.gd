@@ -25,7 +25,7 @@ func _enter(last_state: String) -> void:
 
 
 func _enter_level(level_data: LevelResource) -> void:
-	assert(level_data.id == Game.current_level.id)
+	assert(level_data.id == _target.current_level_data.id)
 
 	_change_state("PimnetLevel")
 

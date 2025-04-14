@@ -38,6 +38,8 @@ const NO_TOOL: int = -1
 const WEBSITE_URL := "https://superpractica.org"
 const REPO_URL := "https://codeberg.org/superpractica/superpractica"
 
+var root_topic: TopicResource
+var progress_data := GameProgressResource.new()
 var debug := GameDebug.new()
 var version: String:
 	get:
@@ -45,31 +47,6 @@ var version: String:
 var version_tag: String:
 	get:
 		return "v" + version
-
-
-#====================================================================
-# Content State
-#====================================================================
-
-var root_topic: TopicResource
-var progress_data := GameProgressResource.new()
-var current_level: LevelResource
-
-
-func set_current_level_completed() -> void:
-	if current_level != null:
-		progress_data.completed_levels.append(current_level.id)
-
-
-func get_suggested_level_after_current() -> LevelResource:
-	if current_level != null:
-		return current_level.topic.get_suggested_level_after(current_level.id)
-	else:
-		return null
-
-
-func is_level_suggested_after_current() -> bool:
-	return get_suggested_level_after_current() != null
 
 
 #====================================================================

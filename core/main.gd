@@ -10,6 +10,11 @@ const PimnetLevelScene := preload("uid://2ert4t63mict")
 var main_menu_screen: Panel
 var level_select_screen: Node
 var pimnet_level_screen: Level
+var current_level_data: LevelResource:
+	get:
+		if pimnet_level_screen != null and pimnet_level_screen.level_data != null:
+			return pimnet_level_screen.level_data
+		return null
 
 
 func _enter_tree() -> void:
@@ -49,16 +54,18 @@ func prepare_pimnet_level(level_data: LevelResource) -> void:
 	assert(level_data != null)
 
 	unprepare_pimnet_level()
-	Game.current_level = level_data
 	pimnet_level_screen = PimnetLevelScene.instantiate()
 	%PimnetLevelViewport.add_child(pimnet_level_screen)
+	pimnet_level_screen.load_level(level_data)
+
+	CSLocator.with(self).register(Game.SERVICE_LEVEL_DATA, level_data)
 
 
 func unprepare_pimnet_level() -> void:
 	if pimnet_level_screen != null:
 		pimnet_level_screen.queue_free()
 
-	Game.current_level = null
+	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
 
 
 func exit_game() -> void:
