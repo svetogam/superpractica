@@ -1,9 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=44 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
 [ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_26ecp"]
 [ext_resource type="Script" uid="uid://cuo7t03vwrjdk" path="res://core/screens/pimnet_level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]
+[ext_resource type="Script" uid="uid://c32e8p155rp10" path="res://core/screens/pimnet_level/states/no_level.gd" id="3_egj3f"]
 [ext_resource type="Script" uid="uid://7ud83wgsmuiw" path="res://core/screens/pimnet_level/states/playing.gd" id="3_thn1s"]
 [ext_resource type="Script" uid="uid://ceppfu64ae31g" path="res://core/screens/pimnet_level/states/verifying.gd" id="4_8b6fo"]
 [ext_resource type="Script" uid="uid://cdii7caqjh5yq" path="res://core/screens/pimnet_level/states/completed.gd" id="5_gboy6"]
@@ -60,8 +61,10 @@ script = ExtResource("1_o01nh")
 [node name="LevelStateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 unique_name_in_owner = true
 script = ExtResource("2_26ecp")
-_initial_state = NodePath("Playing")
-_auto_activate = false
+_initial_state = NodePath("NoLevel")
+
+[node name="NoLevel" type="Node" parent="LevelStateMachine"]
+script = ExtResource("3_egj3f")
 
 [node name="Playing" type="Node" parent="LevelStateMachine"]
 script = ExtResource("3_thn1s")

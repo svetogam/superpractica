@@ -8,7 +8,7 @@ const MAX_TASKS: int = 7
 
 var current_task := "":
 	set = _set_current_task
-var data: PlanResource
+var _plan_data: PlanResource
 @onready var _tasks: Array = [
 	%Task1, %Task2, %Task3, %Task4, %Task5, %Task6, %Task7,
 ]
@@ -28,17 +28,14 @@ func _enter_tree() -> void:
 
 
 func _on_level_data_changed(level_data: LevelResource) -> void:
-	if level_data != null:
-		data = level_data.program_plan
+	if level_data != null and level_data.program_plan != null:
+		_plan_data = level_data.program_plan
+		_setup_panel()
 	else:
-		data = null
+		_plan_data = null
 
 
-func _ready() -> void:
-	# Only setup if there's something to show
-	if data == null:
-		return
-
+func _setup_panel() -> void:
 	# Connect buttons
 	var task_number: int = 1
 	for button in _task_buttons:
@@ -47,7 +44,7 @@ func _ready() -> void:
 
 	# Show and name used tasks
 	var i: int = 0
-	for task in data.get_tasks():
+	for task in _plan_data.get_tasks():
 		_tasks[i].visible = true
 		_task_buttons[i].text = task.name_text
 		i += 1
@@ -55,10 +52,10 @@ func _ready() -> void:
 		_tasks[j].visible = false
 
 	# Set initial task
-	var initial_task := data.get_initial_task()
+	var initial_task := _plan_data.get_initial_task()
 	_set_current_task(initial_task.name_id)
 
-	data.replacements_updated.connect(update_instructions)
+	_plan_data.replacements_updated.connect(update_instructions)
 
 
 func update_instructions() -> void:
@@ -66,39 +63,39 @@ func update_instructions() -> void:
 
 
 func is_task_completed(task_id: String) -> bool:
-	var task_number := data.get_task_number(task_id)
+	var task_number := _plan_data.get_task_number(task_id)
 	var checkbox = _task_checkboxes[task_number - 1]
 	return checkbox.button_pressed
 
 
 func are_all_tasks_completed() -> bool:
-	var final_task_id := data.get_final_task().name_id
+	var final_task_id := _plan_data.get_final_task().name_id
 	return is_task_completed(final_task_id)
 
 
 func _set_current_task(task_id: String) -> void:
 	current_task = task_id
-	var task_number := data.get_task_number(task_id)
+	var task_number := _plan_data.get_task_number(task_id)
 	var button = _task_buttons[task_number - 1]
 	button.button_pressed = true
 	_show_task_instructions(task_id)
 
 
 func complete_current_task() -> void:
-	var task_number := data.get_task_number(current_task)
+	var task_number := _plan_data.get_task_number(current_task)
 	var checkbox = _task_checkboxes[task_number - 1]
 	checkbox.button_pressed = true
 
-	if current_task != data.get_final_task().name_id:
-		var next_task := data.get_task_by_number(task_number + 1)
+	if current_task != _plan_data.get_final_task().name_id:
+		var next_task := _plan_data.get_task_by_number(task_number + 1)
 		_set_current_task(next_task.name_id)
 
 
 func _on_task_button_pressed(task_number: int) -> void:
-	var task := data.get_task_by_number(task_number)
+	var task := _plan_data.get_task_by_number(task_number)
 	_show_task_instructions(task.name_id)
 
 
 func _show_task_instructions(task_id: String) -> void:
-	var task := data.get_task_by_name(task_id)
+	var task := _plan_data.get_task_by_name(task_id)
 	%TaskInstructions.text = task.get_instructions()

@@ -30,6 +30,13 @@ func _enter_tree() -> void:
 func _on_level_data_changed(p_level_data: LevelResource) -> void:
 	_level_data = p_level_data
 
+	if _level_data != null:
+		goal_type = _level_data.goal_type
+		%LevelTitle.text = _level_data.extended_title
+	else:
+		goal_type = LevelResource.GoalTypes.NONE
+		%LevelTitle.text = "Level Title"
+
 
 func _ready() -> void:
 	# Connect panel-buttons
@@ -37,9 +44,6 @@ func _ready() -> void:
 	%PimObjectsButton.toggled.connect(_on_panel_button_toggled.bind(
 			PimnetPanels.PIM_OBJECTS))
 
-	assert(_level_data != null)
-	goal_type = _level_data.goal_type
-	%LevelTitle.text = _level_data.extended_title
 	%OverlayStateMachine.activate()
 
 

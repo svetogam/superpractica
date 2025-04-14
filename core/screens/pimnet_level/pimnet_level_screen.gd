@@ -18,15 +18,7 @@ var _action_queue := LevelActionQueue.new()
 @onready var verifier := $Verifier as Node
 
 
-func _enter_tree() -> void:
-	assert(Game.current_level != null)
-	level_data = Game.current_level
-	CSLocator.with(self).register(Game.SERVICE_LEVEL_DATA, level_data)
-
-
 func _ready() -> void:
-	_action_queue.setup(pimnet)
-	_setup_program()
 	_setup_reversion()
 
 	verifier.verifications_started.connect(updated.emit)
@@ -36,12 +28,7 @@ func _ready() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
 			"memo_changed", updated.emit.unbind(1))
 
-	%LevelStateMachine.activate()
-	_run_program()
-
-
-#func load_level(p_level_data: LevelResource) -> void:
-	#pass
+	load_level(Game.current_level)
 
 
 func _physics_process(_delta: float) -> void:
@@ -49,19 +36,9 @@ func _physics_process(_delta: float) -> void:
 	_do_queued_actions()
 
 
-func _setup_program() -> void:
-	if level_data.program != null:
-		program = level_data.program.instantiate()
-		add_child(program)
-
-
 func _setup_reversion() -> void:
 	reverter.history.max_size = REVERTER_MAX_SIZE
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
-
-	# Initial commit
-	if reverter.has_connected_funcs():
-		reverter.commit()
 
 	# Setup reversion
 	%UndoButton.pressed.connect(reverter.undo)
@@ -82,11 +59,30 @@ func _setup_reversion() -> void:
 	updated.connect(_update_reversion_buttons)
 
 
-func _run_program() -> void:
-	if program != null:
+func load_level(p_level_data: LevelResource) -> void:
+	assert(level_data == null)
+	assert(p_level_data != null)
+
+	level_data = p_level_data
+	CSLocator.with(self).register(Game.SERVICE_LEVEL_DATA, level_data)
+	%Pimnet.setup(level_data.pimnet_setup)
+
+	# Initial commit
+	reverter.history.clear()
+	if reverter.has_connected_funcs():
+		reverter.commit()
+
+	_action_queue.setup(pimnet)
+
+	# Set up and run program
+	if level_data.program != null:
+		program = level_data.program.instantiate()
+		add_child(program)
 		program.task_completed.connect(updated.emit.unbind(1))
 		program.level_completed.connect(updated.emit)
 		program.run()
+
+	%LevelStateMachine.change_state("Playing")
 
 
 func _default_reset() -> void:
