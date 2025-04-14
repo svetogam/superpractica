@@ -7,7 +7,7 @@ extends LevelProgramState
 
 func _enter(_last_state: String) -> void:
 	program.field.set_tool(Game.NO_TOOL)
-	pimnet.overlay.disable_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
+	pimnet.overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 	level.reverter.history.clear()
 	program.set_no_reset()
 

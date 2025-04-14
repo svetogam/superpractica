@@ -9,7 +9,7 @@ signal updated
 signal actions_completed
 
 const REVERTER_MAX_SIZE: int = 1000
-
+const EMPTY_PIMNET_SETUP := preload("pimnet/empty_pimnet_setup.tres")
 @export var level_data: LevelResource
 var program: LevelProgram
 var reverter := CReverter.new()
@@ -19,8 +19,19 @@ var _action_queue := LevelActionQueue.new()
 
 
 func _ready() -> void:
-	_setup_reversion()
+	# Setup reversion
+	reverter.history.max_size = REVERTER_MAX_SIZE
+	%UndoButton.pressed.connect(reverter.undo)
+	%RedoButton.pressed.connect(reverter.redo)
+	%ResetButton.pressed.connect(_on_reset_button_pressed)
+	actions_completed.connect(reverter.commit)
+	reverter.saved.connect(_update_reversion_buttons)
+	reverter.loaded.connect(_update_reversion_buttons)
+	_update_reversion_buttons()
+	updated.connect(_update_reversion_buttons)
+	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
 
+	# Connect signals
 	verifier.verifications_started.connect(updated.emit)
 	verifier.verifications_completed.connect(updated.emit)
 	actions_completed.connect(updated.emit)
@@ -28,6 +39,10 @@ func _ready() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
 			"memo_changed", updated.emit.unbind(1))
 
+	# Setup with empty for consistency
+	pimnet.setup(EMPTY_PIMNET_SETUP)
+
+	# Load immediately if level data is already set
 	if level_data != null:
 		load_level(level_data)
 
@@ -37,39 +52,15 @@ func _physics_process(_delta: float) -> void:
 	_do_queued_actions()
 
 
-func _setup_reversion() -> void:
-	reverter.history.max_size = REVERTER_MAX_SIZE
-	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
-
-	# Setup reversion
-	%UndoButton.pressed.connect(reverter.undo)
-	%RedoButton.pressed.connect(reverter.redo)
-	actions_completed.connect(reverter.commit)
-	reverter.saved.connect(_update_reversion_buttons)
-	reverter.loaded.connect(_update_reversion_buttons)
-	if program != null:
-		%ResetButton.pressed.connect(program.reset)
-		program.reset_changed.connect(_update_reversion_buttons)
-		program.reset_called.connect(_do_queued_actions)
-		program.set_custom_reset(_default_reset)
-	else:
-		%ResetButton.pressed.connect(_default_reset)
-		%ResetButton.pressed.connect(_do_queued_actions)
-
-	_update_reversion_buttons()
-	updated.connect(_update_reversion_buttons)
-
-
 func load_level(p_level_data: LevelResource) -> void:
 	assert(level_data == null)
 	assert(p_level_data != null)
 
 	level_data = p_level_data
 	CSLocator.with(self).register(Game.SERVICE_LEVEL_DATA, level_data)
-	%Pimnet.setup(level_data.pimnet_setup)
+	pimnet.setup(level_data.pimnet_setup)
 
 	# Initial commit
-	reverter.history.clear()
 	if reverter.has_connected_funcs():
 		reverter.commit()
 
@@ -81,9 +72,42 @@ func load_level(p_level_data: LevelResource) -> void:
 		add_child(program)
 		program.task_completed.connect(updated.emit.unbind(1))
 		program.level_completed.connect(updated.emit)
+		program.reset_changed.connect(_update_reversion_buttons)
+		program.reset_called.connect(_do_queued_actions)
+		program.set_custom_reset(_default_reset)
 		program.run()
 
 	%LevelStateMachine.change_state("Playing")
+
+
+func unload_level() -> void:
+	assert(level_data != null)
+
+	%LevelStateMachine.change_state("NoLevel")
+
+	reverter.history.clear()
+
+	# Unload pimnet stuff
+	_action_queue.reset()
+	pimnet.setup(EMPTY_PIMNET_SETUP)
+	_action_queue.setup(pimnet)
+
+	# Unload program
+	if program != null:
+		if program.is_running():
+			program.stop()
+		program.free()
+
+	level_data = null
+	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
+
+
+func _on_reset_button_pressed() -> void:
+	if program != null:
+		program.reset()
+	else:
+		_default_reset()
+		_do_queued_actions()
 
 
 func _default_reset() -> void:

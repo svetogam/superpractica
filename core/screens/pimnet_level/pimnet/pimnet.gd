@@ -43,10 +43,16 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	CSLocator.with(self).register(Game.SERVICE_ROOT_EFFECT_LAYER, effect_layer)
 
+	overlay.pim_tools.tool_selected.connect(_on_pim_tool_selected)
+	overlay.pim_objects.tool_dragged.connect(create_interfield_object)
+
 
 func setup(setup_resource: PimnetSetupResource) -> void:
 	if setup_resource != null:
 		# Set up pims
+		for pim in _pims_left_to_right:
+			pim.free()
+		_pims_left_to_right.clear()
 		for pim_scene in setup_resource.pims:
 			var pim = pim_scene.instantiate()
 			_pims_left_to_right.append(pim)
@@ -56,17 +62,18 @@ func setup(setup_resource: PimnetSetupResource) -> void:
 		%UndoButton.visible = setup_resource.reversion_enable
 		%RedoButton.visible = setup_resource.reversion_enable
 		%ResetButton.visible = setup_resource.reversion_enable
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS,
-				setup_resource.tools_enable,
-				setup_resource.tools_start_active)
-		overlay.setup_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS,
-				setup_resource.creation_enable,
-				setup_resource.creation_start_active)
 		%PlanButton.visible = setup_resource.plan_enable
 		%EditPanelsButton.visible = setup_resource.edit_panels_enable
+		if setup_resource.tools_start_active:
+			overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
+		else:
+			overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
+		if setup_resource.creation_start_active:
+			overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
+		else:
+			overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 
 		# Setup pim-tools panel
-		overlay.pim_tools.tool_selected.connect(_on_pim_tool_selected)
 		for pim in _pims_left_to_right:
 			if pim.has_field():
 				overlay.pim_tools.add_toolset(pim.field.interface_data)
@@ -78,7 +85,6 @@ func setup(setup_resource: PimnetSetupResource) -> void:
 				)
 
 		# Setup pim-objects panel
-		overlay.pim_objects.tool_dragged.connect(create_interfield_object)
 		for pim in _pims_left_to_right:
 			if pim.has_field():
 				overlay.pim_objects.add_toolset(pim.field.interface_data)
@@ -92,7 +98,7 @@ func setup(setup_resource: PimnetSetupResource) -> void:
 		%CameraPoint.bounds = _get_camera_limit_rect()
 		%CameraPoint.clamp_in_bounds.call_deferred()
 	elif _pims_left_to_right.size() == 1:
-		_center_camera_on_pim.call_deferred(_pims_left_to_right[0])
+		_center_camera_on_pim.call_deferred(0)
 	%Camera.reset_smoothing.call_deferred()
 
 	# Focus on first pim
@@ -132,8 +138,12 @@ func _center_camera_on_pim_strip() -> void:
 	%CameraPoint.position.y = Game.get_screen_rect().get_center().y
 
 
-func _center_camera_on_pim(pim: Pim) -> void:
-	%CameraPoint.position.x = pim.get_rect().get_center().x
+func _center_camera_on_pim(pim_index: int) -> void:
+	# Do nothing if index is out of bounds
+	if pim_index >= _pims_left_to_right.size():
+		return
+
+	%CameraPoint.position.x = _pims_left_to_right[pim_index].get_rect().get_center().x
 
 
 func _get_camera_limit_rect() -> Rect2:

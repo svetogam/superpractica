@@ -74,41 +74,14 @@ func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> voi
 	panel.visible = toggled_on
 
 
-func setup_panel(panel_type: PimnetPanels, enable: bool, start_active: bool) -> void:
-	var button := _get_button(panel_type)
-	if not enable:
-		button.visible = false
-	if start_active:
-		activate_panel(panel_type)
-
-
-func enable_panel(panel_type: PimnetPanels) -> void:
-	var button := _get_button(panel_type)
-	button.visible = true
-
-
-func disable_panel(panel_type: PimnetPanels) -> void:
-	var button := _get_button(panel_type)
-	button.button_pressed = false
-	button.visible = false
-
-
 func activate_panel(panel_type: PimnetPanels) -> void:
 	var button := _get_button(panel_type)
-	assert(button.visible)
 	button.button_pressed = true
-
-	var panel := _get_panel(panel_type)
-	assert(panel.visible)
 
 
 func deactivate_panel(panel_type: PimnetPanels) -> void:
 	var button := _get_button(panel_type)
-	if button.visible:
-		button.button_pressed = false
-
-	var panel := _get_panel(panel_type)
-	assert(not panel.visible)
+	button.button_pressed = false
 
 
 func _get_panel(panel_type: PimnetPanels) -> PanelContainer:

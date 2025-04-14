@@ -27,21 +27,25 @@ func _enter_tree() -> void:
 			Game.SERVICE_LEVEL_DATA, _on_level_data_changed)
 
 
-func _on_level_data_changed(level_data: LevelResource) -> void:
-	if level_data != null and level_data.program_plan != null:
-		_plan_data = level_data.program_plan
-		_setup_panel()
-	else:
-		_plan_data = null
-
-
-func _setup_panel() -> void:
+func _ready() -> void:
 	# Connect buttons
 	var task_number: int = 1
 	for button in _task_buttons:
 		button.pressed.connect(_on_task_button_pressed.bind(task_number))
 		task_number += 1
 
+
+func _on_level_data_changed(level_data: LevelResource) -> void:
+	if level_data != null and level_data.program_plan != null:
+		_plan_data = level_data.program_plan
+		_setup_panel()
+		_plan_data.replacements_updated.connect(update_instructions)
+	elif _plan_data != null:
+		_plan_data.replacements_updated.disconnect(update_instructions)
+		_plan_data = null
+
+
+func _setup_panel() -> void:
 	# Show and name used tasks
 	var i: int = 0
 	for task in _plan_data.get_tasks():
@@ -54,8 +58,6 @@ func _setup_panel() -> void:
 	# Set initial task
 	var initial_task := _plan_data.get_initial_task()
 	_set_current_task(initial_task.name_id)
-
-	_plan_data.replacements_updated.connect(update_instructions)
 
 
 func update_instructions() -> void:
