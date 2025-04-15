@@ -58,6 +58,12 @@ func _ready() -> void:
 	_trigger_update(UpdateTypes.INITIAL)
 
 
+func _exit_tree() -> void:
+	info_signaler.free()
+	warning_signaler.free()
+	count_signaler.free()
+
+
 func _on_reverter_found(reverter: CReverter) -> void:
 	reverter.connect_save_load(get_instance_id(), build_state, load_state)
 
