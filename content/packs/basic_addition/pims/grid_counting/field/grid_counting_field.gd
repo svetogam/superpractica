@@ -82,6 +82,7 @@ const NUMBER_CELLS: int = ROWS * COLUMNS
 const BOARD_SIZE := Vector2(350, 350)
 const BOARD_GAP := 3.0
 
+static var _interface_data := preload("interface_data.gd").new()
 var static_model := RectilinearGridModel.new(ROWS, COLUMNS)
 var dynamic_model := GridCountingDynamicModel.new(self)
 @onready var prefig := %Prefig as Node2D
@@ -92,7 +93,7 @@ static func _get_field_type() -> String:
 
 
 static func _get_interface_data() -> FieldInterfaceData:
-	return preload("interface_data.gd").new()
+	return _interface_data
 
 
 #endregion
