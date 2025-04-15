@@ -5,9 +5,13 @@
 extends State
 
 const SLIDE_DURATION := 0.3
+const BACKGROUND_COLOR := Color(0.25, 0.25, 0.25, 0.5)
 
 
 func _enter(_last_state: String) -> void:
+	_target.level_data_unloaded.connect(_transition_to_normal)
+
+	%ModalBarrier.color = BACKGROUND_COLOR
 	%ModalBarrier.show()
 	%ModalBarrier.gui_input.connect(_on_modal_barrier_gui_input)
 
@@ -54,3 +58,5 @@ func _transition_to_normal() -> void:
 
 func _exit(_next_state: String) -> void:
 	%PanelLayoutButtons.hide()
+
+	_target.level_data_unloaded.disconnect(_transition_to_normal)

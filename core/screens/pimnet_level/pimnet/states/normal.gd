@@ -4,6 +4,7 @@
 
 extends State
 
+
 func _enter(_last_state: String) -> void:
 	%SystemButton.pressed.connect(_on_system_button_pressed)
 	%PlanButton.pressed.connect(_on_plan_button_pressed)

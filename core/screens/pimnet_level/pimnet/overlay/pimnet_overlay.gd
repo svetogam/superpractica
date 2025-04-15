@@ -5,6 +5,9 @@
 class_name PimnetOverlay
 extends Control
 
+signal level_data_loaded(level_data)
+signal level_data_unloaded
+
 enum PimnetPanels {
 	NONE = 0,
 	PIM_TOOLS,
@@ -33,9 +36,11 @@ func _on_level_data_changed(p_level_data: LevelResource) -> void:
 	if level_data != null:
 		goal_type = level_data.goal_type
 		%LevelTitle.text = level_data.extended_title
+		level_data_loaded.emit(level_data)
 	else:
 		goal_type = LevelResource.GoalTypes.NONE
 		%LevelTitle.text = "Level Title"
+		level_data_unloaded.emit()
 
 
 func _ready() -> void:
