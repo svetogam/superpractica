@@ -89,6 +89,7 @@ func deactivate() -> void:
 
 
 func change_state(state_name: String) -> void:
+	assert(is_active())
 	var last_state_name := get_current_state()
 	var new_state := _get_state_by_name(state_name)
 
