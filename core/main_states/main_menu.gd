@@ -7,7 +7,7 @@ extends State
 
 func _enter(_last_state: String) -> void:
 	_target.unprepare_level_select()
-	_target.unprepare_pimnet_level()
+	_target.unprepare_pimnet_level_screen()
 	_target.prepare_main_menu()
 
 	%MainMenuContainer.show()

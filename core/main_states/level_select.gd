@@ -12,6 +12,7 @@ func _enter(last_state: String) -> void:
 			_target.level_select_screen.start_from_level()
 		"MainMenu":
 			_target.prepare_level_select()
+			_target.prepare_pimnet_level_screen()
 
 	%MainMenuContainer.hide()
 	%PimnetLevelContainer.show()

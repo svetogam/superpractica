@@ -50,22 +50,35 @@ func unprepare_level_select() -> void:
 		level_select_screen.queue_free()
 
 
+func prepare_pimnet_level_screen() -> void:
+	unprepare_pimnet_level_screen()
+
+	pimnet_level_screen = PimnetLevelScene.instantiate()
+	%PimnetLevelViewport.add_child(pimnet_level_screen)
+
+
+func unprepare_pimnet_level_screen() -> void:
+	if pimnet_level_screen != null:
+		pimnet_level_screen.queue_free()
+		CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
+
+
 func prepare_pimnet_level(level_data: LevelResource) -> void:
 	assert(level_data != null)
 
+	if true: # Temporary override while feature is broken
+	#if pimnet_level_screen == null: # Use this after feature is fixed
+		prepare_pimnet_level_screen()
 	unprepare_pimnet_level()
-	pimnet_level_screen = PimnetLevelScene.instantiate()
-	%PimnetLevelViewport.add_child(pimnet_level_screen)
-	pimnet_level_screen.load_level(level_data)
 
+	pimnet_level_screen.load_level(level_data)
 	CSLocator.with(self).register(Game.SERVICE_LEVEL_DATA, level_data)
 
 
 func unprepare_pimnet_level() -> void:
-	if pimnet_level_screen != null:
-		pimnet_level_screen.queue_free()
-
-	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
+	if pimnet_level_screen != null and pimnet_level_screen.level_data != null:
+		pimnet_level_screen.unload_level()
+		CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
 
 
 func exit_game() -> void:
