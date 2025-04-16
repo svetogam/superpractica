@@ -4,8 +4,8 @@
 
 extends Node
 
-signal zoomed_in
-signal zoomed_out
+signal zooming_started
+signal zooming_stopped
 
 enum ViewportPlace {
 	CURRENT,
@@ -80,17 +80,11 @@ func _ready() -> void:
 		current_map.set_camera_point_to_node(loaded_level_data.id)
 		current_map.show_node_detail(loaded_level_data.id, level_viewport)
 
+	%OverlayStateMachine.activate()
+
 
 func start_from_level() -> void:
 	$StateMachine.activate("OutFromLevelToMap")
-
-
-func _on_menu_button_pressed() -> void:
-	%MenuPopup.show()
-
-
-func _on_continue_button_pressed() -> void:
-	%MenuPopup.hide()
 
 
 func _on_settings_button_pressed() -> void:

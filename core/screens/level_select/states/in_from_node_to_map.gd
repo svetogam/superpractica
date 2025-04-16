@@ -6,6 +6,8 @@ extends State
 
 
 func _enter(_last_state: String) -> void:
+	_target.zooming_started.emit()
+
 	if _target.outer_viewport != null:
 		_target.disuse_viewport(_target.ViewportPlace.OUTER)
 
@@ -20,9 +22,8 @@ func _enter(_last_state: String) -> void:
 func _on_zoom_finished() -> void:
 	_target.shift_viewports_out()
 
-	_target.zoomed_in.emit()
 	_change_state("MapView")
 
 
 func _exit(_next_state: String) -> void:
-	pass
+	_target.zooming_stopped.emit()

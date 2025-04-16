@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=19 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_y5cmv"]
@@ -11,9 +11,13 @@
 [ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/in_from_node_to_level.gd" id="9_7trmu"]
 [ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/out_from_map_to_node.gd" id="9_73f7m"]
 [ext_resource type="Script" uid="uid://bfqdsy662g5vu" path="res://core/screens/level_select/states/out_from_level_to_map.gd" id="10_nortw"]
+[ext_resource type="Script" uid="uid://bsp5pt3afvyle" path="res://core/screens/level_select/overlay_states/normal.gd" id="12_4va4l"]
 [ext_resource type="Texture2D" uid="uid://dpqnh6g4wvxda" path="res://core/screens/level_select/graphics/icons/up-topic-icon.svg" id="12_nortw"]
+[ext_resource type="Script" uid="uid://ccu2m0ynix34y" path="res://core/screens/level_select/overlay_states/system.gd" id="13_1xipj"]
 [ext_resource type="Texture2D" uid="uid://dgsvufp81n7po" path="res://core/screens/level_select/graphics/icons/menu-icon.svg" id="13_6jxcg"]
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
+[ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/screens/level_select/graphics/icons/settings-icon.svg" id="14_54uqb"]
+[ext_resource type="Texture2D" uid="uid://buh4qiqae3638" path="res://core/screens/level_select/graphics/icons/home-icon.svg" id="15_fdq5g"]
 
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
@@ -48,39 +52,6 @@ script = ExtResource("10_nortw")
 
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
 
-[node name="MenuPopup" type="PopupPanel" parent="OverlayLayer"]
-unique_name_in_owner = true
-initial_position = 1
-size = Vector2i(300, 300)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="OverlayLayer/MenuPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 296.0
-offset_bottom = 296.0
-
-[node name="Header" type="Label" parent="OverlayLayer/MenuPopup/VBoxContainer"]
-layout_mode = 2
-text = "Menu"
-horizontal_alignment = 1
-
-[node name="ContinueButton" type="Button" parent="OverlayLayer/MenuPopup/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-text = "Continue"
-
-[node name="SettingsButton" type="Button" parent="OverlayLayer/MenuPopup/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-disabled = true
-text = "Settings"
-
-[node name="ExitButton" type="Button" parent="OverlayLayer/MenuPopup/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 10
-text = "Exit to Main Menu"
-
 [node name="Overlay" type="Control" parent="OverlayLayer"]
 layout_mode = 3
 anchors_preset = 15
@@ -90,6 +61,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_y5cmv")
+
+[node name="OverlayStateMachine" type="Node" parent="OverlayLayer/Overlay" node_paths=PackedStringArray("_target", "_initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_e1lo5")
+_target = NodePath("../../..")
+_initial_state = NodePath("Normal")
+_auto_activate = false
+metadata/_custom_type_script = "uid://0kj2kxfkc6nd"
+
+[node name="Normal" type="Node" parent="OverlayLayer/Overlay/OverlayStateMachine"]
+script = ExtResource("12_4va4l")
+
+[node name="System" type="Node" parent="OverlayLayer/Overlay/OverlayStateMachine"]
+script = ExtResource("13_1xipj")
 
 [node name="BackButton" type="Button" parent="OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -123,22 +108,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="fdfdfPanel" type="Button" parent="OverlayLayer/Overlay"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(250, 50)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -76.0
-offset_right = 76.0
-offset_bottom = 50.0
-grow_horizontal = 2
-text = "Topic"
-clip_text = true
-
-[node name="MenuButton" type="Button" parent="OverlayLayer/Overlay"]
+[node name="SystemButton" type="Button" parent="OverlayLayer/Overlay"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
@@ -153,6 +123,58 @@ icon = ExtResource("13_6jxcg")
 icon_alignment = 1
 expand_icon = true
 
+[node name="ModalBarrier" type="ColorRect" parent="OverlayLayer/Overlay"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25, 0.25, 0.25, 0.501961)
+
+[node name="SystemPanel" type="PanelContainer" parent="OverlayLayer/Overlay"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(250, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverlayLayer/Overlay/SystemPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 0
+disabled = true
+text = "Settings"
+icon = ExtResource("14_54uqb")
+expand_icon = true
+
+[node name="ExitButton" type="Button" parent="OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Main Menu"
+icon = ExtResource("15_fdq5g")
+expand_icon = true
+
 [node name="TopicMapContainer1" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
 
@@ -162,7 +184,5 @@ unique_name_in_owner = true
 [node name="TopicMapContainer3" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="OverlayLayer/MenuPopup/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="OverlayLayer/Overlay/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
