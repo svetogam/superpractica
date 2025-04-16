@@ -1,0 +1,49 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://jcpo8pxbskbt"]
+
+[ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_qydn7"]
+[ext_resource type="StyleBox" uid="uid://b8xh6j44lqwxh" path="res://core/screens/pimnet_level/theme/button_focused_style_box.tres" id="2_7qqt8"]
+[ext_resource type="StyleBox" uid="uid://dcmyeu4b718dk" path="res://core/screens/pimnet_level/theme/button_hover_style_box.tres" id="3_g0k55"]
+[ext_resource type="StyleBox" uid="uid://dugsl1kobydk2" path="res://core/screens/pimnet_level/theme/button_hover_pressed_style_box.tres" id="4_iew0u"]
+[ext_resource type="StyleBox" uid="uid://biujihgsn6v3r" path="res://core/screens/pimnet_level/theme/button_normal_style_box.tres" id="5_6qscb"]
+[ext_resource type="StyleBox" uid="uid://b7cnajccl65p3" path="res://core/screens/pimnet_level/theme/button_pressed_style_box.tres" id="6_ms80n"]
+[ext_resource type="StyleBox" uid="uid://xxja6vn0tiel" path="res://core/screens/pimnet_level/theme/panel_style_box.tres" id="7_751ld"]
+[ext_resource type="StyleBox" uid="uid://do7xsmkt2t2oc" path="res://core/screens/pimnet_level/theme/tooltip_style_box.tres" id="8_f4o84"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apgei"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.365, 0.365, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 1
+
+[resource]
+default_font_size = 28
+Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.4)
+Button/colors/font_focus_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+Button/colors/font_hover_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+Button/colors/font_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_normal_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+Button/colors/icon_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+Button/styles/disabled = ExtResource("1_qydn7")
+Button/styles/focus = ExtResource("2_7qqt8")
+Button/styles/hover = ExtResource("3_g0k55")
+Button/styles/hover_pressed = ExtResource("4_iew0u")
+Button/styles/normal = ExtResource("5_6qscb")
+Button/styles/pressed = ExtResource("6_ms80n")
+Label/colors/font_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+Label/font_sizes/font_size = 16
+Panel/styles/panel = SubResource("StyleBoxFlat_apgei")
+PanelContainer/styles/panel = ExtResource("7_751ld")
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+TooltipLabel/constants/outline_size = 18
+TooltipLabel/font_sizes/font_size = 24
+TooltipPanel/styles/panel = ExtResource("8_f4o84")

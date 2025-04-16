@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
-[ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/level_select_theme.tres" id="1_y5cmv"]
+[ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_y5cmv"]
 [ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_e1lo5"]
 [ext_resource type="Script" uid="uid://d3hqyvidvanrc" path="res://core/screens/level_select/states/map_view.gd" id="3_s8wdx"]
 [ext_resource type="Script" uid="uid://dxvuy3hmb8dyy" path="res://core/screens/level_select/states/in_from_map_to_node.gd" id="4_771x4"]
@@ -11,8 +11,8 @@
 [ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/in_from_node_to_level.gd" id="9_7trmu"]
 [ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/out_from_map_to_node.gd" id="9_73f7m"]
 [ext_resource type="Script" uid="uid://bfqdsy662g5vu" path="res://core/screens/level_select/states/out_from_level_to_map.gd" id="10_nortw"]
-[ext_resource type="Texture2D" uid="uid://bou7ds8cupmqa" path="res://general/icons/mono_icons/arrow-left.svg" id="10_r18v7"]
-[ext_resource type="Texture2D" uid="uid://dvgflc1kp512n" path="res://general/icons/mono_icons/menu.svg" id="11_fia35"]
+[ext_resource type="Texture2D" uid="uid://dpqnh6g4wvxda" path="res://core/screens/level_select/graphics/icons/up-topic-icon.svg" id="12_nortw"]
+[ext_resource type="Texture2D" uid="uid://dgsvufp81n7po" path="res://core/screens/level_select/graphics/icons/menu-icon.svg" id="13_6jxcg"]
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
 
 [node name="LevelSelectScreen" type="Node"]
@@ -89,6 +89,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_y5cmv")
 
 [node name="BackButton" type="Button" parent="OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -96,13 +97,35 @@ custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
 offset_right = 130.0
 offset_bottom = 50.0
-theme = ExtResource("1_y5cmv")
+theme_override_font_sizes/font_size = 18
 text = "Topic"
-icon = ExtResource("10_r18v7")
+icon = ExtResource("12_nortw")
+clip_text = true
+expand_icon = true
+
+[node name="TitlePanel" type="PanelContainer" parent="OverlayLayer/Overlay"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 120.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TitleLabel" type="Label" parent="OverlayLayer/Overlay/TitlePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "Topic"
+horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 
-[node name="TitleButton" type="Button" parent="OverlayLayer/Overlay"]
+[node name="fdfdfPanel" type="Button" parent="OverlayLayer/Overlay"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
 anchors_preset = 5
@@ -112,7 +135,6 @@ offset_left = -76.0
 offset_right = 76.0
 offset_bottom = 50.0
 grow_horizontal = 2
-theme = ExtResource("1_y5cmv")
 text = "Topic"
 clip_text = true
 
@@ -126,9 +148,10 @@ anchor_right = 1.0
 offset_left = -8.0
 offset_bottom = 8.0
 grow_horizontal = 0
-theme = ExtResource("1_y5cmv")
-icon = ExtResource("11_fia35")
+tooltip_text = "Menu"
+icon = ExtResource("13_6jxcg")
 icon_alignment = 1
+expand_icon = true
 
 [node name="TopicMapContainer1" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true

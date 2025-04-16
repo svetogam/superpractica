@@ -143,7 +143,7 @@ func shift_viewports_out() -> void:
 
 
 func set_overlay(topic_data: TopicResource) -> void:
-	%TitleButton.text = topic_data.title
+	%TitleLabel.text = topic_data.title
 
 	if topic_data.supertopic != null:
 		back_button.show()
