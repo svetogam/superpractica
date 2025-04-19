@@ -8,7 +8,7 @@ extends State
 func _enter(_last_state: String) -> void:
 	assert(_target.current_level_data != null)
 
-	_target.unprepare_level_select()
+	_target.unprepare_level_select.call_deferred()
 
 	%MainMenuContainer.hide()
 	%PimnetLevelContainer.show()
