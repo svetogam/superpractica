@@ -4,6 +4,8 @@
 
 extends State
 
+const ZOOM_DURATION := 0.3
+
 
 func _enter(_last_state: String) -> void:
 	assert(_target.current_map.focused_node != null)
@@ -11,8 +13,10 @@ func _enter(_last_state: String) -> void:
 	_target.zooming_started.emit()
 
 	_target.current_map.set_camera_point_to_node(_target.current_map.focused_node.id)
-	_target.current_map.transition_to_camera(
-		TopicMap.TopicCamera.SCROLL,
+	_target.current_map.transition_camera.duration = ZOOM_DURATION
+	_target.current_map.transition_camera.position_ease = Tween.EASE_OUT
+	_target.current_map.transition_camera.transition(
+		_target.current_map.scroll_camera,
 		_on_zoom_finished
 	)
 

@@ -19,8 +19,6 @@ const ZOOM_SCALE := 10.0 # Should equal 1 / ScrollCamera.zoom
 const ORIGIN = Vector2.ZERO
 const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.25 * ZOOM_SCALE
 const CAMERA_SURVEY_MARGIN := Vector2(80.0, 60.0) * ZOOM_SCALE
-const SHORTER_ZOOM_DURATION := 0.3
-const LONGER_ZOOM_DURATION := 0.45
 const CONNECTOR_LINE_WIDTH := 4.0
 const CONNECTOR_LINE_COLOR := Color.BLACK
 const ARROWHEAD_WIDTH := 18.0
@@ -39,13 +37,12 @@ var focused_level: LevelResource:
 			return focused_node.level_data
 		return null
 var _node_ids_to_nodes: Dictionary
-var _current_camera_type: TopicCamera
 @onready var camera_point := %CameraPoint as Node2D
 @onready var scroll_camera := %ScrollCamera as Camera2D
 @onready var focus_camera := %FocusCamera as Camera2D
 @onready var thumbnail_camera := %ThumbnailCamera as Camera2D
 @onready var survey_camera := %SurveyCamera as Camera2D
-@onready var _transition_camera := %TransitionCamera as Camera2D
+@onready var transition_camera := %TransitionCamera as Camera2D
 var _cameras: Dictionary:
 	get:
 		return {
@@ -53,7 +50,7 @@ var _cameras: Dictionary:
 			TopicCamera.FOCUS: focus_camera,
 			TopicCamera.THUMBNAIL: thumbnail_camera,
 			TopicCamera.SURVEY: survey_camera,
-			TopicCamera.TRANSITION: _transition_camera,
+			TopicCamera.TRANSITION: transition_camera,
 		}
 
 
@@ -123,98 +120,9 @@ func set_active_camera(next_camera: TopicCamera) -> void:
 	focus_camera.enabled = false
 	thumbnail_camera.enabled = false
 	survey_camera.enabled = false
-	_transition_camera.enabled = false
+	transition_camera.enabled = false
 
 	_cameras[next_camera].enabled = true
-	_current_camera_type = next_camera
-
-
-func transition_to_camera(p_next_camera: TopicCamera, callback := Callable()) -> void:
-	# Abort if no transition needed
-	if p_next_camera == _current_camera_type:
-		return
-
-	# Determine variables
-	var previous_camera = _cameras[_current_camera_type]
-	var next_camera = _cameras[p_next_camera]
-	var duration: float
-	var position_easing: Tween.EaseType
-	match _current_camera_type:
-		TopicCamera.SCROLL:
-			match p_next_camera:
-				TopicCamera.FOCUS:
-					duration = LONGER_ZOOM_DURATION
-					position_easing = Tween.EASE_OUT
-				TopicCamera.THUMBNAIL:
-					assert(false)
-				TopicCamera.SURVEY:
-					duration = SHORTER_ZOOM_DURATION
-					position_easing = Tween.EASE_IN_OUT
-		TopicCamera.FOCUS:
-			match p_next_camera:
-				TopicCamera.SCROLL:
-					duration = SHORTER_ZOOM_DURATION
-					position_easing = Tween.EASE_OUT
-				TopicCamera.THUMBNAIL:
-					duration = LONGER_ZOOM_DURATION
-					position_easing = Tween.EASE_OUT
-				TopicCamera.SURVEY:
-					assert(false)
-		TopicCamera.THUMBNAIL:
-			match p_next_camera:
-				TopicCamera.SCROLL:
-					duration = LONGER_ZOOM_DURATION
-					position_easing = Tween.EASE_OUT
-				TopicCamera.FOCUS:
-					duration = SHORTER_ZOOM_DURATION
-					position_easing = Tween.EASE_OUT
-				TopicCamera.SURVEY:
-					assert(false)
-		TopicCamera.SURVEY:
-			match p_next_camera:
-				TopicCamera.SCROLL:
-					duration = LONGER_ZOOM_DURATION
-					position_easing = Tween.EASE_IN_OUT
-				TopicCamera.FOCUS:
-					assert(false)
-				TopicCamera.THUMBNAIL:
-					assert(false)
-
-	# Prepare start
-	set_active_camera(TopicCamera.TRANSITION)
-	if previous_camera != null:
-		_transition_camera.global_position = previous_camera.global_position
-		_transition_camera.offset = previous_camera.offset
-		_transition_camera.zoom = previous_camera.zoom
-
-	# Run tweens
-	var pos_tween = create_tween()
-	pos_tween.set_trans(Tween.TRANS_QUART)
-	pos_tween.set_ease(position_easing)
-	pos_tween.tween_property(
-		_transition_camera,
-		"global_position",
-		next_camera.global_position,
-		duration
-	)
-	pos_tween.parallel().tween_property(
-		_transition_camera,
-		"offset",
-		next_camera.offset,
-		duration
-	)
-	var zoom_tween = create_tween()
-	zoom_tween.set_trans(Tween.TRANS_QUAD)
-	zoom_tween.set_ease(Tween.EASE_IN_OUT)
-	zoom_tween.tween_property(
-		_transition_camera,
-		"zoom",
-		next_camera.zoom,
-		duration
-	)
-	pos_tween.finished.connect(set_active_camera.bind(p_next_camera))
-	if not callback.is_null():
-		pos_tween.finished.connect(callback)
 
 
 func set_camera_point_to_origin() -> void:
