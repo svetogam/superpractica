@@ -1,115 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtsgoie3mkpl"]
+[gd_scene load_steps=14 format=3 uid="uid://dtsgoie3mkpl"]
 
 [ext_resource type="Script" uid="uid://uqvc2km0y0ug" path="res://core/screens/main_menu/main_menu_screen.gd" id="1_evcbt"]
-[ext_resource type="Script" uid="uid://bjtpws3iqs2lh" path="res://core/screens/main_menu/about_panel.gd" id="2_morim"]
+[ext_resource type="Theme" uid="uid://rvggfmuj8l32" path="res://core/screens/main_menu/theme/main_menu_theme.tres" id="1_qnfx7"]
+[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="3_qyd2j"]
+[ext_resource type="Script" uid="uid://whr7fokn22ln" path="res://core/screens/main_menu/states/start.gd" id="4_l0rnp"]
+[ext_resource type="Script" uid="uid://d1xo5ldvmba6y" path="res://core/screens/main_menu/states/info.gd" id="5_8jexh"]
+[ext_resource type="Script" uid="uid://x6s85vjo3imo" path="res://core/screens/main_menu/states/credits.gd" id="6_rhbch"]
+[ext_resource type="Script" uid="uid://cvepfya520sq" path="res://general/transition_camera.gd" id="7_bxa27"]
+[ext_resource type="Script" uid="uid://csne2waqd6x27" path="res://core/screens/main_menu/states/from_start_to_about.gd" id="7_ma8at"]
+[ext_resource type="Script" uid="uid://b5k643fvhrvdi" path="res://core/screens/main_menu/states/from_about_to_start.gd" id="8_o83qo"]
+[ext_resource type="Script" uid="uid://g1d1vsy7pjgt" path="res://core/screens/main_menu/states/from_about_to_credits.gd" id="9_2l7pg"]
+[ext_resource type="Script" uid="uid://lt3nb1j0u64h" path="res://core/screens/main_menu/states/from_credits_to_about.gd" id="10_2l7pg"]
+[ext_resource type="LabelSettings" uid="uid://cc272esec8t84" path="res://core/screens/main_menu/title_label_settings.tres" id="11_tk1fg"]
+[ext_resource type="LabelSettings" uid="uid://b05v8ydlelqai" path="res://core/screens/main_menu/panel_header_label_settings.tres" id="12_7x0fx"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_2wghg"]
-font_size = 28
-
-[sub_resource type="LabelSettings" id="LabelSettings_rhsfj"]
-font_size = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_ujeqp"]
-font_size = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_6favt"]
-font_size = 48
-
-[node name="MainMenu" type="Panel"]
+[node name="MainMenu" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_qnfx7")
 script = ExtResource("1_evcbt")
 
-[node name="AboutPopup" type="PopupPanel" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+script = ExtResource("3_qyd2j")
+_initial_state = NodePath("Start")
+_auto_activate = false
+metadata/_custom_type_script = "uid://0kj2kxfkc6nd"
+
+[node name="Start" type="Node" parent="StateMachine"]
+script = ExtResource("4_l0rnp")
+
+[node name="About" type="Node" parent="StateMachine"]
+script = ExtResource("5_8jexh")
+
+[node name="Credits" type="Node" parent="StateMachine"]
+script = ExtResource("6_rhbch")
+
+[node name="FromStartToAbout" type="Node" parent="StateMachine"]
+script = ExtResource("7_ma8at")
+
+[node name="FromAboutToStart" type="Node" parent="StateMachine"]
+script = ExtResource("8_o83qo")
+
+[node name="FromAboutToCredits" type="Node" parent="StateMachine"]
+script = ExtResource("9_2l7pg")
+
+[node name="FromCreditsToAbout" type="Node" parent="StateMachine"]
+script = ExtResource("10_2l7pg")
+
+[node name="StartCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
-title = "About Info"
-initial_position = 1
-size = Vector2i(508, 416)
-script = ExtResource("2_morim")
+anchor_mode = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="AboutPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 504.0
-offset_bottom = 412.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutPopup/PanelContainer"]
-layout_mode = 2
-
-[node name="TitleHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Super Practica Demo"
-label_settings = SubResource("LabelSettings_2wghg")
-horizontal_alignment = 1
-
-[node name="VersionHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Version"
-label_settings = SubResource("LabelSettings_rhsfj")
-horizontal_alignment = 1
-
-[node name="VersionText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-text = "(version here)"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="WebsiteHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Website"
-label_settings = SubResource("LabelSettings_rhsfj")
-horizontal_alignment = 1
-
-[node name="WebsiteLink" type="LinkButton" parent="AboutPopup/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "(website here)"
-
-[node name="SourceHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Source"
-label_settings = SubResource("LabelSettings_ujeqp")
-horizontal_alignment = 1
-
-[node name="SourceLink" type="LinkButton" parent="AboutPopup/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "(source here)"
-
-[node name="SourceCommitLink" type="LinkButton" parent="AboutPopup/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "(source here)"
-
-[node name="DisclaimerHeader" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Disclaimer"
-label_settings = SubResource("LabelSettings_ujeqp")
-horizontal_alignment = 1
-
-[node name="DisclaimerText" type="Label" parent="AboutPopup/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_vertical = 3
-text = "This is an early demo release of Super Practica. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned."
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="CloseButton" type="Button" parent="AboutPopup/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 8
-text = "Close"
-
-[node name="TitleLabel" type="Label" parent="."]
+[node name="GameTitle" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -120,55 +66,297 @@ offset_right = 167.0
 offset_bottom = 87.0
 grow_horizontal = 2
 text = "Super Practica"
-label_settings = SubResource("LabelSettings_6favt")
+label_settings = ExtResource("11_tk1fg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -125.0
-offset_top = -233.0
-offset_right = 125.0
-offset_bottom = -17.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -158.0
+offset_right = 250.0
+offset_bottom = 158.0
+grow_vertical = 2
 alignment = 2
 
 [node name="TopicsButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Play Topics"
 
 [node name="SandboxButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
 text = "Play Sandbox"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
 text = "Settings"
 
-[node name="AboutButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="InfoButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-text = "About"
+text = "Info"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="AboutPopup/PanelContainer/VBoxContainer/CloseButton" to="AboutPopup" method="_on_close_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/TopicsButton" to="." method="_on_topics_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="AboutFrame" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 2.0
+anchor_right = 2.0
+anchor_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="AboutCamera" type="Camera2D" parent="AboutFrame"]
+unique_name_in_owner = true
+anchor_mode = 0
+enabled = false
+
+[node name="Buttons" type="HBoxContainer" parent="AboutFrame"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="AboutBackButton" type="Button" parent="AboutFrame/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Back"
+
+[node name="CreditsButton" type="Button" parent="AboutFrame/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Credits"
+
+[node name="LicensesButton" type="Button" parent="AboutFrame/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Licenses"
+
+[node name="Panels" type="HBoxContainer" parent="AboutFrame"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 100.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LongPanels" type="VBoxContainer" parent="AboutFrame/Panels"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisclaimerPanel" type="PanelContainer" parent="AboutFrame/Panels/LongPanels"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel"]
+layout_mode = 2
+
+[node name="DisclaimerHeader" type="Label" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
+layout_mode = 2
+text = "Disclaimer"
+label_settings = ExtResource("12_7x0fx")
+horizontal_alignment = 1
+
+[node name="DisclaimerText" type="Label" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "This is an early demo release of Super Practica. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="WebsitePanel" type="PanelContainer" parent="AboutFrame/Panels/LongPanels"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/LongPanels/WebsitePanel"]
+layout_mode = 2
+
+[node name="WebsiteHeader" type="Label" parent="AboutFrame/Panels/LongPanels/WebsitePanel/VBoxContainer"]
+layout_mode = 2
+text = "Website"
+label_settings = ExtResource("12_7x0fx")
+horizontal_alignment = 1
+
+[node name="WebsiteLink" type="LinkButton" parent="AboutFrame/Panels/LongPanels/WebsitePanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(website here)"
+
+[node name="SourcePanel" type="PanelContainer" parent="AboutFrame/Panels/LongPanels"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/LongPanels/SourcePanel"]
+layout_mode = 2
+
+[node name="SourceHeader" type="Label" parent="AboutFrame/Panels/LongPanels/SourcePanel/VBoxContainer"]
+layout_mode = 2
+text = "Source Code"
+label_settings = ExtResource("12_7x0fx")
+horizontal_alignment = 1
+
+[node name="SourceLink" type="LinkButton" parent="AboutFrame/Panels/LongPanels/SourcePanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(source here)"
+
+[node name="SourceCommitLink" type="LinkButton" parent="AboutFrame/Panels/LongPanels/SourcePanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(source here)"
+
+[node name="ShortPanels" type="VBoxContainer" parent="AboutFrame/Panels"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VersionPanel" type="PanelContainer" parent="AboutFrame/Panels/ShortPanels"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/ShortPanels/VersionPanel"]
+layout_mode = 2
+
+[node name="VersionHeader" type="Label" parent="AboutFrame/Panels/ShortPanels/VersionPanel/VBoxContainer"]
+layout_mode = 2
+text = "Version"
+label_settings = ExtResource("12_7x0fx")
+horizontal_alignment = 1
+
+[node name="VersionText" type="Label" parent="AboutFrame/Panels/ShortPanels/VersionPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "(version here)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CreditsFrame" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 3.0
+anchor_top = 1.0
+anchor_right = 4.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsCamera" type="Camera2D" parent="CreditsFrame"]
+unique_name_in_owner = true
+anchor_mode = 0
+enabled = false
+
+[node name="CreditsTitle" type="Label" parent="CreditsFrame"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 240.0
+offset_top = 20.0
+offset_right = -240.0
+offset_bottom = 87.0
+grow_horizontal = 2
+text = "Credits"
+label_settings = ExtResource("11_tk1fg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsBackButton" type="Button" parent="CreditsFrame"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
+size_flags_horizontal = 6
+text = "Back"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsFrame"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 100.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ContributorsPanel" type="PanelContainer" parent="CreditsFrame/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame/HBoxContainer/ContributorsPanel"]
+layout_mode = 2
+
+[node name="ContributorsHeader" type="Label" parent="CreditsFrame/HBoxContainer/ContributorsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Contributors"
+label_settings = ExtResource("12_7x0fx")
+horizontal_alignment = 1
+
+[node name="Contributors" type="Label" parent="CreditsFrame/HBoxContainer/ContributorsPanel/VBoxContainer"]
+layout_mode = 2
+text = "Svetogam"
+horizontal_alignment = 1
+
+[node name="FundersPanel" type="PanelContainer" parent="CreditsFrame/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame/HBoxContainer/FundersPanel"]
+layout_mode = 2
+
+[node name="FundersHeader" type="Label" parent="CreditsFrame/HBoxContainer/FundersPanel/VBoxContainer"]
+layout_mode = 2
+text = "Funders"
+label_settings = ExtResource("12_7x0fx")
+horizontal_alignment = 1
+
+[node name="Funders" type="Label" parent="CreditsFrame/HBoxContainer/FundersPanel/VBoxContainer"]
+layout_mode = 2
+text = "Oops! There's no one here yet!"
+horizontal_alignment = 1
+
+[node name="TransitionCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+enabled = false
+script = ExtResource("7_bxa27")
+duration = 0.4
+position_trans = 4
+position_ease = 1

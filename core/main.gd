@@ -7,7 +7,7 @@ extends Node
 const MainMenuScene := preload("uid://dtsgoie3mkpl")
 const LevelSelectScene := preload("uid://c7261ypnucte8")
 const PimnetLevelScene := preload("uid://2ert4t63mict")
-var main_menu_screen: Panel
+var main_menu_screen: Control
 var level_select_screen: Node
 var pimnet_level_screen: Level
 var current_level_data: LevelResource:
