@@ -25,6 +25,7 @@ grow_vertical = 2
 
 [node name="Mask" type="Control" parent="MainButton"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,9 +53,9 @@ text = "Topic Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Overview" type="Control" parent="MainButton"]
+[node name="Detail" type="Control" parent="MainButton"]
 unique_name_in_owner = true
-visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Overview"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Detail"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +73,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="OverviewLabel" type="Label" parent="MainButton/Overview/VBoxContainer"]
+[node name="DetailLabel" type="Label" parent="MainButton/Detail/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -80,22 +81,22 @@ text = "Title"
 label_settings = SubResource("LabelSettings_bul84")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainButton/Overview/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainButton/Detail/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="MainButton/Overview/VBoxContainer/HBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Overview/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="OverviewProgressBar" type="ProgressBar" parent="MainButton/Overview/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="DetailProgressBar" type="ProgressBar" parent="MainButton/Detail/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
@@ -105,7 +106,7 @@ step = 1.0
 rounded = true
 show_percentage = false
 
-[node name="FractionLabel" type="Label" parent="MainButton/Overview/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="FractionLabel" type="Label" parent="MainButton/Detail/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0 / 99"

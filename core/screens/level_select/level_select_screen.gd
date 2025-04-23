@@ -78,7 +78,8 @@ func _ready() -> void:
 	else:
 		add_topic_map(loaded_level_data.topic, ViewportPlace.CURRENT)
 		current_map.set_camera_point_to_node(loaded_level_data.id)
-		current_map.show_node_detail(loaded_level_data.id, level_viewport)
+		current_map.focus_on_node(loaded_level_data.id)
+		current_map.focused_node.view_detail(level_viewport)
 
 	%OverlayStateMachine.activate()
 

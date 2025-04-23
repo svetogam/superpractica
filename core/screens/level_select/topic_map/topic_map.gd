@@ -54,6 +54,10 @@ var _cameras: Dictionary:
 		}
 
 
+func _ready() -> void:
+	CSLocator.with(self).register(Game.SERVICE_THUMBNAIL_CAMERA, thumbnail_camera)
+
+
 func build(p_topic_data: TopicResource) -> void:
 	assert(p_topic_data != null)
 	assert(topic_data == null)
@@ -97,22 +101,9 @@ func build(p_topic_data: TopicResource) -> void:
 	_update_survey_camera()
 
 
-func show_node_detail(node_id: String, thumbnail_viewport: SubViewport) -> void:
+func focus_on_node(node_id: String) -> void:
 	focused_node = _node_ids_to_nodes[node_id]
-	focused_node.mask.hide()
-	focused_node.overview.show()
-	focused_node.set_thumbnail(thumbnail_viewport)
-
-	# Update cameras
-	_update_focus_camera()
-	_update_thumbnail_camera.call_deferred.call_deferred()
-
-
-func hide_node_detail() -> void:
-	if focused_node != null:
-		focused_node.mask.show()
-		focused_node.overview.hide()
-		focused_node = null
+	focus_camera.position = focused_node.get_rect().get_center()
 
 
 func set_active_camera(next_camera: TopicCamera) -> void:
@@ -158,23 +149,6 @@ func _update_survey_camera() -> void:
 	var zoom_value = min(stretched_zoom.x, stretched_zoom.y)
 	survey_camera.zoom = Vector2(zoom_value, zoom_value)
 	survey_camera.position = camera_survey_rect.get_center()
-
-
-func _update_focus_camera() -> void:
-	assert(focused_node is LevelNode or focused_node is SubtopicNode)
-
-	focus_camera.position = focused_node.get_rect().get_center()
-
-
-func _update_thumbnail_camera() -> void:
-	assert(focused_node is LevelNode or focused_node is SubtopicNode)
-
-	var level_texture_rect = focused_node.get_thumbnail_rect()
-	thumbnail_camera.global_position = level_texture_rect.get_center()
-	thumbnail_camera.zoom = Vector2(
-		get_viewport().get_visible_rect().size.x / level_texture_rect.size.x,
-		get_viewport().get_visible_rect().size.y / level_texture_rect.size.y
-	)
 
 
 #====================================================================

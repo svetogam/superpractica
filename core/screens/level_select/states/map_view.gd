@@ -6,7 +6,8 @@ extends State
 
 
 func _enter(_last_state: String) -> void:
-	_target.current_map.hide_node_detail()
+	_target.current_map.focused_node = null
+
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.SCROLL)
 	_target.set_overlay(_target.current_map.topic_data)
 
@@ -21,17 +22,12 @@ func _enter(_last_state: String) -> void:
 		_target.use_new_viewport(_target.ViewportPlace.OUTER)
 		_target.add_topic_map(topic_data.supertopic, _target.ViewportPlace.OUTER)
 		_target.outer_map.set_active_camera(TopicMap.TopicCamera.THUMBNAIL)
-		_target.outer_map.show_node_detail(topic_data.id, _target.current_viewport)
+		_target.outer_map.focus_on_node(topic_data.id)
+		_target.outer_map.focused_node.view_detail(_target.current_viewport)
 
 
-func _on_node_pressed(node: Control) -> void:
-	if node is SubtopicNode:
-		_target.use_new_viewport(_target.ViewportPlace.INNER)
-		_target.add_topic_map(node.topic_data, _target.ViewportPlace.INNER)
-		_target.inner_map.set_active_camera(TopicMap.TopicCamera.SURVEY)
-		_target.current_map.show_node_detail(node.id, _target.inner_viewport)
-	elif node is LevelNode:
-		_target.current_map.show_node_detail(node.id, _target.level_viewport)
+func _on_node_pressed(node: TopicNode) -> void:
+	_target.current_map.focus_on_node(node.id)
 
 	_change_state("InFromMapToNode")
 

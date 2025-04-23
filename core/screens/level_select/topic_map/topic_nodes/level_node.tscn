@@ -22,6 +22,7 @@ grow_vertical = 2
 
 [node name="Mask" type="Control" parent="MainButton"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,9 +50,9 @@ text = "Level Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Overview" type="Control" parent="MainButton"]
+[node name="Detail" type="Control" parent="MainButton"]
 unique_name_in_owner = true
-visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,7 +61,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Overview"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Detail"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="OverviewLabel" type="Label" parent="MainButton/Overview/VBoxContainer"]
+[node name="DetailLabel" type="Label" parent="MainButton/Detail/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -77,16 +78,16 @@ text = "Title"
 label_settings = SubResource("LabelSettings_bul84")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainButton/Overview/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainButton/Detail/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LeftInfo" type="Control" parent="MainButton/Overview/VBoxContainer/HBoxContainer"]
+[node name="LeftInfo" type="Control" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Thumbnail" type="TextureRect" parent="MainButton/Overview/VBoxContainer/HBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
@@ -94,12 +95,12 @@ size_flags_vertical = 3
 expand_mode = 3
 stretch_mode = 5
 
-[node name="RightInfo" type="Control" parent="MainButton/Overview/VBoxContainer/HBoxContainer"]
+[node name="RightInfo" type="Control" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="OverviewCheckBox" type="CheckBox" parent="MainButton/Overview/VBoxContainer/HBoxContainer/RightInfo"]
+[node name="DetailCheckBox" type="CheckBox" parent="MainButton/Detail/VBoxContainer/HBoxContainer/RightInfo"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8

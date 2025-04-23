@@ -11,7 +11,7 @@ func _enter(_last_state: String) -> void:
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.FOCUS)
 	_target.set_overlay(_target.current_map.topic_data)
 
-	_target.current_map.focused_node.main_button.pressed.connect(_on_node_pressed)
+	_target.current_map.node_pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
 
 
@@ -20,10 +20,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_change_state("OutFromNodeToMap")
 
 
-func _on_node_pressed() -> void:
-	if _target.current_map.focused_node is LevelNode:
+func _on_node_pressed(node: TopicNode) -> void:
+	if node is LevelNode:
 		_change_state("InFromNodeToLevel")
-	elif _target.current_map.focused_node is SubtopicNode:
+	elif node is SubtopicNode:
 		_change_state("InFromNodeToMap")
 	else:
 		assert(false)
@@ -34,5 +34,5 @@ func _on_back_button_pressed() -> void:
 
 
 func _exit(_next_state: String) -> void:
-	_target.current_map.focused_node.main_button.pressed.disconnect(_on_node_pressed)
+	_target.current_map.node_pressed.disconnect(_on_node_pressed)
 	_target.back_button.pressed.disconnect(_on_back_button_pressed)

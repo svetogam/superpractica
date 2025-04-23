@@ -8,9 +8,18 @@ const ZOOM_DURATION := 0.45
 
 
 func _enter(_last_state: String) -> void:
-	assert(_target.current_map.focused_node != null)
-
 	_target.zooming_started.emit()
+
+	var focused_node = _target.current_map.focused_node
+	if focused_node is SubtopicNode:
+		_target.use_new_viewport(_target.ViewportPlace.INNER)
+		_target.add_topic_map(focused_node.topic_data, _target.ViewportPlace.INNER)
+		_target.inner_map.set_active_camera(TopicMap.TopicCamera.SURVEY)
+		focused_node.view_detail(_target.inner_viewport, ZOOM_DURATION)
+	elif focused_node is LevelNode:
+		focused_node.view_detail(_target.level_viewport, ZOOM_DURATION)
+	else:
+		assert(false)
 
 	_target.current_map.transition_camera.duration = ZOOM_DURATION
 	_target.current_map.transition_camera.position_ease = Tween.EASE_OUT
