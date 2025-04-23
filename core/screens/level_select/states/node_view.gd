@@ -11,7 +11,7 @@ func _enter(_last_state: String) -> void:
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.FOCUS)
 	_target.set_overlay(_target.current_map.topic_data)
 
-	_target.current_map.focused_node.overview_button.pressed.connect(_on_node_pressed)
+	_target.current_map.focused_node.main_button.pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
 
 
@@ -34,5 +34,5 @@ func _on_back_button_pressed() -> void:
 
 
 func _exit(_next_state: String) -> void:
-	_target.current_map.focused_node.overview_button.pressed.disconnect(_on_node_pressed)
+	_target.current_map.focused_node.main_button.pressed.disconnect(_on_node_pressed)
 	_target.back_button.pressed.disconnect(_on_back_button_pressed)

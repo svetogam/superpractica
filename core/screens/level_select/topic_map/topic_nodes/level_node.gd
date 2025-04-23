@@ -6,10 +6,19 @@ class_name LevelNode
 extends TopicNode
 
 var level_data: LevelResource
+@onready var main_button := %MainButton as BaseButton:
+	set(_value):
+		assert(false)
+@onready var mask := %Mask as Control:
+	set(_value):
+		assert(false)
+@onready var overview := %Overview as Control:
+	set(_value):
+		assert(false)
 
 
 func _ready() -> void:
-	%MaskButton.button_down.connect(_on_button_down)
+	%MainButton.button_down.connect(_on_button_down)
 
 
 func _on_button_down() -> void:
@@ -22,18 +31,12 @@ func setup(p_level_data: LevelResource) -> void:
 
 	# Set title
 	%MaskLabel.text = level_data.title
-	if level_data.title.length() > 10:
-		%MaskLabel.label_settings.font_size = 14
-	else:
-		%MaskLabel.label_settings.font_size = 16
 	%OverviewLabel.text = level_data.title
 
 	# Set progress
 	if Game.progress_data.is_level_completed(id):
-		%MaskCheckBox.button_pressed = true
 		%OverviewCheckBox.button_pressed = true
 	else:
-		%MaskCheckBox.button_pressed = false
 		%OverviewCheckBox.button_pressed = false
 
 

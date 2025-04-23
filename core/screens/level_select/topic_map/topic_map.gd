@@ -76,7 +76,7 @@ func build(p_topic_data: TopicResource) -> void:
 
 	# Connect node signals
 	for node in _node_ids_to_nodes.values():
-		node.mask_button.pressed.connect(node_pressed.emit.bind(node))
+		node.main_button.pressed.connect(node_pressed.emit.bind(node))
 
 	# Add connectors
 	for connection in topic_data.connections:
@@ -100,7 +100,7 @@ func build(p_topic_data: TopicResource) -> void:
 func show_node_detail(node_id: String, thumbnail_viewport: SubViewport) -> void:
 	focused_node = _node_ids_to_nodes[node_id]
 	focused_node.mask.hide()
-	focused_node.overview_panel.show()
+	focused_node.overview.show()
 	focused_node.set_thumbnail(thumbnail_viewport)
 
 	# Update cameras
@@ -111,7 +111,7 @@ func show_node_detail(node_id: String, thumbnail_viewport: SubViewport) -> void:
 func hide_node_detail() -> void:
 	if focused_node != null:
 		focused_node.mask.show()
-		focused_node.overview_panel.hide()
+		focused_node.overview.hide()
 		focused_node = null
 
 
