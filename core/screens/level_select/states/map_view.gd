@@ -12,6 +12,7 @@ func _enter(_last_state: String) -> void:
 	_target.set_overlay(_target.current_map.topic_data)
 
 	_target.current_map.camera_point.draggable = true
+	_target.current_map.camera_point.force_stop_dragging()
 	_target.current_map.scroll_camera.position_smoothing_enabled = true
 	_target.current_map.node_pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
@@ -27,6 +28,8 @@ func _enter(_last_state: String) -> void:
 
 
 func _on_node_pressed(node: TopicNode) -> void:
+	if node is LevelNode:
+		Game.request_load_level.emit(node.level_data)
 	_target.current_map.focus_on_node(node.id)
 
 	_change_state("InFromMapToNode")

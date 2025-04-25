@@ -1,17 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkv3586pstrou"]
+[gd_scene load_steps=5 format=3 uid="uid://bkv3586pstrou"]
 
+[ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_8h5ph"]
 [ext_resource type="Script" uid="uid://cclxngkyu1142" path="res://core/screens/level_select/topic_map/topic_nodes/level_node.gd" id="1_tpmk7"]
+[ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/screens/level_select/graphics/icons/question-mark-icon.svg" id="3_4ff5h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bul84"]
-font_size = 55
+font_size = 36
+font_color = Color(0, 0, 0, 1)
 
 [node name="LevelNode" type="Control"]
-custom_minimum_size = Vector2(1000, 500)
+custom_minimum_size = Vector2(650, 650)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 650.0
+offset_bottom = 650.0
+theme = ExtResource("1_8h5ph")
+theme_type_variation = &"LevelNode"
 script = ExtResource("1_tpmk7")
 
-[node name="MainButton" type="Button" parent="."]
+[node name="Mask" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -19,8 +26,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="Mask" type="Control" parent="MainButton"]
+[node name="MaskIcon" type="TextureRect" parent="Mask"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4ff5h")
+
+[node name="Detail" type="Control" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -31,88 +56,47 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MaskLabel" type="Label" parent="MainButton/Mask"]
+[node name="DetailLabel" type="Label" parent="Detail"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -340.0
-offset_top = -82.5
-offset_right = 340.0
-offset_bottom = 82.5
+offset_top = -240.0
+offset_bottom = -200.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 120
-text = "Level Name"
+size_flags_vertical = 1
+text = "Name"
+label_settings = SubResource("LabelSettings_bul84")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Detail" type="Control" parent="MainButton"]
+[node name="Thumbnail" type="TextureRect" parent="Detail"]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Detail"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-
-[node name="DetailLabel" type="Label" parent="MainButton/Detail/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 1
-text = "Title"
-label_settings = SubResource("LabelSettings_bul84")
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainButton/Detail/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="LeftInfo" type="Control" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Thumbnail" type="TextureRect" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_vertical = 3
-expand_mode = 3
-stretch_mode = 5
-
-[node name="RightInfo" type="Control" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="DetailCheckBox" type="CheckBox" parent="MainButton/Detail/VBoxContainer/HBoxContainer/RightInfo"]
-unique_name_in_owner = true
+custom_minimum_size = Vector2(460, 345)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -12.0
-offset_top = -12.0
-offset_right = 12.0
-offset_bottom = 12.0
+offset_left = -230.0
+offset_top = -172.5
+offset_right = 230.0
+offset_bottom = 172.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-disabled = true
+size_flags_vertical = 6
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MainButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

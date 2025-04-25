@@ -78,11 +78,23 @@ func get_node_position(node_id: String) -> Vector2:
 	return _layout_data[node_id]
 
 
-func get_suggested_level() -> LevelResource:
+func get_first_suggested_level() -> LevelResource:
 	for level_id in suggested_order:
 		if not Game.progress_data.is_level_completed(level_id):
 			return get_level([level_id])
 	return null
+
+
+func get_suggested_level_ids() -> Array:
+	var suggested_level_ids: Array
+	var previous_completed := true
+	for level_id in suggested_order:
+		if previous_completed and not Game.progress_data.is_level_completed(level_id):
+			suggested_level_ids.append(level_id)
+			previous_completed = false
+		elif Game.progress_data.is_level_completed(level_id):
+			previous_completed = true
+	return suggested_level_ids
 
 
 func get_suggested_level_after(from_level_id: String) -> LevelResource:

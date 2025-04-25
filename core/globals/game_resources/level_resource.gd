@@ -11,9 +11,23 @@ enum GoalTypes {
 	SOLUTION_MEMO_SLOTS,
 	CONSTRUCT_CONDITIONS,
 }
+enum LevelIcons {
+	ZERO = 0,
+	ONE,
+	TWO,
+	THREE,
+	FOUR,
+	FIVE,
+	SIX,
+	SEVEN,
+	EIGHT,
+	NINE,
+	UNKNOWN,
+}
 
 @export var id: String
 @export var title: String
+@export var icon: LevelIcons
 @export var pimnet_setup: PimnetSetupResource
 @export var goal_type: GoalTypes
 @export var program: PackedScene
@@ -28,6 +42,7 @@ var extended_title: String:
 func _init(
 	p_id := "",
 	p_title := "",
+	p_icon := LevelIcons.UNKNOWN,
 	p_pimnet_setup: PimnetSetupResource = null,
 	p_goal_type := GoalTypes.NONE,
 	p_program: PackedScene = null,
@@ -36,6 +51,7 @@ func _init(
 ) -> void:
 	id = p_id
 	title = p_title
+	icon = p_icon
 	pimnet_setup = p_pimnet_setup
 	goal_type = p_goal_type
 	program = p_program

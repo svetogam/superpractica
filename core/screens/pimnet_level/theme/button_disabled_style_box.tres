@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cdro2mx1p7424"]
 
-[ext_resource type="Texture2D" uid="uid://bmatvo0u67dsf" path="res://core/screens/pimnet_level/graphics/button.svg" id="1_swvg0"]
+[ext_resource type="Texture2D" uid="uid://c7jpp7jxsox4l" path="res://core/screens/level_select/graphics/button.svg" id="1_swvg0"]
 
 [resource]
 texture = ExtResource("1_swvg0")

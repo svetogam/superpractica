@@ -7,12 +7,13 @@ extends Control
 
 var id: String
 var _thumbnail_camera: Camera2D
-@onready var main_button := %MainButton as Button
+@onready var main_button := %MainButton as BaseButton
 
 
 func _enter_tree() -> void:
-	CSLocator.with(self).connect_service_found(
-			Game.SERVICE_THUMBNAIL_CAMERA, _on_thumbnail_camera_found)
+	if not Engine.is_editor_hint():
+		CSLocator.with(self).connect_service_found(
+				Game.SERVICE_THUMBNAIL_CAMERA, _on_thumbnail_camera_found)
 
 
 func _on_thumbnail_camera_found(p_thumbnail_camera: Camera2D) -> void:

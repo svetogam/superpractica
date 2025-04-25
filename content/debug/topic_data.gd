@@ -16,6 +16,8 @@ static var topic = TopicResource.new(
 			"grid_counting",
 			# Title
 			"Grid Counting Pim",
+			# Icon
+			LevelResource.LevelIcons.UNKNOWN,
 			# Pimnet Setup
 			preload("levels/grid_counting/pimnet_setup.tres"),
 			# Goal Type
@@ -28,6 +30,8 @@ static var topic = TopicResource.new(
 			"select_number_1",
 			# Title
 			"Selector 1",
+			# Icon
+			LevelResource.LevelIcons.ONE,
 			# Pimnet Setup
 			preload("levels/number_selectors/select_number_1/pimnet_setup.tres"),
 			# Goal Type
@@ -44,6 +48,8 @@ static var topic = TopicResource.new(
 			"select_number_2",
 			# Title
 			"Selector 2",
+			# Icon
+			LevelResource.LevelIcons.TWO,
 			# Pimnet Setup
 			preload("levels/number_selectors/select_number_2/pimnet_setup.tres"),
 			# Goal Type
@@ -60,6 +66,8 @@ static var topic = TopicResource.new(
 			"slot_pims",
 			# Title
 			"Slot Pims",
+			# Icon
+			LevelResource.LevelIcons.UNKNOWN,
 			# Pimnet Setup
 			preload("levels/slot_pims/pimnet_setup.tres"),
 			# Goal Type
@@ -72,6 +80,8 @@ static var topic = TopicResource.new(
 			"field_pims",
 			# Title
 			"Field Pims",
+			# Icon
+			LevelResource.LevelIcons.UNKNOWN,
 			# Pimnet Setup
 			preload("levels/field_pims/pimnet_setup.tres"),
 			# Goal Type

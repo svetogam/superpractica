@@ -15,7 +15,7 @@ enum TopicCamera {
 	TRANSITION,
 }
 
-const ZOOM_SCALE := 10.0 # Should equal 1 / ScrollCamera.zoom
+const ZOOM_SCALE := 8.5
 const ORIGIN = Vector2.ZERO
 const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.25 * ZOOM_SCALE
 const CAMERA_SURVEY_MARGIN := Vector2(80.0, 60.0) * ZOOM_SCALE
@@ -55,6 +55,8 @@ var _cameras: Dictionary:
 
 
 func _ready() -> void:
+	scroll_camera.zoom = Vector2(1.0 / ZOOM_SCALE, 1.0 / ZOOM_SCALE)
+
 	CSLocator.with(self).register(Game.SERVICE_THUMBNAIL_CAMERA, thumbnail_camera)
 
 
@@ -64,10 +66,13 @@ func build(p_topic_data: TopicResource) -> void:
 	topic_data = p_topic_data
 
 	# Build layout
+	var suggested_level_ids = topic_data.get_suggested_level_ids()
 	for level_data in topic_data.get_levels():
 		var level_node := LevelNodeScene.instantiate()
 		level_node.setup(level_data)
 		level_node.name = level_node.id
+		if suggested_level_ids.has(level_node.id):
+			level_node.suggested = true
 		_node_ids_to_nodes[level_node.id] = level_node
 	for subtopic_data in topic_data.get_subtopics():
 		var subtopic_node := SubtopicNodeScene.instantiate()
@@ -80,7 +85,7 @@ func build(p_topic_data: TopicResource) -> void:
 
 	# Connect node signals
 	for node in _node_ids_to_nodes.values():
-		node.main_button.pressed.connect(node_pressed.emit.bind(node))
+		node.main_button.button_down.connect(node_pressed.emit.bind(node))
 
 	# Add connectors
 	for connection in topic_data.connections:

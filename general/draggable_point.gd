@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+class_name DraggablePoint
 extends Node2D
 
 @export var draggable := true
@@ -38,3 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func clamp_in_bounds() -> void:
 	position = position.clamp(bounds.position, bounds.end)
+
+
+func force_stop_dragging() -> void:
+	_dragging = false
