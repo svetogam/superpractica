@@ -19,11 +19,10 @@ const ZOOM_SCALE := 8.5
 const ORIGIN = Vector2.ZERO
 const CAMERA_OVERSHOOT_MARGIN_RATIO := 0.25 * ZOOM_SCALE
 const CAMERA_SURVEY_MARGIN := Vector2(80.0, 60.0) * ZOOM_SCALE
-const CONNECTOR_LINE_WIDTH := 4.0
-const CONNECTOR_LINE_COLOR := Color.BLACK
-const ARROWHEAD_WIDTH := 18.0
-const ARROWHEAD_LENGTH := 15.0
-const BOX_LINE_WIDTH := 8.0
+const THIN_CONNECTOR_WIDTH := 32.0
+const THICK_CONNECTOR_WIDTH := 80.0
+const CONNECTOR_LINE_COLOR := Color.WHITE
+const BOX_LINE_WIDTH := 64.0
 const BOX_MARGIN := Vector2(50.0, 40.0)
 const BOX_COLOR := Color.DARK_SLATE_GRAY
 const LevelNodeScene := preload("topic_nodes/level_node.tscn")
@@ -87,19 +86,22 @@ func build(p_topic_data: TopicResource) -> void:
 	for node in _node_ids_to_nodes.values():
 		node.main_button.button_down.connect(node_pressed.emit.bind(node))
 
-	# Add connectors
-	for connection in topic_data.connections:
-		add_child(_build_line(
-				_node_ids_to_nodes[connection.source_node_id],
-				_node_ids_to_nodes[connection.dest_node_id],
-				connection.start_direction, connection.end_direction))
-
 	# Add groups
 	for topic_group in topic_data.groups:
 		var nodes: Array = []
 		for node_id in topic_group.node_ids:
 			nodes.append(_node_ids_to_nodes[node_id])
-		add_child(_build_box(nodes))
+		%BackgroundLayer.add_child(_build_box(nodes))
+
+	# Add connectors
+	for connection in topic_data.connections:
+		var line := _build_line(
+			_node_ids_to_nodes[connection.source_node_id],
+			_node_ids_to_nodes[connection.dest_node_id],
+			connection.start_direction,
+			connection.end_direction
+		)
+		%BackgroundLayer.add_child(line)
 
 	# Set up cameras
 	camera_point.bounds = get_camera_limit_rect()
@@ -163,66 +165,39 @@ func _update_survey_camera() -> void:
 func _build_line(source_node: Control, dest_node: Control,
 		start_direction: Utils.Direction, end_direction: Utils.Direction
 ) -> Line2D:
-	# Convert directions to sides
-	var start_side: Side
-	var end_side: Side
-	match start_direction:
-		Utils.Direction.LEFT:
-			start_side = Side.SIDE_LEFT
-		Utils.Direction.RIGHT:
-			start_side = Side.SIDE_RIGHT
-		Utils.Direction.UP:
-			start_side = Side.SIDE_TOP
-		Utils.Direction.DOWN:
-			start_side = Side.SIDE_BOTTOM
-		_:
-			assert(false)
-	match end_direction:
-		Utils.Direction.LEFT:
-			end_side = Side.SIDE_RIGHT
-		Utils.Direction.RIGHT:
-			end_side = Side.SIDE_LEFT
-		Utils.Direction.UP:
-			end_side = Side.SIDE_BOTTOM
-		Utils.Direction.DOWN:
-			end_side = Side.SIDE_TOP
-		_:
-			assert(false)
-	assert(start_side != end_side)
-
 	# Find points
-	var start_point := Utils.get_point_at_side(source_node, start_side)
-	var end_point := Utils.get_point_at_side(dest_node, end_side)
+	var start_point := source_node.get_rect().get_center()
+	var end_point := dest_node.get_rect().get_center()
 	var turn_points: Array = []
-	match start_side:
-		Side.SIDE_LEFT, Side.SIDE_RIGHT:
-			match end_side:
-				Side.SIDE_LEFT, Side.SIDE_RIGHT:
+	match start_direction:
+		Utils.Direction.LEFT, Utils.Direction.RIGHT:
+			match end_direction:
+				Utils.Direction.LEFT, Utils.Direction.RIGHT:
 					turn_points = _get_2_orthogonal_midpoints(
 							start_point, end_point, false)
-				Side.SIDE_TOP, Side.SIDE_BOTTOM:
+				Utils.Direction.UP, Utils.Direction.DOWN:
 					var point = _get_orthogonal_midpoint(start_point, end_point, false)
 					turn_points.append(point)
-		Side.SIDE_TOP, Side.SIDE_BOTTOM:
-			match end_side:
-				Side.SIDE_LEFT, Side.SIDE_RIGHT:
+		Utils.Direction.UP, Utils.Direction.DOWN:
+			match end_direction:
+				Utils.Direction.LEFT, Utils.Direction.RIGHT:
 					var point = _get_orthogonal_midpoint(start_point, end_point, true)
 					turn_points.append(point)
-				Side.SIDE_TOP, Side.SIDE_BOTTOM:
+				Utils.Direction.UP, Utils.Direction.DOWN:
 					turn_points = _get_2_orthogonal_midpoints(
 							start_point, end_point, true)
 
 	# Build line
 	var line := Line2D.new()
-	line.width = CONNECTOR_LINE_WIDTH * ZOOM_SCALE
+	if source_node is LevelNode and source_node.is_completed():
+		line.width = THICK_CONNECTOR_WIDTH
+	else:
+		line.width = THIN_CONNECTOR_WIDTH
 	line.default_color = CONNECTOR_LINE_COLOR
 	line.add_point(start_point)
 	for point in turn_points:
 		line.add_point(point)
-	var arrowhead_direction = Utils.side_to_vector(end_side) * -1
-	var short_end_point = end_point - arrowhead_direction * ARROWHEAD_LENGTH * ZOOM_SCALE
-	line.add_point(short_end_point)
-	line.add_child(_build_arrowhead(end_point, arrowhead_direction))
+	line.add_point(end_point)
 
 	return line
 
@@ -247,30 +222,6 @@ func _get_2_orthogonal_midpoints(point_1: Vector2, point_2: Vector2, vertical_fi
 		return [first, second]
 
 
-func _build_arrowhead(tip_point: Vector2, direction: Vector2) -> Polygon2D:
-	var arrowhead := Polygon2D.new()
-	arrowhead.polygon = [
-		Vector2.ZERO,
-		Vector2(-ARROWHEAD_LENGTH * ZOOM_SCALE, ARROWHEAD_WIDTH * ZOOM_SCALE / 2),
-		Vector2(-ARROWHEAD_LENGTH * ZOOM_SCALE, -ARROWHEAD_WIDTH * ZOOM_SCALE / 2)
-	]
-	arrowhead.color = CONNECTOR_LINE_COLOR
-	arrowhead.position = tip_point
-
-	if direction == Vector2.RIGHT:
-		arrowhead.rotation_degrees = 0.0
-	elif direction == Vector2.DOWN:
-		arrowhead.rotation_degrees = 90.0
-	elif direction == Vector2.LEFT:
-		arrowhead.rotation_degrees = 180.0
-	elif direction == Vector2.UP:
-		arrowhead.rotation_degrees = 270.0
-	else:
-		assert(false)
-
-	return arrowhead
-
-
 #====================================================================
 # Boxes
 #====================================================================
@@ -280,10 +231,9 @@ func _build_box(nodes: Array) -> Line2D:
 
 	var box = Line2D.new()
 	box.closed = true
-	box.width = BOX_LINE_WIDTH * ZOOM_SCALE
+	box.width = BOX_LINE_WIDTH
 	box.joint_mode = Line2D.LINE_JOINT_ROUND
 	box.default_color = BOX_COLOR
-	box.z_index = -10
 
 	var rect := Utils.get_combined_control_rect(nodes)
 	box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,

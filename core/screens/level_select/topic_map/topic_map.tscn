@@ -8,12 +8,24 @@
 script = ExtResource("1_i8m7m")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = -1
+follow_viewport_enabled = true
 
-[node name="Background" type="ColorRect" parent="BackgroundLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Parallax2D" type="Parallax2D" parent="BackgroundLayer"]
+repeat_size = Vector2(100000, 100000)
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer/Parallax2D"]
+custom_minimum_size = Vector2(10000, 10000)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5000.0
+offset_top = -5000.0
+offset_right = 95000.0
+offset_bottom = 95000.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

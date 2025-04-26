@@ -70,4 +70,8 @@ func setup(p_level_data: LevelResource) -> void:
 		LevelResource.LevelIcons.UNKNOWN:
 			%MaskIcon.texture = get_theme_icon("unknown")
 
-	completed = Game.progress_data.is_level_completed(id)
+	completed = is_completed()
+
+
+func is_completed() -> bool:
+	return Game.progress_data.is_level_completed(id)
