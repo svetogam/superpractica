@@ -49,9 +49,14 @@ drag_top_margin = 0.0
 drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 
-[node name="FocusCamera" type="Camera2D" parent="."]
+[node name="LevelFocusCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 enabled = false
+
+[node name="SubtopicFocusCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+enabled = false
+zoom = Vector2(0.6, 0.6)
 
 [node name="ThumbnailCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true

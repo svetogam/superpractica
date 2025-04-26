@@ -6,9 +6,13 @@ extends State
 
 
 func _enter(_last_state: String) -> void:
-	assert(_target.current_map.focused_node != null)
+	if _target.current_map.focused_node is SubtopicNode:
+		_target.current_map.set_active_camera(TopicMap.TopicCamera.SUBTOPIC_FOCUS)
+	elif _target.current_map.focused_node is LevelNode:
+		_target.current_map.set_active_camera(TopicMap.TopicCamera.LEVEL_FOCUS)
+	else:
+		assert(false)
 
-	_target.current_map.set_active_camera(TopicMap.TopicCamera.FOCUS)
 	_target.set_overlay(_target.current_map.topic_data)
 
 	_target.current_map.node_pressed.connect(_on_node_pressed)

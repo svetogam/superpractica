@@ -9,7 +9,8 @@ signal node_pressed(node)
 
 enum TopicCamera {
 	SCROLL,
-	FOCUS,
+	LEVEL_FOCUS,
+	SUBTOPIC_FOCUS,
 	THUMBNAIL,
 	SURVEY,
 	TRANSITION,
@@ -38,7 +39,8 @@ var focused_level: LevelResource:
 var _node_ids_to_nodes: Dictionary
 @onready var camera_point := %CameraPoint as Node2D
 @onready var scroll_camera := %ScrollCamera as Camera2D
-@onready var focus_camera := %FocusCamera as Camera2D
+@onready var level_focus_camera := %LevelFocusCamera as Camera2D
+@onready var subtopic_focus_camera := %SubtopicFocusCamera as Camera2D
 @onready var thumbnail_camera := %ThumbnailCamera as Camera2D
 @onready var survey_camera := %SurveyCamera as Camera2D
 @onready var transition_camera := %TransitionCamera as Camera2D
@@ -46,7 +48,8 @@ var _cameras: Dictionary:
 	get:
 		return {
 			TopicCamera.SCROLL: scroll_camera,
-			TopicCamera.FOCUS: focus_camera,
+			TopicCamera.LEVEL_FOCUS: level_focus_camera,
+			TopicCamera.SUBTOPIC_FOCUS: subtopic_focus_camera,
 			TopicCamera.THUMBNAIL: thumbnail_camera,
 			TopicCamera.SURVEY: survey_camera,
 			TopicCamera.TRANSITION: transition_camera,
@@ -110,12 +113,14 @@ func build(p_topic_data: TopicResource) -> void:
 
 func focus_on_node(node_id: String) -> void:
 	focused_node = _node_ids_to_nodes[node_id]
-	focus_camera.position = focused_node.get_rect().get_center()
+	level_focus_camera.position = focused_node.get_rect().get_center()
+	subtopic_focus_camera.position = focused_node.get_rect().get_center()
 
 
 func set_active_camera(next_camera: TopicCamera) -> void:
 	scroll_camera.enabled = false
-	focus_camera.enabled = false
+	level_focus_camera.enabled = false
+	subtopic_focus_camera.enabled = false
 	thumbnail_camera.enabled = false
 	survey_camera.enabled = false
 	transition_camera.enabled = false

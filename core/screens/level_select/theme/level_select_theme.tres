@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://jcpo8pxbskbt"]
+[gd_resource type="Theme" load_steps=28 format=3 uid="uid://jcpo8pxbskbt"]
 
 [ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_qydn7"]
 [ext_resource type="StyleBox" uid="uid://b8xh6j44lqwxh" path="res://core/screens/pimnet_level/theme/button_focused_style_box.tres" id="2_7qqt8"]
@@ -24,6 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://cwde7pv5bayt8" path="res://core/screens/level_select/graphics/icons/8-icon.svg" id="15_ymcve"]
 [ext_resource type="Texture2D" uid="uid://3uvpobw6wit5" path="res://core/screens/level_select/graphics/icons/9-icon.svg" id="16_idau7"]
 [ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/screens/level_select/graphics/icons/question-mark-icon.svg" id="17_vttdr"]
+[ext_resource type="StyleBox" uid="uid://thv0bj3piv1h" path="res://core/screens/level_select/theme/subtopic_node_normal_style_box.tres" id="24_22t00"]
+[ext_resource type="StyleBox" uid="uid://pfn47niotxg3" path="res://core/screens/level_select/theme/subtopic_node_completed_style_box.tres" id="24_mucuy"]
+[ext_resource type="StyleBox" uid="uid://dm635a563pmoq" path="res://core/screens/level_select/theme/subtopic_node_halo_style_box.tres" id="25_8mdi2"]
 
 [resource]
 Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
@@ -62,6 +65,10 @@ LevelNode/styles/normal = ExtResource("10_751ld")
 LevelNode/styles/panel = null
 LevelNode/styles/suggested = ExtResource("11_f4o84")
 PanelContainer/styles/panel = ExtResource("7_751ld")
+SubtopicNode/base_type = &"Panel"
+SubtopicNode/styles/completed = ExtResource("24_mucuy")
+SubtopicNode/styles/halo = ExtResource("25_8mdi2")
+SubtopicNode/styles/normal = ExtResource("24_22t00")
 TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
 TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 TooltipLabel/constants/outline_size = 18

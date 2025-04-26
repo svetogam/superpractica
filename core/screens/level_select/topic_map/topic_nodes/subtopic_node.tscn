@@ -1,31 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://cf73nnjjnqie2"]
 
 [ext_resource type="Script" uid="uid://6ymi8d02osqc" path="res://core/screens/level_select/topic_map/topic_nodes/subtopic_node.gd" id="1_eapxp"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_bul84"]
-font_size = 55
-
-[sub_resource type="LabelSettings" id="LabelSettings_pdg7v"]
-font_size = 32
+[ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_xts23"]
+[ext_resource type="LabelSettings" uid="uid://bmosxtrqk1ggy" path="res://core/screens/level_select/topic_map/topic_nodes/detail_title_label_settings.tres" id="3_6lsf4"]
 
 [node name="SubtopicNode" type="Control"]
-custom_minimum_size = Vector2(1000, 500)
+custom_minimum_size = Vector2(1275, 765)
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_xts23")
+theme_type_variation = &"SubtopicNode"
 script = ExtResource("1_eapxp")
 
-[node name="MainButton" type="Button" parent="."]
+[node name="Mask" type="Control" parent="."]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Mask" type="Control" parent="MainButton"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,18 +22,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MaskLabel" type="Label" parent="MainButton/Mask"]
+[node name="MaskLabel" type="Label" parent="Mask"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -344.0
-offset_top = -82.5
-offset_right = 344.0
-offset_bottom = 82.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 120
@@ -53,50 +35,54 @@ text = "Topic Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Detail" type="Control" parent="MainButton"]
+[node name="Detail" type="Control" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 48.0
+offset_right = -48.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Detail"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Detail"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
 
-[node name="DetailLabel" type="Label" parent="MainButton/Detail/VBoxContainer"]
+[node name="DetailLabel" type="Label" parent="Detail/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-size_flags_vertical = 1
 text = "Title"
-label_settings = SubResource("LabelSettings_bul84")
+label_settings = ExtResource("3_6lsf4")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainButton/Detail/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Detail/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="Detail/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainButton/Detail/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Detail/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="DetailProgressBar" type="ProgressBar" parent="MainButton/Detail/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="DetailProgressBar" type="ProgressBar" parent="Detail/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 25)
 layout_mode = 2
@@ -106,9 +92,18 @@ step = 1.0
 rounded = true
 show_percentage = false
 
-[node name="FractionLabel" type="Label" parent="MainButton/Detail/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="FractionLabel" type="Label" parent="Detail/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0 / 99"
-label_settings = SubResource("LabelSettings_pdg7v")
+label_settings = ExtResource("3_6lsf4")
 horizontal_alignment = 1
+
+[node name="MainButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

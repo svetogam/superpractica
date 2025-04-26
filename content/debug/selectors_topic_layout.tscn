@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cst30qnmsetuj"]
+
+[ext_resource type="Script" uid="uid://cshkcppd7e0bo" path="res://core/screens/level_select/topic_resources/topic_layout_node_ref.gd" id="1_ijili"]
+
+[node name="Layout" type="Node"]
+
+[node name="Level4" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = -42.0
+offset_top = -23.0
+offset_right = 58.0
+offset_bottom = 27.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_ijili")
+id = "select_number_1"
+
+[node name="Level5" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_left = 184.0
+offset_top = -23.0
+offset_right = 284.0
+offset_bottom = 27.0
+border_color = Color(0, 0, 0, 1)
+border_width = 4.0
+script = ExtResource("1_ijili")
+id = "select_number_2"
