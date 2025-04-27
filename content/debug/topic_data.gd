@@ -9,6 +9,8 @@ static var topic = TopicResource.new(
 	"debug_levels",
 	# Title
 	"Debug",
+	# Background
+	TopicMap.Backgrounds.BLUE_TRIANGLES,
 	# Levels
 	[
 		LevelResource.new(

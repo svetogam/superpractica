@@ -9,6 +9,8 @@ static var topic = TopicResource.new(
 	"grid_counting",
 	# Title
 	"Grid Counting",
+	# Background
+	TopicMap.Backgrounds.GREEN_TRIANGLES,
 	# Levels
 	[
 		LevelResource.new(

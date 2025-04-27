@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="140"
+   viewBox="0 0 26.458333 37.041667"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb, 2024-10-09)"
+   sodipodi:docname="triangles_background.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showguides="true"
+     showgrid="true"
+     inkscape:zoom="1.4681257"
+     inkscape:cx="24.521061"
+     inkscape:cy="168.92287"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="2.6458333"
+       spacingy="2.6458332"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#4d994d;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 0,0 13.229166,18.520833 26.458333,0 Z"
+       id="path1"
+       sodipodi:nodetypes="cccc"
+       inkscape:label="Triangle1" />
+    <path
+       style="fill:#468c46;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 0,37.041665 13.229166,18.520833 26.458333,37.041665 Z"
+       id="path1-2"
+       sodipodi:nodetypes="cccc"
+       inkscape:label="Triangle2" />
+    <path
+       style="fill:#408040;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 13.229167,18.520832 26.458332,5e-7 l 1e-6,18.5208325 z"
+       id="path1-2-7"
+       sodipodi:nodetypes="cccc"
+       inkscape:label="Triangle3-1" />
+    <path
+       style="fill:#408040;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 13.229166,18.520832 1e-6,4e-7 0,18.520833 Z"
+       id="path1-2-7-6"
+       sodipodi:nodetypes="cccc"
+       inkscape:label="Triangle3-2" />
+    <path
+       style="fill:#397339;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 13.229167,18.520833 13.229165,18.520832 1e-6,-18.520833 z"
+       id="path1-2-7-61"
+       sodipodi:nodetypes="cccc"
+       inkscape:label="Triangle4-1" />
+    <path
+       style="fill:#397339;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 13.229167,18.520833 2.5e-7,37.041665 -7.5e-7,18.520832 Z"
+       id="path1-2-7-61-2"
+       sodipodi:nodetypes="cccc"
+       inkscape:label="Triangle4-2" />
+  </g>
+</svg>

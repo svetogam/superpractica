@@ -10,6 +10,8 @@ static var topic = TopicResource.new(
 	"root",
 	# Title
 	"Topics",
+	# Background
+	TopicMap.Backgrounds.BLUE_TRIANGLES,
 	# Levels
 	[],
 	# Subtopics

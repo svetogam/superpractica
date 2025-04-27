@@ -15,6 +15,10 @@ enum TopicCamera {
 	SURVEY,
 	TRANSITION,
 }
+enum Backgrounds {
+	GREEN_TRIANGLES = 0,
+	BLUE_TRIANGLES,
+}
 
 const ZOOM_SCALE := 8.5
 const ORIGIN = Vector2.ZERO
@@ -28,6 +32,8 @@ const BOX_MARGIN := Vector2(50.0, 40.0)
 const BOX_COLOR := Color.DARK_SLATE_GRAY
 const LevelNodeScene := preload("topic_nodes/level_node.tscn")
 const SubtopicNodeScene := preload("topic_nodes/subtopic_node.tscn")
+const GreenTrianglesTexture := preload("uid://cx3rph7u0xbiq")
+const BlueTrianglesTexture := preload("uid://c4tjv8ugcf1d8")
 
 var topic_data: TopicResource
 var focused_node: Control
@@ -53,6 +59,12 @@ var _cameras: Dictionary:
 			TopicCamera.THUMBNAIL: thumbnail_camera,
 			TopicCamera.SURVEY: survey_camera,
 			TopicCamera.TRANSITION: transition_camera,
+		}
+var _backgrounds: Dictionary:
+	get:
+		return {
+			Backgrounds.GREEN_TRIANGLES: GreenTrianglesTexture,
+			Backgrounds.BLUE_TRIANGLES: BlueTrianglesTexture,
 		}
 
 
@@ -88,6 +100,10 @@ func build(p_topic_data: TopicResource) -> void:
 	# Connect node signals
 	for node in _node_ids_to_nodes.values():
 		node.main_button.button_down.connect(node_pressed.emit.bind(node))
+
+	# Add background
+	%BackgroundTile.texture = _backgrounds[topic_data.bg_texture]
+	%BackgroundParallax.repeat_size = %BackgroundTile.size
 
 	# Add groups
 	for topic_group in topic_data.groups:

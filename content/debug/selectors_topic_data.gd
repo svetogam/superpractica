@@ -9,6 +9,8 @@ static var topic = TopicResource.new(
 	"selectors",
 	# Title
 	"Selectors",
+	# Background
+	TopicMap.Backgrounds.BLUE_TRIANGLES,
 	# Levels
 	[
 		LevelResource.new(

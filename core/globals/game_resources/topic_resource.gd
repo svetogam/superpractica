@@ -7,6 +7,7 @@ extends Resource
 
 @export var id: String
 @export var title: String
+@export var bg_texture := TopicMap.Backgrounds.GREEN_TRIANGLES
 @export var _levels: Array[LevelResource]
 @export var _subtopics: Array[TopicResource]
 @export var _layout: PackedScene
@@ -20,6 +21,7 @@ var _layout_data: Dictionary
 func _init(
 	p_id := "",
 	p_title := "",
+	p_bg_texture := TopicMap.Backgrounds.GREEN_TRIANGLES,
 	p_levels: Array[LevelResource] = [],
 	p_subtopics: Array[TopicResource] = [],
 	p_layout: PackedScene = null,
@@ -29,6 +31,7 @@ func _init(
 ) -> void:
 	id = p_id
 	title = p_title
+	bg_texture = p_bg_texture
 	_levels = p_levels
 	_subtopics = p_subtopics
 	_layout = p_layout

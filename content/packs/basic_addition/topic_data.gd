@@ -9,6 +9,8 @@ static var topic = TopicResource.new(
 	"basic_addition",
 	# Title
 	"Basic Addition",
+	# Background
+	TopicMap.Backgrounds.GREEN_TRIANGLES,
 	# Levels
 	[
 	],
