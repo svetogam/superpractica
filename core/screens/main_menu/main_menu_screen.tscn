@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtsgoie3mkpl"]
+[gd_scene load_steps=15 format=3 uid="uid://dtsgoie3mkpl"]
 
 [ext_resource type="Script" uid="uid://uqvc2km0y0ug" path="res://core/screens/main_menu/main_menu_screen.gd" id="1_evcbt"]
 [ext_resource type="Theme" uid="uid://rvggfmuj8l32" path="res://core/screens/main_menu/theme/main_menu_theme.tres" id="1_qnfx7"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b5k643fvhrvdi" path="res://core/screens/main_menu/states/from_about_to_start.gd" id="8_o83qo"]
 [ext_resource type="Script" uid="uid://g1d1vsy7pjgt" path="res://core/screens/main_menu/states/from_about_to_credits.gd" id="9_2l7pg"]
 [ext_resource type="Script" uid="uid://lt3nb1j0u64h" path="res://core/screens/main_menu/states/from_credits_to_about.gd" id="10_2l7pg"]
+[ext_resource type="Texture2D" uid="uid://df0oro5hgq6fn" path="res://core/screens/main_menu/graphics/circle.svg" id="11_7x0fx"]
 [ext_resource type="LabelSettings" uid="uid://cc272esec8t84" path="res://core/screens/main_menu/title_label_settings.tres" id="11_tk1fg"]
 [ext_resource type="LabelSettings" uid="uid://b05v8ydlelqai" path="res://core/screens/main_menu/panel_header_label_settings.tres" id="12_7x0fx"]
 
@@ -51,11 +52,153 @@ script = ExtResource("9_2l7pg")
 [node name="FromCreditsToAbout" type="Node" parent="StateMachine"]
 script = ExtResource("10_2l7pg")
 
-[node name="StartCamera" type="Camera2D" parent="."]
+[node name="StaticBackgroundLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="StaticBackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.4, 1)
+
+[node name="ScrollingBackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+offset = Vector2(2000, 2000)
+transform = Transform2D(1, 0, 0, 1, 2000, 2000)
+follow_viewport_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ScrollingBackgroundLayer"]
+color = Color(0.301961, 0.301961, 0.6, 1)
+
+[node name="Parallax480" type="Parallax2D" parent="ScrollingBackgroundLayer"]
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(90, 90)
+repeat_size = Vector2(480, 480)
+autoscroll = Vector2(20, 20)
+repeat_times = 10
+
+[node name="TextureRect" type="TextureRect" parent="ScrollingBackgroundLayer/Parallax480"]
+custom_minimum_size = Vector2(240, 240)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_7x0fx")
+expand_mode = 1
+
+[node name="Parallax240" type="Parallax2D" parent="ScrollingBackgroundLayer"]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(210, 210)
+repeat_size = Vector2(240, 240)
+autoscroll = Vector2(20, 20)
+repeat_times = 20
+
+[node name="TextureRect" type="TextureRect" parent="ScrollingBackgroundLayer/Parallax240"]
+custom_minimum_size = Vector2(120, 120)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_7x0fx")
+expand_mode = 1
+
+[node name="Parallax120" type="Parallax2D" parent="ScrollingBackgroundLayer"]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(30, 30)
+repeat_size = Vector2(120, 120)
+autoscroll = Vector2(20, 20)
+repeat_times = 40
+
+[node name="TextureRect" type="TextureRect" parent="ScrollingBackgroundLayer/Parallax120"]
+custom_minimum_size = Vector2(60, 60)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_7x0fx")
+expand_mode = 1
+
+[node name="Parallax60" type="Parallax2D" parent="ScrollingBackgroundLayer"]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(60, 60)
+autoscroll = Vector2(20, 20)
+repeat_times = 80
+
+[node name="TextureRect" type="TextureRect" parent="ScrollingBackgroundLayer/Parallax60"]
+custom_minimum_size = Vector2(30, 30)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_7x0fx")
+expand_mode = 1
+
+[node name="Parallax30" type="Parallax2D" parent="ScrollingBackgroundLayer"]
+scroll_scale = Vector2(0.05, 0.05)
+scroll_offset = Vector2(15, 15)
+repeat_size = Vector2(30, 30)
+autoscroll = Vector2(20, 20)
+repeat_times = 160
+
+[node name="TextureRect" type="TextureRect" parent="ScrollingBackgroundLayer/Parallax30"]
+custom_minimum_size = Vector2(15, 15)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -7.5
+offset_right = 7.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_7x0fx")
+expand_mode = 1
+
+[node name="TitleFrame" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartCamera" type="Camera2D" parent="TitleFrame"]
 unique_name_in_owner = true
 anchor_mode = 0
 
-[node name="GameTitle" type="Label" parent="."]
+[node name="GameTitle" type="Label" parent="TitleFrame"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -70,7 +213,7 @@ label_settings = ExtResource("11_tk1fg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleFrame"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -78,36 +221,36 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 30.0
 offset_top = -158.0
-offset_right = 250.0
+offset_right = 280.0
 offset_bottom = 158.0
 grow_vertical = 2
 alignment = 2
 
-[node name="TopicsButton" type="Button" parent="VBoxContainer"]
+[node name="TopicsButton" type="Button" parent="TitleFrame/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Play Topics"
 
-[node name="SandboxButton" type="Button" parent="VBoxContainer"]
+[node name="SandboxButton" type="Button" parent="TitleFrame/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
 text = "Play Sandbox"
 
-[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="TitleFrame/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
 text = "Settings"
 
-[node name="InfoButton" type="Button" parent="VBoxContainer"]
+[node name="InfoButton" type="Button" parent="TitleFrame/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Info"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="TitleFrame/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
