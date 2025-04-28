@@ -4,13 +4,6 @@
 
 [node name="Layout" type="Node"]
 
-[node name="GridCounting" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -42.0
-offset_top = -23.0
-offset_right = 58.0
-offset_bottom = 27.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="GridCounting" type="Marker2D" parent="."]
 script = ExtResource("1_xovs0")
 id = "grid_counting"

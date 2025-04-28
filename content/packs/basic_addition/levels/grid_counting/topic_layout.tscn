@@ -4,321 +4,146 @@
 
 [node name="Layout" type="Node"]
 
-[node name="Level0_1" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -48.0
-offset_top = -24.0
-offset_right = 52.0
-offset_bottom = 26.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level0_1" type="Marker2D" parent="."]
 script = ExtResource("1_3ye2f")
 id = "grid_counting_0_1"
 
-[node name="Level0_2" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 112.0
-offset_top = -24.0
-offset_right = 212.0
-offset_bottom = 26.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level0_2" type="Marker2D" parent="."]
+position = Vector2(150, 0)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_0_2"
 
-[node name="Level1_1" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -48.0
-offset_top = 161.0
-offset_right = 52.0
-offset_bottom = 211.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level1_1" type="Marker2D" parent="."]
+position = Vector2(0, 190)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_1"
 
-[node name="Level1_2" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 112.0
-offset_top = 161.0
-offset_right = 212.0
-offset_bottom = 211.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level1_2" type="Marker2D" parent="."]
+position = Vector2(150, 190)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_2"
 
-[node name="Level1_3" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 272.0
-offset_top = 161.0
-offset_right = 372.0
-offset_bottom = 211.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level1_3" type="Marker2D" parent="."]
+position = Vector2(300, 190)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_3"
 
-[node name="Level1_4" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 432.0
-offset_top = 161.0
-offset_right = 532.0
-offset_bottom = 211.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level1_4" type="Marker2D" parent="."]
+position = Vector2(450, 190)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_4"
 
-[node name="Level1_5" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 592.0
-offset_top = 161.0
-offset_right = 692.0
-offset_bottom = 211.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level1_5" type="Marker2D" parent="."]
+position = Vector2(600, 190)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_5"
 
-[node name="Level1_6" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 752.0
-offset_top = 161.0
-offset_right = 852.0
-offset_bottom = 211.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level1_6" type="Marker2D" parent="."]
+position = Vector2(750, 190)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_6"
 
-[node name="Level1_7" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 912.0
-offset_top = 161.0
-offset_right = 1012.0
-offset_bottom = 211.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level1_7" type="Marker2D" parent="."]
+position = Vector2(900, 190)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_1_random"
 
-[node name="Level2_1" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1117.0
-offset_top = 357.0
-offset_right = 1217.0
-offset_bottom = 407.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level2_1" type="Marker2D" parent="."]
+position = Vector2(1050, 380)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_2_1"
 
-[node name="Level2_2" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1277.0
-offset_top = 357.0
-offset_right = 1377.0
-offset_bottom = 407.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level2_2" type="Marker2D" parent="."]
+position = Vector2(1200, 380)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_2_2"
 
-[node name="Level2_3" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1437.0
-offset_top = 357.0
-offset_right = 1537.0
-offset_bottom = 407.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level2_3" type="Marker2D" parent="."]
+position = Vector2(1350, 380)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_2_3"
 
-[node name="Level2_4" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1597.0
-offset_top = 357.0
-offset_right = 1697.0
-offset_bottom = 407.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level2_4" type="Marker2D" parent="."]
+position = Vector2(1500, 380)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_2_4"
 
-[node name="Level2_5" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1757.0
-offset_top = 357.0
-offset_right = 1857.0
-offset_bottom = 407.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level2_5" type="Marker2D" parent="."]
+position = Vector2(1650, 380)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_2_5"
 
-[node name="Level2_6" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1917.0
-offset_top = 357.0
-offset_right = 2017.0
-offset_bottom = 407.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level2_6" type="Marker2D" parent="."]
+position = Vector2(1800, 380)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_2_6"
 
-[node name="Level2_7" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 2077.0
-offset_top = 357.0
-offset_right = 2177.0
-offset_bottom = 407.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level2_7" type="Marker2D" parent="."]
+position = Vector2(1950, 380)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_2_7"
 
-[node name="Level3_1" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -48.0
-offset_top = 553.0
-offset_right = 52.0
-offset_bottom = 603.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level3_1" type="Marker2D" parent="."]
+position = Vector2(0, 570)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_3_1"
 
-[node name="Level3_2" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 112.0
-offset_top = 553.0
-offset_right = 212.0
-offset_bottom = 603.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level3_2" type="Marker2D" parent="."]
+position = Vector2(150, 570)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_3_2"
 
-[node name="Level3_3" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 272.0
-offset_top = 553.0
-offset_right = 372.0
-offset_bottom = 603.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level3_3" type="Marker2D" parent="."]
+position = Vector2(300, 570)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_3_3"
 
-[node name="Level3_4" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 432.0
-offset_top = 553.0
-offset_right = 532.0
-offset_bottom = 603.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level3_4" type="Marker2D" parent="."]
+position = Vector2(450, 570)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_3_4"
 
-[node name="Level3_5" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 592.0
-offset_top = 553.0
-offset_right = 692.0
-offset_bottom = 603.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level3_5" type="Marker2D" parent="."]
+position = Vector2(600, 570)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_3_5"
 
-[node name="Level3_6" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 752.0
-offset_top = 553.0
-offset_right = 852.0
-offset_bottom = 603.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level3_6" type="Marker2D" parent="."]
+position = Vector2(750, 570)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_3_6"
 
-[node name="Level4_1" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1117.0
-offset_top = 749.0
-offset_right = 1217.0
-offset_bottom = 799.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level4_1" type="Marker2D" parent="."]
+position = Vector2(1050, 760)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_4_1"
 
-[node name="Level4_2" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1277.0
-offset_top = 749.0
-offset_right = 1377.0
-offset_bottom = 799.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level4_2" type="Marker2D" parent="."]
+position = Vector2(1200, 760)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_4_2"
 
-[node name="Level4_3" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1437.0
-offset_top = 749.0
-offset_right = 1537.0
-offset_bottom = 799.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level4_3" type="Marker2D" parent="."]
+position = Vector2(1350, 760)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_4_3"
 
-[node name="Level4_4" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1597.0
-offset_top = 749.0
-offset_right = 1697.0
-offset_bottom = 799.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level4_4" type="Marker2D" parent="."]
+position = Vector2(1500, 760)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_4_4"
 
-[node name="Level4_5" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1757.0
-offset_top = 749.0
-offset_right = 1857.0
-offset_bottom = 799.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level4_5" type="Marker2D" parent="."]
+position = Vector2(1650, 760)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_4_5"
 
-[node name="Level4_6" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 1917.0
-offset_top = 749.0
-offset_right = 2017.0
-offset_bottom = 799.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level4_6" type="Marker2D" parent="."]
+position = Vector2(1800, 760)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_4_6"
 
-[node name="Level4_7" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 2077.0
-offset_top = 749.0
-offset_right = 2177.0
-offset_bottom = 799.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level4_7" type="Marker2D" parent="."]
+position = Vector2(1950, 760)
 script = ExtResource("1_3ye2f")
 id = "grid_counting_4_random"

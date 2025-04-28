@@ -4,24 +4,11 @@
 
 [node name="Layout" type="Node"]
 
-[node name="BasicAddition" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -42.0
-offset_top = -23.0
-offset_right = 58.0
-offset_bottom = 27.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="BasicAddition" type="Marker2D" parent="."]
 script = ExtResource("1_et7bg")
 id = "basic_addition"
 
-[node name="DebugLevels" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 266.0
-offset_top = 175.0
-offset_right = 366.0
-offset_bottom = 225.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="DebugLevels" type="Marker2D" parent="."]
+position = Vector2(266, 175)
 script = ExtResource("1_et7bg")
 id = "debug_levels"

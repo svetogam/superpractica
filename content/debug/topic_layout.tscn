@@ -4,46 +4,21 @@
 
 [node name="Layout" type="Node"]
 
-[node name="Level3" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 184.0
-offset_top = -23.0
-offset_right = 284.0
-offset_bottom = 27.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
-script = ExtResource("1_c4l2i")
-id = "grid_counting"
-
-[node name="Selectors" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -42.0
-offset_top = -23.0
-offset_right = 58.0
-offset_bottom = 27.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Selectors" type="Marker2D" parent="."]
 script = ExtResource("1_c4l2i")
 id = "selectors"
 
-[node name="SlotPims" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = -42.0
-offset_top = 146.0
-offset_right = 58.0
-offset_bottom = 196.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="Level3" type="Marker2D" parent="."]
+position = Vector2(172, 0)
+script = ExtResource("1_c4l2i")
+id = "grid_counting"
+
+[node name="SlotPims" type="Marker2D" parent="."]
+position = Vector2(0, 164)
 script = ExtResource("1_c4l2i")
 id = "slot_pims"
 
-[node name="FieldPims" type="ReferenceRect" parent="."]
-custom_minimum_size = Vector2(100, 50)
-offset_left = 184.0
-offset_top = 146.0
-offset_right = 284.0
-offset_bottom = 196.0
-border_color = Color(0, 0, 0, 1)
-border_width = 4.0
+[node name="FieldPims" type="Marker2D" parent="."]
+position = Vector2(172, 164)
 script = ExtResource("1_c4l2i")
 id = "field_pims"
