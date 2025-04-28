@@ -18,27 +18,26 @@ var suggested := false:
 
 
 func _draw() -> void:
-	var rect := Rect2(Vector2.ZERO, size)
 	var body_box: StyleBox
 	var halo_box: StyleBox
 
 	# Determine body
 	if completed:
-		body_box = get_theme_stylebox("completed")
+		body_box = box.get_theme_stylebox("completed")
 	elif suggested:
-		body_box = get_theme_stylebox("suggested")
+		body_box = box.get_theme_stylebox("suggested")
 	else:
-		body_box = get_theme_stylebox("normal")
+		body_box = box.get_theme_stylebox("normal")
 
 	# Determine halo
 	if completed:
-		halo_box = get_theme_stylebox("halo_thick")
+		halo_box = box.get_theme_stylebox("halo_thick")
 	else:
-		halo_box = get_theme_stylebox("halo_thin")
+		halo_box = box.get_theme_stylebox("halo_thin")
 
 	# Draw
-	draw_style_box(halo_box, rect)
-	draw_style_box(body_box, rect)
+	draw_style_box(halo_box, box.get_rect())
+	draw_style_box(body_box, box.get_rect())
 
 
 func setup(p_level_data: LevelResource) -> void:
@@ -48,27 +47,27 @@ func setup(p_level_data: LevelResource) -> void:
 	%DetailLabel.text = level_data.title
 	match level_data.icon:
 		LevelResource.LevelIcons.ZERO:
-			%MaskIcon.texture = get_theme_icon("0")
+			%MaskIcon.texture = box.get_theme_icon("0")
 		LevelResource.LevelIcons.ONE:
-			%MaskIcon.texture = get_theme_icon("1")
+			%MaskIcon.texture = box.get_theme_icon("1")
 		LevelResource.LevelIcons.TWO:
-			%MaskIcon.texture = get_theme_icon("2")
+			%MaskIcon.texture = box.get_theme_icon("2")
 		LevelResource.LevelIcons.THREE:
-			%MaskIcon.texture = get_theme_icon("3")
+			%MaskIcon.texture = box.get_theme_icon("3")
 		LevelResource.LevelIcons.FOUR:
-			%MaskIcon.texture = get_theme_icon("4")
+			%MaskIcon.texture = box.get_theme_icon("4")
 		LevelResource.LevelIcons.FIVE:
-			%MaskIcon.texture = get_theme_icon("5")
+			%MaskIcon.texture = box.get_theme_icon("5")
 		LevelResource.LevelIcons.SIX:
-			%MaskIcon.texture = get_theme_icon("6")
+			%MaskIcon.texture = box.get_theme_icon("6")
 		LevelResource.LevelIcons.SEVEN:
-			%MaskIcon.texture = get_theme_icon("7")
+			%MaskIcon.texture = box.get_theme_icon("7")
 		LevelResource.LevelIcons.EIGHT:
-			%MaskIcon.texture = get_theme_icon("8")
+			%MaskIcon.texture = box.get_theme_icon("8")
 		LevelResource.LevelIcons.NINE:
-			%MaskIcon.texture = get_theme_icon("9")
+			%MaskIcon.texture = box.get_theme_icon("9")
 		LevelResource.LevelIcons.UNKNOWN:
-			%MaskIcon.texture = get_theme_icon("unknown")
+			%MaskIcon.texture = box.get_theme_icon("unknown")
 
 	completed = is_completed()
 

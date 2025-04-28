@@ -36,7 +36,7 @@ const GreenTrianglesTexture := preload("uid://cx3rph7u0xbiq")
 const BlueTrianglesTexture := preload("uid://c4tjv8ugcf1d8")
 
 var topic_data: TopicResource
-var focused_node: Control
+var focused_node: Node2D
 var focused_level: LevelResource:
 	get:
 		if focused_node != null and focused_node is LevelNode:
@@ -71,8 +71,6 @@ var _backgrounds: Dictionary:
 func _ready() -> void:
 	scroll_camera.zoom = Vector2(1.0 / ZOOM_SCALE, 1.0 / ZOOM_SCALE)
 
-	CSLocator.with(self).register(Game.SERVICE_THUMBNAIL_CAMERA, thumbnail_camera)
-
 
 func build(p_topic_data: TopicResource) -> void:
 	assert(p_topic_data != null)
@@ -82,20 +80,21 @@ func build(p_topic_data: TopicResource) -> void:
 	# Build layout
 	var suggested_level_ids = topic_data.get_suggested_level_ids()
 	for level_data in topic_data.get_levels():
-		var level_node := LevelNodeScene.instantiate()
-		level_node.setup(level_data)
-		level_node.name = level_node.id
-		if suggested_level_ids.has(level_node.id):
-			level_node.suggested = true
-		_node_ids_to_nodes[level_node.id] = level_node
-	for subtopic_data in topic_data.get_subtopics():
-		var subtopic_node := SubtopicNodeScene.instantiate()
-		subtopic_node.setup(subtopic_data)
-		subtopic_node.name = subtopic_node.id
-		_node_ids_to_nodes[subtopic_node.id] = subtopic_node
-	for node in _node_ids_to_nodes.values():
-		node.position = topic_data.get_node_position(node.id) * ZOOM_SCALE
+		var node := LevelNodeScene.instantiate()
 		add_child(node)
+		node.setup(level_data)
+		node.name = node.id
+		node.position = topic_data.get_node_position(node.id) * ZOOM_SCALE
+		if suggested_level_ids.has(node.id):
+			node.suggested = true
+		_node_ids_to_nodes[node.id] = node
+	for subtopic_data in topic_data.get_subtopics():
+		var node := SubtopicNodeScene.instantiate()
+		add_child(node)
+		node.setup(subtopic_data)
+		node.name = node.id
+		node.position = topic_data.get_node_position(node.id) * ZOOM_SCALE
+		_node_ids_to_nodes[node.id] = node
 
 	# Connect node signals
 	for node in _node_ids_to_nodes.values():
@@ -129,8 +128,8 @@ func build(p_topic_data: TopicResource) -> void:
 
 func focus_on_node(node_id: String) -> void:
 	focused_node = _node_ids_to_nodes[node_id]
-	level_focus_camera.position = focused_node.get_rect().get_center()
-	subtopic_focus_camera.position = focused_node.get_rect().get_center()
+	level_focus_camera.position = focused_node.position
+	subtopic_focus_camera.position = focused_node.position
 
 
 func set_active_camera(next_camera: TopicCamera) -> void:
@@ -149,7 +148,16 @@ func set_camera_point_to_origin() -> void:
 
 
 func set_camera_point_to_node(node_id: String) -> void:
-	camera_point.position = get_topic_node(node_id).get_rect().get_center()
+	camera_point.position = get_topic_node(node_id).position
+
+
+func update_thumbnail_camera() -> void:
+	var thumbnail_rect = focused_node.get_thumbnail_rect()
+	thumbnail_camera.global_position = thumbnail_rect.get_center()
+	thumbnail_camera.zoom = Vector2(
+		get_viewport().get_visible_rect().size.x / thumbnail_rect.size.x,
+		get_viewport().get_visible_rect().size.y / thumbnail_rect.size.y
+	)
 
 
 func get_topic_node(node_id: String) -> TopicNode:
@@ -157,7 +165,10 @@ func get_topic_node(node_id: String) -> TopicNode:
 
 
 func get_map_rect() -> Rect2:
-	return Utils.get_combined_control_rect(_node_ids_to_nodes.values())
+	var boxes: Array = []
+	for node in _node_ids_to_nodes.values():
+		boxes.append(node.box)
+	return Utils.get_combined_control_rect(boxes)
 
 
 func get_camera_limit_rect() -> Rect2:
@@ -183,12 +194,12 @@ func _update_survey_camera() -> void:
 # Connectors
 #====================================================================
 
-func _build_line(source_node: Control, dest_node: Control,
+func _build_line(source_node: Node2D, dest_node: Node2D,
 		start_direction: Utils.Direction, end_direction: Utils.Direction
 ) -> Line2D:
 	# Find points
-	var start_point := source_node.get_rect().get_center()
-	var end_point := dest_node.get_rect().get_center()
+	var start_point = source_node.position
+	var end_point = dest_node.position
 	var turn_points: Array = []
 	match start_direction:
 		Utils.Direction.LEFT, Utils.Direction.RIGHT:
@@ -250,19 +261,22 @@ func _get_2_orthogonal_midpoints(point_1: Vector2, point_2: Vector2, vertical_fi
 func _build_box(nodes: Array) -> Line2D:
 	assert(nodes.size() > 1)
 
-	var box = Line2D.new()
-	box.closed = true
-	box.width = BOX_LINE_WIDTH
-	box.joint_mode = Line2D.LINE_JOINT_ROUND
-	box.default_color = BOX_COLOR
+	var group_box = Line2D.new()
+	group_box.closed = true
+	group_box.width = BOX_LINE_WIDTH
+	group_box.joint_mode = Line2D.LINE_JOINT_ROUND
+	group_box.default_color = BOX_COLOR
 
-	var rect := Utils.get_combined_control_rect(nodes)
-	box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
+	var boxes: Array = []
+	for node in nodes:
+		boxes.append(node.box)
+	var rect := Utils.get_combined_control_rect(boxes)
+	group_box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
 			rect.position.y - BOX_MARGIN.y * ZOOM_SCALE))
-	box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
+	group_box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
 			rect.position.y - BOX_MARGIN.y * ZOOM_SCALE))
-	box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
+	group_box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
 			rect.end.y + BOX_MARGIN.y * ZOOM_SCALE))
-	box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
+	group_box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
 			rect.end.y + BOX_MARGIN.y * ZOOM_SCALE))
-	return box
+	return group_box

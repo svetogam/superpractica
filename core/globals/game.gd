@@ -27,7 +27,6 @@ const SERVICE_ROOT_EFFECT_LAYER := "effect_layer"
 const SERVICE_VERIFIER := "verifier"
 const SERVICE_REVERTER := "reverter"
 const SERVICE_PIMNET_LEVEL_VIEWPORT := "pimnet_level_viewport"
-const SERVICE_THUMBNAIL_CAMERA := "thumbnail_camera"
 
 const AGENT_FIELD := "fields"
 const AGENT_MEMO_SLOT := "memo_slots"

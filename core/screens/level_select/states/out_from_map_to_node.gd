@@ -15,6 +15,7 @@ func _enter(_last_state: String) -> void:
 		_target.current_map.survey_camera,
 		_on_zoom_finished
 	)
+	_target.outer_map.update_thumbnail_camera()
 	_target.outer_map.transition_camera.duration = ZOOM_DURATION
 	_target.outer_map.transition_camera.position_ease = Tween.EASE_OUT
 	_target.outer_map.transition_camera.transition(

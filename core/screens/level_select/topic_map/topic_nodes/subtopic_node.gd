@@ -14,19 +14,18 @@ var completed := false:
 
 
 func _draw() -> void:
-	var rect := Rect2(Vector2.ZERO, size)
 	var body_box: StyleBox
-	var halo_box := get_theme_stylebox("halo")
+	var halo_box = box.get_theme_stylebox("halo")
 
 	# Determine body
 	if completed:
-		body_box = get_theme_stylebox("completed")
+		body_box = box.get_theme_stylebox("completed")
 	else:
-		body_box = get_theme_stylebox("normal")
+		body_box = box.get_theme_stylebox("normal")
 
 	# Draw
-	draw_style_box(halo_box, rect)
-	draw_style_box(body_box, rect)
+	draw_style_box(halo_box, box.get_rect())
+	draw_style_box(body_box, box.get_rect())
 
 
 func setup(p_topic_data: TopicResource) -> void:

@@ -5,17 +5,28 @@
 [ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/screens/level_select/graphics/icons/question-mark-icon.svg" id="3_4ff5h"]
 [ext_resource type="LabelSettings" uid="uid://bmosxtrqk1ggy" path="res://core/screens/level_select/topic_map/topic_nodes/detail_title_label_settings.tres" id="4_8h5ph"]
 
-[node name="LevelNode" type="Control"]
-custom_minimum_size = Vector2(650, 650)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 650.0
-offset_bottom = 650.0
-theme = ExtResource("1_8h5ph")
-theme_type_variation = &"LevelNode"
+[node name="LevelNode" type="Node2D"]
 script = ExtResource("1_tpmk7")
 
-[node name="Mask" type="Control" parent="."]
+[node name="Box" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(650, 650)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -325.0
+offset_right = 325.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8h5ph")
+theme_type_variation = &"LevelNode"
+
+[node name="Mask" type="Control" parent="Box"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -25,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MaskIcon" type="TextureRect" parent="Mask"]
+[node name="MaskIcon" type="TextureRect" parent="Box/Mask"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 1
@@ -42,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_4ff5h")
 
-[node name="Detail" type="Control" parent="."]
+[node name="Detail" type="Control" parent="Box"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -53,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="DetailLabel" type="Label" parent="Detail"]
+[node name="DetailLabel" type="Label" parent="Box/Detail"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -70,7 +81,7 @@ label_settings = ExtResource("4_8h5ph")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="Detail"]
+[node name="Thumbnail" type="TextureRect" parent="Box/Detail"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(460, 345)
 layout_mode = 1
@@ -89,7 +100,7 @@ size_flags_vertical = 6
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MainButton" type="TextureButton" parent="."]
+[node name="MainButton" type="TextureButton" parent="Box"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -97,3 +108,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="mouse_entered" from="Box/MainButton" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Box/MainButton" to="." method="_on_mouse_exited"]

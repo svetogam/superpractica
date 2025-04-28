@@ -14,6 +14,7 @@ func _enter(_last_state: String) -> void:
 		_target.disuse_viewport(_target.ViewportPlace.OUTER)
 
 	_target.inner_map.set_camera_point_to_origin()
+	_target.current_map.update_thumbnail_camera()
 	_target.current_map.transition_camera.duration = ZOOM_DURATION
 	_target.current_map.transition_camera.position_ease = Tween.EASE_OUT
 	_target.current_map.transition_camera.transition(

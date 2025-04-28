@@ -3,28 +3,34 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 class_name TopicNode
-extends Control
+extends Node2D
 
+const POP_DURATION := 0.2
+const EXPANDED_SCALE := Vector2(1.1, 1.1)
 var id: String
-var _thumbnail_camera: Camera2D
+var popping := false
+var masked := true
+@onready var box := %Box as Control
 @onready var main_button := %MainButton as BaseButton
-
-
-func _enter_tree() -> void:
-	if not Engine.is_editor_hint():
-		CSLocator.with(self).connect_service_found(
-				Game.SERVICE_THUMBNAIL_CAMERA, _on_thumbnail_camera_found)
-
-
-func _on_thumbnail_camera_found(p_thumbnail_camera: Camera2D) -> void:
-	_thumbnail_camera = p_thumbnail_camera
 
 
 func _ready() -> void:
 	view_mask()
 
 
+func _on_mouse_entered() -> void:
+	if masked:
+		pop()
+
+
+func _on_mouse_exited() -> void:
+	if masked:
+		unpop()
+
+
 func view_mask(duration := 0.0) -> void:
+	masked = true
+
 	if duration <= 0.0:
 		%Mask.modulate.a = 1.0
 		%Detail.modulate.a = 0.0
@@ -37,6 +43,9 @@ func view_mask(duration := 0.0) -> void:
 
 
 func view_detail(thumbnail_viewport: SubViewport, duration := 0.0) -> void:
+	masked = false
+	unpop()
+
 	if duration <= 0.0:
 		%Mask.modulate.a = 0.0
 		%Detail.modulate.a = 1.0
@@ -48,13 +57,25 @@ func view_detail(thumbnail_viewport: SubViewport, duration := 0.0) -> void:
 		tween.parallel().tween_property(%Detail, "modulate:a", 1.0, duration)
 
 	%Thumbnail.texture = thumbnail_viewport.get_texture()
-	_update_thumbnail_camera.call_deferred.call_deferred()
 
 
-func _update_thumbnail_camera() -> void:
-	var level_texture_rect = %Thumbnail.get_global_rect()
-	_thumbnail_camera.global_position = level_texture_rect.get_center()
-	_thumbnail_camera.zoom = Vector2(
-		get_viewport().get_visible_rect().size.x / level_texture_rect.size.x,
-		get_viewport().get_visible_rect().size.y / level_texture_rect.size.y
-	)
+func pop() -> void:
+	if not popping:
+		popping = true
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUAD)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "scale", EXPANDED_SCALE, POP_DURATION)
+
+
+func unpop() -> void:
+	if popping:
+		popping = false
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUAD)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "scale", Vector2.ONE, POP_DURATION)
+
+
+func get_thumbnail_rect() -> Rect2:
+	return %Thumbnail.get_global_rect()

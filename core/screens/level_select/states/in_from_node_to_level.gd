@@ -12,6 +12,7 @@ func _enter(_last_state: String) -> void:
 
 	_target.zooming_started.emit()
 
+	_target.current_map.update_thumbnail_camera()
 	_target.current_map.transition_camera.duration = ZOOM_DURATION
 	_target.current_map.transition_camera.position_ease = Tween.EASE_OUT
 	_target.current_map.transition_camera.transition(
