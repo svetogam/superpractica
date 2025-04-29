@@ -730,7 +730,8 @@ static var topic = TopicResource.new(
 			[
 				"grid_counting_0_1",
 				"grid_counting_0_2",
-			]
+			],
+			LevelResource.LevelIcons.ZERO,
 		),
 		TopicGroupResource.new(
 			[
@@ -741,7 +742,8 @@ static var topic = TopicResource.new(
 				"grid_counting_1_5",
 				"grid_counting_1_6",
 				"grid_counting_1_random",
-			]
+			],
+			LevelResource.LevelIcons.ONE,
 		),
 		TopicGroupResource.new(
 			[
@@ -752,7 +754,8 @@ static var topic = TopicResource.new(
 				"grid_counting_2_5",
 				"grid_counting_2_6",
 				"grid_counting_2_7",
-			]
+			],
+			LevelResource.LevelIcons.TWO,
 		),
 		TopicGroupResource.new(
 			[
@@ -762,7 +765,8 @@ static var topic = TopicResource.new(
 				"grid_counting_3_4",
 				"grid_counting_3_5",
 				"grid_counting_3_6",
-			]
+			],
+			LevelResource.LevelIcons.THREE,
 		),
 		TopicGroupResource.new(
 			[
@@ -773,7 +777,8 @@ static var topic = TopicResource.new(
 				"grid_counting_4_5",
 				"grid_counting_4_6",
 				"grid_counting_4_random",
-			]
+			],
+			LevelResource.LevelIcons.FOUR,
 		),
 	],
 

@@ -27,11 +27,13 @@ const CAMERA_SURVEY_MARGIN := Vector2(80.0, 60.0) * ZOOM_SCALE
 const THIN_CONNECTOR_WIDTH := 32.0
 const THICK_CONNECTOR_WIDTH := 80.0
 const CONNECTOR_LINE_COLOR := Color.WHITE
-const BOX_LINE_WIDTH := 64.0
-const BOX_MARGIN := Vector2(50.0, 40.0)
+const BOX_MARGIN_TOP := 70.0
+const BOX_MARGIN_SIDE := 50.0
+const BOX_MARGIN_BOTTOM := 40.0
 const BOX_COLOR := Color.DARK_SLATE_GRAY
 const LevelNodeScene := preload("topic_nodes/level_node.tscn")
 const SubtopicNodeScene := preload("topic_nodes/subtopic_node.tscn")
+const TopicGroupScene := preload("topic_group.tscn")
 const GreenTrianglesTexture := preload("uid://cx3rph7u0xbiq")
 const BlueTrianglesTexture := preload("uid://c4tjv8ugcf1d8")
 
@@ -106,10 +108,19 @@ func build(p_topic_data: TopicResource) -> void:
 
 	# Add groups
 	for topic_group in topic_data.groups:
-		var nodes: Array = []
+		var boxes: Array = []
 		for node_id in topic_group.node_ids:
-			nodes.append(_node_ids_to_nodes[node_id])
-		%BackgroundLayer.add_child(_build_box(nodes))
+			boxes.append(_node_ids_to_nodes[node_id].box)
+		var combined_rect := Utils.get_combined_control_rect(boxes)
+		var group_rect := combined_rect.grow_individual(
+			BOX_MARGIN_SIDE * ZOOM_SCALE,
+			BOX_MARGIN_TOP * ZOOM_SCALE,
+			BOX_MARGIN_SIDE * ZOOM_SCALE,
+			BOX_MARGIN_BOTTOM * ZOOM_SCALE
+		)
+		var group_box := TopicGroupScene.instantiate()
+		%BackgroundLayer.add_child(group_box)
+		group_box.setup(group_rect, topic_group.icon)
 
 	# Add connectors
 	for connection in topic_data.connections:
@@ -252,31 +263,3 @@ func _get_2_orthogonal_midpoints(point_1: Vector2, point_2: Vector2, vertical_fi
 		var first := Vector2((point_1.x + point_2.x) / 2, point_1.y)
 		var second := Vector2((point_1.x + point_2.x) / 2, point_2.y)
 		return [first, second]
-
-
-#====================================================================
-# Boxes
-#====================================================================
-
-func _build_box(nodes: Array) -> Line2D:
-	assert(nodes.size() > 1)
-
-	var group_box = Line2D.new()
-	group_box.closed = true
-	group_box.width = BOX_LINE_WIDTH
-	group_box.joint_mode = Line2D.LINE_JOINT_ROUND
-	group_box.default_color = BOX_COLOR
-
-	var boxes: Array = []
-	for node in nodes:
-		boxes.append(node.box)
-	var rect := Utils.get_combined_control_rect(boxes)
-	group_box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
-			rect.position.y - BOX_MARGIN.y * ZOOM_SCALE))
-	group_box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
-			rect.position.y - BOX_MARGIN.y * ZOOM_SCALE))
-	group_box.add_point(Vector2(rect.end.x + BOX_MARGIN.x * ZOOM_SCALE,
-			rect.end.y + BOX_MARGIN.y * ZOOM_SCALE))
-	group_box.add_point(Vector2(rect.position.x - BOX_MARGIN.x * ZOOM_SCALE,
-			rect.end.y + BOX_MARGIN.y * ZOOM_SCALE))
-	return group_box

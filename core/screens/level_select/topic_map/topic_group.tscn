@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvogcd4r5wcvg"]
+
+[ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_3mwe5"]
+[ext_resource type="Script" uid="uid://kxwlxo8cc7l4" path="res://core/screens/level_select/topic_map/topic_group.gd" id="1_f5hc6"]
+[ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/screens/level_select/graphics/icons/question-mark-icon.svg" id="2_3mwe5"]
+
+[node name="TopicGroup" type="Panel"]
+mouse_filter = 2
+theme = ExtResource("1_3mwe5")
+theme_type_variation = &"TopicGroup"
+script = ExtResource("1_f5hc6")
+
+[node name="IconRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 150.0
+offset_bottom = 450.0
+grow_horizontal = 2
+texture = ExtResource("2_3mwe5")
+expand_mode = 3

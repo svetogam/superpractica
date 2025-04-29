@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=28 format=3 uid="uid://jcpo8pxbskbt"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://jcpo8pxbskbt"]
 
 [ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_qydn7"]
 [ext_resource type="StyleBox" uid="uid://b8xh6j44lqwxh" path="res://core/screens/pimnet_level/theme/button_focused_style_box.tres" id="2_7qqt8"]
@@ -27,6 +27,7 @@
 [ext_resource type="StyleBox" uid="uid://thv0bj3piv1h" path="res://core/screens/level_select/theme/subtopic_node_normal_style_box.tres" id="24_22t00"]
 [ext_resource type="StyleBox" uid="uid://pfn47niotxg3" path="res://core/screens/level_select/theme/subtopic_node_completed_style_box.tres" id="24_mucuy"]
 [ext_resource type="StyleBox" uid="uid://dm635a563pmoq" path="res://core/screens/level_select/theme/subtopic_node_halo_style_box.tres" id="25_8mdi2"]
+[ext_resource type="StyleBox" uid="uid://bn5wk2qy6pvv7" path="res://core/screens/level_select/theme/topic_group_style_box.tres" id="28_vip5c"]
 
 [resource]
 Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
@@ -74,3 +75,16 @@ TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 TooltipLabel/constants/outline_size = 18
 TooltipLabel/font_sizes/font_size = 24
 TooltipPanel/styles/panel = ExtResource("8_f4o84")
+TopicGroup/base_type = &"Panel"
+TopicGroup/icons/0 = ExtResource("7_0ln24")
+TopicGroup/icons/1 = ExtResource("8_22t00")
+TopicGroup/icons/2 = ExtResource("9_8mdi2")
+TopicGroup/icons/3 = ExtResource("10_mucuy")
+TopicGroup/icons/4 = ExtResource("11_vip5c")
+TopicGroup/icons/5 = ExtResource("12_cudcl")
+TopicGroup/icons/6 = ExtResource("13_xeygs")
+TopicGroup/icons/7 = ExtResource("14_y6456")
+TopicGroup/icons/8 = ExtResource("15_ymcve")
+TopicGroup/icons/9 = ExtResource("16_idau7")
+TopicGroup/icons/unknown = ExtResource("17_vttdr")
+TopicGroup/styles/panel = ExtResource("28_vip5c")
