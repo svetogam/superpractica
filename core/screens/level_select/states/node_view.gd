@@ -17,10 +17,12 @@ func _enter(_last_state: String) -> void:
 	else:
 		assert(false)
 
-	_target.set_overlay(_target.current_map.topic_data)
+	_target.overlay.set_topic(_target.current_map.topic_data)
+	_target.overlay.system_button.disabled = false
+	_target.overlay.slide_title_in()
 
 	_target.current_map.node_pressed.connect(_on_node_pressed)
-	_target.back_button.pressed.connect(_on_back_button_pressed)
+	_target.overlay.back_button.pressed.connect(_on_back_button_pressed)
 
 	if not focused_node.main_button.is_hovered():
 		focused_node.fade_thumbnail()
@@ -48,7 +50,7 @@ func _on_back_button_pressed() -> void:
 
 func _exit(_next_state: String) -> void:
 	_target.current_map.node_pressed.disconnect(_on_node_pressed)
-	_target.back_button.pressed.disconnect(_on_back_button_pressed)
+	_target.overlay.back_button.pressed.disconnect(_on_back_button_pressed)
 
 	focused_node.unfade_thumbnail()
 	focused_node.main_button.mouse_entered.disconnect(focused_node.unfade_thumbnail)

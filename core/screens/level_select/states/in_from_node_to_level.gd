@@ -11,6 +11,8 @@ func _enter(_last_state: String) -> void:
 	assert(_target.current_map.focused_node is LevelNode)
 
 	_target.zooming_started.emit()
+	_target.overlay.system_button.disabled = true
+	_target.overlay.slide_title_out()
 
 	_target.current_map.update_thumbnail_camera()
 	_target.current_map.transition_camera.duration = ZOOM_DURATION

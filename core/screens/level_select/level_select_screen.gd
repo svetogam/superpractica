@@ -44,7 +44,7 @@ var outer_map: TopicMap:
 		if _map_containers[ViewportPlace.OUTER] != null:
 			return _map_containers[ViewportPlace.OUTER].topic_map
 		return null
-@onready var back_button := %BackButton as Button
+@onready var overlay := %Overlay as Control
 @onready var _map_containers: Dictionary = {
 	ViewportPlace.CURRENT: null,
 	ViewportPlace.INNER: null,
@@ -81,19 +81,9 @@ func _ready() -> void:
 		current_map.focus_on_node(loaded_level_data.id)
 		current_map.focused_node.view_detail(level_viewport)
 
-	%OverlayStateMachine.activate()
-
 
 func start_from_level() -> void:
 	$StateMachine.activate("OutFromLevelToMap")
-
-
-func _on_settings_button_pressed() -> void:
-	pass
-
-
-func _on_exit_button_pressed() -> void:
-	Game.request_enter_main_menu.emit()
 
 
 func use_new_viewport(viewport_place: ViewportPlace) -> SubViewport:
@@ -135,13 +125,3 @@ func shift_viewports_out() -> void:
 	_map_containers[ViewportPlace.CURRENT] = _map_containers[ViewportPlace.INNER]
 	_map_containers[ViewportPlace.CURRENT].move_to_front()
 	_map_containers[ViewportPlace.INNER] = null
-
-
-func set_overlay(topic_data: TopicResource) -> void:
-	%TitleLabel.text = topic_data.title
-
-	if topic_data.supertopic != null:
-		back_button.show()
-		back_button.text = topic_data.supertopic.title
-	else:
-		back_button.hide()

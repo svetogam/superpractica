@@ -9,6 +9,8 @@ const ZOOM_DURATION := 0.45
 
 func _enter(_last_state: String) -> void:
 	_target.zooming_started.emit()
+	_target.overlay.system_button.disabled = true
+	_target.overlay.slide_title_out()
 
 	if _target.outer_viewport != null:
 		_target.disuse_viewport(_target.ViewportPlace.OUTER)

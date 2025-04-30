@@ -9,6 +9,8 @@ const ZOOM_DURATION := 0.45
 
 func _enter(_last_state: String) -> void:
 	_target.zooming_started.emit()
+	_target.overlay.system_button.disabled = true
+	_target.overlay.slide_back_button_out()
 
 	var focused_node = _target.current_map.focused_node
 	var next_camera: Camera2D

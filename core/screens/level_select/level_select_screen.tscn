@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=20 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_y5cmv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/in_from_node_to_level.gd" id="9_7trmu"]
 [ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/out_from_map_to_node.gd" id="9_73f7m"]
 [ext_resource type="Script" uid="uid://bfqdsy662g5vu" path="res://core/screens/level_select/states/out_from_level_to_map.gd" id="10_nortw"]
+[ext_resource type="Script" uid="uid://ban35fvtbwsus" path="res://core/screens/level_select/level_select_overlay.gd" id="12_1xipj"]
 [ext_resource type="Script" uid="uid://bsp5pt3afvyle" path="res://core/screens/level_select/overlay_states/normal.gd" id="12_4va4l"]
 [ext_resource type="Texture2D" uid="uid://dpqnh6g4wvxda" path="res://core/screens/level_select/graphics/icons/up-topic-icon.svg" id="12_nortw"]
 [ext_resource type="Script" uid="uid://ccu2m0ynix34y" path="res://core/screens/level_select/overlay_states/system.gd" id="13_1xipj"]
@@ -53,6 +54,7 @@ script = ExtResource("10_nortw")
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
 
 [node name="Overlay" type="Control" parent="OverlayLayer"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,11 +63,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_y5cmv")
+script = ExtResource("12_1xipj")
 
-[node name="OverlayStateMachine" type="Node" parent="OverlayLayer/Overlay" node_paths=PackedStringArray("_target", "_initial_state")]
+[node name="OverlayStateMachine" type="Node" parent="OverlayLayer/Overlay" node_paths=PackedStringArray("_initial_state")]
 unique_name_in_owner = true
 script = ExtResource("2_e1lo5")
-_target = NodePath("../../..")
 _initial_state = NodePath("Normal")
 _auto_activate = false
 metadata/_custom_type_script = "uid://0kj2kxfkc6nd"
@@ -89,6 +91,7 @@ clip_text = true
 expand_icon = true
 
 [node name="TitlePanel" type="PanelContainer" parent="OverlayLayer/Overlay"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 40)
 layout_mode = 1
 anchors_preset = 5
@@ -184,5 +187,5 @@ unique_name_in_owner = true
 [node name="TopicMapContainer3" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="OverlayLayer/Overlay" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/ExitButton" to="OverlayLayer/Overlay" method="_on_exit_button_pressed"]

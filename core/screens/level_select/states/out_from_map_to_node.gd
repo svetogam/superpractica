@@ -8,6 +8,9 @@ const ZOOM_DURATION := 0.3
 
 func _enter(_last_state: String) -> void:
 	_target.zooming_started.emit()
+	_target.overlay.system_button.disabled = true
+	_target.overlay.slide_title_out()
+	_target.overlay.slide_back_button_out()
 
 	_target.current_map.transition_camera.duration = ZOOM_DURATION
 	_target.current_map.transition_camera.position_ease = Tween.EASE_IN_OUT

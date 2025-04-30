@@ -9,13 +9,16 @@ func _enter(_last_state: String) -> void:
 	_target.current_map.focused_node = null
 
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.SCROLL)
-	_target.set_overlay(_target.current_map.topic_data)
+	_target.overlay.set_topic(_target.current_map.topic_data)
+	_target.overlay.system_button.disabled = false
+	_target.overlay.slide_title_in()
+	_target.overlay.slide_back_button_in()
 
 	_target.current_map.camera_point.draggable = true
 	_target.current_map.camera_point.force_stop_dragging()
 	_target.current_map.scroll_camera.position_smoothing_enabled = true
 	_target.current_map.node_pressed.connect(_on_node_pressed)
-	_target.back_button.pressed.connect(_on_back_button_pressed)
+	_target.overlay.back_button.pressed.connect(_on_back_button_pressed)
 
 	for node in _target.current_map.get_topic_nodes():
 		if node.main_button.is_hovered():
@@ -49,7 +52,7 @@ func _exit(_next_state: String) -> void:
 	_target.current_map.camera_point.draggable = false
 	_target.current_map.scroll_camera.position_smoothing_enabled = false
 	_target.current_map.node_pressed.disconnect(_on_node_pressed)
-	_target.back_button.pressed.disconnect(_on_back_button_pressed)
+	_target.overlay.back_button.pressed.disconnect(_on_back_button_pressed)
 
 	for node in _target.current_map.get_topic_nodes():
 		node.unpop()

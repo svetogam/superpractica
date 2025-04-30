@@ -9,10 +9,13 @@ const ZOOM_DURATION := 0.45
 
 func _enter(_last_state: String) -> void:
 	_target.zooming_started.emit()
+	_target.overlay.system_button.disabled = true
+	_target.overlay.slide_title_out(0.0)
+	_target.overlay.slide_back_button_out(0.0)
 
 	_target.current_map.focused_node.view_mask(ZOOM_DURATION)
 	_target.current_map.set_active_camera(TopicMap.TopicCamera.THUMBNAIL)
-	_target.set_overlay(_target.current_map.topic_data)
+	_target.overlay.set_topic(_target.current_map.topic_data)
 
 	_target.current_map.update_thumbnail_camera()
 	_target.current_map.transition_camera.duration = ZOOM_DURATION
