@@ -9,7 +9,6 @@ const POP_DURATION := 0.2
 const EXPANDED_SCALE := Vector2(1.1, 1.1)
 var id: String
 var popping := false
-var masked := true
 @onready var box := %Box as Control
 @onready var main_button := %MainButton as BaseButton
 
@@ -18,19 +17,7 @@ func _ready() -> void:
 	view_mask()
 
 
-func _on_mouse_entered() -> void:
-	if masked:
-		pop()
-
-
-func _on_mouse_exited() -> void:
-	if masked:
-		unpop()
-
-
 func view_mask(duration := 0.0) -> void:
-	masked = true
-
 	if duration <= 0.0:
 		%Mask.modulate.a = 1.0
 		%Detail.modulate.a = 0.0
@@ -43,9 +30,6 @@ func view_mask(duration := 0.0) -> void:
 
 
 func view_detail(thumbnail_viewport: SubViewport, duration := 0.0) -> void:
-	masked = false
-	unpop()
-
 	if duration <= 0.0:
 		%Mask.modulate.a = 0.0
 		%Detail.modulate.a = 1.0

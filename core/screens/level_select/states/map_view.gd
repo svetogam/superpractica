@@ -17,6 +17,12 @@ func _enter(_last_state: String) -> void:
 	_target.current_map.node_pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
 
+	for node in _target.current_map.get_topic_nodes():
+		if node.main_button.is_hovered():
+			node.pop()
+		node.main_button.mouse_entered.connect(node.pop)
+		node.main_button.mouse_exited.connect(node.unpop)
+
 	# Prepare outer topic-map if necessary
 	var topic_data = _target.current_map.topic_data
 	if _target.outer_viewport == null and topic_data.supertopic != null:
@@ -44,3 +50,8 @@ func _exit(_next_state: String) -> void:
 	_target.current_map.scroll_camera.position_smoothing_enabled = false
 	_target.current_map.node_pressed.disconnect(_on_node_pressed)
 	_target.back_button.pressed.disconnect(_on_back_button_pressed)
+
+	for node in _target.current_map.get_topic_nodes():
+		node.unpop()
+		node.main_button.mouse_entered.disconnect(node.pop)
+		node.main_button.mouse_exited.disconnect(node.unpop)

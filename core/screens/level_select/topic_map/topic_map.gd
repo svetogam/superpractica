@@ -99,7 +99,7 @@ func build(p_topic_data: TopicResource) -> void:
 		_node_ids_to_nodes[node.id] = node
 
 	# Connect node signals
-	for node in _node_ids_to_nodes.values():
+	for node in get_topic_nodes():
 		node.main_button.button_down.connect(node_pressed.emit.bind(node))
 
 	# Add background
@@ -175,9 +175,13 @@ func get_topic_node(node_id: String) -> TopicNode:
 	return _node_ids_to_nodes[node_id]
 
 
+func get_topic_nodes() -> Array:
+	return _node_ids_to_nodes.values()
+
+
 func get_map_rect() -> Rect2:
 	var boxes: Array = []
-	for node in _node_ids_to_nodes.values():
+	for node in get_topic_nodes():
 		boxes.append(node.box)
 	return Utils.get_combined_control_rect(boxes)
 
