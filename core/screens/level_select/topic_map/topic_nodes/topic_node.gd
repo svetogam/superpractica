@@ -8,7 +8,8 @@ extends Node2D
 const POP_DURATION := 0.2
 const EXPANDED_SCALE := Vector2(1.1, 1.1)
 var id: String
-var popping := false
+var _popping := false
+var _fading_thumbnail := false
 @onready var box := %Box as Control
 @onready var main_button := %MainButton as BaseButton
 
@@ -44,8 +45,8 @@ func view_detail(thumbnail_viewport: SubViewport, duration := 0.0) -> void:
 
 
 func pop() -> void:
-	if not popping:
-		popping = true
+	if not _popping:
+		_popping = true
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_QUAD)
 		tween.set_ease(Tween.EASE_OUT)
@@ -53,12 +54,30 @@ func pop() -> void:
 
 
 func unpop() -> void:
-	if popping:
-		popping = false
+	if _popping:
+		_popping = false
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_QUAD)
 		tween.set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "scale", Vector2.ONE, POP_DURATION)
+
+
+func fade_thumbnail() -> void:
+	if not _fading_thumbnail:
+		_fading_thumbnail = true
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUAD)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(%Thumbnail, "modulate:a", 0.5, POP_DURATION)
+
+
+func unfade_thumbnail() -> void:
+	if _fading_thumbnail:
+		_fading_thumbnail = false
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUAD)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(%Thumbnail, "modulate:a", 1.0, POP_DURATION)
 
 
 func get_thumbnail_rect() -> Rect2:

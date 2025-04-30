@@ -4,11 +4,15 @@
 
 extends State
 
+var focused_node: TopicNode:
+	get:
+		return _target.current_map.focused_node
+
 
 func _enter(_last_state: String) -> void:
-	if _target.current_map.focused_node is SubtopicNode:
+	if focused_node is SubtopicNode:
 		_target.current_map.set_active_camera(TopicMap.TopicCamera.SUBTOPIC_FOCUS)
-	elif _target.current_map.focused_node is LevelNode:
+	elif focused_node is LevelNode:
 		_target.current_map.set_active_camera(TopicMap.TopicCamera.LEVEL_FOCUS)
 	else:
 		assert(false)
@@ -17,6 +21,11 @@ func _enter(_last_state: String) -> void:
 
 	_target.current_map.node_pressed.connect(_on_node_pressed)
 	_target.back_button.pressed.connect(_on_back_button_pressed)
+
+	if not focused_node.main_button.is_hovered():
+		focused_node.fade_thumbnail()
+	focused_node.main_button.mouse_entered.connect(focused_node.unfade_thumbnail)
+	focused_node.main_button.mouse_exited.connect(focused_node.fade_thumbnail)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,3 +49,7 @@ func _on_back_button_pressed() -> void:
 func _exit(_next_state: String) -> void:
 	_target.current_map.node_pressed.disconnect(_on_node_pressed)
 	_target.back_button.pressed.disconnect(_on_back_button_pressed)
+
+	focused_node.unfade_thumbnail()
+	focused_node.main_button.mouse_entered.disconnect(focused_node.unfade_thumbnail)
+	focused_node.main_button.mouse_exited.disconnect(focused_node.fade_thumbnail)
