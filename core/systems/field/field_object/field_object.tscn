@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://ctwe0gbndo7jj" path="res://core/systems/field/field_object/field_object.gd" id="1_mn5vc"]
 
 [node name="FieldObject" type="Area2D" groups=["field_objects"]]
+monitoring = false
+monitorable = false
 script = ExtResource("1_mn5vc")
 
 [node name="ActiveModes" type="Node" parent="."]

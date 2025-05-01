@@ -78,3 +78,16 @@ func test_get_row_of_cell():
 	assert_int(model_8_16.get_row_of_cell(40)).is_equal(3)
 	assert_int(model_8_16.get_row_of_cell(65)).is_equal(5)
 	assert_int(model_8_16.get_row_of_cell(128)).is_equal(8)
+
+
+func test_get_column_of_cell():
+	assert_int(model_10_10.get_column_of_cell(3)).is_equal(3)
+	assert_int(model_10_10.get_column_of_cell(15)).is_equal(5)
+	assert_int(model_10_10.get_column_of_cell(46)).is_equal(6)
+	assert_int(model_10_10.get_column_of_cell(100)).is_equal(10)
+
+	assert_int(model_1_1.get_column_of_cell(1)).is_equal(1)
+
+	assert_int(model_8_16.get_column_of_cell(40)).is_equal(8)
+	assert_int(model_8_16.get_column_of_cell(65)).is_equal(1)
+	assert_int(model_8_16.get_column_of_cell(128)).is_equal(16)

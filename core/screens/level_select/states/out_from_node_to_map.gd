@@ -26,6 +26,8 @@ func _enter(_last_state: String) -> void:
 func _on_zoom_finished() -> void:
 	if _target.current_map.focused_node is SubtopicNode:
 		_target.disuse_viewport(_target.ViewportPlace.INNER)
+	elif _target.current_map.focused_node is LevelNode:
+		Game.request_unload_level.emit()
 
 	_change_state("MapView")
 

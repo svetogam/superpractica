@@ -110,13 +110,13 @@ func _ready() -> void:
 func _setup_board() -> void:
 	# Add grid cells
 	var number: int = 0
-	var grid_cell: GridCell
-	for row in range(ROWS):
-		for col in range(COLUMNS):
-			number += 1
-			grid_cell = ObjectGridCell.instantiate() as GridCell
-			add_child(grid_cell)
-			grid_cell.setup(number, row, col)
+
+	for grid_cell in %Board.get_children():
+		number += 1
+		dynamic_model.set_grid_cell(number, grid_cell)
+		var row = static_model.get_row_of_cell(number)
+		var col = static_model.get_column_of_cell(number)
+		grid_cell.setup(number, row - 1, col - 1)
 
 
 func _on_update(_update_type: int) -> void:

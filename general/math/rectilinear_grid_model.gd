@@ -72,8 +72,13 @@ func get_row_of_cell(cell: int) -> int:
 	return ceili(rows_filled)
 
 
-#func get_column_of_cell(cell: int) -> int:
-	#return 0
+func get_column_of_cell(cell: int) -> int:
+	assert(cell > 0 and cell <= cells)
+
+	var x = cell % columns
+	if x == 0:
+		return columns
+	return x
 
 
 # Untested
