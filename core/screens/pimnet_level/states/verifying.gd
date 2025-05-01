@@ -18,11 +18,12 @@ func _enter(_last_state: String) -> void:
 
 	if level.program != null:
 		level.program.level_completed.connect(_change_state.bind("Completed"))
-	level.verifier.verifications_completed.connect(_change_state.bind("Playing"))
+	level.verifier.completed.connect(_change_state.bind("Playing"))
 
 
 func _exit(_next_state: String) -> void:
 	level.pimnet.disable_verification_input(false)
+
 	if level.program != null:
 		level.program.level_completed.disconnect(_change_state)
-	level.verifier.verifications_completed.disconnect(_change_state)
+	level.verifier.completed.disconnect(_change_state)

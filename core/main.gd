@@ -66,8 +66,7 @@ func unprepare_pimnet_level_screen() -> void:
 func prepare_pimnet_level(level_data: LevelResource) -> void:
 	assert(level_data != null)
 
-	if true: # Temporary override while feature is broken
-	#if pimnet_level_screen == null: # Use this after feature is fixed
+	if pimnet_level_screen == null:
 		prepare_pimnet_level_screen()
 	unprepare_pimnet_level()
 

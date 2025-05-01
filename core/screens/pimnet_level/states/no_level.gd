@@ -15,6 +15,9 @@ var overlay: PimnetOverlay:
 func _enter(_last_state: String) -> void:
 	if overlay.goal_panel != null:
 		overlay.goal_panel.reset()
+	if level.verifier.is_running():
+		level.verifier.abort()
+		level.pimnet.disable_verification_input(false)
 
 
 func _exit(_next_state: String) -> void:

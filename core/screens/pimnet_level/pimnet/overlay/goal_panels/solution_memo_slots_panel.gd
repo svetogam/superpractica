@@ -19,6 +19,7 @@ func _ready() -> void:
 func reset() -> void:
 	stop_verification()
 	verification_panel.correct_memos.clear()
+	solution_slot.set_empty()
 	problem_slot.set_empty()
 	solution_slot.memo_input_enabled = true
 	solution_slot.suggestion = Game.SuggestiveSignals.NONE

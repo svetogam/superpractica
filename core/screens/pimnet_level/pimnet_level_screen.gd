@@ -32,8 +32,8 @@ func _ready() -> void:
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
 
 	# Connect signals
-	verifier.verifications_started.connect(updated.emit)
-	verifier.verifications_completed.connect(updated.emit)
+	verifier.started.connect(updated.emit)
+	verifier.completed.connect(updated.emit)
 	actions_completed.connect(updated.emit)
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD, "updated", updated.emit)
 	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,

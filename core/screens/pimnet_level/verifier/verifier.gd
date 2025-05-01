@@ -5,8 +5,9 @@
 class_name Verifier
 extends Node
 
-signal verifications_started
-signal verifications_completed
+signal started
+signal completed
+signal aborted
 
 const START_DELAY := 0.4
 @export var effect_layer: CanvasLayer
@@ -28,16 +29,28 @@ func _register_verification(verification: Verification) -> void:
 	_verifications_running += 1
 	if _verifications_running == 1:
 		verification.start_delay = START_DELAY
-		verifications_started.emit()
+		started.emit()
 
 
 func _on_verification_completed() -> void:
+	assert(_verifications_running > 0)
+
 	_verifications_running -= 1
+	if _verifications_running == 0:
+		completed.emit()
+
+
+func abort() -> void:
 	assert(_verifications_running >= 0)
 
-	if not is_running():
-		verifications_completed.emit()
+	if _verifications_running > 0:
+		_verifications_running = 0
+		for child in get_children():
+			child.queue_free()
+		aborted.emit()
 
 
 func is_running() -> bool:
+	assert(_verifications_running >= 0)
+
 	return _verifications_running > 0

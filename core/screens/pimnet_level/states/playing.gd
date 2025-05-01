@@ -20,10 +20,10 @@ func _enter(last_state: String) -> void:
 
 	if level.program != null:
 		level.program.level_completed.connect(_change_state.bind("Completed"))
-	level.verifier.verifications_started.connect(_change_state.bind("Verifying"))
+	level.verifier.started.connect(_change_state.bind("Verifying"))
 
 
 func _exit(_next_state: String) -> void:
 	if level.program != null:
 		level.program.level_completed.disconnect(_change_state)
-	level.verifier.verifications_started.disconnect(_change_state)
+	level.verifier.started.disconnect(_change_state)
