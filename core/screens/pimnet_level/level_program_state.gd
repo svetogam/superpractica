@@ -29,7 +29,7 @@ var overlay: PimnetOverlay:
 	get:
 		assert(level.pimnet.overlay != null)
 		return program.pimnet.overlay
-var goal_panel: Control:
+var goal_panel: GoalPanel:
 	get:
 		assert(level.pimnet.overlay.goal_panel != null)
 		return level.pimnet.overlay.goal_panel

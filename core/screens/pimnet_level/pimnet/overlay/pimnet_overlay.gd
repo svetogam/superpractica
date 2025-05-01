@@ -16,7 +16,7 @@ enum PimnetPanels {
 
 var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
 	set = _set_goal_type
-var goal_panel: Control:
+var goal_panel: GoalPanel:
 	get = _get_goal_panel
 var level_data: LevelResource
 @onready var plan_panel := %PlanPanel as Control
@@ -135,7 +135,7 @@ func _set_goal_type(p_goal_type: LevelResource.GoalTypes) -> void:
 			%ConstructConditionsPanel.show()
 
 
-func _get_goal_panel() -> Control:
+func _get_goal_panel() -> GoalPanel:
 	match goal_type:
 		LevelResource.GoalTypes.NONE:
 			return null

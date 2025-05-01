@@ -39,8 +39,9 @@ func _ready() -> void:
 	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
 			"memo_changed", updated.emit.unbind(1))
 
-	# Setup with empty for consistency
+	# Consistently start with empty state
 	pimnet.setup(EMPTY_PIMNET_SETUP)
+	%LevelStateMachine.activate("NoLevel")
 
 	# Load immediately if level data is already set
 	if level_data != null:

@@ -58,10 +58,10 @@ font_color = Color(0, 0, 0, 1)
 process_mode = 1
 script = ExtResource("1_o01nh")
 
-[node name="LevelStateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+[node name="LevelStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_26ecp")
-_initial_state = NodePath("NoLevel")
+_auto_activate = false
 
 [node name="NoLevel" type="Node" parent="LevelStateMachine"]
 script = ExtResource("3_egj3f")
@@ -592,7 +592,7 @@ size_flags_vertical = 6
 memo_input_enabled = false
 memo_output_enabled = false
 
-[node name="VerifyConditionsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer" groups=["disable_during_verification"]]
+[node name="VerifyConditionsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/BottomRight/ConstructConditionsPanel/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2

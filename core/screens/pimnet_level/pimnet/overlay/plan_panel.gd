@@ -93,6 +93,13 @@ func complete_current_task() -> void:
 		_set_current_task(next_task.name_id)
 
 
+func reset() -> void:
+	for checkbox in _task_checkboxes:
+		checkbox.button_pressed = false
+	var initial_task := _plan_data.get_initial_task()
+	_set_current_task(initial_task.name_id)
+
+
 func _on_task_button_pressed(task_number: int) -> void:
 	var task := _plan_data.get_task_by_number(task_number)
 	_show_task_instructions(task.name_id)

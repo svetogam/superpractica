@@ -13,7 +13,8 @@ var overlay: PimnetOverlay:
 
 
 func _enter(_last_state: String) -> void:
-	pass
+	if overlay.goal_panel != null:
+		overlay.goal_panel.reset()
 
 
 func _exit(_next_state: String) -> void:

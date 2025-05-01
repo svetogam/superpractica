@@ -22,7 +22,7 @@ var overlay: PimnetOverlay:
 	get:
 		assert(level.pimnet.overlay != null)
 		return level.pimnet.overlay
-var goal_panel: Control:
+var goal_panel: GoalPanel:
 	get:
 		assert(level.pimnet.overlay.goal_panel != null)
 		return level.pimnet.overlay.goal_panel
@@ -49,6 +49,7 @@ func _start() -> void:
 	if level.level_data.program_plan != null:
 		var replacements := _get_instruction_replacements()
 		level.level_data.program_plan.set_instruction_replacements(replacements)
+		plan_panel.reset()
 
 
 # Virtual
