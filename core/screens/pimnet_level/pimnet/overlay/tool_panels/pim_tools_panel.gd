@@ -25,14 +25,12 @@ func add_toolset(data: FieldInterfaceData) -> void:
 	else:
 		container = ToolContainer.instantiate()
 		_first_container.add_sibling(container)
-		container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_containers[toolset_name] = container
 	container.interface_data = data
 	show_toolset(toolset_name)
 
 	# Connect buttons
-	var tool_buttons = container.get_tool_buttons()
-	for button in tool_buttons:
+	for button in container.get_tool_buttons():
 		button.toggled.connect(_on_tool_button_toggled.bind(toolset_name))
 
 	# Set up used buttons

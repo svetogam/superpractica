@@ -48,49 +48,55 @@ func _ready() -> void:
 
 
 func setup(setup_resource: PimnetSetupResource) -> void:
-	if setup_resource != null:
-		# Set up pims
-		for pim in _pims_left_to_right:
-			pim.free()
-		_pims_left_to_right.clear()
-		for pim_scene in setup_resource.pims:
-			var pim = pim_scene.instantiate()
-			_pims_left_to_right.append(pim)
-			%PimStrip.add_child(pim)
+	assert(setup_resource != null)
 
-		# Set up panels
-		%UndoButton.visible = setup_resource.reversion_enable
-		%RedoButton.visible = setup_resource.reversion_enable
-		%ResetButton.visible = setup_resource.reversion_enable
-		%PlanButton.visible = setup_resource.plan_enable
-		%EditPanelsButton.visible = setup_resource.edit_panels_enable
-		if setup_resource.tools_start_active:
-			overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
-		else:
-			overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
-		if setup_resource.creation_start_active:
-			overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
-		else:
-			overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
+	# Set up pims
+	for pim in _pims_left_to_right:
+		pim.free()
+	_pims_left_to_right.clear()
+	for pim_scene in setup_resource.pims:
+		var pim = pim_scene.instantiate()
+		_pims_left_to_right.append(pim)
+		%PimStrip.add_child(pim)
 
-		# Setup pim-tools panel
-		for pim in _pims_left_to_right:
-			if pim.has_field():
-				overlay.pim_tools.add_toolset(pim.field.interface_data)
-				pim.field.tool_changed.connect(
-					overlay.pim_tools.on_field_tool_changed.bind(pim.field.field_type)
-				)
-				pim.focus_entered.connect(
-					overlay.pim_tools.show_toolset.bind(pim.field.field_type)
-				)
+	# Set up panels
+	%UndoButton.visible = setup_resource.reversion_enable
+	%RedoButton.visible = setup_resource.reversion_enable
+	%ResetButton.visible = setup_resource.reversion_enable
+	%PlanButton.visible = setup_resource.plan_enable
+	%EditPanelsButton.visible = setup_resource.edit_panels_enable
+	if setup_resource.tools_start_active:
+		overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
+	else:
+		overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
+	if setup_resource.creation_start_active:
+		overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
+	else:
+		overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 
-		# Setup pim-objects panel
-		for pim in _pims_left_to_right:
-			if pim.has_field():
-				overlay.pim_objects.add_toolset(pim.field.interface_data)
-				pim.focus_entered.connect(
-					overlay.pim_objects.show_toolset.bind(pim.field.field_type)
-				)
+	# Setup pim-tools panel
+	for pim in _pims_left_to_right:
+		if pim.has_field():
+			overlay.pim_tools.add_toolset(pim.field.interface_data)
+			overlay.pim_tools.deactivate(pim.field.field_type)
+			overlay.pim_tools.include_all(pim.field.field_type)
+			overlay.pim_tools.enable_all(pim.field.field_type)
+			pim.field.tool_changed.connect(
+				overlay.pim_tools.on_field_tool_changed.bind(pim.field.field_type)
+			)
+			pim.focus_entered.connect(
+				overlay.pim_tools.show_toolset.bind(pim.field.field_type)
+			)
+
+	# Setup pim-objects panel
+	for pim in _pims_left_to_right:
+		if pim.has_field():
+			overlay.pim_objects.add_toolset(pim.field.interface_data)
+			overlay.pim_objects.include_all(pim.field.field_type)
+			overlay.pim_objects.enable_all(pim.field.field_type)
+			pim.focus_entered.connect(
+				overlay.pim_objects.show_toolset.bind(pim.field.field_type)
+			)
 
 	# Set up camera and scrolling
 	if _pims_left_to_right.size() > 1:

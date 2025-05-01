@@ -13,11 +13,6 @@ func add_toolset(_data: FieldInterfaceData) -> void:
 	pass
 
 
-# Virtual
-func _new_container() -> GridContainer:
-	return null
-
-
 func show_toolset(toolset_name: String) -> void:
 	assert(_containers.has(toolset_name))
 	for container in _containers.values():

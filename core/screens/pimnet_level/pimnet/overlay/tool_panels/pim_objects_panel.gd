@@ -25,7 +25,6 @@ func add_toolset(data: FieldInterfaceData) -> void:
 	else:
 		container = ToolContainer.instantiate()
 		_first_container.add_sibling(container)
-		container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_containers[toolset_name] = container
 	container.interface_data = data
 	show_toolset(toolset_name)

@@ -7,6 +7,7 @@
 [node name="CreatablesContainer" type="GridContainer"]
 offset_right = 250.0
 offset_bottom = 100.0
+size_flags_horizontal = 4
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 5
