@@ -4,7 +4,8 @@
 
 extends State
 
-const ZOOM_DURATION := 0.45
+const SUBTOPIC_ZOOM_DURATION := 0.45
+const LEVEL_ZOOM_DURATION := 0.50
 
 
 func _enter(_last_state: String) -> void:
@@ -18,15 +19,19 @@ func _enter(_last_state: String) -> void:
 		_target.use_new_viewport(_target.ViewportPlace.INNER)
 		_target.add_topic_map(focused_node.topic_data, _target.ViewportPlace.INNER)
 		_target.inner_map.set_active_camera(TopicMap.TopicCamera.SURVEY)
-		focused_node.view_detail(_target.inner_viewport, ZOOM_DURATION)
+		focused_node.view_detail(_target.inner_viewport, SUBTOPIC_ZOOM_DURATION)
+		_target.current_map.transition_camera.duration = SUBTOPIC_ZOOM_DURATION
 		next_camera = _target.current_map.subtopic_focus_camera
 	elif focused_node is LevelNode:
-		focused_node.view_detail(_target.level_viewport, ZOOM_DURATION)
+		# Wait a little as level loads to reduce stuttering
+		await get_tree().process_frame
+		await get_tree().process_frame
+
+		focused_node.view_detail(_target.level_viewport, LEVEL_ZOOM_DURATION)
+		_target.current_map.transition_camera.duration = LEVEL_ZOOM_DURATION
 		next_camera = _target.current_map.level_focus_camera
 	else:
 		assert(false)
-
-	_target.current_map.transition_camera.duration = ZOOM_DURATION
 	_target.current_map.transition_camera.position_ease = Tween.EASE_OUT
 	_target.current_map.transition_camera.transition(
 		next_camera,
