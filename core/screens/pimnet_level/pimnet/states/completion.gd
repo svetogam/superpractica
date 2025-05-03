@@ -22,8 +22,27 @@ func _enter(_last_state: String) -> void:
 	tween.tween_property(%CompletionPanel, "position:y", TARGET_Y, SLIDE_DURATION)
 	tween.parallel().tween_property(
 			%ModalBarrier, "color", TARGET_BACKGROUND_COLOR, SLIDE_DURATION)
+	tween.tween_callback(_on_panel_opened)
 
+
+func _on_panel_opened() -> void:
 	Game.request_load_level_select.emit()
+
+	%CompletionSelectButton.pressed.connect(_on_completion_select_button_pressed)
+	%CompletionNextButton.pressed.connect(_on_completion_next_button_pressed)
+
+
+func _on_completion_select_button_pressed() -> void:
+	Game.request_enter_level_select.emit()
+
+
+func _on_completion_next_button_pressed() -> void:
+	if _target.level_data == null:
+		return
+
+	var next_level = _target.level_data.get_next_suggested_level()
+	if next_level != null:
+		Game.request_enter_level.emit(next_level)
 
 
 func _exit(_next_state: String) -> void:
@@ -32,3 +51,5 @@ func _exit(_next_state: String) -> void:
 	%CompletionPanel.position.y = -%CompletionPanel.size.y
 
 	_target.level_data_unloaded.disconnect(_change_state)
+	%CompletionSelectButton.pressed.disconnect(_on_completion_select_button_pressed)
+	%CompletionNextButton.pressed.disconnect(_on_completion_next_button_pressed)

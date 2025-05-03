@@ -4,7 +4,7 @@
 
 extends State
 
-const SLIDE_DURATION := 0.2
+const SLIDE_DURATION := 0.3
 const BACKGROUND_COLOR := Color(0.25, 0.25, 0.25, 0.5)
 
 
@@ -19,8 +19,23 @@ func _enter(_last_state: String) -> void:
 	%SystemPanel.show()
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%SystemPanel, "position:y", 0, SLIDE_DURATION)
+	tween.tween_callback(_on_panel_opened)
 
+
+func _on_panel_opened() -> void:
 	Game.request_load_level_select.emit()
+
+	%SettingsButton.pressed.connect(_on_settings_button_pressed)
+	%QuitButton.pressed.connect(_on_quit_button_pressed)
+
+
+func _on_settings_button_pressed() -> void:
+	pass
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().paused = false
+	Game.request_enter_level_select.emit()
 
 
 func _on_modal_barrier_gui_input(event: InputEvent) -> void:
@@ -32,6 +47,8 @@ func _transition_to_normal() -> void:
 	get_tree().paused = false
 	%ModalBarrier.hide()
 	%ModalBarrier.gui_input.disconnect(_on_modal_barrier_gui_input)
+	%SettingsButton.pressed.disconnect(_on_settings_button_pressed)
+	%QuitButton.pressed.disconnect(_on_quit_button_pressed)
 
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%SystemPanel, "position:y", -%SystemPanel.size.y, SLIDE_DURATION)

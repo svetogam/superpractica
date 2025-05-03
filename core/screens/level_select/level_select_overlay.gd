@@ -13,14 +13,6 @@ func _ready() -> void:
 	%OverlayStateMachine.activate()
 
 
-func _on_settings_button_pressed() -> void:
-	pass
-
-
-func _on_exit_button_pressed() -> void:
-	Game.request_enter_main_menu.emit()
-
-
 func set_topic(topic_data: TopicResource) -> void:
 	%TitleLabel.text = topic_data.title
 

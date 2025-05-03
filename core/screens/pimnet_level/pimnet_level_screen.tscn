@@ -685,6 +685,7 @@ text = "Pause Menu"
 horizontal_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 0
@@ -694,6 +695,7 @@ icon = ExtResource("30_p5xyg")
 expand_icon = true
 
 [node name="QuitButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 10
@@ -966,6 +968,7 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="CompletionSelectButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -994,8 +997,3 @@ expand_icon = true
 script = ExtResource("37_l0rup")
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
-
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="Pimnet/OverlayLayer/Overlay" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/SystemPanel/VBoxContainer/QuitButton" to="Pimnet/OverlayLayer/Overlay" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer/CompletionSelectButton" to="Pimnet/OverlayLayer/Overlay" method="_on_completion_select_button_pressed"]
-[connection signal="pressed" from="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer/HBoxContainer/CompletionNextButton" to="Pimnet/OverlayLayer/Overlay" method="_on_completion_next_button_pressed"]

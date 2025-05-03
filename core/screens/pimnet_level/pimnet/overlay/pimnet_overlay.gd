@@ -52,28 +52,6 @@ func _ready() -> void:
 	%OverlayStateMachine.activate()
 
 
-func _on_settings_button_pressed() -> void:
-	pass
-
-
-func _on_quit_button_pressed() -> void:
-	get_tree().paused = false
-	Game.request_enter_level_select.emit()
-
-
-func _on_completion_select_button_pressed() -> void:
-	Game.request_enter_level_select.emit()
-
-
-func _on_completion_next_button_pressed() -> void:
-	if level_data == null:
-		return
-
-	var next_level = level_data.get_next_suggested_level()
-	if next_level != null:
-		Game.request_enter_level.emit(next_level)
-
-
 func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> void:
 	var panel := _get_panel(panel_type)
 	panel.visible = toggled_on

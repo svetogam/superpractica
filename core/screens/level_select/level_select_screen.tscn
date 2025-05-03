@@ -162,6 +162,7 @@ text = "Menu"
 horizontal_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 0
@@ -171,6 +172,7 @@ icon = ExtResource("14_54uqb")
 expand_icon = true
 
 [node name="ExitButton" type="Button" parent="OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 10
@@ -186,6 +188,3 @@ unique_name_in_owner = true
 
 [node name="TopicMapContainer3" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
-
-[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/SettingsButton" to="OverlayLayer/Overlay" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="OverlayLayer/Overlay/SystemPanel/VBoxContainer/ExitButton" to="OverlayLayer/Overlay" method="_on_exit_button_pressed"]
