@@ -5,7 +5,11 @@
 class_name GridCell
 extends FieldObject
 
-var number: int
+static var _number_font := ThemeDB.fallback_font
+var number: int:
+	set(value):
+		number = value
+		queue_redraw()
 var marked := false
 var size: Vector2:
 	get:
@@ -19,11 +23,22 @@ static func _get_object_type() -> int:
 	return GridCounting.Objects.GRID_CELL
 
 
+func _draw() -> void:
+	draw_string(
+		_number_font,
+		Vector2(-18.0, 6.0), # Some unknown relation to size, font, and font_size
+		str(number),
+		HORIZONTAL_ALIGNMENT_CENTER,
+		35.0, # Should equal size.x
+		16,
+		Color.BLACK
+	)
+
+
 # First row and column are 0
 func setup(p_number: int, row: int, col: int) -> void:
 	position = Vector2(col * size.x + size.x/2, row * size.y + size.y/2)
 	number = p_number
-	%Label.text = str(number)
 
 
 func get_rect() -> Rect2:
