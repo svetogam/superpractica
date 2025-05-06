@@ -26,5 +26,6 @@ func _ready() -> void:
 	else:
 		%VersionText.text = Game.version_tag + "+"
 		%SourceCommitLink.text = "Local Build"
+	%EngineLicense.text = Engine.get_license_text()
 
 	$StateMachine.activate()
