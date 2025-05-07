@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dtsgoie3mkpl"]
+[gd_scene load_steps=29 format=3 uid="uid://dtsgoie3mkpl"]
 
 [ext_resource type="Script" uid="uid://uqvc2km0y0ug" path="res://core/screens/main_menu/main_menu_screen.gd" id="1_evcbt"]
 [ext_resource type="Theme" uid="uid://rvggfmuj8l32" path="res://core/screens/main_menu/theme/main_menu_theme.tres" id="1_qnfx7"]
@@ -17,8 +17,17 @@
 [ext_resource type="LabelSettings" uid="uid://b05v8ydlelqai" path="res://core/screens/main_menu/panel_header_label_settings.tres" id="12_7x0fx"]
 [ext_resource type="Script" uid="uid://bnwffmdcsx57h" path="res://core/screens/main_menu/states/from_about_to_licenses.gd" id="12_bbwo5"]
 [ext_resource type="Script" uid="uid://cyy4m7xe7qt16" path="res://core/screens/main_menu/states/from_licenses_to_about.gd" id="13_ant0n"]
+[ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/screens/main_menu/graphics/icons/level-select-icon.svg" id="16_m8eft"]
 [ext_resource type="LabelSettings" uid="uid://bic37p6jbr2h6" path="res://core/screens/main_menu/title_2_label_settings.tres" id="17_bbwo5"]
+[ext_resource type="Texture2D" uid="uid://u2kd275d5hdh" path="res://core/screens/main_menu/graphics/icons/sandbox-icon.svg" id="17_ilwjk"]
 [ext_resource type="Texture2D" uid="uid://n1ufxi66i4in" path="res://general/logos/logo_small_monochrome_light.svg" id="18_ant0n"]
+[ext_resource type="Texture2D" uid="uid://ylkml0pgdvlf" path="res://core/screens/main_menu/graphics/icons/settings-icon.svg" id="18_frqlr"]
+[ext_resource type="Texture2D" uid="uid://cmnwhs681qiua" path="res://core/screens/main_menu/graphics/icons/info-icon.svg" id="19_tpgq8"]
+[ext_resource type="Texture2D" uid="uid://be47tmusntxry" path="res://core/screens/main_menu/graphics/icons/quit-icon.svg" id="20_ksqx5"]
+[ext_resource type="Texture2D" uid="uid://nahhhknbk8ex" path="res://core/screens/main_menu/graphics/icons/back-left-up-icon.svg" id="21_lenk6"]
+[ext_resource type="Texture2D" uid="uid://bytc6f2nwvo8f" path="res://core/screens/main_menu/graphics/icons/credits-icon.svg" id="22_j1hcb"]
+[ext_resource type="Texture2D" uid="uid://bkxbxkdlshert" path="res://core/screens/main_menu/graphics/icons/licenses-icon.svg" id="23_qqid4"]
+[ext_resource type="Texture2D" uid="uid://mv35s2g7osp2" path="res://core/screens/main_menu/graphics/icons/back-left-icon.svg" id="25_a22bj"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -245,30 +254,40 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Play Topics"
+icon = ExtResource("16_m8eft")
+expand_icon = true
 
 [node name="SandboxButton" type="Button" parent="TitleFrame/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
 text = "Play Sandbox"
+icon = ExtResource("17_ilwjk")
+expand_icon = true
 
 [node name="SettingsButton" type="Button" parent="TitleFrame/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
 text = "Settings"
+icon = ExtResource("18_frqlr")
+expand_icon = true
 
 [node name="InfoButton" type="Button" parent="TitleFrame/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Info"
+icon = ExtResource("19_tpgq8")
+expand_icon = true
 
 [node name="QuitButton" type="Button" parent="TitleFrame/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Quit"
+icon = ExtResource("20_ksqx5")
+expand_icon = true
 
 [node name="AboutFrame" type="Control" parent="."]
 layout_mode = 1
@@ -301,6 +320,8 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Back"
+icon = ExtResource("21_lenk6")
+expand_icon = true
 
 [node name="CreditsButton" type="Button" parent="AboutFrame/Buttons"]
 unique_name_in_owner = true
@@ -308,6 +329,8 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Credits"
+icon = ExtResource("22_j1hcb")
+expand_icon = true
 
 [node name="LicensesButton" type="Button" parent="AboutFrame/Buttons"]
 unique_name_in_owner = true
@@ -315,6 +338,8 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Licenses"
+icon = ExtResource("23_qqid4")
+expand_icon = true
 
 [node name="Panels" type="HBoxContainer" parent="AboutFrame"]
 layout_mode = 1
@@ -457,6 +482,8 @@ offset_right = 200.0
 offset_bottom = 60.0
 size_flags_horizontal = 6
 text = "Back"
+icon = ExtResource("25_a22bj")
+expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CreditsFrame"]
 layout_mode = 1
@@ -534,6 +561,8 @@ offset_right = 200.0
 offset_bottom = 60.0
 size_flags_horizontal = 6
 text = "Back"
+icon = ExtResource("25_a22bj")
+expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LicensesFrame"]
 custom_minimum_size = Vector2(0, 60)
@@ -887,6 +916,8 @@ offset_right = 200.0
 offset_bottom = 60.0
 size_flags_horizontal = 6
 text = "Back"
+icon = ExtResource("25_a22bj")
+expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LicensesFrame2"]
 custom_minimum_size = Vector2(0, 60)
