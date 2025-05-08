@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://b5k643fvhrvdi" path="res://core/screens/main_menu/states/from_about_to_start.gd" id="8_o83qo"]
 [ext_resource type="Script" uid="uid://g1d1vsy7pjgt" path="res://core/screens/main_menu/states/from_about_to_credits.gd" id="9_2l7pg"]
 [ext_resource type="Script" uid="uid://lt3nb1j0u64h" path="res://core/screens/main_menu/states/from_credits_to_about.gd" id="10_2l7pg"]
-[ext_resource type="Texture2D" uid="uid://df0oro5hgq6fn" path="res://core/screens/main_menu/graphics/circle.svg" id="11_7x0fx"]
+[ext_resource type="Texture2D" uid="uid://df0oro5hgq6fn" path="res://core/screens/main_menu/graphics/background_circle.svg" id="11_7x0fx"]
 [ext_resource type="LabelSettings" uid="uid://cc272esec8t84" path="res://core/screens/main_menu/title_label_settings.tres" id="11_tk1fg"]
 [ext_resource type="LabelSettings" uid="uid://b05v8ydlelqai" path="res://core/screens/main_menu/panel_header_label_settings.tres" id="12_7x0fx"]
 [ext_resource type="Script" uid="uid://bnwffmdcsx57h" path="res://core/screens/main_menu/states/from_about_to_licenses.gd" id="12_bbwo5"]
