@@ -43,32 +43,8 @@ func _draw() -> void:
 func setup(p_level_data: LevelResource) -> void:
 	level_data = p_level_data
 	id = level_data.id
-
 	%DetailLabel.text = level_data.title
-	match level_data.icon:
-		LevelResource.LevelIcons.ZERO:
-			%MaskIcon.texture = box.get_theme_icon("0")
-		LevelResource.LevelIcons.ONE:
-			%MaskIcon.texture = box.get_theme_icon("1")
-		LevelResource.LevelIcons.TWO:
-			%MaskIcon.texture = box.get_theme_icon("2")
-		LevelResource.LevelIcons.THREE:
-			%MaskIcon.texture = box.get_theme_icon("3")
-		LevelResource.LevelIcons.FOUR:
-			%MaskIcon.texture = box.get_theme_icon("4")
-		LevelResource.LevelIcons.FIVE:
-			%MaskIcon.texture = box.get_theme_icon("5")
-		LevelResource.LevelIcons.SIX:
-			%MaskIcon.texture = box.get_theme_icon("6")
-		LevelResource.LevelIcons.SEVEN:
-			%MaskIcon.texture = box.get_theme_icon("7")
-		LevelResource.LevelIcons.EIGHT:
-			%MaskIcon.texture = box.get_theme_icon("8")
-		LevelResource.LevelIcons.NINE:
-			%MaskIcon.texture = box.get_theme_icon("9")
-		LevelResource.LevelIcons.UNKNOWN:
-			%MaskIcon.texture = box.get_theme_icon("unknown")
-
+	%MaskIcon.texture = level_data.get_icon_texture()
 	completed = is_completed()
 
 

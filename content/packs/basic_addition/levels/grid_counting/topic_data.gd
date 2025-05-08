@@ -19,7 +19,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Intro - 1",
 			# Icon
-			LevelResource.LevelIcons.ONE,
+			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
 			preload("grid_counting_d/pimnet_setup.tres"),
 			# Goal Type
@@ -37,7 +37,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Intro - 2",
 			# Icon
-			LevelResource.LevelIcons.TWO,
+			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
 			preload("grid_counting_e/pimnet_setup.tres"),
 			# Goal Type
@@ -57,7 +57,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - 1",
 			# Icon
-			LevelResource.LevelIcons.ONE,
+			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
 			preload("grid_counting_a/pimnet_setup.tres"),
 			# Goal Type
@@ -75,7 +75,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - 2",
 			# Icon
-			LevelResource.LevelIcons.TWO,
+			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
 			preload("grid_counting_a/pimnet_setup.tres"),
 			# Goal Type
@@ -93,7 +93,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - 3",
 			# Icon
-			LevelResource.LevelIcons.THREE,
+			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
 			# Goal Type
@@ -111,7 +111,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - 4",
 			# Icon
-			LevelResource.LevelIcons.FOUR,
+			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
 			# Goal Type
@@ -129,7 +129,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - 5",
 			# Icon
-			LevelResource.LevelIcons.FIVE,
+			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
 			# Goal Type
@@ -147,7 +147,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - 6",
 			# Icon
-			LevelResource.LevelIcons.SIX,
+			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
 			# Goal Type
@@ -165,7 +165,7 @@ static var topic = TopicResource.new(
 			# Title
 			"1 - Random",
 			# Icon
-			LevelResource.LevelIcons.UNKNOWN,
+			LevelResource.TopicIcons.UNKNOWN,
 			# Pimnet Setup
 			preload("grid_counting_b/pimnet_setup.tres"),
 			# Goal Type
@@ -185,7 +185,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 1",
 			# Icon
-			LevelResource.LevelIcons.ONE,
+			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -202,7 +202,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 2",
 			# Icon
-			LevelResource.LevelIcons.TWO,
+			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -219,7 +219,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 3",
 			# Icon
-			LevelResource.LevelIcons.THREE,
+			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -236,7 +236,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 4",
 			# Icon
-			LevelResource.LevelIcons.FOUR,
+			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -253,7 +253,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 5",
 			# Icon
-			LevelResource.LevelIcons.FIVE,
+			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -270,7 +270,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 6",
 			# Icon
-			LevelResource.LevelIcons.SIX,
+			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -287,7 +287,7 @@ static var topic = TopicResource.new(
 			# Title
 			"2 - 7",
 			# Icon
-			LevelResource.LevelIcons.SEVEN,
+			LevelResource.TopicIcons.SEVEN,
 			# Pimnet Setup
 			preload("grid_counting_f/pimnet_setup.tres"),
 			# Goal Type
@@ -306,7 +306,7 @@ static var topic = TopicResource.new(
 			# Title
 			"3 - 1",
 			# Icon
-			LevelResource.LevelIcons.ONE,
+			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
 			# Goal Type
@@ -324,7 +324,7 @@ static var topic = TopicResource.new(
 			# Title
 			"3 - 2",
 			# Icon
-			LevelResource.LevelIcons.TWO,
+			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
 			# Goal Type
@@ -341,7 +341,7 @@ static var topic = TopicResource.new(
 			# Title
 			"3 - 3",
 			# Icon
-			LevelResource.LevelIcons.THREE,
+			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
 			# Goal Type
@@ -358,7 +358,7 @@ static var topic = TopicResource.new(
 			# Title
 			"3 - 4",
 			# Icon
-			LevelResource.LevelIcons.FOUR,
+			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
 			# Goal Type
@@ -375,7 +375,7 @@ static var topic = TopicResource.new(
 			# Title
 			"3 - 5",
 			# Icon
-			LevelResource.LevelIcons.FIVE,
+			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
 			# Goal Type
@@ -392,7 +392,7 @@ static var topic = TopicResource.new(
 			# Title
 			"3 - 6",
 			# Icon
-			LevelResource.LevelIcons.SIX,
+			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
 			preload("grid_counting_c/pimnet_setup.tres"),
 			# Goal Type
@@ -411,7 +411,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 1",
 			# Icon
-			LevelResource.LevelIcons.ONE,
+			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -428,7 +428,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 2",
 			# Icon
-			LevelResource.LevelIcons.TWO,
+			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -445,7 +445,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 3",
 			# Icon
-			LevelResource.LevelIcons.THREE,
+			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -462,7 +462,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 4",
 			# Icon
-			LevelResource.LevelIcons.FOUR,
+			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -479,7 +479,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 5",
 			# Icon
-			LevelResource.LevelIcons.FIVE,
+			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -496,7 +496,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - 6",
 			# Icon
-			LevelResource.LevelIcons.SIX,
+			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -513,7 +513,7 @@ static var topic = TopicResource.new(
 			# Title
 			"4 - Random",
 			# Icon
-			LevelResource.LevelIcons.UNKNOWN,
+			LevelResource.TopicIcons.UNKNOWN,
 			# Pimnet Setup
 			preload("grid_counting_g/pimnet_setup.tres"),
 			# Goal Type
@@ -731,7 +731,7 @@ static var topic = TopicResource.new(
 				"grid_counting_0_1",
 				"grid_counting_0_2",
 			],
-			LevelResource.LevelIcons.ZERO,
+			LevelResource.TopicIcons.ZERO,
 		),
 		TopicGroupResource.new(
 			[
@@ -743,7 +743,7 @@ static var topic = TopicResource.new(
 				"grid_counting_1_6",
 				"grid_counting_1_random",
 			],
-			LevelResource.LevelIcons.ONE,
+			LevelResource.TopicIcons.ONE,
 		),
 		TopicGroupResource.new(
 			[
@@ -755,7 +755,7 @@ static var topic = TopicResource.new(
 				"grid_counting_2_6",
 				"grid_counting_2_7",
 			],
-			LevelResource.LevelIcons.TWO,
+			LevelResource.TopicIcons.TWO,
 		),
 		TopicGroupResource.new(
 			[
@@ -766,7 +766,7 @@ static var topic = TopicResource.new(
 				"grid_counting_3_5",
 				"grid_counting_3_6",
 			],
-			LevelResource.LevelIcons.THREE,
+			LevelResource.TopicIcons.THREE,
 		),
 		TopicGroupResource.new(
 			[
@@ -778,7 +778,7 @@ static var topic = TopicResource.new(
 				"grid_counting_4_6",
 				"grid_counting_4_random",
 			],
-			LevelResource.LevelIcons.FOUR,
+			LevelResource.TopicIcons.FOUR,
 		),
 	],
 

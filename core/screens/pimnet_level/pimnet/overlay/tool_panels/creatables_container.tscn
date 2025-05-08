@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cft03sir0cbcr" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/tool_button_container.gd" id="1_3da5r"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="2_50awo"]
-[ext_resource type="Texture2D" uid="uid://c8hll8oe7ed61" path="res://placeholder-icon.svg" id="2_isiid"]
+[ext_resource type="Texture2D" uid="uid://c8hll8oe7ed61" path="res://core/globals/graphics/placeholder_icon.svg" id="2_isiid"]
 
 [node name="CreatablesContainer" type="GridContainer"]
 offset_right = 250.0

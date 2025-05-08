@@ -120,7 +120,7 @@ func build(p_topic_data: TopicResource) -> void:
 		)
 		var group_box := TopicGroupScene.instantiate()
 		%BackgroundLayer.add_child(group_box)
-		group_box.setup(group_rect, topic_group.icon)
+		group_box.setup(topic_group, group_rect)
 
 	# Add connectors
 	for connection in topic_data.connections:

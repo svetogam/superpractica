@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=21 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_y5cmv"]
@@ -13,12 +13,13 @@
 [ext_resource type="Script" uid="uid://bfqdsy662g5vu" path="res://core/screens/level_select/states/out_from_level_to_map.gd" id="10_nortw"]
 [ext_resource type="Script" uid="uid://ban35fvtbwsus" path="res://core/screens/level_select/level_select_overlay.gd" id="12_1xipj"]
 [ext_resource type="Script" uid="uid://bsp5pt3afvyle" path="res://core/screens/level_select/overlay_states/normal.gd" id="12_4va4l"]
-[ext_resource type="Texture2D" uid="uid://dpqnh6g4wvxda" path="res://core/screens/level_select/graphics/icons/up-topic-icon.svg" id="12_nortw"]
+[ext_resource type="Texture2D" uid="uid://dpqnh6g4wvxda" path="res://core/screens/level_select/graphics/icons/up_topic_icon.svg" id="12_nortw"]
 [ext_resource type="Script" uid="uid://ccu2m0ynix34y" path="res://core/screens/level_select/overlay_states/system.gd" id="13_1xipj"]
-[ext_resource type="Texture2D" uid="uid://dgsvufp81n7po" path="res://core/screens/level_select/graphics/icons/menu-icon.svg" id="13_6jxcg"]
+[ext_resource type="Texture2D" uid="uid://dgsvufp81n7po" path="res://core/globals/graphics/button_icons/menu_icon.svg" id="13_6jxcg"]
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
-[ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/screens/level_select/graphics/icons/settings-icon.svg" id="14_54uqb"]
-[ext_resource type="Texture2D" uid="uid://buh4qiqae3638" path="res://core/screens/level_select/graphics/icons/home-icon.svg" id="15_fdq5g"]
+[ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/globals/graphics/button_icons/settings_icon.svg" id="14_54uqb"]
+[ext_resource type="Texture2D" uid="uid://buh4qiqae3638" path="res://core/globals/graphics/button_icons/home_icon.svg" id="15_fdq5g"]
+[ext_resource type="Theme" uid="uid://6u5y2olmcrbm" path="res://core/globals/theme/main_theme.tres" id="17_yooek"]
 
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
@@ -152,6 +153,7 @@ offset_top = -300.0
 offset_right = -50.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("17_yooek")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OverlayLayer/Overlay/SystemPanel"]
 layout_mode = 2

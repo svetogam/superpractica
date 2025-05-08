@@ -1,90 +1,27 @@
-[gd_resource type="Theme" load_steps=29 format=3 uid="uid://jcpo8pxbskbt"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://jcpo8pxbskbt"]
 
-[ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_qydn7"]
-[ext_resource type="StyleBox" uid="uid://b8xh6j44lqwxh" path="res://core/screens/pimnet_level/theme/button_focused_style_box.tres" id="2_7qqt8"]
-[ext_resource type="StyleBox" uid="uid://dcmyeu4b718dk" path="res://core/screens/pimnet_level/theme/button_hover_style_box.tres" id="3_g0k55"]
-[ext_resource type="StyleBox" uid="uid://dugsl1kobydk2" path="res://core/screens/pimnet_level/theme/button_hover_pressed_style_box.tres" id="4_iew0u"]
-[ext_resource type="StyleBox" uid="uid://biujihgsn6v3r" path="res://core/screens/pimnet_level/theme/button_normal_style_box.tres" id="5_6qscb"]
-[ext_resource type="StyleBox" uid="uid://b7cnajccl65p3" path="res://core/screens/pimnet_level/theme/button_pressed_style_box.tres" id="6_ms80n"]
-[ext_resource type="Texture2D" uid="uid://b142mgnn28pxw" path="res://core/screens/level_select/graphics/icons/0-icon.svg" id="7_0ln24"]
-[ext_resource type="StyleBox" uid="uid://xxja6vn0tiel" path="res://core/screens/pimnet_level/theme/panel_style_box.tres" id="7_751ld"]
 [ext_resource type="StyleBox" uid="uid://bp03j320i4h3k" path="res://core/screens/level_select/theme/level_node_completed_style_box.tres" id="7_ms80n"]
-[ext_resource type="Texture2D" uid="uid://b7l7y1oekekox" path="res://core/screens/level_select/graphics/icons/1-icon.svg" id="8_22t00"]
-[ext_resource type="StyleBox" uid="uid://do7xsmkt2t2oc" path="res://core/screens/pimnet_level/theme/tooltip_style_box.tres" id="8_f4o84"]
 [ext_resource type="StyleBox" uid="uid://bhcij6bllvi32" path="res://core/screens/level_select/theme/level_node_halo_thin_style_box.tres" id="8_g0k55"]
 [ext_resource type="StyleBox" uid="uid://cm4cgh3yegify" path="res://core/screens/level_select/theme/level_node_halo_thick_style_box.tres" id="8_iew0u"]
-[ext_resource type="Texture2D" uid="uid://tdg04xul7v88" path="res://core/screens/level_select/graphics/icons/2-icon.svg" id="9_8mdi2"]
 [ext_resource type="StyleBox" uid="uid://ijq2phsjiabx" path="res://core/screens/level_select/theme/level_node_normal_style_box.tres" id="10_751ld"]
-[ext_resource type="Texture2D" uid="uid://cmi7bkby3jvbe" path="res://core/screens/level_select/graphics/icons/3-icon.svg" id="10_mucuy"]
 [ext_resource type="StyleBox" uid="uid://cgcvhhinioqrr" path="res://core/screens/level_select/theme/level_node_suggested_style_box.tres" id="11_f4o84"]
-[ext_resource type="Texture2D" uid="uid://donuv2btt7rdm" path="res://core/screens/level_select/graphics/icons/4-icon.svg" id="11_vip5c"]
-[ext_resource type="Texture2D" uid="uid://fcfbijuaxc6r" path="res://core/screens/level_select/graphics/icons/5-icon.svg" id="12_cudcl"]
-[ext_resource type="Texture2D" uid="uid://cdk28y17eiayv" path="res://core/screens/level_select/graphics/icons/6-icon.svg" id="13_xeygs"]
-[ext_resource type="Texture2D" uid="uid://hod4gc5iwoal" path="res://core/screens/level_select/graphics/icons/7-icon.svg" id="14_y6456"]
-[ext_resource type="Texture2D" uid="uid://cwde7pv5bayt8" path="res://core/screens/level_select/graphics/icons/8-icon.svg" id="15_ymcve"]
-[ext_resource type="Texture2D" uid="uid://3uvpobw6wit5" path="res://core/screens/level_select/graphics/icons/9-icon.svg" id="16_idau7"]
-[ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/screens/level_select/graphics/icons/question-mark-icon.svg" id="17_vttdr"]
 [ext_resource type="StyleBox" uid="uid://thv0bj3piv1h" path="res://core/screens/level_select/theme/subtopic_node_normal_style_box.tres" id="24_22t00"]
 [ext_resource type="StyleBox" uid="uid://pfn47niotxg3" path="res://core/screens/level_select/theme/subtopic_node_completed_style_box.tres" id="24_mucuy"]
 [ext_resource type="StyleBox" uid="uid://dm635a563pmoq" path="res://core/screens/level_select/theme/subtopic_node_halo_style_box.tres" id="25_8mdi2"]
 [ext_resource type="StyleBox" uid="uid://bn5wk2qy6pvv7" path="res://core/screens/level_select/theme/topic_group_style_box.tres" id="28_vip5c"]
 
 [resource]
-Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
-Button/colors/font_disabled_color = Color(0, 0, 0, 0.4)
-Button/colors/font_focus_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/colors/font_hover_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/colors/font_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/colors/icon_normal_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/colors/icon_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
 Button/font_sizes/font_size = 20
-Button/styles/disabled = ExtResource("1_qydn7")
-Button/styles/focus = ExtResource("2_7qqt8")
-Button/styles/hover = ExtResource("3_g0k55")
-Button/styles/hover_pressed = ExtResource("4_iew0u")
-Button/styles/normal = ExtResource("5_6qscb")
-Button/styles/pressed = ExtResource("6_ms80n")
-Label/colors/font_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Label/font_sizes/font_size = 16
 LevelNode/base_type = &"Panel"
-LevelNode/icons/0 = ExtResource("7_0ln24")
-LevelNode/icons/1 = ExtResource("8_22t00")
-LevelNode/icons/2 = ExtResource("9_8mdi2")
-LevelNode/icons/3 = ExtResource("10_mucuy")
-LevelNode/icons/4 = ExtResource("11_vip5c")
-LevelNode/icons/5 = ExtResource("12_cudcl")
-LevelNode/icons/6 = ExtResource("13_xeygs")
-LevelNode/icons/7 = ExtResource("14_y6456")
-LevelNode/icons/8 = ExtResource("15_ymcve")
-LevelNode/icons/9 = ExtResource("16_idau7")
-LevelNode/icons/unknown = ExtResource("17_vttdr")
 LevelNode/styles/completed = ExtResource("7_ms80n")
 LevelNode/styles/halo_thick = ExtResource("8_iew0u")
 LevelNode/styles/halo_thin = ExtResource("8_g0k55")
 LevelNode/styles/normal = ExtResource("10_751ld")
 LevelNode/styles/panel = null
 LevelNode/styles/suggested = ExtResource("11_f4o84")
-PanelContainer/styles/panel = ExtResource("7_751ld")
 SubtopicNode/base_type = &"Panel"
 SubtopicNode/styles/completed = ExtResource("24_mucuy")
 SubtopicNode/styles/halo = ExtResource("25_8mdi2")
 SubtopicNode/styles/normal = ExtResource("24_22t00")
-TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
-TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
-TooltipLabel/constants/outline_size = 18
-TooltipLabel/font_sizes/font_size = 24
-TooltipPanel/styles/panel = ExtResource("8_f4o84")
 TopicGroup/base_type = &"Panel"
-TopicGroup/icons/0 = ExtResource("7_0ln24")
-TopicGroup/icons/1 = ExtResource("8_22t00")
-TopicGroup/icons/2 = ExtResource("9_8mdi2")
-TopicGroup/icons/3 = ExtResource("10_mucuy")
-TopicGroup/icons/4 = ExtResource("11_vip5c")
-TopicGroup/icons/5 = ExtResource("12_cudcl")
-TopicGroup/icons/6 = ExtResource("13_xeygs")
-TopicGroup/icons/7 = ExtResource("14_y6456")
-TopicGroup/icons/8 = ExtResource("15_ymcve")
-TopicGroup/icons/9 = ExtResource("16_idau7")
-TopicGroup/icons/unknown = ExtResource("17_vttdr")
 TopicGroup/styles/panel = ExtResource("28_vip5c")

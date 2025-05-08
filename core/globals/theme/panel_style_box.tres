@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://xxja6vn0tiel"]
+
+[ext_resource type="Texture2D" uid="uid://bkf0ouvvnnxd8" path="res://core/globals/graphics/panel.svg" id="1_t4lgp"]
+
+[resource]
+texture = ExtResource("1_t4lgp")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

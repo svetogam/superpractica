@@ -17,17 +17,17 @@
 [ext_resource type="LabelSettings" uid="uid://b05v8ydlelqai" path="res://core/screens/main_menu/panel_header_label_settings.tres" id="12_7x0fx"]
 [ext_resource type="Script" uid="uid://bnwffmdcsx57h" path="res://core/screens/main_menu/states/from_about_to_licenses.gd" id="12_bbwo5"]
 [ext_resource type="Script" uid="uid://cyy4m7xe7qt16" path="res://core/screens/main_menu/states/from_licenses_to_about.gd" id="13_ant0n"]
-[ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/screens/main_menu/graphics/icons/level-select-icon.svg" id="16_m8eft"]
+[ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/globals/graphics/button_icons/level_select_icon.svg" id="16_m8eft"]
 [ext_resource type="LabelSettings" uid="uid://bic37p6jbr2h6" path="res://core/screens/main_menu/title_2_label_settings.tres" id="17_bbwo5"]
-[ext_resource type="Texture2D" uid="uid://u2kd275d5hdh" path="res://core/screens/main_menu/graphics/icons/sandbox-icon.svg" id="17_ilwjk"]
+[ext_resource type="Texture2D" uid="uid://u2kd275d5hdh" path="res://core/screens/main_menu/graphics/icons/sandbox_icon.svg" id="17_ilwjk"]
+[ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/globals/graphics/button_icons/settings_icon.svg" id="18_a22bj"]
 [ext_resource type="Texture2D" uid="uid://n1ufxi66i4in" path="res://general/logos/logo_small_monochrome_light.svg" id="18_ant0n"]
-[ext_resource type="Texture2D" uid="uid://ylkml0pgdvlf" path="res://core/screens/main_menu/graphics/icons/settings-icon.svg" id="18_frqlr"]
-[ext_resource type="Texture2D" uid="uid://cmnwhs681qiua" path="res://core/screens/main_menu/graphics/icons/info-icon.svg" id="19_tpgq8"]
-[ext_resource type="Texture2D" uid="uid://be47tmusntxry" path="res://core/screens/main_menu/graphics/icons/quit-icon.svg" id="20_ksqx5"]
-[ext_resource type="Texture2D" uid="uid://nahhhknbk8ex" path="res://core/screens/main_menu/graphics/icons/back-left-up-icon.svg" id="21_lenk6"]
-[ext_resource type="Texture2D" uid="uid://bytc6f2nwvo8f" path="res://core/screens/main_menu/graphics/icons/credits-icon.svg" id="22_j1hcb"]
-[ext_resource type="Texture2D" uid="uid://bkxbxkdlshert" path="res://core/screens/main_menu/graphics/icons/licenses-icon.svg" id="23_qqid4"]
-[ext_resource type="Texture2D" uid="uid://mv35s2g7osp2" path="res://core/screens/main_menu/graphics/icons/back-left-icon.svg" id="25_a22bj"]
+[ext_resource type="Texture2D" uid="uid://cmnwhs681qiua" path="res://core/screens/main_menu/graphics/icons/info_icon.svg" id="19_tpgq8"]
+[ext_resource type="Texture2D" uid="uid://be47tmusntxry" path="res://core/screens/main_menu/graphics/icons/quit_icon.svg" id="20_ksqx5"]
+[ext_resource type="Texture2D" uid="uid://nahhhknbk8ex" path="res://core/screens/main_menu/graphics/icons/back_left_up_icon.svg" id="21_lenk6"]
+[ext_resource type="Texture2D" uid="uid://bytc6f2nwvo8f" path="res://core/screens/main_menu/graphics/icons/credits_icon.svg" id="22_j1hcb"]
+[ext_resource type="Texture2D" uid="uid://bkxbxkdlshert" path="res://core/screens/main_menu/graphics/icons/licenses_icon.svg" id="23_qqid4"]
+[ext_resource type="Texture2D" uid="uid://mv35s2g7osp2" path="res://core/screens/main_menu/graphics/icons/back_left_icon.svg" id="25_a22bj"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -270,7 +270,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
 text = "Settings"
-icon = ExtResource("18_frqlr")
+icon = ExtResource("18_a22bj")
 expand_icon = true
 
 [node name="InfoButton" type="Button" parent="TitleFrame/VBoxContainer"]

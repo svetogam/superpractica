@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_3mwe5"]
 [ext_resource type="Script" uid="uid://kxwlxo8cc7l4" path="res://core/screens/level_select/topic_map/topic_group.gd" id="1_f5hc6"]
-[ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/screens/level_select/graphics/icons/question-mark-icon.svg" id="2_3mwe5"]
+[ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/globals/graphics/topic_icons/question_mark_icon.svg" id="2_3mwe5"]
 
 [node name="TopicGroup" type="Panel"]
 mouse_filter = 2

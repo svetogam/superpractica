@@ -11,7 +11,7 @@ enum GoalTypes {
 	SOLUTION_MEMO_SLOTS,
 	CONSTRUCT_CONDITIONS,
 }
-enum LevelIcons {
+enum TopicIcons {
 	ZERO = 0,
 	ONE,
 	TWO,
@@ -25,9 +25,21 @@ enum LevelIcons {
 	UNKNOWN,
 }
 
+const Icon0 := preload("uid://b142mgnn28pxw")
+const Icon1 := preload("uid://b7l7y1oekekox")
+const Icon2 := preload("uid://tdg04xul7v88")
+const Icon3 := preload("uid://cmi7bkby3jvbe")
+const Icon4 := preload("uid://donuv2btt7rdm")
+const Icon5 := preload("uid://fcfbijuaxc6r")
+const Icon6 := preload("uid://cdk28y17eiayv")
+const Icon7 := preload("uid://hod4gc5iwoal")
+const Icon8 := preload("uid://cwde7pv5bayt8")
+const Icon9 := preload("uid://3uvpobw6wit5")
+const IconQuestionMark := preload("uid://clk6yic0okqp6")
+
 @export var id: String
 @export var title: String
-@export var icon: LevelIcons
+@export var icon: TopicIcons
 @export var pimnet_setup: PimnetSetupResource
 @export var goal_type: GoalTypes
 @export var program: PackedScene
@@ -39,10 +51,39 @@ var extended_title: String:
 		return topic.title + " > " + title
 
 
+static func get_icon_texture_for(p_icon: TopicIcons) -> Texture2D:
+	match p_icon:
+		LevelResource.TopicIcons.ZERO:
+			return Icon0
+		LevelResource.TopicIcons.ONE:
+			return Icon1
+		LevelResource.TopicIcons.TWO:
+			return Icon2
+		LevelResource.TopicIcons.THREE:
+			return Icon3
+		LevelResource.TopicIcons.FOUR:
+			return Icon4
+		LevelResource.TopicIcons.FIVE:
+			return Icon5
+		LevelResource.TopicIcons.SIX:
+			return Icon6
+		LevelResource.TopicIcons.SEVEN:
+			return Icon7
+		LevelResource.TopicIcons.EIGHT:
+			return Icon8
+		LevelResource.TopicIcons.NINE:
+			return Icon9
+		LevelResource.TopicIcons.UNKNOWN:
+			return IconQuestionMark
+		_:
+			assert(false)
+			return null
+
+
 func _init(
 	p_id := "",
 	p_title := "",
-	p_icon := LevelIcons.UNKNOWN,
+	p_icon := TopicIcons.UNKNOWN,
 	p_pimnet_setup: PimnetSetupResource = null,
 	p_goal_type := GoalTypes.NONE,
 	p_program: PackedScene = null,
@@ -65,3 +106,7 @@ func get_next_suggested_level() -> LevelResource:
 
 func has_next_suggested_level() -> bool:
 	return get_next_suggested_level() != null
+
+
+func get_icon_texture() -> Texture2D:
+	return get_icon_texture_for(icon)

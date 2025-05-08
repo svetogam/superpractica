@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ydfjg3gkr2ka"]
 
 [ext_resource type="PackedScene" uid="uid://ca840xege7n3g" path="res://core/screens/pimnet_level/pimnet/static_symbol.tscn" id="1_lgsjq"]
-[ext_resource type="Texture2D" uid="uid://crragmhhtmksa" path="res://core/screens/pimnet_level/icons/equals-icon.svg" id="2_2ienn"]
+[ext_resource type="Texture2D" uid="uid://crragmhhtmksa" path="res://core/screens/pimnet_level/graphics/icons/equals_icon.svg" id="2_2ienn"]
 
 [node name="StaticSymbol" instance=ExtResource("1_lgsjq")]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_8h5ph"]
 [ext_resource type="Script" uid="uid://cclxngkyu1142" path="res://core/screens/level_select/topic_map/topic_nodes/level_node.gd" id="1_tpmk7"]
-[ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/screens/level_select/graphics/icons/question-mark-icon.svg" id="3_4ff5h"]
+[ext_resource type="Texture2D" uid="uid://clk6yic0okqp6" path="res://core/globals/graphics/topic_icons/question_mark_icon.svg" id="3_4ff5h"]
 [ext_resource type="LabelSettings" uid="uid://bmosxtrqk1ggy" path="res://core/screens/level_select/topic_map/topic_nodes/detail_title_label_settings.tres" id="4_8h5ph"]
 
 [node name="LevelNode" type="Node2D"]

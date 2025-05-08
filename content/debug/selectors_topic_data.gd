@@ -19,7 +19,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Selector 1",
 			# Icon
-			LevelResource.LevelIcons.ONE,
+			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
 			preload("levels/number_selectors/select_number_1/pimnet_setup.tres"),
 			# Goal Type
@@ -37,7 +37,7 @@ static var topic = TopicResource.new(
 			# Title
 			"Selector 2",
 			# Icon
-			LevelResource.LevelIcons.TWO,
+			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
 			preload("levels/number_selectors/select_number_2/pimnet_setup.tres"),
 			# Goal Type

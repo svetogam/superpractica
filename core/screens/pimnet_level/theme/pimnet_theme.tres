@@ -1,36 +1,15 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cktgypu4e5gpa"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cktgypu4e5gpa"]
 
-[ext_resource type="StyleBox" uid="uid://biujihgsn6v3r" path="res://core/screens/pimnet_level/theme/button_normal_style_box.tres" id="1_3lkfa"]
-[ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/screens/pimnet_level/theme/button_disabled_style_box.tres" id="1_n5ikt"]
-[ext_resource type="StyleBox" uid="uid://b8xh6j44lqwxh" path="res://core/screens/pimnet_level/theme/button_focused_style_box.tres" id="2_21wjn"]
-[ext_resource type="StyleBox" uid="uid://dcmyeu4b718dk" path="res://core/screens/pimnet_level/theme/button_hover_style_box.tres" id="2_vcn3k"]
-[ext_resource type="StyleBox" uid="uid://b7cnajccl65p3" path="res://core/screens/pimnet_level/theme/button_pressed_style_box.tres" id="3_5rjiq"]
-[ext_resource type="StyleBox" uid="uid://dugsl1kobydk2" path="res://core/screens/pimnet_level/theme/button_hover_pressed_style_box.tres" id="3_21wjn"]
 [ext_resource type="StyleBox" uid="uid://cddq336lvw6uk" path="res://core/screens/pimnet_level/theme/slot_frame_in_only_style_box.tres" id="4_hph0g"]
 [ext_resource type="StyleBox" uid="uid://cke1les2nhns8" path="res://core/screens/pimnet_level/theme/slot_frame_in_out_style_box.tres" id="5_6khpg"]
-[ext_resource type="StyleBox" uid="uid://xxja6vn0tiel" path="res://core/screens/pimnet_level/theme/panel_style_box.tres" id="5_ybn66"]
 [ext_resource type="StyleBox" uid="uid://csorg0qmqic57" path="res://core/screens/pimnet_level/theme/slot_frame_out_only_style_box.tres" id="6_n5ikt"]
 [ext_resource type="StyleBox" uid="uid://drbeora2bnpc6" path="res://core/screens/pimnet_level/theme/slot_frame_static_style_box.tres" id="7_21wjn"]
-[ext_resource type="StyleBox" uid="uid://do7xsmkt2t2oc" path="res://core/screens/pimnet_level/theme/tooltip_style_box.tres" id="12_l64s5"]
 [ext_resource type="StyleBox" uid="uid://bget0dwqv2bgx" path="res://core/screens/pimnet_level/theme/pim_focused_style_box.tres" id="12_toa7j"]
 [ext_resource type="StyleBox" uid="uid://ovd4nqj8vbw7" path="res://core/screens/pimnet_level/theme/pim_panel_style_box.tres" id="13_44iv6"]
 
 [resource]
-Button/colors/font_color = Color(0.05, 0.05, 0.05, 1)
-Button/colors/font_disabled_color = Color(0, 0, 0, 0.4)
-Button/colors/font_focus_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/colors/font_hover_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/colors/font_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
-Button/colors/icon_normal_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
 Button/colors/icon_pressed_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
-Button/styles/disabled = ExtResource("1_n5ikt")
-Button/styles/focus = ExtResource("2_21wjn")
-Button/styles/hover = ExtResource("2_vcn3k")
-Button/styles/hover_pressed = ExtResource("3_21wjn")
-Button/styles/normal = ExtResource("1_3lkfa")
-Button/styles/pressed = ExtResource("3_5rjiq")
-Label/colors/font_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+Button/font_sizes/font_size = 24
 MemoSlot/base_type = &"Panel"
 MemoSlot/colors/accepting = Color(1, 1, 0.54902, 1)
 MemoSlot/colors/affirming = Color(0.0901961, 0.898039, 0.0901961, 1)
@@ -44,7 +23,6 @@ MemoSlot/styles/frame_in_out = ExtResource("5_6khpg")
 MemoSlot/styles/frame_out = ExtResource("6_n5ikt")
 MemoSlot/styles/frame_static = ExtResource("7_21wjn")
 Panel/styles/panel = null
-PanelContainer/styles/panel = ExtResource("5_ybn66")
 Pim/base_type = &"Panel"
 Pim/styles/focus = ExtResource("12_toa7j")
 Pim/styles/panel = ExtResource("13_44iv6")
@@ -55,8 +33,3 @@ StaticSymbol/colors/warn = Color(0.901961, 0.360784, 0.360784, 1)
 ToolButton/base_type = &"Button"
 ToolButton/colors/icon_normal_color = Color(1, 1, 1, 1)
 ToolButton/colors/icon_pressed_color = Color(1, 1, 1, 1)
-TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
-TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
-TooltipLabel/constants/outline_size = 18
-TooltipLabel/font_sizes/font_size = 24
-TooltipPanel/styles/panel = ExtResource("12_l64s5")
