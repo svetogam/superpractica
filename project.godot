@@ -65,7 +65,7 @@ disable_during_verification=""
 
 timers/tooltip_delay_sec=0.7
 theme/custom="uid://6u5y2olmcrbm"
-theme/default_font_multichannel_signed_distance_field=true
+theme/custom_font="uid://cj1n52ljnryw4"
 
 [input]
 
