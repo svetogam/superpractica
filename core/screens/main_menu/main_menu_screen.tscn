@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dtsgoie3mkpl"]
+[gd_scene load_steps=30 format=3 uid="uid://dtsgoie3mkpl"]
 
 [ext_resource type="Script" uid="uid://uqvc2km0y0ug" path="res://core/screens/main_menu/main_menu_screen.gd" id="1_evcbt"]
 [ext_resource type="Theme" uid="uid://rvggfmuj8l32" path="res://core/screens/main_menu/theme/main_menu_theme.tres" id="1_qnfx7"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://bnwffmdcsx57h" path="res://core/screens/main_menu/states/from_about_to_licenses.gd" id="12_bbwo5"]
 [ext_resource type="Script" uid="uid://cyy4m7xe7qt16" path="res://core/screens/main_menu/states/from_licenses_to_about.gd" id="13_ant0n"]
 [ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/globals/graphics/button_icons/level_select_icon.svg" id="16_m8eft"]
+[ext_resource type="LabelSettings" uid="uid://bl5db4rqqlohn" path="res://core/screens/main_menu/title_3_label_settings.tres" id="16_nio33"]
 [ext_resource type="LabelSettings" uid="uid://bic37p6jbr2h6" path="res://core/screens/main_menu/title_2_label_settings.tres" id="17_bbwo5"]
 [ext_resource type="Texture2D" uid="uid://u2kd275d5hdh" path="res://core/screens/main_menu/graphics/icons/sandbox_icon.svg" id="17_ilwjk"]
 [ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/globals/graphics/button_icons/settings_icon.svg" id="18_a22bj"]
@@ -245,7 +246,7 @@ anchor_right = 1.0
 offset_right = -5.0
 grow_horizontal = 0
 text = "vX.Y.Z Demo"
-label_settings = ExtResource("17_bbwo5")
+label_settings = ExtResource("16_nio33")
 horizontal_alignment = 2
 vertical_alignment = 1
 
