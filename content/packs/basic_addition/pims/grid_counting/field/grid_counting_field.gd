@@ -75,6 +75,7 @@ const ObjectTwentyBlock := preload("objects/twenty_block/twenty_block.tscn")
 const ObjectThirtyBlock := preload("objects/thirty_block/thirty_block.tscn")
 const ObjectFortyBlock := preload("objects/forty_block/forty_block.tscn")
 const ObjectFiftyBlock := preload("objects/fifty_block/fifty_block.tscn")
+const CellRingPrefig := preload("cell_ring_prefig.tscn")
 
 const ROWS: int = 10
 const COLUMNS: int = 10
@@ -483,6 +484,18 @@ func stage_piece_warning(piece: FieldObject) -> void:
 
 func remove_piece_warning(piece: FieldObject) -> void:
 	piece.set_variant("default")
+
+
+func prefigure_cell_mark(cell_number: int) -> void:
+	clear_prefig()
+	prefig.add_child(CellRingPrefig.instantiate())
+	prefig.show()
+
+	var cell = dynamic_model.get_grid_cell(cell_number)
+	prefig.position = Vector2(
+		cell.position.x,
+		cell.position.y
+	)
 
 
 func prefigure_unit(cell_number: int) -> void:

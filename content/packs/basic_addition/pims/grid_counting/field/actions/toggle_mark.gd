@@ -21,6 +21,19 @@ func is_valid() -> bool:
 	return cell_number >= 1 and cell_number <= 100
 
 
+func prefigure() -> void:
+	if not is_valid():
+		field.clear_prefig()
+		return
+
+	if not field.dynamic_model.get_grid_cell(cell_number).marked:
+		field.prefigure_cell_mark(cell_number)
+
+
+func unprefigure() -> void:
+	field.clear_prefig()
+
+
 func do() -> void:
 	var marked_cell = field.get_marked_cell()
 	if marked_cell != null and marked_cell.number != cell_number:
