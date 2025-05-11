@@ -17,7 +17,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_0_1",
 			# Title
-			"Intro - 1",
+			"1 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
@@ -35,7 +35,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_0_2",
 			# Title
-			"Intro - 2",
+			"1 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
@@ -55,7 +55,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_1",
 			# Title
-			"1 - 1",
+			"2 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
@@ -73,7 +73,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_2",
 			# Title
-			"1 - 2",
+			"2 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
@@ -91,7 +91,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_3",
 			# Title
-			"1 - 3",
+			"2 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
@@ -109,7 +109,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_4",
 			# Title
-			"1 - 4",
+			"2 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
@@ -127,7 +127,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_5",
 			# Title
-			"1 - 5",
+			"2 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
@@ -145,7 +145,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_6",
 			# Title
-			"1 - 6",
+			"2 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
@@ -163,7 +163,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_1_random",
 			# Title
-			"1 - Random",
+			"2 - Random",
 			# Icon
 			LevelResource.TopicIcons.UNKNOWN,
 			# Pimnet Setup
@@ -183,7 +183,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_2_1",
 			# Title
-			"2 - 1",
+			"3 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
@@ -200,7 +200,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_2_2",
 			# Title
-			"2 - 2",
+			"3 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
@@ -217,7 +217,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_2_3",
 			# Title
-			"2 - 3",
+			"3 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
@@ -234,7 +234,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_2_4",
 			# Title
-			"2 - 4",
+			"3 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
@@ -251,7 +251,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_2_5",
 			# Title
-			"2 - 5",
+			"3 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
@@ -268,7 +268,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_2_6",
 			# Title
-			"2 - 6",
+			"3 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
@@ -285,7 +285,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_2_7",
 			# Title
-			"2 - 7",
+			"3 - 7",
 			# Icon
 			LevelResource.TopicIcons.SEVEN,
 			# Pimnet Setup
@@ -304,7 +304,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_1",
 			# Title
-			"3 - 1",
+			"4 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
@@ -322,7 +322,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_2",
 			# Title
-			"3 - 2",
+			"4 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
@@ -339,7 +339,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_3",
 			# Title
-			"3 - 3",
+			"4 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
@@ -356,7 +356,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_4",
 			# Title
-			"3 - 4",
+			"4 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
@@ -373,7 +373,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_5",
 			# Title
-			"3 - 5",
+			"4 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
@@ -390,7 +390,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_3_6",
 			# Title
-			"3 - 6",
+			"4 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
@@ -409,7 +409,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_4_1",
 			# Title
-			"4 - 1",
+			"5 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
 			# Pimnet Setup
@@ -426,7 +426,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_4_2",
 			# Title
-			"4 - 2",
+			"5 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
 			# Pimnet Setup
@@ -443,7 +443,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_4_3",
 			# Title
-			"4 - 3",
+			"5 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
 			# Pimnet Setup
@@ -460,7 +460,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_4_4",
 			# Title
-			"4 - 4",
+			"5 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
 			# Pimnet Setup
@@ -477,7 +477,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_4_5",
 			# Title
-			"4 - 5",
+			"5 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
 			# Pimnet Setup
@@ -494,7 +494,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_4_6",
 			# Title
-			"4 - 6",
+			"5 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
 			# Pimnet Setup
@@ -511,7 +511,7 @@ static var topic = TopicResource.new(
 			# ID
 			"grid_counting_4_random",
 			# Title
-			"4 - Random",
+			"5 - Random",
 			# Icon
 			LevelResource.TopicIcons.UNKNOWN,
 			# Pimnet Setup
@@ -731,7 +731,7 @@ static var topic = TopicResource.new(
 				"grid_counting_0_1",
 				"grid_counting_0_2",
 			],
-			LevelResource.TopicIcons.ZERO,
+			LevelResource.TopicIcons.ONE,
 		),
 		TopicGroupResource.new(
 			[
@@ -743,7 +743,7 @@ static var topic = TopicResource.new(
 				"grid_counting_1_6",
 				"grid_counting_1_random",
 			],
-			LevelResource.TopicIcons.ONE,
+			LevelResource.TopicIcons.TWO,
 		),
 		TopicGroupResource.new(
 			[
@@ -755,7 +755,7 @@ static var topic = TopicResource.new(
 				"grid_counting_2_6",
 				"grid_counting_2_7",
 			],
-			LevelResource.TopicIcons.TWO,
+			LevelResource.TopicIcons.THREE,
 		),
 		TopicGroupResource.new(
 			[
@@ -766,7 +766,7 @@ static var topic = TopicResource.new(
 				"grid_counting_3_5",
 				"grid_counting_3_6",
 			],
-			LevelResource.TopicIcons.THREE,
+			LevelResource.TopicIcons.FOUR,
 		),
 		TopicGroupResource.new(
 			[
@@ -778,7 +778,7 @@ static var topic = TopicResource.new(
 				"grid_counting_4_6",
 				"grid_counting_4_random",
 			],
-			LevelResource.TopicIcons.FOUR,
+			LevelResource.TopicIcons.FIVE,
 		),
 	],
 
