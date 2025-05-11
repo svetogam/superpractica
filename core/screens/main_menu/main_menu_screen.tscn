@@ -499,55 +499,33 @@ text = "Back"
 icon = ExtResource("25_a22bj")
 expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CreditsFrame"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
+offset_left = 30.0
 offset_top = 100.0
-offset_right = -20.0
+offset_right = -30.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="ContributorsPanel" type="PanelContainer" parent="CreditsFrame/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame/HBoxContainer/ContributorsPanel"]
+[node name="CreditsPanel" type="PanelContainer" parent="CreditsFrame/VBoxContainer"]
 layout_mode = 2
 
-[node name="ContributorsHeader" type="Label" parent="CreditsFrame/HBoxContainer/ContributorsPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame/VBoxContainer/CreditsPanel"]
+layout_mode = 2
+
+[node name="ContributorsHeader" type="Label" parent="CreditsFrame/VBoxContainer/CreditsPanel/VBoxContainer"]
 layout_mode = 2
 text = "Contributors"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="Contributors" type="Label" parent="CreditsFrame/HBoxContainer/ContributorsPanel/VBoxContainer"]
+[node name="Contributors" type="Label" parent="CreditsFrame/VBoxContainer/CreditsPanel/VBoxContainer"]
 layout_mode = 2
 text = "Svetogam"
-horizontal_alignment = 1
-
-[node name="FundersPanel" type="PanelContainer" parent="CreditsFrame/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame/HBoxContainer/FundersPanel"]
-layout_mode = 2
-
-[node name="FundersHeader" type="Label" parent="CreditsFrame/HBoxContainer/FundersPanel/VBoxContainer"]
-layout_mode = 2
-text = "Funders"
-label_settings = ExtResource("12_7x0fx")
-horizontal_alignment = 1
-
-[node name="Funders" type="Label" parent="CreditsFrame/HBoxContainer/FundersPanel/VBoxContainer"]
-layout_mode = 2
-text = "Oops! There's no one here yet!"
 horizontal_alignment = 1
 
 [node name="LicensesFrame" type="Control" parent="."]
