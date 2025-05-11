@@ -9,6 +9,87 @@
 * For plans for upcoming releases, see the [Roadmap](https://superpractica.org/resources/roadmap). (The changelog of the future!)
 
 
+## v0.8.0 - Initial Player-Facing Demo - Unreleased
+
+### Summary
+
+The game is finally "presentable" with graphics, icons, animations, transitions, and screen layouts. Main menu info section is expanded to include credits and licenses.
+
+Thanks to [Kenney](https://www.kenney.nl/assets/ui-pack) and [Phosphor Icons](https://phosphoricons.com/) for graphical assets.
+
+
+### Content
+
+#### Grid-Counting Pim
+
+* Improved playability
+    * New action icons
+    * Improved object icons
+    * Prefiguration for marking cells
+
+
+### Core
+
+* Limit screen-size to between 800x600 and 1280x800
+
+* Improved GUI
+    * Simple graphics replacing default Godot graphics
+    * New and improved icons for buttons
+    * Tooltips for icon-only buttons
+
+
+#### Pimnet Level
+
+* Redesign layout and graphics
+    * Screen space is used better so that nothing overlaps
+    * Improved condition-verification goal panel
+    * Improved solution-slots goal panel
+    * Level-completion animation to give a sense of finality
+    * New background
+
+* Improved verification and other animations
+    * Better number graphics
+    * More signals making verification easier to follow
+    * Animations are overall smoother and more communicative
+
+* Memo slots have more communicative signifiers
+
+* Removed plan panel
+
+
+#### Level Select
+
+* Smooth transitions
+    * Cutless transitions entering/exiting topics
+    * Cutless transitions entering/exiting levels
+    * New overlay transitions
+
+* Improved playability
+    * Signifiers for completed/suggested/unsuggested levels
+    * Signifiers for hovering over a node to zoom into it
+    * Signifiers for hovering over a zoomed-in node to enter it or zoom out
+
+* Graphical redesign
+    * 2 new backgrounds
+    * Connectors and groups look nicer
+    * Level nodes have icons instead of titles
+    * Level groups have icons
+    * Topic nodes show less information to accomodate longer titles
+
+
+#### Main Menu
+
+* Redesign layout and graphics
+    * New background
+    * Nice layouts
+
+* More Info pages
+    * Credits Page
+    * Licenses Page for viewing game and engine licenses
+
+* Show version next to title
+
+
 ## [v0.7.2] - Pre-Player-Facing Demo 3 - 2024-12-23
 
 ### Summary
@@ -140,7 +221,6 @@ The primary interface and level-selection screen are redesigned, but content is 
 This demo is only a proof of concept. Its purpose is to test some ideas, clarify some parts of the design, and build functional code architecture before continuing on to making a real demo.
 
 
-[Unreleased]: https://codeberg.org/superpractica/superpractica
 [v0.7.2]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.2
 [v0.7.1]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.1
 [v0.7.0]: https://codeberg.org/superpractica/superpractica/releases/tag/v0.7.0
