@@ -365,6 +365,7 @@ offset_top = 100.0
 offset_right = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 8
 
 [node name="LongPanels" type="VBoxContainer" parent="AboutFrame/Panels"]
 custom_minimum_size = Vector2(450, 0)
