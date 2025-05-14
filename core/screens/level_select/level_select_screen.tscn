@@ -102,6 +102,7 @@ offset_left = -120.0
 offset_right = 120.0
 offset_bottom = 40.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="TitleLabel" type="Label" parent="OverlayLayer/Overlay/TitlePanel"]
 unique_name_in_owner = true
