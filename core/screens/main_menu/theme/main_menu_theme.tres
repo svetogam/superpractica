@@ -1,9 +1,4 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://rvggfmuj8l32"]
-
-[ext_resource type="FontFile" uid="uid://habns0vytqux" path="res://core/globals/fonts/libre_franklin_semi_bold.ttf" id="1_6oxw0"]
+[gd_resource type="Theme" format=3 uid="uid://rvggfmuj8l32"]
 
 [resource]
-Button/font_sizes/font_size = 28
-LegalLabel/base_type = &"Label"
-LegalLabel/font_sizes/font_size = 14
-LegalLabel/fonts/font = ExtResource("1_6oxw0")
+Button/font_sizes/font_size = 30

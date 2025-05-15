@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dlq20dg1uqekf"]
+
+[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="1_lcvie"]
+
+[resource]
+font = ExtResource("1_lcvie")
+font_color = Color(0, 0, 0, 1)

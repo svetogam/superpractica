@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=22 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_y5cmv"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
 [ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/globals/graphics/button_icons/settings_icon.svg" id="14_54uqb"]
 [ext_resource type="Texture2D" uid="uid://buh4qiqae3638" path="res://core/globals/graphics/button_icons/home_icon.svg" id="15_fdq5g"]
+[ext_resource type="LabelSettings" uid="uid://dlq20dg1uqekf" path="res://core/screens/level_select/panel_header_label_settings.tres" id="16_x8a3b"]
 [ext_resource type="Theme" uid="uid://6u5y2olmcrbm" path="res://core/globals/theme/main_theme.tres" id="17_yooek"]
 
 [node name="LevelSelectScreen" type="Node"]
@@ -85,7 +86,6 @@ custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
 offset_right = 130.0
 offset_bottom = 50.0
-theme_override_font_sizes/font_size = 18
 text = "Topic"
 icon = ExtResource("12_nortw")
 clip_text = true
@@ -109,6 +109,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
 text = "Topic"
+label_settings = ExtResource("16_x8a3b")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

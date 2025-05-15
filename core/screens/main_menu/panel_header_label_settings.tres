@@ -1,5 +1,8 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://b05v8ydlelqai"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b05v8ydlelqai"]
+
+[ext_resource type="FontFile" uid="uid://dqwutms3guyhp" path="res://core/globals/fonts/source_sans_pro_semi_bold.ttf" id="1_s5t8s"]
 
 [resource]
+font = ExtResource("1_s5t8s")
 font_size = 28
 font_color = Color(0, 0, 0, 1)

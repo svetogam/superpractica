@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=44 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://dkttkljaax1ps" path="res://core/screens/pimnet_level/graphics/icons/reset_icon.svg" id="17_pw235"]
 [ext_resource type="PackedScene" uid="uid://cdrvta3syyupk" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_tools_panel.tscn" id="19_du77a"]
 [ext_resource type="PackedScene" uid="uid://cuub56rvendyu" path="res://core/screens/pimnet_level/pimnet/overlay/tool_panels/pim_objects_panel.tscn" id="20_htwnw"]
+[ext_resource type="LabelSettings" uid="uid://bhgq4ala8pcke" path="res://core/screens/pimnet_level/panel_header_label_settings.tres" id="21_481tx"]
 [ext_resource type="Texture2D" uid="uid://dgsvufp81n7po" path="res://core/globals/graphics/button_icons/menu_icon.svg" id="21_egj3f"]
 [ext_resource type="PackedScene" uid="uid://ydfjg3gkr2ka" path="res://core/screens/pimnet_level/pimnet/static_symbols/equals_symbol.tscn" id="23_4pr2j"]
 [ext_resource type="Script" uid="uid://ykntp4ve05u2" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/construct_conditions_panel.gd" id="25_7axkj"]
@@ -40,20 +41,9 @@
 [ext_resource type="Texture2D" uid="uid://d3d1t78646dmt" path="res://core/screens/pimnet_level/graphics/icons/next_level_icon.svg" id="35_cvj1c"]
 [ext_resource type="Script" uid="uid://pwsp85t0mo17" path="res://core/screens/pimnet_level/verifier/verifier.gd" id="37_l0rup"]
 [ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/globals/graphics/button_icons/level_select_icon.svg" id="38_3ew0p"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j2q4"]
-content_margin_left = 20.0
-content_margin_right = 20.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_mwy2r"]
-font_size = 23
-font_color = Color(0, 0, 0, 1)
+[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="40_75slp"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_os7jo"]
-font_size = 24
-font_color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node"]
 process_mode = 1
@@ -250,8 +240,8 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_styles/normal = SubResource("StyleBoxEmpty_3j2q4")
 text = "Level Title"
+label_settings = ExtResource("21_481tx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -333,7 +323,7 @@ theme_override_constants/separation = 3
 [node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
 layout_mode = 2
 text = "Checking"
-label_settings = SubResource("LabelSettings_mwy2r")
+label_settings = ExtResource("21_481tx")
 horizontal_alignment = 1
 
 [node name="CheckRow1" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/BottomRight/SolutionVerificationPanel/VBoxContainer"]
@@ -600,7 +590,6 @@ custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 22
 text = "Check"
 icon = ExtResource("27_q5v4u")
 icon_alignment = 1
@@ -727,6 +716,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer"]
 layout_mode = 2
 text = "Plan"
+label_settings = ExtResource("21_481tx")
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Pimnet/OverlayLayer/Overlay/PlanPanel/VBoxContainer"]
@@ -960,13 +950,16 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("40_75slp")
+theme_override_font_sizes/font_size = 24
 text = "Level Complete!"
-label_settings = SubResource("LabelSettings_os7jo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/CompletionPanel/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 30
 alignment = 1
 
@@ -975,6 +968,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 tooltip_text = "To Level Selection"
 theme_override_constants/icon_max_width = 50
 text = "Select"
@@ -988,6 +982,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 tooltip_text = "To Next Level"
 theme_override_constants/icon_max_width = 50
 text = "Next"

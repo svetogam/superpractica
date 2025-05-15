@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf73nnjjnqie2"]
+[gd_scene load_steps=5 format=3 uid="uid://cf73nnjjnqie2"]
 
 [ext_resource type="Script" uid="uid://6ymi8d02osqc" path="res://core/screens/level_select/topic_map/topic_nodes/subtopic_node.gd" id="1_eapxp"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_xts23"]
 [ext_resource type="LabelSettings" uid="uid://bmosxtrqk1ggy" path="res://core/screens/level_select/topic_map/topic_nodes/detail_title_label_settings.tres" id="3_6lsf4"]
+[ext_resource type="LabelSettings" uid="uid://b6wtpen68ev3d" path="res://core/screens/level_select/topic_map/topic_nodes/mask_title_label_settings.tres" id="3_wfc6a"]
 
 [node name="SubtopicNode" type="Node2D"]
 script = ExtResource("1_eapxp")
@@ -43,8 +44,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 120
 text = "Topic Name"
+label_settings = ExtResource("3_wfc6a")
 horizontal_alignment = 1
 vertical_alignment = 1
 

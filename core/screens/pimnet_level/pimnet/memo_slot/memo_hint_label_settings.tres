@@ -1,6 +1,9 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://cau8ds7b38l02"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cau8ds7b38l02"]
+
+[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="1_64xiy"]
 
 [resource]
 line_spacing = 0.0
+font = ExtResource("1_64xiy")
 font_size = 30
 font_color = Color(0.501961, 0.501961, 0.501961, 1)

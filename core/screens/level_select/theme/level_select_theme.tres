@@ -11,7 +11,6 @@
 [ext_resource type="StyleBox" uid="uid://bn5wk2qy6pvv7" path="res://core/screens/level_select/theme/topic_group_style_box.tres" id="28_vip5c"]
 
 [resource]
-Button/font_sizes/font_size = 20
 LevelNode/base_type = &"Panel"
 LevelNode/styles/completed = ExtResource("7_ms80n")
 LevelNode/styles/halo_thick = ExtResource("8_iew0u")

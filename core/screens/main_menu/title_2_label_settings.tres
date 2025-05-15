@@ -1,6 +1,9 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://bic37p6jbr2h6"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bic37p6jbr2h6"]
+
+[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="1_xrilk"]
 
 [resource]
+font = ExtResource("1_xrilk")
 font_size = 32
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)

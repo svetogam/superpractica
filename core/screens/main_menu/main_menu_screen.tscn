@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dtsgoie3mkpl"]
+[gd_scene load_steps=31 format=3 uid="uid://dtsgoie3mkpl"]
 
 [ext_resource type="Script" uid="uid://uqvc2km0y0ug" path="res://core/screens/main_menu/main_menu_screen.gd" id="1_evcbt"]
 [ext_resource type="Theme" uid="uid://rvggfmuj8l32" path="res://core/screens/main_menu/theme/main_menu_theme.tres" id="1_qnfx7"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://bytc6f2nwvo8f" path="res://core/screens/main_menu/graphics/icons/credits_icon.svg" id="22_j1hcb"]
 [ext_resource type="Texture2D" uid="uid://bkxbxkdlshert" path="res://core/screens/main_menu/graphics/icons/licenses_icon.svg" id="23_qqid4"]
 [ext_resource type="Texture2D" uid="uid://mv35s2g7osp2" path="res://core/screens/main_menu/graphics/icons/back_left_icon.svg" id="25_a22bj"]
+[ext_resource type="LabelSettings" uid="uid://jq26m2tkauao" path="res://core/screens/main_menu/legal_text_label_settings.tres" id="28_ru612"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -387,8 +388,8 @@ horizontal_alignment = 1
 [node name="DisclaimerText" type="Label" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "This is an early demo release of Super Practica. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned."
+label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -608,7 +609,6 @@ size_flags_vertical = 3
 
 [node name="Header" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "Super Practica"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
@@ -616,16 +616,16 @@ horizontal_alignment = 1
 [node name="GameCopyrightNotice" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "Copyright 2023 Super Practica contributors"
+label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="GameLicense" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "This game is licensed under the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version."
+label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -643,7 +643,6 @@ size_flags_vertical = 3
 
 [node name="Header" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "GNU AFFERO GENERAL PUBLIC LICENSE"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
@@ -651,7 +650,6 @@ horizontal_alignment = 1
 [node name="License" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "Version 3, 19 November 2007
 
 Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
@@ -887,6 +885,7 @@ If your software can interact with users remotely through a computer network, yo
 
 You should also get your employer (if you work as a programmer) or school, if any, to sign a \"copyright disclaimer\" for the program, if necessary. For more information on this, and how to apply and follow the GNU AGPL, see <http://www.gnu.org/licenses/>.
 "
+label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -979,9 +978,9 @@ stretch_mode = 5
 [node name="EngineLicenseIntro" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "This game uses Godot Engine, available under the following license:
 "
+label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -989,8 +988,8 @@ autowrap_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "[contents of Engine.get_license_text() here]"
+label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -1002,7 +1001,6 @@ layout_mode = 2
 
 [node name="ThirdPartyHeader" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "Third-Party Licenses"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
@@ -1010,8 +1008,8 @@ horizontal_alignment = 1
 [node name="ThirdPartyNotice" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_type_variation = &"LegalLabel"
 text = "Godot Engine relies on a number of third-party free and open source libraries. For an exhaustive list of all such third-party components with their respective copyright statements and license terms, see GODOT_COPYRIGHT.txt."
+label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
