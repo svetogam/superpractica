@@ -63,7 +63,7 @@ disable_during_verification=""
 
 [gui]
 
-timers/tooltip_delay_sec=0.7
+timers/tooltip_delay_sec=0.05
 theme/custom="uid://6u5y2olmcrbm"
 
 [input]
