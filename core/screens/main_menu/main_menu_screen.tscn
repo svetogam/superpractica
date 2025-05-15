@@ -387,6 +387,7 @@ horizontal_alignment = 1
 [node name="DisclaimerText" type="Label" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "This is an early demo release of Super Practica. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned."
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -607,6 +608,7 @@ size_flags_vertical = 3
 
 [node name="Header" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "Super Practica"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
@@ -614,6 +616,7 @@ horizontal_alignment = 1
 [node name="GameCopyrightNotice" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "Copyright 2023 Super Practica contributors"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -621,6 +624,7 @@ autowrap_mode = 2
 [node name="GameLicense" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "This game is licensed under the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version."
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -639,6 +643,7 @@ size_flags_vertical = 3
 
 [node name="Header" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "GNU AFFERO GENERAL PUBLIC LICENSE"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
@@ -646,6 +651,7 @@ horizontal_alignment = 1
 [node name="License" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "Version 3, 19 November 2007
 
 Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
@@ -973,6 +979,7 @@ stretch_mode = 5
 [node name="EngineLicenseIntro" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "This game uses Godot Engine, available under the following license:
 "
 horizontal_alignment = 1
@@ -982,6 +989,7 @@ autowrap_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "[contents of Engine.get_license_text() here]"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -994,6 +1002,7 @@ layout_mode = 2
 
 [node name="ThirdPartyHeader" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "Third-Party Licenses"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
@@ -1001,6 +1010,7 @@ horizontal_alignment = 1
 [node name="ThirdPartyNotice" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_type_variation = &"LegalLabel"
 text = "Godot Engine relies on a number of third-party free and open source libraries. For an exhaustive list of all such third-party components with their respective copyright statements and license terms, see GODOT_COPYRIGHT.txt."
 horizontal_alignment = 1
 autowrap_mode = 2
