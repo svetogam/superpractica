@@ -1,5 +1,7 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://jcpo8pxbskbt"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://jcpo8pxbskbt"]
 
+[ext_resource type="StyleBox" uid="uid://bynj0xjjyj8pt" path="res://core/screens/level_select/theme/topic_progress_background_style_box.tres" id="6_iew0u"]
+[ext_resource type="StyleBox" uid="uid://q7i7pbytlmxg" path="res://core/screens/level_select/theme/topic_progress_fill_style_box.tres" id="7_6qscb"]
 [ext_resource type="StyleBox" uid="uid://bp03j320i4h3k" path="res://core/screens/level_select/theme/level_node_completed_style_box.tres" id="7_ms80n"]
 [ext_resource type="StyleBox" uid="uid://bhcij6bllvi32" path="res://core/screens/level_select/theme/level_node_halo_thin_style_box.tres" id="8_g0k55"]
 [ext_resource type="StyleBox" uid="uid://cm4cgh3yegify" path="res://core/screens/level_select/theme/level_node_halo_thick_style_box.tres" id="8_iew0u"]
@@ -18,6 +20,8 @@ LevelNode/styles/halo_thin = ExtResource("8_g0k55")
 LevelNode/styles/normal = ExtResource("10_751ld")
 LevelNode/styles/panel = null
 LevelNode/styles/suggested = ExtResource("11_f4o84")
+ProgressBar/styles/background = ExtResource("6_iew0u")
+ProgressBar/styles/fill = ExtResource("7_6qscb")
 SubtopicNode/base_type = &"Panel"
 SubtopicNode/styles/completed = ExtResource("24_mucuy")
 SubtopicNode/styles/halo = ExtResource("25_8mdi2")
