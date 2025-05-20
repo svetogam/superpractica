@@ -34,7 +34,7 @@ preload=[{
 "glyphs": [20, 3, 16, 21, 22, 23, 24, 25, 26, 27, 28],
 "name": "New Configuration",
 "size": Vector2i(16, 0),
-&"variation_embolden": 0.0
+"variation_embolden": 0.0
 }]
 language_support={}
 script_support={}
