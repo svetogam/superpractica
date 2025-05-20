@@ -189,10 +189,24 @@
 "scene": "CustomTask"
 }, {
 "data": {
+"recursive": false,
+"source_path": "GODOT_COPYRIGHT.txt",
+"target_path": "export/linux64/GODOT_COPYRIGHT.txt"
+},
+"scene": "CopyFiles"
+}, {
+"data": {
 "arguments": PackedStringArray("$project/export/converted/Changelog.html", "$project/export/linux32/Changelog.html"),
 "command": "cp"
 },
 "scene": "CustomTask"
+}, {
+"data": {
+"recursive": false,
+"source_path": "GODOT_COPYRIGHT.txt",
+"target_path": "export/linux32/GODOT_COPYRIGHT.txt"
+},
+"scene": "CopyFiles"
 }, {
 "data": {
 "arguments": PackedStringArray("$project/export/converted/Changelog.html", "$project/export/win64/Changelog.html"),
@@ -201,10 +215,24 @@
 "scene": "CustomTask"
 }, {
 "data": {
+"recursive": false,
+"source_path": "GODOT_COPYRIGHT.txt",
+"target_path": "export/win64/GODOT_COPYRIGHT.txt"
+},
+"scene": "CopyFiles"
+}, {
+"data": {
 "arguments": PackedStringArray("$project/export/converted/Changelog.html", "$project/export/win32/Changelog.html"),
 "command": "cp"
 },
 "scene": "CustomTask"
+}, {
+"data": {
+"recursive": false,
+"source_path": "GODOT_COPYRIGHT.txt",
+"target_path": "export/win32/GODOT_COPYRIGHT.txt"
+},
+"scene": "CopyFiles"
 }])
 }, {
 "name": "Upload to Itch",
