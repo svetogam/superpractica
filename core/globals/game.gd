@@ -86,9 +86,6 @@ func continue_as_coroutine() -> void:
 # Other
 #====================================================================
 
-# This doesn't actually do anything, but it's nice to have as a wrapper
+# Returns the visible rect of the root viewport
 func get_screen_rect() -> Rect2:
-	if debug.is_on() and not RenderingServer.render_loop_enabled:
-		return debug.fallback_screen_rect
-	else:
-		return get_viewport().get_visible_rect()
+	return get_viewport().get_visible_rect()

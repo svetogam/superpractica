@@ -25,8 +25,6 @@ enum TestingPresets {
 const TIME_SCALE_SLOW := 0.5
 const TIME_SCALE_NORMAL := 1.0
 const TIME_SCALE_FASTEST := 100.0
-var fallback_screen_rect: Rect2:
-	get = get_fallback_screen_rect
 var _on := false
 var _animation_time_modifier: float
 var _skip_delays: bool
@@ -123,16 +121,6 @@ func should_skip_delays() -> bool:
 	return _skip_delays
 
 
-func get_fallback_screen_rect() -> Rect2:
-	return Rect2(0, 0, ProjectSettings.get_setting("display/window/size/viewport_width"),
-			ProjectSettings.get_setting("display/window/size/viewport_height"))
-
-
-func warn(message: String) -> void:
-	if _on:
-		print(message)
-
-
 static func add_ref_scene(test_suite: GdUnitTestSuite, scene_path: String) -> Node:
 	var ref_scene = test_suite.auto_free(load(scene_path).instantiate())
 	test_suite.add_child(ref_scene)
@@ -140,15 +128,3 @@ static func add_ref_scene(test_suite: GdUnitTestSuite, scene_path: String) -> No
 		if child is CanvasItem:
 			child.hide()
 	return ref_scene
-
-
-# Requires rewriting
-#func save_failure_screenshot(output_path: String) -> void:
-	#if is_failing():
-		#var source = get_stack()[1]["source"]
-		#source = source.trim_suffix(".gd")
-		#source = source.rsplit("/", false, 1)[1]
-		#var line = get_stack()[1]["line"]
-		#var filename = output_path + source + "-line-" + str(line) + ".png"
-		#var image := get_viewport().get_texture().get_image()
-		#image.save_png(filename)
