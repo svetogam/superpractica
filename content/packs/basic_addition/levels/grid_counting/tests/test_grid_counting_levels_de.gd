@@ -32,7 +32,7 @@ func after():
 
 func test_golden_path_0_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
-	Game.debug.add_ref_scene(self, REF_SCENE)
+	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
@@ -49,7 +49,7 @@ func test_golden_path_0_1():
 
 func test_golden_path_0_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
-	Game.debug.add_ref_scene(self, REF_SCENE)
+	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)

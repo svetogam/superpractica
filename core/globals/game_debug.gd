@@ -112,19 +112,9 @@ func debug_wait_for(time: float):
 	if _skip_delays or time <= 0:
 		return null
 	else:
-		var wait_timer = Game.get_tree().create_timer(
-				time * _delay_time_modifier)
+		var wait_timer = Game.get_tree().create_timer(time * _delay_time_modifier)
 		return wait_timer.timeout
 
 
 func should_skip_delays() -> bool:
 	return _skip_delays
-
-
-static func add_ref_scene(test_suite: GdUnitTestSuite, scene_path: String) -> Node:
-	var ref_scene = test_suite.auto_free(load(scene_path).instantiate())
-	test_suite.add_child(ref_scene)
-	for child in ref_scene.get_children():
-		if child is CanvasItem:
-			child.hide()
-	return ref_scene

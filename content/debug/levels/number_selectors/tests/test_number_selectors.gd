@@ -16,7 +16,7 @@ const REF_SCENE := (
 
 func before():
 	Game.debug.set_testing_preset(GameDebug.TestingPresets.SPEED)
-	Game.debug.add_ref_scene(self, REF_SCENE)
+	TestingUtils.add_ref_scene(self, REF_SCENE)
 
 
 func before_each():
