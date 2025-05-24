@@ -165,10 +165,11 @@ func set_camera_point_to_node(node_id: String) -> void:
 func update_thumbnail_camera() -> void:
 	var thumbnail_rect = focused_node.get_thumbnail_rect()
 	thumbnail_camera.global_position = thumbnail_rect.get_center()
-	thumbnail_camera.zoom = Vector2(
+	var max_zoom := maxf(
 		get_viewport().get_visible_rect().size.x / thumbnail_rect.size.x,
 		get_viewport().get_visible_rect().size.y / thumbnail_rect.size.y
 	)
+	thumbnail_camera.zoom = Vector2(max_zoom, max_zoom)
 
 
 func get_topic_node(node_id: String) -> TopicNode:
