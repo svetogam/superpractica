@@ -429,12 +429,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "(source here)"
 
-[node name="SourceCommitLink" type="LinkButton" parent="AboutFrame/Panels/LongPanels/SourcePanel/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "(source here)"
-
 [node name="ShortPanels" type="VBoxContainer" parent="AboutFrame/Panels"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -457,6 +451,35 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "(version here)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BuildPanel" type="PanelContainer" parent="AboutFrame/Panels/ShortPanels"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/ShortPanels/BuildPanel"]
+layout_mode = 2
+
+[node name="BuildHeader" type="Label" parent="AboutFrame/Panels/ShortPanels/BuildPanel/VBoxContainer"]
+layout_mode = 2
+text = "This Build"
+label_settings = ExtResource("12_7x0fx")
+horizontal_alignment = 1
+
+[node name="CommitLabel" type="Label" parent="AboutFrame/Panels/ShortPanels/BuildPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "(git hash here)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DateLabel" type="Label" parent="AboutFrame/Panels/ShortPanels/BuildPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "(date here)"
 horizontal_alignment = 1
 autowrap_mode = 2
 

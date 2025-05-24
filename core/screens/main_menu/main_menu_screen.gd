@@ -15,18 +15,16 @@ func _ready() -> void:
 	%SourceLink.text = Game.REPO_URL
 	%SourceLink.uri = Game.REPO_URL
 	var version_text: String
-	if YourBuil.has_git_tag():
-		version_text = YourBuil.git_tag
-		%SourceCommitLink.text = ("This Build: " + YourBuil.git_tag
-				+ " [" + YourBuil.get_git_commit_hash(8) + "]")
-		%SourceCommitLink.uri = Game.REPO_URL + "/src/tag/" + YourBuil.git_tag
-	elif YourBuil.has_data():
-		version_text = Game.version_tag + "+" + str(YourBuil.git_commit_count)
-		%SourceCommitLink.text = "This Build: [" + YourBuil.get_git_commit_hash(8) + "]"
-		%SourceCommitLink.uri = Game.REPO_URL + "/src/commit/" + YourBuil.git_commit_hash
-	else:
+	if not YourBuil.has_data():
 		version_text = Game.version_tag + "+"
-		%SourceCommitLink.text = "Local Build"
+		%BuildPanel.hide()
+	else:
+		if YourBuil.has_git_tag():
+			version_text = YourBuil.git_tag
+		else:
+			version_text = Game.version_tag + "+" + str(YourBuil.git_commit_count)
+		%CommitLabel.text = "[" + YourBuil.get_git_commit_hash(8) + "]"
+		%DateLabel.text = YourBuil.get_date_string()
 	%VersionText.text = version_text
 	%TitleVersion.text = version_text + " Demo"
 	%EngineLicense.text = Engine.get_license_text()
