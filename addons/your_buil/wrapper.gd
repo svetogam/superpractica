@@ -24,7 +24,13 @@ const _BUILD_DATA_PATH := "res://addons/your_buil/temp.json"
 ## [codeblock]
 ## ResourceSaver.save(YourBuil.json, "res://your_buil.json")
 ## [/codeblock]
-static var json: JSON
+static var json: JSON:
+	get:
+		# Lazy load build data file
+		if json == null and ResourceLoader.exists(_BUILD_DATA_PATH):
+			json = load(_BUILD_DATA_PATH)
+		return json
+
 ## The current branch, or the empty string [code]""[/code]
 ## if the project is not in a git repository.
 ## [br][br]
@@ -32,10 +38,10 @@ static var json: JSON
 ## in the project directory during export.
 static var git_branch: String:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return ""
 		return json.data.git.branch
+
 ## The number of commits in the line from the initial commit to the
 ## last commit, or [code]0[/code] if the project is not in a git repository.
 ## [br][br]
@@ -43,10 +49,10 @@ static var git_branch: String:
 ## in the project directory during export.
 static var git_commit_count: int:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return 0
 		return json.data.git.commit_count
+
 ## The hash of the last commit, or the empty string [code]""[/code]
 ## if the project is not in a git repository.
 ## This is 40 characters long. Use [method get_git_commit_hash] to shorten it.
@@ -55,10 +61,10 @@ static var git_commit_count: int:
 ## in the project directory during export.
 static var git_commit_hash: String:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return ""
 		return json.data.git.commit_hash
+
 ## The tag of the last commit, or the empty string [code]""[/code]
 ## if it has no tag or if the project is not in a git repository.
 ## If the last commit has more than one tag, the tag will be determined
@@ -68,67 +74,66 @@ static var git_commit_hash: String:
 ## in the project directory during export.
 static var git_tag: String:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return ""
 		return json.data.git.tag
+
 ## The year in UTC, or [code]1[/code] outside of exported builds.
 ## [br][br]
 ## This is obtained by calling
 ## [method Time.get_datetime_dict_from_system] during export.
 static var year: int:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return 1
 		return json.data.time.year
+
 ## The month in UTC, or [code]1[/code] (January) outside of exported builds.
 ## [br][br]
 ## This is obtained by calling
 ## [method Time.get_datetime_dict_from_system] during export.
 static var month: Time.Month:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return 1
 		return json.data.time.month
+
 ## The day in UTC, or [code]1[/code] outside of exported builds.
 ## [br][br]
 ## This is obtained by calling
 ## [method Time.get_datetime_dict_from_system] during export.
 static var day: int:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return 1
 		return json.data.time.day
+
 ## The hour in UTC, or [code]0[/code] outside of exported builds.
 ## [br][br]
 ## This is obtained by calling
 ## [method Time.get_datetime_dict_from_system] during export.
 static var hour: int:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return 0
 		return json.data.time.hour
+
 ## The minute in UTC, or [code]0[/code] outside of exported builds.
 ## [br][br]
 ## This is obtained by calling
 ## [method Time.get_datetime_dict_from_system] during export.
 static var minute: int:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return 0
 		return json.data.time.minute
+
 ## The second in UTC, or [code]0[/code] outside of exported builds.
 ## [br][br]
 ## This is obtained by calling
 ## [method Time.get_datetime_dict_from_system] during export.
 static var second: int:
 	get:
-		_lazy_load_build_data()
 		if json == null:
 			return 0
 		return json.data.time.second
@@ -180,11 +185,3 @@ static func get_time_string() -> String:
 	var padded_minute := str(minute).pad_zeros(2)
 	var padded_second := str(second).pad_zeros(2)
 	return padded_hour + ":" + padded_minute + ":" + padded_second
-
-
-static func _lazy_load_build_data() -> void:
-	if json != null:
-		return
-	if not ResourceLoader.exists(_BUILD_DATA_PATH):
-		return
-	json = load(_BUILD_DATA_PATH)
