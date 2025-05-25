@@ -35,11 +35,17 @@ func view_detail(thumbnail_viewport: SubViewport, duration := 0.0) -> void:
 		%Mask.modulate.a = 0.0
 		%Detail.modulate.a = 1.0
 	else:
-		var tween = create_tween()
-		tween.set_trans(Tween.TRANS_QUAD)
-		tween.set_ease(Tween.EASE_OUT)
-		tween.tween_property(%Mask, "modulate:a", 0.0, duration)
-		tween.parallel().tween_property(%Detail, "modulate:a", 1.0, duration)
+		# Fade in detail
+		var tween_1 = create_tween()
+		tween_1.set_trans(Tween.TRANS_QUAD)
+		tween_1.set_ease(Tween.EASE_OUT)
+		tween_1.tween_property(%Detail, "modulate:a", 1.0, duration)
+
+		# Fade out mask more quickly
+		var tween_2 = create_tween()
+		tween_2.set_trans(Tween.TRANS_QUAD)
+		tween_2.set_ease(Tween.EASE_OUT)
+		tween_2.tween_property(%Mask, "modulate:a", 0.0, duration * 0.5)
 
 	%Thumbnail.texture = thumbnail_viewport.get_texture()
 
