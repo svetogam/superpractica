@@ -1,9 +1,12 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cktgypu4e5gpa"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cktgypu4e5gpa"]
 
 [ext_resource type="StyleBox" uid="uid://cddq336lvw6uk" path="res://core/screens/pimnet_level/theme/slot_frame_in_only_style_box.tres" id="4_hph0g"]
 [ext_resource type="StyleBox" uid="uid://cke1les2nhns8" path="res://core/screens/pimnet_level/theme/slot_frame_in_out_style_box.tres" id="5_6khpg"]
 [ext_resource type="StyleBox" uid="uid://csorg0qmqic57" path="res://core/screens/pimnet_level/theme/slot_frame_out_only_style_box.tres" id="6_n5ikt"]
+[ext_resource type="StyleBox" uid="uid://doim3i6xkrmr" path="res://core/screens/pimnet_level/theme/static_symbol_normal_style_box.tres" id="7_2gx38"]
 [ext_resource type="StyleBox" uid="uid://drbeora2bnpc6" path="res://core/screens/pimnet_level/theme/slot_frame_static_style_box.tres" id="7_21wjn"]
+[ext_resource type="StyleBox" uid="uid://ckhguhow58vt7" path="res://core/screens/pimnet_level/theme/static_symbol_affirm_style_box.tres" id="8_6khpg"]
+[ext_resource type="StyleBox" uid="uid://d34ltwpg5tn0y" path="res://core/screens/pimnet_level/theme/static_symbol_warn_style_box.tres" id="9_n5ikt"]
 [ext_resource type="StyleBox" uid="uid://bget0dwqv2bgx" path="res://core/screens/pimnet_level/theme/pim_focused_style_box.tres" id="12_toa7j"]
 [ext_resource type="StyleBox" uid="uid://ovd4nqj8vbw7" path="res://core/screens/pimnet_level/theme/pim_panel_style_box.tres" id="13_44iv6"]
 
@@ -25,9 +28,9 @@ Pim/base_type = &"Panel"
 Pim/styles/focus = ExtResource("12_toa7j")
 Pim/styles/panel = ExtResource("13_44iv6")
 StaticSymbol/base_type = &"Panel"
-StaticSymbol/colors/affirm = Color(0.0901961, 0.898039, 0.0901961, 1)
-StaticSymbol/colors/normal = Color(1, 1, 1, 1)
-StaticSymbol/colors/warn = Color(0.901961, 0.360784, 0.360784, 1)
+StaticSymbol/styles/panel = ExtResource("7_2gx38")
+StaticSymbol/styles/panel_affirm = ExtResource("8_6khpg")
+StaticSymbol/styles/panel_warn = ExtResource("9_n5ikt")
 ToolButton/base_type = &"Button"
 ToolButton/colors/icon_normal_color = Color(1, 1, 1, 1)
 ToolButton/colors/icon_pressed_color = Color(1, 1, 1, 1)

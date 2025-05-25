@@ -2,20 +2,25 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-extends TextureRect
+@tool # For drawing previews only
+extends Control
 
 var suggestion := Game.SuggestiveSignals.NONE:
 	set(value):
 		suggestion = value
-		_update_colors()
+		queue_redraw()
 
 
-func _update_colors() -> void:
+func _draw() -> void:
+	var rect := Rect2(Vector2.ZERO, size)
+	var box: StyleBox
 	if suggestion == Game.SuggestiveSignals.AFFIRM:
-		modulate = get_theme_color("affirm")
+		box = get_theme_stylebox("panel_affirm")
 	elif suggestion == Game.SuggestiveSignals.WARN:
-		modulate = get_theme_color("warn")
+		box = get_theme_stylebox("panel_warn")
 	elif suggestion == Game.SuggestiveSignals.REJECT:
-		modulate = get_theme_color("warn")
+		box = get_theme_stylebox("panel_warn")
 	else:
-		modulate = get_theme_color("normal")
+		box = get_theme_stylebox("panel")
+
+	draw_style_box(box, rect)

@@ -1,18 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca840xege7n3g"]
+[gd_scene load_steps=3 format=3 uid="uid://ca840xege7n3g"]
 
-[ext_resource type="Texture2D" uid="uid://d1638kxawsveh" path="res://core/screens/pimnet_level/graphics/button_round_line.svg" id="1_7km3i"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="1_fxe6t"]
 [ext_resource type="Script" uid="uid://6jvfbvewywd8" path="res://core/screens/pimnet_level/pimnet/static_symbol.gd" id="3_pvyf0"]
 
-[node name="StaticSymbol" type="TextureRect"]
+[node name="StaticSymbol" type="Control"]
 custom_minimum_size = Vector2(40, 40)
-offset_right = 30.0
-offset_bottom = 30.0
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 theme = ExtResource("1_fxe6t")
 theme_type_variation = &"StaticSymbol"
-texture = ExtResource("1_7km3i")
-expand_mode = 3
-stretch_mode = 4
 script = ExtResource("3_pvyf0")
 
 [node name="Symbol" type="TextureRect" parent="."]
@@ -24,5 +22,5 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 3
+expand_mode = 1
 stretch_mode = 5
