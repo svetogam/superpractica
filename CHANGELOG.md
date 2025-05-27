@@ -15,8 +15,6 @@
 
 The game is finally "presentable" with graphics, icons, animations, transitions, and screen layouts. Main menu info section is expanded to include credits and licenses.
 
-Thanks to [Kenney](https://www.kenney.nl/assets/ui-pack) and [Phosphor Icons](https://phosphoricons.com/) for graphical assets.
-
 
 ### Content
 
@@ -37,6 +35,8 @@ Thanks to [Kenney](https://www.kenney.nl/assets/ui-pack) and [Phosphor Icons](ht
     * New and improved icons for buttons
     * Tooltips for icon-only buttons
 
+* More varied fonts for different things
+
 
 #### Pimnet Level
 
@@ -44,12 +44,12 @@ Thanks to [Kenney](https://www.kenney.nl/assets/ui-pack) and [Phosphor Icons](ht
     * Screen space is used better so that nothing overlaps
     * Improved condition-verification goal panel
     * Improved solution-slots goal panel
-    * Level-completion animation to give a sense of finality
     * New background
 
 * Improved verification and other animations
     * Better number graphics
     * More signals making verification easier to follow
+    * Overlay animations including for level-completion
     * Animations are overall smoother and more communicative
 
 * Memo slots have more communicative signifiers
@@ -60,9 +60,9 @@ Thanks to [Kenney](https://www.kenney.nl/assets/ui-pack) and [Phosphor Icons](ht
 #### Level Select
 
 * Smooth transitions
-    * Cutless transitions entering/exiting topics
-    * Cutless transitions entering/exiting levels
-    * New overlay transitions
+    * Cutless transitions for entering/exiting topics
+    * Cutless transitions for entering/exiting levels
+    * Overlay transitions hiding irrelevant things
 
 * Improved playability
     * Signifiers for completed/suggested/unsuggested levels
@@ -71,10 +71,10 @@ Thanks to [Kenney](https://www.kenney.nl/assets/ui-pack) and [Phosphor Icons](ht
 
 * Graphical redesign
     * 2 new backgrounds
-    * Connectors and groups look nicer
-    * Level nodes have icons instead of titles
-    * Level groups have icons
-    * Topic nodes show less information to accomodate longer titles
+    * Level connectors
+    * Level groups
+    * Level nodes
+    * Subtopic nodes
 
 
 #### Main Menu
@@ -83,11 +83,11 @@ Thanks to [Kenney](https://www.kenney.nl/assets/ui-pack) and [Phosphor Icons](ht
     * New background
     * Nice layouts
 
+* Change what info appears and where
+
 * More Info pages
     * Credits Page
     * Licenses Page for viewing game and engine licenses
-
-* Show version next to title
 
 
 ## [v0.7.2] - Pre-Player-Facing Demo 3 - 2024-12-23
