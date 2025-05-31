@@ -8,6 +8,7 @@ var action: GridCountingActionToggleMark
 
 
 func _hovered(_external: bool, _grabbed_object: FieldObject) -> void:
+	field.clear_prefig()
 	if action == null:
 		action = GridCountingActionToggleMark.new(field, object.number)
 	if not Input.is_action_pressed("primary_mouse"):
