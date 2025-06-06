@@ -13,7 +13,7 @@ _project_builder_config_path="project_builds_config.txt"
 [application]
 
 config/name="Super Practica"
-config/description="Super Practica is a game designed to optimize building expertise in mathematics."
+config/description="A game optimizing the reproduction of practical knowledge."
 config/version="0.8.0"
 run/main_scene="res://core/main.tscn"
 config/features=PackedStringArray("4.4")
