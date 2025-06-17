@@ -2,17 +2,14 @@
 
 ## Overview
 
-[Super Practica](https://superpractica.org) is a revolutionary game designed to optimize building expertise in mathematics. It is free and open-source software built with [Godot](https://godotengine.org/).
-
-It's kind of hard to explain though. The [Blueprint](https://codeberg.org/superpractica/blueprint) gives an outline of its theory and design.
-
-Note that this game is incomplete and that major changes and additions are planned.
+[Super Practica](https://superpractica.org) is a game and a scientific research program to optimize the reproduction of practical knowledge. We begin with arithmetic and will take it as far as we can from there. The game is free and open-source software built with [Godot](https://godotengine.org/).
 
 
 ## How to play the game
 
-* [On the website](https://superpractica.org/play)
-* [On Codeberg](https://codeberg.org/superpractica/superpractica/releases)
+You can play it on the [website's play page](https://superpractica.org/play).
+
+The game is hosted on [Codeberg](https://codeberg.org/superpractica/superpractica/releases) and [itch.io](https://svetogam.itch.io/super-practica), so you can find it there too.
 
 
 ## How to edit the game
@@ -32,7 +29,11 @@ See the [Contribute page](https://superpractica.org/contribute/) on the website 
 
 Discussion takes place on the [Zulip chat](https://superpractica.zulipchat.com/). [Register](https://superpractica.zulipchat.com/register/) and post in the [Gamedev channel](https://superpractica.zulipchat.com/#narrow/channel/483189) to discuss how to improve the game and what to do. Also see [issues](https://codeberg.org/superpractica/superpractica/issues) and [projects](https://codeberg.org/superpractica/superpractica/projects).
 
-To contribute funds, go to [Liberapay](https://liberapay.com/SuperPractica/) or [Patreon](https://www.patreon.com/superpractica).
+### Funding Options
+
+* [itch.io](https://svetogam.itch.io/super-practica)
+* [Patreon](https://www.patreon.com/superpractica)
+* [Liberapay](https://en.liberapay.com/SuperPractica/)
 
 
 ## Copyright
