@@ -4,6 +4,8 @@
 
 [Super Practica](https://superpractica.org) is a game and a scientific research program to optimize the reproduction of practical knowledge. We begin with arithmetic and will take it as far as we can from there. The game is free and open-source software built with [Godot](https://godotengine.org/).
 
+This game is incomplete. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned.
+
 
 ## How to play the game
 
