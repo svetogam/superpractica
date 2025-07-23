@@ -1,0 +1,158 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp0sgbk6ul50i"]
+
+[ext_resource type="Script" uid="uid://drm4ta5v7anyn" path="res://addons/gdreuse/license_dock.gd" id="1_itw3q"]
+
+[node name="License" type="Control"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_itw3q")
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MainContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FilenameLabel" type="Label" parent="MainContainer/HBoxContainer3/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "filename"
+text_overrun_behavior = 3
+
+[node name="DeleteFileButton" type="Button" parent="MainContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_bottom = NodePath("../../HBoxContainer/NoticeOptionButton")
+focus_next = NodePath("../../HBoxContainer/NoticeOptionButton")
+focus_previous = NodePath("../../..")
+text = "Delete File"
+
+[node name="NoLicenseLabel" type="Label" parent="MainContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+text = "No .license file was found. One will be created."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NoHeaderLabel" type="Label" parent="MainContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+text = "No comment header was found. One will be created."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TextEdit" type="TextEdit" parent="MainContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 10)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_colors/background_color = Color(0.147, 0.168, 0.203, 1)
+theme_override_colors/font_readonly_color = Color(0.8025, 0.81, 0.8225, 1)
+editable = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="NoticeOptionButton" type="OptionButton" parent="MainContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../HBoxContainer3/DeleteFileButton")
+focus_neighbor_right = NodePath("../AddNoticeButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/LicenseOptionButton")
+focus_next = NodePath("../AddNoticeButton")
+focus_previous = NodePath("../../HBoxContainer3/DeleteFileButton")
+clip_text = true
+fit_to_longest_item = false
+
+[node name="AddNoticeButton" type="Button" parent="MainContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../NoticeOptionButton")
+focus_neighbor_top = NodePath("../../HBoxContainer3/DeleteFileButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/AddLicenseButton")
+focus_next = NodePath("../../HBoxContainer2/LicenseOptionButton")
+focus_previous = NodePath("../NoticeOptionButton")
+disabled = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="LicenseOptionButton" type="OptionButton" parent="MainContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../../HBoxContainer/NoticeOptionButton")
+focus_neighbor_right = NodePath("../AddLicenseButton")
+focus_next = NodePath("../AddLicenseButton")
+focus_previous = NodePath("../../HBoxContainer/AddNoticeButton")
+clip_text = true
+fit_to_longest_item = false
+
+[node name="AddLicenseButton" type="Button" parent="MainContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../LicenseOptionButton")
+focus_neighbor_top = NodePath("../../HBoxContainer/AddNoticeButton")
+focus_previous = NodePath("../LicenseOptionButton")
+disabled = true
+
+[node name="NoSelectionContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NoSelectionLabel" type="Label" parent="NoSelectionContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Select a file in the filesystem to view and edit its copyright information."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

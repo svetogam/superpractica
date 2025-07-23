@@ -39,7 +39,7 @@ window/size/viewport_height=600
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/your_buil/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/gdreuse/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/your_buil/plugin.cfg")
 
 [file_customization]
 
@@ -50,6 +50,11 @@ folder_colors={
 "res://core/screens/": "orange",
 "res://general/": "purple"
 }
+
+[gdreuse]
+
+notices=PackedStringArray("0\\0\\\\Super Practica contributors")
+license_ids=PackedStringArray("AGPL-3.0-or-later", "CC-BY-SA-4.0", "CC-BY-4.0", "CC0-1.0", "MIT", "OFL-1.1")
 
 [gdunit4]
 

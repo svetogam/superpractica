@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://padwkr0hma5a"]
+
+[ext_resource type="Script" uid="uid://c0aofr1327kxn" path="res://addons/gdreuse/delete_file_dialog.gd" id="1_yb74q"]
+
+[node name="DeleteFileDialog" type="ConfirmationDialog"]
+ok_button_text = "Delete"
+script = ExtResource("1_yb74q")

@@ -1,0 +1,211 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm20nh8mb2jl2"]
+
+[ext_resource type="Script" uid="uid://cmhcval2422o8" path="res://addons/gdreuse/settings_tab.gd" id="1_b0px6"]
+
+[node name="GDREUSE" type="Control"]
+custom_minimum_size = Vector2(530, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b0px6")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Copyright Notices" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Copyright Notices"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrefixLabel" type="Label" parent="TabContainer/Copyright Notices/HBoxContainer"]
+layout_mode = 2
+text = "Prefix:"
+
+[node name="PrefixOptionButton" type="OptionButton" parent="TabContainer/Copyright Notices/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_right = NodePath("../YearOptionButton")
+focus_neighbor_bottom = NodePath("../../NoticesList")
+focus_next = NodePath("../YearOptionButton")
+focus_previous = NodePath("../..")
+text_overrun_behavior = 3
+selected = 0
+fit_to_longest_item = false
+item_count = 10
+popup/item_0/text = "SPDX-FileCopyrightText:"
+popup/item_0/id = 0
+popup/item_1/text = "SPDX-FileCopyrightText: (C)"
+popup/item_1/id = 1
+popup/item_2/text = "SPDX-FileCopyrightText: ©"
+popup/item_2/id = 2
+popup/item_3/text = "SPDX-FileCopyrightText: Copyright"
+popup/item_3/id = 3
+popup/item_4/text = "SPDX-FileCopyrightText: Copyright (C)"
+popup/item_4/id = 4
+popup/item_5/text = "SPDX-FileCopyrightText: Copyright ©"
+popup/item_5/id = 5
+popup/item_6/text = "Copyright"
+popup/item_6/id = 6
+popup/item_7/text = "Copyright (C)"
+popup/item_7/id = 7
+popup/item_8/text = "Copyright ©"
+popup/item_8/id = 8
+popup/item_9/text = "©"
+popup/item_9/id = 9
+
+[node name="YearLabel" type="Label" parent="TabContainer/Copyright Notices/HBoxContainer"]
+layout_mode = 2
+text = "Year:"
+
+[node name="YearOptionButton" type="OptionButton" parent="TabContainer/Copyright Notices/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../PrefixOptionButton")
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_right = NodePath("../YearLineEdit")
+focus_neighbor_bottom = NodePath("../../NoticesList")
+focus_next = NodePath("../YearLineEdit")
+focus_previous = NodePath("../PrefixOptionButton")
+selected = 0
+item_count = 3
+popup/item_0/text = "Current"
+popup/item_0/id = 0
+popup/item_1/text = "None"
+popup/item_1/id = 1
+popup/item_2/text = "Custom"
+popup/item_2/id = 2
+
+[node name="YearLineEdit" type="LineEdit" parent="TabContainer/Copyright Notices/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+focus_neighbor_left = NodePath("../YearOptionButton")
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_right = NodePath("../HolderLineEdit")
+focus_neighbor_bottom = NodePath("../../NoticesList")
+focus_next = NodePath("../HolderLineEdit")
+focus_previous = NodePath("../YearOptionButton")
+placeholder_text = "1900"
+
+[node name="HolderLabel" type="Label" parent="TabContainer/Copyright Notices/HBoxContainer"]
+layout_mode = 2
+text = "Holder:"
+
+[node name="HolderLineEdit" type="LineEdit" parent="TabContainer/Copyright Notices/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_neighbor_left = NodePath("../YearLineEdit")
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_right = NodePath("../AddNoticeButton")
+focus_neighbor_bottom = NodePath("../../NoticesList")
+focus_next = NodePath("../AddNoticeButton")
+focus_previous = NodePath("../YearLineEdit")
+placeholder_text = "Me and my friends"
+
+[node name="AddNoticeButton" type="Button" parent="TabContainer/Copyright Notices/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../HolderLineEdit")
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_bottom = NodePath("../../NoticesList")
+focus_next = NodePath("../../NoticesList")
+focus_previous = NodePath("../HolderLineEdit")
+disabled = true
+text = "Add"
+
+[node name="NoticesList" type="ItemList" parent="TabContainer/Copyright Notices"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+max_columns = 2
+same_column_width = true
+
+[node name="Licenses" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Licenses"]
+layout_mode = 2
+
+[node name="CustomLabel" type="Label" parent="TabContainer/Licenses/HBoxContainer"]
+layout_mode = 2
+text = "Custom:"
+
+[node name="LicenseLineEdit" type="LineEdit" parent="TabContainer/Licenses/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_right = NodePath("../AddLicenseButton")
+focus_next = NodePath("../AddLicenseButton")
+focus_previous = NodePath("../..")
+placeholder_text = "LicenseRef-MySpecialLicense"
+
+[node name="AddLicenseButton" type="Button" parent="TabContainer/Licenses/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../LicenseLineEdit")
+focus_neighbor_top = NodePath("../..")
+focus_previous = NodePath("../LicenseLineEdit")
+disabled = true
+text = "Add"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="TabContainer/Licenses"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LicensesList" type="ItemList" parent="TabContainer/Licenses/HSplitContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+max_columns = 2
+same_column_width = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Licenses/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Licenses/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Licenses:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Licenses/HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LicenseButtons" type="HFlowContainer" parent="TabContainer/Licenses/HSplitContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LinkButton" type="LinkButton" parent="TabContainer/Licenses/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "View full list and license text"
+uri = "https://spdx.org/licenses"

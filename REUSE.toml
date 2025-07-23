@@ -1,66 +1,70 @@
 version = 1
 
-
 # Waive copyright for miscellaneous files
-
 [[annotations]]
-    path = [
-        "**.import",
-        "**.uid",
-        ".gitignore",
-        "project.godot",
-        "export_presets.cfg",
-        "project_builds_config.txt",
-        "README.md",
-        "CHANGELOG.md",
-        "CREDITS.md",
-    ]
-    SPDX-FileCopyrightText = "Super Practica contributors"
-    SPDX-License-Identifier = "CC0-1.0"
-
+path = [
+	"**.import",
+	"**.uid",
+	".gitignore",
+	"project.godot",
+	"export_presets.cfg",
+	"project_builds_config.txt",
+	"README.md",
+	"CHANGELOG.md",
+	"CREDITS.md",
+]
+SPDX-FileCopyrightText = "Super Practica contributors"
+SPDX-License-Identifier = "CC0-1.0"
 
 # Bulk-license addon folders
+[[annotations]]
+path = "addons/creverter/**"
+SPDX-FileCopyrightText = "2024 svetogam"
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-    path = "addons/creverter/**"
-    SPDX-FileCopyrightText = "Copyright (c) 2024 svetogam"
-    SPDX-License-Identifier = "MIT"
+path = "addons/csconnector/**"
+SPDX-FileCopyrightText = "2024 svetogam"
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-    path = "addons/csconnector/**"
-    SPDX-FileCopyrightText = "Copyright (c) 2024 svetogam"
-    SPDX-License-Identifier = "MIT"
+path = "addons/cslocator/**"
+SPDX-FileCopyrightText = "2024 svetogam"
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-    path = "addons/cslocator/**"
-    SPDX-FileCopyrightText = "Copyright (c) 2024 svetogam"
-    SPDX-License-Identifier = "MIT"
+path = "addons/gdreuse/**"
+SPDX-FileCopyrightText = "2025 svetogam"
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-    path = "addons/gdUnit4/**"
-    SPDX-FileCopyrightText = "Copyright (c) 2023 Mike Schulze"
-    SPDX-License-Identifier = "MIT"
+path = "addons/gdUnit4/**"
+SPDX-FileCopyrightText = "2023 Mike Schulze"
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-    path = "addons/papershot/**"
-    SPDX-FileCopyrightText = "Copyright Anni Ryynänen"
-    SPDX-License-Identifier = "MIT"
+path = "addons/godot_state_charts/**"
+SPDX-FileCopyrightText = "2023 Jan Thomä"
+SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-    path = "addons/your_buil/**"
-    SPDX-FileCopyrightText = [
-        "Copyright (c) 2024 svetogam",
-        "Copyright (c) 2019 Tomek",
-    ]
-    SPDX-License-Identifier = "MIT"
+path = "addons/papershot/**"
+SPDX-FileCopyrightText = "Anni Ryynänen"
+SPDX-License-Identifier = "MIT"
 
+[[annotations]]
+path = "addons/your_buil/**"
+SPDX-FileCopyrightText = [
+	"2024 svetogam",
+	"2019 Tomek",
+]
+SPDX-License-Identifier = "MIT"
 
 # Fulfill silly requirement to show the copyright of the copyright
-
 [[annotations]]
-    path = "GODOT_COPYRIGHT.txt"
-    SPDX-FileCopyrightText = [
-        "Copyright (c) 2014-present, Godot Engine contributors  (see AUTHORS.md).",
-        "Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.",
-    ]
-    SPDX-License-Identifier = "MIT"
+path = "GODOT_COPYRIGHT.txt"
+SPDX-FileCopyrightText = [
+	"2014-present, Godot Engine contributors  (see AUTHORS.md).",
+	"2007-2014 Juan Linietsky, Ariel Manzur.",
+]
+SPDX-License-Identifier = "MIT"
