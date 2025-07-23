@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://pmnqgp8u3cu8"]
+[gd_scene load_steps=2 format=3 uid="uid://duwf4xht2tp6o"]
 
-[ext_resource type="Script" uid="uid://dva8uagtt38pv" path="res://addons/gdgdtoolkit/console_panel.gd" id="1_71x6t"]
+[ext_resource type="Script" uid="uid://babvjlkb3m0k0" path="res://addons/gdgdtoolkit/console_panel.gd" id="1_71x6t"]
 
 [node name="ConsolePanel" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 200)

@@ -17,7 +17,7 @@ config/description="A game optimizing the reproduction of practical knowledge."
 config/version="0.8.0"
 run/main_scene="res://core/main.tscn"
 config/features=PackedStringArray("4.4")
-config/icon="uid://dmmptdrb8xf6x"
+config/icon="uid://cvb4r2vexe77e"
 
 [autoload]
 
