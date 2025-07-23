@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_8gxre"]
 [ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_26ecp"]
 [ext_resource type="Script" uid="uid://cuo7t03vwrjdk" path="res://core/screens/pimnet_level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]
-[ext_resource type="Script" uid="uid://c32e8p155rp10" path="res://core/screens/pimnet_level/states/no_level.gd" id="3_egj3f"]
-[ext_resource type="Script" uid="uid://7ud83wgsmuiw" path="res://core/screens/pimnet_level/states/playing.gd" id="3_thn1s"]
-[ext_resource type="Script" uid="uid://ceppfu64ae31g" path="res://core/screens/pimnet_level/states/verifying.gd" id="4_8b6fo"]
-[ext_resource type="Script" uid="uid://cdii7caqjh5yq" path="res://core/screens/pimnet_level/states/completed.gd" id="5_gboy6"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_32jhs"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_qgiri"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_sypxk"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="7_7dceb"]
 [ext_resource type="Script" uid="uid://djbekahesmdhu" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="Script" uid="uid://dy8a4msxtw51j" path="res://general/draggable_point.gd" id="7_yv63t"]
@@ -45,26 +45,69 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
 
-[node name="Level" type="Node"]
+[node name="PimnetLevelScreen" type="Node"]
 process_mode = 1
 script = ExtResource("1_o01nh")
 
-[node name="LevelStateMachine" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_26ecp")
-_auto_activate = false
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_8gxre")
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="NoLevel" type="Node" parent="LevelStateMachine"]
-script = ExtResource("3_egj3f")
+[node name="LevelScreenState" type="Node" parent="StateChart"]
+script = ExtResource("3_32jhs")
+initial_state = NodePath("Empty")
 
-[node name="Playing" type="Node" parent="LevelStateMachine"]
-script = ExtResource("3_thn1s")
+[node name="Empty" type="Node" parent="StateChart/LevelScreenState"]
+script = ExtResource("4_qgiri")
 
-[node name="Verifying" type="Node" parent="LevelStateMachine"]
-script = ExtResource("4_8b6fo")
+[node name="ToLoaded" type="Node" parent="StateChart/LevelScreenState/Empty"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Loaded")
+event = &"load"
+delay_in_seconds = "0.0"
 
-[node name="Completed" type="Node" parent="LevelStateMachine"]
-script = ExtResource("5_gboy6")
+[node name="Loaded" type="Node" parent="StateChart/LevelScreenState"]
+script = ExtResource("3_32jhs")
+initial_state = NodePath("Playing")
+
+[node name="Playing" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+script = ExtResource("4_qgiri")
+
+[node name="PlayingToVerifying" type="Node" parent="StateChart/LevelScreenState/Loaded/Playing"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Verifying")
+event = &"start_verification"
+delay_in_seconds = "0.0"
+
+[node name="PlayingToCompleted" type="Node" parent="StateChart/LevelScreenState/Loaded/Playing"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Completed")
+event = &"complete"
+delay_in_seconds = "0.0"
+
+[node name="Verifying" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+script = ExtResource("4_qgiri")
+
+[node name="VerifyingToPlaying" type="Node" parent="StateChart/LevelScreenState/Loaded/Verifying"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Playing")
+event = &"stop_verification"
+delay_in_seconds = "0.0"
+
+[node name="VerifyingToCompleted" type="Node" parent="StateChart/LevelScreenState/Loaded/Verifying"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Completed")
+event = &"complete"
+delay_in_seconds = "0.0"
+
+[node name="Completed" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+script = ExtResource("4_qgiri")
+
+[node name="ToEmpty" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Empty")
+event = &"unload"
+delay_in_seconds = "0.0"
 
 [node name="Pimnet" type="Node" parent="."]
 unique_name_in_owner = true
@@ -995,3 +1038,9 @@ expand_icon = true
 script = ExtResource("37_l0rup")
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
+
+[connection signal="state_entered" from="StateChart/LevelScreenState/Empty" to="." method="_on_empty_state_entered"]
+[connection signal="state_entered" from="StateChart/LevelScreenState/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
+[connection signal="state_exited" from="StateChart/LevelScreenState/Loaded/Verifying" to="." method="_on_verifying_state_exited"]
+[connection signal="taken" from="StateChart/LevelScreenState/Loaded/Verifying/VerifyingToPlaying" to="." method="_on_verifying_to_playing_taken"]
+[connection signal="state_entered" from="StateChart/LevelScreenState/Loaded/Completed" to="." method="_on_completed_state_entered"]

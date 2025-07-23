@@ -32,8 +32,8 @@ func _ready() -> void:
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
 
 	# Connect signals
-	verifier.started.connect(updated.emit)
-	verifier.completed.connect(updated.emit)
+	verifier.started.connect(_on_verifier_started)
+	verifier.completed.connect(_on_verifier_completed)
 	actions_completed.connect(updated.emit)
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD, "updated", updated.emit)
 	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
@@ -41,7 +41,6 @@ func _ready() -> void:
 
 	# Consistently start with empty state
 	pimnet.setup(EMPTY_PIMNET_SETUP)
-	%LevelStateMachine.activate("NoLevel")
 
 	# Load immediately if level data is already set
 	if level_data != null:
@@ -73,18 +72,19 @@ func load_level(p_level_data: LevelResource) -> void:
 		add_child(program)
 		program.task_completed.connect(updated.emit.unbind(1))
 		program.level_completed.connect(updated.emit)
+		program.level_completed.connect(_on_program_level_completed)
 		program.reset_changed.connect(_update_reversion_buttons)
 		program.reset_called.connect(_do_queued_actions)
 		program.set_custom_reset(_default_reset)
 		program.run()
 
-	%LevelStateMachine.change_state("Playing")
+	$StateChart.send_event("load")
 
 
 func unload_level() -> void:
 	assert(level_data != null)
 
-	%LevelStateMachine.change_state("NoLevel")
+	$StateChart.send_event("unload")
 
 	reverter.history.clear()
 
@@ -101,6 +101,20 @@ func unload_level() -> void:
 
 	level_data = null
 	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
+
+
+func _on_program_level_completed() -> void:
+	$StateChart.send_event("complete")
+
+
+func _on_verifier_started() -> void:
+	updated.emit()
+	$StateChart.send_event("start_verification")
+
+
+func _on_verifier_completed() -> void:
+	updated.emit()
+	$StateChart.send_event("stop_verification")
 
 
 func _on_reset_button_pressed() -> void:
@@ -128,3 +142,35 @@ func _update_reversion_buttons() -> void:
 	%ResetButton.disabled = (
 		verifier.is_running() or (program != null and not program.is_reset_possible())
 	)
+
+
+#==========================================================
+# State Behavior
+#==========================================================
+
+func _on_empty_state_entered() -> void:
+	if pimnet.overlay.goal_panel != null:
+		pimnet.overlay.goal_panel.reset()
+	if verifier.is_running():
+		verifier.abort()
+		pimnet.disable_verification_input(false)
+
+
+func _on_verifying_state_entered() -> void:
+	pimnet.overlay.goal_panel.start_verification()
+	pimnet.disable_verification_input(true)
+
+
+func _on_verifying_state_exited() -> void:
+	pimnet.disable_verification_input(false)
+
+
+func _on_verifying_to_playing_taken() -> void:
+	pimnet.overlay.goal_panel.stop_verification()
+	pimnet.overlay.goal_panel.fail()
+
+
+func _on_completed_state_entered() -> void:
+	pimnet.overlay.goal_panel.succeed()
+	Game.progress_data.record_level_completion(level_data.id)
+	%OverlayStateMachine.change_state("Completion")
