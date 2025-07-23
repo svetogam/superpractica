@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://pmnqgp8u3cu8"]
+
+[ext_resource type="Script" uid="uid://dva8uagtt38pv" path="res://addons/gdgdtoolkit/console_panel.gd" id="1_71x6t"]
+
+[node name="ConsolePanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_71x6t")
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="LintButton" type="Button" parent="MainContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../FormatDiffButton")
+focus_next = NodePath("../FormatDiffButton")
+text = "gdlint"
+autowrap_mode = 2
+
+[node name="FormatDiffButton" type="Button" parent="MainContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../LintButton")
+focus_neighbor_bottom = NodePath("../ComplexityButton")
+focus_next = NodePath("../ComplexityButton")
+focus_previous = NodePath("../LintButton")
+text = "gdformat
+--diff"
+autowrap_mode = 2
+
+[node name="ComplexityButton" type="Button" parent="MainContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../FormatDiffButton")
+focus_previous = NodePath("../FormatDiffButton")
+text = "Cyclomatic Complexity"
+autowrap_mode = 2
+
+[node name="Panel" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/Panel"]
+layout_mode = 2
+
+[node name="CommandLabel" type="Label" parent="MainContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "Command:"
+
+[node name="Command" type="LineEdit" parent="MainContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_uneditable_color = Color(0.8025, 0.81, 0.8225, 1)
+theme_override_font_sizes/font_size = 13
+editable = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="Console" type="TextEdit" parent="MainContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 1
+theme_override_colors/background_color = Color(0.1155, 0.132, 0.1595, 1)
+theme_override_constants/line_spacing = 0
+editable = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1

@@ -1,0 +1,16 @@
+extends RefCounted
+
+const OUTPUT_FONT_SIZE_SETTING := "run/output/font_size"
+const INDENT_TYPE_SETTING := "text_editor/behavior/indent/type"
+const INDENT_SIZE_SETTING := "text_editor/behavior/indent/size"
+const LINE_LENGTH_SETTING := "text_editor/appearance/guidelines/line_length_guideline_hard_column"
+const ENABLE_GDLINT_SETTING := "gdgdtoolkit/gdlint/enable"
+const GDLINT_PATH_SETTING := "gdgdtoolkit/gdlint/path"
+const ENABLE_GDFORMAT_SETTING := "gdgdtoolkit/gdformat/enable"
+const GDFORMAT_PATH_SETTING := "gdgdtoolkit/gdformat/path"
+const PRIORITIZE_GDFORMATRC_SETTING := "gdgdtoolkit/gdformat/prioritize_gdformatrc"
+const FORMAT_ON_SAVE_SETTING := "gdgdtoolkit/gdformat/format_on_save"
+const ENABLE_GDPARSE_SETTING := "gdgdtoolkit/gdparse/enable"
+const GDPARSE_PATH_SETTING := "gdgdtoolkit/gdparse/path"
+const ENABLE_GDRADON_SETTING := "gdgdtoolkit/gdradon/enable"
+const GDRADON_PATH_SETTING := "gdgdtoolkit/gdradon/path"

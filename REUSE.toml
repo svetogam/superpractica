@@ -6,6 +6,8 @@ path = [
 	"**.import",
 	"**.uid",
 	".gitignore",
+	".gdformatrc",
+	".gdlintrc",
 	"project.godot",
 	"export_presets.cfg",
 	"project_builds_config.txt",
@@ -30,6 +32,14 @@ SPDX-License-Identifier = "MIT"
 [[annotations]]
 path = "addons/cslocator/**"
 SPDX-FileCopyrightText = "2024 svetogam"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "addons/gdgdtoolkit/**"
+SPDX-FileCopyrightText = [
+	"2025 svetogam",
+	"2023 Ryan Haskell-Glatz",
+]
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
