@@ -8,7 +8,7 @@ signal request_enter_main_menu
 signal request_load_level_select
 signal request_enter_level_select
 signal request_load_level(level_data)
-signal request_unload_level(level_data)
+signal request_unload_level()
 signal request_enter_level(level_data)
 signal request_exit_game
 

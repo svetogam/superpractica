@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkmqj7ih4aww2"]
+[gd_scene load_steps=10 format=3 uid="uid://dkmqj7ih4aww2"]
 
 [ext_resource type="Script" uid="uid://bci16101psp3l" path="res://core/main.gd" id="1_pwbki"]
 [ext_resource type="Script" uid="uid://dnqi7y5cpr6bc" path="res://addons/papershot/papershot.gd" id="2_bkdwp"]
-[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_csopv"]
-[ext_resource type="Script" uid="uid://yldronjahtqg" path="res://core/main_states/main_menu.gd" id="3_xa854"]
-[ext_resource type="Script" uid="uid://bj1pavdd5a1kl" path="res://core/main_states/level_select.gd" id="4_xa854"]
-[ext_resource type="Script" uid="uid://d1vmidqmu35rr" path="res://core/main_states/pimnet_level.gd" id="5_kagtj"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_cus2n"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_cus2n"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_jsmgm"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_xhu5d"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_xhu5d"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1aajw"]
 device = -1
@@ -19,24 +20,134 @@ events = [SubResource("InputEventKey_1aajw")]
 [node name="Main" type="Node"]
 script = ExtResource("1_pwbki")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_target", "_initial_state")]
-script = ExtResource("2_csopv")
-_target = NodePath("..")
-_initial_state = NodePath("MainMenu")
-_auto_activate = false
-metadata/_custom_type_script = "uid://0kj2kxfkc6nd"
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_cus2n")
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="MainMenu" type="Node" parent="StateMachine"]
-script = ExtResource("3_xa854")
-metadata/_custom_type_script = "uid://dgebexsvcu1tj"
+[node name="Screens" type="Node" parent="StateChart"]
+script = ExtResource("3_cus2n")
 
-[node name="LevelSelect" type="Node" parent="StateMachine"]
-script = ExtResource("4_xa854")
-metadata/_custom_type_script = "uid://dgebexsvcu1tj"
+[node name="Current" type="Node" parent="StateChart/Screens"]
+script = ExtResource("3_jsmgm")
+initial_state = NodePath("MainMenu")
 
-[node name="PimnetLevel" type="Node" parent="StateMachine"]
-script = ExtResource("5_kagtj")
-metadata/_custom_type_script = "uid://dgebexsvcu1tj"
+[node name="MainMenu" type="Node" parent="StateChart/Screens/Current"]
+script = ExtResource("4_xhu5d")
+
+[node name="MainMenuToLevelSelect" type="Node" parent="StateChart/Screens/Current/MainMenu"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../../LevelSelect")
+event = &"enter_level_select"
+delay_in_seconds = "0.0"
+
+[node name="LevelSelect" type="Node" parent="StateChart/Screens/Current"]
+script = ExtResource("4_xhu5d")
+
+[node name="ToMainMenu" type="Node" parent="StateChart/Screens/Current/LevelSelect"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../../MainMenu")
+event = &"enter_main_menu"
+delay_in_seconds = "0.0"
+
+[node name="ToPimnetLevel" type="Node" parent="StateChart/Screens/Current/LevelSelect"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../../PimnetLevel")
+event = &"enter_pimnet_level"
+delay_in_seconds = "0.0"
+
+[node name="PimnetLevel" type="Node" parent="StateChart/Screens/Current"]
+script = ExtResource("4_xhu5d")
+
+[node name="PimnetLevelToLevelSelect" type="Node" parent="StateChart/Screens/Current/PimnetLevel"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../../LevelSelect")
+event = &"enter_level_select"
+delay_in_seconds = "0.0"
+
+[node name="MainMenu" type="Node" parent="StateChart/Screens"]
+script = ExtResource("3_jsmgm")
+initial_state = NodePath("NotPrepared")
+
+[node name="NotPrepared" type="Node" parent="StateChart/Screens/MainMenu"]
+script = ExtResource("4_xhu5d")
+
+[node name="Prepared" type="Node" parent="StateChart/Screens/MainMenu"]
+script = ExtResource("4_xhu5d")
+
+[node name="ToPrepared" type="Node" parent="StateChart/Screens/MainMenu"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../Prepared")
+event = &"prepare_main_menu"
+delay_in_seconds = "0.0"
+
+[node name="ToNotPrepared" type="Node" parent="StateChart/Screens/MainMenu"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../NotPrepared")
+event = &"unprepare_main_menu"
+delay_in_seconds = "0.0"
+
+[node name="LevelSelect" type="Node" parent="StateChart/Screens"]
+script = ExtResource("3_jsmgm")
+initial_state = NodePath("NotPrepared")
+
+[node name="NotPrepared" type="Node" parent="StateChart/Screens/LevelSelect"]
+script = ExtResource("4_xhu5d")
+
+[node name="Prepared" type="Node" parent="StateChart/Screens/LevelSelect"]
+script = ExtResource("4_xhu5d")
+
+[node name="ToPrepared" type="Node" parent="StateChart/Screens/LevelSelect"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../Prepared")
+event = &"prepare_level_select"
+delay_in_seconds = "0.0"
+
+[node name="ToNotPrepared" type="Node" parent="StateChart/Screens/LevelSelect"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../NotPrepared")
+event = &"unprepare_level_select"
+delay_in_seconds = "0.0"
+
+[node name="PimnetLevel" type="Node" parent="StateChart/Screens"]
+script = ExtResource("3_jsmgm")
+initial_state = NodePath("NotPrepared")
+
+[node name="NotPrepared" type="Node" parent="StateChart/Screens/PimnetLevel"]
+script = ExtResource("4_xhu5d")
+
+[node name="ScreenPrepared" type="Node" parent="StateChart/Screens/PimnetLevel"]
+script = ExtResource("3_jsmgm")
+initial_state = NodePath("NotLoaded")
+
+[node name="NotLoaded" type="Node" parent="StateChart/Screens/PimnetLevel/ScreenPrepared"]
+script = ExtResource("4_xhu5d")
+
+[node name="DataLoaded" type="Node" parent="StateChart/Screens/PimnetLevel/ScreenPrepared"]
+script = ExtResource("4_xhu5d")
+
+[node name="ToDataLoaded" type="Node" parent="StateChart/Screens/PimnetLevel/ScreenPrepared"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../DataLoaded")
+event = &"load_pimnet_level_data"
+delay_in_seconds = "0.0"
+
+[node name="ToNotLoaded" type="Node" parent="StateChart/Screens/PimnetLevel/ScreenPrepared"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../NotLoaded")
+event = &"unload_pimnet_level_data"
+delay_in_seconds = "0.0"
+
+[node name="ToScreenPrepared" type="Node" parent="StateChart/Screens/PimnetLevel"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../ScreenPrepared")
+event = &"prepare_pimnet_level_screen"
+delay_in_seconds = "0.0"
+
+[node name="ToNotPrepared" type="Node" parent="StateChart/Screens/PimnetLevel"]
+script = ExtResource("5_xhu5d")
+to = NodePath("../NotPrepared")
+event = &"unprepare_pimnet_level_screen"
+delay_in_seconds = "0.0"
 
 [node name="Papershot" type="Node" parent="."]
 script = ExtResource("2_bkdwp")
@@ -100,3 +211,18 @@ disable_3d = true
 handle_input_locally = false
 size = Vector2i(800, 600)
 render_target_update_mode = 0
+
+[connection signal="state_entered" from="StateChart/Screens/Current/MainMenu" to="." method="_on_main_menu_state_entered"]
+[connection signal="state_exited" from="StateChart/Screens/Current/MainMenu" to="." method="_on_main_menu_state_exited"]
+[connection signal="taken" from="StateChart/Screens/Current/MainMenu/MainMenuToLevelSelect" to="." method="_on_main_menu_to_level_select_taken"]
+[connection signal="state_entered" from="StateChart/Screens/Current/LevelSelect" to="." method="_on_level_select_state_entered"]
+[connection signal="state_entered" from="StateChart/Screens/Current/PimnetLevel" to="." method="_on_pimnet_level_state_entered"]
+[connection signal="taken" from="StateChart/Screens/Current/PimnetLevel/PimnetLevelToLevelSelect" to="." method="_on_pimnet_level_to_level_select_taken"]
+[connection signal="state_entered" from="StateChart/Screens/MainMenu/Prepared" to="." method="_on_main_menu_prepared_state_entered"]
+[connection signal="state_exited" from="StateChart/Screens/MainMenu/Prepared" to="." method="_on_main_menu_prepared_state_exited"]
+[connection signal="state_entered" from="StateChart/Screens/LevelSelect/Prepared" to="." method="_on_level_select_prepared_state_entered"]
+[connection signal="state_exited" from="StateChart/Screens/LevelSelect/Prepared" to="." method="_on_level_select_prepared_state_exited"]
+[connection signal="state_entered" from="StateChart/Screens/PimnetLevel/ScreenPrepared" to="." method="_on_pimnet_level_screen_prepared_state_entered"]
+[connection signal="state_exited" from="StateChart/Screens/PimnetLevel/ScreenPrepared" to="." method="_on_pimnet_level_screen_prepared_state_exited"]
+[connection signal="state_entered" from="StateChart/Screens/PimnetLevel/ScreenPrepared/DataLoaded" to="." method="_on_pimnet_level_data_loaded_state_entered"]
+[connection signal="state_exited" from="StateChart/Screens/PimnetLevel/ScreenPrepared/DataLoaded" to="." method="_on_pimnet_level_data_loaded_state_exited"]
