@@ -17,6 +17,7 @@ func _enter_tree() -> void:
 
 
 func transition(
+	from_camera: Camera2D,
 	to_camera: Camera2D,
 	callback := Callable(),
 	p_duration := duration,
@@ -25,14 +26,6 @@ func transition(
 	p_zoom_trans := zoom_trans,
 	p_zoom_ease := zoom_ease
 ) -> void:
-	var viewport = get_viewport()
-	if viewport == null:
-		push_error("TransitionCamera error: Transition camera does not have a viewport.")
-		return
-	var from_camera = get_viewport().get_camera_2d()
-	if from_camera == null:
-		push_error("TransitionCamera error: No camera found to transition from.")
-		return
 	if enabled:
 		push_error("TransitionCamera error: Trying to run again when already running.")
 		return
@@ -88,3 +81,34 @@ func transition(
 	position_tween.finished.connect(to_camera.set.bind("enabled", true))
 	if not callback.is_null():
 		position_tween.finished.connect(callback)
+
+
+## This automatically finds [param from_camera], which can fail.
+func transition_to(
+	to_camera: Camera2D,
+	callback := Callable(),
+	p_duration := duration,
+	p_position_trans := position_trans,
+	p_position_ease := position_ease,
+	p_zoom_trans := zoom_trans,
+	p_zoom_ease := zoom_ease
+) -> void:
+	var viewport = get_viewport()
+	if viewport == null:
+		push_error("TransitionCamera error: Transition camera does not have a viewport.")
+		return
+	var from_camera = get_viewport().get_camera_2d()
+	if from_camera == null:
+		push_error("TransitionCamera error: No camera found to transition from.")
+		return
+
+	transition(
+		from_camera,
+		to_camera,
+		callback,
+		p_duration,
+		p_position_trans,
+		p_position_ease,
+		p_zoom_trans,
+		p_zoom_ease
+	)

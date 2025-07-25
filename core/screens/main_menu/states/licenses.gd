@@ -15,12 +15,12 @@ func _on_licenses_back_button_pressed() -> void:
 
 func _to_game_license_frame() -> void:
 	_disconnect_buttons()
-	%TransitionCamera.transition(%LicensesCamera, _connect_buttons)
+	%TransitionCamera.transition_to(%LicensesCamera, _connect_buttons)
 
 
 func _to_engine_license_frame() -> void:
 	_disconnect_buttons()
-	%TransitionCamera.transition(%LicensesCamera2, _connect_buttons)
+	%TransitionCamera.transition_to(%LicensesCamera2, _connect_buttons)
 
 
 func _connect_buttons() -> void:

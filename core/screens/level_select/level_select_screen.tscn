@@ -1,16 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=18 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_y5cmv"]
 [ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_e1lo5"]
-[ext_resource type="Script" uid="uid://d3hqyvidvanrc" path="res://core/screens/level_select/states/map_view.gd" id="3_s8wdx"]
-[ext_resource type="Script" uid="uid://dxvuy3hmb8dyy" path="res://core/screens/level_select/states/in_from_map_to_node.gd" id="4_771x4"]
-[ext_resource type="Script" uid="uid://cqq63fvs64ev" path="res://core/screens/level_select/states/node_view.gd" id="5_3qwui"]
-[ext_resource type="Script" uid="uid://b2i26xn1mgt3a" path="res://core/screens/level_select/states/out_from_node_to_map.gd" id="6_bbilf"]
-[ext_resource type="Script" uid="uid://dd6wfcod5kjw1" path="res://core/screens/level_select/states/in_from_node_to_map.gd" id="8_mddll"]
-[ext_resource type="Script" uid="uid://bxhc16fbwuvr5" path="res://core/screens/level_select/states/in_from_node_to_level.gd" id="9_7trmu"]
-[ext_resource type="Script" uid="uid://cmmt0nn2fi38k" path="res://core/screens/level_select/states/out_from_map_to_node.gd" id="9_73f7m"]
-[ext_resource type="Script" uid="uid://bfqdsy662g5vu" path="res://core/screens/level_select/states/out_from_level_to_map.gd" id="10_nortw"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_gkkbi"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_1tjgp"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_2y2ge"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_fmwaj"]
 [ext_resource type="Script" uid="uid://ban35fvtbwsus" path="res://core/screens/level_select/level_select_overlay.gd" id="12_1xipj"]
 [ext_resource type="Script" uid="uid://bsp5pt3afvyle" path="res://core/screens/level_select/overlay_states/normal.gd" id="12_4va4l"]
 [ext_resource type="Texture2D" uid="uid://dpqnh6g4wvxda" path="res://core/screens/level_select/graphics/icons/up_topic_icon.svg" id="12_nortw"]
@@ -25,33 +21,123 @@
 [node name="LevelSelectScreen" type="Node"]
 script = ExtResource("1_nn3bt")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_e1lo5")
-_auto_activate = false
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_gkkbi")
+track_in_editor = true
+initial_expression_properties = {
+&"zoom_duration": 1.0
+}
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="MapView" type="Node" parent="StateMachine"]
-script = ExtResource("3_s8wdx")
+[node name="Camera" type="Node" parent="StateChart"]
+script = ExtResource("3_1tjgp")
+initial_state = NodePath("Starting")
 
-[node name="NodeView" type="Node" parent="StateMachine"]
-script = ExtResource("5_3qwui")
+[node name="Starting" type="Node" parent="StateChart/Camera"]
+script = ExtResource("3_1tjgp")
+initial_state = NodePath("NotActivated")
 
-[node name="InFromMapToNode" type="Node" parent="StateMachine"]
-script = ExtResource("4_771x4")
+[node name="NotActivated" type="Node" parent="StateChart/Camera/Starting"]
+script = ExtResource("4_2y2ge")
 
-[node name="OutFromNodeToMap" type="Node" parent="StateMachine"]
-script = ExtResource("6_bbilf")
+[node name="ToMap" type="Node" parent="StateChart/Camera/Starting/NotActivated"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../../Map")
+event = &"activate_normal"
+delay_in_seconds = "0.0"
 
-[node name="InFromNodeToMap" type="Node" parent="StateMachine"]
-script = ExtResource("8_mddll")
+[node name="ToZoomingOutFromLevel" type="Node" parent="StateChart/Camera/Starting/NotActivated"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../ZoomingOutFromLevel")
+event = &"activate_from_level"
+delay_in_seconds = "0.0"
 
-[node name="OutFromMapToNode" type="Node" parent="StateMachine"]
-script = ExtResource("9_73f7m")
+[node name="ZoomingOutFromLevel" type="Node" parent="StateChart/Camera/Starting"]
+script = ExtResource("4_2y2ge")
 
-[node name="InFromNodeToLevel" type="Node" parent="StateMachine"]
-script = ExtResource("9_7trmu")
+[node name="ToMap" type="Node" parent="StateChart/Camera/Starting/ZoomingOutFromLevel"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../../Map")
+delay_in_seconds = "zoom_duration"
 
-[node name="OutFromLevelToMap" type="Node" parent="StateMachine"]
-script = ExtResource("10_nortw")
+[node name="Map" type="Node" parent="StateChart/Camera"]
+script = ExtResource("3_1tjgp")
+initial_state = NodePath("Scrolling")
+
+[node name="Scrolling" type="Node" parent="StateChart/Camera/Map"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToZoomingIn" type="Node" parent="StateChart/Camera/Map/Scrolling"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../ZoomingIn")
+event = &"zoom_in"
+delay_in_seconds = "0.0"
+
+[node name="ToZoomingOut" type="Node" parent="StateChart/Camera/Map/Scrolling"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../ZoomingOut")
+event = &"zoom_out"
+delay_in_seconds = "0.0"
+
+[node name="ZoomingIn" type="Node" parent="StateChart/Camera/Map"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToNode" type="Node" parent="StateChart/Camera/Map/ZoomingIn"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../../Node")
+delay_in_seconds = "zoom_duration"
+
+[node name="ZoomingOut" type="Node" parent="StateChart/Camera/Map"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToNode" type="Node" parent="StateChart/Camera/Map/ZoomingOut"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../../Node")
+delay_in_seconds = "zoom_duration"
+
+[node name="Node" type="Node" parent="StateChart/Camera"]
+script = ExtResource("3_1tjgp")
+initial_state = NodePath("Viewing")
+
+[node name="Viewing" type="Node" parent="StateChart/Camera/Node"]
+script = ExtResource("4_2y2ge")
+
+[node name="InToMap" type="Node" parent="StateChart/Camera/Node/Viewing"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../ZoomingInToMap")
+event = &"zoom_in_to_map"
+delay_in_seconds = "0.0"
+
+[node name="InToLevel" type="Node" parent="StateChart/Camera/Node/Viewing"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../ZoomingInToLevel")
+event = &"zoom_in_to_level"
+delay_in_seconds = "0.0"
+
+[node name="ToZoomingOut" type="Node" parent="StateChart/Camera/Node/Viewing"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../ZoomingOut")
+event = &"zoom_out"
+delay_in_seconds = "0.0"
+
+[node name="ZoomingInToMap" type="Node" parent="StateChart/Camera/Node"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToMap" type="Node" parent="StateChart/Camera/Node/ZoomingInToMap"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../../Map")
+delay_in_seconds = "zoom_duration"
+
+[node name="ZoomingInToLevel" type="Node" parent="StateChart/Camera/Node"]
+script = ExtResource("4_2y2ge")
+
+[node name="ZoomingOut" type="Node" parent="StateChart/Camera/Node"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToMap" type="Node" parent="StateChart/Camera/Node/ZoomingOut"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../../Map")
+delay_in_seconds = "zoom_duration"
 
 [node name="OverlayLayer" type="CanvasLayer" parent="."]
 
@@ -192,3 +278,18 @@ unique_name_in_owner = true
 
 [node name="TopicMapContainer3" parent="." instance=ExtResource("13_nortw")]
 unique_name_in_owner = true
+
+[connection signal="state_entered" from="StateChart/Camera/Starting/ZoomingOutFromLevel" to="." method="_on_zooming_out_from_level_state_entered"]
+[connection signal="state_exited" from="StateChart/Camera/Starting/ZoomingOutFromLevel" to="." method="_on_zooming_out_from_level_state_exited"]
+[connection signal="state_entered" from="StateChart/Camera/Map/Scrolling" to="." method="_on_map_scrolling_state_entered"]
+[connection signal="state_exited" from="StateChart/Camera/Map/Scrolling" to="." method="_on_map_scrolling_state_exited"]
+[connection signal="state_entered" from="StateChart/Camera/Map/ZoomingIn" to="." method="_on_map_zooming_in_state_entered"]
+[connection signal="state_entered" from="StateChart/Camera/Map/ZoomingOut" to="." method="_on_map_zooming_out_state_entered"]
+[connection signal="state_entered" from="StateChart/Camera/Node/Viewing" to="." method="_on_node_viewing_state_entered"]
+[connection signal="state_exited" from="StateChart/Camera/Node/Viewing" to="." method="_on_node_viewing_state_exited"]
+[connection signal="state_unhandled_input" from="StateChart/Camera/Node/Viewing" to="." method="_on_node_viewing_state_unhandled_input"]
+[connection signal="state_entered" from="StateChart/Camera/Node/ZoomingInToMap" to="." method="_on_node_zooming_in_to_map_state_entered"]
+[connection signal="state_exited" from="StateChart/Camera/Node/ZoomingInToMap" to="." method="_on_node_zooming_in_to_map_state_exited"]
+[connection signal="state_entered" from="StateChart/Camera/Node/ZoomingInToLevel" to="." method="_on_node_zooming_in_to_level_state_entered"]
+[connection signal="state_entered" from="StateChart/Camera/Node/ZoomingOut" to="." method="_on_node_zooming_out_state_entered"]
+[connection signal="state_exited" from="StateChart/Camera/Node/ZoomingOut" to="." method="_on_node_zooming_out_state_exited"]

@@ -6,7 +6,7 @@ extends State
 
 
 func _enter(_last_state: String) -> void:
-	%TransitionCamera.transition(%AboutCamera, _change_state.bind("About"))
+	%TransitionCamera.transition_to(%AboutCamera, _change_state.bind("About"))
 
 
 func _exit(_next_state: String) -> void:
