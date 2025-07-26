@@ -1,22 +1,16 @@
-[gd_scene load_steps=31 format=3 uid="uid://dtsgoie3mkpl"]
+[gd_scene load_steps=25 format=3 uid="uid://dtsgoie3mkpl"]
 
 [ext_resource type="Script" uid="uid://uqvc2km0y0ug" path="res://core/screens/main_menu/main_menu_screen.gd" id="1_evcbt"]
 [ext_resource type="Theme" uid="uid://rvggfmuj8l32" path="res://core/screens/main_menu/theme/main_menu_theme.tres" id="1_qnfx7"]
-[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="3_qyd2j"]
-[ext_resource type="Script" uid="uid://whr7fokn22ln" path="res://core/screens/main_menu/states/start.gd" id="4_l0rnp"]
-[ext_resource type="Script" uid="uid://d1xo5ldvmba6y" path="res://core/screens/main_menu/states/info.gd" id="5_8jexh"]
-[ext_resource type="Script" uid="uid://x6s85vjo3imo" path="res://core/screens/main_menu/states/credits.gd" id="6_rhbch"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_t0q41"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_6tapl"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_ebi3k"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_lvfi0"]
 [ext_resource type="Script" uid="uid://cvepfya520sq" path="res://general/transition_camera.gd" id="7_bxa27"]
-[ext_resource type="Script" uid="uid://csne2waqd6x27" path="res://core/screens/main_menu/states/from_start_to_about.gd" id="7_ma8at"]
-[ext_resource type="Script" uid="uid://bjjexjipabfwa" path="res://core/screens/main_menu/states/licenses.gd" id="7_pmiv2"]
-[ext_resource type="Script" uid="uid://b5k643fvhrvdi" path="res://core/screens/main_menu/states/from_about_to_start.gd" id="8_o83qo"]
-[ext_resource type="Script" uid="uid://g1d1vsy7pjgt" path="res://core/screens/main_menu/states/from_about_to_credits.gd" id="9_2l7pg"]
-[ext_resource type="Script" uid="uid://lt3nb1j0u64h" path="res://core/screens/main_menu/states/from_credits_to_about.gd" id="10_2l7pg"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_rs02s"]
 [ext_resource type="Texture2D" uid="uid://df0oro5hgq6fn" path="res://core/screens/main_menu/graphics/background_circle.svg" id="11_7x0fx"]
 [ext_resource type="LabelSettings" uid="uid://cc272esec8t84" path="res://core/screens/main_menu/title_label_settings.tres" id="11_tk1fg"]
 [ext_resource type="LabelSettings" uid="uid://b05v8ydlelqai" path="res://core/screens/main_menu/panel_header_label_settings.tres" id="12_7x0fx"]
-[ext_resource type="Script" uid="uid://bnwffmdcsx57h" path="res://core/screens/main_menu/states/from_about_to_licenses.gd" id="12_bbwo5"]
-[ext_resource type="Script" uid="uid://cyy4m7xe7qt16" path="res://core/screens/main_menu/states/from_licenses_to_about.gd" id="13_ant0n"]
 [ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/globals/graphics/button_icons/level_select_icon.svg" id="16_m8eft"]
 [ext_resource type="LabelSettings" uid="uid://bl5db4rqqlohn" path="res://core/screens/main_menu/title_3_label_settings.tres" id="16_nio33"]
 [ext_resource type="LabelSettings" uid="uid://bic37p6jbr2h6" path="res://core/screens/main_menu/title_2_label_settings.tres" id="17_bbwo5"]
@@ -41,41 +35,104 @@ grow_vertical = 2
 theme = ExtResource("1_qnfx7")
 script = ExtResource("1_evcbt")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("3_qyd2j")
-_initial_state = NodePath("Start")
-_auto_activate = false
-metadata/_custom_type_script = "uid://0kj2kxfkc6nd"
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_t0q41")
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Start" type="Node" parent="StateMachine"]
-script = ExtResource("4_l0rnp")
+[node name="States" type="Node" parent="StateChart"]
+script = ExtResource("4_6tapl")
 
-[node name="About" type="Node" parent="StateMachine"]
-script = ExtResource("5_8jexh")
+[node name="Page" type="Node" parent="StateChart/States"]
+script = ExtResource("5_ebi3k")
+initial_state = NodePath("Start")
 
-[node name="Credits" type="Node" parent="StateMachine"]
-script = ExtResource("6_rhbch")
+[node name="Start" type="Node" parent="StateChart/States/Page"]
+script = ExtResource("6_lvfi0")
 
-[node name="Licenses" type="Node" parent="StateMachine"]
-script = ExtResource("7_pmiv2")
+[node name="ToInfo" type="Node" parent="StateChart/States/Page/Start"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Info")
+event = &"view_info"
+delay_in_seconds = "0.0"
 
-[node name="FromStartToAbout" type="Node" parent="StateMachine"]
-script = ExtResource("7_ma8at")
+[node name="Info" type="Node" parent="StateChart/States/Page"]
+script = ExtResource("6_lvfi0")
 
-[node name="FromAboutToStart" type="Node" parent="StateMachine"]
-script = ExtResource("8_o83qo")
+[node name="ToStart" type="Node" parent="StateChart/States/Page/Info"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Start")
+event = &"view_start"
+delay_in_seconds = "0.0"
 
-[node name="FromAboutToCredits" type="Node" parent="StateMachine"]
-script = ExtResource("9_2l7pg")
+[node name="ToCredits" type="Node" parent="StateChart/States/Page/Info"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Credits")
+event = &"view_credits"
+delay_in_seconds = "0.0"
 
-[node name="FromCreditsToAbout" type="Node" parent="StateMachine"]
-script = ExtResource("10_2l7pg")
+[node name="ToLicenses" type="Node" parent="StateChart/States/Page/Info"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Licenses")
+event = &"view_licenses"
+delay_in_seconds = "0.0"
 
-[node name="FromAboutToLicenses" type="Node" parent="StateMachine"]
-script = ExtResource("12_bbwo5")
+[node name="Credits" type="Node" parent="StateChart/States/Page"]
+script = ExtResource("6_lvfi0")
 
-[node name="FromLicensesToAbout" type="Node" parent="StateMachine"]
-script = ExtResource("13_ant0n")
+[node name="ToInfo" type="Node" parent="StateChart/States/Page/Credits"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Info")
+event = &"view_info"
+delay_in_seconds = "0.0"
+
+[node name="Licenses" type="Node" parent="StateChart/States/Page"]
+script = ExtResource("5_ebi3k")
+initial_state = NodePath("Game")
+
+[node name="Game" type="Node" parent="StateChart/States/Page/Licenses"]
+script = ExtResource("6_lvfi0")
+
+[node name="ToEngine" type="Node" parent="StateChart/States/Page/Licenses/Game"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Engine")
+event = &"view_engine_licenses"
+delay_in_seconds = "0.0"
+
+[node name="Engine" type="Node" parent="StateChart/States/Page/Licenses"]
+script = ExtResource("6_lvfi0")
+
+[node name="ToGame" type="Node" parent="StateChart/States/Page/Licenses/Engine"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Game")
+event = &"view_game_licenses"
+delay_in_seconds = "0.0"
+
+[node name="ToInfo" type="Node" parent="StateChart/States/Page/Licenses"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Info")
+event = &"view_info"
+delay_in_seconds = "0.0"
+
+[node name="Camera" type="Node" parent="StateChart/States"]
+script = ExtResource("5_ebi3k")
+initial_state = NodePath("Viewing")
+
+[node name="Viewing" type="Node" parent="StateChart/States/Camera"]
+script = ExtResource("6_lvfi0")
+
+[node name="ToMoving" type="Node" parent="StateChart/States/Camera/Viewing"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Moving")
+event = &"move_camera"
+delay_in_seconds = "0.0"
+
+[node name="Moving" type="Node" parent="StateChart/States/Camera"]
+script = ExtResource("6_lvfi0")
+
+[node name="ToViewing" type="Node" parent="StateChart/States/Camera/Moving"]
+script = ExtResource("7_rs02s")
+to = NodePath("../../Viewing")
+delay_in_seconds = "transition_duration"
 
 [node name="StaticBackgroundLayer" type="CanvasLayer" parent="."]
 layer = -2
@@ -211,7 +268,7 @@ grow_vertical = 2
 texture = ExtResource("11_7x0fx")
 expand_mode = 1
 
-[node name="TitleFrame" type="Control" parent="."]
+[node name="TitlePage" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -219,11 +276,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartCamera" type="Camera2D" parent="TitleFrame"]
+[node name="StartCamera" type="Camera2D" parent="TitlePage"]
 unique_name_in_owner = true
 anchor_mode = 0
 
-[node name="GameTitle" type="Label" parent="TitleFrame"]
+[node name="GameTitle" type="Label" parent="TitlePage"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -238,7 +295,7 @@ label_settings = ExtResource("11_tk1fg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TitleVersion" type="Label" parent="TitleFrame"]
+[node name="TitleVersion" type="Label" parent="TitlePage"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -251,7 +308,7 @@ label_settings = ExtResource("16_nio33")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleFrame"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitlePage"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -264,7 +321,7 @@ offset_bottom = 158.0
 grow_vertical = 2
 alignment = 2
 
-[node name="TopicsButton" type="Button" parent="TitleFrame/VBoxContainer"]
+[node name="TopicsButton" type="Button" parent="TitlePage/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -272,7 +329,7 @@ text = "Play Topics"
 icon = ExtResource("16_m8eft")
 expand_icon = true
 
-[node name="SandboxButton" type="Button" parent="TitleFrame/VBoxContainer"]
+[node name="SandboxButton" type="Button" parent="TitlePage/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
@@ -280,7 +337,7 @@ text = "Play Sandbox"
 icon = ExtResource("17_ilwjk")
 expand_icon = true
 
-[node name="SettingsButton" type="Button" parent="TitleFrame/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="TitlePage/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
@@ -288,7 +345,7 @@ text = "Settings"
 icon = ExtResource("18_a22bj")
 expand_icon = true
 
-[node name="InfoButton" type="Button" parent="TitleFrame/VBoxContainer"]
+[node name="InfoButton" type="Button" parent="TitlePage/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -296,7 +353,7 @@ text = "Info"
 icon = ExtResource("19_tpgq8")
 expand_icon = true
 
-[node name="QuitButton" type="Button" parent="TitleFrame/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="TitlePage/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -304,7 +361,7 @@ text = "Quit"
 icon = ExtResource("20_ksqx5")
 expand_icon = true
 
-[node name="AboutFrame" type="Control" parent="."]
+[node name="InfoPage" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 1.0
 anchor_top = 2.0
@@ -314,12 +371,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="AboutCamera" type="Camera2D" parent="AboutFrame"]
+[node name="InfoCamera" type="Camera2D" parent="InfoPage"]
 unique_name_in_owner = true
 anchor_mode = 0
 enabled = false
 
-[node name="Buttons" type="HBoxContainer" parent="AboutFrame"]
+[node name="Buttons" type="HBoxContainer" parent="InfoPage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -329,7 +386,7 @@ offset_right = -20.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="AboutBackButton" type="Button" parent="AboutFrame/Buttons"]
+[node name="InfoBackButton" type="Button" parent="InfoPage/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -338,7 +395,7 @@ text = "Back"
 icon = ExtResource("21_lenk6")
 expand_icon = true
 
-[node name="CreditsButton" type="Button" parent="AboutFrame/Buttons"]
+[node name="CreditsButton" type="Button" parent="InfoPage/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -347,7 +404,7 @@ text = "Credits"
 icon = ExtResource("22_j1hcb")
 expand_icon = true
 
-[node name="LicensesButton" type="Button" parent="AboutFrame/Buttons"]
+[node name="LicensesButton" type="Button" parent="InfoPage/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -356,7 +413,7 @@ text = "Licenses"
 icon = ExtResource("23_qqid4")
 expand_icon = true
 
-[node name="Panels" type="HBoxContainer" parent="AboutFrame"]
+[node name="Panels" type="HBoxContainer" parent="InfoPage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -368,24 +425,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="LongPanels" type="VBoxContainer" parent="AboutFrame/Panels"]
+[node name="LongPanels" type="VBoxContainer" parent="InfoPage/Panels"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DisclaimerPanel" type="PanelContainer" parent="AboutFrame/Panels/LongPanels"]
+[node name="DisclaimerPanel" type="PanelContainer" parent="InfoPage/Panels/LongPanels"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPage/Panels/LongPanels/DisclaimerPanel"]
 layout_mode = 2
 
-[node name="DisclaimerHeader" type="Label" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
+[node name="DisclaimerHeader" type="Label" parent="InfoPage/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
 layout_mode = 2
 text = "Disclaimer"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="DisclaimerText" type="Label" parent="AboutFrame/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
+[node name="DisclaimerText" type="Label" parent="InfoPage/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "This is an early demo release of Super Practica. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned."
@@ -393,59 +450,59 @@ label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="WebsitePanel" type="PanelContainer" parent="AboutFrame/Panels/LongPanels"]
+[node name="WebsitePanel" type="PanelContainer" parent="InfoPage/Panels/LongPanels"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/LongPanels/WebsitePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPage/Panels/LongPanels/WebsitePanel"]
 layout_mode = 2
 
-[node name="WebsiteHeader" type="Label" parent="AboutFrame/Panels/LongPanels/WebsitePanel/VBoxContainer"]
+[node name="WebsiteHeader" type="Label" parent="InfoPage/Panels/LongPanels/WebsitePanel/VBoxContainer"]
 layout_mode = 2
 text = "Website"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="WebsiteLink" type="LinkButton" parent="AboutFrame/Panels/LongPanels/WebsitePanel/VBoxContainer"]
+[node name="WebsiteLink" type="LinkButton" parent="InfoPage/Panels/LongPanels/WebsitePanel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "(website here)"
 
-[node name="SourcePanel" type="PanelContainer" parent="AboutFrame/Panels/LongPanels"]
+[node name="SourcePanel" type="PanelContainer" parent="InfoPage/Panels/LongPanels"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/LongPanels/SourcePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPage/Panels/LongPanels/SourcePanel"]
 layout_mode = 2
 
-[node name="SourceHeader" type="Label" parent="AboutFrame/Panels/LongPanels/SourcePanel/VBoxContainer"]
+[node name="SourceHeader" type="Label" parent="InfoPage/Panels/LongPanels/SourcePanel/VBoxContainer"]
 layout_mode = 2
 text = "Source Code"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="SourceLink" type="LinkButton" parent="AboutFrame/Panels/LongPanels/SourcePanel/VBoxContainer"]
+[node name="SourceLink" type="LinkButton" parent="InfoPage/Panels/LongPanels/SourcePanel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "(source here)"
 
-[node name="ShortPanels" type="VBoxContainer" parent="AboutFrame/Panels"]
+[node name="ShortPanels" type="VBoxContainer" parent="InfoPage/Panels"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VersionPanel" type="PanelContainer" parent="AboutFrame/Panels/ShortPanels"]
+[node name="VersionPanel" type="PanelContainer" parent="InfoPage/Panels/ShortPanels"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/ShortPanels/VersionPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPage/Panels/ShortPanels/VersionPanel"]
 layout_mode = 2
 
-[node name="VersionHeader" type="Label" parent="AboutFrame/Panels/ShortPanels/VersionPanel/VBoxContainer"]
+[node name="VersionHeader" type="Label" parent="InfoPage/Panels/ShortPanels/VersionPanel/VBoxContainer"]
 layout_mode = 2
 text = "Version"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="VersionText" type="Label" parent="AboutFrame/Panels/ShortPanels/VersionPanel/VBoxContainer"]
+[node name="VersionText" type="Label" parent="InfoPage/Panels/ShortPanels/VersionPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -454,20 +511,20 @@ text = "(version here)"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BuildPanel" type="PanelContainer" parent="AboutFrame/Panels/ShortPanels"]
+[node name="BuildPanel" type="PanelContainer" parent="InfoPage/Panels/ShortPanels"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutFrame/Panels/ShortPanels/BuildPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPage/Panels/ShortPanels/BuildPanel"]
 layout_mode = 2
 
-[node name="BuildHeader" type="Label" parent="AboutFrame/Panels/ShortPanels/BuildPanel/VBoxContainer"]
+[node name="BuildHeader" type="Label" parent="InfoPage/Panels/ShortPanels/BuildPanel/VBoxContainer"]
 layout_mode = 2
 text = "This Build"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="CommitLabel" type="Label" parent="AboutFrame/Panels/ShortPanels/BuildPanel/VBoxContainer"]
+[node name="CommitLabel" type="Label" parent="InfoPage/Panels/ShortPanels/BuildPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -475,7 +532,7 @@ text = "(git hash here)"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="DateLabel" type="Label" parent="AboutFrame/Panels/ShortPanels/BuildPanel/VBoxContainer"]
+[node name="DateLabel" type="Label" parent="InfoPage/Panels/ShortPanels/BuildPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -483,7 +540,7 @@ text = "(date here)"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="CreditsFrame" type="Control" parent="."]
+[node name="CreditsPage" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 3.0
 anchor_top = 1.0
@@ -492,12 +549,12 @@ anchor_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CreditsCamera" type="Camera2D" parent="CreditsFrame"]
+[node name="CreditsCamera" type="Camera2D" parent="CreditsPage"]
 unique_name_in_owner = true
 anchor_mode = 0
 enabled = false
 
-[node name="CreditsTitle" type="Label" parent="CreditsFrame"]
+[node name="CreditsTitle" type="Label" parent="CreditsPage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -511,7 +568,7 @@ label_settings = ExtResource("11_tk1fg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsBackButton" type="Button" parent="CreditsFrame"]
+[node name="CreditsBackButton" type="Button" parent="CreditsPage"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 1
@@ -525,7 +582,7 @@ text = "Back"
 icon = ExtResource("25_a22bj")
 expand_icon = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -537,24 +594,24 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CreditsPanel" type="PanelContainer" parent="CreditsFrame/VBoxContainer"]
+[node name="CreditsPanel" type="PanelContainer" parent="CreditsPage/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CreditsFrame/VBoxContainer/CreditsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPage/VBoxContainer/CreditsPanel"]
 layout_mode = 2
 
-[node name="ContributorsHeader" type="Label" parent="CreditsFrame/VBoxContainer/CreditsPanel/VBoxContainer"]
+[node name="ContributorsHeader" type="Label" parent="CreditsPage/VBoxContainer/CreditsPanel/VBoxContainer"]
 layout_mode = 2
 text = "Contributors"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="Contributors" type="Label" parent="CreditsFrame/VBoxContainer/CreditsPanel/VBoxContainer"]
+[node name="Contributors" type="Label" parent="CreditsPage/VBoxContainer/CreditsPanel/VBoxContainer"]
 layout_mode = 2
 text = "Svetogam"
 horizontal_alignment = 1
 
-[node name="LicensesFrame" type="Control" parent="."]
+[node name="GameLicensesPage" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 2.0
 anchor_top = 4.0
@@ -563,12 +620,12 @@ anchor_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LicensesCamera" type="Camera2D" parent="LicensesFrame"]
+[node name="GameLicensesCamera" type="Camera2D" parent="GameLicensesPage"]
 unique_name_in_owner = true
 anchor_mode = 0
 enabled = false
 
-[node name="LicensesBackButton" type="Button" parent="LicensesFrame"]
+[node name="LicensesBackButton" type="Button" parent="GameLicensesPage"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 1
@@ -582,7 +639,7 @@ text = "Back"
 icon = ExtResource("25_a22bj")
 expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LicensesFrame"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLicensesPage"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
 anchors_preset = -1
@@ -592,7 +649,7 @@ offset_top = 20.0
 offset_right = -20.0
 grow_horizontal = 0
 
-[node name="GameLicenseTitle" type="Label" parent="LicensesFrame/HBoxContainer"]
+[node name="GameLicenseTitle" type="Label" parent="GameLicensesPage/HBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -602,7 +659,7 @@ label_settings = ExtResource("17_bbwo5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EngineLicenseButton" type="Button" parent="LicensesFrame/HBoxContainer"]
+[node name="EngineLicenseButton" type="Button" parent="GameLicensesPage/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -610,7 +667,7 @@ size_flags_horizontal = 6
 text = "Engine"
 clip_text = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LicensesFrame"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameLicensesPage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -621,21 +678,21 @@ offset_right = -30.0
 offset_bottom = -20.0
 grow_horizontal = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="LicensesFrame/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GameLicensesPage/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LicensesFrame/VBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameLicensesPage/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Header" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Header" type="Label" parent="GameLicensesPage/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Super Practica"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="GameCopyrightNotice" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="GameCopyrightNotice" type="Label" parent="GameLicensesPage/VBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Copyright 2023 Super Practica contributors"
@@ -643,7 +700,7 @@ label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="GameLicense" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="GameLicense" type="Label" parent="GameLicensesPage/VBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "This game is licensed under the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version."
@@ -651,25 +708,25 @@ label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="LicensesFrame/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="GameLicensesPage/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LicensesFrame/VBoxContainer/PanelContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GameLicensesPage/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LicensesFrame/VBoxContainer/PanelContainer2/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameLicensesPage/VBoxContainer/PanelContainer2/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Header" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
+[node name="Header" type="Label" parent="GameLicensesPage/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "GNU AFFERO GENERAL PUBLIC LICENSE"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="License" type="Label" parent="LicensesFrame/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
+[node name="License" type="Label" parent="GameLicensesPage/VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Version 3, 19 November 2007
@@ -911,7 +968,7 @@ label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="LicensesFrame2" type="Control" parent="."]
+[node name="EngineLicensesPage" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 3.0
 anchor_top = 4.0
@@ -920,12 +977,12 @@ anchor_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LicensesCamera2" type="Camera2D" parent="LicensesFrame2"]
+[node name="EngineLicensesCamera" type="Camera2D" parent="EngineLicensesPage"]
 unique_name_in_owner = true
 anchor_mode = 0
 enabled = false
 
-[node name="LicensesBackButton2" type="Button" parent="LicensesFrame2"]
+[node name="LicensesBackButton2" type="Button" parent="EngineLicensesPage"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 1
@@ -939,7 +996,7 @@ text = "Back"
 icon = ExtResource("25_a22bj")
 expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="LicensesFrame2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="EngineLicensesPage"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
 anchors_preset = -1
@@ -949,7 +1006,7 @@ offset_top = 20.0
 offset_right = -20.0
 grow_horizontal = 0
 
-[node name="GameLicenseButton" type="Button" parent="LicensesFrame2/HBoxContainer"]
+[node name="GameLicenseButton" type="Button" parent="EngineLicensesPage/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -957,7 +1014,7 @@ size_flags_horizontal = 6
 text = "Game"
 clip_text = true
 
-[node name="EngineLicenseTitle" type="Label" parent="LicensesFrame2/HBoxContainer"]
+[node name="EngineLicenseTitle" type="Label" parent="EngineLicensesPage/HBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -967,7 +1024,7 @@ label_settings = ExtResource("17_bbwo5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LicensesFrame2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EngineLicensesPage"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -978,26 +1035,26 @@ offset_right = -30.0
 offset_bottom = -20.0
 grow_horizontal = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="LicensesFrame2/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="EngineLicensesPage/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LicensesFrame2/VBoxContainer/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="EngineLicensesPage/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LicensesFrame2/VBoxContainer/PanelContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EngineLicensesPage/VBoxContainer/PanelContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EngineLogo" type="TextureRect" parent="LicensesFrame2/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="EngineLogo" type="TextureRect" parent="EngineLicensesPage/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 texture = ExtResource("18_ant0n")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EngineLicenseIntro" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="EngineLicenseIntro" type="Label" parent="EngineLicensesPage/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "This game uses Godot Engine, available under the following license:
@@ -1006,7 +1063,7 @@ label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="EngineLicense" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="EngineLicense" type="Label" parent="EngineLicensesPage/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -1015,19 +1072,19 @@ label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="LicensesFrame2/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="EngineLicensesPage/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LicensesFrame2/VBoxContainer/PanelContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EngineLicensesPage/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="ThirdPartyHeader" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer2/VBoxContainer"]
+[node name="ThirdPartyHeader" type="Label" parent="EngineLicensesPage/VBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Third-Party Licenses"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
-[node name="ThirdPartyNotice" type="Label" parent="LicensesFrame2/VBoxContainer/PanelContainer2/VBoxContainer"]
+[node name="ThirdPartyNotice" type="Label" parent="EngineLicensesPage/VBoxContainer/PanelContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Godot Engine relies on a number of third-party free and open source libraries. For an exhaustive list of all such third-party components with their respective copyright statements and license terms, see GODOT_COPYRIGHT.txt."
@@ -1043,3 +1100,8 @@ script = ExtResource("7_bxa27")
 duration = 0.4
 position_trans = 4
 position_ease = 1
+
+[connection signal="child_state_exited" from="StateChart/States/Page" to="." method="_on_page_child_state_exited"]
+[connection signal="child_state_exited" from="StateChart/States/Page/Licenses" to="." method="_on_licenses_page_child_state_exited"]
+[connection signal="state_entered" from="StateChart/States/Camera/Viewing" to="." method="_on_camera_viewing_state_entered"]
+[connection signal="state_exited" from="StateChart/States/Camera/Viewing" to="." method="_on_camera_viewing_state_exited"]
