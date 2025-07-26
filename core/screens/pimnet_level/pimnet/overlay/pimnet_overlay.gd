@@ -14,6 +14,11 @@ enum PimnetPanels {
 	PIM_OBJECTS,
 }
 
+const SYSTEM_MODAL_SLIDE_DURATION := 0.3
+const PLAN_MODAL_SLIDE_DURATION := 0.3
+const LAYOUT_MODAL_SLIDE_DURATION := 0.3
+const COMPLETION_MODAL_SLIDE_DURATION := 0.5
+const REGULAR_MODAL_BACKGROUND_COLOR := Color(0.25, 0.25, 0.25, 0.5)
 var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
 	set = _set_goal_type
 var goal_panel: GoalPanel:
@@ -27,7 +32,8 @@ var level_data: LevelResource
 
 func _enter_tree() -> void:
 	CSLocator.with(self).connect_service_changed(
-			Game.SERVICE_LEVEL_DATA, _on_level_data_changed)
+		Game.SERVICE_LEVEL_DATA, _on_level_data_changed
+	)
 
 
 func _on_level_data_changed(p_level_data: LevelResource) -> void:
@@ -44,17 +50,25 @@ func _on_level_data_changed(p_level_data: LevelResource) -> void:
 
 
 func _ready() -> void:
-	# Connect panel-buttons
 	%PimToolsButton.toggled.connect(_on_panel_button_toggled.bind(PimnetPanels.PIM_TOOLS))
-	%PimObjectsButton.toggled.connect(_on_panel_button_toggled.bind(
-			PimnetPanels.PIM_OBJECTS))
-
-	%OverlayStateMachine.activate()
+	%PimObjectsButton.toggled.connect(
+		_on_panel_button_toggled.bind(PimnetPanels.PIM_OBJECTS)
+	)
+	%SettingsButton.pressed.connect(_on_settings_button_pressed)
+	%QuitButton.pressed.connect(_on_quit_button_pressed)
+	%CompletionSelectButton.pressed.connect(_on_completion_select_button_pressed)
+	%CompletionNextButton.pressed.connect(_on_completion_next_button_pressed)
+	%ModalBarrier.gui_input.connect(_on_modal_barrier_gui_input)
+	level_data_unloaded.connect(_on_level_data_unloaded)
 
 
 func _on_panel_button_toggled(toggled_on: bool, panel_type: PimnetPanels) -> void:
 	var panel := _get_panel(panel_type)
 	panel.visible = toggled_on
+
+
+func _on_level_data_unloaded() -> void:
+	$StateChart.send_event("close")
 
 
 func activate_panel(panel_type: PimnetPanels) -> void:
@@ -126,3 +140,180 @@ func _get_goal_panel() -> GoalPanel:
 		_:
 			assert(false)
 			return null
+
+
+func _on_system_button_pressed() -> void:
+	$StateChart.send_event("open_system_modal")
+
+
+func _on_plan_button_pressed() -> void:
+	$StateChart.send_event("open_plan_modal")
+
+
+func _on_edit_panels_button_pressed() -> void:
+	$StateChart.send_event("open_layout_modal")
+
+
+func _on_settings_button_pressed() -> void:
+	pass
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().paused = false
+	Game.request_enter_level_select.emit()
+
+
+func _on_completion_select_button_pressed() -> void:
+	Game.request_enter_level_select.emit()
+
+
+func _on_completion_next_button_pressed() -> void:
+	if level_data == null:
+		return
+
+	var next_level = level_data.get_next_suggested_level()
+	if next_level != null:
+		Game.request_enter_level.emit(next_level)
+
+
+func _on_modal_barrier_gui_input(event: InputEvent) -> void:
+	if (
+		event.is_action("primary_mouse")
+		and not $StateChart/States/Modal/Completion.active
+	):
+		$StateChart.send_event("close")
+
+
+func _on_gui_normal_state_entered() -> void:
+	%SystemButton.pressed.connect(_on_system_button_pressed)
+	%PlanButton.pressed.connect(_on_plan_button_pressed)
+	%EditPanelsButton.pressed.connect(_on_edit_panels_button_pressed)
+
+	%SystemPanel.hide()
+	%PlanPanel.hide()
+	%PanelLayoutButtons.hide()
+	%CompletionPanel.hide()
+
+
+func _on_gui_normal_state_exited() -> void:
+	%SystemButton.pressed.disconnect(_on_system_button_pressed)
+	%PlanButton.pressed.disconnect(_on_plan_button_pressed)
+	%EditPanelsButton.pressed.disconnect(_on_edit_panels_button_pressed)
+
+
+func _on_gui_opening_state_entered() -> void:
+	%ModalBarrier.show()
+
+
+func _on_gui_modal_state_entered() -> void:
+	if $StateChart/States/Modal/System.active:
+		Game.request_load_level_select.emit()
+	elif $StateChart/States/Modal/Completion.active:
+		Game.request_load_level_select.emit()
+
+
+func _on_gui_closing_state_entered() -> void:
+	%ModalBarrier.hide()
+
+
+func _on_modal_system_state_entered() -> void:
+	get_tree().paused = true
+	%ModalBarrier.color = REGULAR_MODAL_BACKGROUND_COLOR
+	%SystemPanel.show()
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(%SystemPanel, "position:y", 0, SYSTEM_MODAL_SLIDE_DURATION)
+
+	$StateChart.set_expression_property("slide_duration", SYSTEM_MODAL_SLIDE_DURATION)
+	$StateChart.send_event("open")
+
+
+func _on_modal_system_state_exited() -> void:
+	get_tree().paused = false
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		%SystemPanel, "position:y", -%SystemPanel.size.y, SYSTEM_MODAL_SLIDE_DURATION
+	)
+
+	$StateChart.set_expression_property("slide_duration", SYSTEM_MODAL_SLIDE_DURATION)
+
+
+func _on_modal_plan_state_entered() -> void:
+	%ModalBarrier.color = REGULAR_MODAL_BACKGROUND_COLOR
+	%PlanPanel.show()
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(%PlanPanel, "position:x", 0, PLAN_MODAL_SLIDE_DURATION)
+
+	$StateChart.set_expression_property("slide_duration", PLAN_MODAL_SLIDE_DURATION)
+	$StateChart.send_event("open")
+
+
+func _on_modal_plan_state_exited() -> void:
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		%PlanPanel, "position:x", -%PlanPanel.size.x, PLAN_MODAL_SLIDE_DURATION
+	)
+
+	$StateChart.set_expression_property("slide_duration", PLAN_MODAL_SLIDE_DURATION)
+
+
+func _on_modal_layout_state_entered() -> void:
+	%ModalBarrier.color = REGULAR_MODAL_BACKGROUND_COLOR
+	%PanelLayoutButtons.show()
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		%PanelLayoutButtons,
+		"position:y",
+		Game.get_screen_rect().end.y - %PanelLayoutButtons.size.y,
+		LAYOUT_MODAL_SLIDE_DURATION
+	)
+	tween.parallel().tween_property(
+		%BottomPanels,
+		"position:y",
+		Game.get_screen_rect().end.y - %PanelLayoutButtons.size.y - %BottomPanels.size.y,
+		LAYOUT_MODAL_SLIDE_DURATION
+	)
+
+	$StateChart.set_expression_property("slide_duration", LAYOUT_MODAL_SLIDE_DURATION)
+	$StateChart.send_event("open")
+
+
+func _on_modal_layout_state_exited() -> void:
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		%PanelLayoutButtons,
+		"position:y",
+		Game.get_screen_rect().end.y,
+		LAYOUT_MODAL_SLIDE_DURATION
+	)
+	tween.parallel().tween_property(
+		%BottomPanels,
+		"position:y",
+		Game.get_screen_rect().end.y - %BottomPanels.size.y,
+		LAYOUT_MODAL_SLIDE_DURATION
+	)
+
+	$StateChart.set_expression_property("slide_duration", LAYOUT_MODAL_SLIDE_DURATION)
+
+
+func _on_modal_completion_state_entered() -> void:
+	const target_y := 150.0
+	const initial_background_color := Color(1.0, 1.0, 1.0, 0.0)
+	const target_background_color := Color(1.0, 1.0, 1.0, 0.5)
+	%ModalBarrier.color = initial_background_color
+	%CompletionNextButton.disabled = not level_data.has_next_suggested_level()
+	%CompletionPanel.show()
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		%CompletionPanel, "position:y", target_y, COMPLETION_MODAL_SLIDE_DURATION
+	)
+	tween.parallel().tween_property(
+		%ModalBarrier, "color", target_background_color, COMPLETION_MODAL_SLIDE_DURATION
+	)
+
+	$StateChart.set_expression_property("slide_duration", COMPLETION_MODAL_SLIDE_DURATION)
+	$StateChart.send_event("open")
+
+
+func _on_modal_completion_state_exited() -> void:
+	%CompletionPanel.position.y = -%CompletionPanel.size.y
+	$StateChart.set_expression_property("slide_duration", 0.0)

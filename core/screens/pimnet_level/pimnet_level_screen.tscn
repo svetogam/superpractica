@@ -1,25 +1,20 @@
-[gd_scene load_steps=44 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=39 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_8gxre"]
-[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_26ecp"]
 [ext_resource type="Script" uid="uid://cuo7t03vwrjdk" path="res://core/screens/pimnet_level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_32jhs"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_qgiri"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_sypxk"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="7_7dceb"]
-[ext_resource type="Script" uid="uid://djbekahesmdhu" path="res://core/screens/pimnet_level/pimnet/states/normal.gd" id="7_s3qtb"]
 [ext_resource type="Script" uid="uid://dy8a4msxtw51j" path="res://general/draggable_point.gd" id="7_yv63t"]
 [ext_resource type="Script" uid="uid://dw2plvxxj4uqg" path="res://core/screens/pimnet_level/pimnet/overlay/plan_panel.gd" id="8_8tc01"]
 [ext_resource type="Texture2D" uid="uid://cxb2b8icrkk67" path="res://core/screens/pimnet_level/graphics/cubes_background.png" id="8_apsv0"]
 [ext_resource type="Script" uid="uid://bjqliagq15odq" path="res://core/systems/info_signals/info_signaler.gd" id="8_l0rup"]
-[ext_resource type="Script" uid="uid://d2h55l15kp1ie" path="res://core/screens/pimnet_level/pimnet/states/system.gd" id="8_pb15e"]
-[ext_resource type="Script" uid="uid://bah5ey0ca2um6" path="res://core/screens/pimnet_level/pimnet/states/plan.gd" id="10_7acvs"]
 [ext_resource type="Script" uid="uid://c7d1wrkyblrs0" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/hinted_memo_slot_panel.gd" id="10_cm7g1"]
-[ext_resource type="Script" uid="uid://ch8ktd6bb8vdi" path="res://core/screens/pimnet_level/pimnet/states/edit_panels.gd" id="11_vrqbd"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot/memo_slot.tscn" id="11_worie"]
-[ext_resource type="Script" uid="uid://bp32f0e8p0gul" path="res://core/screens/pimnet_level/pimnet/states/completion.gd" id="13_pjab3"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="12_v58bf"]
 [ext_resource type="Script" uid="uid://b444bcgssjaoq" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_memo_slots_panel.gd" id="14_d6muc"]
 [ext_resource type="Script" uid="uid://b6dmkt4tbg426" path="res://core/screens/pimnet_level/pimnet/overlay/goal_panels/solution_verification_panel.gd" id="14_l20jg"]
 [ext_resource type="Texture2D" uid="uid://d2ridubmmqp1v" path="res://core/screens/pimnet_level/graphics/icons/undo_icon.svg" id="15_3kdyd"]
@@ -53,57 +48,57 @@ script = ExtResource("1_o01nh")
 script = ExtResource("2_8gxre")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="LevelScreenState" type="Node" parent="StateChart"]
+[node name="Level" type="Node" parent="StateChart"]
 script = ExtResource("3_32jhs")
 initial_state = NodePath("Empty")
 
-[node name="Empty" type="Node" parent="StateChart/LevelScreenState"]
+[node name="Empty" type="Node" parent="StateChart/Level"]
 script = ExtResource("4_qgiri")
 
-[node name="ToLoaded" type="Node" parent="StateChart/LevelScreenState/Empty"]
+[node name="ToLoaded" type="Node" parent="StateChart/Level/Empty"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Loaded")
 event = &"load"
 delay_in_seconds = "0.0"
 
-[node name="Loaded" type="Node" parent="StateChart/LevelScreenState"]
+[node name="Loaded" type="Node" parent="StateChart/Level"]
 script = ExtResource("3_32jhs")
 initial_state = NodePath("Playing")
 
-[node name="Playing" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+[node name="Playing" type="Node" parent="StateChart/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
-[node name="PlayingToVerifying" type="Node" parent="StateChart/LevelScreenState/Loaded/Playing"]
+[node name="ToVerifying" type="Node" parent="StateChart/Level/Loaded/Playing"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Verifying")
 event = &"start_verification"
 delay_in_seconds = "0.0"
 
-[node name="PlayingToCompleted" type="Node" parent="StateChart/LevelScreenState/Loaded/Playing"]
+[node name="ToCompleted" type="Node" parent="StateChart/Level/Loaded/Playing"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Completed")
 event = &"complete"
 delay_in_seconds = "0.0"
 
-[node name="Verifying" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+[node name="Verifying" type="Node" parent="StateChart/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
-[node name="VerifyingToPlaying" type="Node" parent="StateChart/LevelScreenState/Loaded/Verifying"]
+[node name="ToPlaying" type="Node" parent="StateChart/Level/Loaded/Verifying"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Playing")
 event = &"stop_verification"
 delay_in_seconds = "0.0"
 
-[node name="VerifyingToCompleted" type="Node" parent="StateChart/LevelScreenState/Loaded/Verifying"]
+[node name="ToCompleted" type="Node" parent="StateChart/Level/Loaded/Verifying"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Completed")
 event = &"complete"
 delay_in_seconds = "0.0"
 
-[node name="Completed" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+[node name="Completed" type="Node" parent="StateChart/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
-[node name="ToEmpty" type="Node" parent="StateChart/LevelScreenState/Loaded"]
+[node name="ToEmpty" type="Node" parent="StateChart/Level/Loaded"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Empty")
 event = &"unload"
@@ -184,6 +179,7 @@ stretch_mode = 5
 
 [node name="Overlay" type="Control" parent="Pimnet/OverlayLayer"]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -194,27 +190,126 @@ mouse_filter = 2
 theme = ExtResource("7_7dceb")
 script = ExtResource("3_7rkio")
 
-[node name="OverlayStateMachine" type="Node" parent="Pimnet/OverlayLayer/Overlay" node_paths=PackedStringArray("_initial_state")]
-unique_name_in_owner = true
-process_mode = 3
-script = ExtResource("2_26ecp")
-_initial_state = NodePath("Normal")
-_auto_activate = false
+[node name="StateChart" type="Node" parent="Pimnet/OverlayLayer/Overlay"]
+script = ExtResource("2_8gxre")
+initial_expression_properties = {
+&"slide_duration": 1.0
+}
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Normal" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
-script = ExtResource("7_s3qtb")
+[node name="States" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart"]
+script = ExtResource("12_v58bf")
 
-[node name="System" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
-script = ExtResource("8_pb15e")
+[node name="Gui" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States"]
+script = ExtResource("3_32jhs")
+initial_state = NodePath("Normal")
 
-[node name="Plan" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
-script = ExtResource("10_7acvs")
+[node name="Normal" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_qgiri")
 
-[node name="EditPanels" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
-script = ExtResource("11_vrqbd")
+[node name="ToOpening" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Normal"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Opening")
+event = &"open"
+delay_in_seconds = "0.0"
 
-[node name="Completion" type="Node" parent="Pimnet/OverlayLayer/Overlay/OverlayStateMachine"]
-script = ExtResource("13_pjab3")
+[node name="Opening" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_qgiri")
+
+[node name="ToModal" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Opening"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Modal")
+delay_in_seconds = "slide_duration"
+
+[node name="ToClosing" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Opening"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Closing")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Modal" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_qgiri")
+
+[node name="ToClosing" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Modal"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Closing")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Closing" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_qgiri")
+
+[node name="ToNormal" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Closing"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Normal")
+delay_in_seconds = "slide_duration"
+
+[node name="Modal" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States"]
+script = ExtResource("3_32jhs")
+initial_state = NodePath("None")
+
+[node name="None" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_qgiri")
+
+[node name="ToSystem" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/None"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../System")
+event = &"open_system_modal"
+delay_in_seconds = "0.0"
+
+[node name="ToPlan" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/None"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Plan")
+event = &"open_plan_modal"
+delay_in_seconds = "0.0"
+
+[node name="ToLayout" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/None"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Layout")
+event = &"open_layout_modal"
+delay_in_seconds = "0.0"
+
+[node name="ToCompletion" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/None"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Completion")
+event = &"open_completion_modal"
+delay_in_seconds = "0.0"
+
+[node name="System" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_qgiri")
+
+[node name="ToNone" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/System"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../None")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Plan" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_qgiri")
+
+[node name="ToNone" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Plan"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../None")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Layout" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_qgiri")
+
+[node name="ToNone" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Layout"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../None")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Completion" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_qgiri")
+
+[node name="ToNone" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Completion"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../None")
+event = &"close"
+delay_in_seconds = "0.0"
 
 [node name="TopLeft" type="Control" parent="Pimnet/OverlayLayer/Overlay"]
 custom_minimum_size = Vector2(250, 50)
@@ -1039,8 +1134,21 @@ script = ExtResource("37_l0rup")
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
 
-[connection signal="state_entered" from="StateChart/LevelScreenState/Empty" to="." method="_on_empty_state_entered"]
-[connection signal="state_entered" from="StateChart/LevelScreenState/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
-[connection signal="state_exited" from="StateChart/LevelScreenState/Loaded/Verifying" to="." method="_on_verifying_state_exited"]
-[connection signal="taken" from="StateChart/LevelScreenState/Loaded/Verifying/VerifyingToPlaying" to="." method="_on_verifying_to_playing_taken"]
-[connection signal="state_entered" from="StateChart/LevelScreenState/Loaded/Completed" to="." method="_on_completed_state_entered"]
+[connection signal="state_entered" from="StateChart/Level/Empty" to="." method="_on_empty_state_entered"]
+[connection signal="state_entered" from="StateChart/Level/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
+[connection signal="state_exited" from="StateChart/Level/Loaded/Verifying" to="." method="_on_verifying_state_exited"]
+[connection signal="taken" from="StateChart/Level/Loaded/Verifying/ToPlaying" to="." method="_on_verifying_to_playing_taken"]
+[connection signal="state_entered" from="StateChart/Level/Loaded/Completed" to="." method="_on_completed_state_entered"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_normal_state_entered"]
+[connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_normal_state_exited"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Opening" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_opening_state_entered"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Modal" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_modal_state_entered"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Closing" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_closing_state_entered"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/System" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_system_state_entered"]
+[connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/System" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_system_state_exited"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Plan" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_plan_state_entered"]
+[connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Plan" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_plan_state_exited"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Layout" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_layout_state_entered"]
+[connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Layout" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_layout_state_exited"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Completion" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_completion_state_entered"]
+[connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Completion" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_completion_state_exited"]

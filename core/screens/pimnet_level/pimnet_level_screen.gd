@@ -32,12 +32,15 @@ func _ready() -> void:
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
 
 	# Connect signals
-	verifier.started.connect(_on_verifier_started)
-	verifier.completed.connect(_on_verifier_completed)
+	verifier.started.connect(updated.emit)
+	verifier.started.connect($StateChart.send_event.bind("start_verification"))
+	verifier.completed.connect(updated.emit)
+	verifier.completed.connect($StateChart.send_event.bind("stop_verification"))
 	actions_completed.connect(updated.emit)
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD, "updated", updated.emit)
-	CSConnector.with(self).connect_signal(Game.AGENT_MEMO_SLOT,
-			"memo_changed", updated.emit.unbind(1))
+	CSConnector.with(self).connect_signal(
+		Game.AGENT_MEMO_SLOT, "memo_changed", updated.emit.unbind(1)
+	)
 
 	# Consistently start with empty state
 	pimnet.setup(EMPTY_PIMNET_SETUP)
@@ -72,13 +75,14 @@ func load_level(p_level_data: LevelResource) -> void:
 		add_child(program)
 		program.task_completed.connect(updated.emit.unbind(1))
 		program.level_completed.connect(updated.emit)
-		program.level_completed.connect(_on_program_level_completed)
+		program.level_completed.connect($StateChart.send_event.bind("complete"))
 		program.reset_changed.connect(_update_reversion_buttons)
 		program.reset_called.connect(_do_queued_actions)
 		program.set_custom_reset(_default_reset)
 		program.run()
 
-	$StateChart.send_event("load")
+	# Not immediate due to potential for calling from _ready()
+	$StateChart.send_event.call_deferred("load")
 
 
 func unload_level() -> void:
@@ -101,20 +105,6 @@ func unload_level() -> void:
 
 	level_data = null
 	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
-
-
-func _on_program_level_completed() -> void:
-	$StateChart.send_event("complete")
-
-
-func _on_verifier_started() -> void:
-	updated.emit()
-	$StateChart.send_event("start_verification")
-
-
-func _on_verifier_completed() -> void:
-	updated.emit()
-	$StateChart.send_event("stop_verification")
 
 
 func _on_reset_button_pressed() -> void:
@@ -144,10 +134,6 @@ func _update_reversion_buttons() -> void:
 	)
 
 
-#==========================================================
-# State Behavior
-#==========================================================
-
 func _on_empty_state_entered() -> void:
 	if pimnet.overlay.goal_panel != null:
 		pimnet.overlay.goal_panel.reset()
@@ -173,4 +159,4 @@ func _on_verifying_to_playing_taken() -> void:
 func _on_completed_state_entered() -> void:
 	pimnet.overlay.goal_panel.succeed()
 	Game.progress_data.record_level_completion(level_data.id)
-	%OverlayStateMachine.change_state("Completion")
+	%Overlay/StateChart.send_event("open_completion_modal")
