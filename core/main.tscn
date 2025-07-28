@@ -34,7 +34,7 @@ initial_state = NodePath("MainMenu")
 [node name="MainMenu" type="Node" parent="StateChart/Screens/Current"]
 script = ExtResource("4_xhu5d")
 
-[node name="MainMenuToLevelSelect" type="Node" parent="StateChart/Screens/Current/MainMenu"]
+[node name="ToLevelSelect" type="Node" parent="StateChart/Screens/Current/MainMenu"]
 script = ExtResource("5_xhu5d")
 to = NodePath("../../LevelSelect")
 event = &"enter_level_select"
@@ -58,7 +58,7 @@ delay_in_seconds = "0.0"
 [node name="PimnetLevel" type="Node" parent="StateChart/Screens/Current"]
 script = ExtResource("4_xhu5d")
 
-[node name="PimnetLevelToLevelSelect" type="Node" parent="StateChart/Screens/Current/PimnetLevel"]
+[node name="ToLevelSelect" type="Node" parent="StateChart/Screens/Current/PimnetLevel"]
 script = ExtResource("5_xhu5d")
 to = NodePath("../../LevelSelect")
 event = &"enter_level_select"
@@ -214,10 +214,10 @@ render_target_update_mode = 0
 
 [connection signal="state_entered" from="StateChart/Screens/Current/MainMenu" to="." method="_on_main_menu_state_entered"]
 [connection signal="state_exited" from="StateChart/Screens/Current/MainMenu" to="." method="_on_main_menu_state_exited"]
-[connection signal="taken" from="StateChart/Screens/Current/MainMenu/MainMenuToLevelSelect" to="." method="_on_main_menu_to_level_select_taken"]
+[connection signal="taken" from="StateChart/Screens/Current/MainMenu/ToLevelSelect" to="." method="_on_main_menu_to_level_select_taken"]
 [connection signal="state_entered" from="StateChart/Screens/Current/LevelSelect" to="." method="_on_level_select_state_entered"]
 [connection signal="state_entered" from="StateChart/Screens/Current/PimnetLevel" to="." method="_on_pimnet_level_state_entered"]
-[connection signal="taken" from="StateChart/Screens/Current/PimnetLevel/PimnetLevelToLevelSelect" to="." method="_on_pimnet_level_to_level_select_taken"]
+[connection signal="taken" from="StateChart/Screens/Current/PimnetLevel/ToLevelSelect" to="." method="_on_pimnet_level_to_level_select_taken"]
 [connection signal="state_entered" from="StateChart/Screens/MainMenu/Prepared" to="." method="_on_main_menu_prepared_state_entered"]
 [connection signal="state_exited" from="StateChart/Screens/MainMenu/Prepared" to="." method="_on_main_menu_prepared_state_exited"]
 [connection signal="state_entered" from="StateChart/Screens/LevelSelect/Prepared" to="." method="_on_level_select_prepared_state_entered"]
