@@ -1,21 +1,43 @@
 [gd_scene load_steps=6 format=3 uid="uid://l24bgh2wr4n1"]
 
 [ext_resource type="Script" uid="uid://cqwhmuhk4f5ry" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_a/program.gd" id="1_asa1g"]
-[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_0hos4"]
-[ext_resource type="Script" uid="uid://dyyt6qaqd1lyp" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_a/state_data.gd" id="3_chblo"]
-[ext_resource type="Script" uid="uid://cnd3u8e4r7rm5" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_a/states/put_units.gd" id="4_8mbn5"]
-[ext_resource type="Script" uid="uid://dw4scp5dpyubt" path="res://content/packs/basic_addition/levels/grid_counting/grid_counting_a/states/drag_memo.gd" id="5_mj7a2"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_am085"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_dxl1r"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_p5k2f"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_2rhlt"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_asa1g")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_0hos4")
-SetupData = ExtResource("3_chblo")
-_auto_activate = false
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_am085")
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="PutUnits" type="Node" parent="StateMachine"]
-script = ExtResource("4_8mbn5")
+[node name="States" type="Node" parent="StateChart"]
+script = ExtResource("3_dxl1r")
+initial_state = NodePath("PutUnits")
 
-[node name="DragMemo" type="Node" parent="StateMachine"]
-script = ExtResource("5_mj7a2")
+[node name="PutUnits" type="Node" parent="StateChart/States"]
+script = ExtResource("4_p5k2f")
+
+[node name="ToDragMemo" type="Node" parent="StateChart/States/PutUnits"]
+script = ExtResource("5_2rhlt")
+to = NodePath("../../DragMemo")
+event = &"done"
+delay_in_seconds = "0.0"
+
+[node name="DragMemo" type="Node" parent="StateChart/States"]
+script = ExtResource("4_p5k2f")
+
+[node name="ToCompleted" type="Node" parent="StateChart/States/DragMemo"]
+script = ExtResource("5_2rhlt")
+to = NodePath("../../Completed")
+event = &"done"
+delay_in_seconds = "0.0"
+
+[node name="Completed" type="Node" parent="StateChart/States"]
+script = ExtResource("4_p5k2f")
+
+[connection signal="state_entered" from="StateChart/States/PutUnits" to="." method="_on_put_units_state_entered"]
+[connection signal="state_exited" from="StateChart/States/PutUnits" to="." method="_on_put_units_state_exited"]
+[connection signal="state_entered" from="StateChart/States/DragMemo" to="." method="_on_drag_memo_state_entered"]
