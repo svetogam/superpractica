@@ -238,6 +238,7 @@ func _on_modal_system_state_exited() -> void:
 
 
 func _on_modal_plan_state_entered() -> void:
+	get_tree().paused = true
 	%ModalBarrier.color = REGULAR_MODAL_BACKGROUND_COLOR
 	%PlanPanel.show()
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -248,6 +249,7 @@ func _on_modal_plan_state_entered() -> void:
 
 
 func _on_modal_plan_state_exited() -> void:
+	get_tree().paused = false
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(
 		%PlanPanel, "position:x", -%PlanPanel.size.x, PLAN_MODAL_SLIDE_DURATION
@@ -257,6 +259,7 @@ func _on_modal_plan_state_exited() -> void:
 
 
 func _on_modal_layout_state_entered() -> void:
+	get_tree().paused = true
 	%ModalBarrier.color = REGULAR_MODAL_BACKGROUND_COLOR
 	%PanelLayoutButtons.show()
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -278,6 +281,7 @@ func _on_modal_layout_state_entered() -> void:
 
 
 func _on_modal_layout_state_exited() -> void:
+	get_tree().paused = false
 	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(
 		%PanelLayoutButtons,
