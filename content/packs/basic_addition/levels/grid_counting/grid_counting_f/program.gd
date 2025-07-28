@@ -18,7 +18,7 @@ func _setup_vars() -> void:
 	object_count = level.level_data.program_vars.object_count
 
 
-func _start() -> void:
+func _ready() -> void:
 	super()
 
 	pim = pimnet.get_pim()

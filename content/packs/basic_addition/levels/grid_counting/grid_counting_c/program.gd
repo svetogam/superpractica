@@ -17,7 +17,7 @@ func _setup_vars() -> void:
 	addend_2 = level.level_data.program_vars.new_addend_2()
 
 
-func _start() -> void:
+func _ready() -> void:
 	super()
 
 	pim = pimnet.get_pim()

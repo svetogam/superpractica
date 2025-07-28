@@ -20,7 +20,7 @@ func _setup_vars() -> void:
 		intermediate_goal = IntegerMath.get_tens_digit(count) * 10
 
 
-func _start() -> void:
+func _ready() -> void:
 	super()
 
 	pim = pimnet.get_pim()

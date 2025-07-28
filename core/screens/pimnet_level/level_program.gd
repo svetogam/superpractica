@@ -3,17 +3,14 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 class_name LevelProgram
-extends Mode
+extends Node
 
 signal task_completed(task_name)
 signal level_completed
 signal reset_called
 signal reset_changed
 
-var level: Level:
-	get:
-		assert(_target != null)
-		return _target
+var level: Level  # This should be set by the level
 var pimnet: Pimnet:
 	get:
 		assert(level.pimnet != null)
@@ -40,7 +37,7 @@ func _init() -> void:
 	add_to_group("level_programs")
 
 
-func _start() -> void:
+func _ready() -> void:
 	assert(level.level_data != null)
 
 	if level.level_data.program_vars != null:
@@ -74,7 +71,7 @@ func complete_task() -> void:
 
 func complete_level() -> void:
 	level_completed.emit()
-	stop()
+	queue_free()
 
 
 func reset() -> void:

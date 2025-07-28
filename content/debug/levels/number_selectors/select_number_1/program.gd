@@ -5,7 +5,7 @@
 extends LevelProgram
 
 
-func _start() -> void:
+func _ready() -> void:
 	super()
 
 	goal_panel.slot.set_memo_as_hint(IntegerMemo, 8)

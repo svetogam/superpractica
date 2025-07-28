@@ -72,14 +72,14 @@ func load_level(p_level_data: LevelResource) -> void:
 	# Set up and run program
 	if level_data.program != null:
 		program = level_data.program.instantiate()
-		add_child(program)
+		program.level = self
 		program.task_completed.connect(updated.emit.unbind(1))
 		program.level_completed.connect(updated.emit)
 		program.level_completed.connect($StateChart.send_event.bind("complete"))
 		program.reset_changed.connect(_update_reversion_buttons)
 		program.reset_called.connect(_do_queued_actions)
 		program.set_custom_reset(_default_reset)
-		program.run()
+		add_child(program)
 
 	# Not immediate due to potential for calling from _ready()
 	$StateChart.send_event.call_deferred("load")
@@ -99,9 +99,8 @@ func unload_level() -> void:
 
 	# Unload program
 	if program != null:
-		if program.is_running():
-			program.stop()
-		program.free()
+		program.queue_free()
+		program = null
 
 	level_data = null
 	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
