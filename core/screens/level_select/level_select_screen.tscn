@@ -1,16 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7261ypnucte8"]
+[gd_scene load_steps=16 format=3 uid="uid://c7261ypnucte8"]
 
 [ext_resource type="Script" uid="uid://d1r30dgeh6o0l" path="res://core/screens/level_select/level_select_screen.gd" id="1_nn3bt"]
 [ext_resource type="Theme" uid="uid://jcpo8pxbskbt" path="res://core/screens/level_select/theme/level_select_theme.tres" id="1_y5cmv"]
-[ext_resource type="Script" uid="uid://0kj2kxfkc6nd" path="res://general/state_machine/state_machine.gd" id="2_e1lo5"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_gkkbi"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_1tjgp"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_2y2ge"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_fmwaj"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="8_4va4l"]
 [ext_resource type="Script" uid="uid://ban35fvtbwsus" path="res://core/screens/level_select/level_select_overlay.gd" id="12_1xipj"]
-[ext_resource type="Script" uid="uid://bsp5pt3afvyle" path="res://core/screens/level_select/overlay_states/normal.gd" id="12_4va4l"]
 [ext_resource type="Texture2D" uid="uid://dpqnh6g4wvxda" path="res://core/screens/level_select/graphics/icons/up_topic_icon.svg" id="12_nortw"]
-[ext_resource type="Script" uid="uid://ccu2m0ynix34y" path="res://core/screens/level_select/overlay_states/system.gd" id="13_1xipj"]
 [ext_resource type="Texture2D" uid="uid://dgsvufp81n7po" path="res://core/globals/graphics/button_icons/menu_icon.svg" id="13_6jxcg"]
 [ext_resource type="PackedScene" uid="uid://dl36mi4jimfwi" path="res://core/screens/level_select/topic_map_container.tscn" id="13_nortw"]
 [ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/globals/graphics/button_icons/settings_icon.svg" id="14_54uqb"]
@@ -153,18 +151,78 @@ mouse_filter = 2
 theme = ExtResource("1_y5cmv")
 script = ExtResource("12_1xipj")
 
-[node name="OverlayStateMachine" type="Node" parent="OverlayLayer/Overlay" node_paths=PackedStringArray("_initial_state")]
-unique_name_in_owner = true
-script = ExtResource("2_e1lo5")
-_initial_state = NodePath("Normal")
-_auto_activate = false
-metadata/_custom_type_script = "uid://0kj2kxfkc6nd"
+[node name="StateChart" type="Node" parent="OverlayLayer/Overlay"]
+script = ExtResource("2_gkkbi")
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Normal" type="Node" parent="OverlayLayer/Overlay/OverlayStateMachine"]
-script = ExtResource("12_4va4l")
+[node name="States" type="Node" parent="OverlayLayer/Overlay/StateChart"]
+script = ExtResource("8_4va4l")
 
-[node name="System" type="Node" parent="OverlayLayer/Overlay/OverlayStateMachine"]
-script = ExtResource("13_1xipj")
+[node name="Gui" type="Node" parent="OverlayLayer/Overlay/StateChart/States"]
+script = ExtResource("3_1tjgp")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToOpening" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui/Normal"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../Opening")
+event = &"open"
+delay_in_seconds = "0.0"
+
+[node name="Opening" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToModal" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui/Opening"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../Modal")
+delay_in_seconds = "slide_duration"
+
+[node name="ToClosing" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui/Opening"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../Closing")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Modal" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToClosing" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui/Modal"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../Closing")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Closing" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToNormal" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Gui/Closing"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../Normal")
+delay_in_seconds = "slide_duration"
+
+[node name="Modal" type="Node" parent="OverlayLayer/Overlay/StateChart/States"]
+script = ExtResource("3_1tjgp")
+initial_state = NodePath("None")
+
+[node name="None" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToSystem" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Modal/None"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../System")
+event = &"open_system_modal"
+delay_in_seconds = "0.0"
+
+[node name="System" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_2y2ge")
+
+[node name="ToNone" type="Node" parent="OverlayLayer/Overlay/StateChart/States/Modal/System"]
+script = ExtResource("5_fmwaj")
+to = NodePath("../../None")
+event = &"close"
+delay_in_seconds = "0.0"
 
 [node name="BackButton" type="Button" parent="OverlayLayer/Overlay"]
 unique_name_in_owner = true
@@ -293,3 +351,9 @@ unique_name_in_owner = true
 [connection signal="state_entered" from="StateChart/Camera/Node/ZoomingInToLevel" to="." method="_on_node_zooming_in_to_level_state_entered"]
 [connection signal="state_entered" from="StateChart/Camera/Node/ZoomingOut" to="." method="_on_node_zooming_out_state_entered"]
 [connection signal="state_exited" from="StateChart/Camera/Node/ZoomingOut" to="." method="_on_node_zooming_out_state_exited"]
+[connection signal="state_entered" from="OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="OverlayLayer/Overlay" method="_on_gui_normal_state_entered"]
+[connection signal="state_exited" from="OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="OverlayLayer/Overlay" method="_on_gui_normal_state_exited"]
+[connection signal="state_entered" from="OverlayLayer/Overlay/StateChart/States/Gui/Opening" to="OverlayLayer/Overlay" method="_on_gui_opening_state_entered"]
+[connection signal="state_entered" from="OverlayLayer/Overlay/StateChart/States/Gui/Closing" to="OverlayLayer/Overlay" method="_on_gui_closing_state_entered"]
+[connection signal="state_entered" from="OverlayLayer/Overlay/StateChart/States/Modal/System" to="OverlayLayer/Overlay" method="_on_modal_system_state_entered"]
+[connection signal="state_exited" from="OverlayLayer/Overlay/StateChart/States/Modal/System" to="OverlayLayer/Overlay" method="_on_modal_system_state_exited"]
