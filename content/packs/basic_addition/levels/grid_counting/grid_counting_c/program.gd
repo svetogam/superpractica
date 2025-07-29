@@ -12,9 +12,16 @@ var output_program: PimProgram
 var field_program: FieldProgram
 
 
-func _setup_vars() -> void:
-	addend_1 = level.level_data.program_vars.new_addend_1()
-	addend_2 = level.level_data.program_vars.new_addend_2()
+func _setup_vars(level_vars: Dictionary) -> void:
+	if level_vars.has("addend_1"):
+		addend_1 = level_vars["addend_1"]
+	else:
+		addend_1 = randi_range(level_vars["min_addend_1"], level_vars["max_addend_1"])
+
+	if level_vars.has("addend_2"):
+		addend_2 = level_vars["addend_2"]
+	else:
+		addend_2 = randi_range(level_vars["min_addend_2"], level_vars["max_addend_2"])
 
 
 func _ready() -> void:

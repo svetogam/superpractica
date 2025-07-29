@@ -11,8 +11,8 @@ var output_program: PimProgram
 var field_program: FieldProgram
 
 
-func _setup_vars() -> void:
-	number = level.level_data.program_vars.new_number()
+func _setup_vars(level_vars: Dictionary) -> void:
+	number = level_vars["number"]
 
 
 func _ready() -> void:

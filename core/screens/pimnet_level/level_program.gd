@@ -40,9 +40,6 @@ func _init() -> void:
 func _ready() -> void:
 	assert(level.level_data != null)
 
-	if level.level_data.program_vars != null:
-		_setup_vars()
-
 	if level.level_data.program_plan != null:
 		var replacements := _get_instruction_replacements()
 		level.level_data.program_plan.set_instruction_replacements(replacements)
@@ -50,7 +47,7 @@ func _ready() -> void:
 
 
 # Virtual
-func _setup_vars() -> void:
+func _setup_vars(_level_vars: Dictionary) -> void:
 	pass
 
 

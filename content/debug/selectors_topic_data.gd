@@ -27,7 +27,7 @@ static var topic = TopicResource.new(
 			# Program
 			preload("levels/number_selectors/select_number_1/program.tscn"),
 			# Program Vars
-			null,
+			{},
 			# Program Plan
 			preload("levels/number_selectors/select_number_1/plan/plan_data.tres"),
 		),
@@ -45,7 +45,7 @@ static var topic = TopicResource.new(
 			# Program
 			preload("levels/number_selectors/select_number_2/program.tscn"),
 			# Program Vars
-			null,
+			{},
 			# Program Plan
 			preload("levels/number_selectors/select_number_2/plan/plan_data.tres"),
 		),

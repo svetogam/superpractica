@@ -11,8 +11,8 @@ var output_program: PimProgram
 var field_program: FieldProgram
 
 
-func _setup_vars() -> void:
-	count = level.level_data.program_vars.new_count()
+func _setup_vars(level_vars: Dictionary) -> void:
+	count = level_vars["count"]
 
 
 func _ready() -> void:

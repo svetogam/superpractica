@@ -27,7 +27,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_d/program.tscn"),
 			# Program Vars
-			preload("grid_counting_d/variants/0_1.tres"),
+			{
+				"number": 5,
+			},
 			# Program Plan
 			preload("grid_counting_d/plan/plan_data.tres")
 		),
@@ -45,7 +47,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_e/program.tscn"),
 			# Program Vars
-			preload("grid_counting_e/variants/0_2.tres"),
+			{
+				"count": 1,
+			},
 			# Program Plan
 			preload("grid_counting_e/plan/plan_data.tres")
 		),
@@ -65,7 +69,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_a/program.tscn"),
 			# Program Vars
-			preload("grid_counting_a/variants/1_1.tres"),
+			{
+				"count": 3,
+			},
 			# Program Plan
 			preload("grid_counting_a/plan/plan_data.tres")
 		),
@@ -83,7 +89,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_a/program.tscn"),
 			# Program Vars
-			preload("grid_counting_a/variants/1_2.tres"),
+			{
+				"count": 6,
+			},
 			# Program Plan
 			preload("grid_counting_a/plan/plan_data.tres")
 		),
@@ -101,7 +109,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
-			preload("grid_counting_b/variants/1_3.tres"),
+			{
+				"count": 30,
+			},
 			# Program Plan
 			preload("grid_counting_b/plan/plan_data.tres")
 		),
@@ -119,7 +129,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
-			preload("grid_counting_b/variants/1_4.tres"),
+			{
+				"count": 22,
+			},
 			# Program Plan
 			preload("grid_counting_b/plan/plan_data.tres")
 		),
@@ -137,7 +149,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
-			preload("grid_counting_b/variants/1_5.tres"),
+			{
+				"count": 54,
+			},
 			# Program Plan
 			preload("grid_counting_b/plan/plan_data.tres")
 		),
@@ -155,7 +169,9 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
-			preload("grid_counting_b/variants/1_6.tres"),
+			{
+				"count": 100,
+			},
 			# Program Plan
 			preload("grid_counting_b/plan/plan_data.tres")
 		),
@@ -173,7 +189,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_b/program.tscn"),
 			# Program Vars
-			preload("grid_counting_b/variants/1_random.tres"),
+			{
+				"min_count": 1,
+				"max_count": 50,
+			},
 			# Program Plan
 			preload("grid_counting_b/plan/plan_data.tres")
 		),
@@ -193,7 +212,15 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
-			preload("grid_counting_f/variants/2_1.tres"),
+			{
+				"sum": 7,
+				"object_count": 4,
+				"allowed_objects": [
+					"unit",
+					"two_block",
+					"ten_block",
+				]
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -210,7 +237,16 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
-			preload("grid_counting_f/variants/2_2.tres"),
+			{
+				"sum": 9,
+				"object_count": 3,
+				"allowed_objects": [
+					"unit",
+					"two_block",
+					"three_block",
+					"ten_block",
+				]
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -227,7 +263,17 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
-			preload("grid_counting_f/variants/2_3.tres"),
+			{
+				"sum": 30,
+				"object_count": 5,
+				"allowed_objects": [
+					"unit",
+					"two_block",
+					"three_block",
+					"four_block",
+					"ten_block",
+				]
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -244,7 +290,18 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
-			preload("grid_counting_f/variants/2_4.tres"),
+			{
+				"sum": 19,
+				"object_count": 3,
+				"allowed_objects": [
+					"unit",
+					"two_block",
+					"three_block",
+					"four_block",
+					"five_block",
+					"ten_block",
+				]
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -261,7 +318,19 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
-			preload("grid_counting_f/variants/2_5.tres"),
+			{
+				"sum": 50,
+				"object_count": 3,
+				"allowed_objects": [
+					"unit",
+					"two_block",
+					"three_block",
+					"four_block",
+					"five_block",
+					"ten_block",
+					"twenty_block",
+				]
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -278,7 +347,21 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
-			preload("grid_counting_f/variants/2_6.tres"),
+			{
+				"sum": 72,
+				"object_count": 3,
+				"allowed_objects": [
+					"unit",
+					"two_block",
+					"three_block",
+					"four_block",
+					"five_block",
+					"ten_block",
+					"twenty_block",
+					"thirty_block",
+					"forty_block",
+				]
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -295,7 +378,22 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_f/program.tscn"),
 			# Program Vars
-			preload("grid_counting_f/variants/2_7.tres"),
+			{
+				"sum": 99,
+				"object_count": 4,
+				"allowed_objects": [
+					"unit",
+					"two_block",
+					"three_block",
+					"four_block",
+					"five_block",
+					"ten_block",
+					"twenty_block",
+					"thirty_block",
+					"forty_block",
+					"fifty_block",
+				]
+			},
 			# Program Plan
 		),
 
@@ -314,7 +412,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
-			preload("grid_counting_c/variants/3_1.tres"),
+			{
+				"addend_1": 2,
+				"addend_2": 1,
+			},
 			# Program Plan
 			null
 		),
@@ -332,7 +433,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
-			preload("grid_counting_c/variants/3_2.tres"),
+			{
+				"addend_1": 4,
+				"addend_2": 4,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -349,7 +453,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
-			preload("grid_counting_c/variants/3_3.tres"),
+			{
+				"addend_1": 3,
+				"addend_2": 8,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -366,7 +473,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
-			preload("grid_counting_c/variants/3_4.tres"),
+			{
+				"addend_1": 10,
+				"addend_2": 6,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -383,7 +493,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
-			preload("grid_counting_c/variants/3_5.tres"),
+			{
+				"addend_1": 2,
+				"addend_2": 39,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -400,7 +513,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_c/program.tscn"),
 			# Program Vars
-			preload("grid_counting_c/variants/3_6.tres"),
+			{
+				"addend_1": 1,
+				"addend_2": 0,
+			},
 			# Program Plan
 		),
 
@@ -419,7 +535,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_g/program.tscn"),
 			# Program Vars
-			preload("grid_counting_g/variants/4_1.tres"),
+			{
+				"addend_1": 7,
+				"addend_2": 8,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -436,7 +555,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_g/program.tscn"),
 			# Program Vars
-			preload("grid_counting_g/variants/4_2.tres"),
+			{
+				"addend_1": 20,
+				"addend_2": 30,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -453,7 +575,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_g/program.tscn"),
 			# Program Vars
-			preload("grid_counting_g/variants/4_3.tres"),
+			{
+				"addend_1": 19,
+				"addend_2": 9,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -470,7 +595,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_g/program.tscn"),
 			# Program Vars
-			preload("grid_counting_g/variants/4_4.tres"),
+			{
+				"addend_1": 35,
+				"addend_2": 30,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -487,7 +615,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_g/program.tscn"),
 			# Program Vars
-			preload("grid_counting_g/variants/4_5.tres"),
+			{
+				"addend_1": 22,
+				"addend_2": 29,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -504,7 +635,10 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_g/program.tscn"),
 			# Program Vars
-			preload("grid_counting_g/variants/4_6.tres"),
+			{
+				"addend_1": 37,
+				"addend_2": 53,
+			},
 			# Program Plan
 		),
 		LevelResource.new(
@@ -521,7 +655,12 @@ static var topic = TopicResource.new(
 			# Program
 			preload("grid_counting_g/program.tscn"),
 			# Program Vars
-			preload("grid_counting_g/variants/4_random.tres"),
+			{
+				"min_addend_1": 0,
+				"max_addend_1": 50,
+				"min_addend_2": 0,
+				"max_addend_2": 50,
+			},
 			# Program Plan
 		),
 	],

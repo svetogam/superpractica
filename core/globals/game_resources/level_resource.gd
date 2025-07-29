@@ -43,7 +43,7 @@ const IconQuestionMark := preload("uid://clk6yic0okqp6")
 @export var pimnet_setup: PimnetSetupResource
 @export var goal_type: GoalTypes
 @export var program: PackedScene
-@export var program_vars: LevelProgramVars
+@export var program_vars: Dictionary
 @export var program_plan: PlanResource
 var topic: TopicResource
 var extended_title: String:
@@ -87,7 +87,7 @@ func _init(
 	p_pimnet_setup: PimnetSetupResource = null,
 	p_goal_type := GoalTypes.NONE,
 	p_program: PackedScene = null,
-	p_program_vars: LevelProgramVars = null,
+	p_program_vars := {},
 	p_program_plan: PlanResource = null,
 ) -> void:
 	id = p_id

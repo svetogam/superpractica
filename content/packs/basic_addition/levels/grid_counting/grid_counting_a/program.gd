@@ -11,8 +11,11 @@ var output_program: PimProgram
 var field_program: FieldProgram
 
 
-func _setup_vars() -> void:
-	count = level.level_data.program_vars.new_count()
+func _setup_vars(level_vars: Dictionary) -> void:
+	if level_vars.has("count"):
+		count = level_vars["count"]
+	else:
+		count = randi_range(level_vars["min_count"], level_vars["max_count"])
 
 
 func _ready() -> void:

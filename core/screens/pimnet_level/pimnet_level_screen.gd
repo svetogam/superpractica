@@ -73,6 +73,7 @@ func load_level(p_level_data: LevelResource) -> void:
 	if level_data.program != null:
 		program = level_data.program.instantiate()
 		program.level = self
+		program._setup_vars(level_data.program_vars)
 		program.task_completed.connect(updated.emit.unbind(1))
 		program.level_completed.connect(updated.emit)
 		program.level_completed.connect($StateChart.send_event.bind("complete"))
