@@ -40,11 +40,19 @@ const IconQuestionMark := preload("uid://clk6yic0okqp6")
 @export var id: String
 @export var title: String
 @export var icon: TopicIcons
-@export var pimnet_setup: PimnetSetupResource
-@export var goal_type: GoalTypes
 @export var program: PackedScene
 @export var program_vars: Dictionary
 @export var program_plan: PlanResource
+@export_group("Pimnet")
+@export var goal_type: GoalTypes
+@export var pims: Array = [] #[PackedScene]
+@export var enable_reversion := false
+@export var enable_pim_tools := false
+@export var enable_pim_objects := false
+@export var enable_plan := false
+@export var enable_edit_layout := false
+
+
 var topic: TopicResource
 var extended_title: String:
 	get:
@@ -84,8 +92,7 @@ func _init(
 	p_id := "",
 	p_title := "",
 	p_icon := TopicIcons.UNKNOWN,
-	p_pimnet_setup: PimnetSetupResource = null,
-	p_goal_type := GoalTypes.NONE,
+	pimnet_data := {},
 	p_program: PackedScene = null,
 	p_program_vars := {},
 	p_program_plan: PlanResource = null,
@@ -93,11 +100,16 @@ func _init(
 	id = p_id
 	title = p_title
 	icon = p_icon
-	pimnet_setup = p_pimnet_setup
-	goal_type = p_goal_type
 	program = p_program
 	program_vars = p_program_vars
 	program_plan = p_program_plan
+	goal_type = pimnet_data.get("goal_type", GoalTypes.NONE)
+	pims = pimnet_data.get("pims", [])
+	enable_reversion = pimnet_data.get("enable_reversion", false)
+	enable_pim_tools = pimnet_data.get("enable_pim_tools", false)
+	enable_pim_objects = pimnet_data.get("enable_pim_objects", false)
+	enable_plan = pimnet_data.get("enable_plan", false)
+	enable_edit_layout = pimnet_data.get("enable_edit_layout", false)
 
 
 func get_next_suggested_level() -> LevelResource:

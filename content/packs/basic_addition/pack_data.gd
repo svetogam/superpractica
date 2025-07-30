@@ -18,10 +18,13 @@ static var grid_counting_topic = TopicResource.new(
 			"1 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_d/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+			},
 			# Program
 			preload("level_programs/grid_counting_d.tscn"),
 			# Program Vars
@@ -38,10 +41,14 @@ static var grid_counting_topic = TopicResource.new(
 			"1 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_e/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_e.tscn"),
 			# Program Vars
@@ -60,10 +67,15 @@ static var grid_counting_topic = TopicResource.new(
 			"2 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_a/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_a.tscn"),
 			# Program Vars
@@ -80,10 +92,15 @@ static var grid_counting_topic = TopicResource.new(
 			"2 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_a/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_a.tscn"),
 			# Program Vars
@@ -100,10 +117,15 @@ static var grid_counting_topic = TopicResource.new(
 			"2 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_b/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_b.tscn"),
 			# Program Vars
@@ -120,10 +142,15 @@ static var grid_counting_topic = TopicResource.new(
 			"2 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_b/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_b.tscn"),
 			# Program Vars
@@ -140,10 +167,15 @@ static var grid_counting_topic = TopicResource.new(
 			"2 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_b/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_b.tscn"),
 			# Program Vars
@@ -160,10 +192,15 @@ static var grid_counting_topic = TopicResource.new(
 			"2 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_b/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_b.tscn"),
 			# Program Vars
@@ -180,10 +217,15 @@ static var grid_counting_topic = TopicResource.new(
 			"2 - Random",
 			# Icon
 			LevelResource.TopicIcons.UNKNOWN,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_b/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_b.tscn"),
 			# Program Vars
@@ -203,10 +245,15 @@ static var grid_counting_topic = TopicResource.new(
 			"3 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_f/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_f.tscn"),
 			# Program Vars
@@ -228,10 +275,15 @@ static var grid_counting_topic = TopicResource.new(
 			"3 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_f/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_f.tscn"),
 			# Program Vars
@@ -254,10 +306,15 @@ static var grid_counting_topic = TopicResource.new(
 			"3 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_f/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_f.tscn"),
 			# Program Vars
@@ -281,10 +338,15 @@ static var grid_counting_topic = TopicResource.new(
 			"3 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_f/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_f.tscn"),
 			# Program Vars
@@ -309,10 +371,15 @@ static var grid_counting_topic = TopicResource.new(
 			"3 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_f/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_f.tscn"),
 			# Program Vars
@@ -338,10 +405,15 @@ static var grid_counting_topic = TopicResource.new(
 			"3 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_f/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_f.tscn"),
 			# Program Vars
@@ -369,10 +441,15 @@ static var grid_counting_topic = TopicResource.new(
 			"3 - 7",
 			# Icon
 			LevelResource.TopicIcons.SEVEN,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_f/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.CONSTRUCT_CONDITIONS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_f.tscn"),
 			# Program Vars
@@ -403,10 +480,16 @@ static var grid_counting_topic = TopicResource.new(
 			"4 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_c/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_c.tscn"),
 			# Program Vars
@@ -424,10 +507,16 @@ static var grid_counting_topic = TopicResource.new(
 			"4 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_c/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_c.tscn"),
 			# Program Vars
@@ -444,10 +533,16 @@ static var grid_counting_topic = TopicResource.new(
 			"4 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_c/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_c.tscn"),
 			# Program Vars
@@ -464,10 +559,16 @@ static var grid_counting_topic = TopicResource.new(
 			"4 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_c/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_c.tscn"),
 			# Program Vars
@@ -484,10 +585,16 @@ static var grid_counting_topic = TopicResource.new(
 			"4 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_c/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_c.tscn"),
 			# Program Vars
@@ -504,10 +611,16 @@ static var grid_counting_topic = TopicResource.new(
 			"4 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_c/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_c.tscn"),
 			# Program Vars
@@ -526,10 +639,16 @@ static var grid_counting_topic = TopicResource.new(
 			"5 - 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_g/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_g.tscn"),
 			# Program Vars
@@ -546,10 +665,16 @@ static var grid_counting_topic = TopicResource.new(
 			"5 - 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_g/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_g.tscn"),
 			# Program Vars
@@ -566,10 +691,16 @@ static var grid_counting_topic = TopicResource.new(
 			"5 - 3",
 			# Icon
 			LevelResource.TopicIcons.THREE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_g/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_g.tscn"),
 			# Program Vars
@@ -586,10 +717,16 @@ static var grid_counting_topic = TopicResource.new(
 			"5 - 4",
 			# Icon
 			LevelResource.TopicIcons.FOUR,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_g/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_g.tscn"),
 			# Program Vars
@@ -606,10 +743,16 @@ static var grid_counting_topic = TopicResource.new(
 			"5 - 5",
 			# Icon
 			LevelResource.TopicIcons.FIVE,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_g/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_g.tscn"),
 			# Program Vars
@@ -626,10 +769,16 @@ static var grid_counting_topic = TopicResource.new(
 			"5 - 6",
 			# Icon
 			LevelResource.TopicIcons.SIX,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_g/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_g.tscn"),
 			# Program Vars
@@ -646,10 +795,16 @@ static var grid_counting_topic = TopicResource.new(
 			"5 - Random",
 			# Icon
 			LevelResource.TopicIcons.UNKNOWN,
-			# Pimnet Setup
-			preload("levels/grid_counting/grid_counting_g/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
+				"pims": [
+					preload("pims/grid_counting/grid_counting_pim.tscn"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+			},
 			# Program
 			preload("level_programs/grid_counting_g.tscn"),
 			# Program Vars

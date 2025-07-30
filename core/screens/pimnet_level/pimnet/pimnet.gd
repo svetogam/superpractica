@@ -47,32 +47,37 @@ func _ready() -> void:
 	overlay.pim_objects.tool_dragged.connect(create_interfield_object)
 
 
-func setup(setup_resource: PimnetSetupResource) -> void:
-	assert(setup_resource != null)
-
-	# Set up pims
+## Pass [code]null[/code] to clear everything.
+func setup(level_data: LevelResource) -> void:
+	# Clear everything
 	for pim in _pims_left_to_right:
 		pim.free()
 	_pims_left_to_right.clear()
-	for pim_scene in setup_resource.pims:
-		var pim = pim_scene.instantiate()
-		_pims_left_to_right.append(pim)
-		%PimStrip.add_child(pim)
+	%UndoButton.visible = false
+	%RedoButton.visible = false
+	%ResetButton.visible = false
+	%PlanButton.visible = false
+	%EditPanelsButton.visible = false
+	overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
+	overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 
-	# Set up panels
-	%UndoButton.visible = setup_resource.reversion_enable
-	%RedoButton.visible = setup_resource.reversion_enable
-	%ResetButton.visible = setup_resource.reversion_enable
-	%PlanButton.visible = setup_resource.plan_enable
-	%EditPanelsButton.visible = setup_resource.edit_panels_enable
-	if setup_resource.tools_start_active:
-		overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
-	else:
-		overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
-	if setup_resource.creation_start_active:
-		overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
-	else:
-		overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
+	# Setup by level_data
+	if level_data != null:
+		for pim_scene in level_data.pims:
+			var pim = pim_scene.instantiate()
+			_pims_left_to_right.append(pim)
+			%PimStrip.add_child(pim)
+
+		# Set up panels
+		%UndoButton.visible = level_data.enable_reversion
+		%RedoButton.visible = level_data.enable_reversion
+		%ResetButton.visible = level_data.enable_reversion
+		%PlanButton.visible = level_data.enable_plan
+		%EditPanelsButton.visible = level_data.enable_edit_layout
+		if level_data.enable_pim_tools:
+			overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
+		if level_data.enable_pim_objects:
+			overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 
 	# Setup pim-tools panel
 	for pim in _pims_left_to_right:

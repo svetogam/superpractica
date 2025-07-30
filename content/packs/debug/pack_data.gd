@@ -18,10 +18,14 @@ static var selectors_topic = TopicResource.new(
 			"Selector 1",
 			# Icon
 			LevelResource.TopicIcons.ONE,
-			# Pimnet Setup
-			preload("levels/number_selectors/select_number_1/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("uid://dovmnfrl4xrfs"),
+				],
+				"enable_plan": true,
+			},
 			# Program
 			preload("level_programs/select_number_1.tscn"),
 			# Program Vars
@@ -36,10 +40,14 @@ static var selectors_topic = TopicResource.new(
 			"Selector 2",
 			# Icon
 			LevelResource.TopicIcons.TWO,
-			# Pimnet Setup
-			preload("levels/number_selectors/select_number_2/pimnet_setup.tres"),
-			# Goal Type
-			LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+			# Pimnet Data
+			{
+				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
+				"pims": [
+					preload("uid://df70iymagoil7"),
+				],
+				"enable_plan": true,
+			},
 			# Program
 			preload("level_programs/select_number_2.tscn"),
 			# Program Vars
@@ -80,9 +88,16 @@ static var root_topic = TopicResource.new(
 			"Grid Counting Pim",
 			# Icon
 			LevelResource.TopicIcons.UNKNOWN,
-			# Pimnet Setup
-			preload("levels/grid_counting/pimnet_setup.tres"),
-			# Goal Type
+			# Pimnet Data
+			{
+				"pims": [
+					preload("uid://nu5s6eayhrhh"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+				"enable_edit_panels": true,
+			},
 			# Program
 			# Program Vars
 			# Program Plan
@@ -94,9 +109,14 @@ static var root_topic = TopicResource.new(
 			"Slot Pims",
 			# Icon
 			LevelResource.TopicIcons.UNKNOWN,
-			# Pimnet Setup
-			preload("levels/slot_pims/pimnet_setup.tres"),
-			# Goal Type
+			# Pimnet Data
+			{
+				"pims": [
+					preload("uid://dovmnfrl4xrfs"),
+					preload("uid://df70iymagoil7"),
+					preload("pims/four_slots/four_slots.tscn"),
+				],
+			},
 			# Program
 			# Program Vars
 			# Program Plan
@@ -108,9 +128,17 @@ static var root_topic = TopicResource.new(
 			"Field Pims",
 			# Icon
 			LevelResource.TopicIcons.UNKNOWN,
-			# Pimnet Setup
-			preload("levels/field_pims/pimnet_setup.tres"),
-			# Goal Type
+			# Pimnet Data
+			{
+				"pims": [
+					preload("uid://nu5s6eayhrhh"),
+					preload("uid://nu5s6eayhrhh"),
+				],
+				"enable_reversion": true,
+				"enable_pim_tools": true,
+				"enable_pim_objects": true,
+				"enable_edit_panels": true,
+			},
 			# Program
 			# Program Vars
 			# Program Plan

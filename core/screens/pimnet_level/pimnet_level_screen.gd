@@ -9,7 +9,6 @@ signal updated
 signal actions_completed
 
 const REVERTER_MAX_SIZE: int = 1000
-const EMPTY_PIMNET_SETUP := preload("pimnet/empty_pimnet_setup.tres")
 @export var level_data: LevelResource
 var program: LevelProgram
 var reverter := CReverter.new()
@@ -43,7 +42,7 @@ func _ready() -> void:
 	)
 
 	# Consistently start with empty state
-	pimnet.setup(EMPTY_PIMNET_SETUP)
+	pimnet.setup(null)
 
 	# Load immediately if level data is already set
 	if level_data != null:
@@ -61,7 +60,7 @@ func load_level(p_level_data: LevelResource) -> void:
 
 	level_data = p_level_data
 	CSLocator.with(self).register(Game.SERVICE_LEVEL_DATA, level_data)
-	pimnet.setup(level_data.pimnet_setup)
+	pimnet.setup(level_data)
 
 	# Initial commit
 	if reverter.has_connected_funcs():
@@ -95,7 +94,7 @@ func unload_level() -> void:
 
 	# Unload pimnet stuff
 	_action_queue.reset()
-	pimnet.setup(EMPTY_PIMNET_SETUP)
+	pimnet.setup(null)
 	_action_queue.setup(pimnet)
 
 	# Unload program
