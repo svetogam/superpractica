@@ -28,8 +28,5 @@ unique_name_in_owner = true
 script = ExtResource("4_epmbw")
 metadata/_custom_type_script = "uid://dvw247gr2ypug"
 
-[node name="ToolModes" type="Node" parent="."]
-script = ExtResource("1_v27fr")
-
 [node name="Programs" type="Node" parent="."]
 script = ExtResource("1_v27fr")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://w2a71fj77wwv"]
+[gd_scene load_steps=7 format=3 uid="uid://w2a71fj77wwv"]
 
 [ext_resource type="PackedScene" uid="uid://idqfe3v3d4rw" path="res://core/systems/field/field.tscn" id="1_4oogl"]
 [ext_resource type="Script" uid="uid://bi4a3xebmdrm1" path="res://content/packs/basic_addition/fields/grid_counting/grid_counting_field.gd" id="2_ikg1k"]
-[ext_resource type="Script" uid="uid://bhq2g5domda4u" path="res://general/mode_nodes/mode.gd" id="3_1utor"]
 [ext_resource type="Script" uid="uid://b4t58aft230jx" path="res://content/packs/basic_addition/fields/grid_counting/programs/select_correct_cell.gd" id="4_okls2"]
 [ext_resource type="Script" uid="uid://qb5cd567lanm" path="res://content/packs/basic_addition/fields/grid_counting/programs/count_by_units.gd" id="5_vvjgt"]
 [ext_resource type="Script" uid="uid://d3y6yqdxcis57" path="res://content/packs/basic_addition/fields/grid_counting/programs/soft_count.gd" id="6_ej6ta"]
@@ -16,18 +15,6 @@ unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0.6)
 
-[node name="CellMarker" type="Node" parent="ToolModes" index="0"]
-script = ExtResource("3_1utor")
-
-[node name="UnitCreator" type="Node" parent="ToolModes" index="1"]
-script = ExtResource("3_1utor")
-
-[node name="PieceDeleter" type="Node" parent="ToolModes" index="2"]
-script = ExtResource("3_1utor")
-
-[node name="PieceDragger" type="Node" parent="ToolModes" index="3"]
-script = ExtResource("3_1utor")
-
 [node name="SelectCorrectCell" type="Node" parent="Programs" index="0"]
 script = ExtResource("4_okls2")
 
@@ -37,7 +24,7 @@ script = ExtResource("5_vvjgt")
 [node name="SoftCount" type="Node" parent="Programs" index="2"]
 script = ExtResource("6_ej6ta")
 
-[node name="Background" type="ColorRect" parent="." index="3"]
+[node name="Background" type="ColorRect" parent="." index="2"]
 unique_name_in_owner = true
 z_index = -10
 anchors_preset = 15
@@ -48,7 +35,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
-[node name="Board" type="Node" parent="." index="4"]
+[node name="Board" type="Node" parent="." index="3"]
 unique_name_in_owner = true
 
 [node name="GridCell1" parent="Board" index="0" instance=ExtResource("7_ns86q")]

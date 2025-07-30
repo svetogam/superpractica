@@ -30,17 +30,6 @@ func get_tools() -> Array:
 	return tool_data.keys()
 
 
-func get_tool_name(tool: int) -> String:
-	return tool_data[tool].name
-
-
-func get_tool_by_name(tool_name: String) -> int:
-	for tool in tool_data:
-		if tool_data[tool].name == tool_name:
-			return tool
-	return Game.NO_TOOL
-
-
 func get_object_modes(tool: int, object: int) -> Array:
 	if tool_data.has(tool) and tool_data[tool].object_modes.has(object):
 		return tool_data[tool].object_modes[object]

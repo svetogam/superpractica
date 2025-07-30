@@ -143,7 +143,6 @@ func _init() -> void:
 
 	tool_data = {
 		GridCounting.Tools.CELL_MARKER: {
-			"name": "CellMarker",
 			"text": "Mark Cell",
 			"icon": preload("graphics/icons/action_mark_cell_icon.svg"),
 			"object_modes": {
@@ -151,7 +150,6 @@ func _init() -> void:
 			},
 		},
 		GridCounting.Tools.PIECE_DELETER: {
-			"name": "PieceDeleter",
 			"text": "Delete Piece",
 			"icon": preload("graphics/icons/action_delete_piece_icon.svg"),
 			"object_modes": {
@@ -168,7 +166,6 @@ func _init() -> void:
 			},
 		},
 		GridCounting.Tools.PIECE_DRAGGER: {
-			"name": "PieceDragger",
 			"text": "Drag Piece",
 			"icon": preload("graphics/icons/action_drag_piece_icon.svg"),
 			"object_modes": {

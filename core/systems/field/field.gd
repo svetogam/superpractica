@@ -18,6 +18,7 @@ enum UpdateTypes {
 }
 
 var action_queue := FieldActionQueue.new(self)
+var tool_mode: int = Game.NO_TOOL
 var dragged_object: FieldObject
 var field_type: String:
 	get = _get_field_type
@@ -28,7 +29,6 @@ var interface_data: FieldInterfaceData:
 @onready var warning_signaler := %WarningSignaler as WarningSignaler
 @onready var count_signaler := %CountSignaler as CountSignaler
 @onready var programs := $Programs as ModeGroup
-@onready var _tool_modes := $ToolModes as ModeGroup
 
 
 # Virtual
@@ -129,18 +129,10 @@ func get_objects_by_type(_object_type: int) -> Array:
 	return []
 
 
-func set_tool(tool_mode: int) -> void:
-	if tool_mode != get_tool():
-		if tool_mode != Game.NO_TOOL:
-			var tool_name := interface_data.get_tool_name(tool_mode)
-			_tool_modes.activate_only(tool_name)
-		else:
-			_tool_modes.deactivate_all()
+func set_tool(p_tool_mode: int) -> void:
+	if p_tool_mode != tool_mode:
+		tool_mode = p_tool_mode
 		tool_changed.emit(tool_mode)
-
-
-func deactivate_tools() -> void:
-	set_tool(Game.NO_TOOL)
 
 
 func _on_tool_changed(_new_tool: int) -> void:
@@ -148,29 +140,7 @@ func _on_tool_changed(_new_tool: int) -> void:
 
 
 func get_active_modes_for_object(object_type: int) -> Array:
-	var tool_mode := get_tool()
 	return interface_data.get_object_modes(tool_mode, object_type)
-
-
-func get_tool() -> int:
-	if _tool_modes != null:
-		var tool_name := _tool_modes.get_only_active_mode_name()
-		return interface_data.get_tool_by_name(tool_name)
-	else:
-		return Game.NO_TOOL
-
-
-func get_field_objects() -> Array:
-	var field_objects: Array = []
-	for object in Utils.get_children_in_group(self, "field_objects"):
-		if not object.is_queued_for_deletion():
-			field_objects.append(object)
-	return field_objects
-
-
-func get_objects_in_group(group: String) -> Array:
-	var field_objects := get_field_objects()
-	return field_objects.filter(func(object: Node): return object.is_in_group(group))
 
 
 func drag_object(original: FieldObject, external_drag := false) -> void:
