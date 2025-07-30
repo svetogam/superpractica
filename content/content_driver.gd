@@ -6,4 +6,4 @@ extends Node
 
 
 func _ready() -> void:
-	Game.root_topic = preload("root_topic_data.gd").topic
+	Game.root_topic = preload("root_topic_data.gd").root_topic

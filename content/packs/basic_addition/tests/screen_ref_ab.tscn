@@ -1,0 +1,127 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbebitn70nqnn"]
+
+[ext_resource type="Texture2D" uid="uid://bcj7uhty04ivr" path="res://content/packs/basic_addition/tests/grid_counting_a.png" id="1_2xxnn"]
+[ext_resource type="Texture2D" uid="uid://bnl5qct34yosq" path="res://content/packs/basic_addition/tests/grid_counting_b.png" id="2_cp4q5"]
+
+[node name="Ref" type="Node"]
+
+[node name="ScreenA" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2xxnn")
+stretch_mode = 5
+
+[node name="ScreenB" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cp4q5")
+stretch_mode = 5
+
+[node name="UnitA" type="Marker2D" parent="."]
+position = Vector2(187, 524)
+
+[node name="UnitB" type="Marker2D" parent="."]
+position = Vector2(160, 532)
+
+[node name="TenBlock" type="Marker2D" parent="."]
+position = Vector2(207, 528)
+
+[node name="OutputSlot" type="Marker2D" parent="."]
+position = Vector2(427, 81)
+
+[node name="GoalSlot" type="Marker2D" parent="."]
+position = Vector2(705, 522)
+
+[node name="Square1" type="Marker2D" parent="."]
+position = Vector2(242, 118)
+
+[node name="Square2" type="Marker2D" parent="."]
+position = Vector2(276, 120)
+
+[node name="Square3" type="Marker2D" parent="."]
+position = Vector2(308, 116)
+
+[node name="Square4" type="Marker2D" parent="."]
+position = Vector2(345, 120)
+
+[node name="Square5" type="Marker2D" parent="."]
+position = Vector2(374, 116)
+
+[node name="Square6" type="Marker2D" parent="."]
+position = Vector2(420, 116)
+
+[node name="Square11" type="Marker2D" parent="."]
+position = Vector2(244, 153)
+
+[node name="Square12" type="Marker2D" parent="."]
+position = Vector2(277, 155)
+
+[node name="Square13" type="Marker2D" parent="."]
+position = Vector2(312, 152)
+
+[node name="Square14" type="Marker2D" parent="."]
+position = Vector2(350, 151)
+
+[node name="Square15" type="Marker2D" parent="."]
+position = Vector2(382, 156)
+
+[node name="Square16" type="Marker2D" parent="."]
+position = Vector2(418, 153)
+
+[node name="Square17" type="Marker2D" parent="."]
+position = Vector2(455, 150)
+
+[node name="Square18" type="Marker2D" parent="."]
+position = Vector2(488, 151)
+
+[node name="Square19" type="Marker2D" parent="."]
+position = Vector2(522, 154)
+
+[node name="Square20" type="Marker2D" parent="."]
+position = Vector2(557, 151)
+
+[node name="Square21" type="Marker2D" parent="."]
+position = Vector2(246, 189)
+
+[node name="Square22" type="Marker2D" parent="."]
+position = Vector2(276, 187)
+
+[node name="Square31" type="Marker2D" parent="."]
+position = Vector2(242, 226)
+
+[node name="Square41" type="Marker2D" parent="."]
+position = Vector2(242, 260)
+
+[node name="Square51" type="Marker2D" parent="."]
+position = Vector2(242, 290)
+
+[node name="Square52" type="Marker2D" parent="."]
+position = Vector2(272, 290)
+
+[node name="Square53" type="Marker2D" parent="."]
+position = Vector2(311, 290)
+
+[node name="Square54" type="Marker2D" parent="."]
+position = Vector2(348, 295)
+
+[node name="Square64" type="Marker2D" parent="."]
+position = Vector2(343, 327)
+
+[node name="Square74" type="Marker2D" parent="."]
+position = Vector2(348, 363)
+
+[node name="Square84" type="Marker2D" parent="."]
+position = Vector2(348, 402)
+
+[node name="Square94" type="Marker2D" parent="."]
+position = Vector2(348, 436)
+
+[node name="Off" type="Marker2D" parent="."]
+position = Vector2(687, 252)

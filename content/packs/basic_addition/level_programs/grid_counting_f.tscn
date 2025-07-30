@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://drmqi1my2og81"]
+
+[ext_resource type="Script" uid="uid://dhr5n32nbwyxl" path="res://content/packs/basic_addition/level_programs/grid_counting_f.gd" id="1_84bvw"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_3ntle"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_kbbgm"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_fsfud"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_gkx77"]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource("1_84bvw")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_3ntle")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="States" type="Node" parent="StateChart"]
+script = ExtResource("3_kbbgm")
+initial_state = NodePath("Playing")
+
+[node name="Playing" type="Node" parent="StateChart/States"]
+script = ExtResource("4_fsfud")
+
+[node name="ToCompleted" type="Node" parent="StateChart/States/Playing"]
+script = ExtResource("5_gkx77")
+to = NodePath("../../Completed")
+event = &"done"
+delay_in_seconds = "0.0"
+
+[node name="Completed" type="Node" parent="StateChart/States"]
+script = ExtResource("4_fsfud")
+
+[connection signal="state_entered" from="StateChart/States/Playing" to="." method="_on_playing_state_entered"]
+[connection signal="state_exited" from="StateChart/States/Playing" to="." method="_on_playing_state_exited"]

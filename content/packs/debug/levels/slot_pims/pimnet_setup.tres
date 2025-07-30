@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PimnetSetupResource" load_steps=5 format=3 uid="uid://bg8drnqyyfgxl"]
+
+[ext_resource type="Script" uid="uid://darqtaxbscw2l" path="res://core/screens/pimnet_level/pimnet/pimnet_setup_resource.gd" id="1_f52r7"]
+[ext_resource type="PackedScene" uid="uid://dovmnfrl4xrfs" path="res://content/packs/basic_addition/pims/integer_counter/integer_counter.tscn" id="1_ojcfd"]
+[ext_resource type="PackedScene" uid="uid://df70iymagoil7" path="res://content/general/pims/number_selector/number_selector.tscn" id="2_l8n30"]
+[ext_resource type="PackedScene" uid="uid://d00uqiv02mlin" path="res://content/packs/debug/pims/four_slots/four_slots.tscn" id="3_amqit"]
+
+[resource]
+script = ExtResource("1_f52r7")
+pims = Array[PackedScene]([ExtResource("1_ojcfd"), ExtResource("2_l8n30"), ExtResource("3_amqit")])
+reversion_enable = false
+tools_enable = false
+tools_start_active = false
+creation_enable = false
+creation_start_active = false
+goal_start_active = false
+plan_enable = false
+edit_panels_enable = false

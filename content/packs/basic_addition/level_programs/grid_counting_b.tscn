@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7xftbet1ljmq"]
+
+[ext_resource type="Script" uid="uid://bip4sjxlvfq63" path="res://content/packs/basic_addition/level_programs/grid_counting_b.gd" id="1_nclvy"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_ysngn"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_pk04p"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_xf1yt"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_643si"]
+
+[node name="LevelProgram" type="Node"]
+script = ExtResource("1_nclvy")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_ysngn")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="States" type="Node" parent="StateChart"]
+script = ExtResource("3_pk04p")
+initial_state = NodePath("PutBlocks")
+
+[node name="PutBlocks" type="Node" parent="StateChart/States"]
+script = ExtResource("4_xf1yt")
+
+[node name="ToPutUnits" type="Node" parent="StateChart/States/PutBlocks"]
+script = ExtResource("5_643si")
+to = NodePath("../../PutUnits")
+event = &"done"
+delay_in_seconds = "0.0"
+
+[node name="PutUnits" type="Node" parent="StateChart/States"]
+script = ExtResource("4_xf1yt")
+
+[node name="ToDragMemo" type="Node" parent="StateChart/States/PutUnits"]
+script = ExtResource("5_643si")
+to = NodePath("../../DragMemo")
+event = &"done"
+delay_in_seconds = "0.0"
+
+[node name="DragMemo" type="Node" parent="StateChart/States"]
+script = ExtResource("4_xf1yt")
+
+[node name="ToCompleted" type="Node" parent="StateChart/States/DragMemo"]
+script = ExtResource("5_643si")
+to = NodePath("../../Completed")
+event = &"done"
+delay_in_seconds = "0.0"
+
+[node name="Completed" type="Node" parent="StateChart/States"]
+script = ExtResource("4_xf1yt")
+
+[connection signal="state_entered" from="StateChart/States/PutBlocks" to="." method="_on_put_blocks_state_entered"]
+[connection signal="state_exited" from="StateChart/States/PutBlocks" to="." method="_on_put_blocks_state_exited"]
+[connection signal="state_entered" from="StateChart/States/PutUnits" to="." method="_on_put_units_state_entered"]
+[connection signal="state_exited" from="StateChart/States/PutUnits" to="." method="_on_put_units_state_exited"]
+[connection signal="state_entered" from="StateChart/States/DragMemo" to="." method="_on_drag_memo_state_entered"]

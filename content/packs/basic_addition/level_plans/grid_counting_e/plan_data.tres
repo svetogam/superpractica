@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlanResource" load_steps=5 format=3 uid="uid://cmrj8y1o7he2o"]
+
+[ext_resource type="Script" uid="uid://biio3cevgtl1q" path="res://core/screens/pimnet_level/pimnet/overlay/task_resource.gd" id="1_malss"]
+[ext_resource type="Resource" uid="uid://dnd0elr3ufooi" path="res://content/packs/basic_addition/level_plans/grid_counting_e/put_units_task.tres" id="2_32unn"]
+[ext_resource type="Resource" uid="uid://rpi60ad7m1lv" path="res://content/packs/basic_addition/level_plans/grid_counting_e/drag_memo_task.tres" id="3_5y8s0"]
+[ext_resource type="Script" uid="uid://dvo46tf3sfgmu" path="res://core/screens/pimnet_level/pimnet/overlay/plan_resource.gd" id="4_qiquu"]
+
+[resource]
+script = ExtResource("4_qiquu")
+_tasks = Array[ExtResource("1_malss")]([ExtResource("2_32unn"), ExtResource("3_5y8s0")])
