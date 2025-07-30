@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://3prjca20l8jt"]
+
+[ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/systems/field/field_object/field_object.tscn" id="1_i3tlp"]
+[ext_resource type="Script" uid="uid://bj38bi4ephg2v" path="res://content/packs/basic_addition/fields/grid_counting/objects/forty_block/forty_block.gd" id="2_3thv7"]
+[ext_resource type="Script" uid="uid://dm3siocxa76n7" path="res://content/packs/basic_addition/fields/grid_counting/objects/forty_block/modes/delete.gd" id="3_s0k03"]
+[ext_resource type="Script" uid="uid://dl1prnn5tcmii" path="res://content/packs/basic_addition/fields/grid_counting/objects/forty_block/modes/drag.gd" id="4_otq6q"]
+[ext_resource type="PackedScene" uid="uid://b5i5cw7vcumwe" path="res://content/packs/basic_addition/fields/grid_counting/objects/forty_block/sprite.tscn" id="5_m7mbp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwyj"]
+size = Vector2(350, 131)
+
+[node name="FortyBlock" instance=ExtResource("1_i3tlp")]
+script = ExtResource("2_3thv7")
+
+[node name="delete" type="Node" parent="ActiveModes" index="0"]
+script = ExtResource("3_s0k03")
+
+[node name="drag" type="Node" parent="ActiveModes" index="1"]
+script = ExtResource("4_otq6q")
+
+[node name="Sprite" parent="." index="1" instance=ExtResource("5_m7mbp")]
+unique_name_in_owner = true
+
+[node name="Collider" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("RectangleShape2D_fnwyj")

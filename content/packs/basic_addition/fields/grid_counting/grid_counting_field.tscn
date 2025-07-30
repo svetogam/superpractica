@@ -1,0 +1,252 @@
+[gd_scene load_steps=8 format=3 uid="uid://w2a71fj77wwv"]
+
+[ext_resource type="PackedScene" uid="uid://idqfe3v3d4rw" path="res://core/systems/field/field.tscn" id="1_4oogl"]
+[ext_resource type="Script" uid="uid://bi4a3xebmdrm1" path="res://content/packs/basic_addition/fields/grid_counting/grid_counting_field.gd" id="2_ikg1k"]
+[ext_resource type="Script" uid="uid://bhq2g5domda4u" path="res://general/mode_nodes/mode.gd" id="3_1utor"]
+[ext_resource type="Script" uid="uid://b4t58aft230jx" path="res://content/packs/basic_addition/fields/grid_counting/programs/select_correct_cell.gd" id="4_okls2"]
+[ext_resource type="Script" uid="uid://qb5cd567lanm" path="res://content/packs/basic_addition/fields/grid_counting/programs/count_by_units.gd" id="5_vvjgt"]
+[ext_resource type="Script" uid="uid://d3y6yqdxcis57" path="res://content/packs/basic_addition/fields/grid_counting/programs/soft_count.gd" id="6_ej6ta"]
+[ext_resource type="PackedScene" uid="uid://b6n1nkwq7on63" path="res://content/packs/basic_addition/fields/grid_counting/objects/grid_cell/grid_cell.tscn" id="7_ns86q"]
+
+[node name="GridCountingField" instance=ExtResource("1_4oogl")]
+script = ExtResource("2_ikg1k")
+
+[node name="Prefig" type="Node2D" parent="EffectLayer" index="0"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.6)
+
+[node name="CellMarker" type="Node" parent="ToolModes" index="0"]
+script = ExtResource("3_1utor")
+
+[node name="UnitCreator" type="Node" parent="ToolModes" index="1"]
+script = ExtResource("3_1utor")
+
+[node name="PieceDeleter" type="Node" parent="ToolModes" index="2"]
+script = ExtResource("3_1utor")
+
+[node name="PieceDragger" type="Node" parent="ToolModes" index="3"]
+script = ExtResource("3_1utor")
+
+[node name="SelectCorrectCell" type="Node" parent="Programs" index="0"]
+script = ExtResource("4_okls2")
+
+[node name="CountByUnits" type="Node" parent="Programs" index="1"]
+script = ExtResource("5_vvjgt")
+
+[node name="SoftCount" type="Node" parent="Programs" index="2"]
+script = ExtResource("6_ej6ta")
+
+[node name="Background" type="ColorRect" parent="." index="3"]
+unique_name_in_owner = true
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+
+[node name="Board" type="Node" parent="." index="4"]
+unique_name_in_owner = true
+
+[node name="GridCell1" parent="Board" index="0" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell2" parent="Board" index="1" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell3" parent="Board" index="2" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell4" parent="Board" index="3" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell5" parent="Board" index="4" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell6" parent="Board" index="5" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell7" parent="Board" index="6" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell8" parent="Board" index="7" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell9" parent="Board" index="8" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell10" parent="Board" index="9" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell11" parent="Board" index="10" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell12" parent="Board" index="11" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell13" parent="Board" index="12" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell14" parent="Board" index="13" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell15" parent="Board" index="14" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell16" parent="Board" index="15" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell17" parent="Board" index="16" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell18" parent="Board" index="17" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell19" parent="Board" index="18" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell20" parent="Board" index="19" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell21" parent="Board" index="20" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell22" parent="Board" index="21" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell23" parent="Board" index="22" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell24" parent="Board" index="23" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell25" parent="Board" index="24" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell26" parent="Board" index="25" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell27" parent="Board" index="26" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell28" parent="Board" index="27" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell29" parent="Board" index="28" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell30" parent="Board" index="29" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell31" parent="Board" index="30" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell32" parent="Board" index="31" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell33" parent="Board" index="32" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell34" parent="Board" index="33" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell35" parent="Board" index="34" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell36" parent="Board" index="35" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell37" parent="Board" index="36" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell38" parent="Board" index="37" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell39" parent="Board" index="38" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell40" parent="Board" index="39" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell41" parent="Board" index="40" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell42" parent="Board" index="41" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell43" parent="Board" index="42" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell44" parent="Board" index="43" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell45" parent="Board" index="44" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell46" parent="Board" index="45" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell47" parent="Board" index="46" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell48" parent="Board" index="47" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell49" parent="Board" index="48" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell50" parent="Board" index="49" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell51" parent="Board" index="50" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell52" parent="Board" index="51" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell53" parent="Board" index="52" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell54" parent="Board" index="53" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell55" parent="Board" index="54" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell56" parent="Board" index="55" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell57" parent="Board" index="56" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell58" parent="Board" index="57" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell59" parent="Board" index="58" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell60" parent="Board" index="59" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell61" parent="Board" index="60" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell62" parent="Board" index="61" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell63" parent="Board" index="62" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell64" parent="Board" index="63" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell65" parent="Board" index="64" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell66" parent="Board" index="65" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell67" parent="Board" index="66" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell68" parent="Board" index="67" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell69" parent="Board" index="68" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell70" parent="Board" index="69" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell71" parent="Board" index="70" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell72" parent="Board" index="71" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell73" parent="Board" index="72" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell74" parent="Board" index="73" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell75" parent="Board" index="74" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell76" parent="Board" index="75" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell77" parent="Board" index="76" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell78" parent="Board" index="77" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell79" parent="Board" index="78" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell80" parent="Board" index="79" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell81" parent="Board" index="80" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell82" parent="Board" index="81" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell83" parent="Board" index="82" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell84" parent="Board" index="83" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell85" parent="Board" index="84" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell86" parent="Board" index="85" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell87" parent="Board" index="86" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell88" parent="Board" index="87" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell89" parent="Board" index="88" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell90" parent="Board" index="89" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell91" parent="Board" index="90" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell92" parent="Board" index="91" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell93" parent="Board" index="92" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell94" parent="Board" index="93" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell95" parent="Board" index="94" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell96" parent="Board" index="95" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell97" parent="Board" index="96" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell98" parent="Board" index="97" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell99" parent="Board" index="98" instance=ExtResource("7_ns86q")]
+
+[node name="GridCell100" parent="Board" index="99" instance=ExtResource("7_ns86q")]

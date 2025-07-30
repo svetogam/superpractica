@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyjvs85hw13lm"]
+
+[ext_resource type="SpriteFrames" uid="uid://32evek1r5rmp" path="res://content/packs/basic_addition/fields/grid_counting/objects/four_block/sprite_frames.tres" id="1_gg0lr"]
+
+[node name="Sprite" type="AnimatedSprite2D"]
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("1_gg0lr")

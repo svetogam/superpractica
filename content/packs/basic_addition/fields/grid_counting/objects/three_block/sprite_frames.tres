@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://rn6jkcgbshio"]
+
+[ext_resource type="Texture2D" uid="uid://c0vvka2ae0tbp" path="res://content/packs/basic_addition/fields/grid_counting/graphics/three_block_affirm.svg" id="1_6rp1t"]
+[ext_resource type="Texture2D" uid="uid://c06okhlrs5e1q" path="res://content/packs/basic_addition/fields/grid_counting/graphics/three_block.svg" id="2_a40xx"]
+[ext_resource type="Texture2D" uid="uid://nt814rm6elyn" path="res://content/packs/basic_addition/fields/grid_counting/graphics/three_block_reject.svg" id="3_0rffo"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6rp1t")
+}],
+"loop": true,
+"name": &"affirmation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a40xx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0rffo")
+}],
+"loop": true,
+"name": &"warning",
+"speed": 5.0
+}]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://wdkfpdg4yedr"]
+
+[ext_resource type="Texture2D" uid="uid://dluuor5ucpskc" path="res://content/packs/basic_addition/fields/grid_counting/graphics/cell_ring.svg" id="1_37bo8"]
+
+[node name="CellRingPrefig" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.501961)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_37bo8")
