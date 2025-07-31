@@ -8,7 +8,6 @@ var count: int
 var pim: Pim
 var field: Field
 var output_program: PimProgram
-var field_program: FieldProgram
 var intermediate_goal: int
 
 
@@ -29,7 +28,6 @@ func _ready() -> void:
 
 	pim = pimnet.get_pim()
 	field = pim.field
-	field_program = field.get_program("SoftCount")
 
 	goal_panel.slot.set_memo_as_hint(IntegerMemo, count)
 
@@ -47,8 +45,9 @@ func _on_put_blocks_state_entered() -> void:
 	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
 	overlay.pim_objects.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
 
-	field_program.disallow_object(GridCounting.Objects.UNIT)
-	field_program.run()
+	%SoftCountProgram.field = field
+	%SoftCountProgram.run()
+	%SoftCountProgram.disallow_object(GridCounting.Objects.UNIT)
 
 	output_program.output_decided.connect(_on_output_decided)
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))
@@ -60,7 +59,7 @@ func _on_put_blocks_state_entered() -> void:
 
 
 func _on_output_decided(output_number: int) -> void:
-	if field_program.is_valid():
+	if %SoftCountProgram.is_valid():
 		if $StateChart/States/PutBlocks.active and output_number == intermediate_goal:
 			_set_output_warning(false)
 			complete_task()
@@ -85,7 +84,7 @@ func _on_put_units_state_entered() -> void:
 	level.reverter.history.clear()
 	set_custom_reset(_reset)
 
-	field_program.reallow_object(GridCounting.Objects.UNIT)
+	%SoftCountProgram.reallow_object(GridCounting.Objects.UNIT)
 
 	output_program.output_decided.connect(_on_output_decided)
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))

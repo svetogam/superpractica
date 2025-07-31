@@ -4,16 +4,13 @@
 
 extends SoftLimiterProgram
 
-var start_number: int
-var valid_numbers: Array
+var _start_number: int
+var _valid_numbers: Array
 
 
-func _cache() -> void:
-	start_number = _get_start_number()
-	valid_numbers = field.get_contiguous_occupied_numbers_from(start_number + 1)
+func run() -> void:
+	super()
 
-
-func _ready() -> void:
 	# Build program rules
 	add_object_rule(GridCounting.Objects.UNIT, _is_unit_valid)
 	add_object_rule(GridCounting.Objects.TWO_BLOCK, _is_block_valid)
@@ -47,16 +44,21 @@ func _ready() -> void:
 			field.remove_piece_warning, field.stage_piece_warning)
 
 
+func _cache() -> void:
+	_start_number = _get_start_number()
+	_valid_numbers = field.get_contiguous_occupied_numbers_from(_start_number + 1)
+
+
 func _is_unit_valid(unit: FieldObject) -> bool:
-	if unit.cell_number <= start_number:
+	if unit.cell_number <= _start_number:
 		return false
-	return valid_numbers.has(unit.cell_number)
+	return _valid_numbers.has(unit.cell_number)
 
 
 func _is_block_valid(block: FieldObject) -> bool:
-	if block.first_number <= start_number:
+	if block.first_number <= _start_number:
 		return false
-	return valid_numbers.has(block.first_number)
+	return _valid_numbers.has(block.first_number)
 
 
 func _get_start_number() -> int:

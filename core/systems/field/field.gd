@@ -9,6 +9,7 @@ signal updated
 signal tool_changed(tool_mode)
 signal external_drag_requested(original)
 signal dragged_memo_requested(memo)
+signal action_done(field_action)
 
 enum UpdateTypes {
 	INITIAL,
@@ -24,11 +25,11 @@ var field_type: String:
 	get = _get_field_type
 var interface_data: FieldInterfaceData:
 	get = _get_interface_data
+var _action_conditions: Dictionary = {} #[int, Array[Callable]]
 @onready var effect_layer := %EffectLayer as CanvasLayer
 @onready var info_signaler := %InfoSignaler as InfoSignaler
 @onready var warning_signaler := %WarningSignaler as WarningSignaler
 @onready var count_signaler := %CountSignaler as CountSignaler
-@onready var programs := $Programs as ModeGroup
 
 
 # Virtual
@@ -158,9 +159,18 @@ func request_drag_memo(memo: Memo) -> void:
 	dragged_memo_requested.emit(memo)
 
 
-func get_program(program_name: String) -> FieldProgram:
-	return programs.get_mode(program_name)
+## [param condition] receives all actions matching [param action_name] being pushed,
+## and must return true or false to decide if the action should be pushed.
+func add_action_condition(action_name: int, condition: Callable) -> void:
+	if not _action_conditions.has(action_name):
+		_action_conditions[action_name] = []
+	_action_conditions[action_name].append(condition)
 
 
-func get_active_programs() -> Array:
-	return programs.get_active_modes()
+func remove_action_condition(action_name: int, condition: Callable) -> void:
+	assert(_action_conditions.has(action_name))
+
+	if _action_conditions[action_name].size() == 1:
+		_action_conditions.erase(action_name)
+	else:
+		_action_conditions[action_name].erase(condition)

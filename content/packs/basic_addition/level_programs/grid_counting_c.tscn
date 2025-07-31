@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://7jqvribmyuyc"]
+[gd_scene load_steps=7 format=3 uid="uid://7jqvribmyuyc"]
 
 [ext_resource type="Script" uid="uid://cexntcxu7lyjd" path="res://content/packs/basic_addition/level_programs/grid_counting_c.gd" id="1_x8xxu"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_wldfb"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_2t6ki"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_sit1q"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_8bceb"]
+[ext_resource type="Script" uid="uid://d3y6yqdxcis57" path="res://content/packs/basic_addition/fields/grid_counting/programs/soft_count.gd" id="6_fsi0p"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_x8xxu")
@@ -28,6 +29,10 @@ delay_in_seconds = "0.0"
 
 [node name="Completed" type="Node" parent="StateChart/States"]
 script = ExtResource("4_sit1q")
+
+[node name="SoftCountProgram" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_fsi0p")
 
 [connection signal="state_entered" from="StateChart/States/Playing" to="." method="_on_playing_state_entered"]
 [connection signal="state_exited" from="StateChart/States/Playing" to="." method="_on_playing_state_exited"]

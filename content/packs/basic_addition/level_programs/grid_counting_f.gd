@@ -4,14 +4,13 @@
 
 extends LevelProgram
 
-var sum_icon := preload("uid://bkor8qo5sy7xa")
-var object_count_icon := preload("uid://caqvd811whwr2")
+const SumIcon := preload("uid://bkor8qo5sy7xa")
+const ObjectCountIcon := preload("uid://caqvd811whwr2")
 var sum: int
 var object_count: int
 var allowed_objects: Array #[String]
 var pim: Pim
 var field: Field
-var field_program: FieldProgram
 
 
 func _setup_vars(level_vars: Dictionary) -> void:
@@ -26,8 +25,8 @@ func _ready() -> void:
 	pim = pimnet.get_pim()
 	field = pim.field
 
-	goal_panel.add_condition(IntegerMemo.new(sum), sum_icon)
-	goal_panel.add_condition(IntegerMemo.new(object_count), object_count_icon)
+	goal_panel.add_condition(IntegerMemo.new(sum), SumIcon)
+	goal_panel.add_condition(IntegerMemo.new(object_count), ObjectCountIcon)
 
 
 func _on_playing_state_entered() -> void:
@@ -55,8 +54,8 @@ func _on_playing_state_entered() -> void:
 	if allowed_objects.has("fifty_block"):
 		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FIFTY_BLOCK)
 
-	field_program = field.get_program("SoftCount")
-	field_program.run()
+	%SoftCountProgram.field = field
+	%SoftCountProgram.run()
 
 	field.warning_signaler.warned.connect(
 		goal_panel.verify_button.set.bind("disabled", true)

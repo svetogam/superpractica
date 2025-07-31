@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cafu1lm4adje1"]
+[gd_scene load_steps=7 format=3 uid="uid://cafu1lm4adje1"]
 
 [ext_resource type="Script" uid="uid://b7kas2hs6idcq" path="res://content/packs/basic_addition/level_programs/grid_counting_e.gd" id="1_uhaq3"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_ym6v0"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_qam47"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_hbkbs"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_w27vw"]
+[ext_resource type="Script" uid="uid://qb5cd567lanm" path="res://content/packs/basic_addition/fields/grid_counting/programs/count_by_units.gd" id="6_oerip"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_uhaq3")
@@ -38,6 +39,11 @@ delay_in_seconds = "0.0"
 [node name="Completed" type="Node" parent="StateChart/States"]
 script = ExtResource("4_hbkbs")
 
+[node name="CountByUnitsProgram" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_oerip")
+start_number = 0
+
 [connection signal="state_entered" from="StateChart/States/PutUnits" to="." method="_on_put_units_state_entered"]
-[connection signal="state_exited" from="StateChart/States/PutUnits" to="." method="_on_put_units_state_exited"]
 [connection signal="state_entered" from="StateChart/States/DragMemo" to="." method="_on_drag_memo_state_entered"]
+[connection signal="completed" from="CountByUnitsProgram" to="." method="_on_count_by_units_program_completed"]

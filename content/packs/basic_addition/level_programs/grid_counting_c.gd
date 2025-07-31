@@ -9,7 +9,6 @@ var addend_2: int
 var pim: Pim
 var field: Field
 var output_program: PimProgram
-var field_program: FieldProgram
 
 
 func _setup_vars(level_vars: Dictionary) -> void:
@@ -48,8 +47,8 @@ func _on_playing_state_entered() -> void:
 	overlay.pim_objects.exclude_all("GridCounting")
 	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
 
-	field_program = field.get_program("SoftCount")
-	field_program.run()
+	%SoftCountProgram.field = field
+	%SoftCountProgram.run()
 
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))
 	field.warning_signaler.unwarned.connect(_set_output_warning.bind(false))

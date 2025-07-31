@@ -8,7 +8,6 @@ var count: int
 var pim: Pim
 var field: Field
 var output_program: PimProgram
-var field_program: FieldProgram
 
 
 func _setup_vars(level_vars: Dictionary) -> void:
@@ -39,8 +38,8 @@ func _on_put_units_state_entered() -> void:
 	overlay.pim_objects.exclude_all("GridCounting")
 	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
 
-	field_program = field.get_program("SoftCount")
-	field_program.run()
+	%SoftCountProgram.field = field
+	%SoftCountProgram.run()
 
 	output_program.output_decided.connect(_on_output_decided)
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))
@@ -48,7 +47,7 @@ func _on_put_units_state_entered() -> void:
 
 
 func _on_output_decided(output_number: int) -> void:
-	if output_number == count and field_program.is_valid():
+	if output_number == count and %SoftCountProgram.is_valid():
 		_set_output_warning(false)
 
 		complete_task()

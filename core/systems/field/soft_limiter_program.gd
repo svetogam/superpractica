@@ -14,7 +14,9 @@ func _cache() -> void:
 	pass
 
 
-func _start() -> void:
+func run() -> void:
+	assert(field != null)
+
 	field.updated.connect(_run_rules)
 
 
@@ -70,21 +72,6 @@ func _run_rules() -> void:
 				_object_outcomes[object_type].pass.call(object)
 			else:
 				_object_outcomes[object_type].fail.call(object)
-
-
-func _pass_everything() -> void:
-	for object_type in _object_outcomes.keys():
-		for object in field.get_objects_by_type(object_type):
-			_object_outcomes[object_type].pass.call(object)
-
-
-func _end() -> void:
-	_pass_everything()
-
-	_object_rules.clear()
-	_object_outcomes.clear()
-	field.warning_signaler.clear()
-	field.updated.disconnect(_run_rules)
 
 
 func _disallowed_object_rule(_object: FieldObject) -> bool:

@@ -12,7 +12,7 @@ var _rows: Dictionary #[int, [String, FieldObject]]
 
 func _init(p_field: GridCounting) -> void:
 	field = p_field
-	field.action_queue.action_done.connect(_on_action)
+	field.action_done.connect(_on_action)
 
 	for cell_number in range(1, field.NUMBER_CELLS + 1):
 		_cells[cell_number] = {

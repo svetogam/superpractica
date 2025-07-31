@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://k7tbki55kkeu"]
+[gd_scene load_steps=7 format=3 uid="uid://k7tbki55kkeu"]
 
 [ext_resource type="Script" uid="uid://op0344qbf6l4" path="res://content/packs/basic_addition/level_programs/grid_counting_d.gd" id="1_s3wvb"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_c72in"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_mc33q"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_lyrth"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_473ow"]
+[ext_resource type="Script" uid="uid://b4t58aft230jx" path="res://content/packs/basic_addition/fields/grid_counting/programs/select_correct_cell.gd" id="6_ghsv4"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_s3wvb")
@@ -38,6 +39,10 @@ delay_in_seconds = "0.0"
 [node name="Completed" type="Node" parent="StateChart/States"]
 script = ExtResource("4_lyrth")
 
+[node name="SelectCorrectCellProgram" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_ghsv4")
+
 [connection signal="state_entered" from="StateChart/States/SelectCell" to="." method="_on_select_cell_state_entered"]
-[connection signal="state_exited" from="StateChart/States/SelectCell" to="." method="_on_select_cell_state_exited"]
 [connection signal="state_entered" from="StateChart/States/DragMemo" to="." method="_on_drag_memo_state_entered"]
+[connection signal="completed" from="SelectCorrectCellProgram" to="." method="_on_select_correct_cell_program_completed"]

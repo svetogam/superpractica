@@ -7,7 +7,6 @@ extends RefCounted
 
 signal got_actions_to_do
 signal flushed
-signal action_done(action)
 
 var auto_flush := true
 var _field: Field
@@ -25,12 +24,13 @@ func push(action: FieldAction) -> void:
 	if not action.is_valid():
 		return
 
-	# Add action only if no active programs return false in _before_action()
+	# Add action only if no action conditions return false
 	var results: Array = []
 	var result: bool
-	for program in _field.get_active_programs():
-		result = program._before_action(action)
-		results.append(result)
+	if _field._action_conditions.has(action.name):
+		for condition in _field._action_conditions[action.name]:
+			result = condition.call(action)
+			results.append(result)
 	if results.all(func(a: bool): return a):
 		_queue.append(action)
 		if _queue.size() == 1:
@@ -45,8 +45,6 @@ func flush() -> void:
 		for action in _queue:
 			if action.is_possible():
 				action.do()
-				action_done.emit(action)
-				for program in _field.get_active_programs():
-					program._after_action(action)
+				_field.action_done.emit(action)
 		_queue.clear()
 		flushed.emit()
