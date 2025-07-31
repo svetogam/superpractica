@@ -7,7 +7,6 @@ extends LevelProgram
 var count: int
 var pim: Pim
 var field: Field
-var output_program: PimProgram
 
 
 func _setup_vars(level_vars: Dictionary) -> void:
@@ -23,10 +22,8 @@ func _ready() -> void:
 	pim = pimnet.get_pim()
 	field = pim.field
 
+	pim.enable_output_slot()
 	goal_panel.slot.set_memo_as_hint(IntegerMemo, count)
-
-	output_program = pim.get_program("GiveOutputMemo")
-	output_program.run()
 
 
 func _get_instruction_replacements() -> Dictionary:
@@ -41,13 +38,17 @@ func _on_put_units_state_entered() -> void:
 	%SoftCountProgram.field = field
 	%SoftCountProgram.run()
 
-	output_program.output_decided.connect(_on_output_decided)
+	pim.output_decided.connect(_on_output_decided)
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))
 	field.warning_signaler.unwarned.connect(_set_output_warning.bind(false))
 
 
 func _on_output_decided(output_number: int) -> void:
-	if output_number == count and %SoftCountProgram.is_valid():
+	if (
+		$StateChart/States/PutUnits.active
+		and output_number == count
+		and %SoftCountProgram.is_valid()
+	):
 		_set_output_warning(false)
 
 		complete_task()
@@ -59,7 +60,6 @@ func _set_output_warning(warned: bool) -> void:
 
 
 func _on_put_units_state_exited() -> void:
-	output_program.output_decided.disconnect(_on_output_decided)
 	field.warning_signaler.warned.disconnect(_set_output_warning)
 	field.warning_signaler.unwarned.disconnect(_set_output_warning)
 

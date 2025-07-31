@@ -8,7 +8,6 @@ var addend_1: int
 var addend_2: int
 var pim: Pim
 var field: Field
-var output_program: PimProgram
 
 
 func _setup_vars(level_vars: Dictionary) -> void:
@@ -29,10 +28,8 @@ func _ready() -> void:
 	pim = pimnet.get_pim()
 	field = pim.field
 
+	pim.enable_output_slot()
 	goal_panel.set_problem_memo(ExpressionMemo.new(str(addend_1) + "+" + str(addend_2)))
-
-	output_program = pim.get_program("GiveOutputMemo")
-	output_program.run()
 
 
 func _get_instruction_replacements() -> Dictionary:

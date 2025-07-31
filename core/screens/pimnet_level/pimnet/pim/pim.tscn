@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://3kjp8w2njup3"]
+[gd_scene load_steps=3 format=3 uid="uid://3kjp8w2njup3"]
 
 [ext_resource type="Script" uid="uid://ce55r284yvqdn" path="res://core/screens/pimnet_level/pimnet/pim/pim.gd" id="1_mx7wt"]
 [ext_resource type="Theme" uid="uid://cktgypu4e5gpa" path="res://core/screens/pimnet_level/theme/pimnet_theme.tres" id="1_trmgt"]
-[ext_resource type="Script" uid="uid://bho5rqikwwijh" path="res://general/mode_nodes/mode_group.gd" id="2_a33of"]
 
 [node name="Pim" type="PanelContainer" groups=["pims"]]
 custom_minimum_size = Vector2(200, 200)
@@ -14,6 +13,3 @@ focus_mode = 2
 theme = ExtResource("1_trmgt")
 theme_type_variation = &"Pim"
 script = ExtResource("1_mx7wt")
-
-[node name="Programs" type="Node" parent="."]
-script = ExtResource("2_a33of")

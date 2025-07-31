@@ -27,7 +27,6 @@ var slot: MemoSlot:
 	get:
 		assert(slot_map.values().size() == 1)
 		return slot_map.values()[0]
-@onready var programs := $Programs as ModeGroup
 
 
 func _draw() -> void:
@@ -41,10 +40,6 @@ func _draw() -> void:
 func _enter_tree() -> void:
 	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
 	CSConnector.with(self).connect_setup(Game.AGENT_MEMO_SLOT, _setup_slot)
-
-
-func get_program(program_name: String) -> PimProgram:
-	return programs.get_mode(program_name)
 
 
 #====================================================================

@@ -1,37 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://nu5s6eayhrhh"]
+[gd_scene load_steps=9 format=3 uid="uid://nu5s6eayhrhh"]
 
 [ext_resource type="PackedScene" uid="uid://3kjp8w2njup3" path="res://core/screens/pimnet_level/pimnet/pim/pim.tscn" id="1_i5hc8"]
 [ext_resource type="Script" uid="uid://msofo2ccm3i3" path="res://content/packs/basic_addition/pims/grid_counting/grid_counting_pim.gd" id="2_vmq6c"]
-[ext_resource type="Script" uid="uid://brtobncige61x" path="res://content/packs/basic_addition/pims/grid_counting/programs/give_output_memo.gd" id="3_ysy7c"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_fao6w"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_dfu7u"]
 [ext_resource type="PackedScene" uid="uid://d2a86jgs6wneu" path="res://core/screens/pimnet_level/pimnet/memo_slot/memo_slot.tscn" id="4_flmjy"]
 [ext_resource type="PackedScene" uid="uid://w2a71fj77wwv" path="res://content/packs/basic_addition/fields/grid_counting/grid_counting_field.tscn" id="5_hpty7"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_xy883"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_k0kak"]
 
 [node name="GridCountingPim" instance=ExtResource("1_i5hc8")]
 custom_minimum_size = Vector2(350, 350)
 offset_right = 350.0
-offset_bottom = 400.0
+offset_bottom = 350.0
 script = ExtResource("2_vmq6c")
+_enable_output_slot = false
 
-[node name="GiveOutputMemo" type="Node" parent="Programs" index="0"]
-script = ExtResource("3_ysy7c")
+[node name="StateChart" type="Node" parent="." index="0"]
+script = ExtResource("3_fao6w")
+metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="1"]
+[node name="OutputSlot" type="Node" parent="StateChart" index="0"]
+script = ExtResource("4_dfu7u")
+initial_state = NodePath("Off")
+
+[node name="Off" type="Node" parent="StateChart/OutputSlot" index="0"]
+script = ExtResource("5_xy883")
+
+[node name="ToOn" type="Node" parent="StateChart/OutputSlot/Off" index="0"]
+script = ExtResource("6_k0kak")
+to = NodePath("../../On")
+event = &"enable_output_slot"
+delay_in_seconds = "0.0"
+
+[node name="On" type="Node" parent="StateChart/OutputSlot" index="1"]
+script = ExtResource("5_xy883")
+
+[node name="ToOff" type="Node" parent="StateChart/OutputSlot/On" index="0"]
+script = ExtResource("6_k0kak")
+to = NodePath("../../Off")
+event = &"disable_output_slot"
+delay_in_seconds = "0.0"
+
+[node name="MainContainer" type="VBoxContainer" parent="." index="1"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="OutputSlot" parent="VBoxContainer" index="0" instance=ExtResource("4_flmjy")]
+[node name="OutputSlot" parent="MainContainer" index="0" instance=ExtResource("4_flmjy")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 memo_input_enabled = false
 
-[node name="FieldContainer" type="SubViewportContainer" parent="VBoxContainer" index="1"]
+[node name="FieldContainer" type="SubViewportContainer" parent="MainContainer" index="1"]
 layout_mode = 2
 
-[node name="FieldViewport" type="SubViewport" parent="VBoxContainer/FieldContainer" index="0"]
+[node name="FieldViewport" type="SubViewport" parent="MainContainer/FieldContainer" index="0"]
 handle_input_locally = false
 physics_object_picking = true
 physics_object_picking_sort = true
 size = Vector2i(350, 350)
 render_target_update_mode = 4
 
-[node name="Field" parent="VBoxContainer/FieldContainer/FieldViewport" index="0" instance=ExtResource("5_hpty7")]
+[node name="Field" parent="MainContainer/FieldContainer/FieldViewport" index="0" instance=ExtResource("5_hpty7")]
+
+[connection signal="state_entered" from="StateChart/OutputSlot/Off" to="." method="_on_output_slot_off_state_entered"]
+[connection signal="state_entered" from="StateChart/OutputSlot/On" to="." method="_on_output_slot_on_state_entered"]
+[connection signal="state_stepped" from="StateChart/OutputSlot/On" to="." method="_on_output_slot_on_state_stepped"]
