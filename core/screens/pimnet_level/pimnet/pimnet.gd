@@ -30,10 +30,12 @@ var _last_destination: Field
 
 
 func _enter_tree() -> void:
-	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
-			"external_drag_requested", start_interfield_drag)
-	CSConnector.with(self).connect_signal(Game.AGENT_FIELD,
-			"dragged_memo_requested", start_memo_drag)
+	CSConnector.with(self).connect_signal(
+		Game.AGENT_FIELD, "external_drag_requested", start_interfield_drag
+	)
+	CSConnector.with(self).connect_signal(
+		Game.AGENT_FIELD, "dragged_memo_requested", start_memo_drag
+	)
 	CSLocator.with(self).register(Game.SERVICE_PIMNET, self)
 
 	_center_camera_on_pim_strip()
@@ -151,7 +153,7 @@ func _center_camera_on_pim_strip() -> void:
 
 func _center_camera_on_pim(pim_index: int) -> void:
 	# Do nothing if index is out of bounds
-	if pim_index >= _pims_left_to_right.size():
+	if pim_index < 0 or pim_index >= _pims_left_to_right.size():
 		return
 
 	%CameraPoint.position.x = _pims_left_to_right[pim_index].get_rect().get_center().x
@@ -163,8 +165,12 @@ func _get_camera_limit_rect() -> Rect2:
 	var limit_margin = screen_rect.size.x * CAMERA_OVERSHOOT_MARGIN_RATIO
 	var pim_strip_width := _get_pim_strip_width()
 	var rect_width = pim_strip_width - screen_rect.size.x + (2 * limit_margin)
-	return Rect2(screen_rect.get_center().x - limit_margin, screen_rect.get_center().y,
-			maxf(rect_width, 0.0), 0.0)
+	return Rect2(
+		screen_rect.get_center().x - limit_margin,
+		screen_rect.get_center().y,
+		maxf(rect_width, 0.0),
+		0.0
+	)
 
 
 func _get_pim_strip_width() -> float:
@@ -176,7 +182,7 @@ func _get_pim_strip_width() -> float:
 
 
 func overlay_position_to_effect_layer(p_position: Vector2) -> Vector2:
-	var overlay_offset = %CameraPoint.global_position - Game.get_screen_rect().size/2
+	var overlay_offset = %CameraPoint.global_position - Game.get_screen_rect().size / 2
 	return p_position + overlay_offset
 
 
@@ -193,6 +199,7 @@ func get_pim(pim_name := "") -> Pim:
 #====================================================================
 # Drag and Drop
 #====================================================================
+
 
 func start_memo_drag(memo: Memo) -> void:
 	assert(memo != null)
