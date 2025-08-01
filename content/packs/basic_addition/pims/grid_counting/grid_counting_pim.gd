@@ -23,7 +23,7 @@ func enable_output_slot(enable := true) -> void:
 func _on_output_slot_on_state_entered() -> void:
 	slot.show()
 	_update_output_memo()
-	_update_size()
+	MrGodotPlz.update_sizes_in_container(self)
 	if not field.updated.is_connected($StateChart.step):
 		field.updated.connect($StateChart.step)
 
@@ -31,15 +31,9 @@ func _on_output_slot_on_state_entered() -> void:
 func _on_output_slot_off_state_entered() -> void:
 	slot.hide()
 	slot.set_empty()
-	_update_size()
+	MrGodotPlz.update_sizes_in_container(self)
 	if field.updated.is_connected($StateChart.step):
 		field.updated.disconnect($StateChart.step)
-
-
-# Hack to remind Mr. Godot to update size
-func _update_size() -> void:
-	size_flags_vertical += 1
-	size_flags_vertical -= 1
 
 
 func _on_output_slot_on_state_stepped() -> void:
