@@ -38,9 +38,9 @@ func _get_instruction_replacements() -> Dictionary:
 
 func _on_playing_state_entered() -> void:
 	overlay.pim_tools.exclude_all("GridCounting")
-	overlay.pim_tools.include("GridCounting", GridCounting.Tools.CELL_MARKER)
-	overlay.pim_tools.include("GridCounting", GridCounting.Tools.PIECE_DRAGGER)
-	field.set_tool(GridCounting.Tools.CELL_MARKER)
+	overlay.pim_tools.include("GridCounting", GridCounting.TOOL_CELL_MARKER)
+	overlay.pim_tools.include("GridCounting", GridCounting.TOOL_PIECE_DRAGGER)
+	field.set_tool(GridCounting.TOOL_CELL_MARKER)
 	overlay.pim_objects.include_all("GridCounting")
 
 	%SoftCountProgram.field = field

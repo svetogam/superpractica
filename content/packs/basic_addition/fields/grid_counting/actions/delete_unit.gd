@@ -8,8 +8,8 @@ extends FieldAction
 var cell_number: int
 
 
-static func get_name() -> int:
-	return GridCounting.Actions.DELETE_UNIT
+static func get_name() -> String:
+	return GridCounting.ACTION_DELETE_UNIT
 
 
 func _init(p_field: Field, p_cell_number: int) -> void:

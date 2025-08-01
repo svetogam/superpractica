@@ -19,8 +19,8 @@ var unit: FieldObject:
 		return field.dynamic_model.get_unit(number)
 
 
-static func _get_object_type() -> int:
-	return GridCounting.Objects.GRID_CELL
+static func _get_object_type() -> String:
+	return GridCounting.OBJECT_GRID_CELL
 
 
 func _draw() -> void:

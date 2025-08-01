@@ -20,13 +20,13 @@ func show_toolset(toolset_name: String) -> void:
 	_containers[toolset_name].visible = true
 
 
-func include(toolset_name: String, tool_mode: int) -> void:
+func include(toolset_name: String, tool_mode: String) -> void:
 	assert(_containers.has(toolset_name))
 	var button = _containers[toolset_name].get_tool_button(tool_mode)
 	button.visible = true
 
 
-func exclude(toolset_name: String, tool_mode: int) -> void:
+func exclude(toolset_name: String, tool_mode: String) -> void:
 	assert(_containers.has(toolset_name))
 	var button = _containers[toolset_name].get_tool_button(tool_mode)
 	if button.button_pressed:
@@ -46,13 +46,13 @@ func exclude_all(toolset_name: String) -> void:
 		exclude(toolset_name, tool_mode)
 
 
-func enable(toolset_name: String, tool_mode: int) -> void:
+func enable(toolset_name: String, tool_mode: String) -> void:
 	assert(_containers.has(toolset_name))
 	var button = _containers[toolset_name].get_tool_button(tool_mode)
 	button.disabled = false
 
 
-func disable(toolset_name: String, tool_mode: int) -> void:
+func disable(toolset_name: String, tool_mode: String) -> void:
 	assert(_containers.has(toolset_name))
 	var button = _containers[toolset_name].get_tool_button(tool_mode)
 	button.disabled = true

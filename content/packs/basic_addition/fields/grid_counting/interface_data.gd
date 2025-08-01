@@ -9,11 +9,11 @@ func _init() -> void:
 	field_type = "GridCounting"
 
 	object_data = {
-		GridCounting.Objects.UNIT: FieldObjectData.new(
+		GridCounting.OBJECT_UNIT: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.UNIT,
+			GridCounting.OBJECT_UNIT,
 			# Name Text
 			"Unit",
 			# Drag Sprite
@@ -21,11 +21,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/unit_icon.svg"),
 		),
-		GridCounting.Objects.TWO_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_TWO_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.TWO_BLOCK,
+			GridCounting.OBJECT_TWO_BLOCK,
 			# Name Text
 			"Two Block",
 			# Drag Sprite
@@ -33,11 +33,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/two_block_icon.svg"),
 		),
-		GridCounting.Objects.THREE_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_THREE_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.THREE_BLOCK,
+			GridCounting.OBJECT_THREE_BLOCK,
 			# Name Text
 			"Three Block",
 			# Drag Sprite
@@ -45,11 +45,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/three_block_icon.svg"),
 		),
-		GridCounting.Objects.FOUR_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_FOUR_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.FOUR_BLOCK,
+			GridCounting.OBJECT_FOUR_BLOCK,
 			# Name Text
 			"Four Block",
 			# Drag Sprite
@@ -57,11 +57,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/four_block_icon.svg"),
 		),
-		GridCounting.Objects.FIVE_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_FIVE_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.FIVE_BLOCK,
+			GridCounting.OBJECT_FIVE_BLOCK,
 			# Name Text
 			"Five Block",
 			# Drag Sprite
@@ -69,11 +69,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/five_block_icon.svg"),
 		),
-		GridCounting.Objects.TEN_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_TEN_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.TEN_BLOCK,
+			GridCounting.OBJECT_TEN_BLOCK,
 			# Name Text
 			"Ten Block",
 			# Drag Sprite
@@ -81,11 +81,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/ten_block_icon.svg"),
 		),
-		GridCounting.Objects.TWENTY_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_TWENTY_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.TWENTY_BLOCK,
+			GridCounting.OBJECT_TWENTY_BLOCK,
 			# Name Text
 			"Twenty Block",
 			# Drag Sprite
@@ -93,11 +93,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/twenty_block_icon.svg"),
 		),
-		GridCounting.Objects.THIRTY_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_THIRTY_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.THIRTY_BLOCK,
+			GridCounting.OBJECT_THIRTY_BLOCK,
 			# Name Text
 			"Thirty Block",
 			# Drag Sprite
@@ -105,11 +105,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/thirty_block_icon.svg"),
 		),
-		GridCounting.Objects.FORTY_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_FORTY_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.FORTY_BLOCK,
+			GridCounting.OBJECT_FORTY_BLOCK,
 			# Name Text
 			"Forty Block",
 			# Drag Sprite
@@ -117,11 +117,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/forty_block_icon.svg"),
 		),
-		GridCounting.Objects.FIFTY_BLOCK: FieldObjectData.new(
+		GridCounting.OBJECT_FIFTY_BLOCK: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.FIFTY_BLOCK,
+			GridCounting.OBJECT_FIFTY_BLOCK,
 			# Name Text
 			"Fifty Block",
 			# Drag Sprite
@@ -129,11 +129,11 @@ func _init() -> void:
 			# Icon
 			preload("graphics/icons/fifty_block_icon.svg"),
 		),
-		GridCounting.Objects.GRID_CELL: FieldObjectData.new(
+		GridCounting.OBJECT_GRID_CELL: FieldObjectData.new(
 			# Field Type
 			field_type,
 			# Object Type
-			GridCounting.Objects.GRID_CELL,
+			GridCounting.OBJECT_GRID_CELL,
 			# Name Text
 			"Grid Cell",
 			# Drag Sprite
@@ -142,43 +142,43 @@ func _init() -> void:
 	}
 
 	tool_data = {
-		GridCounting.Tools.CELL_MARKER: {
+		GridCounting.TOOL_CELL_MARKER: {
 			"text": "Mark Cell",
 			"icon": preload("graphics/icons/action_mark_cell_icon.svg"),
 			"object_modes": {
-				GridCounting.Objects.GRID_CELL: ["mark"],
+				GridCounting.OBJECT_GRID_CELL: ["mark"],
 			},
 		},
-		GridCounting.Tools.PIECE_DELETER: {
+		GridCounting.TOOL_PIECE_DELETER: {
 			"text": "Delete Piece",
 			"icon": preload("graphics/icons/action_delete_piece_icon.svg"),
 			"object_modes": {
-				GridCounting.Objects.UNIT: ["delete"],
-				GridCounting.Objects.TWO_BLOCK: ["delete"],
-				GridCounting.Objects.THREE_BLOCK: ["delete"],
-				GridCounting.Objects.FOUR_BLOCK: ["delete"],
-				GridCounting.Objects.FIVE_BLOCK: ["delete"],
-				GridCounting.Objects.TEN_BLOCK: ["delete"],
-				GridCounting.Objects.TWENTY_BLOCK: ["delete"],
-				GridCounting.Objects.THIRTY_BLOCK: ["delete"],
-				GridCounting.Objects.FORTY_BLOCK: ["delete"],
-				GridCounting.Objects.FIFTY_BLOCK: ["delete"],
+				GridCounting.OBJECT_UNIT: ["delete"],
+				GridCounting.OBJECT_TWO_BLOCK: ["delete"],
+				GridCounting.OBJECT_THREE_BLOCK: ["delete"],
+				GridCounting.OBJECT_FOUR_BLOCK: ["delete"],
+				GridCounting.OBJECT_FIVE_BLOCK: ["delete"],
+				GridCounting.OBJECT_TEN_BLOCK: ["delete"],
+				GridCounting.OBJECT_TWENTY_BLOCK: ["delete"],
+				GridCounting.OBJECT_THIRTY_BLOCK: ["delete"],
+				GridCounting.OBJECT_FORTY_BLOCK: ["delete"],
+				GridCounting.OBJECT_FIFTY_BLOCK: ["delete"],
 			},
 		},
-		GridCounting.Tools.PIECE_DRAGGER: {
+		GridCounting.TOOL_PIECE_DRAGGER: {
 			"text": "Drag Piece",
 			"icon": preload("graphics/icons/action_drag_piece_icon.svg"),
 			"object_modes": {
-				GridCounting.Objects.UNIT: ["drag"],
-				GridCounting.Objects.TWO_BLOCK: ["drag"],
-				GridCounting.Objects.THREE_BLOCK: ["drag"],
-				GridCounting.Objects.FOUR_BLOCK: ["drag"],
-				GridCounting.Objects.FIVE_BLOCK: ["drag"],
-				GridCounting.Objects.TEN_BLOCK: ["drag"],
-				GridCounting.Objects.TWENTY_BLOCK: ["drag"],
-				GridCounting.Objects.THIRTY_BLOCK: ["drag"],
-				GridCounting.Objects.FORTY_BLOCK: ["drag"],
-				GridCounting.Objects.FIFTY_BLOCK: ["drag"],
+				GridCounting.OBJECT_UNIT: ["drag"],
+				GridCounting.OBJECT_TWO_BLOCK: ["drag"],
+				GridCounting.OBJECT_THREE_BLOCK: ["drag"],
+				GridCounting.OBJECT_FOUR_BLOCK: ["drag"],
+				GridCounting.OBJECT_FIVE_BLOCK: ["drag"],
+				GridCounting.OBJECT_TEN_BLOCK: ["drag"],
+				GridCounting.OBJECT_TWENTY_BLOCK: ["drag"],
+				GridCounting.OBJECT_THIRTY_BLOCK: ["drag"],
+				GridCounting.OBJECT_FORTY_BLOCK: ["drag"],
+				GridCounting.OBJECT_FIFTY_BLOCK: ["drag"],
 			},
 		},
 	}

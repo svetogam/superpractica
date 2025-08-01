@@ -8,8 +8,8 @@ extends FieldAction
 var cell_number: int
 
 
-static func get_name() -> int:
-	return GridCounting.Actions.TOGGLE_MARK
+static func get_name() -> String:
+	return GridCounting.ACTION_TOGGLE_MARK
 
 
 func _init(p_field: Field, p_cell_number: int) -> void:

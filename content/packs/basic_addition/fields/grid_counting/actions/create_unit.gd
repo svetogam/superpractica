@@ -9,8 +9,8 @@ var cell_number: int
 var unit: FieldObject
 
 
-static func get_name() -> int:
-	return GridCounting.Actions.CREATE_UNIT
+static func get_name() -> String:
+	return GridCounting.ACTION_CREATE_UNIT
 
 
 func _init(p_field: Field, p_cell_number: int) -> void:

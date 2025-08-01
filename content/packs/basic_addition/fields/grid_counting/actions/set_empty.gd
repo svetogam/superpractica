@@ -6,8 +6,8 @@ class_name GridCountingActionSetEmpty
 extends FieldAction
 
 
-static func get_name() -> int:
-	return GridCounting.Actions.SET_EMPTY
+static func get_name() -> String:
+	return GridCounting.ACTION_SET_EMPTY
 
 
 func do() -> void:

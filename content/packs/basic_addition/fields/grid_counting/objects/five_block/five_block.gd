@@ -25,8 +25,8 @@ var cells: Array:
 		]
 
 
-static func _get_object_type() -> int:
-	return GridCounting.Objects.FIVE_BLOCK
+static func _get_object_type() -> String:
+	return GridCounting.OBJECT_FIVE_BLOCK
 
 
 # p_first_number is the first cell the block occupies

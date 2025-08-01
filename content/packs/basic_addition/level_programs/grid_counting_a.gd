@@ -31,9 +31,9 @@ func _get_instruction_replacements() -> Dictionary:
 
 
 func _on_put_units_state_entered() -> void:
-	field.set_tool(GridCounting.Tools.PIECE_DRAGGER)
+	field.set_tool(GridCounting.TOOL_PIECE_DRAGGER)
 	overlay.pim_objects.exclude_all("GridCounting")
-	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
+	overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_UNIT)
 
 	%SoftCountProgram.field = field
 	%SoftCountProgram.run()
@@ -65,7 +65,7 @@ func _on_put_units_state_exited() -> void:
 
 
 func _on_drag_memo_state_entered() -> void:
-	field.set_tool(Game.NO_TOOL)
+	field.set_tool(Field.NO_TOOL)
 	pimnet.overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 	level.reverter.history.clear()
 	set_no_reset()

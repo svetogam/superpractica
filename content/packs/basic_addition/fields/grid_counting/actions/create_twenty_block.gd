@@ -9,8 +9,8 @@ var first_row_number: int
 var block: FieldObject
 
 
-static func get_name() -> int:
-	return GridCounting.Actions.CREATE_TWENTY_BLOCK
+static func get_name() -> String:
+	return GridCounting.ACTION_CREATE_TWENTY_BLOCK
 
 
 func _init(p_field: Field, p_first_row_number: int) -> void:

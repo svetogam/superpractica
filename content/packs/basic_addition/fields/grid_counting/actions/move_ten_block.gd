@@ -10,8 +10,8 @@ var to_row_number: int
 var block: FieldObject
 
 
-static func get_name() -> int:
-	return GridCounting.Actions.MOVE_TEN_BLOCK
+static func get_name() -> String:
+	return GridCounting.ACTION_MOVE_TEN_BLOCK
 
 
 func _init(p_field: Field, p_from_row_number: int, p_to_row_number: int) -> void:

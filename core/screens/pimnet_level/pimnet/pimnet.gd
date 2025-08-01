@@ -119,7 +119,7 @@ func setup(level_data: LevelResource) -> void:
 		_pims_left_to_right[0].focus_entered.emit()
 
 
-func _on_pim_tool_selected(toolset_name: String, tool_mode: int) -> void:
+func _on_pim_tool_selected(toolset_name: String, tool_mode: String) -> void:
 	for field in fields:
 		if toolset_name == field.field_type:
 			field.set_tool(tool_mode)

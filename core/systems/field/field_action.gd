@@ -6,14 +6,14 @@ class_name FieldAction
 extends RefCounted
 
 var field: Field
-var name: int:
+var name: String:
 	get = get_name
 
 
 # Virtual
-static func get_name() -> int:
+static func get_name() -> String:
 	assert(false)
-	return -1
+	return ""
 
 
 func _init(p_field: Field) -> void:

@@ -18,8 +18,10 @@ enum UpdateTypes {
 	STATE_LOADED,
 }
 
+const NO_OBJECT := "no_object"
+const NO_TOOL := "no_tool"
 var action_queue := FieldActionQueue.new(self)
-var tool_mode: int = Game.NO_TOOL
+var tool_mode := NO_TOOL
 var dragged_object: FieldObject
 var field_type: String:
 	get = _get_field_type
@@ -126,21 +128,21 @@ func load_state(_state: CRMemento) -> void:
 
 
 # Virtual
-func get_objects_by_type(_object_type: int) -> Array:
+func get_objects_by_type(_object_type: String) -> Array:
 	return []
 
 
-func set_tool(p_tool_mode: int) -> void:
+func set_tool(p_tool_mode: String) -> void:
 	if p_tool_mode != tool_mode:
 		tool_mode = p_tool_mode
 		tool_changed.emit(tool_mode)
 
 
-func _on_tool_changed(_new_tool: int) -> void:
+func _on_tool_changed(_new_tool: String) -> void:
 	_trigger_update(UpdateTypes.TOOL_MODE_CHANGED)
 
 
-func get_active_modes_for_object(object_type: int) -> Array:
+func get_active_modes_for_object(object_type: String) -> Array:
 	return interface_data.get_object_modes(tool_mode, object_type)
 
 
@@ -161,13 +163,13 @@ func request_drag_memo(memo: Memo) -> void:
 
 ## [param condition] receives all actions matching [param action_name] being pushed,
 ## and must return true or false to decide if the action should be pushed.
-func add_action_condition(action_name: int, condition: Callable) -> void:
+func add_action_condition(action_name: String, condition: Callable) -> void:
 	if not _action_conditions.has(action_name):
 		_action_conditions[action_name] = []
 	_action_conditions[action_name].append(condition)
 
 
-func remove_action_condition(action_name: int, condition: Callable) -> void:
+func remove_action_condition(action_name: String, condition: Callable) -> void:
 	assert(_action_conditions.has(action_name))
 
 	if _action_conditions[action_name].size() == 1:

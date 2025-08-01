@@ -30,29 +30,29 @@ func _ready() -> void:
 
 
 func _on_playing_state_entered() -> void:
-	field.set_tool(GridCounting.Tools.PIECE_DRAGGER)
+	field.set_tool(GridCounting.TOOL_PIECE_DRAGGER)
 	overlay.pim_objects.exclude_all("GridCounting")
 
 	if allowed_objects.has("unit"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_UNIT)
 	if allowed_objects.has("two_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.TWO_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_TWO_BLOCK)
 	if allowed_objects.has("three_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.THREE_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_THREE_BLOCK)
 	if allowed_objects.has("four_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FOUR_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_FOUR_BLOCK)
 	if allowed_objects.has("five_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FIVE_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_FIVE_BLOCK)
 	if allowed_objects.has("ten_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_TEN_BLOCK)
 	if allowed_objects.has("twenty_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.TWENTY_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_TWENTY_BLOCK)
 	if allowed_objects.has("thirty_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.THIRTY_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_THIRTY_BLOCK)
 	if allowed_objects.has("forty_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FORTY_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_FORTY_BLOCK)
 	if allowed_objects.has("fifty_block"):
-		overlay.pim_objects.include("GridCounting", GridCounting.Objects.FIFTY_BLOCK)
+		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_FIFTY_BLOCK)
 
 	%SoftCountProgram.field = field
 	%SoftCountProgram.run()

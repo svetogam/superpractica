@@ -20,7 +20,7 @@ func run() -> void:
 	field.updated.connect(_run_rules)
 
 
-func set_object_rule_results(object_type: int, pass_func: Callable, fail_func: Callable
+func set_object_rule_results(object_type: String, pass_func: Callable, fail_func: Callable
 ) -> void:
 	if not _object_outcomes.has(object_type):
 		_object_outcomes[object_type] = {}
@@ -28,22 +28,22 @@ func set_object_rule_results(object_type: int, pass_func: Callable, fail_func: C
 	_object_outcomes[object_type].fail = fail_func
 
 
-func add_object_rule(object_type: int, condition_func: Callable) -> void:
+func add_object_rule(object_type: String, condition_func: Callable) -> void:
 	if not _object_rules.has(object_type):
 		_object_rules[object_type] = []
 	_object_rules[object_type].append(condition_func)
 
 
-func remove_object_rule(object_type: int, condition_func: Callable) -> void:
+func remove_object_rule(object_type: String, condition_func: Callable) -> void:
 	if _object_rules.has(object_type):
 		_object_rules[object_type].erase(condition_func)
 
 
-func disallow_object(object_type: int) -> void:
+func disallow_object(object_type: String) -> void:
 	add_object_rule(object_type, _disallowed_object_rule)
 
 
-func reallow_object(object_type: int) -> void:
+func reallow_object(object_type: String) -> void:
 	remove_object_rule(object_type, _disallowed_object_rule)
 
 

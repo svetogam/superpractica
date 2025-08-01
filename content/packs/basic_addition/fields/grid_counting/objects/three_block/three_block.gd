@@ -17,8 +17,8 @@ var cells: Array:
 		]
 
 
-static func _get_object_type() -> int:
-	return GridCounting.Objects.THREE_BLOCK
+static func _get_object_type() -> String:
+	return GridCounting.OBJECT_THREE_BLOCK
 
 
 # p_first_number is the first cell the block occupies

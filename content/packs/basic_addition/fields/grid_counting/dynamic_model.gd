@@ -35,77 +35,77 @@ func _init(p_field: GridCounting) -> void:
 
 func _on_action(action: FieldAction) -> void:
 	match action.name:
-		GridCounting.Actions.CREATE_UNIT:
+		GridCounting.ACTION_CREATE_UNIT:
 			_cells[action.cell_number].unit = action.unit
-		GridCounting.Actions.CREATE_TWO_BLOCK:
+		GridCounting.ACTION_CREATE_TWO_BLOCK:
 			_cells[action.first_number].two_block = action.block
-		GridCounting.Actions.CREATE_THREE_BLOCK:
+		GridCounting.ACTION_CREATE_THREE_BLOCK:
 			_cells[action.first_number].three_block = action.block
-		GridCounting.Actions.CREATE_FOUR_BLOCK:
+		GridCounting.ACTION_CREATE_FOUR_BLOCK:
 			_cells[action.first_number].four_block = action.block
-		GridCounting.Actions.CREATE_FIVE_BLOCK:
+		GridCounting.ACTION_CREATE_FIVE_BLOCK:
 			_cells[action.first_number].five_block = action.block
-		GridCounting.Actions.CREATE_TEN_BLOCK:
+		GridCounting.ACTION_CREATE_TEN_BLOCK:
 			_rows[action.row_number].ten_block = action.block
-		GridCounting.Actions.CREATE_TWENTY_BLOCK:
+		GridCounting.ACTION_CREATE_TWENTY_BLOCK:
 			_rows[action.first_row_number].twenty_block = action.block
-		GridCounting.Actions.CREATE_THIRTY_BLOCK:
+		GridCounting.ACTION_CREATE_THIRTY_BLOCK:
 			_rows[action.first_row_number].thirty_block = action.block
-		GridCounting.Actions.CREATE_FORTY_BLOCK:
+		GridCounting.ACTION_CREATE_FORTY_BLOCK:
 			_rows[action.first_row_number].forty_block = action.block
-		GridCounting.Actions.CREATE_FIFTY_BLOCK:
+		GridCounting.ACTION_CREATE_FIFTY_BLOCK:
 			_rows[action.first_row_number].fifty_block = action.block
-		GridCounting.Actions.MOVE_UNIT:
+		GridCounting.ACTION_MOVE_UNIT:
 			_cells[action.from_cell_number].unit = null
 			_cells[action.to_cell_number].unit = action.unit
-		GridCounting.Actions.MOVE_TWO_BLOCK:
+		GridCounting.ACTION_MOVE_TWO_BLOCK:
 			_cells[action.from_first_number].two_block = null
 			_cells[action.to_first_number].two_block = action.block
-		GridCounting.Actions.MOVE_THREE_BLOCK:
+		GridCounting.ACTION_MOVE_THREE_BLOCK:
 			_cells[action.from_first_number].three_block = null
 			_cells[action.to_first_number].three_block = action.block
-		GridCounting.Actions.MOVE_FOUR_BLOCK:
+		GridCounting.ACTION_MOVE_FOUR_BLOCK:
 			_cells[action.from_first_number].four_block = null
 			_cells[action.to_first_number].four_block = action.block
-		GridCounting.Actions.MOVE_FIVE_BLOCK:
+		GridCounting.ACTION_MOVE_FIVE_BLOCK:
 			_cells[action.from_first_number].five_block = null
 			_cells[action.to_first_number].five_block = action.block
-		GridCounting.Actions.MOVE_TEN_BLOCK:
+		GridCounting.ACTION_MOVE_TEN_BLOCK:
 			_rows[action.from_row_number].ten_block = null
 			_rows[action.to_row_number].ten_block = action.block
-		GridCounting.Actions.MOVE_TWENTY_BLOCK:
+		GridCounting.ACTION_MOVE_TWENTY_BLOCK:
 			_rows[action.from_first_row_number].twenty_block = null
 			_rows[action.to_first_row_number].twenty_block = action.block
-		GridCounting.Actions.MOVE_THIRTY_BLOCK:
+		GridCounting.ACTION_MOVE_THIRTY_BLOCK:
 			_rows[action.from_first_row_number].thirty_block = null
 			_rows[action.to_first_row_number].thirty_block = action.block
-		GridCounting.Actions.MOVE_FORTY_BLOCK:
+		GridCounting.ACTION_MOVE_FORTY_BLOCK:
 			_rows[action.from_first_row_number].forty_block = null
 			_rows[action.to_first_row_number].forty_block = action.block
-		GridCounting.Actions.MOVE_FIFTY_BLOCK:
+		GridCounting.ACTION_MOVE_FIFTY_BLOCK:
 			_rows[action.from_first_row_number].fifty_block = null
 			_rows[action.to_first_row_number].fifty_block = action.block
-		GridCounting.Actions.DELETE_UNIT:
+		GridCounting.ACTION_DELETE_UNIT:
 			_cells[action.cell_number].unit = null
-		GridCounting.Actions.DELETE_TWO_BLOCK:
+		GridCounting.ACTION_DELETE_TWO_BLOCK:
 			_cells[action.first_number].two_block = null
-		GridCounting.Actions.DELETE_THREE_BLOCK:
+		GridCounting.ACTION_DELETE_THREE_BLOCK:
 			_cells[action.first_number].three_block = null
-		GridCounting.Actions.DELETE_FOUR_BLOCK:
+		GridCounting.ACTION_DELETE_FOUR_BLOCK:
 			_cells[action.first_number].four_block = null
-		GridCounting.Actions.DELETE_FIVE_BLOCK:
+		GridCounting.ACTION_DELETE_FIVE_BLOCK:
 			_cells[action.first_number].five_block = null
-		GridCounting.Actions.DELETE_TEN_BLOCK:
+		GridCounting.ACTION_DELETE_TEN_BLOCK:
 			_rows[action.row_number].ten_block = null
-		GridCounting.Actions.DELETE_TWENTY_BLOCK:
+		GridCounting.ACTION_DELETE_TWENTY_BLOCK:
 			_rows[action.first_row_number].twenty_block = null
-		GridCounting.Actions.DELETE_THIRTY_BLOCK:
+		GridCounting.ACTION_DELETE_THIRTY_BLOCK:
 			_rows[action.first_row_number].thirty_block = null
-		GridCounting.Actions.DELETE_FORTY_BLOCK:
+		GridCounting.ACTION_DELETE_FORTY_BLOCK:
 			_rows[action.first_row_number].forty_block = null
-		GridCounting.Actions.DELETE_FIFTY_BLOCK:
+		GridCounting.ACTION_DELETE_FIFTY_BLOCK:
 			_rows[action.first_row_number].fifty_block = null
-		GridCounting.Actions.SET_EMPTY:
+		GridCounting.ACTION_SET_EMPTY:
 			for cell_number in _cells:
 				_cells[cell_number].unit = null
 				_cells[cell_number].two_block = null

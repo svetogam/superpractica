@@ -10,59 +10,54 @@ extends Field
 #====================================================================
 #region
 
-enum Objects {
-	GRID_CELL,
-	UNIT,
-	TWO_BLOCK,
-	THREE_BLOCK,
-	FOUR_BLOCK,
-	FIVE_BLOCK,
-	TEN_BLOCK,
-	TWENTY_BLOCK,
-	THIRTY_BLOCK,
-	FORTY_BLOCK,
-	FIFTY_BLOCK,
-}
-enum Actions {
-	TOGGLE_MARK,
-	CREATE_UNIT,
-	CREATE_TWO_BLOCK,
-	CREATE_THREE_BLOCK,
-	CREATE_FOUR_BLOCK,
-	CREATE_FIVE_BLOCK,
-	CREATE_TEN_BLOCK,
-	CREATE_TWENTY_BLOCK,
-	CREATE_THIRTY_BLOCK,
-	CREATE_FORTY_BLOCK,
-	CREATE_FIFTY_BLOCK,
-	MOVE_UNIT,
-	MOVE_TWO_BLOCK,
-	MOVE_THREE_BLOCK,
-	MOVE_FOUR_BLOCK,
-	MOVE_FIVE_BLOCK,
-	MOVE_TEN_BLOCK,
-	MOVE_TWENTY_BLOCK,
-	MOVE_THIRTY_BLOCK,
-	MOVE_FORTY_BLOCK,
-	MOVE_FIFTY_BLOCK,
-	DELETE_UNIT,
-	DELETE_TWO_BLOCK,
-	DELETE_THREE_BLOCK,
-	DELETE_FOUR_BLOCK,
-	DELETE_FIVE_BLOCK,
-	DELETE_TEN_BLOCK,
-	DELETE_TWENTY_BLOCK,
-	DELETE_THIRTY_BLOCK,
-	DELETE_FORTY_BLOCK,
-	DELETE_FIFTY_BLOCK,
-	SET_EMPTY,
-}
-enum Tools {
-	NONE = Game.NO_TOOL,
-	CELL_MARKER,
-	PIECE_DELETER,
-	PIECE_DRAGGER,
-}
+const ACTION_TOGGLE_MARK := "toggle_mark"
+const ACTION_CREATE_UNIT := "create_unit"
+const ACTION_CREATE_TWO_BLOCK := "create_two_block"
+const ACTION_CREATE_THREE_BLOCK := "create_three_block"
+const ACTION_CREATE_FOUR_BLOCK := "create_four_block"
+const ACTION_CREATE_FIVE_BLOCK := "create_five_block"
+const ACTION_CREATE_TEN_BLOCK := "create_ten_block"
+const ACTION_CREATE_TWENTY_BLOCK := "create_twenty_block"
+const ACTION_CREATE_THIRTY_BLOCK := "create_thirty_block"
+const ACTION_CREATE_FORTY_BLOCK := "create_forty_block"
+const ACTION_CREATE_FIFTY_BLOCK := "create_fifty_block"
+const ACTION_MOVE_UNIT := "move_unit"
+const ACTION_MOVE_TWO_BLOCK := "move_two_block"
+const ACTION_MOVE_THREE_BLOCK := "move_three_block"
+const ACTION_MOVE_FOUR_BLOCK := "move_four_block"
+const ACTION_MOVE_FIVE_BLOCK := "move_five_block"
+const ACTION_MOVE_TEN_BLOCK := "move_ten_block"
+const ACTION_MOVE_TWENTY_BLOCK := "move_twenty_block"
+const ACTION_MOVE_THIRTY_BLOCK := "move_thirty_block"
+const ACTION_MOVE_FORTY_BLOCK := "move_forty_block"
+const ACTION_MOVE_FIFTY_BLOCK := "move_fifty_block"
+const ACTION_DELETE_UNIT := "delete_unit"
+const ACTION_DELETE_TWO_BLOCK := "delete_two_block"
+const ACTION_DELETE_THREE_BLOCK := "delete_three_block"
+const ACTION_DELETE_FOUR_BLOCK := "delete_four_block"
+const ACTION_DELETE_FIVE_BLOCK := "delete_five_block"
+const ACTION_DELETE_TEN_BLOCK := "delete_ten_block"
+const ACTION_DELETE_TWENTY_BLOCK := "delete_twenty_block"
+const ACTION_DELETE_THIRTY_BLOCK := "delete_thirty_block"
+const ACTION_DELETE_FORTY_BLOCK := "delete_forty_block"
+const ACTION_DELETE_FIFTY_BLOCK := "delete_fifty_block"
+const ACTION_SET_EMPTY := "set_empty"
+
+const OBJECT_GRID_CELL := "grid_cell"
+const OBJECT_UNIT := "unit"
+const OBJECT_TWO_BLOCK := "two_block"
+const OBJECT_THREE_BLOCK := "three_block"
+const OBJECT_FOUR_BLOCK := "four_block"
+const OBJECT_FIVE_BLOCK := "five_block"
+const OBJECT_TEN_BLOCK := "ten_block"
+const OBJECT_TWENTY_BLOCK := "twenty_block"
+const OBJECT_THIRTY_BLOCK := "thirty_block"
+const OBJECT_FORTY_BLOCK := "forty_block"
+const OBJECT_FIFTY_BLOCK := "fifty_block"
+
+const TOOL_CELL_MARKER := "cell_marker"
+const TOOL_PIECE_DELETER := "piece_deleter"
+const TOOL_PIECE_DRAGGER := "piece_dragger"
 
 const ObjectGridCell := preload("objects/grid_cell/grid_cell.tscn")
 const ObjectUnit := preload("objects/unit/unit.tscn")
@@ -103,6 +98,7 @@ static func _get_interface_data() -> FieldInterfaceData:
 #====================================================================
 #region
 
+
 func _ready() -> void:
 	super()
 	_setup_board()
@@ -132,40 +128,40 @@ func _dragged_in(object_data: FieldObjectData, point: Vector2, _source: Field) -
 	match object_data.field_type:
 		"GridCounting":
 			match object_data.object_type:
-				GridCounting.Objects.UNIT:
+				OBJECT_UNIT:
 					var cell = get_grid_cell_at_point(point)
 					GridCountingActionCreateUnit.new(self, cell.number).prefigure()
-				GridCounting.Objects.TWO_BLOCK:
+				OBJECT_TWO_BLOCK:
 					var cells = get_h_adjacent_grid_cells_at_point(point)
 					var first_number = cells[0].number
 					GridCountingActionCreateTwoBlock.new(self, first_number).prefigure()
-				GridCounting.Objects.THREE_BLOCK:
+				OBJECT_THREE_BLOCK:
 					var first_number = get_grid_cell_at_point(point).number - 1
 					GridCountingActionCreateThreeBlock.new(self, first_number).prefigure()
-				GridCounting.Objects.FOUR_BLOCK:
+				OBJECT_FOUR_BLOCK:
 					var cells = get_h_adjacent_grid_cells_at_point(point)
 					var first_number = cells[0].number - 1
 					GridCountingActionCreateFourBlock.new(self, first_number).prefigure()
-				GridCounting.Objects.FIVE_BLOCK:
+				OBJECT_FIVE_BLOCK:
 					var first_number = get_grid_cell_at_point(point).number - 2
 					GridCountingActionCreateFiveBlock.new(self, first_number).prefigure()
-				GridCounting.Objects.TEN_BLOCK:
+				OBJECT_TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var row_number := static_model.get_row_of_cell(dest_cell.number)
 					GridCountingActionCreateTenBlock.new(self, row_number).prefigure()
-				GridCounting.Objects.TWENTY_BLOCK:
+				OBJECT_TWENTY_BLOCK:
 					var dest_cells = get_v_adjacent_grid_cells_at_point(point)
 					var dest_row := static_model.get_row_of_cell(dest_cells[0].number)
 					GridCountingActionCreateTwentyBlock.new(self, dest_row).prefigure()
-				GridCounting.Objects.THIRTY_BLOCK:
+				OBJECT_THIRTY_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var dest_row = static_model.get_row_of_cell(dest_cell.number) - 1
 					GridCountingActionCreateThirtyBlock.new(self, dest_row).prefigure()
-				GridCounting.Objects.FORTY_BLOCK:
+				OBJECT_FORTY_BLOCK:
 					var dest_cells = get_v_adjacent_grid_cells_at_point(point)
 					var dest_row = static_model.get_row_of_cell(dest_cells[0].number) - 1
 					GridCountingActionCreateFortyBlock.new(self, dest_row).prefigure()
-				GridCounting.Objects.FIFTY_BLOCK:
+				OBJECT_FIFTY_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var dest_row = static_model.get_row_of_cell(dest_cell.number) - 2
 					GridCountingActionCreateFiftyBlock.new(self, dest_row).prefigure()
@@ -179,40 +175,40 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 	match object_data.field_type:
 		"GridCounting":
 			match object_data.object_type:
-				GridCounting.Objects.UNIT:
+				OBJECT_UNIT:
 					var cell = get_grid_cell_at_point(point)
 					GridCountingActionCreateUnit.new(self, cell.number).push()
-				GridCounting.Objects.TWO_BLOCK:
+				OBJECT_TWO_BLOCK:
 					var cells = get_h_adjacent_grid_cells_at_point(point)
 					var first_number = cells[0].number
 					GridCountingActionCreateTwoBlock.new(self, first_number).push()
-				GridCounting.Objects.THREE_BLOCK:
+				OBJECT_THREE_BLOCK:
 					var first_number = get_grid_cell_at_point(point).number - 1
 					GridCountingActionCreateThreeBlock.new(self, first_number).push()
-				GridCounting.Objects.FOUR_BLOCK:
+				OBJECT_FOUR_BLOCK:
 					var cells = get_h_adjacent_grid_cells_at_point(point)
 					var first_number = cells[0].number - 1
 					GridCountingActionCreateFourBlock.new(self, first_number).push()
-				GridCounting.Objects.FIVE_BLOCK:
+				OBJECT_FIVE_BLOCK:
 					var first_number = get_grid_cell_at_point(point).number - 2
 					GridCountingActionCreateFiveBlock.new(self, first_number).push()
-				GridCounting.Objects.TEN_BLOCK:
+				OBJECT_TEN_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var row_number := static_model.get_row_of_cell(dest_cell.number)
 					GridCountingActionCreateTenBlock.new(self, row_number).push()
-				GridCounting.Objects.TWENTY_BLOCK:
+				OBJECT_TWENTY_BLOCK:
 					var dest_cells = get_v_adjacent_grid_cells_at_point(point)
 					var dest_row := static_model.get_row_of_cell(dest_cells[0].number)
 					GridCountingActionCreateTwentyBlock.new(self, dest_row).push()
-				GridCounting.Objects.THIRTY_BLOCK:
+				OBJECT_THIRTY_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var dest_row = static_model.get_row_of_cell(dest_cell.number) - 1
 					GridCountingActionCreateThirtyBlock.new(self, dest_row).push()
-				GridCounting.Objects.FORTY_BLOCK:
+				OBJECT_FORTY_BLOCK:
 					var dest_cells = get_v_adjacent_grid_cells_at_point(point)
 					var dest_row = static_model.get_row_of_cell(dest_cells[0].number) - 1
 					GridCountingActionCreateFortyBlock.new(self, dest_row).push()
-				GridCounting.Objects.FIFTY_BLOCK:
+				OBJECT_FIFTY_BLOCK:
 					var dest_cell = get_grid_cell_at_point(point)
 					var dest_row = static_model.get_row_of_cell(dest_cell.number) - 2
 					GridCountingActionCreateFiftyBlock.new(self, dest_row).push()
@@ -228,29 +224,30 @@ func _received_in(object_data: FieldObjectData, point: Vector2, _source: Field) 
 # Object-Finding
 #--------------------------------------
 
-func get_objects_by_type(object_type: int) -> Array:
+
+func get_objects_by_type(object_type: String) -> Array:
 	match object_type:
-		Objects.GRID_CELL:
+		OBJECT_GRID_CELL:
 			return dynamic_model.get_grid_cells()
-		Objects.UNIT:
+		OBJECT_UNIT:
 			return dynamic_model.get_units()
-		Objects.TWO_BLOCK:
+		OBJECT_TWO_BLOCK:
 			return dynamic_model.get_two_blocks()
-		Objects.THREE_BLOCK:
+		OBJECT_THREE_BLOCK:
 			return dynamic_model.get_three_blocks()
-		Objects.FOUR_BLOCK:
+		OBJECT_FOUR_BLOCK:
 			return dynamic_model.get_four_blocks()
-		Objects.FIVE_BLOCK:
+		OBJECT_FIVE_BLOCK:
 			return dynamic_model.get_five_blocks()
-		Objects.TEN_BLOCK:
+		OBJECT_TEN_BLOCK:
 			return dynamic_model.get_ten_blocks()
-		Objects.TWENTY_BLOCK:
+		OBJECT_TWENTY_BLOCK:
 			return dynamic_model.get_twenty_blocks()
-		Objects.THIRTY_BLOCK:
+		OBJECT_THIRTY_BLOCK:
 			return dynamic_model.get_thirty_blocks()
-		Objects.FORTY_BLOCK:
+		OBJECT_FORTY_BLOCK:
 			return dynamic_model.get_forty_blocks()
-		Objects.FIFTY_BLOCK:
+		OBJECT_FIFTY_BLOCK:
 			return dynamic_model.get_fifty_blocks()
 		_:
 			assert(false)
@@ -371,27 +368,28 @@ func get_grid_cells_with_units() -> Array:
 # Analysis
 #--------------------------------------
 
-func get_object_value(object_type: GridCounting.Objects) -> int:
+
+func get_object_value(object_type: String) -> int:
 	match object_type:
-		GridCounting.Objects.UNIT:
+		OBJECT_UNIT:
 			return 1
-		GridCounting.Objects.TWO_BLOCK:
+		OBJECT_TWO_BLOCK:
 			return 2
-		GridCounting.Objects.THREE_BLOCK:
+		OBJECT_THREE_BLOCK:
 			return 3
-		GridCounting.Objects.FOUR_BLOCK:
+		OBJECT_FOUR_BLOCK:
 			return 4
-		GridCounting.Objects.FIVE_BLOCK:
+		OBJECT_FIVE_BLOCK:
 			return 5
-		GridCounting.Objects.TEN_BLOCK:
+		OBJECT_TEN_BLOCK:
 			return 10
-		GridCounting.Objects.TWENTY_BLOCK:
+		OBJECT_TWENTY_BLOCK:
 			return 20
-		GridCounting.Objects.THIRTY_BLOCK:
+		OBJECT_THIRTY_BLOCK:
 			return 30
-		GridCounting.Objects.FORTY_BLOCK:
+		OBJECT_FORTY_BLOCK:
 			return 40
-		GridCounting.Objects.FIFTY_BLOCK:
+		OBJECT_FIFTY_BLOCK:
 			return 50
 		_:
 			assert(false)
@@ -473,6 +471,7 @@ func get_marked_numbers() -> Array:
 #====================================================================
 #region
 
+
 func popup_number_by_grid_cell(cell: GridCell) -> NumberSignal:
 	return info_signaler.popup_number(cell.number, cell.position, "in_grow")
 
@@ -492,59 +491,41 @@ func prefigure_cell_mark(cell_number: int) -> void:
 	prefig.show()
 
 	var cell = dynamic_model.get_grid_cell(cell_number)
-	prefig.position = Vector2(
-		cell.position.x,
-		cell.position.y
-	)
+	prefig.position = Vector2(cell.position.x, cell.position.y)
 
 
 func prefigure_unit(cell_number: int) -> void:
-	set_prefig(GridCounting.Objects.UNIT)
+	set_prefig(OBJECT_UNIT)
 	var cell = dynamic_model.get_grid_cell(cell_number)
-	prefig.position = Vector2(
-		cell.position.x,
-		cell.position.y
-	)
+	prefig.position = Vector2(cell.position.x, cell.position.y)
 
 
 func prefigure_two_block(first_number: int) -> void:
-	set_prefig(GridCounting.Objects.TWO_BLOCK)
+	set_prefig(OBJECT_TWO_BLOCK)
 	var cell = dynamic_model.get_grid_cell(first_number)
-	prefig.position = Vector2(
-		cell.position.x + cell.size.x / 2,
-		cell.position.y
-	)
+	prefig.position = Vector2(cell.position.x + cell.size.x / 2, cell.position.y)
 
 
 func prefigure_three_block(first_number: int) -> void:
-	set_prefig(GridCounting.Objects.THREE_BLOCK)
+	set_prefig(OBJECT_THREE_BLOCK)
 	var cell = dynamic_model.get_grid_cell(first_number)
-	prefig.position = Vector2(
-		cell.position.x + cell.size.x,
-		cell.position.y
-	)
+	prefig.position = Vector2(cell.position.x + cell.size.x, cell.position.y)
 
 
 func prefigure_four_block(first_number: int) -> void:
-	set_prefig(GridCounting.Objects.FOUR_BLOCK)
+	set_prefig(OBJECT_FOUR_BLOCK)
 	var cell = dynamic_model.get_grid_cell(first_number)
-	prefig.position = Vector2(
-		cell.position.x + cell.size.x * 3 / 2,
-		cell.position.y
-	)
+	prefig.position = Vector2(cell.position.x + cell.size.x * 3 / 2, cell.position.y)
 
 
 func prefigure_five_block(first_number: int) -> void:
-	set_prefig(GridCounting.Objects.FIVE_BLOCK)
+	set_prefig(OBJECT_FIVE_BLOCK)
 	var cell = dynamic_model.get_grid_cell(first_number)
-	prefig.position = Vector2(
-		cell.position.x + cell.size.x * 2,
-		cell.position.y
-	)
+	prefig.position = Vector2(cell.position.x + cell.size.x * 2, cell.position.y)
 
 
 func prefigure_ten_block(row_number: int) -> void:
-	set_prefig(GridCounting.Objects.TEN_BLOCK)
+	set_prefig(OBJECT_TEN_BLOCK)
 	var cells = get_grid_cells_by_rows([row_number])
 	prefig.position = Vector2(
 		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
@@ -553,11 +534,13 @@ func prefigure_ten_block(row_number: int) -> void:
 
 
 func prefigure_twenty_block(first_row_number: int) -> void:
-	set_prefig(GridCounting.Objects.TWENTY_BLOCK)
-	var cells = get_grid_cells_by_rows([
-		first_row_number,
-		first_row_number + 1,
-	])
+	set_prefig(OBJECT_TWENTY_BLOCK)
+	var cells = get_grid_cells_by_rows(
+		[
+			first_row_number,
+			first_row_number + 1,
+		]
+	)
 	prefig.position = Vector2(
 		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
 		cells[0].position.y + (cells[10].position.y - cells[0].position.y) / 2
@@ -565,12 +548,14 @@ func prefigure_twenty_block(first_row_number: int) -> void:
 
 
 func prefigure_thirty_block(first_row_number: int) -> void:
-	set_prefig(GridCounting.Objects.THIRTY_BLOCK)
-	var cells = get_grid_cells_by_rows([
-		first_row_number,
-		first_row_number + 1,
-		first_row_number + 2,
-	])
+	set_prefig(OBJECT_THIRTY_BLOCK)
+	var cells = get_grid_cells_by_rows(
+		[
+			first_row_number,
+			first_row_number + 1,
+			first_row_number + 2,
+		]
+	)
 	prefig.position = Vector2(
 		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
 		cells[10].position.y
@@ -578,13 +563,15 @@ func prefigure_thirty_block(first_row_number: int) -> void:
 
 
 func prefigure_forty_block(first_row_number: int) -> void:
-	set_prefig(GridCounting.Objects.FORTY_BLOCK)
-	var cells = get_grid_cells_by_rows([
-		first_row_number,
-		first_row_number + 1,
-		first_row_number + 2,
-		first_row_number + 3,
-	])
+	set_prefig(OBJECT_FORTY_BLOCK)
+	var cells = get_grid_cells_by_rows(
+		[
+			first_row_number,
+			first_row_number + 1,
+			first_row_number + 2,
+			first_row_number + 3,
+		]
+	)
 	prefig.position = Vector2(
 		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
 		cells[0].position.y + (cells[30].position.y - cells[0].position.y) / 2
@@ -592,21 +579,23 @@ func prefigure_forty_block(first_row_number: int) -> void:
 
 
 func prefigure_fifty_block(first_row_number: int) -> void:
-	set_prefig(GridCounting.Objects.FIFTY_BLOCK)
-	var cells = get_grid_cells_by_rows([
-		first_row_number,
-		first_row_number + 1,
-		first_row_number + 2,
-		first_row_number + 3,
-		first_row_number + 4,
-	])
+	set_prefig(OBJECT_FIFTY_BLOCK)
+	var cells = get_grid_cells_by_rows(
+		[
+			first_row_number,
+			first_row_number + 1,
+			first_row_number + 2,
+			first_row_number + 3,
+			first_row_number + 4,
+		]
+	)
 	prefig.position = Vector2(
 		cells[0].position.x + (cells[9].position.x - cells[0].position.x) / 2,
 		cells[20].position.y
 	)
 
 
-func set_prefig(prefig_type: Objects) -> void:
+func set_prefig(prefig_type: String) -> void:
 	assert(interface_data.object_data.has(prefig_type))
 
 	clear_prefig()
@@ -630,11 +619,17 @@ func clear_prefig() -> void:
 # State Building
 #--------------------------------------
 
+
 func build_state() -> CRMemento:
-	return CRMemento.new({
-		"cells": _get_cells_data(),
-		"rows": _get_rows_data(),
-	})
+	return (
+		CRMemento
+		. new(
+			{
+				"cells": _get_cells_data(),
+				"rows": _get_rows_data(),
+			}
+		)
+	)
 
 
 func _get_cells_data() -> Dictionary:
@@ -667,6 +662,7 @@ func _get_rows_data() -> Dictionary:
 #--------------------------------------
 # State Loading
 #--------------------------------------
+
 
 func load_state(state: CRMemento) -> void:
 	GridCountingActionSetEmpty.new(self).push()
@@ -705,6 +701,5 @@ func _load_row_data(row_data: Dictionary) -> void:
 			GridCountingActionCreateFortyBlock.new(self, row_number).push()
 		if row_data[row_number].starts_fifty_block:
 			GridCountingActionCreateFiftyBlock.new(self, row_number).push()
-
 
 #endregion

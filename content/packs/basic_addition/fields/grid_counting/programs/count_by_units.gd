@@ -24,7 +24,7 @@ func run() -> void:
 	else:
 		_last_number = -1
 
-	field.add_action_condition(GridCounting.Actions.CREATE_UNIT, _create_unit_condition)
+	field.add_action_condition(GridCounting.ACTION_CREATE_UNIT, _create_unit_condition)
 	field.action_done.connect(_on_action_done)
 
 
@@ -40,7 +40,7 @@ func _create_unit_condition(action: GridCountingActionCreateUnit) -> bool:
 
 func _on_action_done(action: FieldAction) -> void:
 	match action.name:
-		GridCounting.Actions.CREATE_UNIT:
+		GridCounting.ACTION_CREATE_UNIT:
 			var cell = field.dynamic_model.get_grid_cell(action.cell_number)
 			field.info_signaler.affirm(cell.position)
 			affirmed.emit()

@@ -42,7 +42,7 @@ class_name FieldObject
 extends Area2D
 
 var field: Field
-var object_type: int:
+var object_type: String:
 	get = _get_object_type
 var object_data: FieldObjectData:
 	get:
@@ -51,8 +51,8 @@ var object_data: FieldObjectData:
 
 
 # Virtual
-static func _get_object_type() -> int:
-	return Game.NO_OBJECT
+static func _get_object_type() -> String:
+	return Field.NO_OBJECT
 
 
 func _ready() -> void:
@@ -190,7 +190,7 @@ func stop_grab() -> void:
 
 
 func is_pressed() -> bool:
-	return $StateChart/MouseStates/Pressing.active
+	return $StateChart/States/MouseInputState/Pressing.active
 
 
 func is_grabbed() -> bool:
@@ -198,14 +198,14 @@ func is_grabbed() -> bool:
 
 
 func is_grabbed_internally() -> bool:
-	return $StateChart/MouseStates/InternalDragging.active
+	return $StateChart/States/MouseInputState/InternalDragging.active
 
 
 func is_grabbed_externally() -> bool:
-	return $StateChart/MouseStates/ExternalDragging.active
+	return $StateChart/States/MouseInputState/ExternalDragging.active
 
 
-func update_active_modes(_new_tool := Game.NO_TOOL) -> void:
+func update_active_modes(_new_tool := Field.NO_TOOL) -> void:
 	var active_modes := field.get_active_modes_for_object(object_type)
 	_modes.set_by_list(active_modes)
 

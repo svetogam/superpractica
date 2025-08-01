@@ -18,11 +18,11 @@ func get_draggable_objects() -> Array:
 	return draggable_object_keys
 
 
-func get_object_text(object: int) -> String:
+func get_object_text(object: String) -> String:
 	return object_data[object].name_text
 
 
-func get_object_icon(object: int) -> Texture2D:
+func get_object_icon(object: String) -> Texture2D:
 	return object_data[object].icon
 
 
@@ -30,16 +30,16 @@ func get_tools() -> Array:
 	return tool_data.keys()
 
 
-func get_object_modes(tool: int, object: int) -> Array:
+func get_object_modes(tool: String, object: String) -> Array:
 	if tool_data.has(tool) and tool_data[tool].object_modes.has(object):
 		return tool_data[tool].object_modes[object]
 	else:
 		return []
 
 
-func get_tool_text(tool: int) -> String:
+func get_tool_text(tool: String) -> String:
 	return tool_data[tool].text
 
 
-func get_tool_icon(tool: int) -> Texture2D:
+func get_tool_icon(tool: String) -> Texture2D:
 	return tool_data[tool].icon

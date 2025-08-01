@@ -10,8 +10,8 @@ var cell: GridCell:
 		return field.dynamic_model.get_grid_cell(cell_number)
 
 
-static func _get_object_type() -> int:
-	return GridCounting.Objects.UNIT
+static func _get_object_type() -> String:
+	return GridCounting.OBJECT_UNIT
 
 
 func put_on_cell(p_cell_number: int) -> void:

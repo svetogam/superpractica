@@ -37,14 +37,14 @@ func _get_instruction_replacements() -> Dictionary:
 
 
 func _on_put_blocks_state_entered() -> void:
-	field.set_tool(GridCounting.Tools.PIECE_DRAGGER)
+	field.set_tool(GridCounting.TOOL_PIECE_DRAGGER)
 	overlay.pim_objects.exclude_all("GridCounting")
-	overlay.pim_objects.include("GridCounting", GridCounting.Objects.UNIT)
-	overlay.pim_objects.include("GridCounting", GridCounting.Objects.TEN_BLOCK)
+	overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_UNIT)
+	overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_TEN_BLOCK)
 
 	%SoftCountProgram.field = field
 	%SoftCountProgram.run()
-	%SoftCountProgram.disallow_object(GridCounting.Objects.UNIT)
+	%SoftCountProgram.disallow_object(GridCounting.OBJECT_UNIT)
 
 	pim.output_decided.connect(_on_output_decided)
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))
@@ -80,7 +80,7 @@ func _on_put_units_state_entered() -> void:
 	level.reverter.history.clear()
 	set_custom_reset(_reset)
 
-	%SoftCountProgram.reallow_object(GridCounting.Objects.UNIT)
+	%SoftCountProgram.reallow_object(GridCounting.OBJECT_UNIT)
 
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))
 	field.warning_signaler.unwarned.connect(_set_output_warning.bind(false))
@@ -104,7 +104,7 @@ func _on_put_units_state_exited() -> void:
 
 
 func _on_drag_memo_state_entered() -> void:
-	field.set_tool(Game.NO_TOOL)
+	field.set_tool(Field.NO_TOOL)
 	pimnet.overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_OBJECTS)
 	level.reverter.history.clear()
 	set_no_reset()

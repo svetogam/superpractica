@@ -32,9 +32,6 @@ const AGENT_FIELD := "fields"
 const AGENT_MEMO_SLOT := "memo_slots"
 const AGENT_VERIFICATION := "verifications"
 
-const NO_OBJECT: int = -1
-const NO_TOOL: int = -1
-
 const WEBSITE_URL := "https://superpractica.org"
 const REPO_URL := "https://codeberg.org/superpractica/superpractica"
 

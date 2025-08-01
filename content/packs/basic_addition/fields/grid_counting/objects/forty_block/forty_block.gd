@@ -16,8 +16,8 @@ var first_number: int:
 		return field.static_model.get_first_cell_in_row(first_row_number)
 
 
-static func _get_object_type() -> int:
-	return GridCounting.Objects.FORTY_BLOCK
+static func _get_object_type() -> String:
+	return GridCounting.OBJECT_FORTY_BLOCK
 
 
 func put_on_row(p_first_row_number: int) -> void:

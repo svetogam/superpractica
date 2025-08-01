@@ -28,7 +28,7 @@ func _get_instruction_replacements() -> Dictionary:
 
 
 func _on_select_cell_state_entered() -> void:
-	field.set_tool(GridCounting.Tools.CELL_MARKER)
+	field.set_tool(GridCounting.TOOL_CELL_MARKER)
 
 	%SelectCorrectCellProgram.field = field
 	%SelectCorrectCellProgram.start_number = number
@@ -41,7 +41,7 @@ func _on_select_correct_cell_program_completed() -> void:
 
 
 func _on_drag_memo_state_entered() -> void:
-	field.set_tool(Game.NO_TOOL)
+	field.set_tool(Field.NO_TOOL)
 
 	goal_panel.slot_filled.connect(_on_goal_slot_filled)
 

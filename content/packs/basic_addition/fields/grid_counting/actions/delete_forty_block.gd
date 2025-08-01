@@ -8,8 +8,8 @@ extends FieldAction
 var first_row_number: int
 
 
-static func get_name() -> int:
-	return GridCounting.Actions.DELETE_FORTY_BLOCK
+static func get_name() -> String:
+	return GridCounting.ACTION_DELETE_FORTY_BLOCK
 
 
 func _init(p_field: Field, p_first_row_number: int) -> void:

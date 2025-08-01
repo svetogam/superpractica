@@ -40,13 +40,13 @@ func add_toolset(data: FieldInterfaceData) -> void:
 		tool_button.tooltip_text = data.get_tool_text(tool_mode)
 
 
-func on_field_tool_changed(tool_mode: int, toolset_name: String) -> void:
+func on_field_tool_changed(tool_mode: String, toolset_name: String) -> void:
 	_containers[toolset_name].current_tool = tool_mode
 
 
 func deactivate(toolset_name: String) -> void:
 	assert(_containers.has(toolset_name))
-	_containers[toolset_name].current_tool = Game.NO_TOOL
+	_containers[toolset_name].current_tool = Field.NO_TOOL
 
 
 func force_selection(value := true) -> void:

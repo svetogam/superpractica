@@ -4,9 +4,9 @@
 
 extends GridContainer
 
-const NULL_SELECTION: int = Game.NO_TOOL
+const NULL_SELECTION: String = Field.NO_TOOL
 var interface_data: FieldInterfaceData
-var current_tool: int:
+var current_tool: String:
 	set = set_current_tool,
 	get = get_current_tool
 var tool_button_group := ButtonGroup.new()
@@ -20,7 +20,7 @@ func _ready() -> void:
 		tool_button.visible = false
 
 
-func activate_tool_button(tool_mode: int) -> BaseButton:
+func activate_tool_button(tool_mode: String) -> BaseButton:
 	var next_index := _tool_modes_to_buttons_dict.size()
 	if next_index > get_tool_buttons().size():
 		assert(false)
@@ -32,7 +32,7 @@ func activate_tool_button(tool_mode: int) -> BaseButton:
 	return button
 
 
-func set_current_tool(tool_mode: int) -> void:
+func set_current_tool(tool_mode: String) -> void:
 	if tool_mode != NULL_SELECTION:
 		var button = get_tool_button(tool_mode)
 		button.button_pressed = true
@@ -43,7 +43,7 @@ func set_current_tool(tool_mode: int) -> void:
 	current_tool = tool_mode
 
 
-func get_current_tool() -> int:
+func get_current_tool() -> String:
 	var pressed_button = tool_button_group.get_pressed_button()
 	if pressed_button != null:
 		for tool_mode in get_tool_modes():
@@ -64,7 +64,7 @@ func get_tool_buttons() -> Array:
 	return buttons
 
 
-func get_tool_button(tool_mode: int) -> Button:
+func get_tool_button(tool_mode: String) -> Button:
 	assert(_tool_modes_to_buttons_dict.has(tool_mode))
 	return _tool_modes_to_buttons_dict[tool_mode]
 

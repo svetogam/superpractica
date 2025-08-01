@@ -14,7 +14,7 @@ func run() -> void:
 	assert(field != null)
 	assert(start_number != -1)
 
-	field.add_action_condition(GridCounting.Actions.TOGGLE_MARK, _toggle_mark_condition)
+	field.add_action_condition(GridCounting.ACTION_TOGGLE_MARK, _toggle_mark_condition)
 	field.action_done.connect(_on_action_done)
 
 
@@ -30,7 +30,7 @@ func _toggle_mark_condition(action: GridCountingActionToggleMark) -> bool:
 
 func _on_action_done(action: FieldAction) -> void:
 	match action.name:
-		GridCounting.Actions.TOGGLE_MARK:
+		GridCounting.ACTION_TOGGLE_MARK:
 			var cell = field.dynamic_model.get_grid_cell(action.cell_number)
 			cell.set_ring_variant("affirmation")
 			field.info_signaler.affirm(cell.position)
