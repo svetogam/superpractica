@@ -41,20 +41,12 @@
 class_name FieldObject
 extends Area2D
 
-enum _States {
-	NONE,
-	PRESSED,
-	INTERNAL_GRABBED,
-	EXTERNAL_GRABBED,
-}
-
 var field: Field
 var object_type: int:
 	get = _get_object_type
 var object_data: FieldObjectData:
 	get:
 		return field.interface_data.object_data[object_type]
-var _state: _States = _States.NONE
 @onready var _modes := $ActiveModes as ModeGroup
 
 
@@ -132,7 +124,7 @@ func _mouse_exit() -> void:
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("primary_mouse"):
-		_state = _States.PRESSED
+		$StateChart.send_event("press")
 		_pressed(event.position)
 		for mode in _modes.get_active_modes():
 			mode._pressed(event.position)
@@ -143,14 +135,23 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 			for mode in _modes.get_active_modes():
 				mode._dragged(is_grabbed_externally(), event.position, Vector2.ZERO)
 
-	elif (event.is_action_released("primary_mouse") and not is_pressed()
-			and field.dragged_object != null
-			and field.dragged_object.get_instance_id() != get_instance_id()):
-		_received(field.dragged_object.is_grabbed_externally(),
-				field.dragged_object, event.position)
+	elif (
+		event.is_action_released("primary_mouse")
+		and not is_pressed()
+		and field.dragged_object != null
+		and field.dragged_object.get_instance_id() != get_instance_id()
+	):
+		_received(
+			field.dragged_object.is_grabbed_externally(),
+			field.dragged_object,
+			event.position
+		)
 		for mode in _modes.get_active_modes():
-			mode._received(field.dragged_object.is_grabbed_externally(),
-					field.dragged_object, event.position)
+			mode._received(
+				field.dragged_object.is_grabbed_externally(),
+				field.dragged_object,
+				event.position
+			)
 
 
 func _input(event: InputEvent) -> void:
@@ -161,7 +162,7 @@ func _input(event: InputEvent) -> void:
 
 	elif event.is_action_released("primary_mouse"):
 		if is_pressed():
-			_state = _States.NONE
+			$StateChart.send_event("stop_press")
 			_released(event.position)
 			for mode in _modes.get_active_modes():
 				mode._released(event.position)
@@ -169,22 +170,53 @@ func _input(event: InputEvent) -> void:
 			_dropped(false, event.position)
 			for mode in _modes.get_active_modes():
 				mode._dropped(false, event.position)
-			field.end_drag()
-			end_grab()
+			field._end_drag()
+			stop_grab()
 
 
 func grab(external: bool) -> void:
 	if external:
-		_state = _States.EXTERNAL_GRABBED
-		field.drag_object(self, true)
+		$StateChart.send_event("grab_external")
+		field._drag_object(self, true)
 		hide()
 	else:
-		_state = _States.INTERNAL_GRABBED
-		field.drag_object(self, false)
+		$StateChart.send_event("grab_internal")
+		field._drag_object(self, false)
 	get_viewport().set_input_as_handled()
 
 
-func end_external_drag(outgoing: bool, point: Vector2, destination: Field = null) -> void:
+func stop_grab() -> void:
+	$StateChart.send_event("stop_grab")
+
+
+func is_pressed() -> bool:
+	return $StateChart/MouseStates/Pressing.active
+
+
+func is_grabbed() -> bool:
+	return is_grabbed_internally() or is_grabbed_externally()
+
+
+func is_grabbed_internally() -> bool:
+	return $StateChart/MouseStates/InternalDragging.active
+
+
+func is_grabbed_externally() -> bool:
+	return $StateChart/MouseStates/ExternalDragging.active
+
+
+func update_active_modes(_new_tool := Game.NO_TOOL) -> void:
+	var active_modes := field.get_active_modes_for_object(object_type)
+	_modes.set_by_list(active_modes)
+
+
+func is_mode_active(mode: String) -> bool:
+	return _modes.is_active(mode)
+
+
+func _end_external_drag(
+	outgoing: bool, point: Vector2, destination: Field = null
+) -> void:
 	move_to_front()
 	show()
 	if outgoing:
@@ -195,33 +227,4 @@ func end_external_drag(outgoing: bool, point: Vector2, destination: Field = null
 		_dropped(true, point)
 		for mode in _modes.get_active_modes():
 			mode._dropped(true, point)
-	end_grab()
-
-
-func end_grab() -> void:
-	_state = _States.NONE
-
-
-func is_pressed() -> bool:
-	return _state == _States.PRESSED
-
-
-func is_grabbed() -> bool:
-	return _state == _States.INTERNAL_GRABBED or _state == _States.EXTERNAL_GRABBED
-
-
-func is_grabbed_internally() -> bool:
-	return _state == _States.INTERNAL_GRABBED
-
-
-func is_grabbed_externally() -> bool:
-	return _state == _States.EXTERNAL_GRABBED
-
-
-func update_active_modes(_new_tool := Game.NO_TOOL) -> void:
-	var active_modes := field.get_active_modes_for_object(object_type)
-	_modes.set_by_list(active_modes)
-
-
-func is_mode_active(mode: String) -> bool:
-	return _modes.is_active(mode)
+	stop_grab()

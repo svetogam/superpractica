@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnpap4ckoph3y"]
+[gd_scene load_steps=7 format=3 uid="uid://bnpap4ckoph3y"]
 
 [ext_resource type="Script" uid="uid://bho5rqikwwijh" path="res://general/mode_nodes/mode_group.gd" id="1_0wvuc"]
 [ext_resource type="Script" uid="uid://ctwe0gbndo7jj" path="res://core/systems/field/field_object/field_object.gd" id="1_mn5vc"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_p8g0g"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_pwyv5"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_etj1t"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_fyowg"]
 
 [node name="FieldObject" type="Area2D" groups=["field_objects"]]
 monitoring = false
@@ -10,3 +14,71 @@ script = ExtResource("1_mn5vc")
 
 [node name="ActiveModes" type="Node" parent="."]
 script = ExtResource("1_0wvuc")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_p8g0g")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="MouseStates" type="Node" parent="StateChart"]
+script = ExtResource("4_pwyv5")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="StateChart/MouseStates"]
+script = ExtResource("5_etj1t")
+
+[node name="ToPressing" type="Node" parent="StateChart/MouseStates/Normal"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../Pressing")
+event = &"press"
+delay_in_seconds = "0.0"
+
+[node name="ToInternalDragging" type="Node" parent="StateChart/MouseStates/Normal"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../InternalDragging")
+event = &"grab_internal"
+delay_in_seconds = "0.0"
+
+[node name="ToExternalDragging" type="Node" parent="StateChart/MouseStates/Normal"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../ExternalDragging")
+event = &"grab_external"
+delay_in_seconds = "0.0"
+
+[node name="Pressing" type="Node" parent="StateChart/MouseStates"]
+script = ExtResource("5_etj1t")
+
+[node name="ToNormal" type="Node" parent="StateChart/MouseStates/Pressing"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../Normal")
+event = &"stop_press"
+delay_in_seconds = "0.0"
+
+[node name="ToInternalDragging" type="Node" parent="StateChart/MouseStates/Pressing"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../InternalDragging")
+event = &"grab_internal"
+delay_in_seconds = "0.0"
+
+[node name="ToExternalDragging" type="Node" parent="StateChart/MouseStates/Pressing"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../ExternalDragging")
+event = &"grab_external"
+delay_in_seconds = "0.0"
+
+[node name="InternalDragging" type="Node" parent="StateChart/MouseStates"]
+script = ExtResource("5_etj1t")
+
+[node name="ToNormal" type="Node" parent="StateChart/MouseStates/InternalDragging"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../Normal")
+event = &"stop_grab"
+delay_in_seconds = "0.0"
+
+[node name="ExternalDragging" type="Node" parent="StateChart/MouseStates"]
+script = ExtResource("5_etj1t")
+
+[node name="ToNormal" type="Node" parent="StateChart/MouseStates/ExternalDragging"]
+script = ExtResource("6_fyowg")
+to = NodePath("../../Normal")
+event = &"stop_grab"
+delay_in_seconds = "0.0"

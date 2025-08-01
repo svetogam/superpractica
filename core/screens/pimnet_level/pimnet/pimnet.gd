@@ -273,12 +273,12 @@ func process_interfield_drop(object_data: FieldObjectData) -> void:
 
 	# React in source field to drop in other field
 	if source != null and destination != source:
-		dragged_object.end_external_drag(true, field_point, destination)
+		dragged_object._end_external_drag(true, field_point, destination)
 
 	if destination != null:
 		# React in field to drop within itself
 		if destination == source:
-			dragged_object.end_external_drag(false, field_point)
+			dragged_object._end_external_drag(false, field_point)
 
 		# React in destination field to drop from anywhere
 		else:
@@ -286,5 +286,5 @@ func process_interfield_drop(object_data: FieldObjectData) -> void:
 
 	if dragged_object != null:
 		for field in fields:
-			field.end_drag()
+			field._end_drag()
 		dragged_object = null

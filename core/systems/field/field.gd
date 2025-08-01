@@ -144,14 +144,14 @@ func get_active_modes_for_object(object_type: int) -> Array:
 	return interface_data.get_object_modes(tool_mode, object_type)
 
 
-func drag_object(original: FieldObject, external_drag := false) -> void:
+func _drag_object(original: FieldObject, external_drag := false) -> void:
 	if external_drag:
 		external_drag_requested.emit(original)
 	else:
 		dragged_object = original
 
 
-func end_drag() -> void:
+func _end_drag() -> void:
 	dragged_object = null
 
 
