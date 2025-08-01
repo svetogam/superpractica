@@ -173,15 +173,15 @@ func is_pressed() -> bool:
 
 
 func is_grabbed() -> bool:
-	return is_grabbed_internally() or is_grabbed_externally()
+	return $StateChart/States/MouseInputState/Dragging.active
 
 
 func is_grabbed_internally() -> bool:
-	return $StateChart/States/MouseInputState/InternalDragging.active
+	return $StateChart/States/MouseInputState/Dragging/Internal.active
 
 
 func is_grabbed_externally() -> bool:
-	return $StateChart/States/MouseInputState/ExternalDragging.active
+	return $StateChart/States/MouseInputState/Dragging/External.active
 
 
 func _end_external_drag(

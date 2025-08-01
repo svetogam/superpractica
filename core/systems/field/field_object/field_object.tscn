@@ -35,18 +35,6 @@ to = NodePath("../../Pressing")
 event = &"press"
 delay_in_seconds = "0.0"
 
-[node name="ToInternalDragging" type="Node" parent="StateChart/States/MouseInputState/Normal"]
-script = ExtResource("6_fyowg")
-to = NodePath("../../InternalDragging")
-event = &"grab_internal"
-delay_in_seconds = "0.0"
-
-[node name="ToExternalDragging" type="Node" parent="StateChart/States/MouseInputState/Normal"]
-script = ExtResource("6_fyowg")
-to = NodePath("../../ExternalDragging")
-event = &"grab_external"
-delay_in_seconds = "0.0"
-
 [node name="Pressing" type="Node" parent="StateChart/States/MouseInputState"]
 script = ExtResource("5_etj1t")
 
@@ -58,29 +46,27 @@ delay_in_seconds = "0.0"
 
 [node name="ToInternalDragging" type="Node" parent="StateChart/States/MouseInputState/Pressing"]
 script = ExtResource("6_fyowg")
-to = NodePath("../../InternalDragging")
+to = NodePath("../../Dragging/Internal")
 event = &"grab_internal"
 delay_in_seconds = "0.0"
 
 [node name="ToExternalDragging" type="Node" parent="StateChart/States/MouseInputState/Pressing"]
 script = ExtResource("6_fyowg")
-to = NodePath("../../ExternalDragging")
+to = NodePath("../../Dragging/External")
 event = &"grab_external"
 delay_in_seconds = "0.0"
 
-[node name="InternalDragging" type="Node" parent="StateChart/States/MouseInputState"]
+[node name="Dragging" type="Node" parent="StateChart/States/MouseInputState"]
+script = ExtResource("4_pwyv5")
+initial_state = NodePath("Internal")
+
+[node name="Internal" type="Node" parent="StateChart/States/MouseInputState/Dragging"]
 script = ExtResource("5_etj1t")
 
-[node name="ToNormal" type="Node" parent="StateChart/States/MouseInputState/InternalDragging"]
-script = ExtResource("6_fyowg")
-to = NodePath("../../Normal")
-event = &"stop_grab"
-delay_in_seconds = "0.0"
-
-[node name="ExternalDragging" type="Node" parent="StateChart/States/MouseInputState"]
+[node name="External" type="Node" parent="StateChart/States/MouseInputState/Dragging"]
 script = ExtResource("5_etj1t")
 
-[node name="ToNormal" type="Node" parent="StateChart/States/MouseInputState/ExternalDragging"]
+[node name="ToNormal" type="Node" parent="StateChart/States/MouseInputState/Dragging"]
 script = ExtResource("6_fyowg")
 to = NodePath("../../Normal")
 event = &"stop_grab"
