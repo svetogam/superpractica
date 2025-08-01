@@ -145,40 +145,13 @@ func _init() -> void:
 		GridCounting.TOOL_CELL_MARKER: {
 			"text": "Mark Cell",
 			"icon": preload("graphics/icons/action_mark_cell_icon.svg"),
-			"object_modes": {
-				GridCounting.OBJECT_GRID_CELL: ["mark"],
-			},
 		},
 		GridCounting.TOOL_PIECE_DELETER: {
 			"text": "Delete Piece",
 			"icon": preload("graphics/icons/action_delete_piece_icon.svg"),
-			"object_modes": {
-				GridCounting.OBJECT_UNIT: ["delete"],
-				GridCounting.OBJECT_TWO_BLOCK: ["delete"],
-				GridCounting.OBJECT_THREE_BLOCK: ["delete"],
-				GridCounting.OBJECT_FOUR_BLOCK: ["delete"],
-				GridCounting.OBJECT_FIVE_BLOCK: ["delete"],
-				GridCounting.OBJECT_TEN_BLOCK: ["delete"],
-				GridCounting.OBJECT_TWENTY_BLOCK: ["delete"],
-				GridCounting.OBJECT_THIRTY_BLOCK: ["delete"],
-				GridCounting.OBJECT_FORTY_BLOCK: ["delete"],
-				GridCounting.OBJECT_FIFTY_BLOCK: ["delete"],
-			},
 		},
 		GridCounting.TOOL_PIECE_DRAGGER: {
 			"text": "Drag Piece",
 			"icon": preload("graphics/icons/action_drag_piece_icon.svg"),
-			"object_modes": {
-				GridCounting.OBJECT_UNIT: ["drag"],
-				GridCounting.OBJECT_TWO_BLOCK: ["drag"],
-				GridCounting.OBJECT_THREE_BLOCK: ["drag"],
-				GridCounting.OBJECT_FOUR_BLOCK: ["drag"],
-				GridCounting.OBJECT_FIVE_BLOCK: ["drag"],
-				GridCounting.OBJECT_TEN_BLOCK: ["drag"],
-				GridCounting.OBJECT_TWENTY_BLOCK: ["drag"],
-				GridCounting.OBJECT_THIRTY_BLOCK: ["drag"],
-				GridCounting.OBJECT_FORTY_BLOCK: ["drag"],
-				GridCounting.OBJECT_FIFTY_BLOCK: ["drag"],
-			},
 		},
 	}

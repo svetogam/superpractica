@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnpap4ckoph3y"]
+[gd_scene load_steps=7 format=3 uid="uid://bnpap4ckoph3y"]
 
-[ext_resource type="Script" uid="uid://bho5rqikwwijh" path="res://general/mode_nodes/mode_group.gd" id="1_0wvuc"]
 [ext_resource type="Script" uid="uid://ctwe0gbndo7jj" path="res://core/systems/field/field_object/field_object.gd" id="1_mn5vc"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_p8g0g"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_fyowg"]
@@ -18,6 +17,9 @@ script = ExtResource("3_p8g0g")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
 [node name="States" type="Node" parent="StateChart"]
+script = ExtResource("4_fyowg")
+
+[node name="ActiveModes" type="Node" parent="StateChart/States"]
 script = ExtResource("4_fyowg")
 
 [node name="MouseInputState" type="Node" parent="StateChart/States"]
@@ -83,6 +85,3 @@ script = ExtResource("6_fyowg")
 to = NodePath("../../Normal")
 event = &"stop_grab"
 delay_in_seconds = "0.0"
-
-[node name="ActiveModes" type="Node" parent="."]
-script = ExtResource("1_0wvuc")

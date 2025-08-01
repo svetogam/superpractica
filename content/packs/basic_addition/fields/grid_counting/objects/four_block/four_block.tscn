@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs4sai1b3xhoq"]
+[gd_scene load_steps=8 format=3 uid="uid://cs4sai1b3xhoq"]
 
 [ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/systems/field/field_object/field_object.tscn" id="1_cc0o5"]
 [ext_resource type="Script" uid="uid://dt5f7l1w1qhs5" path="res://content/packs/basic_addition/fields/grid_counting/objects/four_block/four_block.gd" id="2_de41a"]
-[ext_resource type="Script" uid="uid://c0y8ne2y33jxe" path="res://content/packs/basic_addition/fields/grid_counting/objects/four_block/modes/delete.gd" id="3_i185d"]
-[ext_resource type="Script" uid="uid://vr3uqrmgu2e0" path="res://content/packs/basic_addition/fields/grid_counting/objects/four_block/modes/drag.gd" id="4_dm3h6"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_gubme"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_knsoe"]
 [ext_resource type="PackedScene" uid="uid://cyjvs85hw13lm" path="res://content/packs/basic_addition/fields/grid_counting/objects/four_block/sprite.tscn" id="5_0a8fu"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_pv35p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwyj"]
 size = Vector2(140, 26)
@@ -12,11 +13,49 @@ size = Vector2(140, 26)
 [node name="FourBlock" instance=ExtResource("1_cc0o5")]
 script = ExtResource("2_de41a")
 
-[node name="delete" type="Node" parent="ActiveModes" index="0"]
-script = ExtResource("3_i185d")
+[node name="Delete" type="Node" parent="StateChart/States/ActiveModes" index="0"]
+script = ExtResource("3_gubme")
+initial_state = NodePath("Off")
 
-[node name="drag" type="Node" parent="ActiveModes" index="1"]
-script = ExtResource("4_dm3h6")
+[node name="On" type="Node" parent="StateChart/States/ActiveModes/Delete" index="0"]
+script = ExtResource("4_knsoe")
+
+[node name="ToOff" type="Node" parent="StateChart/States/ActiveModes/Delete/On" index="0"]
+script = ExtResource("5_pv35p")
+to = NodePath("../../Off")
+event = &"disable_delete"
+delay_in_seconds = "0.0"
+
+[node name="Off" type="Node" parent="StateChart/States/ActiveModes/Delete" index="1"]
+script = ExtResource("4_knsoe")
+
+[node name="ToOn" type="Node" parent="StateChart/States/ActiveModes/Delete/Off" index="0"]
+script = ExtResource("5_pv35p")
+to = NodePath("../../On")
+event = &"enable_delete"
+delay_in_seconds = "0.0"
+
+[node name="Drag" type="Node" parent="StateChart/States/ActiveModes" index="1"]
+script = ExtResource("3_gubme")
+initial_state = NodePath("Off")
+
+[node name="On" type="Node" parent="StateChart/States/ActiveModes/Drag" index="0"]
+script = ExtResource("4_knsoe")
+
+[node name="ToOff" type="Node" parent="StateChart/States/ActiveModes/Drag/On" index="0"]
+script = ExtResource("5_pv35p")
+to = NodePath("../../Off")
+event = &"disable_drag"
+delay_in_seconds = "0.0"
+
+[node name="Off" type="Node" parent="StateChart/States/ActiveModes/Drag" index="1"]
+script = ExtResource("4_knsoe")
+
+[node name="ToOn" type="Node" parent="StateChart/States/ActiveModes/Drag/Off" index="0"]
+script = ExtResource("5_pv35p")
+to = NodePath("../../On")
+event = &"enable_drag"
+delay_in_seconds = "0.0"
 
 [node name="Sprite" parent="." index="1" instance=ExtResource("5_0a8fu")]
 unique_name_in_owner = true

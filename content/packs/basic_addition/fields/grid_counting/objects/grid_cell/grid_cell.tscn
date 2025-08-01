@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6n1nkwq7on63"]
+[gd_scene load_steps=9 format=3 uid="uid://b6n1nkwq7on63"]
 
 [ext_resource type="PackedScene" uid="uid://bnpap4ckoph3y" path="res://core/systems/field/field_object/field_object.tscn" id="1_182cb"]
 [ext_resource type="Script" uid="uid://bera6nn0kms3k" path="res://content/packs/basic_addition/fields/grid_counting/objects/grid_cell/grid_cell.gd" id="2_gj6cy"]
-[ext_resource type="Script" uid="uid://n5hjhomp146s" path="res://content/packs/basic_addition/fields/grid_counting/objects/grid_cell/modes/mark.gd" id="4_4inxv"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_apa78"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_e58fy"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_ouxc6"]
 [ext_resource type="SpriteFrames" uid="uid://di8kw0j0ob355" path="res://content/packs/basic_addition/fields/grid_counting/objects/grid_cell/sprite_frames.tres" id="7_bsmaw"]
 [ext_resource type="Texture2D" uid="uid://cahewf3u5svk7" path="res://content/packs/basic_addition/fields/grid_counting/graphics/grid_cell.svg" id="9_7dbvf"]
 
@@ -12,8 +14,27 @@ size = Vector2(35, 35)
 [node name="GridCell" instance=ExtResource("1_182cb")]
 script = ExtResource("2_gj6cy")
 
-[node name="mark" type="Node" parent="ActiveModes" index="0"]
-script = ExtResource("4_4inxv")
+[node name="Mark" type="Node" parent="StateChart/States/ActiveModes" index="0"]
+script = ExtResource("3_apa78")
+initial_state = NodePath("Off")
+
+[node name="On" type="Node" parent="StateChart/States/ActiveModes/Mark" index="0"]
+script = ExtResource("4_e58fy")
+
+[node name="ToOff" type="Node" parent="StateChart/States/ActiveModes/Mark/On" index="0"]
+script = ExtResource("5_ouxc6")
+to = NodePath("../../Off")
+event = &"disable_mark"
+delay_in_seconds = "0.0"
+
+[node name="Off" type="Node" parent="StateChart/States/ActiveModes/Mark" index="1"]
+script = ExtResource("4_e58fy")
+
+[node name="ToOn" type="Node" parent="StateChart/States/ActiveModes/Mark/Off" index="0"]
+script = ExtResource("5_ouxc6")
+to = NodePath("../../On")
+event = &"enable_mark"
+delay_in_seconds = "0.0"
 
 [node name="Collider" type="CollisionShape2D" parent="." index="1"]
 unique_name_in_owner = true

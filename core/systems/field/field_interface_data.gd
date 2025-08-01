@@ -30,13 +30,6 @@ func get_tools() -> Array:
 	return tool_data.keys()
 
 
-func get_object_modes(tool: String, object: String) -> Array:
-	if tool_data.has(tool) and tool_data[tool].object_modes.has(object):
-		return tool_data[tool].object_modes[object]
-	else:
-		return []
-
-
 func get_tool_text(tool: String) -> String:
 	return tool_data[tool].text
 

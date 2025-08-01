@@ -17,6 +17,7 @@ var size: Vector2:
 var unit: FieldObject:
 	get:
 		return field.dynamic_model.get_unit(number)
+var action: GridCountingActionToggleMark
 
 
 static func _get_object_type() -> String:
@@ -33,6 +34,40 @@ func _draw() -> void:
 		16,
 		Color.BLACK
 	)
+
+
+func _update_active_modes(new_tool: String) -> void:
+	if new_tool == GridCounting.TOOL_CELL_MARKER:
+		$StateChart.send_event("enable_mark")
+	else:
+		$StateChart.send_event("disable_mark")
+
+
+func _hovered(_external: bool, _grabbed_object: FieldObject) -> void:
+	if $StateChart/States/ActiveModes/Mark/On.active:
+		field.clear_prefig()
+		if action == null:
+			action = GridCountingActionToggleMark.new(field, number)
+		if not Input.is_action_pressed("primary_mouse"):
+			action.prefigure()
+
+
+func _unhovered(_external: bool, _grabbed_object: FieldObject) -> void:
+	if $StateChart/States/ActiveModes/Mark/On.active:
+		if action == null:
+			action = GridCountingActionToggleMark.new(field, number)
+		var viewport = get_viewport()
+		if not viewport.get_visible_rect().has_point(viewport.get_mouse_position()):
+			action.unprefigure()
+
+
+func _pressed(_point: Vector2) -> void:
+	if $StateChart/States/ActiveModes/Mark/On.active:
+		if action == null:
+			action = GridCountingActionToggleMark.new(field, number)
+		action.unprefigure()
+		action.push()
+		get_viewport().set_input_as_handled()
 
 
 # First row and column are 0

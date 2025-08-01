@@ -142,10 +142,6 @@ func _on_tool_changed(_new_tool: String) -> void:
 	_trigger_update(UpdateTypes.TOOL_MODE_CHANGED)
 
 
-func get_active_modes_for_object(object_type: String) -> Array:
-	return interface_data.get_object_modes(tool_mode, object_type)
-
-
 func _drag_object(original: FieldObject, external_drag := false) -> void:
 	if external_drag:
 		external_drag_requested.emit(original)

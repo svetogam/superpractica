@@ -5,11 +5,6 @@
 ## [FieldObject]s are the interactible things on [Field]s.
 ## Each represents a group of affordances and signifiers.
 ##
-## Whether a [FieldObject] will accept an input or not depends on the
-## combination of its active modes and the [Field]'s current tool.
-## Tools map onto some combination of active modes for every [FieldObject].
-## Inputs first call [FieldObject] hooks and then those same hooks in the
-## [FieldObject]'s active [FieldObjectMode]s.
 ## [br][br]
 ## [b]Dragging[/b]
 ## [br]
@@ -47,7 +42,6 @@ var object_type: String:
 var object_data: FieldObjectData:
 	get:
 		return field.interface_data.object_data[object_type]
-@onready var _modes := $ActiveModes as ModeGroup
 
 
 # Virtual
@@ -66,8 +60,13 @@ func disable_input(disable := true) -> void:
 
 func _on_field_found(p_field: Field) -> void:
 	field = p_field
-	field.tool_changed.connect(update_active_modes)
-	update_active_modes()
+	field.tool_changed.connect(_update_active_modes)
+	_update_active_modes.call_deferred(field.tool_mode)
+
+
+# Virtual
+func _update_active_modes(_new_tool: String) -> void:
+	pass
 
 
 # Virtual
@@ -112,28 +111,20 @@ func _unhovered(_external: bool, _grabbed_object: FieldObject) -> void:
 
 func _mouse_enter() -> void:
 	_hovered(is_grabbed_externally(), field.dragged_object)
-	for mode in _modes.get_active_modes():
-		mode._hovered(is_grabbed_externally(), field.dragged_object)
 
 
 func _mouse_exit() -> void:
 	_unhovered(is_grabbed_externally(), field.dragged_object)
-	for mode in _modes.get_active_modes():
-		mode._unhovered(is_grabbed_externally(), field.dragged_object)
 
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("primary_mouse"):
 		$StateChart.send_event("press")
 		_pressed(event.position)
-		for mode in _modes.get_active_modes():
-			mode._pressed(event.position)
 
 		# Ensure initial call to _dragged()
 		if is_grabbed():
 			_dragged(is_grabbed_externally(), event.position, Vector2.ZERO)
-			for mode in _modes.get_active_modes():
-				mode._dragged(is_grabbed_externally(), event.position, Vector2.ZERO)
 
 	elif (
 		event.is_action_released("primary_mouse")
@@ -146,30 +137,18 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 			field.dragged_object,
 			event.position
 		)
-		for mode in _modes.get_active_modes():
-			mode._received(
-				field.dragged_object.is_grabbed_externally(),
-				field.dragged_object,
-				event.position
-			)
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_grabbed():
 		_dragged(is_grabbed_externally(), event.position, event.relative)
-		for mode in _modes.get_active_modes():
-			mode._dragged(is_grabbed_externally(), event.position, event.relative)
 
 	elif event.is_action_released("primary_mouse"):
 		if is_pressed():
 			$StateChart.send_event("stop_press")
 			_released(event.position)
-			for mode in _modes.get_active_modes():
-				mode._released(event.position)
 		elif is_grabbed_internally():
 			_dropped(false, event.position)
-			for mode in _modes.get_active_modes():
-				mode._dropped(false, event.position)
 			field._end_drag()
 			stop_grab()
 
@@ -205,15 +184,6 @@ func is_grabbed_externally() -> bool:
 	return $StateChart/States/MouseInputState/ExternalDragging.active
 
 
-func update_active_modes(_new_tool := Field.NO_TOOL) -> void:
-	var active_modes := field.get_active_modes_for_object(object_type)
-	_modes.set_by_list(active_modes)
-
-
-func is_mode_active(mode: String) -> bool:
-	return _modes.is_active(mode)
-
-
 func _end_external_drag(
 	outgoing: bool, point: Vector2, destination: Field = null
 ) -> void:
@@ -221,10 +191,6 @@ func _end_external_drag(
 	show()
 	if outgoing:
 		_dropped_out(destination)
-		for mode in _modes.get_active_modes():
-			mode._dropped_out(destination)
 	else:
 		_dropped(true, point)
-		for mode in _modes.get_active_modes():
-			mode._dropped(true, point)
 	stop_grab()
