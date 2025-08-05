@@ -17,9 +17,10 @@ func setup(p_pim: Pim) -> Verification:
 func _start() -> void:
 	field.count_signaler.reset_count()
 
-	var pieces = field.dynamic_model.get_pieces()
-	GridCountingProcessSumPieces.new(pieces, 1).run(field, _on_sum_complete)
+	$SumPiecesProgram.field = field
+	$SumPiecesProgram.items = field.dynamic_model.get_pieces()
+	$SumPiecesProgram.run()
 
 
-func _on_sum_complete(sum: NumberSignal) -> void:
-	EqualityVerification.new(sum).run(self, row_numbers, verify, reject)
+func _on_sum_pieces_program_completed(last_count_object: NumberSignal) -> void:
+	EqualityVerification.new(last_count_object).run(self, row_numbers, verify, reject)

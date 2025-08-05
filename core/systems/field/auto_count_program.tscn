@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs4b3kp8fp5a0"]
+
+[ext_resource type="Script" uid="uid://dq563c7sotjqt" path="res://core/systems/field/auto_count_program.gd" id="1_nypce"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_6hk53"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_0hlga"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_mhqiv"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_gw1md"]
+
+[node name="AutoCountProgram" type="Node"]
+script = ExtResource("1_nypce")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_6hk53")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="States" type="Node" parent="StateChart"]
+script = ExtResource("3_0hlga")
+initial_state = NodePath("Off")
+
+[node name="Off" type="Node" parent="StateChart/States"]
+script = ExtResource("4_mhqiv")
+
+[node name="ToCount" type="Node" parent="StateChart/States/Off"]
+script = ExtResource("5_gw1md")
+to = NodePath("../../Running/Count")
+event = &"run_count"
+delay_in_seconds = "0.0"
+
+[node name="ToCountZero" type="Node" parent="StateChart/States/Off"]
+script = ExtResource("5_gw1md")
+to = NodePath("../../Running/CountZero")
+event = &"run_zero"
+delay_in_seconds = "0.0"
+
+[node name="Running" type="Node" parent="StateChart/States"]
+script = ExtResource("3_0hlga")
+initial_state = NodePath("Count")
+
+[node name="Count" type="Node" parent="StateChart/States/Running"]
+script = ExtResource("4_mhqiv")
+
+[node name="ToCheck" type="Node" parent="StateChart/States/Running/Count"]
+script = ExtResource("5_gw1md")
+to = NodePath("../../Check")
+delay_in_seconds = "delay"
+
+[node name="CountZero" type="Node" parent="StateChart/States/Running"]
+script = ExtResource("4_mhqiv")
+
+[node name="ToCheck" type="Node" parent="StateChart/States/Running/CountZero"]
+script = ExtResource("5_gw1md")
+to = NodePath("../../Check")
+delay_in_seconds = "delay"
+
+[node name="Check" type="Node" parent="StateChart/States/Running"]
+script = ExtResource("4_mhqiv")
+
+[node name="ToCount" type="Node" parent="StateChart/States/Running/Check"]
+script = ExtResource("5_gw1md")
+to = NodePath("../../Count")
+event = &"count_next"
+delay_in_seconds = "0.0"
+
+[node name="ToOff" type="Node" parent="StateChart/States/Running/Check"]
+script = ExtResource("5_gw1md")
+to = NodePath("../../../Off")
+event = &"stop"
+delay_in_seconds = "0.0"
+
+[connection signal="state_entered" from="StateChart/States/Running/Count" to="." method="_on_count_state_entered"]
+[connection signal="state_entered" from="StateChart/States/Running/CountZero" to="." method="_on_count_zero_state_entered"]
+[connection signal="state_entered" from="StateChart/States/Running/Check" to="." method="_on_check_state_entered"]
