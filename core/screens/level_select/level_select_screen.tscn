@@ -21,7 +21,6 @@ script = ExtResource("1_nn3bt")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_gkkbi")
-track_in_editor = true
 initial_expression_properties = {
 &"zoom_duration": 1.0
 }
