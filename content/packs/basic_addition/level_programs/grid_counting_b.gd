@@ -30,6 +30,9 @@ func _ready() -> void:
 
 	pim.enable_output_slot()
 	goal_panel.slot.set_memo_as_hint(IntegerMemo, count)
+	%SoftCountProgram.field = field
+	%SoftCountProgram.run()
+	%SoftCountProgram.disallow_object(GridCounting.OBJECT_UNIT)
 
 
 func _get_instruction_replacements() -> Dictionary:
@@ -41,10 +44,6 @@ func _on_put_blocks_state_entered() -> void:
 	overlay.pim_objects.exclude_all("GridCounting")
 	overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_UNIT)
 	overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_TEN_BLOCK)
-
-	%SoftCountProgram.field = field
-	%SoftCountProgram.run()
-	%SoftCountProgram.disallow_object(GridCounting.OBJECT_UNIT)
 
 	pim.output_decided.connect(_on_output_decided)
 	field.warning_signaler.warned.connect(_set_output_warning.bind(true))

@@ -15,7 +15,7 @@ signal rejected
 
 var start_delay := 0.0
 var row_numbers: Array
-var verifier: Verifier:
+var verifier: LevelProgram:
 	get:
 		if verifier == null:
 			verifier = CSLocator.with(self).find(Game.SERVICE_VERIFIER)

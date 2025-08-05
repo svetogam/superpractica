@@ -9,7 +9,7 @@ var verification: Verification:
 	get:
 		assert(_target != null)
 		return _target
-var verifier: Verifier:
+var verifier: LevelProgram:
 	get:
 		assert(_target.verifier != null)
 		return _target.verifier

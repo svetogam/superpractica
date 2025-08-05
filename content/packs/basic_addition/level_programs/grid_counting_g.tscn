@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wfvx7fsdbk7x"]
+[gd_scene load_steps=8 format=3 uid="uid://wfvx7fsdbk7x"]
 
 [ext_resource type="Script" uid="uid://djgxpj4pk73ih" path="res://content/packs/basic_addition/level_programs/grid_counting_g.gd" id="1_sye4w"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_1kioh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_u2f10"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_jxog4"]
 [ext_resource type="Script" uid="uid://d3y6yqdxcis57" path="res://content/packs/basic_addition/fields/grid_counting/programs/soft_count.gd" id="6_u648p"]
+[ext_resource type="PackedScene" uid="uid://cuus6hqo1ds0n" path="res://content/packs/basic_addition/fields/grid_counting/programs/sum_pieces.tscn" id="7_1e1gx"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_sye4w")
@@ -21,10 +22,38 @@ initial_state = NodePath("Playing")
 [node name="Playing" type="Node" parent="StateChart/States"]
 script = ExtResource("4_u2f10")
 
-[node name="Transition" type="Node" parent="StateChart/States/Playing"]
+[node name="ToVerifying" type="Node" parent="StateChart/States/Playing"]
 script = ExtResource("5_jxog4")
-to = NodePath("../../Completed")
-event = &"done"
+to = NodePath("../../Verifying")
+event = &"verify"
+delay_in_seconds = "start_verifying_delay"
+
+[node name="Verifying" type="Node" parent="StateChart/States"]
+script = ExtResource("3_ljsn8")
+initial_state = NodePath("CheckStart")
+
+[node name="CheckStart" type="Node" parent="StateChart/States/Verifying"]
+script = ExtResource("4_u2f10")
+
+[node name="ToCheckPieces" type="Node" parent="StateChart/States/Verifying/CheckStart"]
+script = ExtResource("5_jxog4")
+to = NodePath("../../CheckPieces")
+event = &"succeed"
+delay_in_seconds = "0.0"
+
+[node name="CheckPieces" type="Node" parent="StateChart/States/Verifying"]
+script = ExtResource("4_u2f10")
+
+[node name="ToCompleted" type="Node" parent="StateChart/States/Verifying/CheckPieces"]
+script = ExtResource("5_jxog4")
+to = NodePath("../../../Completed")
+event = &"succeed"
+delay_in_seconds = "0.0"
+
+[node name="ToPlaying" type="Node" parent="StateChart/States/Verifying"]
+script = ExtResource("5_jxog4")
+to = NodePath("../../Playing")
+event = &"fail"
 delay_in_seconds = "0.0"
 
 [node name="Completed" type="Node" parent="StateChart/States"]
@@ -34,5 +63,14 @@ script = ExtResource("4_u2f10")
 unique_name_in_owner = true
 script = ExtResource("6_u648p")
 
+[node name="SumPiecesProgram" parent="." instance=ExtResource("7_1e1gx")]
+unique_name_in_owner = true
+
 [connection signal="state_entered" from="StateChart/States/Playing" to="." method="_on_playing_state_entered"]
-[connection signal="state_exited" from="StateChart/States/Playing" to="." method="_on_playing_state_exited"]
+[connection signal="state_exited" from="StateChart/States/Verifying" to="." method="_on_verifying_state_exited"]
+[connection signal="state_entered" from="StateChart/States/Verifying/CheckStart" to="." method="_on_check_start_state_entered"]
+[connection signal="state_exited" from="StateChart/States/Verifying/CheckStart" to="." method="_on_check_start_state_exited"]
+[connection signal="state_entered" from="StateChart/States/Verifying/CheckPieces" to="." method="_on_check_pieces_state_entered"]
+[connection signal="state_exited" from="StateChart/States/Verifying/CheckPieces" to="." method="_on_check_pieces_state_exited"]
+[connection signal="state_entered" from="StateChart/States/Completed" to="." method="_on_completed_state_entered"]
+[connection signal="completed" from="SumPiecesProgram" to="." method="_on_sum_pieces_program_completed"]

@@ -14,7 +14,6 @@ var program: LevelProgram
 var reverter := CReverter.new()
 var _action_queue := LevelActionQueue.new()
 @onready var pimnet := %Pimnet as Pimnet
-@onready var verifier := $Verifier as Node
 
 
 func _ready() -> void:
@@ -29,12 +28,6 @@ func _ready() -> void:
 	_update_reversion_buttons()
 	updated.connect(_update_reversion_buttons)
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
-
-	# Connect signals
-	verifier.started.connect(updated.emit)
-	verifier.started.connect($StateChart.send_event.bind("start_verification"))
-	verifier.completed.connect(updated.emit)
-	verifier.completed.connect($StateChart.send_event.bind("stop_verification"))
 	actions_completed.connect(updated.emit)
 	CSConnector.with(self).connect_signal(Game.AGENT_FIELD, "updated", updated.emit)
 	CSConnector.with(self).connect_signal(
@@ -76,9 +69,18 @@ func load_level(p_level_data: LevelResource) -> void:
 		program.task_completed.connect(updated.emit.unbind(1))
 		program.level_completed.connect(updated.emit)
 		program.level_completed.connect($StateChart.send_event.bind("complete"))
+		program.verification_started.connect(updated.emit)
+		program.verification_started.connect(
+			$StateChart.send_event.bind("start_verification")
+		)
+		program.verification_stopped.connect(updated.emit)
+		program.verification_stopped.connect(
+			$StateChart.send_event.bind("stop_verification")
+		)
 		program.reset_changed.connect(_update_reversion_buttons)
 		program.reset_called.connect(_do_queued_actions)
 		program.set_custom_reset(_default_reset)
+
 		add_child(program)
 
 	# Not immediate due to potential for calling from _ready()
@@ -126,18 +128,21 @@ func _do_queued_actions() -> void:
 
 
 func _update_reversion_buttons() -> void:
-	%UndoButton.disabled = verifier.is_running() or not reverter.is_undo_possible()
-	%RedoButton.disabled = verifier.is_running() or not reverter.is_redo_possible()
+	%UndoButton.disabled = (
+		(program != null and program.is_verifying()) or not reverter.is_undo_possible()
+	)
+	%RedoButton.disabled = (
+		(program != null and program.is_verifying()) or not reverter.is_redo_possible()
+	)
 	%ResetButton.disabled = (
-		verifier.is_running() or (program != null and not program.is_reset_possible())
+		program != null and (program.is_verifying() or not program.is_reset_possible())
 	)
 
 
 func _on_empty_state_entered() -> void:
 	if pimnet.overlay.goal_panel != null:
 		pimnet.overlay.goal_panel.reset()
-	if verifier.is_running():
-		verifier.abort()
+	if program != null and program.is_verifying():
 		pimnet.disable_verification_input(false)
 
 

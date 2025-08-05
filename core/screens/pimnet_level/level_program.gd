@@ -5,11 +5,14 @@
 class_name LevelProgram
 extends Node
 
+signal verification_started
+signal verification_stopped
 signal task_completed(task_name)
 signal level_completed
 signal reset_called
 signal reset_changed
 
+const START_VERIFYING_DELAY := 0.4
 var level: Level  # This should be set by the level
 var pimnet: Pimnet:
 	get:
@@ -17,24 +20,36 @@ var pimnet: Pimnet:
 		return level.pimnet
 var overlay: PimnetOverlay:
 	get:
-		assert(level.pimnet.overlay != null)
-		return level.pimnet.overlay
+		assert(pimnet.overlay != null)
+		return pimnet.overlay
 var goal_panel: GoalPanel:
 	get:
-		assert(level.pimnet.overlay.goal_panel != null)
-		return level.pimnet.overlay.goal_panel
+		assert(pimnet.overlay != null)
+		assert(pimnet.overlay.goal_panel != null)
+		return pimnet.overlay.goal_panel
+var verification_panel: PanelContainer:
+	get:
+		assert(pimnet.overlay != null)
+		assert(pimnet.overlay.verification_panel != null)
+		return pimnet.overlay.verification_panel
 var plan_panel: Control:
 	get:
-		assert(level.pimnet.overlay.plan_panel != null)
-		return level.pimnet.overlay.plan_panel
+		assert(pimnet.overlay.plan_panel != null)
+		return pimnet.overlay.plan_panel
 var reverter: CReverter:
 	get:
 		return level.reverter
 var _reset_function := Callable()
+var _verifying := false
 
 
 func _init() -> void:
 	add_to_group("level_programs")
+
+
+# Delete this
+func _enter_tree() -> void:
+	CSLocator.with(self).register(Game.SERVICE_VERIFIER, self)
 
 
 func _ready() -> void:
@@ -69,6 +84,24 @@ func complete_task() -> void:
 func complete_level() -> void:
 	level_completed.emit()
 	queue_free()
+
+
+func start_verifying() -> void:
+	assert(not _verifying)
+
+	_verifying = true
+	verification_started.emit()
+
+
+func stop_verifying() -> void:
+	assert(_verifying)
+
+	_verifying = false
+	verification_stopped.emit()
+
+
+func is_verifying() -> bool:
+	return _verifying
 
 
 func reset() -> void:

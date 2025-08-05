@@ -4,6 +4,8 @@
 
 extends LevelProgram
 
+const SUM_ROW: int = 0
+const OBJECT_COUNT_ROW: int = 1
 const SumIcon := preload("uid://bkor8qo5sy7xa")
 const ObjectCountIcon := preload("uid://caqvd811whwr2")
 var sum: int
@@ -27,6 +29,17 @@ func _ready() -> void:
 
 	goal_panel.add_condition(IntegerMemo.new(sum), SumIcon)
 	goal_panel.add_condition(IntegerMemo.new(object_count), ObjectCountIcon)
+	%SoftCountProgram.field = field
+	%SoftCountProgram.run()
+	$StateChart.set_expression_property("start_verifying_delay", START_VERIFYING_DELAY)
+
+	field.warning_signaler.warned.connect(
+		goal_panel.verify_button.set.bind("disabled", true)
+	)
+	field.warning_signaler.unwarned.connect(
+		goal_panel.verify_button.set.bind("disabled", false)
+	)
+	goal_panel.verification_requested.connect(_on_verification_requested)
 
 
 func _on_playing_state_entered() -> void:
@@ -54,36 +67,49 @@ func _on_playing_state_entered() -> void:
 	if allowed_objects.has("fifty_block"):
 		overlay.pim_objects.include("GridCounting", GridCounting.OBJECT_FIFTY_BLOCK)
 
-	%SoftCountProgram.field = field
-	%SoftCountProgram.run()
-
-	field.warning_signaler.warned.connect(
-		goal_panel.verify_button.set.bind("disabled", true)
-	)
-	field.warning_signaler.unwarned.connect(
-		goal_panel.verify_button.set.bind("disabled", false)
-	)
-	goal_panel.verification_requested.connect(_on_verification_requested)
-
 
 func _on_verification_requested() -> void:
-	BasicAdditionProcesses.VerifGridCountingSumPieces.instantiate().setup(pim).run(
-		level.verifier, [0], _on_first_verification_completed
+	start_verifying()
+	$StateChart.send_event("verify")
+
+
+func _on_sum_pieces_state_entered() -> void:
+	field.count_signaler.reset_count()
+
+	$SumPiecesProgram.field = field
+	$SumPiecesProgram.items = field.dynamic_model.get_pieces()
+	$SumPiecesProgram.run()
+
+
+func _on_sum_pieces_program_completed(last_count_object: NumberSignal) -> void:
+	EqualityVerification.new(last_count_object).run(
+		self,
+		[SUM_ROW],
+		$StateChart.send_event.bind("succeed"),
+		$StateChart.send_event.bind("fail")
 	)
 
 
-func _on_first_verification_completed() -> void:
-	BasicAdditionProcesses.VerifGridCountingCountPieces.instantiate().setup(pim).run(
-		level.verifier, [1], _on_verified
+func _on_count_pieces_state_entered() -> void:
+	field.count_signaler.reset_count()
+
+	$CountPiecesProgram.field = field
+	$CountPiecesProgram.items = field.dynamic_model.get_pieces()
+	$CountPiecesProgram.run()
+
+
+func _on_count_pieces_program_completed(last_count_object: NumberSignal) -> void:
+	EqualityVerification.new(last_count_object).run(
+		self,
+		[OBJECT_COUNT_ROW],
+		$StateChart.send_event.bind("succeed"),
+		$StateChart.send_event.bind("fail")
 	)
 
 
-func _on_verified() -> void:
+func _on_verifying_state_exited() -> void:
+	stop_verifying()
+
+
+func _on_completed_state_entered() -> void:
 	complete_task()
-	$StateChart.send_event("done")
-
-
-func _on_playing_state_exited() -> void:
-	field.warning_signaler.warned.disconnect(goal_panel.verify_button.set)
-	field.warning_signaler.unwarned.disconnect(goal_panel.verify_button.set)
-	goal_panel.verification_requested.disconnect(_on_verification_requested)

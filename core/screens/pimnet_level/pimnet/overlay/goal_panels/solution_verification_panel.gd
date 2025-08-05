@@ -61,3 +61,10 @@ func clear_slots() -> void:
 		slot.suggestion = Game.SuggestiveSignals.NONE
 	verified_row_numbers.clear()
 	rejected_row_numbers.clear()
+
+
+func get_unfilled_row_numbers() -> Array:
+	var row_numbers := range(correct_memos.size())
+	for filled_number in filled_row_numbers:
+		row_numbers.erase(filled_number)
+	return row_numbers
