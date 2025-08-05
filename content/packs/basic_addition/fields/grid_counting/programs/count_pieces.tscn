@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://53cp00ja4q61"]
 
-[ext_resource type="PackedScene" uid="uid://cs4b3kp8fp5a0" path="res://core/systems/field/auto_count_program.tscn" id="1_wbg21"]
+[ext_resource type="PackedScene" uid="uid://cs4b3kp8fp5a0" path="res://core/systems/field/field_program/auto_count_program.tscn" id="1_wbg21"]
 [ext_resource type="Script" uid="uid://tyqd5dtiu4vx" path="res://content/packs/basic_addition/fields/grid_counting/programs/count_pieces.gd" id="2_wbg21"]
 
 [node name="CountPiecesProgram" instance=ExtResource("1_wbg21")]

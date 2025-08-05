@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs4b3kp8fp5a0"]
 
-[ext_resource type="Script" uid="uid://dq563c7sotjqt" path="res://core/systems/field/auto_count_program.gd" id="1_nypce"]
+[ext_resource type="Script" uid="uid://dq563c7sotjqt" path="res://core/systems/field/field_program/auto_count_program.gd" id="1_nypce"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_6hk53"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_0hlga"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_mhqiv"]
