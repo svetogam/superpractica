@@ -33,7 +33,7 @@ func _exit_tree() -> void:
 
 func _check_next_row() -> void:
 	var slot = verification_panel.right_slots[_current_row_number]
-	ProcessMoveSignalToSlot.new(_number_signal, slot).run(pimnet, _on_move_completed)
+	pimnet.move_signal_to_slot(_number_signal, slot, _on_move_completed)
 
 
 func _on_move_completed() -> void:
