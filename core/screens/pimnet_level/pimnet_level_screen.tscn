@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=38 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
@@ -34,7 +34,6 @@
 [ext_resource type="Texture2D" uid="uid://ded0xkqasjno6" path="res://core/globals/graphics/button_icons/settings_icon.svg" id="33_egj3f"]
 [ext_resource type="Texture2D" uid="uid://dicw37v6oee72" path="res://core/screens/pimnet_level/graphics/icons/pim_objects_icon.svg" id="34_jl1dt"]
 [ext_resource type="Texture2D" uid="uid://d3d1t78646dmt" path="res://core/screens/pimnet_level/graphics/icons/next_level_icon.svg" id="35_cvj1c"]
-[ext_resource type="Script" uid="uid://pwsp85t0mo17" path="res://core/screens/pimnet_level/verifier/verifier.gd" id="37_l0rup"]
 [ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/globals/graphics/button_icons/level_select_icon.svg" id="38_3ew0p"]
 [ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="40_75slp"]
 
@@ -1196,11 +1195,6 @@ icon = ExtResource("35_cvj1c")
 icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
-
-[node name="Verifier" type="Node" parent="." node_paths=PackedStringArray("effect_layer", "pimnet")]
-script = ExtResource("37_l0rup")
-effect_layer = NodePath("../Pimnet/RootEffectLayer")
-pimnet = NodePath("../Pimnet")
 
 [connection signal="state_entered" from="StateChart/States/Level/Empty" to="." method="_on_empty_state_entered"]
 [connection signal="state_entered" from="StateChart/States/Level/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
