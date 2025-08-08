@@ -73,8 +73,8 @@ func _on_check_start_state_entered() -> void:
 
 	await Game.wait_for(0.5)
 
-	EqualityVerification.new(board_number).run(
-		self,
+	level.verify_equality(
+		board_number,
 		verification_panel.get_unfilled_row_numbers(),
 		$StateChart.send_event.bind("succeed"),
 		$StateChart.send_event.bind("fail")
@@ -96,8 +96,8 @@ func _on_check_pieces_state_entered() -> void:
 
 
 func _on_sum_pieces_program_completed(last_count_object: NumberSignal) -> void:
-	EqualityVerification.new(last_count_object).run(
-		self,
+	level.verify_equality(
+		last_count_object,
 		verification_panel.get_unfilled_row_numbers(),
 		$StateChart.send_event.bind("succeed"),
 		$StateChart.send_event.bind("fail")
@@ -110,7 +110,7 @@ func _on_check_pieces_state_exited() -> void:
 		field.info_signaler.clear()
 
 
-func _on_verifying_state_exited() -> void:
+func _on_to_playing_taken() -> void:
 	stop_verifying()
 
 

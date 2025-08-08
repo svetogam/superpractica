@@ -82,8 +82,8 @@ func _on_sum_pieces_state_entered() -> void:
 
 
 func _on_sum_pieces_program_completed(last_count_object: NumberSignal) -> void:
-	EqualityVerification.new(last_count_object).run(
-		self,
+	level.verify_equality(
+		last_count_object,
 		[SUM_ROW],
 		$StateChart.send_event.bind("succeed"),
 		$StateChart.send_event.bind("fail")
@@ -99,15 +99,15 @@ func _on_count_pieces_state_entered() -> void:
 
 
 func _on_count_pieces_program_completed(last_count_object: NumberSignal) -> void:
-	EqualityVerification.new(last_count_object).run(
-		self,
+	level.verify_equality(
+		last_count_object,
 		[OBJECT_COUNT_ROW],
 		$StateChart.send_event.bind("succeed"),
 		$StateChart.send_event.bind("fail")
 	)
 
 
-func _on_verifying_state_exited() -> void:
+func _on_to_playing_taken() -> void:
 	stop_verifying()
 
 

@@ -164,3 +164,97 @@ func _on_completed_state_entered() -> void:
 	pimnet.overlay.goal_panel.succeed()
 	Game.progress_data.record_level_completion(level_data.id)
 	%Overlay/StateChart.send_event("open_completion_modal")
+
+
+#====================================================================
+# Verifications
+#====================================================================
+
+const PRE_CHECK_DELAY := 0.1
+const POST_CHECK_DELAY := 0.8
+var _row_numbers: Array
+var _number_signal: NumberSignal
+var _inequality_signals: Array  #[InfoSignal]
+var _rows_checked: int = 0
+var _success_callback: Callable
+var _failure_callback := Callable()
+
+
+func verify_equality(
+	p_number_signal: NumberSignal,
+	p_row_numbers: Array,
+	p_success_callback: Callable,
+	p_failure_callback := Callable()
+) -> void:
+	_row_numbers = p_row_numbers
+	_number_signal = p_number_signal
+	_success_callback = p_success_callback
+	_failure_callback = p_failure_callback
+	_rows_checked = 0
+	$StateChart.set_expression_property("pre_check_delay", PRE_CHECK_DELAY)
+	$StateChart.set_expression_property("post_check_delay", POST_CHECK_DELAY)
+	$StateChart.send_event("verify_equality")
+
+
+func _on_running_state_exited() -> void:
+	for inequality_signal in _inequality_signals:
+		inequality_signal.free()
+	_inequality_signals.clear()
+
+
+func _on_prepare_row_state_entered() -> void:
+	var row_number = _get_row_number()
+	var slot = %SolutionVerificationPanel.right_slots[row_number]
+	pimnet.move_signal_to_slot(
+		_number_signal, slot, $StateChart.send_event.bind("decide_row")
+	)
+
+
+func _on_check_row_state_entered() -> void:
+	var row_number = _get_row_number()
+	var got_memo := IntegerMemo.new(_number_signal.number)
+	var wanted_memo = %SolutionVerificationPanel.left_slots[row_number].memo
+	var equal = got_memo.value == wanted_memo.value
+	if equal:
+		%SolutionVerificationPanel.affirm_in_row(got_memo, row_number)
+		_number_signal.erase("out_merge")
+
+		var check_slot = %SolutionVerificationPanel.check_slots[row_number]
+		var overlay_position = check_slot.get_global_rect().get_center()
+		var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
+		pimnet.info_signaler.affirm(signal_position + InfoSignaler.NEAR_OFFSET)
+		_rows_checked += 1
+
+		$StateChart.send_event("decide_row_equal")
+	else:
+		if _row_numbers.size() == 1:
+			%SolutionVerificationPanel.reject_in_row(got_memo, row_number)
+			_number_signal.erase("out_merge")
+
+		var check_slot = %SolutionVerificationPanel.check_slots[row_number]
+		var overlay_position = check_slot.get_global_rect().get_center()
+		var signal_position = pimnet.overlay_position_to_effect_layer(overlay_position)
+		var inequality_signal = pimnet.info_signaler.popup_inequality(signal_position)
+		_inequality_signals.append(inequality_signal)
+		_rows_checked += 1
+
+		$StateChart.send_event("decide_row_unequal")
+
+
+func _on_equal_state_entered() -> void:
+	$StateChart.send_event("stop_verifying_equality")
+	_success_callback.call()
+
+
+func _on_unequal_state_entered() -> void:
+	if _rows_checked < _row_numbers.size():
+		$StateChart.send_event("verify_next_row")
+	else:
+		$StateChart.send_event("stop_verifying_equality")
+		_failure_callback.call()
+
+
+func _get_row_number() -> int:
+	assert(_row_numbers.size() >= _rows_checked)
+
+	return _row_numbers[_rows_checked]

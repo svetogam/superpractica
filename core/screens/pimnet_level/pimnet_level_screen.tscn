@@ -48,60 +48,128 @@ script = ExtResource("1_o01nh")
 script = ExtResource("2_8gxre")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="Level" type="Node" parent="StateChart"]
+[node name="States" type="Node" parent="StateChart"]
+script = ExtResource("12_v58bf")
+
+[node name="Level" type="Node" parent="StateChart/States"]
 script = ExtResource("3_32jhs")
 initial_state = NodePath("Empty")
 
-[node name="Empty" type="Node" parent="StateChart/Level"]
+[node name="Empty" type="Node" parent="StateChart/States/Level"]
 script = ExtResource("4_qgiri")
 
-[node name="ToLoaded" type="Node" parent="StateChart/Level/Empty"]
+[node name="ToLoaded" type="Node" parent="StateChart/States/Level/Empty"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Loaded")
 event = &"load"
 delay_in_seconds = "0.0"
 
-[node name="Loaded" type="Node" parent="StateChart/Level"]
+[node name="Loaded" type="Node" parent="StateChart/States/Level"]
 script = ExtResource("3_32jhs")
 initial_state = NodePath("Playing")
 
-[node name="Playing" type="Node" parent="StateChart/Level/Loaded"]
+[node name="Playing" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
-[node name="ToVerifying" type="Node" parent="StateChart/Level/Loaded/Playing"]
+[node name="ToVerifying" type="Node" parent="StateChart/States/Level/Loaded/Playing"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Verifying")
 event = &"start_verification"
 delay_in_seconds = "0.0"
 
-[node name="ToCompleted" type="Node" parent="StateChart/Level/Loaded/Playing"]
+[node name="ToCompleted" type="Node" parent="StateChart/States/Level/Loaded/Playing"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Completed")
 event = &"complete"
 delay_in_seconds = "0.0"
 
-[node name="Verifying" type="Node" parent="StateChart/Level/Loaded"]
+[node name="Verifying" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
-[node name="ToPlaying" type="Node" parent="StateChart/Level/Loaded/Verifying"]
+[node name="ToPlaying" type="Node" parent="StateChart/States/Level/Loaded/Verifying"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Playing")
 event = &"stop_verification"
 delay_in_seconds = "0.0"
 
-[node name="ToCompleted" type="Node" parent="StateChart/Level/Loaded/Verifying"]
+[node name="ToCompleted" type="Node" parent="StateChart/States/Level/Loaded/Verifying"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Completed")
 event = &"complete"
 delay_in_seconds = "0.0"
 
-[node name="Completed" type="Node" parent="StateChart/Level/Loaded"]
+[node name="Completed" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
-[node name="ToEmpty" type="Node" parent="StateChart/Level/Loaded"]
+[node name="ToEmpty" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Empty")
 event = &"unload"
+delay_in_seconds = "0.0"
+
+[node name="EqualityVerification" type="Node" parent="StateChart/States"]
+script = ExtResource("3_32jhs")
+initial_state = NodePath("Off")
+
+[node name="Off" type="Node" parent="StateChart/States/EqualityVerification"]
+script = ExtResource("4_qgiri")
+
+[node name="ToRunning" type="Node" parent="StateChart/States/EqualityVerification/Off"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Running")
+event = &"verify_equality"
+delay_in_seconds = "0.0"
+
+[node name="Running" type="Node" parent="StateChart/States/EqualityVerification"]
+script = ExtResource("3_32jhs")
+initial_state = NodePath("PrepareRow")
+
+[node name="PrepareRow" type="Node" parent="StateChart/States/EqualityVerification/Running"]
+script = ExtResource("4_qgiri")
+
+[node name="ToCheckRow" type="Node" parent="StateChart/States/EqualityVerification/Running/PrepareRow"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../CheckRow")
+event = &"decide_row"
+delay_in_seconds = "pre_check_delay"
+
+[node name="CheckRow" type="Node" parent="StateChart/States/EqualityVerification/Running"]
+script = ExtResource("4_qgiri")
+
+[node name="ToEqual" type="Node" parent="StateChart/States/EqualityVerification/Running/CheckRow"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Equal")
+event = &"decide_row_equal"
+delay_in_seconds = "post_check_delay"
+
+[node name="ToUnequal" type="Node" parent="StateChart/States/EqualityVerification/Running/CheckRow"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Unequal")
+event = &"decide_row_unequal"
+delay_in_seconds = "post_check_delay"
+
+[node name="Equal" type="Node" parent="StateChart/States/EqualityVerification/Running"]
+script = ExtResource("4_qgiri")
+
+[node name="ToOff" type="Node" parent="StateChart/States/EqualityVerification/Running/Equal"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../../Off")
+event = &"stop_verifying_equality"
+delay_in_seconds = "0.0"
+
+[node name="Unequal" type="Node" parent="StateChart/States/EqualityVerification/Running"]
+script = ExtResource("4_qgiri")
+
+[node name="ToPrepareRow" type="Node" parent="StateChart/States/EqualityVerification/Running/Unequal"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../PrepareRow")
+event = &"verify_next_row"
+delay_in_seconds = "0.0"
+
+[node name="ToOff" type="Node" parent="StateChart/States/EqualityVerification/Running/Unequal"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../../Off")
+event = &"stop_verifying_equality"
 delay_in_seconds = "0.0"
 
 [node name="Pimnet" type="Node" parent="."]
@@ -1134,11 +1202,16 @@ script = ExtResource("37_l0rup")
 effect_layer = NodePath("../Pimnet/RootEffectLayer")
 pimnet = NodePath("../Pimnet")
 
-[connection signal="state_entered" from="StateChart/Level/Empty" to="." method="_on_empty_state_entered"]
-[connection signal="state_entered" from="StateChart/Level/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
-[connection signal="state_exited" from="StateChart/Level/Loaded/Verifying" to="." method="_on_verifying_state_exited"]
-[connection signal="taken" from="StateChart/Level/Loaded/Verifying/ToPlaying" to="." method="_on_verifying_to_playing_taken"]
-[connection signal="state_entered" from="StateChart/Level/Loaded/Completed" to="." method="_on_completed_state_entered"]
+[connection signal="state_entered" from="StateChart/States/Level/Empty" to="." method="_on_empty_state_entered"]
+[connection signal="state_entered" from="StateChart/States/Level/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
+[connection signal="state_exited" from="StateChart/States/Level/Loaded/Verifying" to="." method="_on_verifying_state_exited"]
+[connection signal="taken" from="StateChart/States/Level/Loaded/Verifying/ToPlaying" to="." method="_on_verifying_to_playing_taken"]
+[connection signal="state_entered" from="StateChart/States/Level/Loaded/Completed" to="." method="_on_completed_state_entered"]
+[connection signal="state_exited" from="StateChart/States/EqualityVerification/Running" to="." method="_on_running_state_exited"]
+[connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/PrepareRow" to="." method="_on_prepare_row_state_entered"]
+[connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/CheckRow" to="." method="_on_check_row_state_entered"]
+[connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/Equal" to="." method="_on_equal_state_entered"]
+[connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/Unequal" to="." method="_on_unequal_state_entered"]
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_normal_state_entered"]
 [connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_normal_state_exited"]
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Opening" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_opening_state_entered"]

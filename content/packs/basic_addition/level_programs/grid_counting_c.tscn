@@ -67,10 +67,10 @@ script = ExtResource("6_fsi0p")
 unique_name_in_owner = true
 
 [connection signal="state_entered" from="StateChart/States/Playing" to="." method="_on_playing_state_entered"]
-[connection signal="state_exited" from="StateChart/States/Verifying" to="." method="_on_verifying_state_exited"]
 [connection signal="state_entered" from="StateChart/States/Verifying/CheckStart" to="." method="_on_check_start_state_entered"]
 [connection signal="state_exited" from="StateChart/States/Verifying/CheckStart" to="." method="_on_check_start_state_exited"]
 [connection signal="state_entered" from="StateChart/States/Verifying/CheckPieces" to="." method="_on_check_pieces_state_entered"]
 [connection signal="state_exited" from="StateChart/States/Verifying/CheckPieces" to="." method="_on_check_pieces_state_exited"]
+[connection signal="taken" from="StateChart/States/Verifying/ToPlaying" to="." method="_on_to_playing_taken"]
 [connection signal="state_entered" from="StateChart/States/Completed" to="." method="_on_completed_state_entered"]
 [connection signal="completed" from="SumPiecesProgram" to="." method="_on_sum_pieces_program_completed"]
