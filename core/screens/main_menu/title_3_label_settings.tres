@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bl5db4rqqlohn"]
 
-[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="1_xjih2"]
+[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://general/fonts/open_sans_semi_bold.ttf" id="1_xjih2"]
 
 [resource]
 font = ExtResource("1_xjih2")

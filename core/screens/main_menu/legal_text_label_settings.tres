@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://jq26m2tkauao"]
 
-[ext_resource type="FontFile" uid="uid://habns0vytqux" path="res://core/globals/fonts/libre_franklin_semi_bold.ttf" id="1_iy1lr"]
+[ext_resource type="FontFile" uid="uid://habns0vytqux" path="res://general/fonts/libre_franklin_semi_bold.ttf" id="1_iy1lr"]
 
 [resource]
 line_spacing = 0.0

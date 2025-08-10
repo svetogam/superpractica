@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=11 format=3 uid="uid://6u5y2olmcrbm"]
 
 [ext_resource type="StyleBox" uid="uid://cdro2mx1p7424" path="res://core/globals/theme/button_disabled_style_box.tres" id="1_3gqor"]
-[ext_resource type="FontFile" uid="uid://dqwutms3guyhp" path="res://core/globals/fonts/source_sans_pro_semi_bold.ttf" id="1_t7rb6"]
+[ext_resource type="FontFile" uid="uid://dqwutms3guyhp" path="res://general/fonts/source_sans_pro_semi_bold.ttf" id="1_t7rb6"]
 [ext_resource type="StyleBox" uid="uid://b8xh6j44lqwxh" path="res://core/globals/theme/button_focused_style_box.tres" id="2_giqbm"]
 [ext_resource type="StyleBox" uid="uid://dcmyeu4b718dk" path="res://core/globals/theme/button_hover_style_box.tres" id="3_t7rb6"]
 [ext_resource type="StyleBox" uid="uid://dugsl1kobydk2" path="res://core/globals/theme/button_hover_pressed_style_box.tres" id="4_r3i5c"]
@@ -9,7 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://b7cnajccl65p3" path="res://core/globals/theme/button_pressed_style_box.tres" id="6_xh5ir"]
 [ext_resource type="StyleBox" uid="uid://xxja6vn0tiel" path="res://core/globals/theme/panel_style_box.tres" id="7_4w2wd"]
 [ext_resource type="StyleBox" uid="uid://do7xsmkt2t2oc" path="res://core/globals/theme/tooltip_style_box.tres" id="8_pp6a0"]
-[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="9_t7rb6"]
+[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://general/fonts/open_sans_semi_bold.ttf" id="9_t7rb6"]
 
 [resource]
 /colors/affirm = Color(0.09, 0.9, 0.09, 1)

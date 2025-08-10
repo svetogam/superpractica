@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://dicw37v6oee72" path="res://core/screens/pimnet_level/graphics/icons/pim_objects_icon.svg" id="34_jl1dt"]
 [ext_resource type="Texture2D" uid="uid://d3d1t78646dmt" path="res://core/screens/pimnet_level/graphics/icons/next_level_icon.svg" id="35_cvj1c"]
 [ext_resource type="Texture2D" uid="uid://cx3khvoaax4ea" path="res://core/globals/graphics/button_icons/level_select_icon.svg" id="38_3ew0p"]
-[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://core/globals/fonts/open_sans_semi_bold.ttf" id="40_75slp"]
+[ext_resource type="FontFile" uid="uid://cj1n52ljnryw4" path="res://general/fonts/open_sans_semi_bold.ttf" id="40_75slp"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1a27x"]
 

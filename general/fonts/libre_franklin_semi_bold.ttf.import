@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://habns0vytqux"
-path="res://.godot/imported/libre_franklin_semi_bold.ttf-1b02ec8b67d34c501d8413c9d79f7147.fontdata"
+path="res://.godot/imported/libre_franklin_semi_bold.ttf-d33cbf8230ebb084adfcc7f5c6588fdf.fontdata"
 
 [deps]
 
-source_file="res://core/globals/fonts/libre_franklin_semi_bold.ttf"
-dest_files=["res://.godot/imported/libre_franklin_semi_bold.ttf-1b02ec8b67d34c501d8413c9d79f7147.fontdata"]
+source_file="res://general/fonts/libre_franklin_semi_bold.ttf"
+dest_files=["res://.godot/imported/libre_franklin_semi_bold.ttf-d33cbf8230ebb084adfcc7f5c6588fdf.fontdata"]
 
 [params]
 

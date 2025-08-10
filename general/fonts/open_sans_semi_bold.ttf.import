@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dqwutms3guyhp"
-path="res://.godot/imported/source_sans_pro_semi_bold.ttf-550e52f257cafedc812474cf2e4780e8.fontdata"
+uid="uid://cj1n52ljnryw4"
+path="res://.godot/imported/open_sans_semi_bold.ttf-d77c2a9d124b8bcf10fb6fde4985570d.fontdata"
 
 [deps]
 
-source_file="res://core/globals/fonts/source_sans_pro_semi_bold.ttf"
-dest_files=["res://.godot/imported/source_sans_pro_semi_bold.ttf-550e52f257cafedc812474cf2e4780e8.fontdata"]
+source_file="res://general/fonts/open_sans_semi_bold.ttf"
+dest_files=["res://.godot/imported/open_sans_semi_bold.ttf-d77c2a9d124b8bcf10fb6fde4985570d.fontdata"]
 
 [params]
 
@@ -17,8 +17,8 @@ antialiasing=1
 generate_mipmaps=true
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=true
-msdf_pixel_range=8
-msdf_size=40
+msdf_pixel_range=40
+msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 hinting=1
@@ -31,7 +31,7 @@ Compress=null
 compress=true
 preload=[{
 "chars": [],
-"glyphs": [],
+"glyphs": [20, 3, 16, 21, 22, 23, 24, 25, 26, 27, 28],
 "name": "New Configuration",
 "size": Vector2i(16, 0),
 "variation_embolden": 0.0
