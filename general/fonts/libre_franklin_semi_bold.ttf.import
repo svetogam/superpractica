@@ -29,7 +29,12 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[]
+preload=[{
+"chars": [],
+"glyphs": [162, 341, 237, 459, 791, 185, 363, 398, 318, 265, 409, 173, 352, 272, 264, 458, 280, 421, 305, 84, 304, 164, 429, 28, 338, 29, 401, 104, 36, 350, 313, 800, 116, 474, 452, 114, 335, 216, 215, 71, 46, 192, 1, 70, 453, 801, 734, 823, 824, 802, 816, 127, 822, 222, 165, 79, 805],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
 language_support={}
 script_support={}
 opentype_features={}

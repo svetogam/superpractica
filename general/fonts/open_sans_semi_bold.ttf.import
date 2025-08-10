@@ -31,10 +31,10 @@ Compress=null
 compress=true
 preload=[{
 "chars": [],
-"glyphs": [20, 3, 16, 21, 22, 23, 24, 25, 26, 27, 28],
+"glyphs": [20, 3, 16, 21, 22, 23, 24, 25, 26, 27, 28, 51, 79, 68, 92, 55, 82, 83, 76, 70, 86, 54, 81, 71, 69, 91, 72, 87, 74, 44, 73, 52, 88, 37, 78, 38, 85, 47, 39, 80, 75, 17, 49, 906, 89, 48, 77, 58, 57, 42, 40, 56, 36, 41, 90, 15, 11, 12, 29, 50, 66, 60, 53, 43, 4],
 "name": "New Configuration",
 "size": Vector2i(16, 0),
-"variation_embolden": 0.0
+&"variation_embolden": 0.0
 }]
 language_support={}
 script_support={}
