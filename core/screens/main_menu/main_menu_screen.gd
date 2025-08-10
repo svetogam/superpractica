@@ -29,6 +29,13 @@ func _ready() -> void:
 	%TitleVersion.text = version_text + " Demo"
 	%EngineLicense.text = Engine.get_license_text()
 
+	# Write AGPL text
+	var agpl_text := FileAccess.get_file_as_string("res://LICENSES/AGPL-3.0-or-later.txt")
+	assert(agpl_text != "")
+	var first_line := agpl_text.get_slice("\n", 0)
+	%GameLicenseHeader.text = first_line
+	%GameLicenseBody.text = agpl_text.lstrip(first_line + "\n")
+
 	$StateChart.set_expression_property("transition_duration", %TransitionCamera.duration)
 
 

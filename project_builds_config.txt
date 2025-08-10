@@ -303,7 +303,7 @@
 "custom_features": PackedStringArray(),
 "exclude_filters": PackedStringArray("addons/gdUnit4/*", "general/testing_utils.gd", "*/tests/*"),
 "export_path": "export",
-"include_filters": PackedStringArray(),
+"include_filters": PackedStringArray("LICENSES/*.txt"),
 "inherit": "",
 "name": "Regular Export"
 }])
