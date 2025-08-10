@@ -5,6 +5,7 @@ version = 1
 path = [
 	"**.import",
 	"**.uid",
+	"**.pot",
 	".gitignore",
 	".gdformatrc",
 	".gdlintrc",
@@ -17,6 +18,12 @@ path = [
 ]
 SPDX-FileCopyrightText = "Super Practica contributors"
 SPDX-License-Identifier = "CC0-1.0"
+
+# Bulk-license special folders
+[[annotations]]
+path = "translation/**.po"
+SPDX-FileCopyrightText = "2025 Super Practica contributors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
 
 # Bulk-license addon folders
 [[annotations]]

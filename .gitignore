@@ -23,3 +23,6 @@ screenshots/*
 # Addon-related
 addons/ProjectBuilder
 addons/gdUnit4/GdUnitRunner.cfg
+
+# Generated files
+*.mo

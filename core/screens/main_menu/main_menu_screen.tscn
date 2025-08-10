@@ -325,7 +325,7 @@ alignment = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-text = "Play Topics"
+text = "btn_topics"
 icon = ExtResource("16_m8eft")
 expand_icon = true
 
@@ -333,7 +333,7 @@ expand_icon = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
-text = "Play Sandbox"
+text = "btn_sandbox"
 icon = ExtResource("17_ilwjk")
 expand_icon = true
 
@@ -341,7 +341,7 @@ expand_icon = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 disabled = true
-text = "Settings"
+text = "btn_settings"
 icon = ExtResource("18_a22bj")
 expand_icon = true
 
@@ -349,7 +349,7 @@ expand_icon = true
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-text = "Info"
+text = "btn_info"
 icon = ExtResource("19_tpgq8")
 expand_icon = true
 
@@ -357,7 +357,7 @@ expand_icon = true
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-text = "Quit"
+text = "btn_quit"
 icon = ExtResource("20_ksqx5")
 expand_icon = true
 
@@ -391,7 +391,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Back"
+text = "btn_back"
 icon = ExtResource("21_lenk6")
 expand_icon = true
 
@@ -400,7 +400,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Credits"
+text = "btn_credits"
 icon = ExtResource("22_j1hcb")
 expand_icon = true
 
@@ -409,7 +409,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Licenses"
+text = "btn_licenses"
 icon = ExtResource("23_qqid4")
 expand_icon = true
 
@@ -438,14 +438,14 @@ layout_mode = 2
 
 [node name="DisclaimerHeader" type="Label" parent="InfoPage/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
 layout_mode = 2
-text = "Disclaimer"
+text = "title_disclaimer"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
 [node name="DisclaimerText" type="Label" parent="InfoPage/Panels/LongPanels/DisclaimerPanel/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "This is an early demo release of Super Practica. No promises are made regarding its effectiveness or playability. Major changes and additions are still planned."
+text = "body_disclaimer"
 label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -458,7 +458,7 @@ layout_mode = 2
 
 [node name="WebsiteHeader" type="Label" parent="InfoPage/Panels/LongPanels/WebsitePanel/VBoxContainer"]
 layout_mode = 2
-text = "Website"
+text = "title_website"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
@@ -476,7 +476,7 @@ layout_mode = 2
 
 [node name="SourceHeader" type="Label" parent="InfoPage/Panels/LongPanels/SourcePanel/VBoxContainer"]
 layout_mode = 2
-text = "Source Code"
+text = "title_source_code"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
@@ -498,7 +498,7 @@ layout_mode = 2
 
 [node name="VersionHeader" type="Label" parent="InfoPage/Panels/ShortPanels/VersionPanel/VBoxContainer"]
 layout_mode = 2
-text = "Version"
+text = "title_version"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
@@ -520,7 +520,7 @@ layout_mode = 2
 
 [node name="BuildHeader" type="Label" parent="InfoPage/Panels/ShortPanels/BuildPanel/VBoxContainer"]
 layout_mode = 2
-text = "This Build"
+text = "title_build_data"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
@@ -563,7 +563,7 @@ offset_top = 20.0
 offset_right = -240.0
 offset_bottom = 87.0
 grow_horizontal = 2
-text = "Credits"
+text = "title_credits"
 label_settings = ExtResource("11_tk1fg")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -578,7 +578,7 @@ offset_top = 20.0
 offset_right = 200.0
 offset_bottom = 60.0
 size_flags_horizontal = 6
-text = "Back"
+text = "btn_back"
 icon = ExtResource("25_a22bj")
 expand_icon = true
 
@@ -602,7 +602,7 @@ layout_mode = 2
 
 [node name="ContributorsHeader" type="Label" parent="CreditsPage/VBoxContainer/CreditsPanel/VBoxContainer"]
 layout_mode = 2
-text = "Contributors"
+text = "title_contributors"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
@@ -635,7 +635,7 @@ offset_top = 20.0
 offset_right = 200.0
 offset_bottom = 60.0
 size_flags_horizontal = 6
-text = "Back"
+text = "btn_back"
 icon = ExtResource("25_a22bj")
 expand_icon = true
 
@@ -654,7 +654,7 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 1
-text = "Game"
+text = "btn_game"
 label_settings = ExtResource("17_bbwo5")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -664,7 +664,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Engine"
+text = "btn_engine"
 clip_text = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameLicensesPage"]
@@ -703,7 +703,7 @@ autowrap_mode = 2
 [node name="GameLicense" type="Label" parent="GameLicensesPage/VBoxContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "This game is licensed under the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version."
+text = "body_game_license_preamble"
 label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -992,7 +992,7 @@ offset_top = 20.0
 offset_right = 200.0
 offset_bottom = 60.0
 size_flags_horizontal = 6
-text = "Back"
+text = "btn_back"
 icon = ExtResource("25_a22bj")
 expand_icon = true
 
@@ -1011,7 +1011,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Game"
+text = "btn_game"
 clip_text = true
 
 [node name="EngineLicenseTitle" type="Label" parent="EngineLicensesPage/HBoxContainer"]
@@ -1019,7 +1019,7 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 1
-text = "Engine"
+text = "btn_engine"
 label_settings = ExtResource("17_bbwo5")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1057,8 +1057,7 @@ stretch_mode = 5
 [node name="EngineLicenseIntro" type="Label" parent="EngineLicensesPage/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "This game uses Godot Engine, available under the following license:
-"
+text = "body_godot_license_preamble"
 label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -1080,14 +1079,14 @@ layout_mode = 2
 
 [node name="ThirdPartyHeader" type="Label" parent="EngineLicensesPage/VBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
-text = "Third-Party Licenses"
+text = "title_godot_3rd_party"
 label_settings = ExtResource("12_7x0fx")
 horizontal_alignment = 1
 
 [node name="ThirdPartyNotice" type="Label" parent="EngineLicensesPage/VBoxContainer/PanelContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "Godot Engine relies on a number of third-party free and open source libraries. For an exhaustive list of all such third-party components with their respective copyright statements and license terms, see GODOT_COPYRIGHT.txt."
+text = "body_godot_3rd_party_copyright"
 label_settings = ExtResource("28_ru612")
 horizontal_alignment = 1
 autowrap_mode = 2

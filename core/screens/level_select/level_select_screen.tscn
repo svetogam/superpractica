@@ -229,7 +229,7 @@ custom_minimum_size = Vector2(250, 50)
 layout_mode = 1
 offset_right = 130.0
 offset_bottom = 50.0
-text = "Topic"
+text = "(topic title)"
 icon = ExtResource("12_nortw")
 clip_text = true
 expand_icon = true
@@ -251,7 +251,7 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
-text = "Topic"
+text = "(topic title)"
 label_settings = ExtResource("16_x8a3b")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -267,7 +267,7 @@ anchor_right = 1.0
 offset_left = -8.0
 offset_bottom = 8.0
 grow_horizontal = 0
-tooltip_text = "Menu"
+tooltip_text = "tooltip_system_menu"
 icon = ExtResource("13_6jxcg")
 icon_alignment = 1
 expand_icon = true
@@ -305,7 +305,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
 layout_mode = 2
-text = "Menu"
+text = "title_system_menu"
 horizontal_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="OverlayLayer/Overlay/SystemPanel/VBoxContainer"]
@@ -314,7 +314,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 0
 disabled = true
-text = "Settings"
+text = "btn_settings"
 icon = ExtResource("14_54uqb")
 expand_icon = true
 
@@ -323,7 +323,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 10
-text = "Main Menu"
+text = "btn_main_menu"
 icon = ExtResource("15_fdq5g")
 expand_icon = true
 
