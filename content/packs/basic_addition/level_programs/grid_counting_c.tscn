@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_2t6ki"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_sit1q"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_8bceb"]
-[ext_resource type="Script" uid="uid://d3y6yqdxcis57" path="res://content/packs/basic_addition/fields/grid_counting/programs/soft_count.gd" id="6_fsi0p"]
-[ext_resource type="PackedScene" uid="uid://cuus6hqo1ds0n" path="res://content/packs/basic_addition/fields/grid_counting/programs/sum_pieces.tscn" id="7_xe572"]
+[ext_resource type="Script" uid="uid://d3y6yqdxcis57" path="res://content/packs/basic_addition/field_programs/soft_count.gd" id="6_fsi0p"]
+[ext_resource type="PackedScene" uid="uid://cuus6hqo1ds0n" path="res://content/packs/basic_addition/field_programs/sum_pieces.tscn" id="7_xe572"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_x8xxu")

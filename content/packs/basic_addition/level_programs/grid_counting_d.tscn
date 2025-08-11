@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_mc33q"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_lyrth"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="5_473ow"]
-[ext_resource type="Script" uid="uid://b4t58aft230jx" path="res://content/packs/basic_addition/fields/grid_counting/programs/select_correct_cell.gd" id="6_ghsv4"]
+[ext_resource type="Script" uid="uid://b4t58aft230jx" path="res://content/packs/basic_addition/field_programs/select_correct_cell.gd" id="6_ghsv4"]
 
 [node name="LevelProgram" type="Node"]
 script = ExtResource("1_s3wvb")
