@@ -10,8 +10,7 @@ const LEVEL_NAMES := {
 	2: "grid_counting_0_2",
 }
 const LEVEL_SCENE := "res://core/screens/pimnet_level/pimnet_level_screen.tscn"
-const REF_SCENE := ("res://content/packs/basic_addition/levels/grid_counting/"
-		+ "tests/screen_ref_de.tscn")
+const REF_SCENE := "res://content/packs/basic_addition/tests/screen_ref_de.tscn"
 
 
 func before():
@@ -34,6 +33,7 @@ func test_golden_path_0_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -51,6 +51,7 @@ func test_golden_path_0_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 

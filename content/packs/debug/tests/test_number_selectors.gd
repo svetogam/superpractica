@@ -10,8 +10,7 @@ const LEVEL_NAMES := {
 	2: "select_number_2",
 }
 const LEVEL_SCENE := "res://core/screens/pimnet_level/pimnet_level_screen.tscn"
-const REF_SCENE := (
-		"res://content/debug/levels/number_selectors/tests/number_selectors_ref.tscn")
+const REF_SCENE := "res://content/packs/debug/tests/number_selectors_ref.tscn"
 
 
 func before():
@@ -30,6 +29,7 @@ func after():
 func test_selector_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -47,6 +47,7 @@ func test_selector_1():
 func test_selector_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 

@@ -15,8 +15,7 @@ const LEVEL_NAMES := {
 	6: "grid_counting_3_6",
 }
 const LEVEL_SCENE := "res://core/screens/pimnet_level/pimnet_level_screen.tscn"
-const REF_SCENE := ("res://content/packs/basic_addition/levels/grid_counting/"
-		+ "tests/screen_ref_c.tscn")
+const REF_SCENE := "res://content/packs/basic_addition/tests/screen_ref_c.tscn"
 
 
 func before():
@@ -39,6 +38,7 @@ func test_golden_path_3_1():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -62,6 +62,7 @@ func test_golden_path_3_2():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -97,6 +98,7 @@ func test_golden_path_3_3():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -128,6 +130,7 @@ func test_golden_path_3_4():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[4]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -171,6 +174,7 @@ func test_golden_path_3_5():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[5]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -198,6 +202,7 @@ func test_golden_path_3_6_with_mark():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -217,6 +222,7 @@ func test_golden_path_3_6_with_unit():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[6]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -242,6 +248,7 @@ func test_complete_if_corrected_after_failure():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -287,6 +294,7 @@ func test_complete_if_addends_to_mark_and_count_are_inefficiently_chosen():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -338,6 +346,7 @@ func test_complete_if_field_is_marked_in_the_opposite_order():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[3]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -373,6 +382,7 @@ func test_do_not_complete_if_solution_is_reached_by_adding_units_alone():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -401,6 +411,7 @@ func test_do_not_complete_if_solution_is_marked_with_no_units():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -419,6 +430,7 @@ func test_do_not_complete_if_units_start_on_marked_square():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[2]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
@@ -453,6 +465,7 @@ func test_do_not_complete_if_junk_gives_a_warning():
 	var level_data := TOPIC_DATA.get_level([LEVEL_NAMES[1]])
 	TestingUtils.add_ref_scene(self, REF_SCENE)
 	var runner := scene_runner(LEVEL_SCENE)
+	await await_idle_frame()
 	runner.scene().load_level(level_data)
 	runner.set_time_factor(100)
 
