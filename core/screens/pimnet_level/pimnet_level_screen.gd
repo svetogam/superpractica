@@ -12,6 +12,8 @@ const REVERTER_MAX_SIZE: int = 1000
 @export var level_data: LevelResource
 var program: LevelProgram
 var reverter := CReverter.new()
+var _time_limit := 0.0
+var _trials_completed: int
 var _action_queue := LevelActionQueue.new()
 @onready var pimnet := %Pimnet as Pimnet
 
@@ -29,10 +31,10 @@ func _ready() -> void:
 	updated.connect(_update_reversion_buttons)
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
 	actions_completed.connect(updated.emit)
-	CSConnector.with(self).connect_signal(Game.AGENT_FIELD, "updated", updated.emit)
 	CSConnector.with(self).connect_signal(
 		Game.AGENT_MEMO_SLOT, "memo_changed", updated.emit.unbind(1)
 	)
+	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
 
 	# Consistently start with empty state
 	pimnet.setup(null)
@@ -40,6 +42,21 @@ func _ready() -> void:
 	# Load immediately if level data is already set
 	if level_data != null:
 		load_level(level_data)
+
+
+func _setup_field(field: Field) -> void:
+	_action_queue.add_field(field)
+	field.updated.connect(updated.emit)
+
+
+func _process(_delta: float) -> void:
+	if level_data == null:
+		return
+
+	match level_data.level_type:
+		LevelResource.LevelTypes.TRIAL_PRACTICE:
+			if _time_limit > 0.0:
+				pimnet.set_trial_time(%TrialTimer.time_left, _time_limit)
 
 
 func _physics_process(_delta: float) -> void:
@@ -59,32 +76,60 @@ func load_level(p_level_data: LevelResource) -> void:
 	if reverter.has_connected_funcs():
 		reverter.commit()
 
-	_action_queue.setup(pimnet)
-
-	# Set up and run program
 	if level_data.program != null:
-		program = level_data.program.instantiate()
-		program.level = self
-		program._setup_vars(level_data.program_vars)
-		program.task_completed.connect(updated.emit.unbind(1))
-		program.level_completed.connect(updated.emit)
-		program.level_completed.connect($StateChart.send_event.bind("complete"))
-		program.verification_started.connect(updated.emit)
-		program.verification_started.connect(
-			$StateChart.send_event.bind("start_verification")
-		)
-		program.verification_stopped.connect(updated.emit)
-		program.verification_stopped.connect(
-			$StateChart.send_event.bind("stop_verification")
-		)
-		program.reset_changed.connect(_update_reversion_buttons)
-		program.reset_called.connect(_do_queued_actions)
-		program.set_custom_reset(_default_reset)
+		run_program()
 
-		add_child(program)
+	match level_data.level_type:
+		LevelResource.LevelTypes.TRIAL_PRACTICE:
+			_trials_completed = 0
+			_time_limit = level_data.trial_time_limit
+			pimnet.set_trial_progress(0, level_data.number_trials)
+			%TrialTimer.start(_time_limit)
 
 	# Not immediate due to potential for calling from _ready()
 	$StateChart.send_event.call_deferred("load")
+
+
+func run_program() -> void:
+	assert(level_data != null)
+
+	# Stop old program
+	if program != null:
+		program.queue_free()
+
+	program = level_data.program.instantiate()
+	program.level = self
+	program._setup_vars(level_data.program_vars)
+	program.task_completed.connect(updated.emit.unbind(1))
+	program.program_completed.connect(updated.emit)
+	program.program_completed.connect(_on_program_completed)
+	program.program_missed.connect(_on_program_missed)
+	program.verification_started.connect(updated.emit)
+	program.verification_started.connect(
+		$StateChart.send_event.bind("start_verification")
+	)
+	program.verification_stopped.connect(updated.emit)
+	program.verification_stopped.connect(
+		$StateChart.send_event.bind("stop_verification")
+	)
+	program.reset_changed.connect(_update_reversion_buttons)
+	program.reset_called.connect(_do_queued_actions)
+	program.set_custom_reset(_default_reset)
+
+	add_child(program)
+
+
+func reload_level() -> void:
+	assert(level_data != null)
+
+	reverter.history.clear()
+	_action_queue.reset()
+	if pimnet.overlay.goal_panel != null:
+		pimnet.overlay.goal_panel.reset()
+	pimnet.setup(level_data)
+	if reverter.has_connected_funcs():
+		reverter.commit()
+	run_program()
 
 
 func unload_level() -> void:
@@ -97,7 +142,6 @@ func unload_level() -> void:
 	# Unload pimnet stuff
 	_action_queue.reset()
 	pimnet.setup(null)
-	_action_queue.setup(pimnet)
 
 	# Unload program
 	if program != null:
@@ -106,6 +150,26 @@ func unload_level() -> void:
 
 	level_data = null
 	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
+
+
+func fail_trial() -> void:
+	if _trials_completed != -1: # If not already failed
+		pimnet.set_trial_progress(_trials_completed, level_data.number_trials, true)
+		_trials_completed = -1
+
+
+func _on_program_missed() -> void:
+	match level_data.level_type:
+		LevelResource.LevelTypes.TRIAL_PRACTICE:
+			fail_trial()
+
+
+func _on_program_completed() -> void:
+	match level_data.level_type:
+		LevelResource.LevelTypes.TRIAL_PRACTICE:
+			$StateChart.send_event("complete_trial")
+		_:
+			$StateChart.send_event("complete_level")
 
 
 func _on_reset_button_pressed() -> void:
@@ -139,6 +203,10 @@ func _update_reversion_buttons() -> void:
 	)
 
 
+func _on_trial_timer_timeout() -> void:
+	fail_trial()
+
+
 func _on_empty_state_entered() -> void:
 	if pimnet.overlay.goal_panel != null:
 		pimnet.overlay.goal_panel.reset()
@@ -160,7 +228,17 @@ func _on_verifying_to_playing_taken() -> void:
 	pimnet.overlay.goal_panel.fail()
 
 
-func _on_completed_state_entered() -> void:
+func _on_trial_completion_state_entered() -> void:
+	_trials_completed += 1
+	pimnet.set_trial_progress(_trials_completed, level_data.number_trials)
+	if _trials_completed < level_data.number_trials:
+		reload_level()
+		$StateChart.send_event("reload_trial")
+	else:
+		$StateChart.send_event("complete_level")
+
+
+func _on_level_completion_state_entered() -> void:
 	pimnet.overlay.goal_panel.succeed()
 	Game.progress_data.record_level_completion(level_data.id)
 	%Overlay/StateChart.send_event("open_completion_modal")

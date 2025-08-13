@@ -57,7 +57,7 @@ func test_golden_path_4_1():
 	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.await_signal_on(
-			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+			runner.scene().program, "program_completed", [], VERIFICATION_TIMEOUT)
 
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
@@ -80,7 +80,7 @@ func test_golden_path_4_2():
 	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.await_signal_on(
-			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+			runner.scene().program, "program_completed", [], VERIFICATION_TIMEOUT)
 
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
@@ -112,7 +112,7 @@ func test_golden_path_4_3():
 	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.await_signal_on(
-			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+			runner.scene().program, "program_completed", [], VERIFICATION_TIMEOUT)
 
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
@@ -140,7 +140,7 @@ func test_golden_path_4_4():
 	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.await_signal_on(
-			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+			runner.scene().program, "program_completed", [], VERIFICATION_TIMEOUT)
 
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
@@ -172,7 +172,7 @@ func test_golden_path_4_5():
 	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.await_signal_on(
-			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+			runner.scene().program, "program_completed", [], VERIFICATION_TIMEOUT)
 
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()
 
@@ -200,6 +200,6 @@ func test_golden_path_4_6():
 	await runner.simulate_mouse_move_absolute($Ref/GoalSlot.position, 0.01)
 	runner.simulate_mouse_button_release(MOUSE_BUTTON_LEFT)
 	await runner.await_signal_on(
-			runner.scene().program, "level_completed", [], VERIFICATION_TIMEOUT)
+			runner.scene().program, "program_completed", [], VERIFICATION_TIMEOUT)
 
 	assert_bool(Game.progress_data.is_level_completed(level_data.id)).is_true()

@@ -9,8 +9,8 @@ func _ready() -> void:
 	super()
 
 	goal_panel.slot.set_memo_as_hint(IntegerMemo, 8)
-	goal_panel.slot_filled.connect(complete_level)
+	goal_panel.slot_filled.connect(complete_program)
 
 
 func _end() -> void:
-	goal_panel.slot_filled.disconnect(complete_level)
+	goal_panel.slot_filled.disconnect(complete_program)

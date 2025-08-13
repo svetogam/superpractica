@@ -24,7 +24,6 @@ const SERVICE_LEVEL_DATA := "level_data"
 const SERVICE_PIMNET := "pimnet"
 const SERVICE_FIELD := "field"
 const SERVICE_ROOT_EFFECT_LAYER := "effect_layer"
-const SERVICE_VERIFIER := "verifier"
 const SERVICE_REVERTER := "reverter"
 const SERVICE_PIMNET_LEVEL_VIEWPORT := "pimnet_level_viewport"
 

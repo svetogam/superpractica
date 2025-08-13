@@ -219,6 +219,9 @@ static var grid_counting_topic = TopicResource.new(
 			LevelResource.TopicIcons.UNKNOWN,
 			# Pimnet Data
 			{
+				"level_type": LevelResource.LevelTypes.TRIAL_PRACTICE,
+				"number_trials": 5,
+				"time_limit": 40.0,
 				"goal_type": LevelResource.GoalTypes.HINTED_MEMO_SLOT,
 				"pims": [
 					preload("pims/grid_counting/grid_counting_pim.tscn"),
@@ -797,6 +800,9 @@ static var grid_counting_topic = TopicResource.new(
 			LevelResource.TopicIcons.UNKNOWN,
 			# Pimnet Data
 			{
+				"level_type": LevelResource.LevelTypes.TRIAL_PRACTICE,
+				"number_trials": 7,
+				"time_limit": 60.0,
 				"goal_type": LevelResource.GoalTypes.SOLUTION_MEMO_SLOTS,
 				"pims": [
 					preload("pims/grid_counting/grid_counting_pim.tscn"),

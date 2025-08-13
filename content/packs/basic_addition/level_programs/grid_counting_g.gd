@@ -30,6 +30,7 @@ func _ready() -> void:
 
 	pim.enable_output_slot()
 	goal_panel.set_problem_memo(ExpressionMemo.new(str(addend_1) + "+" + str(addend_2)))
+	%SoftCountProgram.warned.connect(miss_program)
 	%SoftCountProgram.field = field
 	%SoftCountProgram.run()
 	$StateChart.set_expression_property("start_verifying_delay", START_VERIFYING_DELAY)
@@ -112,6 +113,7 @@ func _on_check_pieces_state_exited() -> void:
 
 func _on_to_playing_taken() -> void:
 	stop_verifying()
+	miss_program()
 
 
 func _on_completed_state_entered() -> void:

@@ -58,6 +58,8 @@ func setup(level_data: LevelResource) -> void:
 	%UndoButton.visible = false
 	%RedoButton.visible = false
 	%ResetButton.visible = false
+	%PlaytypeExampleButton.visible = false
+	%PlaytypeTrialButton.visible = false
 	%PlanButton.visible = false
 	%EditPanelsButton.visible = false
 	overlay.deactivate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
@@ -76,6 +78,11 @@ func setup(level_data: LevelResource) -> void:
 		%ResetButton.visible = level_data.enable_reversion
 		%PlanButton.visible = level_data.enable_plan
 		%EditPanelsButton.visible = level_data.enable_edit_layout
+		match level_data.level_type:
+			LevelResource.LevelTypes.EXAMPLE_PRACTICE:
+				%PlaytypeExampleButton.show()
+			LevelResource.LevelTypes.TRIAL_PRACTICE:
+				%PlaytypeTrialButton.show()
 		if level_data.enable_pim_tools:
 			overlay.activate_panel(PimnetOverlay.PimnetPanels.PIM_TOOLS)
 		if level_data.enable_pim_objects:
@@ -218,6 +225,26 @@ func move_signal_to_slot(
 	tween.tween_property(info_signal, "global_position", dest_position, tween_time)
 	tween.parallel().tween_property(info_signal, "scale", dest_scale, tween_time)
 	tween.tween_callback(callback)
+
+
+func set_trial_progress(completed: int, required: int, failed := false) -> void:
+	var fraction_text := str(completed) + " / " + str(required)
+	if failed:
+		%TrialButtonTimeLimitBar.hide()
+		%TrialButtonFractionLabel.text = "Oops! " + fraction_text
+	elif completed < required:
+		%TrialButtonTimeLimitBar.show()
+		%TrialButtonFractionLabel.text = fraction_text
+	else:
+		%TrialButtonTimeLimitBar.hide()
+		%TrialButtonFractionLabel.text = "Success! " + fraction_text
+
+
+# Times should be in seconds
+func set_trial_time(remaining: float, limit: float) -> void:
+	assert(limit > 0.0)
+
+	%TrialButtonTimeLimitBar.value = (remaining / limit)
 
 
 #====================================================================

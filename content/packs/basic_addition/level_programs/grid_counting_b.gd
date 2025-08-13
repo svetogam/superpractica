@@ -30,6 +30,7 @@ func _ready() -> void:
 
 	pim.enable_output_slot()
 	goal_panel.slot.set_memo_as_hint(IntegerMemo, count)
+	%SoftCountProgram.warned.connect(miss_program)
 	%SoftCountProgram.field = field
 	%SoftCountProgram.run()
 	%SoftCountProgram.disallow_object(GridCounting.OBJECT_UNIT)
@@ -76,7 +77,6 @@ func _on_put_blocks_state_exited() -> void:
 
 
 func _on_put_units_state_entered() -> void:
-	level.reverter.history.clear()
 	set_custom_reset(_reset)
 
 	%SoftCountProgram.reallow_object(GridCounting.OBJECT_UNIT)

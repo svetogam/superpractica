@@ -186,6 +186,7 @@ func set_by_memo(p_memo: Memo, bypass_hooks := false) -> void:
 func set_memo_as_hint(memo_type: GDScript, p_value: Variant) -> void:
 	set_memo(memo_type, p_value, true)
 	hinting = true
+	set.call_deferred("hinting", true) # Sometimes necessary for some reason
 
 
 func set_text(text: String) -> void:
@@ -195,6 +196,7 @@ func set_text(text: String) -> void:
 func set_text_as_hint(text: String) -> void:
 	%Label.text = text
 	hinting = true
+	set.call_deferred("hinting", true) # Sometimes necessary for some reason
 
 
 func set_no_memo_with_text(text: String) -> void:

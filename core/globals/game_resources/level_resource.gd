@@ -5,6 +5,11 @@
 class_name LevelResource
 extends Resource
 
+enum LevelTypes {
+	NONE = 0,
+	EXAMPLE_PRACTICE,
+	TRIAL_PRACTICE,
+}
 enum GoalTypes {
 	NONE = 0,
 	HINTED_MEMO_SLOT,
@@ -43,7 +48,9 @@ const IconQuestionMark := preload("uid://clk6yic0okqp6")
 @export var program: PackedScene
 @export var program_vars: Dictionary
 @export var program_plan: PlanResource
-@export_group("Pimnet")
+@export var level_type: LevelTypes
+@export var trial_time_limit: float
+@export var number_trials: int
 @export var goal_type: GoalTypes
 @export var pims: Array = [] #[PackedScene]
 @export var enable_reversion := false
@@ -103,6 +110,9 @@ func _init(
 	program = p_program
 	program_vars = p_program_vars
 	program_plan = p_program_plan
+	level_type = pimnet_data.get("level_type", LevelTypes.NONE)
+	trial_time_limit = pimnet_data.get("time_limit", 60.0)
+	number_trials = pimnet_data.get("number_trials", 1)
 	goal_type = pimnet_data.get("goal_type", GoalTypes.NONE)
 	pims = pimnet_data.get("pims", [])
 	enable_reversion = pimnet_data.get("enable_reversion", false)

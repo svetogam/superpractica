@@ -9,21 +9,12 @@ var _queue: Array = []
 var _fields: Array = []
 
 
-func setup(pimnet: Pimnet) -> void:
-	for pim in pimnet.pims:
-		if pim.has_field():
-			_bind_to_field(pim.field)
-
-
-func _bind_to_field(field: Field) -> void:
+func add_field(field: Field) -> void:
 	_fields.append(field)
 	field.action_queue.got_actions_to_do.connect(
-			_on_actions_queued.bind(field.action_queue))
+		_on_actions_queued.bind(field.action_queue)
+	)
 	field.action_queue.auto_flush = false
-
-
-func _on_actions_queued(field_queue: FieldActionQueue) -> void:
-	_queue.append(field_queue)
 
 
 func reset() -> void:
@@ -41,3 +32,7 @@ func flush() -> void:
 
 func is_empty() -> bool:
 	return _queue.is_empty()
+
+
+func _on_actions_queued(field_queue: FieldActionQueue) -> void:
+	_queue.append(field_queue)

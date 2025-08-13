@@ -76,10 +76,16 @@ to = NodePath("../../Verifying")
 event = &"start_verification"
 delay_in_seconds = "0.0"
 
-[node name="ToCompleted" type="Node" parent="StateChart/States/Level/Loaded/Playing"]
+[node name="ToTrialCompletion" type="Node" parent="StateChart/States/Level/Loaded/Playing"]
 script = ExtResource("5_sypxk")
-to = NodePath("../../Completed")
-event = &"complete"
+to = NodePath("../../TrialCompletion")
+event = &"complete_trial"
+delay_in_seconds = "0.0"
+
+[node name="ToLevelCompleted" type="Node" parent="StateChart/States/Level/Loaded/Playing"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../LevelCompletion")
+event = &"complete_level"
 delay_in_seconds = "0.0"
 
 [node name="Verifying" type="Node" parent="StateChart/States/Level/Loaded"]
@@ -91,13 +97,34 @@ to = NodePath("../../Playing")
 event = &"stop_verification"
 delay_in_seconds = "0.0"
 
-[node name="ToCompleted" type="Node" parent="StateChart/States/Level/Loaded/Verifying"]
+[node name="ToTrialCompletion" type="Node" parent="StateChart/States/Level/Loaded/Verifying"]
 script = ExtResource("5_sypxk")
-to = NodePath("../../Completed")
-event = &"complete"
+to = NodePath("../../TrialCompletion")
+event = &"complete_trial"
 delay_in_seconds = "0.0"
 
-[node name="Completed" type="Node" parent="StateChart/States/Level/Loaded"]
+[node name="ToLevelCompletion" type="Node" parent="StateChart/States/Level/Loaded/Verifying"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../LevelCompletion")
+event = &"complete_level"
+delay_in_seconds = "0.0"
+
+[node name="TrialCompletion" type="Node" parent="StateChart/States/Level/Loaded"]
+script = ExtResource("4_qgiri")
+
+[node name="ToPlaying" type="Node" parent="StateChart/States/Level/Loaded/TrialCompletion"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Playing")
+event = &"reload_trial"
+delay_in_seconds = "0.0"
+
+[node name="ToLevelCompletion" type="Node" parent="StateChart/States/Level/Loaded/TrialCompletion"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../LevelCompletion")
+event = &"complete_level"
+delay_in_seconds = "0.0"
+
+[node name="LevelCompletion" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
 [node name="ToEmpty" type="Node" parent="StateChart/States/Level/Loaded"]
@@ -174,6 +201,10 @@ delay_in_seconds = "0.0"
 [node name="Pimnet" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_6muex")
+
+[node name="TrialTimer" type="Timer" parent="Pimnet"]
+unique_name_in_owner = true
+one_shot = true
 
 [node name="CameraPoint" type="Node2D" parent="Pimnet"]
 unique_name_in_owner = true
@@ -324,6 +355,12 @@ to = NodePath("../../System")
 event = &"open_system_modal"
 delay_in_seconds = "0.0"
 
+[node name="ToPlaytype" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/None"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Playtype")
+event = &"open_playtype_modal"
+delay_in_seconds = "0.0"
+
 [node name="ToPlan" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/None"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Plan")
@@ -346,6 +383,15 @@ delay_in_seconds = "0.0"
 script = ExtResource("4_qgiri")
 
 [node name="ToNone" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/System"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../None")
+event = &"close"
+delay_in_seconds = "0.0"
+
+[node name="Playtype" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal"]
+script = ExtResource("4_qgiri")
+
+[node name="ToNone" type="Node" parent="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Playtype"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../None")
 event = &"close"
@@ -461,7 +507,52 @@ offset_bottom = 50.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 mouse_filter = 2
-alignment = 2
+theme_override_constants/separation = 0
+
+[node name="PlaytypeExampleButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+tooltip_text = "tooltip_playtype_menu"
+icon_alignment = 1
+expand_icon = true
+
+[node name="PlaytypeTrialButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+tooltip_text = "tooltip_playtype_menu"
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/TopRight/PlaytypeTrialButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TrialButtonTimeLimitBar" type="ProgressBar" parent="Pimnet/OverlayLayer/Overlay/TopRight/PlaytypeTrialButton/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="TrialButtonFractionLabel" type="Label" parent="Pimnet/OverlayLayer/Overlay/TopRight/PlaytypeTrialButton/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0 / 99"
+horizontal_alignment = 1
 
 [node name="SystemButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/TopRight"]
 unique_name_in_owner = true
@@ -900,6 +991,71 @@ text = "btn_exit_level"
 icon = ExtResource("38_3ew0p")
 expand_icon = true
 
+[node name="PlaytypeExamplePanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_top = -250.0
+offset_right = -200.0
+grow_horizontal = 0
+theme = ExtResource("33_3ew0p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlaytypeExamplePanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PlaytypeExamplePanel/VBoxContainer"]
+layout_mode = 2
+text = "title_example_menu"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlaytypeExamplePanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="AutoplayButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlaytypeExamplePanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "btn_autoplay"
+expand_icon = true
+
+[node name="PlayButton" type="Button" parent="Pimnet/OverlayLayer/Overlay/PlaytypeExamplePanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "btn_play"
+expand_icon = true
+
+[node name="PlaytypeTrialPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_top = -250.0
+offset_right = -200.0
+grow_horizontal = 0
+theme = ExtResource("33_3ew0p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pimnet/OverlayLayer/Overlay/PlaytypeTrialPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pimnet/OverlayLayer/Overlay/PlaytypeTrialPanel/VBoxContainer"]
+layout_mode = 2
+text = "title_trial_panel"
+horizontal_alignment = 1
+
 [node name="PlanPanel" type="PanelContainer" parent="Pimnet/OverlayLayer/Overlay"]
 unique_name_in_owner = true
 visible = false
@@ -1200,12 +1356,14 @@ expand_icon = true
 [connection signal="state_entered" from="StateChart/States/Level/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
 [connection signal="state_exited" from="StateChart/States/Level/Loaded/Verifying" to="." method="_on_verifying_state_exited"]
 [connection signal="taken" from="StateChart/States/Level/Loaded/Verifying/ToPlaying" to="." method="_on_verifying_to_playing_taken"]
-[connection signal="state_entered" from="StateChart/States/Level/Loaded/Completed" to="." method="_on_completed_state_entered"]
+[connection signal="state_entered" from="StateChart/States/Level/Loaded/TrialCompletion" to="." method="_on_trial_completion_state_entered"]
+[connection signal="state_entered" from="StateChart/States/Level/Loaded/LevelCompletion" to="." method="_on_level_completion_state_entered"]
 [connection signal="state_exited" from="StateChart/States/EqualityVerification/Running" to="." method="_on_running_state_exited"]
 [connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/PrepareRow" to="." method="_on_prepare_row_state_entered"]
 [connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/CheckRow" to="." method="_on_check_row_state_entered"]
 [connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/Equal" to="." method="_on_equal_state_entered"]
 [connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/Unequal" to="." method="_on_unequal_state_entered"]
+[connection signal="timeout" from="Pimnet/TrialTimer" to="." method="_on_trial_timer_timeout"]
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_normal_state_entered"]
 [connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Normal" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_normal_state_exited"]
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Opening" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_opening_state_entered"]
@@ -1213,6 +1371,8 @@ expand_icon = true
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Gui/Closing" to="Pimnet/OverlayLayer/Overlay" method="_on_gui_closing_state_entered"]
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/System" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_system_state_entered"]
 [connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/System" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_system_state_exited"]
+[connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Playtype" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_playtype_state_entered"]
+[connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Playtype" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_playtype_state_exited"]
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Plan" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_plan_state_entered"]
 [connection signal="state_exited" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Plan" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_plan_state_exited"]
 [connection signal="state_entered" from="Pimnet/OverlayLayer/Overlay/StateChart/States/Modal/Layout" to="Pimnet/OverlayLayer/Overlay" method="_on_modal_layout_state_entered"]

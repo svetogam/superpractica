@@ -5,6 +5,8 @@
 class_name SoftLimiterProgram
 extends FieldProgram
 
+signal warned
+
 var _object_rules := {} # {object_type: [Callable, ...], ...}
 var _object_outcomes := {} #{object_type: {"pass": Callable, "fail": Callable}, ...}
 
@@ -63,6 +65,7 @@ func is_valid() -> bool:
 func _run_rules() -> void:
 	_cache()
 
+	var passing := true
 	for object_type in _object_outcomes.keys():
 		for object in field.get_objects_by_type(object_type):
 			var conditions = _object_rules.get(object_type, [])
@@ -72,6 +75,9 @@ func _run_rules() -> void:
 				_object_outcomes[object_type].pass.call(object)
 			else:
 				_object_outcomes[object_type].fail.call(object)
+				passing = false
+	if not passing:
+		warned.emit()
 
 
 func _disallowed_object_rule(_object: FieldObject) -> bool:

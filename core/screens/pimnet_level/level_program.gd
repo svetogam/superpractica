@@ -8,7 +8,8 @@ extends Node
 signal verification_started
 signal verification_stopped
 signal task_completed(task_name)
-signal level_completed
+signal program_completed
+signal program_missed
 signal reset_called
 signal reset_changed
 
@@ -47,11 +48,6 @@ func _init() -> void:
 	add_to_group("level_programs")
 
 
-# Delete this
-func _enter_tree() -> void:
-	CSLocator.with(self).register(Game.SERVICE_VERIFIER, self)
-
-
 func _ready() -> void:
 	assert(level.level_data != null)
 
@@ -76,14 +72,18 @@ func complete_task() -> void:
 		plan_panel.complete_current_task()
 		task_completed.emit(plan_panel.current_task)
 		if plan_panel.are_all_tasks_completed():
-			complete_level()
+			complete_program()
 	else:
-		complete_level()
+		complete_program()
 
 
-func complete_level() -> void:
-	level_completed.emit()
+func complete_program() -> void:
+	program_completed.emit()
 	queue_free()
+
+
+func miss_program() -> void:
+	program_missed.emit()
 
 
 func start_verifying() -> void:

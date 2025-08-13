@@ -15,10 +15,25 @@ enum PimnetPanels {
 }
 
 const SYSTEM_MODAL_SLIDE_DURATION := 0.3
+const PLAYTYPE_MODAL_SLIDE_DURATION := 0.3
 const PLAN_MODAL_SLIDE_DURATION := 0.3
 const LAYOUT_MODAL_SLIDE_DURATION := 0.3
 const COMPLETION_MODAL_SLIDE_DURATION := 0.5
 const REGULAR_MODAL_BACKGROUND_COLOR := Color(0.25, 0.25, 0.25, 0.5)
+var level_type: LevelResource.LevelTypes:
+	get:
+		if level_data != null:
+			return level_data.level_type
+		return LevelResource.LevelTypes.NONE
+var playtype_panel: Control:
+	get:
+		match level_type:
+			LevelResource.LevelTypes.EXAMPLE_PRACTICE:
+				return %PlaytypeExamplePanel
+			LevelResource.LevelTypes.TRIAL_PRACTICE:
+				return %PlaytypeTrialPanel
+			_:
+				return null
 var goal_type: LevelResource.GoalTypes = LevelResource.GoalTypes.NONE:
 	set = _set_goal_type
 var goal_panel: GoalPanel:
@@ -146,6 +161,10 @@ func _on_system_button_pressed() -> void:
 	$StateChart.send_event("open_system_modal")
 
 
+func _on_playtype_button_pressed() -> void:
+	$StateChart.send_event("open_playtype_modal")
+
+
 func _on_plan_button_pressed() -> void:
 	$StateChart.send_event("open_plan_modal")
 
@@ -186,6 +205,8 @@ func _on_modal_barrier_gui_input(event: InputEvent) -> void:
 
 func _on_gui_normal_state_entered() -> void:
 	%SystemButton.pressed.connect(_on_system_button_pressed)
+	%PlaytypeExampleButton.pressed.connect(_on_playtype_button_pressed)
+	%PlaytypeTrialButton.pressed.connect(_on_playtype_button_pressed)
 	%PlanButton.pressed.connect(_on_plan_button_pressed)
 	%EditPanelsButton.pressed.connect(_on_edit_panels_button_pressed)
 
@@ -197,6 +218,8 @@ func _on_gui_normal_state_entered() -> void:
 
 func _on_gui_normal_state_exited() -> void:
 	%SystemButton.pressed.disconnect(_on_system_button_pressed)
+	%PlaytypeExampleButton.pressed.disconnect(_on_playtype_button_pressed)
+	%PlaytypeTrialButton.pressed.disconnect(_on_playtype_button_pressed)
 	%PlanButton.pressed.disconnect(_on_plan_button_pressed)
 	%EditPanelsButton.pressed.disconnect(_on_edit_panels_button_pressed)
 
@@ -235,6 +258,30 @@ func _on_modal_system_state_exited() -> void:
 	)
 
 	$StateChart.set_expression_property("slide_duration", SYSTEM_MODAL_SLIDE_DURATION)
+
+
+func _on_modal_playtype_state_entered() -> void:
+	get_tree().paused = true
+	%ModalBarrier.color = REGULAR_MODAL_BACKGROUND_COLOR
+	playtype_panel.show()
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(playtype_panel, "position:y", 0, PLAYTYPE_MODAL_SLIDE_DURATION)
+
+	$StateChart.set_expression_property("slide_duration", PLAYTYPE_MODAL_SLIDE_DURATION)
+	$StateChart.send_event("open")
+
+
+func _on_modal_playtype_state_exited() -> void:
+	get_tree().paused = false
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		playtype_panel,
+		"position:y",
+		-playtype_panel.size.y,
+		PLAYTYPE_MODAL_SLIDE_DURATION
+	)
+
+	$StateChart.set_expression_property("slide_duration", PLAYTYPE_MODAL_SLIDE_DURATION)
 
 
 func _on_modal_plan_state_entered() -> void:
