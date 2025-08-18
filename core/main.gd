@@ -112,6 +112,7 @@ func _on_pimnet_level_state_entered() -> void:
 	%PimnetLevelContainer.move_to_front()
 
 	$StateChart.send_event.call_deferred("unprepare_level_select")
+	Game.level_entered.emit()
 
 
 func _on_main_menu_to_level_select_taken() -> void:

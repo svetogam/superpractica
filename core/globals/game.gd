@@ -11,6 +11,7 @@ signal request_load_level(level_data)
 signal request_unload_level()
 signal request_enter_level(level_data)
 signal request_exit_game
+signal level_entered
 
 enum SuggestiveSignals {
 	NONE,

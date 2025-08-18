@@ -65,7 +65,16 @@ delay_in_seconds = "0.0"
 
 [node name="Loaded" type="Node" parent="StateChart/States/Level"]
 script = ExtResource("3_32jhs")
-initial_state = NodePath("Playing")
+initial_state = NodePath("Thumbnail")
+
+[node name="Thumbnail" type="Node" parent="StateChart/States/Level/Loaded"]
+script = ExtResource("4_qgiri")
+
+[node name="ToPlaying" type="Node" parent="StateChart/States/Level/Loaded/Thumbnail"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../Playing")
+event = &"start_playing"
+delay_in_seconds = "0.0"
 
 [node name="Playing" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("4_qgiri")
@@ -131,6 +140,7 @@ script = ExtResource("4_qgiri")
 [node name="ToPlayingTrial" type="Node" parent="StateChart/States/TrialPractice/InitTrials"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../PlayingTrial")
+event = &"play_first_trial"
 delay_in_seconds = "0.0"
 
 [node name="PlayingTrial" type="Node" parent="StateChart/States/TrialPractice"]
@@ -164,6 +174,12 @@ script = ExtResource("4_qgiri")
 script = ExtResource("5_sypxk")
 to = NodePath("../../PlayingTrial")
 event = &"play_next_trial"
+delay_in_seconds = "0.0"
+
+[node name="ToOff" type="Node" parent="StateChart/States/TrialPractice"]
+script = ExtResource("5_sypxk")
+to = NodePath("../Off")
+event = &"stop_trial_practice"
 delay_in_seconds = "0.0"
 
 [node name="EqualityVerification" type="Node" parent="StateChart/States"]

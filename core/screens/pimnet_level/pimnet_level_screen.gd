@@ -33,6 +33,7 @@ func _ready() -> void:
 		Game.AGENT_MEMO_SLOT, "memo_changed", updated.emit.unbind(1)
 	)
 	CSConnector.with(self).connect_setup(Game.AGENT_FIELD, _setup_field)
+	Game.level_entered.connect(_on_level_entered)
 
 	# Consistently start with empty state
 	pimnet.setup(null)
@@ -120,6 +121,7 @@ func unload_level() -> void:
 	assert(level_data != null)
 
 	$StateChart.send_event("unload")
+	$StateChart.send_event("stop_trial_practice")
 
 	reverter.history.clear()
 
@@ -134,6 +136,13 @@ func unload_level() -> void:
 
 	level_data = null
 	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
+
+
+func _on_level_entered() -> void:
+	assert(level_data != null)
+
+	$StateChart.send_event("start_playing")
+	$StateChart.send_event("play_first_trial")
 
 
 func _on_program_missed() -> void:
@@ -191,10 +200,12 @@ func _on_empty_state_entered() -> void:
 func _on_verifying_state_entered() -> void:
 	pimnet.overlay.goal_panel.start_verification()
 	pimnet.disable_verification_input(true)
+	%TrialTimer.paused = true
 
 
 func _on_verifying_state_exited() -> void:
 	pimnet.disable_verification_input(false)
+	%TrialTimer.paused = false
 
 
 func _on_verifying_to_playing_taken() -> void:
@@ -206,6 +217,7 @@ func _on_level_completion_state_entered() -> void:
 	pimnet.overlay.goal_panel.succeed()
 	Game.progress_data.record_level_completion(level_data.id)
 	%Overlay/StateChart.send_event("open_completion_modal")
+	%TrialTimer.stop()
 
 
 #====================================================================
@@ -315,6 +327,8 @@ func _on_init_trials_state_entered() -> void:
 
 	_trials_completed = 0
 	_time_limit = level_data.trial_time_limit
+	pimnet.set_trial_progress(0, level_data.number_trials)
+	pimnet.set_trial_time(_time_limit, _time_limit)
 
 
 func _on_playing_trial_state_entered() -> void:
