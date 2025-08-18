@@ -12,8 +12,6 @@ const REVERTER_MAX_SIZE: int = 1000
 @export var level_data: LevelResource
 var program: LevelProgram
 var reverter := CReverter.new()
-var _time_limit := 0.0
-var _trials_completed: int
 var _action_queue := LevelActionQueue.new()
 @onready var pimnet := %Pimnet as Pimnet
 
@@ -49,16 +47,6 @@ func _setup_field(field: Field) -> void:
 	field.updated.connect(updated.emit)
 
 
-func _process(_delta: float) -> void:
-	if level_data == null:
-		return
-
-	match level_data.level_type:
-		LevelResource.LevelTypes.TRIAL_PRACTICE:
-			if _time_limit > 0.0:
-				pimnet.set_trial_time(%TrialTimer.time_left, _time_limit)
-
-
 func _physics_process(_delta: float) -> void:
 	# Do actions queued on the same frame together
 	_do_queued_actions()
@@ -79,15 +67,9 @@ func load_level(p_level_data: LevelResource) -> void:
 	if level_data.program != null:
 		run_program()
 
-	match level_data.level_type:
-		LevelResource.LevelTypes.TRIAL_PRACTICE:
-			_trials_completed = 0
-			_time_limit = level_data.trial_time_limit
-			pimnet.set_trial_progress(0, level_data.number_trials)
-			%TrialTimer.start(_time_limit)
-
 	# Not immediate due to potential for calling from _ready()
 	$StateChart.send_event.call_deferred("load")
+	$StateChart.send_event.call_deferred("start_trial_practice")
 
 
 func run_program() -> void:
@@ -131,6 +113,8 @@ func reload_level() -> void:
 		reverter.commit()
 	run_program()
 
+	$StateChart.send_event("reload")
+
 
 func unload_level() -> void:
 	assert(level_data != null)
@@ -152,16 +136,10 @@ func unload_level() -> void:
 	CSLocator.with(self).unregister(Game.SERVICE_LEVEL_DATA)
 
 
-func fail_trial() -> void:
-	if _trials_completed != -1: # If not already failed
-		pimnet.set_trial_progress(_trials_completed, level_data.number_trials, true)
-		_trials_completed = -1
-
-
 func _on_program_missed() -> void:
 	match level_data.level_type:
 		LevelResource.LevelTypes.TRIAL_PRACTICE:
-			fail_trial()
+			$StateChart.send_event("fail_trial")
 
 
 func _on_program_completed() -> void:
@@ -203,10 +181,6 @@ func _update_reversion_buttons() -> void:
 	)
 
 
-func _on_trial_timer_timeout() -> void:
-	fail_trial()
-
-
 func _on_empty_state_entered() -> void:
 	if pimnet.overlay.goal_panel != null:
 		pimnet.overlay.goal_panel.reset()
@@ -226,16 +200,6 @@ func _on_verifying_state_exited() -> void:
 func _on_verifying_to_playing_taken() -> void:
 	pimnet.overlay.goal_panel.stop_verification()
 	pimnet.overlay.goal_panel.fail()
-
-
-func _on_trial_completion_state_entered() -> void:
-	_trials_completed += 1
-	pimnet.set_trial_progress(_trials_completed, level_data.number_trials)
-	if _trials_completed < level_data.number_trials:
-		reload_level()
-		$StateChart.send_event("reload_trial")
-	else:
-		$StateChart.send_event("complete_level")
 
 
 func _on_level_completion_state_entered() -> void:
@@ -336,3 +300,49 @@ func _get_row_number() -> int:
 	assert(_row_numbers.size() >= _rows_checked)
 
 	return _row_numbers[_rows_checked]
+
+
+#====================================================================
+# Trial Practice
+#====================================================================
+
+var _time_limit := 0.0
+var _trials_completed: int
+
+
+func _on_init_trials_state_entered() -> void:
+	assert(level_data != null)
+
+	_trials_completed = 0
+	_time_limit = level_data.trial_time_limit
+
+
+func _on_playing_trial_state_entered() -> void:
+	pimnet.set_trial_progress(_trials_completed, level_data.number_trials)
+	%TrialTimer.start(_time_limit)
+
+
+func _on_playing_trial_state_processing(_delta: float) -> void:
+	if _time_limit > 0.0:
+		pimnet.set_trial_time(%TrialTimer.time_left, _time_limit)
+
+
+func _on_trial_timer_timeout() -> void:
+	if $StateChart/States/TrialPractice/PlayingTrial.active:
+		$StateChart.send_event("fail_trial")
+
+
+func _on_trial_failure_state_entered() -> void:
+	if _trials_completed != -1: # If not already failed
+		pimnet.set_trial_progress(_trials_completed, level_data.number_trials, true)
+		_trials_completed = -1
+
+
+func _on_trial_completion_state_entered() -> void:
+	_trials_completed += 1
+	pimnet.set_trial_progress(_trials_completed, level_data.number_trials)
+	if _trials_completed < level_data.number_trials:
+		reload_level()
+		$StateChart.send_event("play_next_trial")
+	else:
+		$StateChart.send_event("complete_level")

@@ -76,12 +76,6 @@ to = NodePath("../../Verifying")
 event = &"start_verification"
 delay_in_seconds = "0.0"
 
-[node name="ToTrialCompletion" type="Node" parent="StateChart/States/Level/Loaded/Playing"]
-script = ExtResource("5_sypxk")
-to = NodePath("../../TrialCompletion")
-event = &"complete_trial"
-delay_in_seconds = "0.0"
-
 [node name="ToLevelCompleted" type="Node" parent="StateChart/States/Level/Loaded/Playing"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../LevelCompletion")
@@ -97,28 +91,7 @@ to = NodePath("../../Playing")
 event = &"stop_verification"
 delay_in_seconds = "0.0"
 
-[node name="ToTrialCompletion" type="Node" parent="StateChart/States/Level/Loaded/Verifying"]
-script = ExtResource("5_sypxk")
-to = NodePath("../../TrialCompletion")
-event = &"complete_trial"
-delay_in_seconds = "0.0"
-
 [node name="ToLevelCompletion" type="Node" parent="StateChart/States/Level/Loaded/Verifying"]
-script = ExtResource("5_sypxk")
-to = NodePath("../../LevelCompletion")
-event = &"complete_level"
-delay_in_seconds = "0.0"
-
-[node name="TrialCompletion" type="Node" parent="StateChart/States/Level/Loaded"]
-script = ExtResource("4_qgiri")
-
-[node name="ToPlaying" type="Node" parent="StateChart/States/Level/Loaded/TrialCompletion"]
-script = ExtResource("5_sypxk")
-to = NodePath("../../Playing")
-event = &"reload_trial"
-delay_in_seconds = "0.0"
-
-[node name="ToLevelCompletion" type="Node" parent="StateChart/States/Level/Loaded/TrialCompletion"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../LevelCompletion")
 event = &"complete_level"
@@ -127,10 +100,70 @@ delay_in_seconds = "0.0"
 [node name="LevelCompletion" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("4_qgiri")
 
+[node name="ToPlaying" type="Node" parent="StateChart/States/Level/Loaded"]
+script = ExtResource("5_sypxk")
+to = NodePath("../Playing")
+event = &"reload"
+delay_in_seconds = "0.0"
+
 [node name="ToEmpty" type="Node" parent="StateChart/States/Level/Loaded"]
 script = ExtResource("5_sypxk")
 to = NodePath("../../Empty")
 event = &"unload"
+delay_in_seconds = "0.0"
+
+[node name="TrialPractice" type="Node" parent="StateChart/States"]
+script = ExtResource("3_32jhs")
+initial_state = NodePath("Off")
+
+[node name="Off" type="Node" parent="StateChart/States/TrialPractice"]
+script = ExtResource("4_qgiri")
+
+[node name="ToInitTrials" type="Node" parent="StateChart/States/TrialPractice/Off"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../InitTrials")
+event = &"start_trial_practice"
+delay_in_seconds = "0.0"
+
+[node name="InitTrials" type="Node" parent="StateChart/States/TrialPractice"]
+script = ExtResource("4_qgiri")
+
+[node name="ToPlayingTrial" type="Node" parent="StateChart/States/TrialPractice/InitTrials"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../PlayingTrial")
+delay_in_seconds = "0.0"
+
+[node name="PlayingTrial" type="Node" parent="StateChart/States/TrialPractice"]
+script = ExtResource("4_qgiri")
+
+[node name="ToTrialFailure" type="Node" parent="StateChart/States/TrialPractice/PlayingTrial"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../TrialFailure")
+event = &"fail_trial"
+delay_in_seconds = "0.0"
+
+[node name="ToTrialCompletion" type="Node" parent="StateChart/States/TrialPractice/PlayingTrial"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../TrialCompletion")
+event = &"complete_trial"
+delay_in_seconds = "0.0"
+
+[node name="TrialFailure" type="Node" parent="StateChart/States/TrialPractice"]
+script = ExtResource("4_qgiri")
+
+[node name="ToTrialCompletion" type="Node" parent="StateChart/States/TrialPractice/TrialFailure"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../TrialCompletion")
+event = &"complete_trial"
+delay_in_seconds = "0.0"
+
+[node name="TrialCompletion" type="Node" parent="StateChart/States/TrialPractice"]
+script = ExtResource("4_qgiri")
+
+[node name="ToPlayingTrial" type="Node" parent="StateChart/States/TrialPractice/TrialCompletion"]
+script = ExtResource("5_sypxk")
+to = NodePath("../../PlayingTrial")
+event = &"play_next_trial"
 delay_in_seconds = "0.0"
 
 [node name="EqualityVerification" type="Node" parent="StateChart/States"]
@@ -1356,8 +1389,12 @@ expand_icon = true
 [connection signal="state_entered" from="StateChart/States/Level/Loaded/Verifying" to="." method="_on_verifying_state_entered"]
 [connection signal="state_exited" from="StateChart/States/Level/Loaded/Verifying" to="." method="_on_verifying_state_exited"]
 [connection signal="taken" from="StateChart/States/Level/Loaded/Verifying/ToPlaying" to="." method="_on_verifying_to_playing_taken"]
-[connection signal="state_entered" from="StateChart/States/Level/Loaded/TrialCompletion" to="." method="_on_trial_completion_state_entered"]
 [connection signal="state_entered" from="StateChart/States/Level/Loaded/LevelCompletion" to="." method="_on_level_completion_state_entered"]
+[connection signal="state_entered" from="StateChart/States/TrialPractice/InitTrials" to="." method="_on_init_trials_state_entered"]
+[connection signal="state_entered" from="StateChart/States/TrialPractice/PlayingTrial" to="." method="_on_playing_trial_state_entered"]
+[connection signal="state_processing" from="StateChart/States/TrialPractice/PlayingTrial" to="." method="_on_playing_trial_state_processing"]
+[connection signal="state_entered" from="StateChart/States/TrialPractice/TrialFailure" to="." method="_on_trial_failure_state_entered"]
+[connection signal="state_entered" from="StateChart/States/TrialPractice/TrialCompletion" to="." method="_on_trial_completion_state_entered"]
 [connection signal="state_exited" from="StateChart/States/EqualityVerification/Running" to="." method="_on_running_state_exited"]
 [connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/PrepareRow" to="." method="_on_prepare_row_state_entered"]
 [connection signal="state_entered" from="StateChart/States/EqualityVerification/Running/CheckRow" to="." method="_on_check_row_state_entered"]
