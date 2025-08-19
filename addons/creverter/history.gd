@@ -1,21 +1,26 @@
 class_name CRHistory
 extends Resource
-## History resource for the Composite Reverter.
+## History resource for use with [CReverter].
 ##
 ## [CRHistory] is a data structure containing [CRMemento]s and tags,
 ## combined with a few other functions.
 ## [br][br]
-## Most uses of the [CReverter] do not require accessing this class directly.
-## Good reasons to access this class are to
-## set the [member max_size],
-## [method clear] the history,
-## and draw the history.
+## Most uses of [CReverter] do not require accessing this class directly.
+## Good reasons to access this class are to set the [member max_size],
+## [method clear] the history, and draw the history.
 
 ## Constant signifying an invalid position in the history.
 const NULL_POSITION: int = -1
 ## Constant signifying the first position in the history.
 const FIRST_POSITION: int = 0
-const _DEFAULT_MAX_SIZE: int = 10000
+## Maximum number of items that can be added before items begin
+## to be forgotten, from oldest to newest.
+## [br][br]
+## It is recommended to clear the history before shrinking its max size.
+## If this is reduced to allow fewer items than are in the history,
+## then items will be forgotten in an unspecified but efficient way.
+@export var max_size: int = 10000:
+	set = _set_max_size
 ## Position of the newest item in the history. This is equal to
 ## [constant NULL_POSITION] when the history is empty.
 var newest_position: int:
@@ -25,16 +30,8 @@ var newest_position: int:
 ## [constant FIRST_POSITION] when it is not empty.
 var oldest_position: int:
 	get = _get_oldest_position
-## Maximum number of items that can be added before items begin
-## to be forgotten, from oldest to newest.
-## [br][br]
-## It is recommended to clear the history before shrinking its max size.
-## If this is reduced to allow fewer items than are in the history,
-## then items will be forgotten in an unspecified but efficient way.
-var max_size: int = _DEFAULT_MAX_SIZE:
-	set = _set_max_size
 var _stack: Array[CRMemento] = []
-var _tags: Dictionary = {} # tags struct: {StringName: int, ...}
+var _tags: Dictionary = {} #[String, int]
 
 
 ## Adds the given tag to the item at the given position, or moves
@@ -42,7 +39,7 @@ var _tags: Dictionary = {} # tags struct: {StringName: int, ...}
 ## Does nothing if the history is empty or if the position is out of bounds.
 ## [br][br]
 ## The first position in the history is equal to [constant FIRST_POSITION].
-func add_tag(tag: StringName, position: int) -> void:
+func add_tag(tag: String, position: int) -> void:
 	if is_empty() or position < FIRST_POSITION or position > newest_position:
 		return
 
@@ -52,13 +49,13 @@ func add_tag(tag: StringName, position: int) -> void:
 ## Removes the given tag.
 ## [br][br]
 ## Does nothing if the tag does not exist.
-func remove_tag(tag: StringName) -> void:
+func remove_tag(tag: String) -> void:
 	_tags.erase(tag)
 
 
 ## Clears the history, forgetting all items and tags.
 ## [br][br]
-## This can be called safely while the [CReverter] is in operation.
+## This can be called safely while [CReverter] is in operation.
 func clear() -> void:
 	_stack = []
 	_tags = {}
@@ -80,7 +77,7 @@ func get_item(position: int) -> CRMemento:
 ## or [constant NULL_POSITION] if it does not exist.
 ## [br][br]
 ## The first position in the history is equal to [constant FIRST_POSITION].
-func get_tag_position(tag: StringName) -> int:
+func get_tag_position(tag: String) -> int:
 	return _tags.get(tag, NULL_POSITION)
 
 
@@ -105,7 +102,7 @@ func is_empty() -> bool:
 
 ## Returns [code]true[/code] if the history has the given tag,
 ## [code]false[/code] otherwise.
-func has_tag(tag: StringName) -> bool:
+func has_tag(tag: String) -> bool:
 	return _tags.has(tag)
 
 
@@ -178,7 +175,7 @@ func _get_oldest_position() -> int:
 	return FIRST_POSITION
 
 
-# Structure is: {int: [StringName, ...], ...}
+# Returns Dictionary[int, [Array[String]]]
 func _get_position_to_tags_dict() -> Dictionary:
 	var dict := {}
 	for tag in _tags:

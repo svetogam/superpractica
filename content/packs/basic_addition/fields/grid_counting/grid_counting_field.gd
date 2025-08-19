@@ -615,21 +615,13 @@ func clear_prefig() -> void:
 #====================================================================
 #region
 
-#--------------------------------------
-# State Building
-#--------------------------------------
 
-
-func build_state() -> CRMemento:
-	return (
-		CRMemento
-		. new(
-			{
-				"cells": _get_cells_data(),
-				"rows": _get_rows_data(),
-			}
-		)
-	)
+func _on_reverter_saving(memento: CRMemento) -> void:
+	var data := {
+		"cells": _get_cells_data(),
+		"rows": _get_rows_data(),
+	}
+	memento.add_submemento(name, data)
 
 
 func _get_cells_data() -> Dictionary:
@@ -659,18 +651,11 @@ func _get_rows_data() -> Dictionary:
 	return data
 
 
-#--------------------------------------
-# State Loading
-#--------------------------------------
-
-
-func load_state(state: CRMemento) -> void:
+func _on_reverter_loading(memento: CRMemento) -> void:
+	var data = memento.get_submemento(name)
 	GridCountingActionSetEmpty.new(self).push()
-
-	_load_cell_data(state.data.cells)
-	_load_row_data(state.data.rows)
-
-	_trigger_update(UpdateTypes.STATE_LOADED)
+	_load_cell_data(data.cells)
+	_load_row_data(data.rows)
 
 
 func _load_cell_data(cell_data: Dictionary) -> void:

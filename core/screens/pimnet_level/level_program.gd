@@ -37,9 +37,6 @@ var plan_panel: Control:
 	get:
 		assert(pimnet.overlay.plan_panel != null)
 		return pimnet.overlay.plan_panel
-var reverter: CReverter:
-	get:
-		return level.reverter
 var _reset_function := Callable()
 var _verifying := false
 

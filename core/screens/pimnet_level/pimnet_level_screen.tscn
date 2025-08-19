@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://2ert4t63mict"]
+[gd_scene load_steps=39 format=3 uid="uid://2ert4t63mict"]
 
 [ext_resource type="Script" uid="uid://cjkyiv70d33il" path="res://core/screens/pimnet_level/pimnet_level_screen.gd" id="1_o01nh"]
 [ext_resource type="Script" uid="uid://471tthqxuqlt" path="res://core/screens/pimnet_level/pimnet/pimnet.gd" id="2_6muex"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_8gxre"]
+[ext_resource type="Script" uid="uid://bgtxwpsxtedw5" path="res://addons/creverter/reverter.gd" id="2_l0rup"]
 [ext_resource type="Script" uid="uid://cuo7t03vwrjdk" path="res://core/screens/pimnet_level/pimnet/overlay/pimnet_overlay.gd" id="3_7rkio"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="3_32jhs"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="4_qgiri"]
@@ -42,6 +43,11 @@
 [node name="PimnetLevelScreen" type="Node"]
 process_mode = 1
 script = ExtResource("1_o01nh")
+
+[node name="Reverter" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_l0rup")
+metadata/_custom_type_script = "uid://bgtxwpsxtedw5"
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_8gxre")

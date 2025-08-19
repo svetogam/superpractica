@@ -8,17 +8,15 @@ extends Node
 signal updated
 signal actions_completed
 
-const REVERTER_MAX_SIZE: int = 1000
 @export var level_data: LevelResource
 var program: LevelProgram
-var reverter := CReverter.new()
 var _action_queue := LevelActionQueue.new()
 @onready var pimnet := %Pimnet as Pimnet
+@onready var reverter := %Reverter as CReverter
 
 
 func _ready() -> void:
 	# Setup reversion
-	reverter.history.max_size = REVERTER_MAX_SIZE
 	%UndoButton.pressed.connect(reverter.undo)
 	%RedoButton.pressed.connect(reverter.redo)
 	%ResetButton.pressed.connect(_on_reset_button_pressed)
@@ -28,6 +26,7 @@ func _ready() -> void:
 	_update_reversion_buttons()
 	updated.connect(_update_reversion_buttons)
 	CSLocator.with(self).register(Game.SERVICE_REVERTER, reverter)
+
 	actions_completed.connect(updated.emit)
 	CSConnector.with(self).connect_signal(
 		Game.AGENT_MEMO_SLOT, "memo_changed", updated.emit.unbind(1)
@@ -62,7 +61,7 @@ func load_level(p_level_data: LevelResource) -> void:
 	pimnet.setup(level_data)
 
 	# Initial commit
-	if reverter.has_connected_funcs():
+	if reverter.saving.has_connections():
 		reverter.commit()
 
 	if level_data.program != null:
@@ -110,7 +109,7 @@ func reload_level() -> void:
 	if pimnet.overlay.goal_panel != null:
 		pimnet.overlay.goal_panel.reset()
 	pimnet.setup(level_data)
-	if reverter.has_connected_funcs():
+	if reverter.saving.has_connections():
 		reverter.commit()
 	run_program()
 

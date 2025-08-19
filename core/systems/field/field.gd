@@ -68,7 +68,9 @@ func _exit_tree() -> void:
 
 
 func _on_reverter_found(reverter: CReverter) -> void:
-	reverter.connect_save_load(get_instance_id(), build_state, load_state)
+	reverter.saving.connect(_on_reverter_saving)
+	reverter.loading.connect(_on_reverter_loading)
+	reverter.loaded.connect(_on_reverter_loaded)
 
 
 func _on_root_effect_layer_found(p_effect_layer: CanvasLayer) -> void:
@@ -115,16 +117,17 @@ func _on_selected() -> void:
 
 
 # Virtual
-func build_state() -> CRMemento:
+func _on_reverter_saving(_memento: CRMemento) -> void:
 	assert(false)
-	return null
 
 
-# Call this _trigger_update line after loading in implementations:
-	#_trigger_update(UpdateTypes.STATE_LOADED)
 # Virtual
-func load_state(_state: CRMemento) -> void:
+func _on_reverter_loading(_memento: CRMemento) -> void:
 	assert(false)
+
+
+func _on_reverter_loaded() -> void:
+	_trigger_update(UpdateTypes.STATE_LOADED)
 
 
 # Virtual
